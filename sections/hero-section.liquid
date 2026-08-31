@@ -1,13 +1,16 @@
 {% comment %}
-AI-Powered Perfume Recommendation Quiz Section - REDESIGNED
-Premium card-based interface with user name personalization
+  AI-Powered Perfume Recommendation Quiz Section - REDESIGNED
+  Premium card-based interface with user name personalization
 {% endcomment %}
 
 <div class="perfume-quiz-wrapper">
   <div class="hero-section">
     <div class="hero-content-wrapper">
       <div class="hero-image-container">
-        <img src="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Website_-_ScentFinder_Footer_01.png?v=1767001740" class="hero-image" alt="Fragrance">
+        <img
+          src="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Website_-_ScentFinder_Footer_01.png?v=1767001740"
+          class="hero-image"
+          alt="Fragrance">
       </div>
       <div class="hero-text-container">
         <p class="fragrance-finder-text">Fragrance Finder</p>
@@ -30,7 +33,7 @@ Premium card-based interface with user name personalization
     <div class="quiz-modal-overlay"></div>
     <div class="quiz-modal-content">
       <button id="close-quiz-btn" class="close-btn">&times;</button>
-      
+
       <div id="quiz-container">
         {% comment %} Step 0: User Name Input {% endcomment %}
         <div class="quiz-step" data-step="0">
@@ -44,7 +47,12 @@ Premium card-based interface with user name personalization
               <p class="quiz-subtitle">Let us personalize your fragrance journey</p>
             </div>
             <div class="quiz-input-group">
-              <input type="text" id="user-name-input" class="quiz-name-input" placeholder="Enter your name..." maxlength="50">
+              <input
+                type="text"
+                id="user-name-input"
+                class="quiz-name-input"
+                placeholder="Enter your name..."
+                maxlength="50">
             </div>
             <button class="quiz-next-btn" id="name-next-btn">CONTINUE</button>
           </div>
@@ -248,8 +256,9 @@ Premium card-based interface with user name personalization
 
 <style>
   @font-face {
-    font-family: "PPMori Regular";
-    src: url("https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPMori-Regular.otf?v=1751621372") format("opentype");
+    font-family: 'PPMori Regular';
+    src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPMori-Regular.otf?v=1751621372')
+      format('opentype');
     font-weight: 400;
     font-style: normal;
   }
@@ -301,14 +310,14 @@ Premium card-based interface with user name personalization
   }
 
   .fragrance-finder-text {
-    font-family: "PPMori Regular", sans-serif;
+    font-family: 'PPMori Regular', sans-serif;
     font-size: 14px;
     color: #333;
     margin-bottom: 10px;
   }
 
   .hero-heading {
-    font-family: "PPMori Regular", sans-serif;
+    font-family: 'PPMori Regular', sans-serif;
     font-size: 40px;
     line-height: 1.1;
     font-weight: 400;
@@ -329,7 +338,7 @@ Premium card-based interface with user name personalization
     font-size: 14px;
     border-radius: 999px;
     transition: background 0.3s ease;
-    font-family: "PPMori Regular", sans-serif;
+    font-family: 'PPMori Regular', sans-serif;
     text-transform: uppercase;
     width: 359px;
     height: 67px;
@@ -350,7 +359,7 @@ Premium card-based interface with user name personalization
     justify-content: space-around;
     align-items: center;
     padding: 20px 0;
-    font-family: "PPMori Regular", sans-serif;
+    font-family: 'PPMori Regular', sans-serif;
     font-size: 14px;
     text-transform: uppercase;
     flex-shrink: 0;
@@ -378,7 +387,7 @@ Premium card-based interface with user name personalization
     align-items: center;
     justify-content: center;
     z-index: 9999;
-    font-family: "PPMori Regular", sans-serif;
+    font-family: 'PPMori Regular', sans-serif;
   }
 
   .quiz-modal.hidden {
@@ -578,7 +587,7 @@ Premium card-based interface with user name personalization
     padding: 14px 18px;
     border: 2px solid #e0e0e0;
     border-radius: 12px;
-    font-family: "PPMori Regular", sans-serif;
+    font-family: 'PPMori Regular', sans-serif;
     font-size: 16px;
     color: #000;
     background: #ffffff;
@@ -625,7 +634,7 @@ Premium card-based interface with user name personalization
     color: #fff;
     border: none;
     border-radius: 12px;
-    font-family: "PPMori Regular", sans-serif;
+    font-family: 'PPMori Regular', sans-serif;
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
@@ -663,8 +672,12 @@ Premium card-based interface with user name personalization
   }
 
   @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 
   .loading-text {
@@ -776,7 +789,7 @@ Premium card-based interface with user name personalization
     background: #000;
     border: none;
     border-radius: 12px;
-    font-family: "PPMori Regular", sans-serif;
+    font-family: 'PPMori Regular', sans-serif;
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
@@ -798,7 +811,7 @@ Premium card-based interface with user name personalization
     border: 2px solid #e0e0e0;
     background: #ffffff;
     border-radius: 12px;
-    font-family: "PPMori Regular", sans-serif;
+    font-family: 'PPMori Regular', sans-serif;
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
@@ -914,67 +927,616 @@ Premium card-based interface with user name personalization
 <script>
   // ... existing code ... COMPLETE PERFUME DATABASE (50+ entries unchanged)
   const perfumeDatabase = [
-    { name: "Addiction", originalName: "MFK Baccarat Rouge 540", category: "Unisex", scent_family: "Warm", head_notes: "Saffron, Jasmine", heart_notes: "Amberwood, Ambergris", base_notes: "Fir Resin, Cedar", price_tier: "Premium" },
-    { name: "Invictor", originalName: "Creed Aventus", category: "Men", scent_family: "Fresh", head_notes: "Bergamot, Black Currant, Apple, Lemon, Pink Pepper", heart_notes: "Pineapple, Patchouli, Moroccan Jasmine", base_notes: "Birch, Musk, Oakmoss, Cedarwood, Ambroxan", price_tier: "Premium" },
-    { name: "Pink Whisper", originalName: "Parfums de Marly Delina", category: "Women", scent_family: "Flowery", head_notes: "Litchi, Rhubarb, Bergamot, Nutmeg", heart_notes: "Turkish Rose, Peony, Musk, Petalia, Vanilla", base_notes: "Cashmeran, Incense, Cedar, Haitian Vetiver", price_tier: "Premium" },
-    { name: "Supreme Power", originalName: "Initio Oud for Greatness", category: "Unisex", scent_family: "Warm", head_notes: "Saffron, Nutmeg, Lavender", heart_notes: "Agarwood (Oud)", base_notes: "Patchouli, Musk", price_tier: "Premium" },
-    { name: "Timeless Grace", originalName: "Chanel Coco Mademoiselle", category: "Women", scent_family: "Flowery", head_notes: "Orange, Mandarin Orange, Bergamot, Orange Blossom", heart_notes: "Turkish Rose, Jasmine, Mimosa, Ylang-Ylang", base_notes: "Patchouli, White Musk, Vanilla, Vetiver, Tonka Bean, Opoponax", price_tier: "Mid" },
-    { name: "Cool Alpine", originalName: "Creed Silver Mountain Water", category: "Unisex", scent_family: "Fresh", head_notes: "Bergamot, Mandarin Orange", heart_notes: "Green Tea, Black Currant", base_notes: "Musk, Sandalwood, Petitgrain, Galbanum", price_tier: "Premium" },
-    { name: "Black Poison", originalName: "YSL Black Opium", category: "Women", scent_family: "Warm", head_notes: "Pear, Pink Pepper, Orange Blossom", heart_notes: "Coffee, Jasmine, Bitter Almond, Licorice", base_notes: "Vanilla, Patchouli, Cashmere Wood, Cedar", price_tier: "Mid" },
-    { name: "Feminine Fancy", originalName: "Carolina Herrera Good Girl", category: "Women", scent_family: "Gourmand", head_notes: "Almond, Coffee, Bergamot, Lemon", heart_notes: "Tuberose, Jasmine Sambac, Orange Blossom, Bulgarian Rose, Orris", base_notes: "Tonka Bean, Cacao, Vanilla, Praline, Sandalwood, Cinnamon, Cedar", price_tier: "Mid" },
-    { name: "Fate", originalName: "Chanel Chance (EDP)", category: "Women", scent_family: "Flowery", head_notes: "Pink Pepper", heart_notes: "Jasmine, Iris", base_notes: "Patchouli, Musk, Vanilla, Vetiver", price_tier: "Mid" },
-    { name: "Mirage", originalName: "Maison Crivelli Oud Maracujá", category: "Unisex", scent_family: "Earthy", head_notes: "Passionfruit, Fruity Notes, Saffron, Turkish Rose", heart_notes: "Agarwood (Oud), Benzoin, Indonesian Patchouli Leaf", base_notes: "Leather, Akigalawood, Amber, Vanilla, Labdanum", price_tier: "Premium" },
-    { name: "Majesty", originalName: "Maison Crivelli Hibiscus Mahajád", category: "Unisex", scent_family: "Flowery", head_notes: "Cassis, Hibiscus", heart_notes: "Damask Rose, Leather, Cinnamon", base_notes: "Vanilla, Ambroxan, Musk", price_tier: "Premium" },
-    { name: "Iconic Desire", originalName: "Le Labo Santal 33", category: "Unisex", scent_family: "Earthy", head_notes: "Violet, Cardamom", heart_notes: "Iris, Papyrus", base_notes: "Ambroxan, Sandalwood, Cedar, Leather, Spicy Notes", price_tier: "Premium" },
-    { name: "Eternal Verde", originalName: "Nishane Hacivat", category: "Unisex", scent_family: "Fresh", head_notes: "Pineapple, Grapefruit, Bergamot", heart_notes: "Cedar, Patchouli, Jasmine", base_notes: "Oakmoss, Woody Notes, Clearwood", price_tier: "Premium" },
-    { name: "Fierce", originalName: "Dior Sauvage (Parfum)", category: "Men", scent_family: "Warm", head_notes: "Bergamot, Mandarin Orange, Elemi", heart_notes: "Sandalwood", base_notes: "Olibanum, Tonka Bean, Vanilla", price_tier: "Mid" },
-    { name: "Marine", originalName: "Chanel Bleu de Chanel", category: "Men", scent_family: "Fresh", head_notes: "Grapefruit, Lemon, Mint, Pink Pepper", heart_notes: "Ginger, Nutmeg, Jasmine, Iso E Super", base_notes: "Incense, Vetiver, Cedar, Sandalwood, Patchouli, Labdanum, White Musk", price_tier: "Mid" },
-    { name: "Silk Odyssey", originalName: "Maison Francis Kurkdjian Oud Satin Mood", category: "Unisex", scent_family: "Warm", head_notes: "Bulgarian Rose, Violet, Strawberry", heart_notes: "Turkish Rose, Benzoin", base_notes: "Agarwood (Oud), Vanilla, Amber, Caramel, Cedar", price_tier: "Premium" },
-    { name: "Wanderer", originalName: "Louis Vuitton Ombre Nomade", category: "Unisex", scent_family: "Earthy", head_notes: "Agarwood (Oud), Incense", heart_notes: "Rose, Raspberry, Saffron, Birch", base_notes: "Amber, Benzoin, Geranium", price_tier: "Premium" },
-    { name: "Luminous Wonder", originalName: "Dior J'Adore", category: "Women", scent_family: "Flowery", head_notes: "Ylang-Ylang, Pear, Melon, Magnolia, Peach, Orange, Bergamot", heart_notes: "Jasmine, Lily, Tuberose, Freesia, Rose, Orchid, Violet, Plum", base_notes: "Musk, Vanilla, Blackberry, Cedar", price_tier: "Mid" },
-    { name: "Liberty", originalName: "YSL Libre", category: "Women", scent_family: "Herbal", head_notes: "Lavender, Mandarin Orange, Black Currant, Petitgrain", heart_notes: "Lavender, Orange Blossom, Jasmine", base_notes: "Madagascar Vanilla, Musk, Cedar, Ambergris", price_tier: "Mid" },
-    { name: "Visionary", originalName: "Louis Vuitton Imagination", category: "Men", scent_family: "Fresh", head_notes: "Citron, Calabrian bergamot, Sicilian Orange", heart_notes: "Tunisian Neroli, Nigerian Ginger, Ceylon Cinnamon", base_notes: "Chinese Black Tea, Ambroxan, Guaiac Wood, Olibanum", price_tier: "Premium" },
-    { name: "Heaven's Pour", originalName: "By Kilian Angel's Share", category: "Unisex", scent_family: "Gourmand", head_notes: "Cognac", heart_notes: "Cinnamon, Tonka Bean, Oak", base_notes: "Vanilla, Praline, Sandalwood", price_tier: "Premium" },
-    { name: "Anō 13", originalName: "Le Labo Another 13", category: "Unisex", scent_family: "Fresh", head_notes: "Pear, Apple, Citruses", heart_notes: "Ambrette (Musk Mallow), Amyl Salicylate, Moss, Jasmine", base_notes: "Iso E Super, Cetalox, Helvetolide, Ambrettolide", price_tier: "Premium" },
-    { name: "Sheer Grace", originalName: "Lancôme La Vie Est Belle", category: "Women", scent_family: "Gourmand", head_notes: "Black Currant, Pear", heart_notes: "Iris, Jasmine, Orange Blossom", base_notes: "Patchouli, Tonka Bean, Vanilla, Praline", price_tier: "Mid" },
-    { name: "Steely Temptation", originalName: "Tom Ford Ombre Leather", category: "Unisex", scent_family: "Warm", head_notes: "Cardamom", heart_notes: "Leather, Jasmine Sambac", base_notes: "Amber, Moss, Patchouli", price_tier: "Premium" },
-    { name: "Ocean di Vita", originalName: "Giorgio Armani Acqua Di Gio", category: "Men", scent_family: "Fresh", head_notes: "Lime, Lemon, Bergamot, Jasmine, Orange, Mandarin Orange, Neroli", heart_notes: "Sea Notes, Jasmine, Rosemary", base_notes: "White Musk, Cedar, Oakmoss, Patchouli, Amber", price_tier: "Mid" },
-    { name: "Silent Dunes", originalName: "Byredo Mojave Ghost", category: "Unisex", scent_family: "Earthy", head_notes: "Sapodilla, Ambrette (Musk Mallow)", heart_notes: "Magnolia, Violet, Sandalwood", base_notes: "Ambergris, Cedar, Musk", price_tier: "Premium" },
-    { name: "Illusion Cove", originalName: "Tom Ford Neroli Portofino", category: "Unisex", scent_family: "Fresh", head_notes: "Bergamot, Mandarin Orange, Lemon, Orange, Lavender, Rosemary", heart_notes: "African Orange Flower, Neroli, Jasmine, Pitosporum", base_notes: "Amber, Angelica, Ambrette (Musk Mallow)", price_tier: "Premium" },
-    { name: "Deep Attraction", originalName: "Le Labo Thé Noir 29", category: "Unisex", scent_family: "Herbal", head_notes: "Fig, Bay Leaf, Bergamot", heart_notes: "Cedar, Vetiver, Musk", base_notes: "Tobacco, Hay", price_tier: "Premium" },
-    { name: "Millionaire", originalName: "Paco Rabanne One Million", category: "Men", scent_family: "Gourmand", head_notes: "Blood Mandarin, Grapefruit, Mint", heart_notes: "Cinnamon, Spicy Notes, Rose", base_notes: "Amber, Leather, Woody Notes, Indian Patchouli", price_tier: "Budget" },
-    { name: "Ocean Drift", originalName: "Louis Vuitton Pacific Chill", category: "Unisex", scent_family: "Herbal", head_notes: "Citron, Mint, Orange, Lemon, Black Currant, Coriander", heart_notes: "Apricot, Basil, Carrot Seeds, May Rose", base_notes: "Fig, Dates, Ambrette", price_tier: "Premium" },
-    { name: "Rosy Dawn", originalName: "Dior Miss Dior (2017)", category: "Women", scent_family: "Flowery", head_notes: "Pink Pepper, Mandarin Orange, Calabrian bergamot, Lemon", heart_notes: "Rose de Grasse, Damask Rose, Jasmine Leaf", base_notes: "Patchouli, Palisander Rosewood, Ambroxan, White Musk", price_tier: "Mid" },
-    { name: "Floral Whisper", originalName: "Gucci Bloom", category: "Women", scent_family: "Flowery", head_notes: "Green Notes", heart_notes: "Tuberose, Jasmine, Honeysuckle", base_notes: "Orris Root, Sandalwood, Vanilla", price_tier: "Mid" },
-    { name: "Wild Innocence", originalName: "By Kilian Good Girl Gone Bad", category: "Women", scent_family: "Flowery", head_notes: "Osmanthus, Jasmine, May Rose", heart_notes: "Indian Tuberose, Jasmine, Narcissus", base_notes: "Amber, Cedar", price_tier: "Premium" },
-    { name: "Active Pulse", originalName: "Chanel Allure Homme Sport", category: "Men", scent_family: "Fresh", head_notes: "Orange, Sea Notes, Aldehydes, Mandarin Orange", heart_notes: "Pepper, Neroli, Cedar", base_notes: "Tonka Bean, Vanilla, White Musk, Amber, Vetiver, Elemi Resin", price_tier: "Mid" },
-    { name: "Three Peaks", originalName: "Diptyque Tam Dao", category: "Unisex", scent_family: "Earthy", head_notes: "Lime, Coriander, Ginger", heart_notes: "Sandalwood, Cedar", base_notes: "Amber, Vanilla, Musk, Brazilian Rosewood", price_tier: "Premium" },
-    { name: "Extrême", originalName: "Dior Homme Intense", category: "Men", scent_family: "Flowery", head_notes: "Lavender", heart_notes: "Iris, Ambrette (Musk Mallow), Pear", base_notes: "Vetiver, Virginia Cedar", price_tier: "Mid" },
-    { name: "Panthera", originalName: "Bvlgari Tygar", category: "Men", scent_family: "Fresh", head_notes: "Grapefruit, Ginger", heart_notes: "Geranium, Ambroxan", base_notes: "White Woods, Musk", price_tier: "Budget" },
-    { name: "Smoky Leather", originalName: "Tom Ford Tobacco Vanille", category: "Unisex", scent_family: "Gourmand", head_notes: "Tobacco Leaf, Spicy Notes", heart_notes: "Tonka Bean, Tobacco Blossom, Vanilla, Cacao", base_notes: "Dried Fruits, Woody Notes", price_tier: "Premium" },
-    { name: "Azure Charm", originalName: "Ex Nihilo Blue Talisman", category: "Unisex", scent_family: "Fresh", head_notes: "Bergamot, Ginger, Mandarin Orange", heart_notes: "Pear, Georgywood, Rose", base_notes: "Ambroxan, Musk, Sandalwood", price_tier: "Premium" },
-    { name: "Classic Attire", originalName: "YSL's Tuxedo", category: "Unisex", scent_family: "Warm", head_notes: "Violet Leaf, Coriander, Bergamot", heart_notes: "Rose, Black Pepper, Lily-of-the-Valley", base_notes: "Vanilla, Patchouli, Ambroxan, Black Pepper", price_tier: "Mid" },
-    { name: "Sinful Desire", originalName: "Tom Ford Lost Cherry", category: "Unisex", scent_family: "Gourmand", head_notes: "Sour Cherry, Bitter Almond, Liquor", heart_notes: "Sour Cherry, Plum, Turkish Rose, Jasmine Sambac", base_notes: "Peru Balsam, Tonka Bean, Sandalwood, Vetiver, Cedar, Vanilla", price_tier: "Premium" },
-    { name: "Mythic Moves", originalName: "Byredo Bal d'Afrique", category: "Unisex", scent_family: "Fresh", head_notes: "African Marigold, Bergamot, Bucchu", heart_notes: "Violet, Jasmine, Cyclamen", base_notes: "Black Amber, Musk, Vetiver, Moroccan Cedarwood", price_tier: "Premium" },
-    { name: "Amber Vale", originalName: "Parfums de Marly Layton", category: "Unisex", scent_family: "Warm", head_notes: "Apple, Lavender, Mandarin Orange, Bergamot", heart_notes: "Geranium, Violet, Jasmine", base_notes: "Vanilla, Cardamom, Sandalwood, Pepper, Guaiac Wood, Patchouli", price_tier: "Premium" },
-    { name: "HerOra", originalName: "Narciso Rodriguez For Her", category: "Women", scent_family: "Warm", head_notes: "Honey Flower, Orange Blossom, Osmanthus", heart_notes: "Amberlyn", base_notes: "Musk, Vanilla, Tactile Woods, Vetiver", price_tier: "Mid" },
-    { name: "Black Spice", originalName: "Byredo's Black Saffron", category: "Unisex", scent_family: "Warm", head_notes: "Saffron, Juniper Berries, Black Violet", heart_notes: "Leather, Crystal Rose", base_notes: "Raspberry, Cashmeran, Vetiver", price_tier: "Premium" },
-    { name: "Sun Soaked", originalName: "Louis Vuitton Afternoon Swim", category: "Unisex", scent_family: "Fresh", head_notes: "Sicilian Orange, Calabrian bergamot, Mandarin Orange", heart_notes: "Ginger", base_notes: "Ambroxan", price_tier: "Premium" },
-    { name: "Britannia", originalName: "Burberry's Her", category: "Women", scent_family: "Gourmand", head_notes: "Strawberry, Raspberry, Blackberry, Cherry, Black Currant, Orange", heart_notes: "Violet, Jasmine", base_notes: "Musk, Vanilla, Cashmeran, Woody Notes, Ambroxan, Oakmoss, Amber", price_tier: "Mid" },
-    { name: "Earthbound", originalName: "Hermès Terre d'Hermès", category: "Men", scent_family: "Earthy", head_notes: "Orange, Grapefruit", heart_notes: "Pepper, Pelargonium", base_notes: "Vetiver, Cedar, Patchouli, Benzoin", price_tier: "Mid" },
-    { name: "On High", originalName: "Ex Nihilo's Fleur Narcotique", category: "Unisex", scent_family: "Flowery", head_notes: "Bergamot, Litchi, Peach", heart_notes: "Peony, Jasmine, Orange Blossom, Petalia", base_notes: "Woody Notes, Musk, Moss", price_tier: "Premium" },
-    { name: "Forbidden Love", originalName: "By Kilian Love, Don't Be Shy", category: "Women", scent_family: "Gourmand", head_notes: "Neroli, Bergamot, Pink Pepper, Coriander", heart_notes: "Iris, Jasmine, Honeysuckle, Orange Blossom, Rose", base_notes: "Marshmallow, Vanilla, Caramel, Sugar, Labdanum, Musk, Civet", price_tier: "Premium" },
-    { name: "Noir Hashish", originalName: "Nasomatto's Black Afgano", category: "Unisex", scent_family: "Earthy", head_notes: "Cannabis, Green Notes", heart_notes: "Resins, Wood Notes, Tobacco, Coffee", base_notes: "Agarwood (Oud), Incense", price_tier: "Premium" },
-    { name: "Sensual", originalName: "Chanel No. 5", category: "Women", scent_family: "Flowery", head_notes: "Aldehydes, Ylang-Ylang, Neroli, Bergamot, Lemon", heart_notes: "Iris, Jasmine, Rose, Orris Root, Lily-of-the-Valley", base_notes: "Civet, Sandalwood, Vanilla, Musk, Oakmoss, Vetiver, Amber, Patchouli", price_tier: "Mid" },
-    { name: "Dark Illusion", originalName: "By Kilian Black Phantom", category: "Unisex", scent_family: "Gourmand", head_notes: "Rum, Sugar Cane", heart_notes: "Dark Chocolate, Coffee, Caramel", base_notes: "Sandalwood, Heliotrope", price_tier: "Premium" },
-    { name: "Biting Temptation", originalName: "Tom Ford Bitter Peach", category: "Unisex", scent_family: "Gourmand", head_notes: "Peach, Blood Orange, Cardamom, Heliotrope", heart_notes: "Rum, Cognac, Davana, Jasmine", base_notes: "Patchouli, Vanilla, Sandalwood, Tonka Bean, Cashmeran", price_tier: "Premium" },
-    { name: "Divine Her", originalName: "Burberry Goddess", category: "Women", scent_family: "Gourmand", head_notes: "Vanilla", heart_notes: "Vanilla Caviar", base_notes: "Vanilla Absolute, Lavender", price_tier: "Mid" },
-    { name: "Fresh Mist", originalName: "Creed Green Irish Tweed", category: "Men", scent_family: "Herbal", head_notes: "Lemon Verbena, Iris", heart_notes: "Violet Leaf", base_notes: "Ambergris, Sandalwood", price_tier: "Premium" },
-    { name: "Exotic Night", originalName: "Tom Ford Black Orchid", category: "Women", scent_family: "Warm", head_notes: "Jasmine, Gardenia, Lemon, Bergamot, Orange, Ylang-Ylang, Truffle", heart_notes: "Orchid, Spices, Gardenia, Fruity Notes, Ylang-Ylang, Jasmine, Lotus", base_notes: "Mexican Chocolate, Patchouli, Vanilla, Incense, Amber, Sandalwood", price_tier: "Premium" },
-    { name: "Maverick", originalName: "Maison Crivelli Oud Stallion", category: "Unisex", scent_family: "Earthy", head_notes: "Agarwood (Oud), Nutmeg, Saffron", heart_notes: "Agarwood (Oud), Styrax, Cedar", base_notes: "Agarwood (Oud), Leather, Patchouli, Castoreum, Vanilla, Labdanum", price_tier: "Premium" },
-    { name: "Pure Light", originalName: "Byredo Blanche", category: "Unisex", scent_family: "Flowery", head_notes: "White Rose, Pink Pepper, Aldehydes", heart_notes: "Violet, Neroli, Peony", base_notes: "Blonde Woods, Sandalwood, Musk", price_tier: "Premium" },
-    { name: "Intense Ardour", originalName: "Tom Ford Fucking Fabulous", category: "Unisex", scent_family: "Warm", head_notes: "Clary Sage, Lavender", heart_notes: "Bitter Almond, Vanilla, Leather, Orris", base_notes: "Tonka Bean, Leather, Cashmeran, White Woods, Amber", price_tier: "Premium" },
-    { name: "L'Infini", originalName: "Louis Vuitton L'Immensité", category: "Men", scent_family: "Herbal", head_notes: "Grapefruit, Ginger, Bergamot", heart_notes: "Sage, Rosemary, Geranium, Water Notes", base_notes: "Ambroxan, Amber, Labdanum", price_tier: "Premium" }
+    {
+      name: 'Addiction',
+      originalName: 'MFK Baccarat Rouge 540',
+      category: 'Unisex',
+      scent_family: 'Warm',
+      head_notes: 'Saffron, Jasmine',
+      heart_notes: 'Amberwood, Ambergris',
+      base_notes: 'Fir Resin, Cedar',
+      price_tier: 'Premium',
+    },
+    {
+      name: 'Invictor',
+      originalName: 'Creed Aventus',
+      category: 'Men',
+      scent_family: 'Fresh',
+      head_notes: 'Bergamot, Black Currant, Apple, Lemon, Pink Pepper',
+      heart_notes: 'Pineapple, Patchouli, Moroccan Jasmine',
+      base_notes: 'Birch, Musk, Oakmoss, Cedarwood, Ambroxan',
+      price_tier: 'Premium',
+    },
+    {
+      name: 'Pink Whisper',
+      originalName: 'Parfums de Marly Delina',
+      category: 'Women',
+      scent_family: 'Flowery',
+      head_notes: 'Litchi, Rhubarb, Bergamot, Nutmeg',
+      heart_notes: 'Turkish Rose, Peony, Musk, Petalia, Vanilla',
+      base_notes: 'Cashmeran, Incense, Cedar, Haitian Vetiver',
+      price_tier: 'Premium',
+    },
+    {
+      name: 'Supreme Power',
+      originalName: 'Initio Oud for Greatness',
+      category: 'Unisex',
+      scent_family: 'Warm',
+      head_notes: 'Saffron, Nutmeg, Lavender',
+      heart_notes: 'Agarwood (Oud)',
+      base_notes: 'Patchouli, Musk',
+      price_tier: 'Premium',
+    },
+    {
+      name: 'Timeless Grace',
+      originalName: 'Chanel Coco Mademoiselle',
+      category: 'Women',
+      scent_family: 'Flowery',
+      head_notes: 'Orange, Mandarin Orange, Bergamot, Orange Blossom',
+      heart_notes: 'Turkish Rose, Jasmine, Mimosa, Ylang-Ylang',
+      base_notes: 'Patchouli, White Musk, Vanilla, Vetiver, Tonka Bean, Opoponax',
+      price_tier: 'Mid',
+    },
+    {
+      name: 'Cool Alpine',
+      originalName: 'Creed Silver Mountain Water',
+      category: 'Unisex',
+      scent_family: 'Fresh',
+      head_notes: 'Bergamot, Mandarin Orange',
+      heart_notes: 'Green Tea, Black Currant',
+      base_notes: 'Musk, Sandalwood, Petitgrain, Galbanum',
+      price_tier: 'Premium',
+    },
+    {
+      name: 'Black Poison',
+      originalName: 'YSL Black Opium',
+      category: 'Women',
+      scent_family: 'Warm',
+      head_notes: 'Pear, Pink Pepper, Orange Blossom',
+      heart_notes: 'Coffee, Jasmine, Bitter Almond, Licorice',
+      base_notes: 'Vanilla, Patchouli, Cashmere Wood, Cedar',
+      price_tier: 'Mid',
+    },
+    {
+      name: 'Feminine Fancy',
+      originalName: 'Carolina Herrera Good Girl',
+      category: 'Women',
+      scent_family: 'Gourmand',
+      head_notes: 'Almond, Coffee, Bergamot, Lemon',
+      heart_notes: 'Tuberose, Jasmine Sambac, Orange Blossom, Bulgarian Rose, Orris',
+      base_notes: 'Tonka Bean, Cacao, Vanilla, Praline, Sandalwood, Cinnamon, Cedar',
+      price_tier: 'Mid',
+    },
+    {
+      name: 'Fate',
+      originalName: 'Chanel Chance (EDP)',
+      category: 'Women',
+      scent_family: 'Flowery',
+      head_notes: 'Pink Pepper',
+      heart_notes: 'Jasmine, Iris',
+      base_notes: 'Patchouli, Musk, Vanilla, Vetiver',
+      price_tier: 'Mid',
+    },
+    {
+      name: 'Mirage',
+      originalName: 'Maison Crivelli Oud Maracujá',
+      category: 'Unisex',
+      scent_family: 'Earthy',
+      head_notes: 'Passionfruit, Fruity Notes, Saffron, Turkish Rose',
+      heart_notes: 'Agarwood (Oud), Benzoin, Indonesian Patchouli Leaf',
+      base_notes: 'Leather, Akigalawood, Amber, Vanilla, Labdanum',
+      price_tier: 'Premium',
+    },
+    {
+      name: 'Majesty',
+      originalName: 'Maison Crivelli Hibiscus Mahajád',
+      category: 'Unisex',
+      scent_family: 'Flowery',
+      head_notes: 'Cassis, Hibiscus',
+      heart_notes: 'Damask Rose, Leather, Cinnamon',
+      base_notes: 'Vanilla, Ambroxan, Musk',
+      price_tier: 'Premium',
+    },
+    {
+      name: 'Iconic Desire',
+      originalName: 'Le Labo Santal 33',
+      category: 'Unisex',
+      scent_family: 'Earthy',
+      head_notes: 'Violet, Cardamom',
+      heart_notes: 'Iris, Papyrus',
+      base_notes: 'Ambroxan, Sandalwood, Cedar, Leather, Spicy Notes',
+      price_tier: 'Premium',
+    },
+    {
+      name: 'Eternal Verde',
+      originalName: 'Nishane Hacivat',
+      category: 'Unisex',
+      scent_family: 'Fresh',
+      head_notes: 'Pineapple, Grapefruit, Bergamot',
+      heart_notes: 'Cedar, Patchouli, Jasmine',
+      base_notes: 'Oakmoss, Woody Notes, Clearwood',
+      price_tier: 'Premium',
+    },
+    {
+      name: 'Fierce',
+      originalName: 'Dior Sauvage (Parfum)',
+      category: 'Men',
+      scent_family: 'Warm',
+      head_notes: 'Bergamot, Mandarin Orange, Elemi',
+      heart_notes: 'Sandalwood',
+      base_notes: 'Olibanum, Tonka Bean, Vanilla',
+      price_tier: 'Mid',
+    },
+    {
+      name: 'Marine',
+      originalName: 'Chanel Bleu de Chanel',
+      category: 'Men',
+      scent_family: 'Fresh',
+      head_notes: 'Grapefruit, Lemon, Mint, Pink Pepper',
+      heart_notes: 'Ginger, Nutmeg, Jasmine, Iso E Super',
+      base_notes: 'Incense, Vetiver, Cedar, Sandalwood, Patchouli, Labdanum, White Musk',
+      price_tier: 'Mid',
+    },
+    {
+      name: 'Silk Odyssey',
+      originalName: 'Maison Francis Kurkdjian Oud Satin Mood',
+      category: 'Unisex',
+      scent_family: 'Warm',
+      head_notes: 'Bulgarian Rose, Violet, Strawberry',
+      heart_notes: 'Turkish Rose, Benzoin',
+      base_notes: 'Agarwood (Oud), Vanilla, Amber, Caramel, Cedar',
+      price_tier: 'Premium',
+    },
+    {
+      name: 'Wanderer',
+      originalName: 'Louis Vuitton Ombre Nomade',
+      category: 'Unisex',
+      scent_family: 'Earthy',
+      head_notes: 'Agarwood (Oud), Incense',
+      heart_notes: 'Rose, Raspberry, Saffron, Birch',
+      base_notes: 'Amber, Benzoin, Geranium',
+      price_tier: 'Premium',
+    },
+    {
+      name: 'Luminous Wonder',
+      originalName: "Dior J'Adore",
+      category: 'Women',
+      scent_family: 'Flowery',
+      head_notes: 'Ylang-Ylang, Pear, Melon, Magnolia, Peach, Orange, Bergamot',
+      heart_notes: 'Jasmine, Lily, Tuberose, Freesia, Rose, Orchid, Violet, Plum',
+      base_notes: 'Musk, Vanilla, Blackberry, Cedar',
+      price_tier: 'Mid',
+    },
+    {
+      name: 'Liberty',
+      originalName: 'YSL Libre',
+      category: 'Women',
+      scent_family: 'Herbal',
+      head_notes: 'Lavender, Mandarin Orange, Black Currant, Petitgrain',
+      heart_notes: 'Lavender, Orange Blossom, Jasmine',
+      base_notes: 'Madagascar Vanilla, Musk, Cedar, Ambergris',
+      price_tier: 'Mid',
+    },
+    {
+      name: 'Visionary',
+      originalName: 'Louis Vuitton Imagination',
+      category: 'Men',
+      scent_family: 'Fresh',
+      head_notes: 'Citron, Calabrian bergamot, Sicilian Orange',
+      heart_notes: 'Tunisian Neroli, Nigerian Ginger, Ceylon Cinnamon',
+      base_notes: 'Chinese Black Tea, Ambroxan, Guaiac Wood, Olibanum',
+      price_tier: 'Premium',
+    },
+    {
+      name: "Heaven's Pour",
+      originalName: "By Kilian Angel's Share",
+      category: 'Unisex',
+      scent_family: 'Gourmand',
+      head_notes: 'Cognac',
+      heart_notes: 'Cinnamon, Tonka Bean, Oak',
+      base_notes: 'Vanilla, Praline, Sandalwood',
+      price_tier: 'Premium',
+    },
+    {
+      name: 'Anō 13',
+      originalName: 'Le Labo Another 13',
+      category: 'Unisex',
+      scent_family: 'Fresh',
+      head_notes: 'Pear, Apple, Citruses',
+      heart_notes: 'Ambrette (Musk Mallow), Amyl Salicylate, Moss, Jasmine',
+      base_notes: 'Iso E Super, Cetalox, Helvetolide, Ambrettolide',
+      price_tier: 'Premium',
+    },
+    {
+      name: 'Sheer Grace',
+      originalName: 'Lancôme La Vie Est Belle',
+      category: 'Women',
+      scent_family: 'Gourmand',
+      head_notes: 'Black Currant, Pear',
+      heart_notes: 'Iris, Jasmine, Orange Blossom',
+      base_notes: 'Patchouli, Tonka Bean, Vanilla, Praline',
+      price_tier: 'Mid',
+    },
+    {
+      name: 'Steely Temptation',
+      originalName: 'Tom Ford Ombre Leather',
+      category: 'Unisex',
+      scent_family: 'Warm',
+      head_notes: 'Cardamom',
+      heart_notes: 'Leather, Jasmine Sambac',
+      base_notes: 'Amber, Moss, Patchouli',
+      price_tier: 'Premium',
+    },
+    {
+      name: 'Ocean di Vita',
+      originalName: 'Giorgio Armani Acqua Di Gio',
+      category: 'Men',
+      scent_family: 'Fresh',
+      head_notes: 'Lime, Lemon, Bergamot, Jasmine, Orange, Mandarin Orange, Neroli',
+      heart_notes: 'Sea Notes, Jasmine, Rosemary',
+      base_notes: 'White Musk, Cedar, Oakmoss, Patchouli, Amber',
+      price_tier: 'Mid',
+    },
+    {
+      name: 'Silent Dunes',
+      originalName: 'Byredo Mojave Ghost',
+      category: 'Unisex',
+      scent_family: 'Earthy',
+      head_notes: 'Sapodilla, Ambrette (Musk Mallow)',
+      heart_notes: 'Magnolia, Violet, Sandalwood',
+      base_notes: 'Ambergris, Cedar, Musk',
+      price_tier: 'Premium',
+    },
+    {
+      name: 'Illusion Cove',
+      originalName: 'Tom Ford Neroli Portofino',
+      category: 'Unisex',
+      scent_family: 'Fresh',
+      head_notes: 'Bergamot, Mandarin Orange, Lemon, Orange, Lavender, Rosemary',
+      heart_notes: 'African Orange Flower, Neroli, Jasmine, Pitosporum',
+      base_notes: 'Amber, Angelica, Ambrette (Musk Mallow)',
+      price_tier: 'Premium',
+    },
+    {
+      name: 'Deep Attraction',
+      originalName: 'Le Labo Thé Noir 29',
+      category: 'Unisex',
+      scent_family: 'Herbal',
+      head_notes: 'Fig, Bay Leaf, Bergamot',
+      heart_notes: 'Cedar, Vetiver, Musk',
+      base_notes: 'Tobacco, Hay',
+      price_tier: 'Premium',
+    },
+    {
+      name: 'Millionaire',
+      originalName: 'Paco Rabanne One Million',
+      category: 'Men',
+      scent_family: 'Gourmand',
+      head_notes: 'Blood Mandarin, Grapefruit, Mint',
+      heart_notes: 'Cinnamon, Spicy Notes, Rose',
+      base_notes: 'Amber, Leather, Woody Notes, Indian Patchouli',
+      price_tier: 'Budget',
+    },
+    {
+      name: 'Ocean Drift',
+      originalName: 'Louis Vuitton Pacific Chill',
+      category: 'Unisex',
+      scent_family: 'Herbal',
+      head_notes: 'Citron, Mint, Orange, Lemon, Black Currant, Coriander',
+      heart_notes: 'Apricot, Basil, Carrot Seeds, May Rose',
+      base_notes: 'Fig, Dates, Ambrette',
+      price_tier: 'Premium',
+    },
+    {
+      name: 'Rosy Dawn',
+      originalName: 'Dior Miss Dior (2017)',
+      category: 'Women',
+      scent_family: 'Flowery',
+      head_notes: 'Pink Pepper, Mandarin Orange, Calabrian bergamot, Lemon',
+      heart_notes: 'Rose de Grasse, Damask Rose, Jasmine Leaf',
+      base_notes: 'Patchouli, Palisander Rosewood, Ambroxan, White Musk',
+      price_tier: 'Mid',
+    },
+    {
+      name: 'Floral Whisper',
+      originalName: 'Gucci Bloom',
+      category: 'Women',
+      scent_family: 'Flowery',
+      head_notes: 'Green Notes',
+      heart_notes: 'Tuberose, Jasmine, Honeysuckle',
+      base_notes: 'Orris Root, Sandalwood, Vanilla',
+      price_tier: 'Mid',
+    },
+    {
+      name: 'Wild Innocence',
+      originalName: 'By Kilian Good Girl Gone Bad',
+      category: 'Women',
+      scent_family: 'Flowery',
+      head_notes: 'Osmanthus, Jasmine, May Rose',
+      heart_notes: 'Indian Tuberose, Jasmine, Narcissus',
+      base_notes: 'Amber, Cedar',
+      price_tier: 'Premium',
+    },
+    {
+      name: 'Active Pulse',
+      originalName: 'Chanel Allure Homme Sport',
+      category: 'Men',
+      scent_family: 'Fresh',
+      head_notes: 'Orange, Sea Notes, Aldehydes, Mandarin Orange',
+      heart_notes: 'Pepper, Neroli, Cedar',
+      base_notes: 'Tonka Bean, Vanilla, White Musk, Amber, Vetiver, Elemi Resin',
+      price_tier: 'Mid',
+    },
+    {
+      name: 'Three Peaks',
+      originalName: 'Diptyque Tam Dao',
+      category: 'Unisex',
+      scent_family: 'Earthy',
+      head_notes: 'Lime, Coriander, Ginger',
+      heart_notes: 'Sandalwood, Cedar',
+      base_notes: 'Amber, Vanilla, Musk, Brazilian Rosewood',
+      price_tier: 'Premium',
+    },
+    {
+      name: 'Extrême',
+      originalName: 'Dior Homme Intense',
+      category: 'Men',
+      scent_family: 'Flowery',
+      head_notes: 'Lavender',
+      heart_notes: 'Iris, Ambrette (Musk Mallow), Pear',
+      base_notes: 'Vetiver, Virginia Cedar',
+      price_tier: 'Mid',
+    },
+    {
+      name: 'Panthera',
+      originalName: 'Bvlgari Tygar',
+      category: 'Men',
+      scent_family: 'Fresh',
+      head_notes: 'Grapefruit, Ginger',
+      heart_notes: 'Geranium, Ambroxan',
+      base_notes: 'White Woods, Musk',
+      price_tier: 'Budget',
+    },
+    {
+      name: 'Smoky Leather',
+      originalName: 'Tom Ford Tobacco Vanille',
+      category: 'Unisex',
+      scent_family: 'Gourmand',
+      head_notes: 'Tobacco Leaf, Spicy Notes',
+      heart_notes: 'Tonka Bean, Tobacco Blossom, Vanilla, Cacao',
+      base_notes: 'Dried Fruits, Woody Notes',
+      price_tier: 'Premium',
+    },
+    {
+      name: 'Azure Charm',
+      originalName: 'Ex Nihilo Blue Talisman',
+      category: 'Unisex',
+      scent_family: 'Fresh',
+      head_notes: 'Bergamot, Ginger, Mandarin Orange',
+      heart_notes: 'Pear, Georgywood, Rose',
+      base_notes: 'Ambroxan, Musk, Sandalwood',
+      price_tier: 'Premium',
+    },
+    {
+      name: 'Classic Attire',
+      originalName: "YSL's Tuxedo",
+      category: 'Unisex',
+      scent_family: 'Warm',
+      head_notes: 'Violet Leaf, Coriander, Bergamot',
+      heart_notes: 'Rose, Black Pepper, Lily-of-the-Valley',
+      base_notes: 'Vanilla, Patchouli, Ambroxan, Black Pepper',
+      price_tier: 'Mid',
+    },
+    {
+      name: 'Sinful Desire',
+      originalName: 'Tom Ford Lost Cherry',
+      category: 'Unisex',
+      scent_family: 'Gourmand',
+      head_notes: 'Sour Cherry, Bitter Almond, Liquor',
+      heart_notes: 'Sour Cherry, Plum, Turkish Rose, Jasmine Sambac',
+      base_notes: 'Peru Balsam, Tonka Bean, Sandalwood, Vetiver, Cedar, Vanilla',
+      price_tier: 'Premium',
+    },
+    {
+      name: 'Mythic Moves',
+      originalName: "Byredo Bal d'Afrique",
+      category: 'Unisex',
+      scent_family: 'Fresh',
+      head_notes: 'African Marigold, Bergamot, Bucchu',
+      heart_notes: 'Violet, Jasmine, Cyclamen',
+      base_notes: 'Black Amber, Musk, Vetiver, Moroccan Cedarwood',
+      price_tier: 'Premium',
+    },
+    {
+      name: 'Amber Vale',
+      originalName: 'Parfums de Marly Layton',
+      category: 'Unisex',
+      scent_family: 'Warm',
+      head_notes: 'Apple, Lavender, Mandarin Orange, Bergamot',
+      heart_notes: 'Geranium, Violet, Jasmine',
+      base_notes: 'Vanilla, Cardamom, Sandalwood, Pepper, Guaiac Wood, Patchouli',
+      price_tier: 'Premium',
+    },
+    {
+      name: 'HerOra',
+      originalName: 'Narciso Rodriguez For Her',
+      category: 'Women',
+      scent_family: 'Warm',
+      head_notes: 'Honey Flower, Orange Blossom, Osmanthus',
+      heart_notes: 'Amberlyn',
+      base_notes: 'Musk, Vanilla, Tactile Woods, Vetiver',
+      price_tier: 'Mid',
+    },
+    {
+      name: 'Black Spice',
+      originalName: "Byredo's Black Saffron",
+      category: 'Unisex',
+      scent_family: 'Warm',
+      head_notes: 'Saffron, Juniper Berries, Black Violet',
+      heart_notes: 'Leather, Crystal Rose',
+      base_notes: 'Raspberry, Cashmeran, Vetiver',
+      price_tier: 'Premium',
+    },
+    {
+      name: 'Sun Soaked',
+      originalName: 'Louis Vuitton Afternoon Swim',
+      category: 'Unisex',
+      scent_family: 'Fresh',
+      head_notes: 'Sicilian Orange, Calabrian bergamot, Mandarin Orange',
+      heart_notes: 'Ginger',
+      base_notes: 'Ambroxan',
+      price_tier: 'Premium',
+    },
+    {
+      name: 'Britannia',
+      originalName: "Burberry's Her",
+      category: 'Women',
+      scent_family: 'Gourmand',
+      head_notes: 'Strawberry, Raspberry, Blackberry, Cherry, Black Currant, Orange',
+      heart_notes: 'Violet, Jasmine',
+      base_notes: 'Musk, Vanilla, Cashmeran, Woody Notes, Ambroxan, Oakmoss, Amber',
+      price_tier: 'Mid',
+    },
+    {
+      name: 'Earthbound',
+      originalName: "Hermès Terre d'Hermès",
+      category: 'Men',
+      scent_family: 'Earthy',
+      head_notes: 'Orange, Grapefruit',
+      heart_notes: 'Pepper, Pelargonium',
+      base_notes: 'Vetiver, Cedar, Patchouli, Benzoin',
+      price_tier: 'Mid',
+    },
+    {
+      name: 'On High',
+      originalName: "Ex Nihilo's Fleur Narcotique",
+      category: 'Unisex',
+      scent_family: 'Flowery',
+      head_notes: 'Bergamot, Litchi, Peach',
+      heart_notes: 'Peony, Jasmine, Orange Blossom, Petalia',
+      base_notes: 'Woody Notes, Musk, Moss',
+      price_tier: 'Premium',
+    },
+    {
+      name: 'Forbidden Love',
+      originalName: "By Kilian Love, Don't Be Shy",
+      category: 'Women',
+      scent_family: 'Gourmand',
+      head_notes: 'Neroli, Bergamot, Pink Pepper, Coriander',
+      heart_notes: 'Iris, Jasmine, Honeysuckle, Orange Blossom, Rose',
+      base_notes: 'Marshmallow, Vanilla, Caramel, Sugar, Labdanum, Musk, Civet',
+      price_tier: 'Premium',
+    },
+    {
+      name: 'Noir Hashish',
+      originalName: "Nasomatto's Black Afgano",
+      category: 'Unisex',
+      scent_family: 'Earthy',
+      head_notes: 'Cannabis, Green Notes',
+      heart_notes: 'Resins, Wood Notes, Tobacco, Coffee',
+      base_notes: 'Agarwood (Oud), Incense',
+      price_tier: 'Premium',
+    },
+    {
+      name: 'Sensual',
+      originalName: 'Chanel No. 5',
+      category: 'Women',
+      scent_family: 'Flowery',
+      head_notes: 'Aldehydes, Ylang-Ylang, Neroli, Bergamot, Lemon',
+      heart_notes: 'Iris, Jasmine, Rose, Orris Root, Lily-of-the-Valley',
+      base_notes: 'Civet, Sandalwood, Vanilla, Musk, Oakmoss, Vetiver, Amber, Patchouli',
+      price_tier: 'Mid',
+    },
+    {
+      name: 'Dark Illusion',
+      originalName: 'By Kilian Black Phantom',
+      category: 'Unisex',
+      scent_family: 'Gourmand',
+      head_notes: 'Rum, Sugar Cane',
+      heart_notes: 'Dark Chocolate, Coffee, Caramel',
+      base_notes: 'Sandalwood, Heliotrope',
+      price_tier: 'Premium',
+    },
+    {
+      name: 'Biting Temptation',
+      originalName: 'Tom Ford Bitter Peach',
+      category: 'Unisex',
+      scent_family: 'Gourmand',
+      head_notes: 'Peach, Blood Orange, Cardamom, Heliotrope',
+      heart_notes: 'Rum, Cognac, Davana, Jasmine',
+      base_notes: 'Patchouli, Vanilla, Sandalwood, Tonka Bean, Cashmeran',
+      price_tier: 'Premium',
+    },
+    {
+      name: 'Divine Her',
+      originalName: 'Burberry Goddess',
+      category: 'Women',
+      scent_family: 'Gourmand',
+      head_notes: 'Vanilla',
+      heart_notes: 'Vanilla Caviar',
+      base_notes: 'Vanilla Absolute, Lavender',
+      price_tier: 'Mid',
+    },
+    {
+      name: 'Fresh Mist',
+      originalName: 'Creed Green Irish Tweed',
+      category: 'Men',
+      scent_family: 'Herbal',
+      head_notes: 'Lemon Verbena, Iris',
+      heart_notes: 'Violet Leaf',
+      base_notes: 'Ambergris, Sandalwood',
+      price_tier: 'Premium',
+    },
+    {
+      name: 'Exotic Night',
+      originalName: 'Tom Ford Black Orchid',
+      category: 'Women',
+      scent_family: 'Warm',
+      head_notes: 'Jasmine, Gardenia, Lemon, Bergamot, Orange, Ylang-Ylang, Truffle',
+      heart_notes: 'Orchid, Spices, Gardenia, Fruity Notes, Ylang-Ylang, Jasmine, Lotus',
+      base_notes: 'Mexican Chocolate, Patchouli, Vanilla, Incense, Amber, Sandalwood',
+      price_tier: 'Premium',
+    },
+    {
+      name: 'Maverick',
+      originalName: 'Maison Crivelli Oud Stallion',
+      category: 'Unisex',
+      scent_family: 'Earthy',
+      head_notes: 'Agarwood (Oud), Nutmeg, Saffron',
+      heart_notes: 'Agarwood (Oud), Styrax, Cedar',
+      base_notes: 'Agarwood (Oud), Leather, Patchouli, Castoreum, Vanilla, Labdanum',
+      price_tier: 'Premium',
+    },
+    {
+      name: 'Pure Light',
+      originalName: 'Byredo Blanche',
+      category: 'Unisex',
+      scent_family: 'Flowery',
+      head_notes: 'White Rose, Pink Pepper, Aldehydes',
+      heart_notes: 'Violet, Neroli, Peony',
+      base_notes: 'Blonde Woods, Sandalwood, Musk',
+      price_tier: 'Premium',
+    },
+    {
+      name: 'Intense Ardour',
+      originalName: 'Tom Ford Fucking Fabulous',
+      category: 'Unisex',
+      scent_family: 'Warm',
+      head_notes: 'Clary Sage, Lavender',
+      heart_notes: 'Bitter Almond, Vanilla, Leather, Orris',
+      base_notes: 'Tonka Bean, Leather, Cashmeran, White Woods, Amber',
+      price_tier: 'Premium',
+    },
+    {
+      name: "L'Infini",
+      originalName: "Louis Vuitton L'Immensité",
+      category: 'Men',
+      scent_family: 'Herbal',
+      head_notes: 'Grapefruit, Ginger, Bergamot',
+      heart_notes: 'Sage, Rosemary, Geranium, Water Notes',
+      base_notes: 'Ambroxan, Amber, Labdanum',
+      price_tier: 'Premium',
+    },
   ];
 
   // <CHANGE> UPDATED QUIZ LOGIC - Name input + personalized results
@@ -983,7 +1545,7 @@ Premium card-based interface with user name personalization
     gender: null,
     scent_family: null,
     intensity: null,
-    occasion: null
+    occasion: null,
   };
 
   let currentStep = 0;
@@ -1000,7 +1562,7 @@ Premium card-based interface with user name personalization
   const backBtns = document.querySelectorAll('.quiz-back-btn');
 
   // Open modal
-  quizTriggerBtn.addEventListener('click', (e) => {
+  quizTriggerBtn.addEventListener('click', e => {
     e.preventDefault();
     quizModal.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
@@ -1010,7 +1572,7 @@ Premium card-based interface with user name personalization
 
   // Close modal
   closeQuizBtn.addEventListener('click', closeModal);
-  quizModal.addEventListener('click', (e) => {
+  quizModal.addEventListener('click', e => {
     if (e.target === quizModal.querySelector('.quiz-modal-overlay')) closeModal();
   });
 
@@ -1028,7 +1590,7 @@ Premium card-based interface with user name personalization
     }
   });
 
-  nameInput.addEventListener('keypress', (e) => {
+  nameInput.addEventListener('keypress', e => {
     if (e.key === 'Enter' && nameInput.value.trim()) {
       quizAnswers.userName = nameInput.value.trim();
       currentStep = 1;
@@ -1041,12 +1603,12 @@ Premium card-based interface with user name personalization
     card.addEventListener('click', () => {
       const step = card.closest('.quiz-step');
       const siblings = step.querySelectorAll('.quiz-card');
-      
+
       siblings.forEach(s => s.classList.remove('selected'));
       card.classList.add('selected');
 
       const answer = card.getAttribute('data-answer');
-      
+
       if (currentStep === 1) quizAnswers.gender = answer;
       if (currentStep === 2) quizAnswers.scent_family = answer;
       if (currentStep === 3) quizAnswers.intensity = answer;
@@ -1117,12 +1679,12 @@ Premium card-based interface with user name personalization
   function displayRecommendation(perfume) {
     if (!perfume) return;
     const reasons = {
-      Fresh: "This fresh and citrusy fragrance aligns perfectly with your preference for invigorating scents.",
+      Fresh: 'This fresh and citrusy fragrance aligns perfectly with your preference for invigorating scents.',
       Flowery: "This floral masterpiece captures the elegance and romance you're seeking.",
-      Warm: "This warm and spicy composition creates a captivating signature that turns heads.",
-      Earthy: "This grounding scent with woody and earthy notes provides a sophisticated choice.",
-      Gourmand: "This sweet and indulgent fragrance delivers comfort and luxury.",
-      Herbal: "This herbal and green composition offers a fresh, nature-inspired character."
+      Warm: 'This warm and spicy composition creates a captivating signature that turns heads.',
+      Earthy: 'This grounding scent with woody and earthy notes provides a sophisticated choice.',
+      Gourmand: 'This sweet and indulgent fragrance delivers comfort and luxury.',
+      Herbal: 'This herbal and green composition offers a fresh, nature-inspired character.',
     };
 
     const uName = document.getElementById('result-user-name');

@@ -1,6 +1,6 @@
-if (!customElements.get('product-modal')) {
+if (!customElements.get("product-modal")) {
   customElements.define(
-    'product-modal',
+    "product-modal",
     class ProductModal extends ModalDialog {
       constructor() {
         super();
@@ -17,29 +17,30 @@ if (!customElements.get('product-modal')) {
 
       showActiveMedia() {
         if (!this.openedBy) return;
-        const mediaId = this.openedBy.getAttribute('data-media-id');
-        this.querySelectorAll(
-          `[data-media-id]:not([data-media-id="${mediaId}"])`
-        ).forEach((element) => {
-          element.classList.remove('active');
-        });
+        const mediaId = this.openedBy.getAttribute("data-media-id");
+        this.querySelectorAll(`[data-media-id]:not([data-media-id="${mediaId}"])`).forEach(
+          element => {
+            element.classList.remove("active");
+          }
+        );
         const activeMedia = this.querySelector(`[data-media-id="${mediaId}"]`);
         if (!activeMedia) return;
-        const activeMediaTemplate = activeMedia.querySelector('template');
+        const activeMediaTemplate = activeMedia.querySelector("template");
         const activeMediaContent = activeMediaTemplate ? activeMediaTemplate.content : null;
-        activeMedia.classList.add('active');
+        activeMedia.classList.add("active");
         activeMedia.scrollIntoView();
 
         const container = this.querySelector('[role="document"]');
         if (container) {
-          container.scrollLeft = ((activeMedia.width || activeMedia.clientWidth || 0) - container.clientWidth) / 2;
+          container.scrollLeft =
+            ((activeMedia.width || activeMedia.clientWidth || 0) - container.clientWidth) / 2;
         }
 
         if (
-          activeMedia.nodeName == 'DEFERRED-MEDIA' &&
+          activeMedia.nodeName == "DEFERRED-MEDIA" &&
           activeMediaContent &&
-          activeMediaContent.querySelector('.js-youtube') &&
-          typeof activeMedia.loadContent === 'function'
+          activeMediaContent.querySelector(".js-youtube") &&
+          typeof activeMedia.loadContent === "function"
         )
           activeMedia.loadContent();
       }

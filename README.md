@@ -46,6 +46,7 @@ Every theme change must pass all 7 automated layers before deployment is approve
 ## 3. CLI Usage
 
 ### Run Tests Against a Target Theme
+
 ```bash
 # Test Scentspired USA
 node runner.cjs --target=../Scentspired-USA

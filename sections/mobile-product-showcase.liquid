@@ -247,37 +247,39 @@
 
 <div class="scent-families-section" id="scent-families-{{ section.id }}">
   {%- if section.settings.video_url != blank -%}
-    <video 
-      class="video-background" 
-      autoplay 
-      muted 
-      loop 
+    <video
+      class="video-background"
+      autoplay
+      muted
+      loop
       playsinline
-      poster="{{ section.settings.video_poster | img_url: '1920x1080' }}"
-    >
+      poster="{{ section.settings.video_poster | img_url: '1920x1080' }}">
       <source src="{{ section.settings.video_url }}" type="video/mp4">
     </video>
   {%- endif -%}
 
   <div class="content-overlay">
-     Moved header section to top with centered layout 
+    Moved header section to top with centered layout
     <div class="header-section">
-      <div class="inspired-range">{{ section.settings.subtitle | default: 'SCENT FAMILIES' }}</div>
-      
+      <div class="inspired-range">{{ section.settings.subtitle | default: "SCENT FAMILIES" }}</div>
+
       <div class="collection-dropdown">
         <button class="dropdown-button" id="collection-dropdown-{{ section.id }}">
-          <span id="current-collection-{{ section.id }}">{{ section.blocks.first.settings.heading | default: 'Flowery' }}</span>
+          <span id="current-collection-{{ section.id }}">
+            {{- section.blocks.first.settings.heading | default: "Flowery" -}}
+          </span>
           <div class="dropdown-arrow"></div>
         </button>
-        
+
         <div class="dropdown-menu" id="dropdown-menu-{{ section.id }}">
           {%- for block in section.blocks -%}
-            {%- if block.type == 'collection_item' -%}
-              <a href="#" 
-                 class="dropdown-item" 
-                 data-collection="{{ block.settings.collection.handle }}"
-                 data-heading="{{ block.settings.heading }}"
-                 data-block-id="{{ block.id }}">
+            {%- if block.type == "collection_item" -%}
+              <a
+                href="#"
+                class="dropdown-item"
+                data-collection="{{ block.settings.collection.handle }}"
+                data-heading="{{ block.settings.heading }}"
+                data-block-id="{{ block.id }}">
                 {{ block.settings.heading }}
               </a>
             {%- endif -%}
@@ -286,7 +288,7 @@
       </div>
     </div>
 
-     Products section now shows single product below header 
+    Products section now shows single product below header
     <div class="products-section">
       <div class="products-grid" id="products-grid-{{ section.id }}">
         {%- assign first_collection = section.blocks.first.settings.collection -%}
@@ -296,9 +298,10 @@
             <div class="product-card">
               <div class="product-price">{{ first_product.price | money }}</div>
               {%- if first_product.featured_image -%}
-                <img src="{{ first_product.featured_image | img_url: '400x400' }}" 
-                     alt="{{ first_product.title }}" 
-                     class="product-image">
+                <img
+                  src="{{ first_product.featured_image | img_url: '400x400' }}"
+                  alt="{{ first_product.title }}"
+                  class="product-image">
               {%- endif -%}
               <div class="product-title">{{ first_product.title }}</div>
               <div class="product-subtitle">Inspired by MFK's Baccarat Rouge 540</div>
@@ -321,8 +324,10 @@
       </div>
 
       {%- if section.settings.button_text != blank -%}
-        <button class="shop-button" onclick="window.location.href='{{ section.settings.button_url | default: '/collections/all' }}'">
-          {{ section.settings.button_text | default: 'SHOP VERSACE' }}
+        <button
+          class="shop-button"
+          onclick="window.location.href='{{ section.settings.button_url | default: '/collections/all' }}'">
+          {{ section.settings.button_text | default: "SHOP VERSACE" }}
         </button>
       {%- endif -%}
     </div>
@@ -330,91 +335,91 @@
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const sectionId = '{{ section.id }}';
-  const dropdownButton = document.getElementById(`collection-dropdown-${sectionId}`);
-  const dropdownMenu = document.getElementById(`dropdown-menu-${sectionId}`);
-  const currentCollection = document.getElementById(`current-collection-${sectionId}`);
-  const productsGrid = document.getElementById(`products-grid-${sectionId}`);
-  
-  if (!dropdownButton || !dropdownMenu) return;
-  
-  const firstDropdownItem = dropdownMenu.querySelector('.dropdown-item');
-  if (firstDropdownItem) {
-    firstDropdownItem.classList.add('active');
-  }
-  
-  // Toggle dropdown
-  dropdownButton.addEventListener('click', function() {
-    dropdownButton.classList.toggle('active');
-    dropdownMenu.classList.toggle('active');
-  });
+  document.addEventListener('DOMContentLoaded', function () {
+    const sectionId = '{{ section.id }}';
+    const dropdownButton = document.getElementById(`collection-dropdown-${sectionId}`);
+    const dropdownMenu = document.getElementById(`dropdown-menu-${sectionId}`);
+    const currentCollection = document.getElementById(`current-collection-${sectionId}`);
+    const productsGrid = document.getElementById(`products-grid-${sectionId}`);
 
-  // Close dropdown when clicking outside
-  document.addEventListener('click', function(event) {
-    if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
-      dropdownButton.classList.remove('active');
-      dropdownMenu.classList.remove('active');
+    if (!dropdownButton || !dropdownMenu) return;
+
+    const firstDropdownItem = dropdownMenu.querySelector('.dropdown-item');
+    if (firstDropdownItem) {
+      firstDropdownItem.classList.add('active');
     }
-  });
 
-  // Handle collection selection
-  const dropdownItems = dropdownMenu.querySelectorAll('.dropdown-item');
-  dropdownItems.forEach(item => {
-    item.addEventListener('click', function(e) {
-      e.preventDefault();
-      
-      const collectionHandle = this.dataset.collection;
-      const heading = this.dataset.heading;
-      
-      // Update current selection
-      if (currentCollection) currentCollection.textContent = heading;
-      
-      // Remove active class from all items
-      dropdownItems.forEach(i => i.classList.remove('active'));
-      this.classList.add('active');
-      
-      // Close dropdown
-      dropdownButton.classList.remove('active');
-      dropdownMenu.classList.remove('active');
-      
-      // Load products for selected collection
-      loadCollectionProducts(collectionHandle);
+    // Toggle dropdown
+    dropdownButton.addEventListener('click', function () {
+      dropdownButton.classList.toggle('active');
+      dropdownMenu.classList.toggle('active');
     });
-  });
 
-  function loadCollectionProducts(collectionHandle) {
-    if (!collectionHandle) return;
-    
-    fetch(`/collections/${collectionHandle}/products.json?limit=1`)
-      .then(response => {
-        if (!response.ok) throw new Error('Failed to load products');
-        return response.json();
-      })
-      .then(data => {
-        if (data && data.products) updateProductsGrid(data.products);
-      })
-      .catch(error => {
-        console.error('Error loading products:', error);
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function (event) {
+      if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+        dropdownButton.classList.remove('active');
+        dropdownMenu.classList.remove('active');
+      }
+    });
+
+    // Handle collection selection
+    const dropdownItems = dropdownMenu.querySelectorAll('.dropdown-item');
+    dropdownItems.forEach(item => {
+      item.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        const collectionHandle = this.dataset.collection;
+        const heading = this.dataset.heading;
+
+        // Update current selection
+        if (currentCollection) currentCollection.textContent = heading;
+
+        // Remove active class from all items
+        dropdownItems.forEach(i => i.classList.remove('active'));
+        this.classList.add('active');
+
+        // Close dropdown
+        dropdownButton.classList.remove('active');
+        dropdownMenu.classList.remove('active');
+
+        // Load products for selected collection
+        loadCollectionProducts(collectionHandle);
       });
-  }
+    });
 
-  function updateProductsGrid(products) {
-    if (!productsGrid) return;
-    productsGrid.innerHTML = '';
-    
-    if (products.length > 0) {
-      const product = products[0];
-      const productCard = document.createElement('div');
-      productCard.className = 'product-card';
-      
-      const imageUrl = product.images[0] ? product.images[0].src : '';
-      const price = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD'
-      }).format(product.variants[0].price / 100);
-      
-      productCard.innerHTML = `
+    function loadCollectionProducts(collectionHandle) {
+      if (!collectionHandle) return;
+
+      fetch(`/collections/${collectionHandle}/products.json?limit=1`)
+        .then(response => {
+          if (!response.ok) throw new Error('Failed to load products');
+          return response.json();
+        })
+        .then(data => {
+          if (data && data.products) updateProductsGrid(data.products);
+        })
+        .catch(error => {
+          console.error('Error loading products:', error);
+        });
+    }
+
+    function updateProductsGrid(products) {
+      if (!productsGrid) return;
+      productsGrid.innerHTML = '';
+
+      if (products.length > 0) {
+        const product = products[0];
+        const productCard = document.createElement('div');
+        productCard.className = 'product-card';
+
+        const imageUrl = product.images[0] ? product.images[0].src : '';
+        const price = new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: 'USD',
+        }).format(product.variants[0].price / 100);
+
+        productCard.innerHTML = `
         <div class="product-price">${price}</div>
         ${imageUrl ? `<img src="${imageUrl}" alt="${product.title}" class="product-image">` : ''}
         <div class="product-title">${product.title}</div>
@@ -427,24 +432,24 @@ document.addEventListener('DOMContentLoaded', function() {
           <span class="star">★</span>
         </div>
       `;
-      
-      productsGrid.appendChild(productCard);
-    }
-  }
 
-  // Pagination dots functionality (placeholder)
-  const dots = document.querySelectorAll('.dot');
-  dots.forEach((dot, index) => {
-    dot.addEventListener('click', function() {
-      dots.forEach(d => d.classList.remove('active'));
-      this.classList.add('active');
-      // Add pagination logic here
+        productsGrid.appendChild(productCard);
+      }
+    }
+
+    // Pagination dots functionality (placeholder)
+    const dots = document.querySelectorAll('.dot');
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', function () {
+        dots.forEach(d => d.classList.remove('active'));
+        this.classList.add('active');
+        // Add pagination logic here
+      });
     });
   });
-});
 </script>
 
- Updated schema default subtitle to SCENT FAMILIES 
+Updated schema default subtitle to SCENT FAMILIES
 {% schema %}
 {
   "name": "Scent Families Video ",

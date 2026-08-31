@@ -1,363 +1,364 @@
 {% stylesheet %}
+  /* Updated section base styles for consistency */
+  .bs-section {
+      max-width: 2100px;
+      margin: 0 auto !important;
+      padding: 0px 0;
+      background-color: #ffffff;
+      padding-left: 2rem;
+  }
 
-/* Updated section base styles for consistency */
-.bs-section {
-    max-width: 2100px;
-    margin: 0 auto !important;
-    padding: 0px 0;
-    background-color: #ffffff;
-    padding-left: 2rem;
-}
-
-@media only screen and (min-width: 1024px) {
-    .bs-section {
-        padding-left: 5rem;
-    }
-}
-@media only screen and (max-width: 1024px) {
-     .fragrance-item {
-        width: 100% !important;
+  @media only screen and (min-width: 1024px) {
+      .bs-section {
+          padding-left: 5rem;
+      }
+  }
+  @media only screen and (max-width: 1024px) {
+       .fragrance-item {
+          width: 100% !important;
+          }
         }
+
+  .bs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: start;
+  }
+
+  .bs-products-side {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      margin-bottom: 60px;
+      padding-top: 20px;
+  }
+
+  /* Updated Card Design Styles from form-aRxqB.tsx */
+  .fragrance-item {
+      display: flex;
+      flex-direction: column;
+      height: auto;
+      width: 100%;
+      border-radius: 8px;
+      overflow: hidden;
+      background-color: #F5F5F5;
+      position: relative;
+      min-width: 0; /* Fix for flexbox grid issues */
+  }
+
+  .fragrance-image-wrap {
+      position: relative;
+      height: 350px;
+      width: 100%;
+      overflow: hidden;
+      flex-shrink: 0;
+  }
+
+  .fragrance-image-wrap img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      transition: opacity 0.4s ease;
+  }
+
+  .fragrance-image-wrap .secondary-image {
+      opacity: 0;
+      transition: opacity 0.4s ease;
+  }
+
+  .fragrance-image-wrap:hover .secondary-image {
+      opacity: 1;
+  }
+
+  .product-badges {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      pointer-events: none;
+  }
+
+  .product-badge {
+      color: #fff !important;
+      font-family: 'PPMori Regular', sans-serif;
+      font-weight: 400;
+      font-size: 12px;
+      padding: 4px 18px;
+      border-radius: 20px;
+      width: fit-content;
+      white-space: nowrap;
+  }
+
+  .badge-men { background-color: #242521 !important; }
+  .badge-women { background-color: #8b5b5d !important; }
+  .badge-unisex { background-color: #7a795c !important; }
+
+  .fragrance-info {
+      background-color: #F5F5F5;
+      padding: 16px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      width: 100%;
+      flex: 1;
+  }
+
+  .fragrance-rating {
+      font-size: 24px;
+      color: #cbdd00;
+      letter-spacing: -2px;
+      margin: 0;
+      text-align: left;
+      margin-top: -10px;
+  }
+
+  .fragrance-name {
+      font-size: 16px;
+      font-weight: 600;
+      margin: 0;
+      font-family: 'PPMori Regular', sans-serif;
+      text-transform: uppercase;
+      text-align: left;
+      line-height: 1.3;
+      color: #000;
+  }
+
+  .fragrance-brand {
+      margin: 0;
+      font-size: 12px;
+      font-family: 'PPMori Regular', sans-serif;
+      font-weight: 400;
+      text-align: left;
+      color: #666;
+  }
+
+  .product-price-display {
+      font-size: 18px;
+      font-weight: 600;
+      color: #000;
+      font-family: 'PPMori Regular', sans-serif;
+      margin-top: 2px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+  }
+
+  .price-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+  }
+
+  .compare-price {
+      font-size: 14px;
+      color: #666;
+      text-decoration: line-through;
+      font-weight: 400;
+  }
+
+  .sale-badge {
+      background-color: #fa0000ff;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-family: 'PPMori Regular', sans-serif;
+      white-space: nowrap;
+  }
+
+  .variant-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 4px 0 0 0;
+  }
+
+  .variant-option-btn {
+      padding: 6px 16px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 20px;
+      font-size: 11px;
+      cursor: pointer;
+      font-family: 'PPMori Regular', sans-serif;
+      transition: all 0.2s ease;
+      color: #000;
+  }
+
+  .variant-option-btn.active {
+      background-color: #f4ff41;
+      color: #000;
+      border-color: #000;
+  }
+
+  .cart-button {
+      margin-top: 8px;
+      background: #f4ff41;
+      color: #000;
+      font-weight: 600;
+      font-size: 12px;
+      padding: 16px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      border: none;
+      width: 100%;
+      font-family: 'PPMori Regular', sans-serif;
+      transition: all 0.3s ease;
+  }
+
+  .cart-button:hover { background: #e0ea36; }
+
+  .cart-button.sold-out {
+      background: #f4ff41;
+      opacity: 0.5;
+      cursor: not-allowed;
+      pointer-events: none;
+  }
+
+  /* Updated heading layout to match requested design (Title left, Nav right) */
+  .bs-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 20px;
+  }
+
+  .bs-heading-content {
+      flex: 1;
+  }
+
+  /* Existing Navigation Styles */
+  .bs-navigation { display: flex; gap: 10px; align-items: center; }
+  .bs-nav-arrow {
+      width: 45px; height: 45px; background: #f4ff41; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: all 0.3s ease; border: 2px solid #f4ff41 !important;
+      font-size: 24px;
+  }
+  .bs-nav-counter { font-family: 'PPMori Regular', sans-serif; font-size: 14px; color: #666; }
+
+  .bs-title {
+      font-family: 'PPEditorialNew Italic', serif;
+      font-size: 48px; font-weight: 400; font-style: italic; color: #000; margin: 0;
+      text-decoration: underline;
+      text-decoration-color: #FADB95;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 2px;
+  }
+
+
+  .bs-products-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      overflow: hidden;
+  }
+
+  .bs-image-side {
+      height: auto;
+      padding-top: 80px;
+  }
+  .bs-featured-image { width: 100%; height: auto; border-radius: 16px; overflow: hidden; }
+  .bs-featured-image img { width: 100%; height: 100%; object-fit: cover; }
+
+  @media screen and (max-width: 800px) {
+      .bs-section { padding-left: 1rem; padding-right: 1rem; }
+      .bs-grid { grid-template-columns: 1fr; gap: 0px; }
+      .bs-products-grid { grid-template-columns: 1fr; gap: 15px; }
+      .fragrance-image-wrap { height: 200px; }
+      .bs-image-side { padding-top: 0; margin-top: 20px; }
+      .bs-title { font-size: 32px; }
+      .fragrance-name { font-size: 13px; }
+      .fragrance-brand { font-size: 11px; }
+      .variant-option-btn { padding: 4px 10px; font-size: 10px; }
+      .cart-button { padding: 12px; font-size: 10px; }
+      .bs-products-side {
+      padding-top: 30px;
+  }
+      @media screen and (max-width: 800px) {
+      .cart-button {
+          font-size: 11px;
+          padding: 16px 12px;
       }
+  }
+  .bs-subheading {
+      margin-top: 30px;
+      max-width: 450px;
+  }
 
-.bs-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-    align-items: start;
-}
-
-.bs-products-side {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    margin-bottom: 60px;
-    padding-top: 20px;
-}
-
-/* Updated Card Design Styles from form-aRxqB.tsx */
-.fragrance-item {
-    display: flex;
-    flex-direction: column;
-    height: auto;
-    width: 100%;
-    border-radius: 8px;
-    overflow: hidden;
-    background-color: #F5F5F5;
-    position: relative;
-    min-width: 0; /* Fix for flexbox grid issues */
-}
-
-.fragrance-image-wrap {
-    position: relative;
-    height: 350px;
-    width: 100%;
-    overflow: hidden;
-    flex-shrink: 0;
-}
-
-.fragrance-image-wrap img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    transition: opacity 0.4s ease;
-}
-
-.fragrance-image-wrap .secondary-image {
-    opacity: 0;
-    transition: opacity 0.4s ease;
-}
-
-.fragrance-image-wrap:hover .secondary-image {
-    opacity: 1;
-}
-
-.product-badges {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    pointer-events: none;
-}
-
-.product-badge {
-    color: #fff !important;
-    font-family: 'PPMori Regular', sans-serif;
-    font-weight: 400;
-    font-size: 12px;
-    padding: 4px 18px;
-    border-radius: 20px;
-    width: fit-content;
-    white-space: nowrap;
-}
-
-.badge-men { background-color: #242521 !important; }
-.badge-women { background-color: #8b5b5d !important; }
-.badge-unisex { background-color: #7a795c !important; }
-
-.fragrance-info {
-    background-color: #F5F5F5;
-    padding: 16px 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    width: 100%;
-    flex: 1;
-}
-
-.fragrance-rating {
-    font-size: 24px;
-    color: #cbdd00;
-    letter-spacing: -2px;
-    margin: 0;
-    text-align: left;
-    margin-top: -10px;
-}
-
-.fragrance-name {
-    font-size: 16px;
-    font-weight: 600;
-    margin: 0;
-    font-family: 'PPMori Regular', sans-serif;
-    text-transform: uppercase;
-    text-align: left;
-    line-height: 1.3;
-    color: #000;
-}
-
-.fragrance-brand {
-    margin: 0;
-    font-size: 12px;
-    font-family: 'PPMori Regular', sans-serif;
-    font-weight: 400;
-    text-align: left;
-    color: #666;
-}
-
-.product-price-display {
-    font-size: 18px;
-    font-weight: 600;
-    color: #000;
-    font-family: 'PPMori Regular', sans-serif;
-    margin-top: 2px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.price-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.compare-price {
-    font-size: 14px;
-    color: #666;
-    text-decoration: line-through;
-    font-weight: 400;
-}
-
-.sale-badge {
-    background-color: #fa0000ff;
-    color: #fff;
-    font-size: 12px;
-    font-weight: 600;
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-family: 'PPMori Regular', sans-serif;
-    white-space: nowrap;
-}
-
-.variant-options {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin: 4px 0 0 0;
-}
-
-.variant-option-btn {
-    padding: 6px 16px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 20px;
-    font-size: 11px;
-    cursor: pointer;
-    font-family: 'PPMori Regular', sans-serif;
-    transition: all 0.2s ease;
-    color: #000;
-}
-
-.variant-option-btn.active {
-    background-color: #f4ff41;
-    color: #000;
-    border-color: #000;
-}
-
-.cart-button {
-    margin-top: 8px;
-    background: #f4ff41;
-    color: #000;
-    font-weight: 600;
-    font-size: 12px;
-    padding: 16px 16px;
-    border-radius: 20px;
-    cursor: pointer;
-    border: none;
-    width: 100%;
-    font-family: 'PPMori Regular', sans-serif;
-    transition: all 0.3s ease;
-}
-
-.cart-button:hover { background: #e0ea36; }
-
-.cart-button.sold-out {
-    background: #f4ff41;
-    opacity: 0.5;
-    cursor: not-allowed;
-    pointer-events: none;
-}
-
-/* Updated heading layout to match requested design (Title left, Nav right) */
-.bs-heading {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin-bottom: 20px;
-}
-
-.bs-heading-content {
-    flex: 1;
-}
-
-/* Existing Navigation Styles */
-.bs-navigation { display: flex; gap: 10px; align-items: center; }
-.bs-nav-arrow {
-    width: 45px; height: 45px; background: #f4ff41; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    cursor: pointer; transition: all 0.3s ease; border: 2px solid #f4ff41 !important;
-    font-size: 24px;
-}
-.bs-nav-counter { font-family: 'PPMori Regular', sans-serif; font-size: 14px; color: #666; }
-
-.bs-title {
-    font-family: 'PPEditorialNew Italic', serif;
-    font-size: 48px; font-weight: 400; font-style: italic; color: #000; margin: 0;
-    text-decoration: underline;
-    text-decoration-color: #FADB95;
-    text-decoration-thickness: 2px;
-    text-underline-offset: 2px;
-}
-
-
-.bs-products-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-    overflow: hidden;
-}
-
-.bs-image-side { 
-    height: auto; 
-    padding-top: 80px; 
-}
-.bs-featured-image { width: 100%; height: auto; border-radius: 16px; overflow: hidden; }
-.bs-featured-image img { width: 100%; height: 100%; object-fit: cover; }
-
-@media screen and (max-width: 800px) {
-    .bs-section { padding-left: 1rem; padding-right: 1rem; }
-    .bs-grid { grid-template-columns: 1fr; gap: 0px; }
-    .bs-products-grid { grid-template-columns: 1fr; gap: 15px; }
-    .fragrance-image-wrap { height: 200px; }
-    .bs-image-side { padding-top: 0; margin-top: 20px; }
-    .bs-title { font-size: 32px; }
-    .fragrance-name { font-size: 13px; }
-    .fragrance-brand { font-size: 11px; }
-    .variant-option-btn { padding: 4px 10px; font-size: 10px; }
-    .cart-button { padding: 12px; font-size: 10px; }
-    .bs-products-side {
-    padding-top: 30px;
-}
-    @media screen and (max-width: 800px) {
-    .cart-button {
-        font-size: 11px;
-        padding: 16px 12px;
-    }
-}
-.bs-subheading {
-    margin-top: 30px;
-    max-width: 450px;
-}
-
-.bs-subheading p {
-    font-family: 'PPMori Regular', sans-serif;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #000;
-    text-transform: uppercase;
-    margin: 0;
-}
-@media screen and (max-width: 800px) {
-    .bs-image-side {
-       display: none;
-        margin-top: 20px;
-       }
-      }
+  .bs-subheading p {
+      font-family: 'PPMori Regular', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #000;
+      text-transform: uppercase;
+      margin: 0;
+  }
+  @media screen and (max-width: 800px) {
+      .bs-image-side {
+         display: none;
+          margin-top: 20px;
+         }
+        }
 {% endstylesheet %}
 
-
-
 <section class="bs-section">
-    <div class="bs-container">
-        <div class="bs-grid">
-            <div class="bs-products-side">
-                <div class="bs-heading">
-                    <div class="bs-heading-content">
-                        <h2 class="bs-title">{{ section.settings.section_title }}</h2>
-                    </div>
-                    <div class="bs-navigation">
-                        <button class="bs-nav-arrow" id="prevBtn" onclick="navigateProducts(-1)">‹</button>
-                        <span class="bs-nav-counter">
-                            <span id="currentPage">1</span> / <span id="totalPages">1</span>
-                        </span>
-                        <button class="bs-nav-arrow" id="nextBtn" onclick="navigateProducts(1)">›</button>
-                    </div>
-                </div>
-                        
-                <div class="bs-products-grid" id="productsGrid">
-                    <!-- Cards are rendered here via JavaScript -->
-                </div>
-
-                {% if section.settings.subheading %}
-                    <div class="bs-subheading">
-                        <p>{{ section.settings.subheading }}</p>
-                    </div>
-                {% endif %}
-                        
-                {% if section.settings.view_all_link != blank %}
-                    <div style="text-align: center; margin-top: 0px;">
-                        <a href="{{ section.settings.view_all_link }}" class="view-all-button" style="display: inline-block; padding: 16px 80px; background: #f4ff41; border-radius: 999px; text-decoration: none; color: #000; font-family: 'PPMori Regular', sans-serif; font-weight: 500; text-transform: uppercase;">
-                            View All Products
-                        </a>
-                    </div>
-                {% endif %}
-            </div>
-                  
-            <div class="bs-image-side">
-                {% if section.settings.featured_image %}
-                    <div class="bs-featured-image">
-                        <img src="{{ section.settings.featured_image | image_url: width: 1200 }}" alt="{{ section.settings.featured_image.alt }}" loading="lazy">
-                    </div>
-                {% endif %}
-            </div>
+  <div class="bs-container">
+    <div class="bs-grid">
+      <div class="bs-products-side">
+        <div class="bs-heading">
+          <div class="bs-heading-content">
+            <h2 class="bs-title">{{ section.settings.section_title }}</h2>
+          </div>
+          <div class="bs-navigation">
+            <button class="bs-nav-arrow" id="prevBtn" onclick="navigateProducts(-1)">‹</button>
+            <span class="bs-nav-counter"> <span id="currentPage">1</span> / <span id="totalPages">1</span> </span>
+            <button class="bs-nav-arrow" id="nextBtn" onclick="navigateProducts(1)">›</button>
+          </div>
         </div>
+
+        <div class="bs-products-grid" id="productsGrid">
+          <!-- Cards are rendered here via JavaScript -->
+        </div>
+
+        {% if section.settings.subheading %}
+          <div class="bs-subheading">
+            <p>{{ section.settings.subheading }}</p>
+          </div>
+        {% endif %}
+
+        {% if section.settings.view_all_link != blank %}
+          <div style="text-align: center; margin-top: 0px;">
+            <a
+              href="{{ section.settings.view_all_link }}"
+              class="view-all-button"
+              style="display: inline-block; padding: 16px 80px; background: #f4ff41; border-radius: 999px; text-decoration: none; color: #000; font-family: 'PPMori Regular', sans-serif; font-weight: 500; text-transform: uppercase;">
+              View All Products
+            </a>
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="bs-image-side">
+        {% if section.settings.featured_image %}
+          <div class="bs-featured-image">
+            <img
+              src="{{ section.settings.featured_image | image_url: width: 1200 }}"
+              alt="{{ section.settings.featured_image.alt }}"
+              loading="lazy">
+          </div>
+        {% endif %}
+      </div>
     </div>
+  </div>
 </section>
 
 <script>

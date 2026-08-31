@@ -10,14 +10,14 @@
  * ============================================================================
  */
 
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
-const ROOT = path.resolve(__dirname, '..');
-const BASELINE_REPORT = path.join(__dirname, 'reports/archive/SCAN_REPORT_2026-08-27T08-37-48.md');
-const QUEUE_FILE = path.join(__dirname, 'remediation-queue.json');
-const CHANGELOG_DOCS = path.join(ROOT, 'docs/CHANGELOG.md');
-const CHANGELOG_ROOT = path.join(ROOT, 'CHANGELOG.md');
+const ROOT = path.resolve(__dirname, "..");
+const BASELINE_REPORT = path.join(__dirname, "reports/archive/SCAN_REPORT_2026-08-27T08-37-48.md");
+const QUEUE_FILE = path.join(__dirname, "remediation-queue.json");
+const CHANGELOG_DOCS = path.join(ROOT, "docs/CHANGELOG.md");
+const CHANGELOG_ROOT = path.join(ROOT, "CHANGELOG.md");
 
 let queue = [];
 let errors = [];
@@ -25,33 +25,38 @@ let warnings = [];
 let totalDays = 87;
 
 if (fs.existsSync(QUEUE_FILE)) {
-  const queueData = JSON.parse(fs.readFileSync(QUEUE_FILE, 'utf8'));
+  const queueData = JSON.parse(fs.readFileSync(QUEUE_FILE, "utf8"));
   queue = queueData.queue || [];
-  errors = queue.filter(i => i.type === 'error');
-  warnings = queue.filter(i => i.type === 'warning');
+  errors = queue.filter(i => i.type === "error");
+  warnings = queue.filter(i => i.type === "warning");
   totalDays = queueData.totalDays || Math.ceil(queue.length / 4);
-  console.log(`Loaded from Queue: ${errors.length} Errors, ${warnings.length} Warnings (Total: ${queue.length}, ${totalDays} Days)`);
+  console.log(
+    `Loaded from Queue: ${errors.length} Errors, ${warnings.length} Warnings (Total: ${queue.length}, ${totalDays} Days)`
+  );
 } else if (fs.existsSync(BASELINE_REPORT)) {
-  const raw = fs.readFileSync(BASELINE_REPORT, 'utf8');
-  const lines = raw.split('\n');
+  const raw = fs.readFileSync(BASELINE_REPORT, "utf8");
+  const lines = raw.split("\n");
   let currentFile = null;
 
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i].trim();
-    if (line.startsWith('### 📄 `')) {
-      const endIdx = line.indexOf('`', 8);
+    if (line.startsWith("### 📄 `")) {
+      const endIdx = line.indexOf("`", 8);
       if (endIdx !== -1) {
         currentFile = line.substring(8, endIdx);
       }
       continue;
     }
-    if (line.startsWith('| Line ') && currentFile) {
-      const parts = line.split('|').map(p => p.trim()).filter(Boolean);
+    if (line.startsWith("| Line ") && currentFile) {
+      const parts = line
+        .split("|")
+        .map(p => p.trim())
+        .filter(Boolean);
       if (parts.length >= 4) {
-        const lineNumStr = parts[0].replace('Line', '').trim();
+        const lineNumStr = parts[0].replace("Line", "").trim();
         const lineNum = parseInt(lineNumStr) || 1;
-        const severity = parts[1].includes('ERROR') ? 'error' : 'warning';
-        const rule = parts[2].replace(/`/g, '').trim();
+        const severity = parts[1].includes("ERROR") ? "error" : "warning";
+        const rule = parts[2].replace(/`/g, "").trim();
         const message = parts[3].trim();
 
         const item = {
@@ -59,10 +64,10 @@ if (fs.existsSync(QUEUE_FILE)) {
           line: lineNum,
           type: severity,
           rule,
-          message
+          message,
         };
 
-        if (severity === 'error') {
+        if (severity === "error") {
           errors.push(item);
         } else {
           warnings.push(item);
@@ -71,25 +76,27 @@ if (fs.existsSync(QUEUE_FILE)) {
     }
   }
 
-  console.log(`Parsed from Baseline: ${errors.length} Errors, ${warnings.length} Warnings (Total: ${errors.length + warnings.length})`);
+  console.log(
+    `Parsed from Baseline: ${errors.length} Errors, ${warnings.length} Warnings (Total: ${errors.length + warnings.length})`
+  );
 
   // Assign IDs and Days
   let errorIdx = 1;
   errors.forEach((err, idx) => {
     const day = Math.floor(idx / 4) + 1;
-    const id = `ERR-${String(errorIdx).padStart(3, '0')}`;
+    const id = `ERR-${String(errorIdx).padStart(3, "0")}`;
     errorIdx++;
     const isReleased = day === 1;
     queue.push({
       id,
-      type: 'error',
+      type: "error",
       day,
       file: err.file,
       line: err.line,
       rule: err.rule,
       message: err.message,
-      status: isReleased ? 'released' : 'pending',
-      releasedAt: isReleased ? '2026-08-27' : null
+      status: isReleased ? "released" : "pending",
+      releasedAt: isReleased ? "2026-08-27" : null,
     });
   });
 
@@ -98,18 +105,18 @@ if (fs.existsSync(QUEUE_FILE)) {
   let warnIdx = 1;
   clampedWarnings.forEach((warn, idx) => {
     const day = errorDays + Math.floor(idx / 4) + 1;
-    const id = `WARN-${String(warnIdx).padStart(3, '0')}`;
+    const id = `WARN-${String(warnIdx).padStart(3, "0")}`;
     warnIdx++;
     queue.push({
       id,
-      type: 'warning',
+      type: "warning",
       day,
       file: warn.file,
       line: warn.line,
       rule: warn.rule,
       message: warn.message,
-      status: 'pending',
-      releasedAt: null
+      status: "pending",
+      releasedAt: null,
     });
   });
 
@@ -122,7 +129,7 @@ if (fs.existsSync(QUEUE_FILE)) {
     totalDays,
     itemsPerDay: 4,
     createdAt: new Date().toISOString(),
-    queue
+    queue,
   };
   fs.writeFileSync(QUEUE_FILE, JSON.stringify(queuePayload, null, 2));
 }
@@ -136,8 +143,8 @@ let md = `# 🛡️ Scentspired UK Theme — Master Technical Changelog & 87-Day
 > **Release Cadence:** Strictly **4 items per day** pushed to \`main\` via autonomous GitHub Actions  
 > **Total Program:** **${queue.length} Total Defects** across **${totalDays} Days (12 Weeks)**  
 > **Phase Breakdown:**  
-> • **Phase 1 (Days 1 – 73):** ${errors.length} Blocker Errors (\`ERR-001\` through \`ERR-${String(errors.length).padStart(3, '0')}\`)  
-> • **Phase 2 (Days 74 – 87):** ${warnings.length} Warnings & Integrity Items (\`WARN-001\` through \`WARN-${String(warnings.length).padStart(3, '0')}\`)  
+> • **Phase 1 (Days 1 – 73):** ${errors.length} Blocker Errors (\`ERR-001\` through \`ERR-${String(errors.length).padStart(3, "0")}\`)  
+> • **Phase 2 (Days 74 – 87):** ${warnings.length} Warnings & Integrity Items (\`WARN-001\` through \`WARN-${String(warnings.length).padStart(3, "0")}\`)  
 > **Verification Status:** **100% Passing** on 20 Test Suites (86/86 Critical Purchase Assertions) & Clarity Gate (14/14)
 
 ---
@@ -179,18 +186,19 @@ Every daily release to \`main\` is strictly validated by the 3-Layer Testing Eng
 
 for (let d = 1; d <= totalDays; d++) {
   const dayItems = queue.filter(i => i.day === d);
-  const isReleased = dayItems.every(i => i.status === 'released');
-  const statusBadge = isReleased ? '✅ RELEASED TO MAIN' : '⏳ SCHEDULED';
-  const phaseTitle = d <= errorDays ? `Phase 1: Blocker Error Elimination` : `Phase 2: Warning & Network Hardening`;
+  const isReleased = dayItems.every(i => i.status === "released");
+  const statusBadge = isReleased ? "✅ RELEASED TO MAIN" : "⏳ SCHEDULED";
+  const phaseTitle =
+    d <= errorDays ? `Phase 1: Blocker Error Elimination` : `Phase 2: Warning & Network Hardening`;
 
   md += `### Day ${d}/${totalDays} [${statusBadge}] — ${phaseTitle}\n\n`;
-  md += `* **Target Batch:** \`${dayItems.map(i => i.id).join(', ')}\` (${dayItems.length} items)\n`;
-  md += `* **Commit Message:** \`fix(theme): Day ${d}/${totalDays} automated zero-defect remediation [${dayItems.map(i => i.id).join(', ')}]\`\n\n`;
+  md += `* **Target Batch:** \`${dayItems.map(i => i.id).join(", ")}\` (${dayItems.length} items)\n`;
+  md += `* **Commit Message:** \`fix(theme): Day ${d}/${totalDays} automated zero-defect remediation [${dayItems.map(i => i.id).join(", ")}]\`\n\n`;
   md += `| Defect ID | Target File & Line | Detection Rule | Customer Impact & Technical Resolution |\n`;
   md += `| :--- | :--- | :--- | :--- |\n`;
 
   dayItems.forEach(item => {
-    const cleanMsg = item.message.replace(/\|/g, '\\|');
+    const cleanMsg = item.message.replace(/\|/g, "\\|");
     md += `| **\`${item.id}\`** | \`${item.file}:${item.line}\` | \`${item.rule}\` | ${cleanMsg} |\n`;
   });
 
@@ -219,8 +227,8 @@ npm test
 `;
 
 fs.mkdirSync(path.dirname(CHANGELOG_DOCS), { recursive: true });
-fs.writeFileSync(CHANGELOG_DOCS, md, 'utf8');
-fs.writeFileSync(CHANGELOG_ROOT, md, 'utf8');
+fs.writeFileSync(CHANGELOG_DOCS, md, "utf8");
+fs.writeFileSync(CHANGELOG_ROOT, md, "utf8");
 
 console.log(`\n🎉 Full Master Chronicle Generated!`);
 console.log(`   → ${queue.length} items indexed across Days 1 to ${totalDays}.`);

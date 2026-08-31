@@ -1,4 +1,4 @@
-{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+{% assign ai_gen_id = block.id | replace: "_", "" | downcase %}
 
 {% style %}
   .ai-instagram-grid-{{ ai_gen_id }} {
@@ -128,36 +128,34 @@
 <div class="ai-instagram-grid-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
   {% for i in (1..6) %}
     {% liquid
-      assign image_key = 'image_' | append: i
+      assign image_key = "image_" | append: i
       assign image = block.settings[image_key]
     %}
     <div class="ai-instagram-item-{{ ai_gen_id }}">
       {% if block.settings.instagram_url != blank %}
-        <a 
-          href="{{ block.settings.instagram_url }}" 
+        <a
+          href="{{ block.settings.instagram_url }}"
           class="ai-instagram-link-{{ ai_gen_id }}"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Visit our Instagram profile"
-        >
+          aria-label="Visit our Instagram profile">
       {% endif %}
-        
-        {% if image %}
-          <img
-            src="{{ image | image_url: width: 400 }}"
-            alt="{{ image.alt | escape }}"
-            class="ai-instagram-image-{{ ai_gen_id }}"
-            loading="lazy"
-            width="400"
-            height="400"
-          >
-        {% else %}
-          <div class="ai-instagram-placeholder-{{ ai_gen_id }}">
-            {{ 'image' | placeholder_svg_tag }}<div class="ai-instagram-empty-state-{{ ai_gen_id }}">
-              Add image {{ i }}
-            </div>
-          </div>
-        {% endif %}{% if block.settings.instagram_url != blank %}
+
+      {% if image %}
+        <img
+          src="{{ image | image_url: width: 400 }}"
+          alt="{{ image.alt | escape }}"
+          class="ai-instagram-image-{{ ai_gen_id }}"
+          loading="lazy"
+          width="400"
+          height="400">
+      {% else %}
+        <div class="ai-instagram-placeholder-{{ ai_gen_id }}">
+          {{ "image" | placeholder_svg_tag }}
+          <div class="ai-instagram-empty-state-{{ ai_gen_id }}">Add image {{ i }}</div>
+        </div>
+      {% endif -%}
+      {%- if block.settings.instagram_url != blank %}
         </a>
       {% endif %}
     </div>

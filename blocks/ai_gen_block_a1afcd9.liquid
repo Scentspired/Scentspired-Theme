@@ -3,211 +3,209 @@
   Text is positioned using a coordinate system locked to the banner's intrinsic aspect ratio
   so it stays pixel-perfect at any screen width.
 {% enddoc %}
-{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+{% assign ai_gen_id = block.id | replace: "_", "" | downcase %}
 
 {% style %}
+    /* ─── Outer white border wrapper ─── */
+    .lux-wrap-{{ ai_gen_id }} {
+      display: block;
+      width: 100%;
+      background: {{ block.settings.outer_border_color }};
+      padding: {{ block.settings.outer_border_px }}px;
+      box-sizing: border-box;
+    }
 
-  /* ─── Outer white border wrapper ─── */
-  .lux-wrap-{{ ai_gen_id }} {
-    display: block;
-    width: 100%;
-    background: {{ block.settings.outer_border_color }};
-    padding: {{ block.settings.outer_border_px }}px;
-    box-sizing: border-box;
-  }
+    /* ─── Inner banner: key trick — padding-top % creates height relative to WIDTH ─── */
+    /*   The image is 16:9 (1328×747 px approx). ratio = 747/1328 = 56.25%               */
+    .lux-banner-{{ ai_gen_id }} {
+      position: relative;
+      width: 100%;
+      /* Adapt to actual image aspect ratio */
+      padding-top: {{ block.settings.aspect_ratio }}%;
+      overflow: hidden;
+      background: #2d0a0f;
+    }
 
-  /* ─── Inner banner: key trick — padding-top % creates height relative to WIDTH ─── */
-  /*   The image is 16:9 (1328×747 px approx). ratio = 747/1328 = 56.25%               */
-  .lux-banner-{{ ai_gen_id }} {
-    position: relative;
-    width: 100%;
-    /* Adapt to actual image aspect ratio */
-    padding-top: {{ block.settings.aspect_ratio }}%;
-    overflow: hidden;
-    background: #2d0a0f;
-  }
+    /* ─── Background image fills the ratio box exactly ─── */
+    .lux-bg-{{ ai_gen_id }} {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      display: block;
+      z-index: 1;
+    }
 
-  /* ─── Background image fills the ratio box exactly ─── */
-  .lux-bg-{{ ai_gen_id }} {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center center;
-    display: block;
-    z-index: 1;
-  }
+    /* ─── Placeholder when no image uploaded ─── */
+    .lux-bg-placeholder-{{ ai_gen_id }} {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, #3d0a10 0%, #7a1520 45%, #2a0508 100%);
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.3);
+      font-size: 14px;
+      font-family: sans-serif;
+    }
 
-  /* ─── Placeholder when no image uploaded ─── */
-  .lux-bg-placeholder-{{ ai_gen_id }} {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(160deg, #3d0a10 0%, #7a1520 45%, #2a0508 100%);
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: rgba(255,255,255,0.3);
-    font-size: 14px;
-    font-family: sans-serif;
-  }
-
-  /* ─── Spotlight overlays ─── */
-  .lux-spot-{{ ai_gen_id }} {
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    pointer-events: none;
-  }
-  .lux-spot-{{ ai_gen_id }}::before,
-  .lux-spot-{{ ai_gen_id }}::after {
-    content: '';
-    position: absolute;
-    top: -30%;
-    width: 55%;
-    height: 80%;
-    border-radius: 50%;
-    filter: blur(120px);
-    opacity: {{ block.settings.spotlight_opacity }};
-  }
-  .lux-spot-{{ ai_gen_id }}::before {
-    left: -8%;
-    background: radial-gradient(circle, rgba(255,255,255,0.18) 0%, transparent 70%);
-  }
-  .lux-spot-{{ ai_gen_id }}::after {
-    right: -8%;
-    background: radial-gradient(circle, rgba(255,255,255,0.13) 0%, transparent 70%);
-  }
-
-  /* ─── Text layer — absolute, fills the ratio box ─── */
-  .lux-text-layer-{{ ai_gen_id }} {
-    position: absolute;
-    inset: 0;
-    z-index: 3;
-    /* 
-      CORE FIX:
-      We use a coordinate system where the banner is treated as if it were always
-      the "design width" (1440px in this case). By expressing left/top as percentages
-      they move proportionally with the banner's width AND height (since height is
-      locked by padding-top % to the same aspect ratio). This means the text always
-      sits at the same relative position in the image, regardless of screen width.
-    */
-  }
-
-  /* ─── Line 1: "That is where" ─── */
-  /*
-    In the 1440px reference:
-      - Visually starts around x=270px  → 270/1440 = 18.75%
-      - Visually at y≈475px in a ~750px tall banner → 475/750 = 63.3%
-    Using left + no transform so it anchors from its own left edge.
-  */
-  .lux-line1-{{ ai_gen_id }} {
-    position: absolute;
-    top: {{ block.settings.line1_top }}%;
-    left: {{ block.settings.line1_left }}%;
-    font-family: 'PP Editorial New', serif;
-    font-style: italic;
-    font-weight: 300;
-    /* 
-      Font size scales with banner WIDTH via vw — but clamped so it doesn't get
-      too large or too small. At 1440px wide we want ~52px → 52/1440 = 3.6vw
-    */
-    font-size: clamp(22px, 3.9vw, 68px);
-    color: {{ block.settings.text_color }};
-    letter-spacing: 0.03em;
-    line-height: 1;
-    text-shadow: 0 2px 20px rgba(0,0,0,0.5);
-    white-space: nowrap;
-    pointer-events: none;
-  }
-
-  /* ─── Line 2: "Scentspired" hero text ─── */
-  /*
-    In the 1440px reference:
-      - Center of text around x=700px → left ~42%
-      - y ≈ 520px → 520/750 = 69.3%
-    Font: ~110px at 1440px → 110/1440 = 7.64vw
-  */
-  .lux-line2-{{ ai_gen_id }} {
-    position: absolute;
-    top: {{ block.settings.brand_top }}%;
-    left: {{ block.settings.brand_left }}%;
-    font-size: clamp(42px, 3.6vw, 145px);
-    letter-spacing: -0.02em;
-    line-height: 0.9;
-    color: {{ block.settings.text_color }};
-    text-shadow: 0 4px 30px rgba(0,0,0,0.6);
-    white-space: nowrap;
-    pointer-events: none;
-  }
-  .lux-line2-regular-{{ ai_gen_id }} {
-    font-family: {{ block.settings.font_family_regular }};
-    font-style: normal;
-    font-weight: 300;
-    margin-right: 15px;
-  }
-  .lux-line2-italic-{{ ai_gen_id }} {
-    font-family: 'PPEditorialNew Ultralight Italic';
-    font-style: italic;
-    font-weight: 300;
-  }
-
-  /* ─── Line 3: "comes in." ─── */
-  /*
-    In the 1440px reference:
-      - Starts around x=880px → 880/1440 = 61%
-      - y ≈ 620px → 620/750 = 82.7%
-    Font: ~48px at 1440px → 48/1440 = 3.33vw
-  */
-  .lux-line3-{{ ai_gen_id }} {
-    position: absolute;
-    top: {{ block.settings.line3_top }}%;
-    left: {{ block.settings.line3_left }}%;
-    font-family: 'PP Editorial New', serif;
-    font-style: italic;
-    font-weight: 300;
-    font-size: clamp(18px, 7.3vw, 73px);
-    color: {{ block.settings.text_color }};
-    letter-spacing: 0.04em;
-    line-height: 1;
-    text-shadow: 0 2px 20px rgba(0,0,0,0.5);
-    white-space: nowrap;
-    pointer-events: none;
-  }
-
-  /* ─── Mobile: below 480px keep things readable ─── */
-  @media (max-width: 480px) {
+    /* ─── Spotlight overlays ─── */
+    .lux-spot-{{ ai_gen_id }} {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+    }
     .lux-spot-{{ ai_gen_id }}::before,
     .lux-spot-{{ ai_gen_id }}::after {
-      filter: blur(60px);
+      content: '';
+      position: absolute;
+      top: -30%;
+      width: 55%;
+      height: 80%;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: {{ block.settings.spotlight_opacity }};
     }
-    @media (max-width: 768px) {
+    .lux-spot-{{ ai_gen_id }}::before {
+      left: -8%;
+      background: radial-gradient(circle, rgba(255,255,255,0.18) 0%, transparent 70%);
+    }
+    .lux-spot-{{ ai_gen_id }}::after {
+      right: -8%;
+      background: radial-gradient(circle, rgba(255,255,255,0.13) 0%, transparent 70%);
+    }
+
+    /* ─── Text layer — absolute, fills the ratio box ─── */
+    .lux-text-layer-{{ ai_gen_id }} {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      /*
+        CORE FIX:
+        We use a coordinate system where the banner is treated as if it were always
+        the "design width" (1440px in this case). By expressing left/top as percentages
+        they move proportionally with the banner's width AND height (since height is
+        locked by padding-top % to the same aspect ratio). This means the text always
+        sits at the same relative position in the image, regardless of screen width.
+      */
+    }
+
+    /* ─── Line 1: "That is where" ─── */
+    /*
+      In the 1440px reference:
+        - Visually starts around x=270px  → 270/1440 = 18.75%
+        - Visually at y≈475px in a ~750px tall banner → 475/750 = 63.3%
+      Using left + no transform so it anchors from its own left edge.
+    */
     .lux-line1-{{ ai_gen_id }} {
-    font-size: clamp(15px, 3.4vw, 68px);
-}
-.lux-line2-{{ ai_gen_id }} {
-    font-size: clamp(13px, 0.6vw, 145px);
-}
-.lux-line2-{{ ai_gen_id }} {
-    position: absolute;
-    top: 2%;
-    left: 4%;
-}
-.lux-line3-{{ ai_gen_id }} {
-    font-size: clamp(18px, 4.3vw, 73px);
-}
+      position: absolute;
+      top: {{ block.settings.line1_top }}%;
+      left: {{ block.settings.line1_left }}%;
+      font-family: 'PP Editorial New', serif;
+      font-style: italic;
+      font-weight: 300;
+      /*
+        Font size scales with banner WIDTH via vw — but clamped so it doesn't get
+        too large or too small. At 1440px wide we want ~52px → 52/1440 = 3.6vw
+      */
+      font-size: clamp(22px, 3.9vw, 68px);
+      color: {{ block.settings.text_color }};
+      letter-spacing: 0.03em;
+      line-height: 1;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    /* ─── Line 2: "Scentspired" hero text ─── */
+    /*
+      In the 1440px reference:
+        - Center of text around x=700px → left ~42%
+        - y ≈ 520px → 520/750 = 69.3%
+      Font: ~110px at 1440px → 110/1440 = 7.64vw
+    */
+    .lux-line2-{{ ai_gen_id }} {
+      position: absolute;
+      top: {{ block.settings.brand_top }}%;
+      left: {{ block.settings.brand_left }}%;
+      font-size: clamp(42px, 3.6vw, 145px);
+      letter-spacing: -0.02em;
+      line-height: 0.9;
+      color: {{ block.settings.text_color }};
+      text-shadow: 0 4px 30px rgba(0,0,0,0.6);
+      white-space: nowrap;
+      pointer-events: none;
+    }
+    .lux-line2-regular-{{ ai_gen_id }} {
+      font-family: {{ block.settings.font_family_regular }};
+      font-style: normal;
+      font-weight: 300;
+      margin-right: 15px;
+    }
+    .lux-line2-italic-{{ ai_gen_id }} {
+      font-family: 'PPEditorialNew Ultralight Italic';
+      font-style: italic;
+      font-weight: 300;
+    }
+
+    /* ─── Line 3: "comes in." ─── */
+    /*
+      In the 1440px reference:
+        - Starts around x=880px → 880/1440 = 61%
+        - y ≈ 620px → 620/750 = 82.7%
+      Font: ~48px at 1440px → 48/1440 = 3.33vw
+    */
+    .lux-line3-{{ ai_gen_id }} {
+      position: absolute;
+      top: {{ block.settings.line3_top }}%;
+      left: {{ block.settings.line3_left }}%;
+      font-family: 'PP Editorial New', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(18px, 7.3vw, 73px);
+      color: {{ block.settings.text_color }};
+      letter-spacing: 0.04em;
+      line-height: 1;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    /* ─── Mobile: below 480px keep things readable ─── */
+    @media (max-width: 480px) {
+      .lux-spot-{{ ai_gen_id }}::before,
+      .lux-spot-{{ ai_gen_id }}::after {
+        filter: blur(60px);
+      }
+      @media (max-width: 768px) {
+      .lux-line1-{{ ai_gen_id }} {
+      font-size: clamp(15px, 3.4vw, 68px);
   }
-@media (max-width: 768px) {
-  .lux-line2-regular-{{ ai_gen_id }} {
-    margin-right: 3px;
+  .lux-line2-{{ ai_gen_id }} {
+      font-size: clamp(13px, 0.6vw, 145px);
   }
-}
+  .lux-line2-{{ ai_gen_id }} {
+      position: absolute;
+      top: 2%;
+      left: 4%;
+  }
+  .lux-line3-{{ ai_gen_id }} {
+      font-size: clamp(18px, 4.3vw, 73px);
+  }
+    }
+  @media (max-width: 768px) {
+    .lux-line2-regular-{{ ai_gen_id }} {
+      margin-right: 3px;
+    }
+  }
 {% endstyle %}
 
 <div class="lux-wrap-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
   <div class="lux-banner-{{ ai_gen_id }}">
-
     {% comment %} Background image {% endcomment %}
     {% if block.settings.background_image %}
       <img
@@ -216,12 +214,13 @@
         alt="{{ block.settings.background_image.alt | escape }}"
         loading="lazy"
         width="{{ block.settings.background_image.width }}"
-        height="{{ block.settings.background_image.height }}"
-      >
+        height="{{ block.settings.background_image.height }}">
     {% else %}
       <div class="lux-bg-placeholder-{{ ai_gen_id }}">
-        {{ 'hero-apparel-1' | placeholder_svg_tag }}
-        <span style="position:absolute;bottom:20px;font-size:13px;opacity:0.6;">Upload a background image in theme editor</span>
+        {{ "hero-apparel-1" | placeholder_svg_tag }}
+        <span style="position:absolute;bottom:20px;font-size:13px;opacity:0.6;"
+          >Upload a background image in theme editor</span
+        >
       </div>
     {% endif %}
 
@@ -230,35 +229,34 @@
 
     {% comment %} Text layer {% endcomment %}
     <div class="lux-text-layer-{{ ai_gen_id }}">
-
       <div class="lux-line1-{{ ai_gen_id }}">
         {{ block.settings.text_line_1 }}
       </div>
 
       <div class="lux-line2-{{ ai_gen_id }}">
-        <span class="lux-line2-regular-{{ ai_gen_id }}">{{ block.settings.brand_name_regular }}</span><span class="lux-line2-italic-{{ ai_gen_id }}">{{ block.settings.brand_name_italic }}</span>
+        <span class="lux-line2-regular-{{ ai_gen_id }}">{{ block.settings.brand_name_regular }}</span
+        ><span class="lux-line2-italic-{{ ai_gen_id }}">{{ block.settings.brand_name_italic }}</span>
       </div>
 
       <div class="lux-line3-{{ ai_gen_id }}">
         {{ block.settings.text_line_2 }}
       </div>
-
     </div>
   </div>
 </div>
 
 <script>
-(function () {
-  /* Subtle spotlight breathe animation */
-  const spotEl = document.querySelector('.lux-spot-{{ ai_gen_id }}');
-  if (!spotEl) return;
-  let tick = 0;
-  const baseOpacity = {{ block.settings.spotlight_opacity }};
-  setInterval(() => {
-    tick += 0.03;
-    spotEl.style.opacity = baseOpacity + Math.sin(tick) * 0.08;
-  }, 60);
-})();
+  (function () {
+    /* Subtle spotlight breathe animation */
+    const spotEl = document.querySelector('.lux-spot-{{ ai_gen_id }}');
+    if (!spotEl) return;
+    let tick = 0;
+    const baseOpacity = {{ block.settings.spotlight_opacity }};
+    setInterval(() => {
+      tick += 0.03;
+      spotEl.style.opacity = baseOpacity + Math.sin(tick) * 0.08;
+    }, 60);
+  })();
 </script>
 
 {% schema %}

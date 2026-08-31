@@ -1,4 +1,4 @@
-{{ 'section-rich-text.css' | asset_url | stylesheet_tag }}
+{{ "section-rich-text.css" | asset_url | stylesheet_tag }}
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -20,48 +20,44 @@
       <div class="rich-text__blocks {{ section.settings.content_alignment }}">
         {%- for block in section.blocks -%}
           {%- case block.type -%}
-            {%- when 'heading' -%}
+            {%- when "heading" -%}
               <h2
                 class="rich-text__heading rte inline-richtext {{ block.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                 {{ block.shopify_attributes }}
                 {% if settings.animations_reveal_on_scroll %}
                   data-cascade
                   style="--animation-order: {{ forloop.index }};"
-                {% endif %}
-              >
+                {% endif %}>
                 {{ block.settings.heading }}
               </h2>
-            {%- when 'caption' -%}
+            {%- when "caption" -%}
               <p
                 class="rich-text__caption {{ block.settings.text_style }} {{ block.settings.text_style }}--{{ block.settings.text_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                 {{ block.shopify_attributes }}
                 {% if settings.animations_reveal_on_scroll %}
                   data-cascade
                   style="--animation-order: {{ forloop.index }};"
-                {% endif %}
-              >
+                {% endif %}>
                 {{ block.settings.caption | escape }}
               </p>
-            {%- when 'text' -%}
+            {%- when "text" -%}
               <div
                 class="rich-text__text rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                 {{ block.shopify_attributes }}
                 {% if settings.animations_reveal_on_scroll %}
                   data-cascade
                   style="--animation-order: {{ forloop.index }};"
-                {% endif %}
-              >
+                {% endif %}>
                 {{ block.settings.text }}
               </div>
-            {%- when 'button' -%}
+            {%- when "button" -%}
               <div
                 class="rich-text__buttons{% if block.settings.button_label != blank and block.settings.button_label_2 != blank %} rich-text__buttons--multiple{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                 {{ block.shopify_attributes }}
                 {% if settings.animations_reveal_on_scroll %}
                   data-cascade
                   style="--animation-order: {{ forloop.index }};"
-                {% endif %}
-              >
+                {% endif %}>
                 {%- if block.settings.button_label != blank -%}
                   <a
                     {% if block.settings.button_link == blank %}
@@ -69,8 +65,7 @@
                     {% else %}
                       href="{{ block.settings.button_link }}"
                     {% endif %}
-                    class="button{% if block.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
-                  >
+                    class="button{% if block.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}">
                     {{- block.settings.button_label | escape -}}
                   </a>
                 {%- endif -%}
@@ -81,8 +76,7 @@
                     {% else %}
                       href="{{ block.settings.button_link_2 }}"
                     {% endif %}
-                    class="button{% if block.settings.button_style_secondary_2 %} button--secondary{% else %} button--primary{% endif %}"
-                  >
+                    class="button{% if block.settings.button_style_secondary_2 %} button--secondary{% else %} button--primary{% endif %}">
                     {{- block.settings.button_label_2 | escape -}}
                   </a>
                 {%- endif -%}
@@ -290,9 +284,9 @@
       "limit": 2,
       "settings": [
         {
-         "type": "header",
-         "content": "t:sections.rich-text.blocks.buttons.settings.header_button1.content"
-        },        
+          "type": "header",
+          "content": "t:sections.rich-text.blocks.buttons.settings.header_button1.content"
+        },
         {
           "type": "text",
           "id": "button_label",
@@ -312,9 +306,9 @@
           "label": "t:sections.rich-text.blocks.buttons.settings.button_style_secondary_1.label"
         },
         {
-         "type": "header",
-         "content": "t:sections.rich-text.blocks.buttons.settings.header_button2.content"
-        },          
+          "type": "header",
+          "content": "t:sections.rich-text.blocks.buttons.settings.header_button2.content"
+        },
         {
           "type": "text",
           "id": "button_label_2",

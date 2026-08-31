@@ -13,14 +13,13 @@
     placeholder="0"
     data-pattern="\d| |,|\."
     data-min="0"
-    data-max="{{ filter.range_max | money_without_currency }}"
-  >
+    data-max="{{ filter.range_max | money_without_currency }}">
   <label class="field__label" for="{{ id_prefix }}{{ filter.label | escape }}-GTE">
-    {{- 'products.facets.from' | t -}}
+    {{- "products.facets.from" | t -}}
   </label>
 </div>
 
-{%- if filter_type != 'vertical' -%}
+{%- if filter_type != "vertical" -%}
   <span class="field-currency">{{ cart.currency.symbol }}</span>
 {%- endif -%}
 
@@ -37,9 +36,8 @@
     placeholder="{{ filter.range_max | money_without_currency }}"
     data-pattern="\d| |,|\."
     data-min="0"
-    data-max="{{ filter.range_max | money_without_currency }}"
-  >
+    data-max="{{ filter.range_max | money_without_currency }}">
   <label class="field__label" for="{{ id_prefix }}{{ filter.label | escape }}-LTE">
-    {{- 'products.facets.to' | t -}}
+    {{- "products.facets.to" | t -}}
   </label>
 </div>

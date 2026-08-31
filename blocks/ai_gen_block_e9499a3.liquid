@@ -1,4 +1,4 @@
-{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+{% assign ai_gen_id = block.id | replace: "_", "" | downcase %}
 
 {% style %}
   .ai-comparison-table-wrapper-{{ ai_gen_id }} {
@@ -83,8 +83,7 @@
 
 <fragrance-comparison-table-{{ ai_gen_id }}
   class="ai-comparison-table-wrapper-{{ ai_gen_id }}"
-  {{ block.shopify_attributes }}
->
+  {{ block.shopify_attributes }}>
   <div class="ai-comparison-table-container-{{ ai_gen_id }}">
     <table class="ai-comparison-table-{{ ai_gen_id }}">
       <thead>

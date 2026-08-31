@@ -1,6 +1,6 @@
-if (!customElements.get('product-info')) {
+if (!customElements.get("product-info")) {
   customElements.define(
-    'product-info',
+    "product-info",
     class ProductInfo extends HTMLElement {
       quantityInput = undefined;
       quantityForm = undefined;
@@ -14,7 +14,7 @@ if (!customElements.get('product-info')) {
       constructor() {
         super();
 
-        this.quantityInput = this.querySelector('.quantity__input');
+        this.quantityInput = this.querySelector(".quantity__input");
       }
 
       connectedCallback() {
@@ -26,7 +26,7 @@ if (!customElements.get('product-info')) {
         );
 
         this.initQuantityHandlers();
-        this.dispatchEvent(new CustomEvent('product-info:loaded', { bubbles: true }));
+        this.dispatchEvent(new CustomEvent("product-info:loaded", { bubbles: true }));
       }
 
       addPreProcessCallback(callback) {
@@ -36,12 +36,15 @@ if (!customElements.get('product-info')) {
       initQuantityHandlers() {
         if (!this.quantityInput) return;
 
-        this.quantityForm = this.querySelector('.product-form__quantity');
+        this.quantityForm = this.querySelector(".product-form__quantity");
         if (!this.quantityForm) return;
 
         this.setQuantityBoundries();
         if (!this.dataset.originalSection) {
-          this.cartUpdateUnsubscriber = subscribe(PUB_SUB_EVENTS.cartUpdate, this.fetchQuantityRules.bind(this));
+          this.cartUpdateUnsubscriber = subscribe(
+            PUB_SUB_EVENTS.cartUpdate,
+            this.fetchQuantityRules.bind(this)
+          );
         }
       }
 
@@ -51,10 +54,12 @@ if (!customElements.get('product-info')) {
       }
 
       initializeProductSwapUtility() {
-        this.preProcessHtmlCallbacks.push((html) =>
-          html.querySelectorAll('.scroll-trigger').forEach((element) => element.classList.add('scroll-trigger--cancel'))
+        this.preProcessHtmlCallbacks.push(html =>
+          html
+            .querySelectorAll(".scroll-trigger")
+            .forEach(element => element.classList.add("scroll-trigger--cancel"))
         );
-        this.postProcessHtmlCallbacks.push((newNode) => {
+        this.postProcessHtmlCallbacks.push(newNode => {
           window?.Shopify?.PaymentButton?.init();
           window?.ProductModel?.loadShopifyXR();
         });
@@ -68,10 +73,14 @@ if (!customElements.get('product-info')) {
         const productUrl = target.dataset.productUrl || this.pendingRequestUrl || this.dataset.url;
         this.pendingRequestUrl = productUrl;
         const shouldSwapProduct = this.dataset.url !== productUrl;
-        const shouldFetchFullPage = this.dataset.updateUrl === 'true' && shouldSwapProduct;
+        const shouldFetchFullPage = this.dataset.updateUrl === "true" && shouldSwapProduct;
 
         this.renderProductInfo({
-          requestUrl: this.buildRequestUrlWithParams(productUrl, selectedOptionValues, shouldFetchFullPage),
+          requestUrl: this.buildRequestUrlWithParams(
+            productUrl,
+            selectedOptionValues,
+            shouldFetchFullPage
+          ),
           targetId: target.id,
           callback: shouldSwapProduct
             ? this.handleSwapProduct(productUrl, shouldFetchFullPage)
@@ -86,30 +95,30 @@ if (!customElements.get('product-info')) {
       }
 
       handleSwapProduct(productUrl, updateFullPage) {
-        return (html) => {
+        return html => {
           this.productModal?.remove();
 
-          const selector = updateFullPage ? "product-info[id^='MainProduct']" : 'product-info';
+          const selector = updateFullPage ? "product-info[id^='MainProduct']" : "product-info";
           const variant = this.getSelectedVariant(html.querySelector(selector));
           this.updateURL(productUrl, variant?.id);
 
           if (updateFullPage) {
-            const headTitle = document.querySelector('head title');
-            const newHeadTitle = html ? html.querySelector('head title') : null;
+            const headTitle = document.querySelector("head title");
+            const newHeadTitle = html ? html.querySelector("head title") : null;
             if (headTitle && newHeadTitle) {
               headTitle.innerHTML = newHeadTitle.innerHTML;
             }
 
             HTMLUpdateUtility.viewTransition(
-              document.querySelector('main'),
-              html ? html.querySelector('main') : null,
+              document.querySelector("main"),
+              html ? html.querySelector("main") : null,
               this.preProcessHtmlCallbacks,
               this.postProcessHtmlCallbacks
             );
           } else {
             HTMLUpdateUtility.viewTransition(
               this,
-              html ? html.querySelector('product-info') : null,
+              html ? html.querySelector("product-info") : null,
               this.preProcessHtmlCallbacks,
               this.postProcessHtmlCallbacks
             );
@@ -122,19 +131,19 @@ if (!customElements.get('product-info')) {
         this.abortController = new AbortController();
 
         fetch(requestUrl, { signal: this.abortController.signal })
-          .then((response) => response.text())
-          .then((responseText) => {
+          .then(response => response.text())
+          .then(responseText => {
             this.pendingRequestUrl = null;
-            const html = new DOMParser().parseFromString(responseText, 'text/html');
+            const html = new DOMParser().parseFromString(responseText, "text/html");
             callback(html);
           })
           .then(() => {
             // set focus to last clicked option value
             document.querySelector(`#${targetId}`)?.focus();
           })
-          .catch((error) => {
-            if (error.name === 'AbortError') {
-              console.log('Fetch aborted by user');
+          .catch(error => {
+            if (error.name === "AbortError") {
+              console.log("Fetch aborted by user");
             } else {
               console.error(error);
             }
@@ -142,7 +151,9 @@ if (!customElements.get('product-info')) {
       }
 
       getSelectedVariant(productInfoNode) {
-        const selectedVariant = productInfoNode.querySelector('variant-selects [data-selected-variant]')?.innerHTML;
+        const selectedVariant = productInfoNode.querySelector(
+          "variant-selects [data-selected-variant]"
+        )?.innerHTML;
         return !!selectedVariant ? JSON.parse(selectedVariant) : null;
       }
 
@@ -152,21 +163,25 @@ if (!customElements.get('product-info')) {
         !shouldFetchFullPage && params.push(`section_id=${this.sectionId}`);
 
         if (optionValues.length) {
-          params.push(`option_values=${optionValues.join(',')}`);
+          params.push(`option_values=${optionValues.join(",")}`);
         }
 
-        return `${url}?${params.join('&')}`;
+        return `${url}?${params.join("&")}`;
       }
 
       updateOptionValues(html) {
-        const variantSelects = html.querySelector('variant-selects');
+        const variantSelects = html.querySelector("variant-selects");
         if (variantSelects) {
-          HTMLUpdateUtility.viewTransition(this.variantSelectors, variantSelects, this.preProcessHtmlCallbacks);
+          HTMLUpdateUtility.viewTransition(
+            this.variantSelectors,
+            variantSelects,
+            this.preProcessHtmlCallbacks
+          );
         }
       }
 
       handleUpdateProductInfo(productUrl) {
-        return (html) => {
+        return html => {
           const variant = this.getSelectedVariant(html);
 
           this.pickupAvailability?.update(variant);
@@ -181,28 +196,32 @@ if (!customElements.get('product-info')) {
 
           this.updateMedia(html, variant?.featured_media?.id);
 
-          const updateSourceFromDestination = (id, shouldHide = (source) => false) => {
+          const updateSourceFromDestination = (id, shouldHide = source => false) => {
             const destination = this.querySelector(`#${id}-${this.dataset.section}`);
             if (!destination) return;
             const source = html ? html.getElementById(`${id}-${this.sectionId}`) : null;
             if (source) {
               destination.innerHTML = source.innerHTML;
-              destination.classList.toggle('hidden', shouldHide(source));
+              destination.classList.toggle("hidden", shouldHide(source));
             }
           };
 
-          updateSourceFromDestination('price');
-          updateSourceFromDestination('Sku', ({ classList }) => classList.contains('hidden'));
-          updateSourceFromDestination('Inventory', ({ innerText }) => innerText === '');
-          updateSourceFromDestination('Volume');
-          updateSourceFromDestination('Price-Per-Item', ({ classList }) => classList.contains('hidden'));
+          updateSourceFromDestination("price");
+          updateSourceFromDestination("Sku", ({ classList }) => classList.contains("hidden"));
+          updateSourceFromDestination("Inventory", ({ innerText }) => innerText === "");
+          updateSourceFromDestination("Volume");
+          updateSourceFromDestination("Price-Per-Item", ({ classList }) =>
+            classList.contains("hidden")
+          );
 
           this.updateQuantityRules(this.sectionId, html);
-          this.querySelector(`#Quantity-Rules-${this.dataset.section}`)?.classList.remove('hidden');
-          this.querySelector(`#Volume-Note-${this.dataset.section}`)?.classList.remove('hidden');
+          this.querySelector(`#Quantity-Rules-${this.dataset.section}`)?.classList.remove("hidden");
+          this.querySelector(`#Volume-Note-${this.dataset.section}`)?.classList.remove("hidden");
 
           this.productForm?.toggleSubmitButton(
-            html.getElementById(`ProductSubmitButton-${this.sectionId}`)?.hasAttribute('disabled') ?? true,
+            html
+              .getElementById(`ProductSubmitButton-${this.sectionId}`)
+              ?.hasAttribute("disabled") ?? true,
             window.variantStrings.soldOut
           );
 
@@ -219,44 +238,55 @@ if (!customElements.get('product-info')) {
       updateVariantInputs(variantId) {
         this.querySelectorAll(
           `#product-form-${this.dataset.section}, #product-form-installment-${this.dataset.section}`
-        ).forEach((productForm) => {
+        ).forEach(productForm => {
           const input = productForm.querySelector('input[name="id"]');
           if (input) {
-            input.value = variantId ?? '';
-            input.dispatchEvent(new Event('change', { bubbles: true }));
+            input.value = variantId ?? "";
+            input.dispatchEvent(new Event("change", { bubbles: true }));
           }
         });
       }
 
       updateURL(url, variantId) {
-        this.querySelector('share-button')?.updateUrl(
-          `${window.shopUrl}${url}${variantId ? `?variant=${variantId}` : ''}`
+        this.querySelector("share-button")?.updateUrl(
+          `${window.shopUrl}${url}${variantId ? `?variant=${variantId}` : ""}`
         );
 
-        if (this.dataset.updateUrl === 'false') return;
-        window.history.replaceState({}, '', `${url}${variantId ? `?variant=${variantId}` : ''}`);
+        if (this.dataset.updateUrl === "false") return;
+        window.history.replaceState({}, "", `${url}${variantId ? `?variant=${variantId}` : ""}`);
       }
 
       setUnavailable() {
         this.productForm?.toggleSubmitButton(true, window.variantStrings.unavailable);
 
-        const selectors = ['price', 'Inventory', 'Sku', 'Price-Per-Item', 'Volume-Note', 'Volume', 'Quantity-Rules']
-          .map((id) => `#${id}-${this.dataset.section}`)
-          .join(', ');
-        document.querySelectorAll(selectors).forEach(({ classList }) => classList.add('hidden'));
+        const selectors = [
+          "price",
+          "Inventory",
+          "Sku",
+          "Price-Per-Item",
+          "Volume-Note",
+          "Volume",
+          "Quantity-Rules",
+        ]
+          .map(id => `#${id}-${this.dataset.section}`)
+          .join(", ");
+        document.querySelectorAll(selectors).forEach(({ classList }) => classList.add("hidden"));
       }
 
       updateMedia(html, variantFeaturedMediaId) {
         if (!variantFeaturedMediaId) return;
 
-        const mediaGallerySource = this.querySelector('media-gallery ul');
+        const mediaGallerySource = this.querySelector("media-gallery ul");
         const mediaGalleryDestination = html ? html.querySelector(`media-gallery ul`) : null;
 
         const refreshSourceData = () => {
-          if (this.hasAttribute('data-zoom-on-hover') && typeof enableZoomOnHover === 'function') enableZoomOnHover(2);
+          if (this.hasAttribute("data-zoom-on-hover") && typeof enableZoomOnHover === "function")
+            enableZoomOnHover(2);
           if (!mediaGallerySource) return [[], new Set(), new Map()];
-          const mediaGallerySourceItems = Array.from(mediaGallerySource.querySelectorAll('li[data-media-id]'));
-          const sourceSet = new Set(mediaGallerySourceItems.map((item) => item.dataset.mediaId));
+          const mediaGallerySourceItems = Array.from(
+            mediaGallerySource.querySelectorAll("li[data-media-id]")
+          );
+          const sourceSet = new Set(mediaGallerySourceItems.map(item => item.dataset.mediaId));
           const sourceMap = new Map(
             mediaGallerySourceItems.map((item, index) => [item.dataset.mediaId, { item, index }])
           );
@@ -266,9 +296,11 @@ if (!customElements.get('product-info')) {
         if (mediaGallerySource && mediaGalleryDestination) {
           let [mediaGallerySourceItems, sourceSet, sourceMap] = refreshSourceData();
           const mediaGalleryDestinationItems = Array.from(
-            mediaGalleryDestination.querySelectorAll('li[data-media-id]')
+            mediaGalleryDestination.querySelectorAll("li[data-media-id]")
           );
-          const destinationSet = new Set(mediaGalleryDestinationItems.map(({ dataset }) => dataset.mediaId));
+          const destinationSet = new Set(
+            mediaGalleryDestinationItems.map(({ dataset }) => dataset.mediaId)
+          );
           let shouldRefresh = false;
 
           // add items from new data not present in DOM
@@ -314,13 +346,17 @@ if (!customElements.get('product-info')) {
 
         // update media modal
         const modalContent = this.productModal?.querySelector(`.product-media-modal__content`);
-        const newModalContent = html ? html.querySelector(`product-modal .product-media-modal__content`) : null;
+        const newModalContent = html
+          ? html.querySelector(`product-modal .product-media-modal__content`)
+          : null;
         if (modalContent && newModalContent) modalContent.innerHTML = newModalContent.innerHTML;
       }
 
       setQuantityBoundries() {
         const data = {
-          cartQuantity: this.quantityInput.dataset.cartQuantity ? parseInt(this.quantityInput.dataset.cartQuantity) : 0,
+          cartQuantity: this.quantityInput.dataset.cartQuantity
+            ? parseInt(this.quantityInput.dataset.cartQuantity)
+            : 0,
           min: this.quantityInput.dataset.min ? parseInt(this.quantityInput.dataset.min) : 1,
           max: this.quantityInput.dataset.max ? parseInt(this.quantityInput.dataset.max) : null,
           step: this.quantityInput.step ? parseInt(this.quantityInput.step) : 1,
@@ -336,7 +372,7 @@ if (!customElements.get('product-info')) {
         if (max) {
           this.quantityInput.max = max;
         } else {
-          this.quantityInput.removeAttribute('max');
+          this.quantityInput.removeAttribute("max");
         }
         this.quantityInput.value = min;
 
@@ -347,18 +383,20 @@ if (!customElements.get('product-info')) {
         const currentVariantId = this.productForm?.variantIdInput?.value;
         if (!currentVariantId) return;
 
-        const spinner = this.querySelector('.quantity__rules-cart .loading__spinner');
-        if (spinner) spinner.classList.remove('hidden');
-        return fetch(`${this.dataset.url}?variant=${currentVariantId}&section_id=${this.dataset.section}`)
-          .then((response) => response.text())
-          .then((responseText) => {
-            const html = new DOMParser().parseFromString(responseText, 'text/html');
+        const spinner = this.querySelector(".quantity__rules-cart .loading__spinner");
+        if (spinner) spinner.classList.remove("hidden");
+        return fetch(
+          `${this.dataset.url}?variant=${currentVariantId}&section_id=${this.dataset.section}`
+        )
+          .then(response => response.text())
+          .then(responseText => {
+            const html = new DOMParser().parseFromString(responseText, "text/html");
             this.updateQuantityRules(this.dataset.section, html);
           })
-          .catch((e) => console.error(e))
+          .catch(e => console.error(e))
           .finally(() => {
-            const finalSpinner = this.querySelector('.quantity__rules-cart .loading__spinner');
-            if (finalSpinner) finalSpinner.classList.add('hidden');
+            const finalSpinner = this.querySelector(".quantity__rules-cart .loading__spinner");
+            if (finalSpinner) finalSpinner.classList.add("hidden");
           });
       }
 
@@ -368,14 +406,14 @@ if (!customElements.get('product-info')) {
 
         const quantityFormUpdated = html ? html.getElementById(`Quantity-Form-${sectionId}`) : null;
         if (!quantityFormUpdated || !this.quantityForm) return;
-        const selectors = ['.quantity__input', '.quantity__rules', '.quantity__label'];
+        const selectors = [".quantity__input", ".quantity__rules", ".quantity__label"];
         for (let selector of selectors) {
           const current = this.quantityForm.querySelector(selector);
           if (!current) continue;
           const updated = quantityFormUpdated.querySelector(selector);
           if (!updated) continue;
-          if (selector === '.quantity__input') {
-            const attributes = ['data-cart-quantity', 'data-min', 'data-max', 'step'];
+          if (selector === ".quantity__input") {
+            const attributes = ["data-cart-quantity", "data-min", "data-max", "step"];
             for (let attribute of attributes) {
               const valueUpdated = updated.getAttribute(attribute);
               if (valueUpdated !== null) {
@@ -403,21 +441,23 @@ if (!customElements.get('product-info')) {
       }
 
       get variantSelectors() {
-        return this.querySelector('variant-selects');
+        return this.querySelector("variant-selects");
       }
 
       get relatedProducts() {
         const relatedProductsSectionId = SectionId.getIdForSection(
           SectionId.parseId(this.sectionId),
-          'related-products'
+          "related-products"
         );
-        return document.querySelector(`product-recommendations[data-section-id^="${relatedProductsSectionId}"]`);
+        return document.querySelector(
+          `product-recommendations[data-section-id^="${relatedProductsSectionId}"]`
+        );
       }
 
       get quickOrderList() {
         const quickOrderListSectionId = SectionId.getIdForSection(
           SectionId.parseId(this.sectionId),
-          'quick_order_list'
+          "quick_order_list"
         );
         return document.querySelector(`quick-order-list[data-id^="${quickOrderListSectionId}"]`);
       }

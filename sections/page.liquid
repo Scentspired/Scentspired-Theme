@@ -1,4 +1,4 @@
-{{ 'section-main-page.css' | asset_url | stylesheet_tag }}
+{{ "section-main-page.css" | asset_url | stylesheet_tag }}
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -20,7 +20,7 @@
       {%- if section.settings.page.title != blank -%}
         {{ section.settings.page.title | escape }}
       {%- else -%}
-        {{ 'sections.page.title' | t }}
+        {{ "sections.page.title" | t }}
       {%- endif -%}
     </h2>
     <div class="rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
@@ -28,7 +28,7 @@
         {{ section.settings.page.content }}
       {%- else -%}
         <div class="page-placeholder-wrapper placeholder">
-          {{ 'page' | placeholder_svg_tag: 'page-placeholder' }}
+          {{ "page" | placeholder_svg_tag: "page-placeholder" }}
         </div>
       {%- endif -%}
     </div>

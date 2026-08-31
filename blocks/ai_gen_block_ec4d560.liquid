@@ -2,7 +2,7 @@
   @prompt
     create coming soon section
 {% enddoc %}
-{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+{% assign ai_gen_id = block.id | replace: "_", "" | downcase %}
 
 {% style %}
   .ai-coming-soon-{{ ai_gen_id }} {
@@ -198,9 +198,9 @@
           <h3 class="ai-coming-soon-form-heading-{{ ai_gen_id }}">{{ block.settings.form_heading }}</h3>
         {% endif %}
 
-        {%- form 'contact' -%}
+        {%- form "contact" -%}
           <input type="hidden" name="contact[tags]" value="coming-soon-signup">
-          
+
           <div class="ai-coming-soon-form-field-{{ ai_gen_id }}">
             <input
               type="email"
@@ -219,8 +219,7 @@
                 aria-describedby="ai-coming-soon-success-{{ ai_gen_id }}"
               {% endif %}
               placeholder="{{ block.settings.email_placeholder }}"
-              required
-            >
+              required>
             <button type="submit" class="ai-coming-soon-button-{{ ai_gen_id }}">
               {{ block.settings.button_text }}
             </button>
@@ -232,7 +231,7 @@
                 {{ form.errors.messages.email }}
               </div>
             {%- endif -%}
-            
+
             {%- if form.posted_successfully? -%}
               <div id="ai-coming-soon-success-{{ ai_gen_id }}" class="ai-coming-soon-success-{{ ai_gen_id }}">
                 {{ block.settings.success_message }}

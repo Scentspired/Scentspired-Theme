@@ -8,8 +8,7 @@
 {% endcomment %}
 
 <tr
-  class="product"
->
+  class="product">
   <td class="product-item__inner">
     <div class="product-item__title--wrapper">
       <div class="variant-item__media">
@@ -20,13 +19,13 @@
               image
               | image_url: width: 72
               | image_tag:
-                loading: 'lazy',
-                fetchpriority: 'low',
-                decoding: 'async',
-                class: 'variant-item__image',
+                loading: "lazy",
+                fetchpriority: "low",
+                decoding: "async",
+                class: "variant-item__image",
                 width: 36,
                 height: img_height,
-                widths: '72',
+                widths: "72",
                 alt: image.alt
               | escape
             }}

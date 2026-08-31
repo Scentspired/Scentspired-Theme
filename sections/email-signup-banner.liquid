@@ -1,7 +1,7 @@
-{{ 'section-image-banner.css' | asset_url | stylesheet_tag }}
-{{ 'component-newsletter.css' | asset_url | stylesheet_tag }}
-{{ 'newsletter-section.css' | asset_url | stylesheet_tag }}
-{{ 'section-email-signup-banner.css' | asset_url | stylesheet_tag }}
+{{ "section-image-banner.css" | asset_url | stylesheet_tag }}
+{{ "component-newsletter.css" | asset_url | stylesheet_tag }}
+{{ "newsletter-section.css" | asset_url | stylesheet_tag }}
+{{ "section-email-signup-banner.css" | asset_url | stylesheet_tag }}
 
 {%- style -%}
   #Banner-{{ section.id }}::after {
@@ -28,8 +28,7 @@
 
 <div
   id="Banner-{{ section.id }}"
-  class="email-signup-banner banner banner--content-align-{{ section.settings.desktop_content_alignment }} banner--content-align-mobile-{{ section.settings.mobile_content_alignment }} banner--{{ section.settings.image_height }}{% if section.settings.image_height == 'adapt-image' and section.settings.image != blank %} banner--adapt{% endif %}{% if section.settings.show_text_below %} banner--mobile-bottom{%- endif -%}{% if section.settings.show_text_box == false %} banner--desktop-transparent{% endif %}"
->
+  class="email-signup-banner banner banner--content-align-{{ section.settings.desktop_content_alignment }} banner--content-align-mobile-{{ section.settings.mobile_content_alignment }} banner--{{ section.settings.image_height }}{% if section.settings.image_height == 'adapt-image' and section.settings.image != blank %} banner--adapt{% endif %}{% if section.settings.show_text_below %} banner--mobile-bottom{%- endif -%}{% if section.settings.show_text_box == false %} banner--desktop-transparent{% endif %}">
   {%- if section.settings.show_background_image -%}
     <div class="banner__media{% if section.settings.image != blank %} media{% endif %}">
       {%- if section.settings.image != blank -%}
@@ -50,11 +49,10 @@
           loading="lazy"
           alt="{{ section.settings.image.alt | escape }}"
           width="{{ section.settings.image.width }}"
-          height="{{ section.settings.image.width | divided_by: section.settings.image.aspect_ratio }}"
-        >
+          height="{{ section.settings.image.width | divided_by: section.settings.image.aspect_ratio }}">
       {%- else -%}
-        {{- 'email-signup-banner-background.svg' | inline_asset_content -}}
-        {{- 'email-signup-banner-background-mobile.svg' | inline_asset_content -}}
+        {{- "email-signup-banner-background.svg" | inline_asset_content -}}
+        {{- "email-signup-banner-background-mobile.svg" | inline_asset_content -}}
       {%- endif -%}
     </div>
   {%- endif -%}
@@ -62,17 +60,17 @@
     <div class="email-signup-banner__box banner__box newsletter newsletter__wrapper isolate{% if section.settings.show_background_image == false %} email-signup-banner__box--no-image{% endif %} content-container color-{{ section.settings.color_scheme }} gradient content-container--full-width-mobile">
       {%- for block in section.blocks -%}
         {%- case block.type -%}
-          {%- when 'heading' -%}
+          {%- when "heading" -%}
             <h2 class="email-signup-banner__heading {{ block.settings.heading_size }}" {{ block.shopify_attributes }}>
               {{ block.settings.heading | escape }}
             </h2>
-          {%- when 'paragraph' -%}
+          {%- when "paragraph" -%}
             <div class="newsletter__subheading rte {{ block.settings.text_style }}" {{ block.shopify_attributes }}>
               {{ block.settings.text }}
             </div>
-          {%- when 'email_form' -%}
+          {%- when "email_form" -%}
             <div {{ block.shopify_attributes }}>
-              {% form 'customer', class: 'newsletter-form' %}
+              {% form "customer", class: "newsletter-form" %}
                 <input type="hidden" name="contact[tags]" value="newsletter">
                 <div class="newsletter-form__field-wrapper">
                   <div class="field">
@@ -94,27 +92,25 @@
                         aria-describedby="Newsletter-success--{{ section.id }}"
                       {% endif %}
                       placeholder="{{ 'newsletter.label' | t }}"
-                      required
-                    >
+                      required>
                     <label class="field__label" for="NewsletterForm--{{ section.id }}">
-                      {{ 'newsletter.label' | t }}
+                      {{ "newsletter.label" | t }}
                     </label>
                     <button
                       type="submit"
                       class="newsletter-form__button field__button"
                       name="commit"
                       id="Subscribe"
-                      aria-label="{{ 'newsletter.button_label' | t }}"
-                    >
+                      aria-label="{{ 'newsletter.button_label' | t }}">
                       <span class="svg-wrapper">
-                        {{- 'icon-arrow.svg' | inline_asset_content -}}
+                        {{- "icon-arrow.svg" | inline_asset_content -}}
                       </span>
                     </button>
                   </div>
                   {%- if form.errors -%}
                     <small class="newsletter-form__message form__message" id="Newsletter-error--{{ section.id }}">
                       <span class="svg-wrapper">
-                        {{- 'icon-error.svg' | inline_asset_content -}}
+                        {{- "icon-error.svg" | inline_asset_content -}}
                       </span>
                       {{- form.errors.translated_fields.email | capitalize }}
                       {{ form.errors.messages.email -}}
@@ -126,12 +122,11 @@
                     class="newsletter-form__message newsletter-form__message--success form__message"
                     id="Newsletter-success--{{ section.id }}"
                     tabindex="-1"
-                    autofocus
-                  >
+                    autofocus>
                     <span class="svg-wrapper">
-                      {{- 'icon-success.svg' | inline_asset_content -}}
+                      {{- "icon-success.svg" | inline_asset_content -}}
                     </span>
-                    {{- 'newsletter.success' | t }}
+                    {{- "newsletter.success" | t }}
                   </h3>
                 {%- endif -%}
               {% endform %}
@@ -160,7 +155,7 @@
       "id": "show_background_image",
       "label": "t:sections.email-signup-banner.settings.show_background_image.label",
       "default": true
-    },    
+    },
     {
       "type": "image_picker",
       "id": "image",
@@ -203,7 +198,7 @@
     {
       "type": "header",
       "content": "t:sections.email-signup-banner.settings.content_header.content"
-    },    
+    },
     {
       "type": "select",
       "id": "desktop_content_position",
@@ -267,7 +262,7 @@
       ],
       "default": "center",
       "label": "t:sections.email-signup-banner.settings.desktop_content_alignment.label"
-    },    
+    },
     {
       "type": "checkbox",
       "id": "show_text_box",

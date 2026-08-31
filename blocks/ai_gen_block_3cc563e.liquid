@@ -3,7 +3,7 @@
     create products section like my  this code but optimized code not breaky any screen layout and same width and height like current <div class="fragrance-container">
       <h2 class="fragrance-heading">{{ section.settings.heading }}</h2>
       <div class="fragrance-subtitle">{{ section.settings.subheading }}</div>
-    
+
       <div class="fragrance-carousel-wrapper">
         <div class="fragrance-layout" id="fragrance-carousel">
           {% assign products = collections[section.settings.collection].products %}
@@ -12,12 +12,12 @@
               <a href="{{ product.url }}" style="text-decoration: none; color: inherit;">
                 <div class="fragrance-image-wrap">
                   <div class="fragrance-cost">{{ product.price | money }}</div>
-    
+
                   <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title }}">
                   {% if product.images.size > 1 %}
                     <img class="secondary-image" src="{{ product.images[1] | image_url: width: 600 }}" alt="{{ product.title }}">
                   {% endif %}
-    
+
                   <div class="fragrance-info">
                     <div class="fragrance-name">{{ product.title }}</div>
                     <div class="fragrance-brand">{{ product.vendor }}</div>
@@ -31,7 +31,7 @@
                   </div>
                 </div>
               </a>
-    
+
               <div class="fragrance-hover">
                 <div>
                   <form method="post" action="/cart/add" class="item-form" data-product-id="{{ product.id }}">
@@ -47,7 +47,7 @@
             </div>
           {% endfor %}
         </div>
-    
+
         <button class="carousel-nav-button left" aria-label="Previous product">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
         </button>
@@ -55,9 +55,9 @@
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg>
         </button>
       </div>
-    
+
       <div class="carousel-pagination"></div>
-    
+
       {% if section.settings.view_all_link != blank %}
         <div style="text-align: center; margin-top: 30px;">
           <a href="{{ section.settings.view_all_link }}" class="show-all-btn">
@@ -273,285 +273,124 @@
     .show-all-btn:hover {
       background: #e0ea36;
     }
-      @media screen and (min-width: 1023px) {
-      .left {
-        display: none !important; 
-      }
-      .right {
-        display: none !important; 
-      }
-      }
-    /* --- Mobile Specific Styles (max-width: 990px) --- */
-    @media screen and (max-width: 990px) {
-      .fragrance-container {
-        margin: 0 !important; /* Adjust margin for mobile */
-        padding: 40px 20px; /* Adjust padding for mobile */
-      }
-      .fragrance-heading {
-        font-size: 28px; /* Smaller heading for mobile */
-        text-align: left;
-        margin-bottom: 10px;
-      }
-      .fragrance-subtitle {
-        font-size: 32px; /* Smaller subheading for mobile */
-        text-align: left;
-        margin-top: -10px; /* Adjust margin for mobile */
-        display: block; /* Ensure it takes full width for centering */
-      }
-      .fragrance-subtitle::after {
-        bottom: 8px !important; /* Adjust underline position */
-        left: 29%;
-        transform: translateX(-50%); /* Center the underline */
-        width: 57%; /* Make underline shorter for mobile */
-      }, .fragrance-carousel-wrapper {
-        position: relative; /* For positioning arrows */
-        margin-top: 30px;
-        padding-bottom: 20px; /* Space for pagination dots */
-      }
-    
-      /* Carousel container for mobile */
-      .fragrance-layout {
-        display: flex; /* Use flexbox for carousel */
-        overflow-x: scroll; /* Enable horizontal scrolling */
-        scroll-snap-type: x mandatory; /* Snap to slides */
-        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-        gap: 0; /* No gap between slides, handled by padding */
-        padding: 0 20px; /* Add padding to allow first/last item to center */
-      }
-      .fragrance-layout::-webkit-scrollbar {
-        display: none; /* Hide scrollbar */
-      }
-      .fragrance-layout {
-        -ms-overflow-style: none;  /* IE and Edge */
-        scrollbar-width: none;  /* Firefox */
-      }
-    
-      .fragrance-item {
-        flex: 0 0 auto; /* Don't grow, don't shrink, base on content */
-        width: 320px; /* Adjusted width to match reference image */
-        height: 470px; /* Adjusted height to match reference image */
-        border-radius: 12px;
-        overflow: hidden;
-        position: relative;
-        margin: 0 10px; /* Spacing between items in carousel */
-        scroll-snap-align: center; /* Snap to center of item */
-        background-color: #F8F8F8; /* Light background as per image */
-      }
-    
-      /* Image handling for mobile hover */
-      .fragrance-item img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
-        transition: opacity 0.4s ease;
-        z-index: 1; /* Primary image */
-        opacity: 1; /* Primary image visible by default on mobile */
-      }
-      .fragrance-item .secondary-image {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
-        opacity: 0; /* Secondary image hidden by default on mobile */
-        transition: opacity 0.4s ease;
-        z-index: 2;
-      }
-      .fragrance-item:hover img:not(.secondary-image) {
-        opacity: 0; /* Hide primary image on hover */
-      }
-     this is mobile css ,  .fragrance-item:hover .secondary-image {
-        opacity: 1; /* Show secondary image on hover */
-      }
-    
-      /* Mobile Price - always visible at top right, changes color on hover */
-      .fragrance-cost {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        font-size: 16px;
-        color: #000;
-        z-index: 3;
-        font-family: 'PP MORI', sans-serif; /* Font from reference image */
-        font-weight: normal !important;
-        transition: color 0.3s ease; /* Enable color transition on hover */
-      }
-      .fragrance-item:hover .fragrance-cost {
-        color: #ffffff; /* Change to white on hover for mobile */
-      }
-    
-      /* Mobile Info - positioned inside the image area, changes color and moves up on hover */
-      .fragrance-info {
-        position: absolute;
-        bottom: 7px;
-        left: 20px;
-        right: 20px;
-        z-index: 3;
-        color: #000; /* Text color as per reference image */
-        text-align: center;
-        transition: all 0.3s ease; /* Enable transition for transform and color */
-      }
-      .fragrance-item:hover .fragrance-info {
-        transform: translateY(-60px); /* Move up on hover */
-        color: white; /* Change to white on hover */
-      }
-      .fragrance-item:hover .fragrance-info .fragrance-name,
-      .fragrance-item:hover .fragrance-info .fragrance-brand {
-        color: white; /* Ensure name/brand also turn white on hover */
-      }
-    
-      .fragrance-name {
-        font-size: 16px; /* Adjusted font size for mobile */
-        font-weight: 400;
-        margin: 0 auto 4px auto; /* Center and adjust margin */
-        font-family: 'PPMori Regular', sans-serif; /* Reverted to desktop font */
-        width: 90%; /* Adjust width for mobile */
-        white-space: normal;
-        line-height: 1.3;
-        text-transform: uppercase;
-        display: block;
-        text-align: center;
-        margin-left: auto !important; /* Override desktop margin */
-        transition: color 0.3s ease; /* Enable color transition */
-        z-index: 2px;
-      }
-    this is also mobile css, .fragrance-brand {
-        margin: 0 auto 8px auto; /* Center and adjust margin */
-        font-size: 12px; /* Adjusted font size for mobile */
-        font-family: 'PPMori Regular', sans-serif; /* Reverted to desktop font */
-        font-weight: 400;
-        display: block;
-        transition: color 0.3s ease; /* Enable color transition */
-          z-index: 2px;
-      }
-      .fragrance-rating {
-        margin: 0; /* Remove margin */
-        font-size: 18px; /* Adjusted font size for mobile */
-        color: #cbdd00;
-          z-index: 2px;
-      }
-      .rating-star {
-        margin-right: 0px; /* Adjust spacing */
-      }
-    
-      /* Hide desktop-specific elements on mobile */
-      .desktop-exclusive {
-        display: none !important;
-      }
-    
-      /* Mobile-specific info is now handled by .fragrance-info, so hide the old one */
-      .fragrance-mobile-info {
-        display: none;
-      }
-    
-      /* Mobile Hover Overlay (same as desktop, but only visible on mobile) */
-      .fragrance-hover {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        padding: 20px;
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
-        color: #fff;
-        transform: translateY(100%); /* Hidden by default */
-        transition: transform 0.3s ease;
-        z-index: 4;
-        text-align: center;
-        display: block; /* Ensure it's not hidden by desktop-exclusive */
-      }
-      .fragrance-item:hover .fragrance-hover {
-        transform: translateY(0); /* Visible on hover */
-      }
-      .cart-button { /* Re-using existing cart-button class */
-        margin-top: 12px;
-        background: #f4ff41;
-        color: #000;
-        font-weight: 600;
-        font-size: 12px;
-        padding: 13px 50px;
-        border-radius: 999px;
-        cursor: pointer;
-        border: none;
-        width: 80%;
-        font-family: 'PPMori Regular', sans-serif;
-      }
-    
-      .show-all-btn {
-      padding: 22px 40px;
-      width: auto;
-      height: auto;
-      font-size: 13px;
-      margin-top: 40px;
-      margin-left: 0;
-      display: flex;
-      align-items: center;   /* Vertical alignment */
-      justify-content: center; /* Horizontal alignment */
-      line-height: 1.2;  } this is also mobile css ,  /* Carousel Navigation Arrows (positioned over the carousel) */
-      .carousel-nav-button {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background-color: #E8EC39; /* Yellow background */
-        border-radius: 50%;
-        width: 40px;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        z-index: 10; /* Ensure it's above product items */
-        border: none;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-      }
-      .carousel-nav-button.left {
-        left: 0px; /* Position at the very left edge of the wrapper */
-      }
-      .carousel-nav-button.right {
-        right: 0px; /* Position at the very right edge of the wrapper */
-      }
-      .carousel-nav-button svg {
-        fill: #000; /* Black arrow */
-        width: 20px;
-        height: 20px;
-      }
-    
-      /* Carousel Pagination Dots */
-      .carousel-pagination {
-        display: flex;
-        justify-content: center;
-        margin-top: 20px; /* Space below carousel */
-        gap: 8px;
-      }
-      .carousel-dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background-color: #ccc;
-        cursor: pointer;
-      }
-      .carousel-dot.active {
-        background-color: #000; /* Active dot color */
-      }
-    }, it is not showing 2nd image on hover i want 2nd image on hover on both mobile view and desktop and also it is breaking my layout mobile arrows is not working and i want 4 products in desktop view and 1 product in view and on scroll more products show and make sure it adjust layout according to screen and i want 20px padding on whole ssection in left righ t, there is no space in left side in headings and there is too much space between products increase width of products and why you make grid i want in carousel , okay perfect but  4 product is not showing proper in desktop in some screens and in bigger screens of desktop ity is showing 5 th product also , still same issue in come screens it is not showing more than 4 products and in some screens it is showing less than 4 products in view , it is hiding view of 4 product in small desktop screens and in bigger screens too much empty space i want it auto adjust products width accoridng to screen sizes but show complete 4 products in view, it is showing 5 th product minor, in bigger screens it is shpowing 5th product view and in small laptop screens it is showing empty space why it is not covering whole screen with 4 products width just minor space in left right of section , okay perfect now product view is perfect just issue iis it is not in carousel it is in grid, in bigger desktop screens it is showing 5th product view , still empty space in right side iwant it covers whole space with 4 products width , On desktop: Show exactly 4 products visible at a time (not more and not less).
-    
-    On mobile: Show exactly 1 product visible at a time (not more and not less).
-    
-    The product width should automatically adjust to the screen size so the layout always fits perfectly. navigation.
-    
-    The design must remain responsive and consistent across all devices., still it is showing 5th product view padination dots is missing , On desktop: Show exactly 4 products visible at a time (not more and not less).
-    
-    On mobile: Show exactly 1 product visible at a time (not more and not less).
-    
-    The product width should automatically adjust to the screen size so the layout always fits perfectly.
-    
-    The carousel should allow sliding to see more products, with arrows or swipe navigation.
-    
-    The design must remain responsive and consistent across all devices., iwant  at a time 4 products show bu tin carousel not in grid, still 4 product view is not properl yshowing and it is not covering whole space of section in bigger desktop screens, okay perfect now dont change this just add pagination dots and make sure in desktop user can scroll from mouse to see more products and in mobile product is not in cnetre and fter one swipe arrows is missing , i dont want scroll bar and still same mobile issue and in desktop i dont want scroll and in  smaller screens of desktop i want  3 products at a time and in bigger screens i want 4 products at a time
+
+  @media screen and (min-width: 1023px) {
+  .left { display: none !important; } .right { display: none !important; } } /* --- Mobile Specific Styles (max-width:
+  990px) --- */
+  @media screen and (max-width: 990px) {
+  .fragrance-container { margin: 0 !important; /* Adjust margin for mobile */ padding: 40px 20px; /* Adjust padding for
+  mobile */ } .fragrance-heading { font-size: 28px; /* Smaller heading for mobile */ text-align: left; margin-bottom:
+  10px; } .fragrance-subtitle { font-size: 32px; /* Smaller subheading for mobile */ text-align: left; margin-top:
+  -10px; /* Adjust margin for mobile */ display: block; /* Ensure it takes full width for centering */ }
+  .fragrance-subtitle::after { bottom: 8px !important; /* Adjust underline position */ left: 29%; transform:
+  translateX(-50%); /* Center the underline */ width: 57%; /* Make underline shorter for mobile */ },
+  .fragrance-carousel-wrapper { position: relative; /* For positioning arrows */ margin-top: 30px; padding-bottom: 20px;
+  /* Space for pagination dots */ }
+
+  /* Carousel container for mobile */ .fragrance-layout { display: flex; /* Use flexbox for carousel */ overflow-x:
+  scroll; /* Enable horizontal scrolling */ scroll-snap-type: x mandatory; /* Snap to slides */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */ gap: 0; /* No gap between slides, handled by padding
+  */ padding: 0 20px; /* Add padding to allow first/last item to center */ } .fragrance-layout::-webkit-scrollbar {
+  display: none; /* Hide scrollbar */ } .fragrance-layout { -ms-overflow-style: none; /* IE and Edge */ scrollbar-width:
+  none; /* Firefox */ }
+
+  .fragrance-item { flex: 0 0 auto; /* Don't grow, don't shrink, base on content */ width: 320px; /* Adjusted width to
+  match reference image */ height: 470px; /* Adjusted height to match reference image */ border-radius: 12px; overflow:
+  hidden; position: relative; margin: 0 10px; /* Spacing between items in carousel */ scroll-snap-align: center; /* Snap
+  to center of item */ background-color: #F8F8F8; /* Light background as per image */ }
+
+  /* Image handling for mobile hover */ .fragrance-item img { position: absolute; top: 0; left: 0; height: 100%; width:
+  100%; object-fit: cover; transition: opacity 0.4s ease; z-index: 1; /* Primary image */ opacity: 1; /* Primary image
+  visible by default on mobile */ } .fragrance-item .secondary-image { position: absolute; top: 0; left: 0; height:
+  100%; width: 100%; object-fit: cover; opacity: 0; /* Secondary image hidden by default on mobile */ transition:
+  opacity 0.4s ease; z-index: 2; } .fragrance-item:hover img:not(.secondary-image) { opacity: 0; /* Hide primary image
+  on hover */ } this is mobile css , .fragrance-item:hover .secondary-image { opacity: 1; /* Show secondary image on
+  hover */ }
+
+  /* Mobile Price - always visible at top right, changes color on hover */ .fragrance-cost { position: absolute; top:
+  20px; right: 20px; font-size: 16px; color: #000; z-index: 3; font-family: 'PP MORI', sans-serif; /* Font from
+  reference image */ font-weight: normal !important; transition: color 0.3s ease; /* Enable color transition on hover */
+  } .fragrance-item:hover .fragrance-cost { color: #ffffff; /* Change to white on hover for mobile */ }
+
+  /* Mobile Info - positioned inside the image area, changes color and moves up on hover */ .fragrance-info { position:
+  absolute; bottom: 7px; left: 20px; right: 20px; z-index: 3; color: #000; /* Text color as per reference image */
+  text-align: center; transition: all 0.3s ease; /* Enable transition for transform and color */ } .fragrance-item:hover
+  .fragrance-info { transform: translateY(-60px); /* Move up on hover */ color: white; /* Change to white on hover */ }
+  .fragrance-item:hover .fragrance-info .fragrance-name, .fragrance-item:hover .fragrance-info .fragrance-brand { color:
+  white; /* Ensure name/brand also turn white on hover */ }
+
+  .fragrance-name { font-size: 16px; /* Adjusted font size for mobile */ font-weight: 400; margin: 0 auto 4px auto; /*
+  Center and adjust margin */ font-family: 'PPMori Regular', sans-serif; /* Reverted to desktop font */ width: 90%; /*
+  Adjust width for mobile */ white-space: normal; line-height: 1.3; text-transform: uppercase; display: block;
+  text-align: center; margin-left: auto !important; /* Override desktop margin */ transition: color 0.3s ease; /* Enable
+  color transition */ z-index: 2px; } this is also mobile css, .fragrance-brand { margin: 0 auto 8px auto; /* Center and
+  adjust margin */ font-size: 12px; /* Adjusted font size for mobile */ font-family: 'PPMori Regular', sans-serif; /*
+  Reverted to desktop font */ font-weight: 400; display: block; transition: color 0.3s ease; /* Enable color transition
+  */ z-index: 2px; } .fragrance-rating { margin: 0; /* Remove margin */ font-size: 18px; /* Adjusted font size for
+  mobile */ color: #cbdd00; z-index: 2px; } .rating-star { margin-right: 0px; /* Adjust spacing */ }
+
+  /* Hide desktop-specific elements on mobile */ .desktop-exclusive { display: none !important; }
+
+  /* Mobile-specific info is now handled by .fragrance-info, so hide the old one */ .fragrance-mobile-info { display:
+  none; }
+
+  /* Mobile Hover Overlay (same as desktop, but only visible on mobile) */ .fragrance-hover { position: absolute;
+  bottom: 0; width: 100%; padding: 20px; background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent); color:
+  #fff; transform: translateY(100%); /* Hidden by default */ transition: transform 0.3s ease; z-index: 4; text-align:
+  center; display: block; /* Ensure it's not hidden by desktop-exclusive */ } .fragrance-item:hover .fragrance-hover {
+  transform: translateY(0); /* Visible on hover */ } .cart-button { /* Re-using existing cart-button class */
+  margin-top: 12px; background: #f4ff41; color: #000; font-weight: 600; font-size: 12px; padding: 13px 50px;
+  border-radius: 999px; cursor: pointer; border: none; width: 80%; font-family: 'PPMori Regular', sans-serif; }
+
+  .show-all-btn { padding: 22px 40px; width: auto; height: auto; font-size: 13px; margin-top: 40px; margin-left: 0;
+  display: flex; align-items: center; /* Vertical alignment */ justify-content: center; /* Horizontal alignment */
+  line-height: 1.2; } this is also mobile css , /* Carousel Navigation Arrows (positioned over the carousel) */
+  .carousel-nav-button { position: absolute; top: 50%; transform: translateY(-50%); background-color: #E8EC39; /* Yellow
+  background */ border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content:
+  center; cursor: pointer; z-index: 10; /* Ensure it's above product items */ border: none; box-shadow: 0 2px 5px
+  rgba(0,0,0,0.2); } .carousel-nav-button.left { left: 0px; /* Position at the very left edge of the wrapper */ }
+  .carousel-nav-button.right { right: 0px; /* Position at the very right edge of the wrapper */ } .carousel-nav-button
+  svg { fill: #000; /* Black arrow */ width: 20px; height: 20px; }
+
+  /* Carousel Pagination Dots */ .carousel-pagination { display: flex; justify-content: center; margin-top: 20px; /*
+  Space below carousel */ gap: 8px; } .carousel-dot { width: 8px; height: 8px; border-radius: 50%; background-color:
+  #ccc; cursor: pointer; } .carousel-dot.active { background-color: #000; /* Active dot color */ } }, it is not showing
+  2nd image on hover i want 2nd image on hover on both mobile view and desktop and also it is breaking my layout mobile
+  arrows is not working and i want 4 products in desktop view and 1 product in view and on scroll more products show and
+  make sure it adjust layout according to screen and i want 20px padding on whole ssection in left righ t, there is no
+  space in left side in headings and there is too much space between products increase width of products and why you
+  make grid i want in carousel , okay perfect but 4 product is not showing proper in desktop in some screens and in
+  bigger screens of desktop ity is showing 5 th product also , still same issue in come screens it is not showing more
+  than 4 products and in some screens it is showing less than 4 products in view , it is hiding view of 4 product in
+  small desktop screens and in bigger screens too much empty space i want it auto adjust products width accoridng to
+  screen sizes but show complete 4 products in view, it is showing 5 th product minor, in bigger screens it is shpowing
+  5th product view and in small laptop screens it is showing empty space why it is not covering whole screen with 4
+  products width just minor space in left right of section , okay perfect now product view is perfect just issue iis it
+  is not in carousel it is in grid, in bigger desktop screens it is showing 5th product view , still empty space in
+  right side iwant it covers whole space with 4 products width , On desktop: Show exactly 4 products visible at a time
+  (not more and not less).
+
+  On mobile: Show exactly 1 product visible at a time (not more and not less).
+
+  The product width should automatically adjust to the screen size so the layout always fits perfectly. navigation.
+
+  The design must remain responsive and consistent across all devices., still it is showing 5th product view padination
+  dots is missing , On desktop: Show exactly 4 products visible at a time (not more and not less).
+
+  On mobile: Show exactly 1 product visible at a time (not more and not less).
+
+  The product width should automatically adjust to the screen size so the layout always fits perfectly.
+
+  The carousel should allow sliding to see more products, with arrows or swipe navigation.
+
+  The design must remain responsive and consistent across all devices., iwant at a time 4 products show bu tin carousel
+  not in grid, still 4 product view is not properl yshowing and it is not covering whole space of section in bigger
+  desktop screens, okay perfect now dont change this just add pagination dots and make sure in desktop user can scroll
+  from mouse to see more products and in mobile product is not in cnetre and fter one swipe arrows is missing , i dont
+  want scroll bar and still same mobile issue and in desktop i dont want scroll and in smaller screens of desktop i want
+  3 products at a time and in bigger screens i want 4 products at a time
 {% enddoc %}
-{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+{% assign ai_gen_id = block.id | replace: "_", "" | downcase %}
 
 {% style %}
   .ai-fragrance-container-{{ ai_gen_id }} {
@@ -873,7 +712,7 @@
       width: calc(100vw - 160px);
       max-width: 1600px;
     }
-    
+
     .ai-fragrance-item-{{ ai_gen_id }} {
       width: calc((100vw - 160px - 45px) / 4);
       max-width: 380px;
@@ -886,7 +725,7 @@
       width: calc(100vw - 200px);
       max-width: 1720px;
     }
-    
+
     .ai-fragrance-item-{{ ai_gen_id }} {
       width: calc((100vw - 200px - 45px) / 4);
       max-width: 420px;
@@ -1011,8 +850,7 @@
 
 <fragrance-carousel-{{ ai_gen_id }}
   class="ai-fragrance-container-{{ ai_gen_id }}"
-  {{ block.shopify_attributes }}
->
+  {{ block.shopify_attributes }}>
   {% if block.settings.heading != blank %}
     <h2 class="ai-fragrance-heading-{{ ai_gen_id }}">{{ block.settings.heading }}</h2>
   {% endif %}
@@ -1031,21 +869,19 @@
               <div class="ai-fragrance-cost-{{ ai_gen_id }}">{{ product.price | money }}</div>
 
               {% if product.featured_image %}
-                <img 
-                  class="primary-image" 
-                  src="{{ product.featured_image | image_url: width: 600 }}" 
+                <img
+                  class="primary-image"
+                  src="{{ product.featured_image | image_url: width: 600 }}"
                   alt="{{ product.title | escape }}"
-                  loading="lazy"
-                >
+                  loading="lazy">
               {% endif %}
 
               {% if product.images.size > 1 %}
-                <img 
-                  class="secondary-image" 
-                  src="{{ product.images[1] | image_url: width: 600 }}" 
+                <img
+                  class="secondary-image"
+                  src="{{ product.images[1] | image_url: width: 600 }}"
                   alt="{{ product.title | escape }}"
-                  loading="lazy"
-                >
+                  loading="lazy">
               {% endif %}
 
               <div class="ai-fragrance-info-{{ ai_gen_id }}">
@@ -1066,7 +902,11 @@
 
           <div class="ai-fragrance-hover-{{ ai_gen_id }}">
             <div>
-              <form method="post" action="/cart/add" class="ai-item-form-{{ ai_gen_id }}" data-product-id="{{ product.id }}">
+              <form
+                method="post"
+                action="/cart/add"
+                class="ai-item-form-{{ ai_gen_id }}"
+                data-product-id="{{ product.id }}">
                 <input type="hidden" name="id" value="{{ product.variants.first.id }}">
                 <button type="submit" class="ai-cart-button-{{ ai_gen_id }}">ADD TO CART</button>
               </form>
@@ -1092,9 +932,7 @@
 
   {% if block.settings.view_all_link != blank %}
     <div style="text-align: center; margin-top: 30px;">
-      <a href="{{ block.settings.view_all_link }}" class="ai-show-all-btn-{{ ai_gen_id }}">
-        View All Products
-      </a>
+      <a href="{{ block.settings.view_all_link }}" class="ai-show-all-btn-{{ ai_gen_id }}"> View All Products </a>
     </div>
   {% endif %}
 </fragrance-carousel-{{ ai_gen_id }}>

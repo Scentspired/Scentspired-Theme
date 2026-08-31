@@ -1,19 +1,19 @@
 {% comment %}theme-check-disable UndefinedObject{% endcomment %}
-{%- assign pick_up_availabilities = product_variant.store_availabilities | where: 'pick_up_enabled', true -%}
+{%- assign pick_up_availabilities = product_variant.store_availabilities | where: "pick_up_enabled", true -%}
 
 {%- if pick_up_availabilities.size > 0 -%}
   <pickup-availability-preview class="pickup-availability-preview">
     {% assign closest_location = pick_up_availabilities.first %}
 
     {% if closest_location.available %}
-      <span class="svg-wrapper">{{ 'icon-tick.svg' | inline_asset_content }}</span>
+      <span class="svg-wrapper">{{ "icon-tick.svg" | inline_asset_content }}</span>
     {% endif %}
 
     <div class="pickup-availability-info">
       {%- if closest_location.available -%}
         <p class="caption-large">
           {{
-            'products.product.pickup_availability.pick_up_available_at_html'
+            "products.product.pickup_availability.pick_up_available_at_html"
             | t: location_name: closest_location.location.name
           }}
         </p>
@@ -21,18 +21,17 @@
         <button
           id="ShowPickupAvailabilityDrawer"
           class="pickup-availability-button link link--text underlined-link"
-          aria-haspopup="dialog"
-        >
+          aria-haspopup="dialog">
           {%- if pick_up_availabilities.size == 1 -%}
-            {{ 'products.product.pickup_availability.view_store_info' | t }}
+            {{ "products.product.pickup_availability.view_store_info" | t }}
           {%- else -%}
-            {{ 'products.product.pickup_availability.check_other_stores' | t }}
+            {{ "products.product.pickup_availability.check_other_stores" | t }}
           {%- endif -%}
         </button>
       {%- else -%}
         <p class="caption-large">
           {{
-            'products.product.pickup_availability.pick_up_unavailable_at_html'
+            "products.product.pickup_availability.pick_up_unavailable_at_html"
             | t: location_name: closest_location.location.name
           }}
         </p>
@@ -40,9 +39,8 @@
           <button
             id="ShowPickupAvailabilityDrawer"
             class="pickup-availability-button link link--text underlined-link"
-            aria-haspopup="dialog"
-          >
-            {{ 'products.product.pickup_availability.check_other_stores' | t }}
+            aria-haspopup="dialog">
+            {{ "products.product.pickup_availability.check_other_stores" | t }}
           </button>
         {%- endif -%}
       {%- endif -%}
@@ -54,14 +52,13 @@
     tabindex="-1"
     role="dialog"
     aria-modal="true"
-    aria-labelledby="PickupAvailabilityHeading"
-  >
+    aria-labelledby="PickupAvailabilityHeading">
     <div class="pickup-availability-header">
       <h2 class="h3 pickup-availability-drawer-title" id="PickupAvailabilityHeading">
         {{ product_variant.product.title | escape }}
       </h2>
       <button class="pickup-availability-drawer-button" type="button" aria-label="{{ 'accessibility.close' | t }}">
-        {{- 'icon-close.svg' | inline_asset_content -}}
+        {{- "icon-close.svg" | inline_asset_content -}}
       </button>
     </div>
 
@@ -86,9 +83,9 @@
           <p class="pickup-availability-preview caption-large">
             {%- if availability.available -%}
               <span class="svg-wrapper">
-                {{- 'icon-tick.svg' | inline_asset_content -}}
+                {{- "icon-tick.svg" | inline_asset_content -}}
               </span>
-              {{ 'products.product.pickup_availability.pick_up_available' | t }},
+              {{ "products.product.pickup_availability.pick_up_available" | t }},
               {{ availability.pick_up_time | downcase }}
             {%- endif -%}
           </p>

@@ -1,65 +1,64 @@
 {% doc %}
   @prompt
     Create a Shopify custom section (Liquid + CSS + schema) for an Instagram feed identical to the SERVA reference.
-    
-    Fixes & Requirements:
-    
-    Full Width with Padding
-    
-    Section should be full width on desktop.
-    
-    Keep left and right padding (gap) so the images don’t touch screen edges.
-    
-    Images from Theme Editor
-    
-    Admin uploads images using image_picker.
-    
-    Images must render correctly using Shopify’s Liquid ({{ block.settings.image | image_url }}).
-    
-    Up to 6 images total.
-    
-    Bounce Animation
-    
-    Each image should bounce one by one in sequence.
-    
-    After the 6th image bounces, loop back to the 1st.
-    
-    Animation should loop infinitely.
-    
-    Bounce speed slightly faster than default. (E.g., reduce duration by ~20%).
-    
-    Responsive Layout
-    
-    6 images per row on desktop.
-    
-    3 images per row on tablet.
-    
-    2 images per row on mobile.
-    
-    Fully optimized for all screens (desktop, tablet, mobile, MacBook).
-    
-    Theme Editor Customization
-    
-    Admin can set one Instagram profile link (url setting).
-    
-    Clicking any image opens this link in a new tab.
-    
-    Code Output
-    
-    Provide complete Shopify section code (.liquid file).
-    
-    Must include:
-    
-    Liquid markup for images and link
-    
-    Responsive CSS grid
-    
-    Bounce animation with sequential delay for 6 items
-    
-    JSON schema, it is not showing image which i am uploading, still imaegs is not showing
 
+    Fixes & Requirements:
+
+    Full Width with Padding
+
+    Section should be full width on desktop.
+
+    Keep left and right padding (gap) so the images don’t touch screen edges.
+
+    Images from Theme Editor
+
+    Admin uploads images using image_picker.
+
+    Images must render correctly using Shopify’s Liquid ({{ block.settings.image | image_url }}).
+
+    Up to 6 images total.
+
+    Bounce Animation
+
+    Each image should bounce one by one in sequence.
+
+    After the 6th image bounces, loop back to the 1st.
+
+    Animation should loop infinitely.
+
+    Bounce speed slightly faster than default. (E.g., reduce duration by ~20%).
+
+    Responsive Layout
+
+    6 images per row on desktop.
+
+    3 images per row on tablet.
+
+    2 images per row on mobile.
+
+    Fully optimized for all screens (desktop, tablet, mobile, MacBook).
+
+    Theme Editor Customization
+
+    Admin can set one Instagram profile link (url setting).
+
+    Clicking any image opens this link in a new tab.
+
+    Code Output
+
+    Provide complete Shopify section code (.liquid file).
+
+    Must include:
+
+    Liquid markup for images and link
+
+    Responsive CSS grid
+
+    Bounce animation with sequential delay for 6 items
+
+    JSON schema, it is not showing image which i am uploading, still imaegs is not showing
 {% enddoc %}
-{% assign ai_gen_id = section.id | replace: '_', '' | downcase %}
+{% assign ai_gen_id = section.id | replace: "_", "" | downcase %}
 
 {% style %}
   .ai-instagram-feed-{{ ai_gen_id }} {
@@ -212,17 +211,16 @@
           {% when 6 %}
             {% assign current_image = section.settings.image_6 %}
         {% endcase %}
-        
+
         {% if section.settings.instagram_url != blank %}
-          <a 
-            href="{{ section.settings.instagram_url }}" 
-            target="_blank" 
+          <a
+            href="{{ section.settings.instagram_url }}"
+            target="_blank"
             rel="noopener noreferrer"
             class="ai-instagram-link-{{ ai_gen_id }}"
-            aria-label="View Instagram profile"
-          >
+            aria-label="View Instagram profile">
         {% endif %}
-        
+
         {% if current_image != blank %}
           <img
             src="{{ current_image | image_url: width: 400 }}"
@@ -230,17 +228,14 @@
             class="ai-instagram-image-{{ ai_gen_id }}"
             loading="lazy"
             width="400"
-            height="400"
-          >
+            height="400">
         {% else %}
           <div class="ai-instagram-placeholder-{{ ai_gen_id }}">
-            {{ 'image' | placeholder_svg_tag }}
-            <div class="ai-instagram-empty-state-{{ ai_gen_id }}">
-              Add image {{ i }}
-            </div>
+            {{ "image" | placeholder_svg_tag }}
+            <div class="ai-instagram-empty-state-{{ ai_gen_id }}">Add image {{ i }}</div>
           </div>
         {% endif %}
-        
+
         {% if section.settings.instagram_url != blank %}
           </a>
         {% endif %}

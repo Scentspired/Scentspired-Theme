@@ -1,514 +1,534 @@
 {% comment %}  The `faq-section` is a customizable section for displaying privacy policies or FAQ content.  It includes a sidebar for navigation and dynamic content blocks.{% endcomment %}
 <style>
-/* Custom Fonts */
-@font-face {
-  font-family: 'PPMori Regular';
-  src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPMori-Regular.otf?v=1751621372') format('opentype');
-  font-weight: 400;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'PPEditorialNew Italic';
-  src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPEditorialNew-Italic-BF644b214fb0c0a.otf?v=1751620955') format('opentype');
-  font-weight: 900;
-  font-style: italic;
-}
-/* Base Styles */
-.faq-section {
-  font-family: 'PPMori Regular', sans-serif;
-  background-color: white;
-  padding: 40px 0;
-  margin-top: 100px; /* Added from your global CSS */
-}
-.faq-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 10px;
-}
-.faq-header {
-  margin-bottom: 40px;
-  border-top: 1px solid #bfbec0; /* Moved border-top here to span full width */
-  padding-top: 3px; /* Space between border and title */
-}
-.faq-title {
-  font-size: 24px;
-  font-weight: 600;
-  margin-bottom: -30px !important; /* Adjusted for positive space below title */
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: #333;
-  /* border-top: 1px solid #bfbec0; */ /* Removed from here */
-  /* margin-left: 2px; */ /* Removed for centering */
-  text-align: center; /* Centered the heading */
-  font-family: 'PPEditorialNew Italic', serif;
-}
-.faq-content {
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: 0;
-  position: relative;
-  border-top: 1px solid #bfbec0 !important; 
-}
-.faq-content::after {
-  content: '';
-  position: absolute;
-  left: 600px;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  background-color: #e5e5e5;
-}
-.faq-sidebar {
-  padding-right: 0;
-  position: sticky;
-  margin-top: 20px;
-  height: fit-content;
-}
-.faq-sidebar ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.faq-sidebar li {
-  margin-bottom: 15px;
-}
-.faq-sidebar a {
-  color: #666;
-  text-decoration: none;
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  transition: color 0.3s ease, background-color 0.3s ease; /* Added background-color to transition */
-  display: block; /* Ensures the background covers the full width */
-  padding: 4px 8px; /* Adds padding around the text within the block */
-  border-radius: 4px; /* Adds slight rounded corners to the background */
-  font-family: 'PPMori Regular', sans-serif;
-}
-.faq-sidebar a:hover {
-  color: #000;
-  background-color: #EFFF31; /* Yellow background on hover */
-}
-.faq-sidebar a.active {
-  color: #000;
-  background-color: #EFFF31; /* Yellow background for active state */
-}
-.faq-main {
-  padding-left: 40px;
-  padding-right: 20px; /* Add some padding to the right of the content */
-}
-.faq-category {
-  margin-bottom: 40px; /* Spacing between policy sections */
-}
-.faq-category:last-child {
-  margin-bottom: 0;
-}
-.faq-category-title {
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 20px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  color: #333;
-  font-family: 'PPMori Regular', sans-serif;
-}
-.privacy-policy-content {
-  font-size: 14px;
-  line-height: 1.5;
-  color: #000;
-  font-family: 'PPMori Regular', sans-serif;
-}
-.privacy-policy-content p {
-  margin-bottom: 1em; /* Spacing between paragraphs */
-}
-.privacy-policy-content ul {
-  list-style: disc;
-  margin-left: 20px;
-  margin-bottom: 1em;
-}
-.privacy-policy-content li {
-  margin-bottom: 0.5em;
-}
-.privacy-policy-content h3 {
-  font-size: 14px;
-  font-weight: 600;
-  margin-top: 1.5em;
-  margin-bottom: 0.5em;
-  color: #333;
-}
-/* Styling for bold text within rich text */
-.privacy-policy-content strong {
-  font-weight: 600; /* Ensure strong text is bold */
-  font-size: 16px; /* Set font size to 16px */
-  text-decoration: underline;
-  text-decoration-color: #FADB95; /* Underline color */
-  text-decoration-thickness: 2px; /* Adjust thickness if needed */
-  text-underline-offset: 2px; /* Adjust offset if needed */
-}
-/* Responsive Styles */
-@media (max-width: 768px) {
-  .faq-content {
-    grid-template-columns: 1fr;
-    gap: 30px;
+  /* Custom Fonts */
+  @font-face {
+    font-family: 'PPMori Regular';
+    src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPMori-Regular.otf?v=1751621372')
+      format('opentype');
+    font-weight: 400;
+    font-style: normal;
   }
-  .faq-content::after {
-    display: none;
+  @font-face {
+    font-family: 'PPEditorialNew Italic';
+    src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPEditorialNew-Italic-BF644b214fb0c0a.otf?v=1751620955')
+      format('opentype');
+    font-weight: 900;
+    font-style: italic;
   }
-  .faq-sidebar {
-    position: static;
-    order: 1;
-    overflow-x: auto;
-    padding-bottom: 10px;
-  }
-  .faq-sidebar ul {
-    display: flex;
-    gap: 20px;
-    white-space: nowrap;
-    padding-bottom: 10px;
-  }
-  .faq-sidebar li {
-    margin-bottom: 0;
-    flex-shrink: 0;
-  }
-  .faq-main {
-    padding-left: 0;
-    order: 2;
-    border-right: none; /* Remove right border on mobile */
-    padding-right: 0;
-  }
-  .faq-title {
-    font-size: 20px;
-  }
-  .faq-category-title {
-    font-size: 14px;
-  }
-  .privacy-policy-content {
-    font-size: 12px;
-  }
-}
-/* Custom scrollbar for mobile sidebar */
-.faq-sidebar::-webkit-scrollbar {
-  height: 3px;
-}
-.faq-sidebar::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-.faq-sidebar::-webkit-scrollbar-thumb {
-  background: #ccc;
-  border-radius: 3px;
-}
-.faq-sidebar::-webkit-scrollbar-thumb:hover {
-  background: #999;
-}
-/* Your additional global CSS for padding */
-@media screen and (min-width: 1441px) {
-  .faq-container {
-    max-width: 1900px;
-    margin: 0 auto;
-    padding: 0 5px;
-  }
-  .faq-main {
-    padding-left: 240px;
-  }
-  .faq-content::after {
-    left: 433px;
-  }
-}
-@media screen and (min-width: 1024px) and (max-width: 1440px) {
-  .faq-main {
-    padding-left: 100px;
+  /* Base Styles */
+  .faq-section {
+    font-family: 'PPMori Regular', sans-serif;
+    background-color: white;
+    padding: 40px 0;
+    margin-top: 100px; /* Added from your global CSS */
   }
   .faq-container {
-    max-width: 1300px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 10px;
   }
-  .faq-content::after {
-    left: 298px;
+  .faq-header {
+    margin-bottom: 40px;
+    border-top: 1px solid #bfbec0; /* Moved border-top here to span full width */
+    padding-top: 3px; /* Space between border and title */
   }
-}
-@media screen and (min-width: 700px) and (max-width: 1024px) {
-.faq-content::after {
+  .faq-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: -30px !important; /* Adjusted for positive space below title */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #333;
+    /* border-top: 1px solid #bfbec0; */ /* Removed from here */
+    /* margin-left: 2px; */ /* Removed for centering */
+    text-align: center; /* Centered the heading */
+    font-family: 'PPEditorialNew Italic', serif;
+  }
+  .faq-content {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 0;
+    position: relative;
+    border-top: 1px solid #bfbec0 !important;
+  }
+  .faq-content::after {
     content: '';
     position: absolute;
-    left: 200px;
+    left: 600px;
     top: 0;
     bottom: 0;
     width: 1px;
     background-color: #e5e5e5;
-}
-}
+  }
+  .faq-sidebar {
+    padding-right: 0;
+    position: sticky;
+    margin-top: 20px;
+    height: fit-content;
+  }
+  .faq-sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .faq-sidebar li {
+    margin-bottom: 15px;
+  }
+  .faq-sidebar a {
+    color: #666;
+    text-decoration: none;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition:
+      color 0.3s ease,
+      background-color 0.3s ease; /* Added background-color to transition */
+    display: block; /* Ensures the background covers the full width */
+    padding: 4px 8px; /* Adds padding around the text within the block */
+    border-radius: 4px; /* Adds slight rounded corners to the background */
+    font-family: 'PPMori Regular', sans-serif;
+  }
+  .faq-sidebar a:hover {
+    color: #000;
+    background-color: #efff31; /* Yellow background on hover */
+  }
+  .faq-sidebar a.active {
+    color: #000;
+    background-color: #efff31; /* Yellow background for active state */
+  }
+  .faq-main {
+    padding-left: 40px;
+    padding-right: 20px; /* Add some padding to the right of the content */
+  }
+  .faq-category {
+    margin-bottom: 40px; /* Spacing between policy sections */
+  }
+  .faq-category:last-child {
+    margin-bottom: 0;
+  }
+  .faq-category-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #333;
+    font-family: 'PPMori Regular', sans-serif;
+  }
+  .privacy-policy-content {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #000;
+    font-family: 'PPMori Regular', sans-serif;
+  }
+  .privacy-policy-content p {
+    margin-bottom: 1em; /* Spacing between paragraphs */
+  }
+  .privacy-policy-content ul {
+    list-style: disc;
+    margin-left: 20px;
+    margin-bottom: 1em;
+  }
+  .privacy-policy-content li {
+    margin-bottom: 0.5em;
+  }
+  .privacy-policy-content h3 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    color: #333;
+  }
+  /* Styling for bold text within rich text */
+  .privacy-policy-content strong {
+    font-weight: 600; /* Ensure strong text is bold */
+    font-size: 16px; /* Set font size to 16px */
+    text-decoration: underline;
+    text-decoration-color: #fadb95; /* Underline color */
+    text-decoration-thickness: 2px; /* Adjust thickness if needed */
+    text-underline-offset: 2px; /* Adjust offset if needed */
+  }
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .faq-content {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+    .faq-content::after {
+      display: none;
+    }
+    .faq-sidebar {
+      position: static;
+      order: 1;
+      overflow-x: auto;
+      padding-bottom: 10px;
+    }
+    .faq-sidebar ul {
+      display: flex;
+      gap: 20px;
+      white-space: nowrap;
+      padding-bottom: 10px;
+    }
+    .faq-sidebar li {
+      margin-bottom: 0;
+      flex-shrink: 0;
+    }
+    .faq-main {
+      padding-left: 0;
+      order: 2;
+      border-right: none; /* Remove right border on mobile */
+      padding-right: 0;
+    }
+    .faq-title {
+      font-size: 20px;
+    }
+    .faq-category-title {
+      font-size: 14px;
+    }
+    .privacy-policy-content {
+      font-size: 12px;
+    }
+  }
+  /* Custom scrollbar for mobile sidebar */
+  .faq-sidebar::-webkit-scrollbar {
+    height: 3px;
+  }
+  .faq-sidebar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  .faq-sidebar::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 3px;
+  }
+  .faq-sidebar::-webkit-scrollbar-thumb:hover {
+    background: #999;
+  }
+  /* Your additional global CSS for padding */
+  @media screen and (min-width: 1441px) {
+    .faq-container {
+      max-width: 1900px;
+      margin: 0 auto;
+      padding: 0 5px;
+    }
+    .faq-main {
+      padding-left: 240px;
+    }
+    .faq-content::after {
+      left: 433px;
+    }
+  }
+  @media screen and (min-width: 1024px) and (max-width: 1440px) {
+    .faq-main {
+      padding-left: 100px;
+    }
+    .faq-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 10px;
+    }
+    .faq-content::after {
+      left: 298px;
+    }
+  }
+  @media screen and (min-width: 700px) and (max-width: 1024px) {
+    .faq-content::after {
+      content: '';
+      position: absolute;
+      left: 200px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background-color: #e5e5e5;
+    }
+  }
 </style>
 <div class="faq-section">
-<div class="faq-container">
-  <div class="faq-header">
-    <h1 class="faq-title">{{ section.settings.page_title | default: 'Privacy Policy' }}</h1>
-  </div>
-  <div class="faq-content">
-    <aside class="faq-sidebar">
-      <ul>
-        {% comment %}
-          Removed the Liquid 'active' class logic here.
-          The active class will now be added by JavaScript based on the current URL.
-        {% endcomment %}
-        {% if section.settings.link_1_text != blank %}
-          <li><a href="{{ section.settings.link_1_url }}">{{ section.settings.link_1_text }}</a></li>
-        {% endif %}
-        {% if section.settings.link_2_text != blank %}
-          <li><a href="{{ section.settings.link_2_url }}">{{ section.settings.link_2_text }}</a></li>
-        {% endif %}
-        {% if section.settings.link_3_text != blank %}
-          <li><a href="{{ section.settings.link_3_url }}">{{ section.settings.link_3_text }}</a></li>
-        {% endif %}
-        {% if section.settings.link_4_text != blank %}
-          <li><a href="{{ section.settings.link_4_url }}">{{ section.settings.link_4_text }}</a></li>
-        {% endif %}
-        {% if section.settings.link_5_text != blank %}
-          <li><a href="{{ section.settings.link_5_url }}">{{ section.settings.link_5_text }}</a></li>
-        {% endif %}
-        {% if section.settings.link_6_text != blank %}
-          <li><a href="{{ section.settings.link_6_url }}">{{ section.settings.link_6_text }}</a></li>
-        {% endif %}
-        {% if section.settings.link_7_text != blank %}
-          <li><a href="{{ section.settings.link_7_url }}">{{ section.settings.link_7_text }}</a></li>
-        {% endif %}
-        {% if section.settings.link_8_text != blank %}
-          <li><a href="{{ section.settings.link_8_url }}">{{ section.settings.link_8_text }}</a></li>
-        {% endif %}
-      </ul>
-    </aside>
-    <main class="faq-main">
-      {% for block in section.blocks %}
-        <div class="faq-category">
-          <h2 class="faq-category-title">{{ block.settings.section_title }}</h2>
-          <div class="privacy-policy-content">
-            {{ block.settings.section_content }}
+  <div class="faq-container">
+    <div class="faq-header">
+      <h1 class="faq-title">{{ section.settings.page_title | default: "Privacy Policy" }}</h1>
+    </div>
+    <div class="faq-content">
+      <aside class="faq-sidebar">
+        <ul>
+          {% comment %}
+            Removed the Liquid 'active' class logic here.
+            The active class will now be added by JavaScript based on the current URL.
+          {% endcomment %}
+          {% if section.settings.link_1_text != blank %}
+            <li>
+              <a href="{{ section.settings.link_1_url }}">{{ section.settings.link_1_text }}</a>
+            </li>
+          {% endif %}
+          {% if section.settings.link_2_text != blank %}
+            <li>
+              <a href="{{ section.settings.link_2_url }}">{{ section.settings.link_2_text }}</a>
+            </li>
+          {% endif %}
+          {% if section.settings.link_3_text != blank %}
+            <li>
+              <a href="{{ section.settings.link_3_url }}">{{ section.settings.link_3_text }}</a>
+            </li>
+          {% endif %}
+          {% if section.settings.link_4_text != blank %}
+            <li>
+              <a href="{{ section.settings.link_4_url }}">{{ section.settings.link_4_text }}</a>
+            </li>
+          {% endif %}
+          {% if section.settings.link_5_text != blank %}
+            <li>
+              <a href="{{ section.settings.link_5_url }}">{{ section.settings.link_5_text }}</a>
+            </li>
+          {% endif %}
+          {% if section.settings.link_6_text != blank %}
+            <li>
+              <a href="{{ section.settings.link_6_url }}">{{ section.settings.link_6_text }}</a>
+            </li>
+          {% endif %}
+          {% if section.settings.link_7_text != blank %}
+            <li>
+              <a href="{{ section.settings.link_7_url }}">{{ section.settings.link_7_text }}</a>
+            </li>
+          {% endif %}
+          {% if section.settings.link_8_text != blank %}
+            <li>
+              <a href="{{ section.settings.link_8_url }}">{{ section.settings.link_8_text }}</a>
+            </li>
+          {% endif %}
+        </ul>
+      </aside>
+      <main class="faq-main">
+        {% for block in section.blocks %}
+          <div class="faq-category">
+            <h2 class="faq-category-title">{{ block.settings.section_title }}</h2>
+            <div class="privacy-policy-content">
+              {{ block.settings.section_content }}
+            </div>
           </div>
-        </div>
-      {% endfor %}
-    </main>
+        {% endfor %}
+      </main>
+    </div>
   </div>
-</div>
 </div>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const sidebarLinks = document.querySelectorAll('.faq-sidebar a');
-  const currentPath = window.location.pathname;
-  sidebarLinks.forEach(link => {
-    // Normalize href to match pathname (remove domain, query params, hash)
-    const linkPath = new URL(link.href).pathname;
-    // Check if the link's path matches the current page's path
-    if (linkPath === currentPath) {
-      link.classList.add('active');
-    }
+  document.addEventListener('DOMContentLoaded', function () {
+    const sidebarLinks = document.querySelectorAll('.faq-sidebar a');
+    const currentPath = window.location.pathname;
+    sidebarLinks.forEach(link => {
+      // Normalize href to match pathname (remove domain, query params, hash)
+      const linkPath = new URL(link.href).pathname;
+      // Check if the link's path matches the current page's path
+      if (linkPath === currentPath) {
+        link.classList.add('active');
+      }
+    });
   });
-});
 </script>
 {% schema %}
 {
-"name": "Privacy Policy Section",
-"settings": [
-  {
-    "type": "text",
-    "id": "page_title",
-    "label": "Page Title",
-    "default": "Privacy Policy"
-  },
-  {
-    "type": "text",
-    "id": "link_1_text",
-    "label": "Link 1 Text",
-    "default": "Contact Us"
-  },
-  {
-    "type": "url",
-    "id": "link_1_url",
-    "label": "Link 1 URL"
-  },
-  {
-    "type": "text",
-    "id": "link_2_text",
-    "label": "Link 2 Text",
-    "default": "[ Privacy Policy ]"
-  },
-  {
-    "type": "url",
-    "id": "link_2_url",
-    "label": "Link 2 URL"
-  },
-  {
-    "type": "text",
-    "id": "link_3_text",
-    "label": "Link 3 Text",
-    "default": "Stockists"
-  },
-  {
-    "type": "url",
-    "id": "link_3_url",
-    "label": "Link 3 URL"
-  },
-  {
-    "type": "text",
-    "id": "link_4_text",
-    "label": "Link 4 Text",
-    "default": "Terms and Conditions"
-  },
-  {
-    "type": "url",
-    "id": "link_4_url",
-    "label": "Link 4 URL"
-  },
-  {
-    "type": "text",
-    "id": "link_5_text",
-    "label": "Link 5 Text",
-    "default": "Refund Policy"
-  },
-  {
-    "type": "url",
-    "id": "link_5_url",
-    "label": "Link 5 URL"
-  },
-  {
-    "type": "text",
-    "id": "link_6_text",
-    "label": "Link 6 Text"
-  },
-  {
-    "type": "url",
-    "id": "link_6_url",
-    "label": "Link 6 URL"
-  },
-  {
-    "type": "text",
-    "id": "link_7_text",
-    "label": "Link 7 Text"
-  },
-  {
-    "type": "url",
-    "id": "link_7_url",
-    "label": "Link 7 URL"
-  },
-  {
-    "type": "text",
-    "id": "link_8_text",
-    "label": "Link 8 Text"
-  },
-  {
-    "type": "url",
-    "id": "link_8_url",
-    "label": "Link 8 URL"
-  }
-],
-"blocks": [
-  {
-    "type": "privacy_policy_block",
-    "name": "Privacy Policy Content",
-    "settings": [
-      {
-        "type": "text",
-        "id": "section_title",
-        "label": "Section Title",
-        "default": "Introduction"
-      },
-      {
-        "type": "richtext",
-        "id": "section_content",
-        "label": "Section Content",
-        "default": "<p>This is the content for your policy section. You can add paragraphs, lists, and other rich text here.</p>"
-      }
-    ]
-  }
-],
-"presets": [
-  {
-    "name": "Privacy Policy Section",
-    "blocks": [
-      {
-        "type": "privacy_policy_block",
-        "settings": {
-          "section_title": "🔐 Privacy Policy – Scentspired",
-          "section_content": "<p>At Scentspired, your privacy is very important to us. This Privacy Policy outlines how we collect, use, store, and protect your personal information when you visit our website or purchase our products.</p><p>By using our website, you agree to the terms outlined below.</p>"
+  "name": "Privacy Policy Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "page_title",
+      "label": "Page Title",
+      "default": "Privacy Policy"
+    },
+    {
+      "type": "text",
+      "id": "link_1_text",
+      "label": "Link 1 Text",
+      "default": "Contact Us"
+    },
+    {
+      "type": "url",
+      "id": "link_1_url",
+      "label": "Link 1 URL"
+    },
+    {
+      "type": "text",
+      "id": "link_2_text",
+      "label": "Link 2 Text",
+      "default": "[ Privacy Policy ]"
+    },
+    {
+      "type": "url",
+      "id": "link_2_url",
+      "label": "Link 2 URL"
+    },
+    {
+      "type": "text",
+      "id": "link_3_text",
+      "label": "Link 3 Text",
+      "default": "Stockists"
+    },
+    {
+      "type": "url",
+      "id": "link_3_url",
+      "label": "Link 3 URL"
+    },
+    {
+      "type": "text",
+      "id": "link_4_text",
+      "label": "Link 4 Text",
+      "default": "Terms and Conditions"
+    },
+    {
+      "type": "url",
+      "id": "link_4_url",
+      "label": "Link 4 URL"
+    },
+    {
+      "type": "text",
+      "id": "link_5_text",
+      "label": "Link 5 Text",
+      "default": "Refund Policy"
+    },
+    {
+      "type": "url",
+      "id": "link_5_url",
+      "label": "Link 5 URL"
+    },
+    {
+      "type": "text",
+      "id": "link_6_text",
+      "label": "Link 6 Text"
+    },
+    {
+      "type": "url",
+      "id": "link_6_url",
+      "label": "Link 6 URL"
+    },
+    {
+      "type": "text",
+      "id": "link_7_text",
+      "label": "Link 7 Text"
+    },
+    {
+      "type": "url",
+      "id": "link_7_url",
+      "label": "Link 7 URL"
+    },
+    {
+      "type": "text",
+      "id": "link_8_text",
+      "label": "Link 8 Text"
+    },
+    {
+      "type": "url",
+      "id": "link_8_url",
+      "label": "Link 8 URL"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "privacy_policy_block",
+      "name": "Privacy Policy Content",
+      "settings": [
+        {
+          "type": "text",
+          "id": "section_title",
+          "label": "Section Title",
+          "default": "Introduction"
+        },
+        {
+          "type": "richtext",
+          "id": "section_content",
+          "label": "Section Content",
+          "default": "<p>This is the content for your policy section. You can add paragraphs, lists, and other rich text here.</p>"
         }
-      },
-      {
-        "type": "privacy_policy_block",
-        "settings": {
-          "section_title": "1. 📥 Information We Collect",
-          "section_content": "<p>We may collect the following types of information:</p><ul><li><strong>Personal Information:</strong> Name, email address, phone number, shipping/billing address, and payment details when you place an order.</li><li><strong>Browsing Data:</strong> IP address, browser type, device information, pages visited, time spent, and referring pages.</li><li><strong>Cookies & Tracking:</strong> We use cookies and similar technologies to enhance your experience, remember preferences, and analyze website performance.</li></ul>"
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Privacy Policy Section",
+      "blocks": [
+        {
+          "type": "privacy_policy_block",
+          "settings": {
+            "section_title": "🔐 Privacy Policy – Scentspired",
+            "section_content": "<p>At Scentspired, your privacy is very important to us. This Privacy Policy outlines how we collect, use, store, and protect your personal information when you visit our website or purchase our products.</p><p>By using our website, you agree to the terms outlined below.</p>"
+          }
+        },
+        {
+          "type": "privacy_policy_block",
+          "settings": {
+            "section_title": "1. 📥 Information We Collect",
+            "section_content": "<p>We may collect the following types of information:</p><ul><li><strong>Personal Information:</strong> Name, email address, phone number, shipping/billing address, and payment details when you place an order.</li><li><strong>Browsing Data:</strong> IP address, browser type, device information, pages visited, time spent, and referring pages.</li><li><strong>Cookies & Tracking:</strong> We use cookies and similar technologies to enhance your experience, remember preferences, and analyze website performance.</li></ul>"
+          }
+        },
+        {
+          "type": "privacy_policy_block",
+          "settings": {
+            "section_title": "2. 🧾 How We Use Your Information",
+            "section_content": "<p>We use your data to:</p><ul><li>Process and deliver your orders</li><li>Communicate with you about your purchases or inquiries</li><li>Improve our website and user experience</li><li>Send promotional emails or special offers (if opted in)</li><li>Prevent fraudulent activity and ensure compliance with applicable laws</li></ul>"
+          }
+        },
+        {
+          "type": "privacy_policy_block",
+          "settings": {
+            "section_title": "3. 🛡 Data Protection",
+            "section_content": "<p>We take reasonable precautions and follow industry best practices to safeguard your information from being lost, misused, accessed, disclosed, altered, or destroyed.</p><p>All payment transactions are processed through secure, encrypted gateways and are never stored on our servers.</p>"
+          }
+        },
+        {
+          "type": "privacy_policy_block",
+          "settings": {
+            "section_title": "4. 📤 Sharing Your Information",
+            "section_content": "<p>We do not sell or trade your personal information to third parties. However, we may share your data with:</p><ul><li>Trusted service providers (e.g., shipping partners, payment processors)</li><li>Legal or regulatory authorities, if required by law</li></ul>"
+          }
+        },
+        {
+          "type": "privacy_policy_block",
+          "settings": {
+            "section_title": "5. 🌍 International Data Transfers",
+            "section_content": "<p>As a USA-based company, your information may be stored or processed outside your state or country. By using our services, you consent to such transfers in accordance with applicable privacy regulations.</p>"
+          }
+        },
+        {
+          "type": "privacy_policy_block",
+          "settings": {
+            "section_title": "6. 🧁 Cookies",
+            "section_content": "<p>Scentspired uses cookies to:</p><ul><li>Personalize your shopping experience</li><li>Enable cart functionality and save preferences</li><li>Analyze traffic and user behavior</li></ul><p>You can modify your browser settings to disable cookies, though this may affect your website experience.</p>"
+          }
+        },
+        {
+          "type": "privacy_policy_block",
+          "settings": {
+            "section_title": "7. 📧 Email Marketing",
+            "section_content": "<p>If you subscribe to our newsletter, we may send updates, product launches, and special promotions. You can opt out at any time by clicking \"Unsubscribe\" at the bottom of any marketing email.</p>"
+          }
+        },
+        {
+          "type": "privacy_policy_block",
+          "settings": {
+            "section_title": "8. 👶 Children’s Privacy",
+            "section_content": "<p>We do not knowingly collect data from children under 13 years old. If we become aware that we have inadvertently collected such information, we will delete it promptly.</p>"
+          }
+        },
+        {
+          "type": "privacy_policy_block",
+          "settings": {
+            "section_title": "9. 🔁 Your Rights",
+            "section_content": "<p>You have the right to:</p><ul><li>Access or update your personal information</li><li>Request deletion of your data</li><li>Withdraw consent to marketing communications</li></ul><p>To exercise these rights, please contact us at [insert contact email].</p>"
+          }
+        },
+        {
+          "type": "privacy_policy_block",
+          "settings": {
+            "section_title": "10. 📄 Changes to This Policy",
+            "section_content": "<p>We may update this Privacy Policy periodically. Any changes will be posted on this page with an updated revision date.</p>"
+          }
+        },
+        {
+          "type": "privacy_policy_block",
+          "settings": {
+            "section_title": "📬 Contact Us",
+            "section_content": "<p>If you have any questions regarding this policy or how your data is handled, please contact us at:</p><p>Email: support@scentspired.com</p><p>Address: [Your Company Address], USA</p>"
+          }
         }
-      },
-      {
-        "type": "privacy_policy_block",
-        "settings": {
-          "section_title": "2. 🧾 How We Use Your Information",
-          "section_content": "<p>We use your data to:</p><ul><li>Process and deliver your orders</li><li>Communicate with you about your purchases or inquiries</li><li>Improve our website and user experience</li><li>Send promotional emails or special offers (if opted in)</li><li>Prevent fraudulent activity and ensure compliance with applicable laws</li></ul>"
-        }
-      },
-      {
-        "type": "privacy_policy_block",
-        "settings": {
-          "section_title": "3. 🛡 Data Protection",
-          "section_content": "<p>We take reasonable precautions and follow industry best practices to safeguard your information from being lost, misused, accessed, disclosed, altered, or destroyed.</p><p>All payment transactions are processed through secure, encrypted gateways and are never stored on our servers.</p>"
-        }
-      },
-      {
-        "type": "privacy_policy_block",
-        "settings": {
-          "section_title": "4. 📤 Sharing Your Information",
-          "section_content": "<p>We do not sell or trade your personal information to third parties. However, we may share your data with:</p><ul><li>Trusted service providers (e.g., shipping partners, payment processors)</li><li>Legal or regulatory authorities, if required by law</li></ul>"
-        }
-      },
-      {
-        "type": "privacy_policy_block",
-        "settings": {
-          "section_title": "5. 🌍 International Data Transfers",
-          "section_content": "<p>As a USA-based company, your information may be stored or processed outside your state or country. By using our services, you consent to such transfers in accordance with applicable privacy regulations.</p>"
-        }
-      },
-      {
-        "type": "privacy_policy_block",
-        "settings": {
-          "section_title": "6. 🧁 Cookies",
-          "section_content": "<p>Scentspired uses cookies to:</p><ul><li>Personalize your shopping experience</li><li>Enable cart functionality and save preferences</li><li>Analyze traffic and user behavior</li></ul><p>You can modify your browser settings to disable cookies, though this may affect your website experience.</p>"
-        }
-      },
-      {
-        "type": "privacy_policy_block",
-        "settings": {
-          "section_title": "7. 📧 Email Marketing",
-          "section_content": "<p>If you subscribe to our newsletter, we may send updates, product launches, and special promotions. You can opt out at any time by clicking \"Unsubscribe\" at the bottom of any marketing email.</p>"
-        }
-      },
-      {
-        "type": "privacy_policy_block",
-        "settings": {
-          "section_title": "8. 👶 Children’s Privacy",
-          "section_content": "<p>We do not knowingly collect data from children under 13 years old. If we become aware that we have inadvertently collected such information, we will delete it promptly.</p>"
-        }
-      },
-      {
-        "type": "privacy_policy_block",
-        "settings": {
-          "section_title": "9. 🔁 Your Rights",
-          "section_content": "<p>You have the right to:</p><ul><li>Access or update your personal information</li><li>Request deletion of your data</li><li>Withdraw consent to marketing communications</li></ul><p>To exercise these rights, please contact us at [insert contact email].</p>"
-        }
-      },
-      {
-        "type": "privacy_policy_block",
-        "settings": {
-          "section_title": "10. 📄 Changes to This Policy",
-          "section_content": "<p>We may update this Privacy Policy periodically. Any changes will be posted on this page with an updated revision date.</p>"
-        }
-      },
-      {
-        "type": "privacy_policy_block",
-        "settings": {
-          "section_title": "📬 Contact Us",
-          "section_content": "<p>If you have any questions regarding this policy or how your data is handled, please contact us at:</p><p>Email: support@scentspired.com</p><p>Address: [Your Company Address], USA</p>"
-        }
-      }
-    ]
-  }
-]
+      ]
+    }
+  ]
 }
 {% endschema %}

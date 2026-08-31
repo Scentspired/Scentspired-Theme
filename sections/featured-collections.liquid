@@ -1,6 +1,5 @@
 <style>
-
-.featured-collections-section {
+  .featured-collections-section {
     padding: 60px 0px;
     background: #fff;
     font-family: 'PPMori SemiBold', sans-serif;
@@ -11,174 +10,174 @@
     max-width: 2100px;
     width: 100%;
     margin: 0 auto !important;
-}
-
-.featured-collections-wrapper {
-  display: flex;
-  gap: 20px;
-  scroll-snap-type: x mandatory;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.featured-collections-wrapper::-webkit-scrollbar {
-  display: none;
-}
-
-.collection-card {
-  position: relative;
-  flex: 0 0 100%;
-  max-width: 100%;
-  border-radius: 15px;
-  overflow: hidden;
-  scroll-snap-align: start;
-}
-
-.collection-card img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  display: block;
-  border-radius: 15px;
-}
-
-.collection-content {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  color: #fff;
-  font-size: 36px;
-  font-weight: 700;
-  z-index: 2;
-}
-
-.collection-button {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  background: #f4ff41;
-  color: black;
-  border: none;
-  width: 200px;
-  height: 48px;
-  font-weight: 200;
-  font-size: 13px;
-  border-radius: 40px;
-  z-index: 2;
-  text-transform: uppercase;
-  text-decoration: none;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  margin-bottom: 50px;
-  margin-left: 40px;
-  font-family: 'PPMori Regular', sans-serif;
-}
-
-.collection-button:hover {
-  opacity: 0.9;
-}
-
-/* Mobile Layout */
-@media (max-width: 1023px) {
-  .featured-collections-section {
-    padding: 20px 10px;
   }
-  
+
   .featured-collections-wrapper {
-    flex-direction: column;
-    gap: 15px;
-    overflow: visible;
-    scroll-snap-type: none;
-    padding: 0 10px; /* Add equal padding on both sides */
+    display: flex;
+    gap: 20px;
+    scroll-snap-type: x mandatory;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
-  
+
+  .featured-collections-wrapper::-webkit-scrollbar {
+    display: none;
+  }
+
   .collection-card {
-    flex: none;
-    width: 100%;
-    max-width: 392px;
-    height: 240px;
-    margin: 0 auto;
+    position: relative;
+    flex: 0 0 100%;
+    max-width: 100%;
+    border-radius: 15px;
+    overflow: hidden;
+    scroll-snap-align: start;
   }
-  
+
   .collection-card img {
     width: 100%;
-    height: 240px;
+    height: auto;
     object-fit: cover;
+    display: block;
+    border-radius: 15px;
   }
-  
+
   .collection-content {
+    position: absolute;
     top: 20px;
     left: 20px;
-    font-size: 24px;
+    color: #fff;
+    font-size: 36px;
+    font-weight: 700;
+    z-index: 2;
   }
-  
+
   .collection-button {
     position: absolute;
     bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 240px;
+    left: 20px;
+    background: #f4ff41;
+    color: black;
+    border: none;
+    width: 200px;
+    height: 48px;
+    font-weight: 200;
+    font-size: 13px;
+    border-radius: 40px;
+    z-index: 2;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin-bottom: 50px;
+    margin-left: 40px;
+    font-family: 'PPMori Regular', sans-serif;
+  }
+
+  .collection-button:hover {
+    opacity: 0.9;
+  }
+
+  /* Mobile Layout */
+  @media (max-width: 1023px) {
+    .featured-collections-section {
+      padding: 20px 10px;
+    }
+
+    .featured-collections-wrapper {
+      flex-direction: column;
+      gap: 15px;
+      overflow: visible;
+      scroll-snap-type: none;
+      padding: 0 10px; /* Add equal padding on both sides */
+    }
+
+    .collection-card {
+      flex: none;
+      width: 100%;
+      max-width: 392px;
+      height: 240px;
+      margin: 0 auto;
+    }
+
+    .collection-card img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+    }
+
+    .collection-content {
+      top: 20px;
+      left: 20px;
+      font-size: 24px;
+    }
+
+    .collection-button {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 240px;
+      height: 40px;
+      margin: 0;
+      font-size: 12px;
+    }
+
+    .mobile-arrows {
+      display: none !important;
+    }
+  }
+
+  /* Desktop Layout */
+  @media (min-width: 1024px) {
+    .featured-collections-wrapper {
+      overflow: visible;
+      flex-wrap: nowrap;
+    }
+
+    .collection-card {
+      flex: 1 1 calc(33.333% - 13.33px);
+      max-width: calc(33.333% - 13.33px);
+    }
+
+    .mobile-arrows {
+      display: none !important;
+    }
+  }
+
+  /* Mobile Arrows - Hidden on mobile now */
+  .mobile-arrows {
+    display: none;
+  }
+
+  .arrow-btn {
+    background: #e5ff00;
+    border: none;
+    border-radius: 50%;
+    font-size: 20px;
+    width: 40px;
     height: 40px;
-    margin: 0;
-    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: auto;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   }
-  
-  .mobile-arrows {
-    display: none !important;
-  }
-}
 
-/* Desktop Layout */
-@media(min-width: 1024px) {
-  .featured-collections-wrapper {
-    overflow: visible;
-    flex-wrap: nowrap;
+  @media screen and (min-width: 760px) and (max-width: 770px) {
+    .featured-collections-section {
+      margin-top: -360px !important;
+    }
+    .collection-button {
+      left: -27px !important;
+    }
   }
-  
-  .collection-card {
-    flex: 1 1 calc(33.333% - 13.33px);
-    max-width: calc(33.333% - 13.33px);
-  }
-  
-  .mobile-arrows {
-    display: none !important;
-  }
-}
-
-/* Mobile Arrows - Hidden on mobile now */
-.mobile-arrows {
-  display: none;
-}
-
-.arrow-btn {
-  background: #e5ff00;
-  border: none;
-  border-radius: 50%;
-  font-size: 20px;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: auto;
-  cursor: pointer;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
-}
-
-@media screen and (min-width: 760px) and (max-width: 770px) {
-  .featured-collections-section{
-    margin-top: -360px !important;
-  }
-  .collection-button{
-    left: -27px !important;
-  }
-}
 </style>
 
 <div class="featured-collections-section">
@@ -191,25 +190,23 @@
       {% assign collection = collections[block.settings.collection] %}
       {% if collection != blank %}
         <div class="collection-card">
-        <a
-  href="{{ block.settings.button_link }}"
-  aria-label="Shop {{ block.settings.title | default: collection.title }}"
-  style="text-decoration: none; color: inherit;"
->
-  {% if block.settings.video_url != blank %}
-    <video
-      class="collection-video"
-      src="{{ block.settings.video_url }}"
-      autoplay
-      muted
-      loop
-      playsinline
-    ></video>
-  {% else %}
-    <!-- Fallback image if video not added -->
-    <img src="{{ collection.image | img_url: 'master' }}" alt="{{ collection.title }}">
-  {% endif %}
-</a>
+          <a
+            href="{{ block.settings.button_link }}"
+            aria-label="Shop {{ block.settings.title | default: collection.title }}"
+            style="text-decoration: none; color: inherit;">
+            {% if block.settings.video_url != blank %}
+              <video
+                class="collection-video"
+                src="{{ block.settings.video_url }}"
+                autoplay
+                muted
+                loop
+                playsinline></video>
+            {% else %}
+              <!-- Fallback image if video not added -->
+              <img src="{{ collection.image | img_url: 'master' }}" alt="{{ collection.title }}">
+            {% endif %}
+          </a>
           <div class="collection-content">{{ block.settings.title }}</div>
           <a href="{{ block.settings.button_link }}" class="collection-button">
             {{ block.settings.button_text }}
@@ -229,7 +226,7 @@
       display: block !important;
     }
   }
-  
+
   @media (min-width: 1024px) {
     .mobile-only {
       display: none !important;
@@ -241,26 +238,26 @@
 </style>
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-  const leftBtn = document.getElementById('arrow-left');
-  const rightBtn = document.getElementById('arrow-right');
-  const slider = document.getElementById('collectionSlider');
-  
-  if (!slider || !leftBtn || !rightBtn) return;
-  
-  // Only enable slider functionality on desktop
-  if (window.innerWidth >= 768) {
-    const scrollAmount = () => slider.offsetWidth * 0.9;
-    
-    leftBtn.addEventListener('click', () => {
-      slider.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
-    });
-    
-    rightBtn.addEventListener('click', () => {
-      slider.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
-    });
-  }
-});
+  document.addEventListener('DOMContentLoaded', function () {
+    const leftBtn = document.getElementById('arrow-left');
+    const rightBtn = document.getElementById('arrow-right');
+    const slider = document.getElementById('collectionSlider');
+
+    if (!slider || !leftBtn || !rightBtn) return;
+
+    // Only enable slider functionality on desktop
+    if (window.innerWidth >= 768) {
+      const scrollAmount = () => slider.offsetWidth * 0.9;
+
+      leftBtn.addEventListener('click', () => {
+        slider.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
+      });
+
+      rightBtn.addEventListener('click', () => {
+        slider.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
+      });
+    }
+  });
 </script>
 
 {% schema %}
@@ -278,10 +275,10 @@ document.addEventListener('DOMContentLoaded', function () {
           "label": "Select collection"
         },
         {
-  "type": "url",
-  "id": "video_url",
-  "label": "Collection Video URL",
-  "info": "Upload MP4 in Content → Files and paste the link here"
+          "type": "url",
+          "id": "video_url",
+          "label": "Collection Video URL",
+          "info": "Upload MP4 in Content → Files and paste the link here"
         },
         {
           "type": "image_picker",

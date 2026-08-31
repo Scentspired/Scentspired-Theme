@@ -68,7 +68,7 @@
       ]
     }
     {% endschema %}
-    
+
     <div class="scent-video-banner" id="scent-video-banner">
       <div class="video-container">
         <video id="main-video" autoplay muted loop playsinline>
@@ -86,9 +86,8 @@
         <div class="scent-content">
           <div class="scent-left">
             <p class="sce
-
 {% enddoc %}
-{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+{% assign ai_gen_id = block.id | replace: "_", "" | downcase %}
 
 {% style %}
   .ai-scent-video-banner-{{ ai_gen_id }} {
@@ -496,8 +495,7 @@
 
 <scent-video-banner-{{ ai_gen_id }}
   class="ai-scent-video-banner-{{ ai_gen_id }}"
-  {{ block.shopify_attributes }}
->
+  {{ block.shopify_attributes }}>
   <div class="ai-video-container-{{ ai_gen_id }}">
     {% if block.settings.video_url != blank %}
       <video
@@ -505,8 +503,7 @@
         autoplay
         muted
         loop
-        playsinline
-      >
+        playsinline>
         <source src="{{ block.settings.video_url }}" type="video/mp4">
       </video>
     {% else %}
@@ -515,9 +512,7 @@
           <polygon points="23 7 16 12 23 17 23 7"></polygon>
           <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
         </svg>
-        <div class="ai-empty-state-message-{{ ai_gen_id }}">
-          Add a video URL to get started
-        </div>
+        <div class="ai-empty-state-message-{{ ai_gen_id }}">Add a video URL to get started</div>
       </div>
     {% endif %}
   </div>
@@ -525,22 +520,21 @@
   <div class="ai-scent-content-{{ ai_gen_id }}">
     <div class="ai-scent-left-{{ ai_gen_id }}">
       <p class="ai-scent-label-{{ ai_gen_id }}">{{ block.settings.label_text }}</p>
-      
+
       {% for i in (1..5) %}
         {% liquid
-          assign heading_key = 'heading_' | append: i
-          assign collection_key = 'collection_' | append: i
+          assign heading_key = "heading_" | append: i
+          assign collection_key = "collection_" | append: i
           assign heading_text = block.settings[heading_key]
           assign collection = block.settings[collection_key]
         %}
-        
+
         {% if heading_text != blank %}
           <p
             class="ai-scent-heading-{{ ai_gen_id }} scent-heading clickable-heading {% if i == 3 %}active-heading{% endif %}"
             data-index="{{ i | minus: 1 }}"
             data-collection="{{ collection_key }}"
-            style="transition-delay: {{ i | times: 0.1 }}s;"
-          >
+            style="transition-delay: {{ i | times: 0.1 }}s;">
             {{ heading_text }}
           </p>
         {% endif %}
@@ -550,9 +544,11 @@
     <div class="ai-scent-right-{{ ai_gen_id }} scent-right">
       <div class="ai-products-container-{{ ai_gen_id }}">
         <div class="ai-product-nav-{{ ai_gen_id }} ai-prev-btn-{{ ai_gen_id }}">
-          <button class="ai-nav-btn-{{ ai_gen_id }}" id="prevBtn-{{ ai_gen_id }}" aria-label="Previous products">‹</button>
+          <button class="ai-nav-btn-{{ ai_gen_id }}" id="prevBtn-{{ ai_gen_id }}" aria-label="Previous products">
+            ‹
+          </button>
         </div>
-        
+
         <div class="ai-products-display-{{ ai_gen_id }}" id="productsDisplay-{{ ai_gen_id }}">
           {% assign default_collection = block.settings.collection_3 %}
           {% if default_collection != blank and default_collection.products.size > 0 %}
@@ -561,7 +557,7 @@
                 {% if product.compare_at_price > product.price %}
                   <div class="ai-card-badge-{{ ai_gen_id }}">Sale</div>
                 {% endif %}
-                
+
                 <div class="ai-card-media-{{ ai_gen_id }}">
                   {% if product.featured_image %}
                     <img
@@ -570,8 +566,7 @@
                       class="ai-media-main-{{ ai_gen_id }}"
                       loading="lazy"
                       width="300"
-                      height="300"
-                    >
+                      height="300">
                     {% if product.images[1] %}
                       <img
                         src="{{ product.images[1] | image_url: width: 300 }}"
@@ -579,16 +574,15 @@
                         class="ai-media-hover-{{ ai_gen_id }}"
                         loading="lazy"
                         width="300"
-                        height="300"
-                      >
+                        height="300">
                     {% endif %}
                   {% else %}
                     <div class="ai-card-media-placeholder-{{ ai_gen_id }}">
-                      {{ 'product-1' | placeholder_svg_tag }}
+                      {{ "product-1" | placeholder_svg_tag }}
                     </div>
                   {% endif %}
                 </div>
-                
+
                 <div class="ai-card-content-{{ ai_gen_id }}">
                   {% if settings.show_vendor %}
                     <div class="ai-card-vendor-{{ ai_gen_id }}">{{ product.vendor }}</div>
@@ -596,7 +590,9 @@
                   <h3 class="ai-card-title-{{ ai_gen_id }}">{{ product.title }}</h3>
                   <div class="ai-card-price-{{ ai_gen_id }}">
                     {% if product.compare_at_price > product.price %}
-                      <span style="text-decoration: line-through; opacity: 0.7;">{{ product.compare_at_price | money }}</span>
+                      <span style="text-decoration: line-through; opacity: 0.7;">
+                        {{- product.compare_at_price | money -}}
+                      </span>
                     {% endif %}
                     {{ product.price | money }}
                   </div>
@@ -609,7 +605,7 @@
                 <div class="ai-card-badge-{{ ai_gen_id }}">Sale</div>
                 <div class="ai-card-media-{{ ai_gen_id }}">
                   <div class="ai-card-media-placeholder-{{ ai_gen_id }}">
-                    {{ 'product-1' | placeholder_svg_tag }}
+                    {{ "product-1" | placeholder_svg_tag }}
                   </div>
                 </div>
                 <div class="ai-card-content-{{ ai_gen_id }}">
@@ -623,15 +619,18 @@
             {% endfor %}
           {% endif %}
         </div>
-        
+
         <div class="ai-product-nav-{{ ai_gen_id }} ai-next-btn-{{ ai_gen_id }}">
           <button class="ai-nav-btn-{{ ai_gen_id }}" id="nextBtn-{{ ai_gen_id }}" aria-label="Next products">›</button>
         </div>
-        
+
         <div class="ai-pagination-dots-{{ ai_gen_id }}" id="paginationDots-{{ ai_gen_id }}"></div>
-        
+
         <div class="ai-shop-button-container-{{ ai_gen_id }}">
-          <a href="{% if block.settings.collection_3 %}{{ block.settings.collection_3.url }}{% else %}#{% endif %}" class="ai-shop-button-{{ ai_gen_id }}" id="shopButton-{{ ai_gen_id }}">
+          <a
+            href="{% if block.settings.collection_3 %}{{ block.settings.collection_3.url }}{% else %}#{% endif %}"
+            class="ai-shop-button-{{ ai_gen_id }}"
+            id="shopButton-{{ ai_gen_id }}">
             <span id="shopButtonText-{{ ai_gen_id }}">SHOP {{ block.settings.heading_3 | upcase }}</span>
           </a>
         </div>

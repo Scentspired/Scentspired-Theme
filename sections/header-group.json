@@ -22,9 +22,7 @@
           }
         }
       },
-      "block_order": [
-        "announcement_EiQRND"
-      ],
+      "block_order": ["announcement_EiQRND"],
       "custom_css": [
         ".announcement-bar {padding-top: 1px; padding-bottom: 0px; margin-bottom: 0px;}",
         ".announcement-bar__message {line-height: 0.2; font-size: 12px; /* optional: adjust text size */ font-weight: 400;}",
@@ -67,8 +65,5 @@
       }
     }
   },
-  "order": [
-    "announcement-bar",
-    "header"
-  ]
+  "order": ["announcement-bar", "header"]
 }

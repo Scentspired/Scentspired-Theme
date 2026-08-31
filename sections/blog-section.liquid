@@ -6,310 +6,358 @@
 {% endcomment %}
 
 <style>
-
-/* ─────────────────────────────────────────────────────
+  /* ─────────────────────────────────────────────────────
    SECTION
 ───────────────────────────────────────────────────── */
-.prf-section {
-  background: #fff;
-  padding: 100px 0 120px;
-  font-family: 'PPEditorialNew Italic', serif;
-  position: relative;
-  overflow: hidden;
-}
+  .prf-section {
+    background: #fff;
+    padding: 100px 0 120px;
+    font-family: 'PPEditorialNew Italic', serif;
+    position: relative;
+    overflow: hidden;
+  }
 
-.prf-container {
-  max-width: 1420px;
-  margin: 0 auto;
-  padding: 0 32px;
-  position: relative;
-  z-index: 1;
-}
+  .prf-container {
+    max-width: 1420px;
+    margin: 0 auto;
+    padding: 0 32px;
+    position: relative;
+    z-index: 1;
+  }
 
-/* ─────────────────────────────────────────────────────
+  /* ─────────────────────────────────────────────────────
    HEADER
 ───────────────────────────────────────────────────── */
-.prf-header {
-  text-align: center;
-  margin-bottom: 72px;
-}
+  .prf-header {
+    text-align: center;
+    margin-bottom: 72px;
+  }
 
-.prf-header__eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 14px;
-  font-size: 10px;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: #000;
-  margin-bottom: 18px;
-  font-family: 'PPMori Regular', Arial, sans-serif;
-}
+  .prf-header__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #000;
+    margin-bottom: 18px;
+    font-family: 'PPMori Regular', Arial, sans-serif;
+  }
 
-.prf-header__eyebrow::before,
-.prf-header__eyebrow::after {
-  content: '';
-  width: 32px;
-  height: 1px;
-  background: #000;
-  display: block;
-}
+  .prf-header__eyebrow::before,
+  .prf-header__eyebrow::after {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: #000;
+    display: block;
+  }
 
-.prf-header__title {
- font-family: 'PPEditorialNew Italic', serif;
+  .prf-header__title {
+    font-family: 'PPEditorialNew Italic', serif;
     font-weight: 500;
     font-style: italic;
-  font-size: clamp(34px, 5vw, 52px);
-  font-style: italic;
-  color: #000;
-  margin: 0 0 14px;
-  line-height: 1.15;
-  letter-spacing: 0.01em;
-}
+    font-size: clamp(34px, 5vw, 52px);
+    font-style: italic;
+    color: #000;
+    margin: 0 0 14px;
+    line-height: 1.15;
+    letter-spacing: 0.01em;
+  }
 
-.prf-header__subtitle {
-  font-size: 11px;
-  color: #000;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  font-family: 'PPMori Regular', Arial, sans-serif;
-  font-weight: 400;
-  margin: 0;
-}
+  .prf-header__subtitle {
+    font-size: 11px;
+    color: #000;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-family: 'PPMori Regular', Arial, sans-serif;
+    font-weight: 400;
+    margin: 0;
+  }
 
-/* ─────────────────────────────────────────────────────
+  /* ─────────────────────────────────────────────────────
    ITEMS WRAPPER — spine lives inside here
 ───────────────────────────────────────────────────── */
-.prf-items {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  position: relative; /* spine is absolute child of this */
-  isolation: isolate;
-}
+  .prf-items {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative; /* spine is absolute child of this */
+    isolation: isolate;
+  }
 
-/* ─────────────────────────────────────────────────────
+  /* ─────────────────────────────────────────────────────
    SPINE SVG  (absolute inside .prf-items)
 ───────────────────────────────────────────────────── */
-.prf-spine {
-  position: absolute;
-  left: 50%;
-  top: 0;       /* starts at the very top of the items list */
-  transform: translateX(-50%);
-  width: 80px;
-  pointer-events: none;
-  z-index: 0;
-  overflow: visible;
-}
+  .prf-spine {
+    position: absolute;
+    left: 50%;
+    top: 0; /* starts at the very top of the items list */
+    transform: translateX(-50%);
+    width: 80px;
+    pointer-events: none;
+    z-index: 0;
+    overflow: visible;
+  }
 
-.prf-spine-track {
-  fill: none;
-  stroke: #000;
-  stroke-width: 1px;
-  stroke-dasharray: 3 7;
-  opacity: 0.55;
-}
+  .prf-spine-track {
+    fill: none;
+    stroke: #000;
+    stroke-width: 1px;
+    stroke-dasharray: 3 7;
+    opacity: 0.55;
+  }
 
-.prf-spine-fill {
-  fill: none;
-  stroke: #000;
-  stroke-width: 1.5px;
-  stroke-linecap: round;
-  opacity: 0.95;
-}
+  .prf-spine-fill {
+    fill: none;
+    stroke: #000;
+    stroke-width: 1.5px;
+    stroke-linecap: round;
+    opacity: 0.95;
+  }
 
-/* ─────────────────────────────────────────────────────
+  /* ─────────────────────────────────────────────────────
    SINGLE ITEM
 ───────────────────────────────────────────────────── */
-.prf-item {
-  display: grid;
-  grid-template-columns: 1fr 80px 1fr;
-  align-items: center;
-  padding: 52px 0;
-  position: relative;
-}
+  .prf-item {
+    display: grid;
+    grid-template-columns: 1fr 80px 1fr;
+    align-items: center;
+    padding: 52px 0;
+    position: relative;
+  }
 
-/* Odd — image left, text right */
-.prf-item:nth-child(odd) .prf-item__media { grid-column: 1; grid-row: 1; padding-right: 30px; }
-.prf-item:nth-child(odd) .prf-item__node  { grid-column: 2; grid-row: 1; }
-.prf-item:nth-child(odd) .prf-item__body  { grid-column: 3; grid-row: 1; padding-left: 44px; }
+  /* Odd — image left, text right */
+  .prf-item:nth-child(odd) .prf-item__media {
+    grid-column: 1;
+    grid-row: 1;
+    padding-right: 30px;
+  }
+  .prf-item:nth-child(odd) .prf-item__node {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .prf-item:nth-child(odd) .prf-item__body {
+    grid-column: 3;
+    grid-row: 1;
+    padding-left: 44px;
+  }
 
-/* Even — image right, text left */
-.prf-item:nth-child(even) .prf-item__media { grid-column: 3; grid-row: 1; padding-left: 30px; }
-.prf-item:nth-child(even) .prf-item__node  { grid-column: 2; grid-row: 1; }
-.prf-item:nth-child(even) .prf-item__body  { grid-column: 1; grid-row: 1; padding-right: 44px; }
+  /* Even — image right, text left */
+  .prf-item:nth-child(even) .prf-item__media {
+    grid-column: 3;
+    grid-row: 1;
+    padding-left: 30px;
+  }
+  .prf-item:nth-child(even) .prf-item__node {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .prf-item:nth-child(even) .prf-item__body {
+    grid-column: 1;
+    grid-row: 1;
+    padding-right: 44px;
+  }
 
-/* ── Scroll-reveal ── */
-.prf-item__media,
-.prf-item__body {
-  opacity: 0;
-  transition: opacity 0.85s cubic-bezier(0.22,1,0.36,1),
-              transform 0.85s cubic-bezier(0.22,1,0.36,1);
-}
+  /* ── Scroll-reveal ── */
+  .prf-item__media,
+  .prf-item__body {
+    opacity: 0;
+    transition:
+      opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+  }
 
-.prf-item:nth-child(odd)  .prf-item__media { transform: translateX(-36px); }
-.prf-item:nth-child(odd)  .prf-item__body  { transform: translateX(36px);  }
-.prf-item:nth-child(even) .prf-item__media { transform: translateX(36px);  }
-.prf-item:nth-child(even) .prf-item__body  { transform: translateX(-36px); }
+  .prf-item:nth-child(odd) .prf-item__media {
+    transform: translateX(-36px);
+  }
+  .prf-item:nth-child(odd) .prf-item__body {
+    transform: translateX(36px);
+  }
+  .prf-item:nth-child(even) .prf-item__media {
+    transform: translateX(36px);
+  }
+  .prf-item:nth-child(even) .prf-item__body {
+    transform: translateX(-36px);
+  }
 
-.prf-item.prf-in .prf-item__media,
-.prf-item.prf-in .prf-item__body  { opacity: 1; transform: translateX(0); }
-.prf-item.prf-in .prf-item__body  { transition-delay: 0.13s; }
+  .prf-item.prf-in .prf-item__media,
+  .prf-item.prf-in .prf-item__body {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .prf-item.prf-in .prf-item__body {
+    transition-delay: 0.13s;
+  }
 
-/* ─────────────────────────────────────────────────────
+  /* ─────────────────────────────────────────────────────
    BADGE (number node)
 ───────────────────────────────────────────────────── */
-.prf-item__node {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  z-index: 4;
-}
+  .prf-item__node {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 4;
+  }
 
-.prf-badge {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  color: #fff;
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 20px;
-  font-weight: 300;
-  font-style: italic;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  z-index: 5;
-  flex-shrink: 0;
-  transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1),
-              background 0.3s ease;
-  cursor: default;
-   inset: -5px;
-  border-radius: 50%;
-  border: 1px solid #f4ff41;
-}
+  .prf-badge {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    color: #fff;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 20px;
+    font-weight: 300;
+    font-style: italic;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 5;
+    flex-shrink: 0;
+    transition:
+      transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+      background 0.3s ease;
+    cursor: default;
+    inset: -5px;
+    border-radius: 50%;
+    border: 1px solid #f4ff41;
+  }
 
-/* Halo that covers the spine line behind the badge */
-.prf-badge::before {
-  content: '';
-  position: absolute;
-  inset: -9px;
-  border-radius: 50%;
-  background: #000;
-  z-index: -1;
-}
+  /* Halo that covers the spine line behind the badge */
+  .prf-badge::before {
+    content: '';
+    position: absolute;
+    inset: -9px;
+    border-radius: 50%;
+    background: #000;
+    z-index: -1;
+  }
 
-/* Gold ring that appears on hover */
-.prf-badge::after {
-  content: '';
-  position: absolute;
-  inset: -5px;
-  border-radius: 50%;
-  border: 1px solid #f4ff41;
-  z-index: -1;
-  opacity: 0;
-  transform: scale(0.8);
-  transition: opacity 0.35s ease, transform 0.35s ease;
-}
+  /* Gold ring that appears on hover */
+  .prf-badge::after {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    border-radius: 50%;
+    border: 1px solid #f4ff41;
+    z-index: -1;
+    opacity: 0;
+    transform: scale(0.8);
+    transition:
+      opacity 0.35s ease,
+      transform 0.35s ease;
+  }
 
-.prf-item:hover .prf-badge            { background: #b89b6e; transform: scale(1.12); }
-.prf-item:hover .prf-badge::after     { opacity: 1; transform: scale(1); }
+  .prf-item:hover .prf-badge {
+    background: #b89b6e;
+    transform: scale(1.12);
+  }
+  .prf-item:hover .prf-badge::after {
+    opacity: 1;
+    transform: scale(1);
+  }
 
-/* ─────────────────────────────────────────────────────
+  /* ─────────────────────────────────────────────────────
    MEDIA / IMAGE
 ───────────────────────────────────────────────────── */
-.prf-item__media {
-  position: relative;
-  overflow: hidden;
-  aspect-ratio: 5/4;
-  border-radius: 2px 2px 64px 2px;
-}
+  .prf-item__media {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 5/4;
+    border-radius: 2px 2px 64px 2px;
+  }
 
-.prf-item:nth-child(even) .prf-item__media {
-  border-radius: 2px 2px 2px 64px;
-}
+  .prf-item:nth-child(even) .prf-item__media {
+    border-radius: 2px 2px 2px 64px;
+  }
 
-.prf-item__media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.95s cubic-bezier(0.25,0.46,0.45,0.94);
-}
+  .prf-item__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.95s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
 
-.prf-item:hover .prf-item__media img { transform: scale(1.07); }
+  .prf-item:hover .prf-item__media img {
+    transform: scale(1.07);
+  }
 
-.prf-placeholder {
-  width: 100%;
-  height: 100%;
-  background: #ede8e0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+  .prf-placeholder {
+    width: 100%;
+    height: 100%;
+    background: #ede8e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-.prf-placeholder svg { opacity: 0.22; }
+  .prf-placeholder svg {
+    opacity: 0.22;
+  }
 
-/* ─────────────────────────────────────────────────────
+  /* ─────────────────────────────────────────────────────
    BODY / TEXT
 ───────────────────────────────────────────────────── */
-.prf-item__body {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
+  .prf-item__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 
-.prf-item__tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 9px;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: #000;
-  margin-bottom: 14px;
-  font-family: 'Tenor Sans', sans-serif;
-}
+  .prf-item__tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #000;
+    margin-bottom: 14px;
+    font-family: 'Tenor Sans', sans-serif;
+  }
 
-.prf-item__tag::before {
-  content: '';
-  width: 18px;
-  height: 1px;
-  background: #000;
-  flex-shrink: 0;
-  display: block;
-}
+  .prf-item__tag::before {
+    content: '';
+    width: 18px;
+    height: 1px;
+    background: #000;
+    flex-shrink: 0;
+    display: block;
+  }
 
-.prf-item__title {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(24px, 3vw, 34px);
-  font-weight: 300;
-  color: #1c1812;
-  line-height: 1.22;
-  margin: 0 0 18px;
-  letter-spacing: 0.01em;
-  text-transform: capitalize;
-}
+  .prf-item__title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(24px, 3vw, 34px);
+    font-weight: 300;
+    color: #1c1812;
+    line-height: 1.22;
+    margin: 0 0 18px;
+    letter-spacing: 0.01em;
+    text-transform: capitalize;
+  }
 
-.prf-item__divider {
-  width: 36px;
-  height: 1px;
-  background: #000;
-  margin-bottom: 18px;
-}
+  .prf-item__divider {
+    width: 36px;
+    height: 1px;
+    background: #000;
+    margin-bottom: 18px;
+  }
 
-.prf-item__excerpt {
-  font-family: 'PPMORI REGULAR';
-  font-size: 13px;
-  line-height: 1.9;
-  color: #000;
-  margin: 0 0 26px;
-  letter-spacing: 0.025em;
-}
+  .prf-item__excerpt {
+    font-family: 'PPMORI REGULAR';
+    font-size: 13px;
+    line-height: 1.9;
+    color: #000;
+    margin: 0 0 26px;
+    letter-spacing: 0.025em;
+  }
 
-.prf-item__link {
-  display: inline-block;
+  .prf-item__link {
+    display: inline-block;
     padding: 16px 94px;
     background: #f4ff41;
     color: #000;
@@ -322,127 +370,140 @@
     text-align: center;
     font-family: 'PPMORI REGULAR';
     max-width: 400px;
-}
+  }
 
-
-
-/* ─────────────────────────────────────────────────────
+  /* ─────────────────────────────────────────────────────
    PROGRESS DOTS — fixed right sidebar (desktop only)
 ───────────────────────────────────────────────────── */
-.prf-progress {
-  position: fixed;
-  right: 28px;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  z-index: 50;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease;
-}
-
-.prf-progress.prf-progress--visible {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.prf-pdot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: #ccc0ae;
-  cursor: pointer;
-  transition: background 0.3s ease, transform 0.3s ease;
-}
-
-.prf-pdot.prf-pdot--active {
-  background: #b89b6e;
-  transform: scale(1.8);
-}
-
-/* ─────────────────────────────────────────────────────
-   MOBILE
-───────────────────────────────────────────────────── */
-.prf-mobile-stem { display: none; }
-
-@media (max-width: 780px) {
-  .prf-section { padding: 68px 0 84px; }
-  .prf-header  { margin-bottom: 44px; }
-
-  .prf-item {
+  .prf-progress {
+    position: fixed;
+    right: 28px;
+    top: 50%;
+    transform: translateY(-50%);
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 0 0 56px;
+    gap: 12px;
+    z-index: 50;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
   }
 
-  .prf-item__media {
-    width: 100%;
-    max-width: 440px;
-    border-radius: 2px 2px 48px 2px !important;
-    padding: 0 !important;
-    order: 1;
-    opacity: 1 !important;
-    transform: none !important;
+  .prf-progress.prf-progress--visible {
+    opacity: 1;
+    pointer-events: auto;
   }
 
-  .prf-item__node {
-    order: 2;
-    flex-direction: column;
-    gap: 0;
-    margin: 20px 0 16px;
-  }
-
-  .prf-mobile-stem {
-    display: block;
-    width: 1px;
-    height: 20px;
+  .prf-pdot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
     background: #ccc0ae;
+    cursor: pointer;
+    transition:
+      background 0.3s ease,
+      transform 0.3s ease;
   }
 
-  .prf-item__body {
-    order: 3;
-    width: 100%;
-    max-width: 440px;
-    text-align: center;
-    padding: 0 !important;
-    align-items: center;
-    opacity: 1 !important;
-    transform: none !important;
+  .prf-pdot.prf-pdot--active {
+    background: #b89b6e;
+    transform: scale(1.8);
   }
 
-  .prf-item__tag     { justify-content: center; }
-  .prf-item__divider { margin-left: auto; margin-right: auto; }
+  /* ─────────────────────────────────────────────────────
+   MOBILE
+───────────────────────────────────────────────────── */
+  .prf-mobile-stem {
+    display: none;
+  }
 
-  .prf-spine   { display: none; }
-  .prf-progress{ display: none; }
-}
+  @media (max-width: 780px) {
+    .prf-section {
+      padding: 68px 0 84px;
+    }
+    .prf-header {
+      margin-bottom: 44px;
+    }
+
+    .prf-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 0 56px;
+    }
+
+    .prf-item__media {
+      width: 100%;
+      max-width: 440px;
+      border-radius: 2px 2px 48px 2px !important;
+      padding: 0 !important;
+      order: 1;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    .prf-item__node {
+      order: 2;
+      flex-direction: column;
+      gap: 0;
+      margin: 20px 0 16px;
+    }
+
+    .prf-mobile-stem {
+      display: block;
+      width: 1px;
+      height: 20px;
+      background: #ccc0ae;
+    }
+
+    .prf-item__body {
+      order: 3;
+      width: 100%;
+      max-width: 440px;
+      text-align: center;
+      padding: 0 !important;
+      align-items: center;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    .prf-item__tag {
+      justify-content: center;
+    }
+    .prf-item__divider {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .prf-spine {
+      display: none;
+    }
+    .prf-progress {
+      display: none;
+    }
+  }
 </style>
 
 <section class="prf-section" id="prf-section-{{ section.id }}">
   <div class="prf-container">
-
     {% if section.settings.heading_label != blank or section.settings.heading_title != blank %}
-    <header class="prf-header">
-      {% if section.settings.heading_label != blank %}
-        <div class="prf-header__eyebrow">{{ section.settings.heading_label }}</div>
-      {% endif %}
-      {% if section.settings.heading_title != blank %}
-        <h2 class="prf-header__title">{{ section.settings.heading_title }}</h2>
-      {% endif %}
-      {% if section.settings.heading_subtitle != blank %}
-        <p class="prf-header__subtitle">{{ section.settings.heading_subtitle }}</p>
-      {% endif %}
-    </header>
+      <header class="prf-header">
+        {% if section.settings.heading_label != blank %}
+          <div class="prf-header__eyebrow">{{ section.settings.heading_label }}</div>
+        {% endif %}
+        {% if section.settings.heading_title != blank %}
+          <h2 class="prf-header__title">{{ section.settings.heading_title }}</h2>
+        {% endif %}
+        {% if section.settings.heading_subtitle != blank %}
+          <p class="prf-header__subtitle">{{ section.settings.heading_subtitle }}</p>
+        {% endif %}
+      </header>
     {% endif %}
 
-    {{- '' -}}
-    {{- '<!-- Spine SVG lives INSIDE .prf-items so top=0 aligns with list start -->' -}}
+    {{- "" -}}
+    {{- "<!-- Spine SVG lives INSIDE .prf-items so top=0 aligns with list start -->" -}}
 
     <ul class="prf-items" id="prf-items-{{ section.id }}">
-
       <!-- Spine SVG: absolute child of .prf-items, starts at top of first item -->
       <svg class="prf-spine" id="prf-spine-{{ section.id }}" aria-hidden="true">
         <path class="prf-spine-track" id="prf-track-{{ section.id }}" />
@@ -452,14 +513,14 @@
       {% for block in section.blocks %}
         {% assign n = forloop.index %}
         <li class="prf-item" data-index="{{ n }}" {{ block.shopify_attributes }}>
-
           <div class="prf-item__media">
             {% if block.settings.image != blank %}
               <img
                 src="{{ block.settings.image | img_url: '900x720', crop: 'center' }}"
                 alt="{{ block.settings.title | escape }}"
-                loading="lazy" width="900" height="720"
-              >
+                loading="lazy"
+                width="900"
+                height="720">
             {% else %}
               <div class="prf-placeholder">
                 <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#8c7b6b" stroke-width="0.8">
@@ -488,15 +549,13 @@
             {% endif %}
             {% if block.settings.link != blank %}
               <a href="{{ block.settings.link }}" class="prf-item__link">
-                {{ block.settings.link_label | default: 'Read Article' }}
+                {{ block.settings.link_label | default: "Read Article" }}
                 <span class="prf-link-line"></span>
               </a>
             {% endif %}
           </div>
-
         </li>
       {% endfor %}
-
     </ul>
   </div>
 </section>
@@ -508,121 +567,121 @@
 </nav>
 
 <script>
-(function(){
-  var sid      = {{ section.id | json }};
-  var listEl   = document.getElementById('prf-items-'    + sid);
-  var spineSvg = document.getElementById('prf-spine-'    + sid);
-  var trackEl  = document.getElementById('prf-track-'    + sid);
-  var fillEl   = document.getElementById('prf-fill-'     + sid);
-  var progEl   = document.getElementById('prf-progress-' + sid);
-  if (!listEl) return;
+  (function(){
+    var sid      = {{ section.id | json }};
+    var listEl   = document.getElementById('prf-items-'    + sid);
+    var spineSvg = document.getElementById('prf-spine-'    + sid);
+    var trackEl  = document.getElementById('prf-track-'    + sid);
+    var fillEl   = document.getElementById('prf-fill-'     + sid);
+    var progEl   = document.getElementById('prf-progress-' + sid);
+    if (!listEl) return;
 
-  var items   = Array.from(listEl.querySelectorAll('.prf-item'));
-  var dots    = progEl ? Array.from(progEl.querySelectorAll('.prf-pdot')) : [];
-  var pathLen = 0;
+    var items   = Array.from(listEl.querySelectorAll('.prf-item'));
+    var dots    = progEl ? Array.from(progEl.querySelectorAll('.prf-pdot')) : [];
+    var pathLen = 0;
 
-  function isMobile(){ return window.innerWidth <= 780; }
+    function isMobile(){ return window.innerWidth <= 780; }
 
-  /* ── Build wavy SVG spine path ──────────────────────── */
-  function buildSpine(){
-    if (isMobile() || !spineSvg || !trackEl || !fillEl) return;
+    /* ── Build wavy SVG spine path ──────────────────────── */
+    function buildSpine(){
+      if (isMobile() || !spineSvg || !trackEl || !fillEl) return;
 
-    var H  = listEl.offsetHeight;
-    var cx = 40, amp = 14;
+      var H  = listEl.offsetHeight;
+      var cx = 40, amp = 14;
 
-    spineSvg.setAttribute('height', H);
-    spineSvg.setAttribute('viewBox', '0 0 80 ' + H);
+      spineSvg.setAttribute('height', H);
+      spineSvg.setAttribute('viewBox', '0 0 80 ' + H);
 
-    var badges = listEl.querySelectorAll('.prf-badge');
-    var lr     = listEl.getBoundingClientRect();
-    var pts    = [];
+      var badges = listEl.querySelectorAll('.prf-badge');
+      var lr     = listEl.getBoundingClientRect();
+      var pts    = [];
 
-    badges.forEach(function(b){
-      var r = b.getBoundingClientRect();
-      pts.push(r.top - lr.top + r.height / 2);
-    });
+      badges.forEach(function(b){
+        var r = b.getBoundingClientRect();
+        pts.push(r.top - lr.top + r.height / 2);
+      });
 
-    if (!pts.length) return;
+      if (!pts.length) return;
 
-    /* Start exactly at y=0 (top of items list = below subtitle) */
-    var d = 'M' + cx + ' 0';
-    d += ' C' + cx + ' ' + (pts[0] * 0.45) + ',' + cx + ' ' + (pts[0] * 0.72) + ',' + cx + ' ' + pts[0];
+      /* Start exactly at y=0 (top of items list = below subtitle) */
+      var d = 'M' + cx + ' 0';
+      d += ' C' + cx + ' ' + (pts[0] * 0.45) + ',' + cx + ' ' + (pts[0] * 0.72) + ',' + cx + ' ' + pts[0];
 
-    for (var i = 0; i < pts.length - 1; i++){
-      var y1  = pts[i];
-      var y2  = pts[i + 1];
-      var mid = (y1 + y2) / 2;
-      var bmp = (i % 2 === 0) ? cx - amp : cx + amp;
-      d += ' C' + cx   + ' ' + (y1 + (mid - y1) * 0.42) + ',' + bmp + ' ' + (mid - 30) + ',' + bmp + ' ' + mid;
-      d += ' C' + bmp  + ' ' + (mid + 30) + ',' + cx + ' ' + (y2 - (y2 - mid) * 0.42) + ',' + cx + ' ' + y2;
+      for (var i = 0; i < pts.length - 1; i++){
+        var y1  = pts[i];
+        var y2  = pts[i + 1];
+        var mid = (y1 + y2) / 2;
+        var bmp = (i % 2 === 0) ? cx - amp : cx + amp;
+        d += ' C' + cx   + ' ' + (y1 + (mid - y1) * 0.42) + ',' + bmp + ' ' + (mid - 30) + ',' + bmp + ' ' + mid;
+        d += ' C' + bmp  + ' ' + (mid + 30) + ',' + cx + ' ' + (y2 - (y2 - mid) * 0.42) + ',' + cx + ' ' + y2;
+      }
+
+      var last = pts[pts.length - 1];
+      d += ' C' + cx + ' ' + (last + (H - last) * 0.42) + ',' + cx + ' ' + (last + (H - last) * 0.72) + ',' + cx + ' ' + H;
+
+      trackEl.setAttribute('d', d);
+      fillEl.setAttribute('d', d);
+
+      try {
+        pathLen = fillEl.getTotalLength();
+        fillEl.style.strokeDasharray  = pathLen + ' ' + pathLen;
+        fillEl.style.strokeDashoffset = pathLen; /* fully hidden until scroll */
+      } catch(e){}
     }
 
-    var last = pts[pts.length - 1];
-    d += ' C' + cx + ' ' + (last + (H - last) * 0.42) + ',' + cx + ' ' + (last + (H - last) * 0.72) + ',' + cx + ' ' + H;
+    /* ── Scroll handler ─────────────────────────────────── */
+    function onScroll(){
+      var wh = window.innerHeight;
 
-    trackEl.setAttribute('d', d);
-    fillEl.setAttribute('d', d);
+      /* Sidebar visibility */
+      if (progEl){
+        var lr = listEl.getBoundingClientRect();
+        progEl.classList.toggle('prf-progress--visible', lr.top < wh && lr.bottom > 0);
+      }
 
-    try {
-      pathLen = fillEl.getTotalLength();
-      fillEl.style.strokeDasharray  = pathLen + ' ' + pathLen;
-      fillEl.style.strokeDashoffset = pathLen; /* fully hidden until scroll */
-    } catch(e){}
-  }
+      /* Scroll-draw the gold spine */
+      if (!isMobile() && pathLen > 0 && fillEl){
+        var lr  = listEl.getBoundingClientRect();
+        /* pct: 0 when list top at viewport bottom → 1 when list bottom at viewport top */
+        var pct = Math.min(1, Math.max(0, (wh - lr.top) / (lr.height + wh * 0.45)));
+        fillEl.style.strokeDashoffset = pathLen * (1 - pct);
+      }
 
-  /* ── Scroll handler ─────────────────────────────────── */
-  function onScroll(){
-    var wh = window.innerHeight;
-
-    /* Sidebar visibility */
-    if (progEl){
-      var lr = listEl.getBoundingClientRect();
-      progEl.classList.toggle('prf-progress--visible', lr.top < wh && lr.bottom > 0);
+      /* Reveal items & update dots */
+      items.forEach(function(el, i){
+        var r       = el.getBoundingClientRect();
+        var visible = r.top < wh * 0.82;
+        if (visible) el.classList.add('prf-in');
+        if (dots[i]) dots[i].classList.toggle('prf-pdot--active', visible);
+      });
     }
 
-    /* Scroll-draw the gold spine */
-    if (!isMobile() && pathLen > 0 && fillEl){
-      var lr  = listEl.getBoundingClientRect();
-      /* pct: 0 when list top at viewport bottom → 1 when list bottom at viewport top */
-      var pct = Math.min(1, Math.max(0, (wh - lr.top) / (lr.height + wh * 0.45)));
-      fillEl.style.strokeDashoffset = pathLen * (1 - pct);
+    /* ── Progress dot clicks ────────────────────────────── */
+    dots.forEach(function(dot){
+      dot.addEventListener('click', function(){
+        var idx = parseInt(dot.dataset.target, 10) - 1;
+        if (items[idx]) items[idx].scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    });
+
+    /* ── Init ───────────────────────────────────────────── */
+    function init(){
+      buildSpine();
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', function(){ buildSpine(); onScroll(); });
     }
 
-    /* Reveal items & update dots */
-    items.forEach(function(el, i){
-      var r       = el.getBoundingClientRect();
-      var visible = r.top < wh * 0.82;
-      if (visible) el.classList.add('prf-in');
-      if (dots[i]) dots[i].classList.toggle('prf-pdot--active', visible);
+    if (document.readyState === 'loading'){
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      setTimeout(init, 80);
+    }
+
+    document.addEventListener('shopify:section:load', function(e){
+      if (e.detail && e.detail.sectionId == sid) setTimeout(init, 100);
     });
-  }
-
-  /* ── Progress dot clicks ────────────────────────────── */
-  dots.forEach(function(dot){
-    dot.addEventListener('click', function(){
-      var idx = parseInt(dot.dataset.target, 10) - 1;
-      if (items[idx]) items[idx].scrollIntoView({ behavior: 'smooth', block: 'center' });
-    });
-  });
-
-  /* ── Init ───────────────────────────────────────────── */
-  function init(){
-    buildSpine();
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', function(){ buildSpine(); onScroll(); });
-  }
-
-  if (document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    setTimeout(init, 80);
-  }
-
-  document.addEventListener('shopify:section:load', function(e){
-    if (e.detail && e.detail.sectionId == sid) setTimeout(init, 100);
-  });
-})();
+  })();
 </script>
 
 {% schema %}

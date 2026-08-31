@@ -483,12 +483,13 @@
 
 <div class="perfume-bundle-section">
   <div class="builder-layout">
-    
     <!-- LEFT SIDEBAR: BUNDLE STATUS -->
     <div class="bundle-sidebar">
       <div class="sidebar-header">
         <h2>Discover More Scents for Less</h2>
-        <p id="BundleStatusText">Great choice! Add 3 items for 15% off or 4 items for 20% off or 5 items to save 25% on your bundle</p>
+        <p id="BundleStatusText">
+          Great choice! Add 3 items for 15% off or 4 items for 20% off or 5 items to save 25% on your bundle
+        </p>
       </div>
 
       <div class="slots-wrapper">
@@ -499,11 +500,26 @@
           <div class="progress-marker" style="top: 25%" id="Marker-1"></div>
           <div class="progress-label" style="top: 25%" id="Label-2"></div>
           <div class="progress-marker" style="top: 50%" id="Marker-2"></div>
-          <div class="progress-label" style="top: 50%; width: 32px; height: 32px; font-size: 10px; color: #000;" id="Label-15">15%</div>
+          <div
+            class="progress-label"
+            style="top: 50%; width: 32px; height: 32px; font-size: 10px; color: #000;"
+            id="Label-15">
+            15%
+          </div>
           <div class="progress-marker" style="top: 68%" id="Marker-3"></div>
-          <div class="progress-label" style="top: 68%; width: 32px; height: 32px; font-size: 10px; color: #000;" id="Label-20">20%</div>
+          <div
+            class="progress-label"
+            style="top: 68%; width: 32px; height: 32px; font-size: 10px; color: #000;"
+            id="Label-20">
+            20%
+          </div>
           <div class="progress-marker" style="top: 94%" id="Marker-4"></div>
-          <div class="progress-label" style="top: 94%; width: 32px; height: 32px; font-size: 10px; color: #000;" id="Label-25">25%</div>
+          <div
+            class="progress-label"
+            style="top: 94%; width: 32px; height: 32px; font-size: 10px; color: #000;"
+            id="Label-25">
+            25%
+          </div>
         </div>
 
         <div class="slot-list" id="BundleSlots">
@@ -513,10 +529,9 @@
               <div class="slot-placeholder-text">
                 <span class="primary">Select a product</span>
                 {% if forloop.index < 0 %}
-                
-                  {% elsif forloop.index == 1 %}
+                {% elsif forloop.index == 1 %}
                   <span class="unlock">$4.99 Shipping</span>
-                  {% elsif forloop.index == 2 %}
+                {% elsif forloop.index == 2 %}
                   <span class="unlock">FREE SHIPPING</span>
                 {% elsif forloop.index == 3 %}
                   <span class="unlock">Unlock 15% Off</span>
@@ -538,9 +553,7 @@
             <span id="TotalDisplay">$ 0</span>
           </button>
         </div>
-        <div class="savings-row">
-          Total savings: <span id="SavingsDisplay">$ 0</span>
-        </div>
+        <div class="savings-row">Total savings: <span id="SavingsDisplay">$ 0</span></div>
       </div>
     </div>
 
@@ -548,14 +561,24 @@
     <div class="selection-drawer" id="SelectionDrawer">
       <div class="drawer-title">
         <div class="drawer-title-content">
-        <button onclick="goBackToStep()" class="back-arrow-btn" id="BackArrowBtn" title="Go back">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <button onclick="goBackToStep()" class="back-arrow-btn" id="BackArrowBtn" title="Go back">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round">
               <polyline points="15 18 9 12 15 6"></polyline>
             </svg>
           </button>
-        <span class="drawer-title-text" id="DrawerHeadline">Select Size</span>
+          <span class="drawer-title-text" id="DrawerHeadline">Select Size</span>
         </div>
-        <button onclick="closeSelector()" style="background: none; border: none; cursor: pointer; font-size: 25px;">×</button>
+        <button onclick="closeSelector()" style="background: none; border: none; cursor: pointer; font-size: 25px;">
+          ×
+        </button>
       </div>
 
       <div id="Step-Size" class="step-container">
@@ -579,7 +602,14 @@
         <div class="search-bar-wrapper">
           <div class="search-input-container">
             <input type="text" id="ProductSearch" placeholder="Search" />
-            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg
+              class="search-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round">
               <circle cx="11" cy="11" r="8"></circle>
               <path d="m21 21-4.35-4.35"></path>
             </svg>
@@ -590,7 +620,6 @@
         </div>
       </div>
     </div>
-
   </div>
 </div>
 
@@ -1013,7 +1042,6 @@
       window.isProcessingCartAction = false;
     }
   }
-
 </script>
 
 {% schema %}

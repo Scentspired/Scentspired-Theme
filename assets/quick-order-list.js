@@ -1,18 +1,18 @@
-if (!customElements.get('quick-order-list')) {
+if (!customElements.get("quick-order-list")) {
   customElements.define(
-    'quick-order-list',
+    "quick-order-list",
     class QuickOrderList extends BulkAdd {
       cartUpdateUnsubscriber = undefined;
       hasPendingQuantityUpdate = false;
       constructor() {
         super();
-        this.isListInsideModal = this.closest('bulk-modal');
+        this.isListInsideModal = this.closest("bulk-modal");
 
-        this.stickyHeaderElement = document.querySelector('sticky-header');
+        this.stickyHeaderElement = document.querySelector("sticky-header");
         if (this.stickyHeaderElement) {
           this.stickyHeader = {
             height: this.stickyHeaderElement.offsetHeight,
-            type: `${this.stickyHeaderElement.getAttribute('data-sticky-type')}`,
+            type: `${this.stickyHeaderElement.getAttribute("data-sticky-type")}`,
           };
         }
 
@@ -21,15 +21,15 @@ if (!customElements.get('quick-order-list')) {
           this.totalBarPosition = window.innerHeight - this.totalBar.offsetHeight;
 
           this.handleResize = this.handleResize.bind(this);
-          window.addEventListener('resize', this.handleResize);
+          window.addEventListener("resize", this.handleResize);
         }
 
-        const form = this.querySelector('form');
-        if (form) form.addEventListener('submit', (event) => event.preventDefault());
+        const form = this.querySelector("form");
+        if (form) form.addEventListener("submit", event => event.preventDefault());
       }
 
       connectedCallback() {
-        this.cartUpdateUnsubscriber = subscribe(PUB_SUB_EVENTS.cartUpdate, async (event) => {
+        this.cartUpdateUnsubscriber = subscribe(PUB_SUB_EVENTS.cartUpdate, async event => {
           // skip if cart event was triggered by this section
           if (event.source === this.id) return;
 
@@ -43,39 +43,42 @@ if (!customElements.get('quick-order-list')) {
 
       disconnectedCallback() {
         this.cartUpdateUnsubscriber?.();
-        window.removeEventListener('resize', this.handleResize);
+        window.removeEventListener("resize", this.handleResize);
       }
 
       handleResize() {
-        this.totalBarPosition = window.innerHeight - (this.totalBar ? this.totalBar.offsetHeight : 0);
-        this.stickyHeader.height = this.stickyHeaderElement ? this.stickyHeaderElement.offsetHeight : 0;
+        this.totalBarPosition =
+          window.innerHeight - (this.totalBar ? this.totalBar.offsetHeight : 0);
+        this.stickyHeader.height = this.stickyHeaderElement
+          ? this.stickyHeaderElement.offsetHeight
+          : 0;
       }
 
       initEventListeners() {
-        this.querySelectorAll('.pagination__item').forEach((link) => {
-          link.addEventListener('click', async (event) => {
+        this.querySelectorAll(".pagination__item").forEach(link => {
+          link.addEventListener("click", async event => {
             event.preventDefault();
             event.stopPropagation();
 
             const url = new URL(event.currentTarget.href);
 
             this.toggleTableLoading(true);
-            await this.refresh(url.searchParams.get('page') || '1');
+            await this.refresh(url.searchParams.get("page") || "1");
             this.scrollTop();
             this.toggleTableLoading(false);
           });
         });
 
-        const contents = this.querySelector('.quick-order-list__contents');
+        const contents = this.querySelector(".quick-order-list__contents");
         if (contents) {
-          contents.addEventListener(
-            'keyup',
-            this.handleScrollIntoView.bind(this)
-          );
+          contents.addEventListener("keyup", this.handleScrollIntoView.bind(this));
         }
 
         if (this.quickOrderListTable) {
-          this.quickOrderListTable.addEventListener('keydown', this.handleSwitchVariantOnEnter.bind(this));
+          this.quickOrderListTable.addEventListener(
+            "keydown",
+            this.handleSwitchVariantOnEnter.bind(this)
+          );
         }
 
         this.initVariantEventListeners();
@@ -84,16 +87,20 @@ if (!customElements.get('quick-order-list')) {
       initVariantEventListeners() {
         this.allInputsArray = Array.from(this.querySelectorAll('input[type="number"]'));
 
-        this.querySelectorAll('quantity-input').forEach((qty) => {
-          const debouncedOnChange = debounce(this.onChange.bind(this), BulkAdd.ASYNC_REQUEST_DELAY, true);
-          qty.addEventListener('change', (event) => {
+        this.querySelectorAll("quantity-input").forEach(qty => {
+          const debouncedOnChange = debounce(
+            this.onChange.bind(this),
+            BulkAdd.ASYNC_REQUEST_DELAY,
+            true
+          );
+          qty.addEventListener("change", event => {
             this.hasPendingQuantityUpdate = true;
             debouncedOnChange(event);
           });
         });
 
-        this.querySelectorAll('.quick-order-list-remove-button').forEach((button) => {
-          button.addEventListener('click', (event) => {
+        this.querySelectorAll(".quick-order-list-remove-button").forEach(button => {
+          button.addEventListener("click", event => {
             event.preventDefault();
             this.toggleLoading(true);
             this.startQueue(button.dataset.index, 0);
@@ -102,15 +109,15 @@ if (!customElements.get('quick-order-list')) {
       }
 
       get currentPage() {
-        return this.querySelector('.pagination-wrapper')?.dataset?.page ?? '1';
+        return this.querySelector(".pagination-wrapper")?.dataset?.page ?? "1";
       }
 
       get quickOrderListTable() {
-        return this.querySelector('.quick-order-list__table');
+        return this.querySelector(".quick-order-list__table");
       }
 
       get isCurrentPageEmpty() {
-        return this.querySelectorAll('.variant-item').length === 0;
+        return this.querySelectorAll(".variant-item").length === 0;
       }
 
       get isTableEmpty() {
@@ -118,22 +125,22 @@ if (!customElements.get('quick-order-list')) {
       }
 
       get cartVariantsForProduct() {
-        return Array.from(this.querySelectorAll('[data-cart-quantity]'))
-          .filter((item) => Number(item.dataset.cartQuantity) > 0)
-          .map((item) => item.dataset.cartQuantityId);
+        return Array.from(this.querySelectorAll("[data-cart-quantity]"))
+          .filter(item => Number(item.dataset.cartQuantity) > 0)
+          .map(item => item.dataset.cartQuantityId);
       }
 
       get itemsInCartCount() {
-        return Array.from(this.querySelectorAll('[data-cart-quantity]')).reduce(
+        return Array.from(this.querySelectorAll("[data-cart-quantity]")).reduce(
           (total, item) => total + Number(item.dataset.cartQuantity),
           0
         );
       }
 
       onChange(event) {
-        const input = event.target.classList.contains('quantity__input')
+        const input = event.target.classList.contains("quantity__input")
           ? event.target
-          : event.target.querySelector('.quantity__input');
+          : event.target.querySelector(".quantity__input");
 
         if (!input) return;
 
@@ -141,12 +148,12 @@ if (!customElements.get('quick-order-list')) {
         this.cleanErrors();
         this.validateQuantity(event);
 
-        if (this.allInputsArray.some((input) => input.classList.contains('invalid'))) {
+        if (this.allInputsArray.some(input => input.classList.contains("invalid"))) {
           this.hasPendingQuantityUpdate = false;
           return;
         }
 
-        this.toggleLoading(true, event.target.closest('tr'));
+        this.toggleLoading(true, event.target.closest("tr"));
 
         this.startQueue(input.dataset.index, quantity);
       }
@@ -170,7 +177,7 @@ if (!customElements.get('quick-order-list')) {
       }
 
       cleanErrors() {
-        this.querySelectorAll('.variant-item__error-text').forEach((error) => (error.innerHTML = ''));
+        this.querySelectorAll(".variant-item__error-text").forEach(error => (error.innerHTML = ""));
       }
 
       getSectionsToRender() {
@@ -181,26 +188,29 @@ if (!customElements.get('quick-order-list')) {
             selector: `#${this.id}`,
           },
           {
-            id: 'cart-icon-bubble',
-            section: 'cart-icon-bubble',
-            selector: '#shopify-section-cart-icon-bubble',
+            id: "cart-icon-bubble",
+            section: "cart-icon-bubble",
+            selector: "#shopify-section-cart-icon-bubble",
           },
           {
             id: `quick-order-list-live-region-text-${this.dataset.productId}`,
-            section: 'cart-live-region-text',
-            selector: '.shopify-section',
+            section: "cart-live-region-text",
+            selector: ".shopify-section",
           },
           {
-            id: 'CartDrawer',
-            selector: '.drawer__inner',
-            section: 'cart-drawer',
+            id: "CartDrawer",
+            selector: ".drawer__inner",
+            section: "cart-drawer",
           },
         ];
       }
 
       toggleTableLoading(enable) {
         if (this.quickOrderListTable) {
-          this.quickOrderListTable.classList.toggle('quick-order-list__container--disabled', enable);
+          this.quickOrderListTable.classList.toggle(
+            "quick-order-list__container--disabled",
+            enable
+          );
         }
         this.toggleLoading(enable);
       }
@@ -208,10 +218,12 @@ if (!customElements.get('quick-order-list')) {
       async refresh(pageNumber = null) {
         const url = this.dataset.url || window.location.pathname;
 
-        return fetch(`${url}?section_id=${this.dataset.section}&page=${pageNumber || this.currentPage}`)
-          .then((response) => response.text())
-          .then((responseText) => {
-            const html = new DOMParser().parseFromString(responseText, 'text/html');
+        return fetch(
+          `${url}?section_id=${this.dataset.section}&page=${pageNumber || this.currentPage}`
+        )
+          .then(response => response.text())
+          .then(responseText => {
+            const html = new DOMParser().parseFromString(responseText, "text/html");
             const responseQuickOrderList = html.querySelector(`#${this.id}`);
 
             if (!responseQuickOrderList) {
@@ -221,7 +233,7 @@ if (!customElements.get('quick-order-list')) {
             this.innerHTML = responseQuickOrderList.innerHTML;
             this.initEventListeners();
           })
-          .catch((e) => {
+          .catch(e => {
             console.error(e);
           });
       }
@@ -229,11 +241,11 @@ if (!customElements.get('quick-order-list')) {
       updateMultipleQty(items) {
         this.toggleTableLoading(true);
         this.cleanErrors();
-        const startMarker = CartPerformance.createStartingMarker('update:wait-for-subscribers');
+        const startMarker = CartPerformance.createStartingMarker("update:wait-for-subscribers");
 
         const body = JSON.stringify({
           updates: items,
-          sections: this.getSectionsToRender().map((section) => section.section),
+          sections: this.getSectionsToRender().map(section => section.section),
           sections_url: window.location.pathname,
         });
 
@@ -242,14 +254,14 @@ if (!customElements.get('quick-order-list')) {
 
       updateMultipleQtyRequest(body, startMarker) {
         fetch(`${routes.cart_update_url}`, { ...fetchConfig(), body })
-          .then((response) => response.json())
-          .then((response) => {
-            this.renderSections(response, '');
+          .then(response => response.json())
+          .then(response => {
+            this.renderSections(response, "");
             publish(PUB_SUB_EVENTS.cartUpdate, { source: this.id, cartData: response }).then(() => {
-              CartPerformance.measureFromMarker('update:wait-for-subscribers', startMarker);
+              CartPerformance.measureFromMarker("update:wait-for-subscribers", startMarker);
             });
           })
-          .catch((error) => {
+          .catch(error => {
             this.setErrorMessage(window.cartStrings.error);
             console.error(error);
           })
@@ -266,7 +278,7 @@ if (!customElements.get('quick-order-list')) {
           if (!sectionElement) return;
 
           if (!sections || !sections[section]) return;
-          const parsed = new DOMParser().parseFromString(sections[section], 'text/html');
+          const parsed = new DOMParser().parseFromString(sections[section], "text/html");
           const newSection = parsed.querySelector(selector);
           if (!newSection) return;
 
@@ -275,23 +287,25 @@ if (!customElements.get('quick-order-list')) {
 
             const focusedElement = document.activeElement;
             let focusTarget = focusedElement?.dataset?.target;
-            if (focusTarget?.includes('remove')) {
-              focusTarget = focusedElement.closest('quantity-popover')?.querySelector('[data-target*="increment-"]')
-                ?.dataset.target;
+            if (focusTarget?.includes("remove")) {
+              focusTarget = focusedElement
+                .closest("quantity-popover")
+                ?.querySelector('[data-target*="increment-"]')?.dataset.target;
             }
 
             const total = this.getTotalBar();
             if (total) {
-              const newTotal = newSection.querySelector('.quick-order-list__total');
+              const newTotal = newSection.querySelector(".quick-order-list__total");
               if (newTotal) total.innerHTML = newTotal.innerHTML;
             }
 
             const table = this.quickOrderListTable;
-            const newTable = newSection.querySelector('.quick-order-list__table');
+            const newTable = newSection.querySelector(".quick-order-list__table");
 
             // only update variants if they are from the active page
             const shouldUpdateVariants =
-              this.currentPage === (newSection.querySelector('.pagination-wrapper')?.dataset.page ?? '1');
+              this.currentPage ===
+              (newSection.querySelector(".pagination-wrapper")?.dataset.page ?? "1");
             if (newTable && shouldUpdateVariants && table) {
               table.innerHTML = newTable.innerHTML;
 
@@ -302,8 +316,10 @@ if (!customElements.get('quick-order-list')) {
 
               this.initVariantEventListeners();
             }
-          } else if (section === 'cart-drawer') {
-            sectionElement.closest('cart-drawer')?.classList.toggle('is-empty', (items || []).length === 0);
+          } else if (section === "cart-drawer") {
+            sectionElement
+              .closest("cart-drawer")
+              ?.classList.toggle("is-empty", (items || []).length === 0);
             const targetInner = sectionElement.querySelector(selector) || sectionElement;
             if (targetInner && newSection) targetInner.innerHTML = newSection.innerHTML;
           } else {
@@ -313,7 +329,7 @@ if (!customElements.get('quick-order-list')) {
       }
 
       getTotalBar() {
-        return this.querySelector('.quick-order-list__total');
+        return this.querySelector(".quick-order-list__total");
       }
 
       scrollTop() {
@@ -322,7 +338,10 @@ if (!customElements.get('quick-order-list')) {
         if (this.isListInsideModal) {
           this.scrollIntoView();
         } else {
-          window.scrollTo({ top: top + window.scrollY - (this.stickyHeader?.height || 0), behavior: 'instant' });
+          window.scrollTo({
+            top: top + window.scrollY - (this.stickyHeader?.height || 0),
+            behavior: "instant",
+          });
         }
       }
 
@@ -332,9 +351,11 @@ if (!customElements.get('quick-order-list')) {
         const inputBottomBorder = target.getBoundingClientRect().bottom;
 
         if (this.isListInsideModal) {
-          const totalBarRect = this.totalBar ? this.totalBar.getBoundingClientRect() : { top: Infinity };
+          const totalBarRect = this.totalBar
+            ? this.totalBar.getBoundingClientRect()
+            : { top: Infinity };
           const totalBarCrossesInput = inputBottomBorder > totalBarRect.top;
-          const tableHead = this.querySelector('.quick-order-list__table thead');
+          const tableHead = this.querySelector(".quick-order-list__table thead");
           const tableHeadBottom = tableHead ? tableHead.getBoundingClientRect().bottom : 0;
           const tableHeadCrossesInput = inputTopBorder < tableHeadBottom;
 
@@ -344,16 +365,16 @@ if (!customElements.get('quick-order-list')) {
         } else {
           const stickyHeaderBottomBorder = this.stickyHeaderElement?.getBoundingClientRect().bottom;
           const totalBarCrossesInput = inputBottomBorder > this.totalBarPosition;
-          const qtyWrapper = this.querySelector('.variant-item__quantity-wrapper');
+          const qtyWrapper = this.querySelector(".variant-item__quantity-wrapper");
           const qtyWrapperHeight = qtyWrapper ? qtyWrapper.offsetHeight : 0;
           const inputOutsideOfViewPort = inputBottomBorder < qtyWrapperHeight;
           const stickyHeaderCrossesInput =
             this.stickyHeaderElement &&
-            this.stickyHeader.type !== 'on-scroll-up' &&
+            this.stickyHeader.type !== "on-scroll-up" &&
             this.stickyHeader.height > inputTopBorder;
           const stickyHeaderScrollupCrossesInput =
             this.stickyHeaderElement &&
-            this.stickyHeader.type === 'on-scroll-up' &&
+            this.stickyHeader.type === "on-scroll-up" &&
             this.stickyHeader.height > inputTopBorder &&
             stickyHeaderBottomBorder > 0;
 
@@ -370,19 +391,19 @@ if (!customElements.get('quick-order-list')) {
 
       scrollToCenter(target) {
         target.scrollIntoView({
-          block: 'center',
-          behavior: 'smooth',
+          block: "center",
+          behavior: "smooth",
         });
       }
 
       handleScrollIntoView(event) {
-        if ((event.key === 'Tab' || event.key === 'Enter') && this.allInputsArray.length !== 1) {
+        if ((event.key === "Tab" || event.key === "Enter") && this.allInputsArray.length !== 1) {
           this.scrollQuickOrderListTable(event.target);
         }
       }
 
       handleSwitchVariantOnEnter(event) {
-        if (event.key !== 'Enter' || event.target.tagName !== 'INPUT') return;
+        if (event.key !== "Enter" || event.target.tagName !== "INPUT") return;
 
         event.preventDefault();
         event.target.blur();
@@ -391,7 +412,8 @@ if (!customElements.get('quick-order-list')) {
 
         const currentIndex = this.allInputsArray.indexOf(event.target);
         const offset = event.shiftKey ? -1 : 1;
-        const nextIndex = (currentIndex + offset + this.allInputsArray.length) % this.allInputsArray.length;
+        const nextIndex =
+          (currentIndex + offset + this.allInputsArray.length) % this.allInputsArray.length;
 
         this.allInputsArray[nextIndex]?.select();
       }
@@ -412,8 +434,8 @@ if (!customElements.get('quick-order-list')) {
         this.setErrorMessage();
 
         fetch(`${routes.cart_update_url}`, { ...fetchConfig(), ...{ body } })
-          .then((response) => response.text())
-          .then(async (state) => {
+          .then(response => response.text())
+          .then(async state => {
             const parsedState = JSON.parse(state);
             this.renderSections(parsedState);
             publish(PUB_SUB_EVENTS.cartUpdate, {
@@ -421,7 +443,7 @@ if (!customElements.get('quick-order-list')) {
               cartData: parsedState,
             });
           })
-          .catch((e) => {
+          .catch(e => {
             console.error(e);
             this.setErrorMessage(window.cartStrings.error);
           })
@@ -433,28 +455,33 @@ if (!customElements.get('quick-order-list')) {
 
       setErrorMessage(message = null) {
         if (!this.errorMessageTemplate) {
-          const tpl = document.getElementById(`QuickOrderListErrorTemplate-${this.dataset.productId}`);
+          const tpl = document.getElementById(
+            `QuickOrderListErrorTemplate-${this.dataset.productId}`
+          );
           if (tpl) this.errorMessageTemplate = tpl.cloneNode(true);
         }
-        const errorElements = document.querySelectorAll('.quick-order-list-error');
+        const errorElements = document.querySelectorAll(".quick-order-list-error");
 
-        errorElements.forEach((errorElement) => {
-          errorElement.innerHTML = '';
+        errorElements.forEach(errorElement => {
+          errorElement.innerHTML = "";
           if (!message || !this.errorMessageTemplate) return;
           const updatedMessageElement = this.errorMessageTemplate.cloneNode(true);
-          const msgEl = updatedMessageElement.content ? updatedMessageElement.content.querySelector('.quick-order-list-error-message') : null;
+          const msgEl = updatedMessageElement.content
+            ? updatedMessageElement.content.querySelector(".quick-order-list-error-message")
+            : null;
           if (msgEl) msgEl.innerText = message;
-          if (updatedMessageElement.content) errorElement.appendChild(updatedMessageElement.content);
+          if (updatedMessageElement.content)
+            errorElement.appendChild(updatedMessageElement.content);
         });
       }
 
       updateMessage(quantity = null) {
-        const messages = this.querySelectorAll('.quick-order-list__message-text');
-        const icons = this.querySelectorAll('.quick-order-list__message-icon');
+        const messages = this.querySelectorAll(".quick-order-list__message-text");
+        const icons = this.querySelectorAll(".quick-order-list__message-icon");
 
         if (quantity === null || isNaN(quantity)) {
-          messages.forEach((message) => (message.innerHTML = ''));
-          icons.forEach((icon) => icon.classList.add('hidden'));
+          messages.forEach(message => (message.innerHTML = ""));
+          icons.forEach(icon => icon.classList.add("hidden"));
           return;
         }
 
@@ -463,83 +490,87 @@ if (!customElements.get('quick-order-list')) {
 
         const textTemplate = isQuantityNegative
           ? absQuantity === 1
-            ? (window.quickOrderListStrings?.itemRemoved || '')
-            : (window.quickOrderListStrings?.itemsRemoved || '')
+            ? window.quickOrderListStrings?.itemRemoved || ""
+            : window.quickOrderListStrings?.itemsRemoved || ""
           : quantity === 1
-          ? (window.quickOrderListStrings?.itemAdded || '')
-          : (window.quickOrderListStrings?.itemsAdded || '');
+            ? window.quickOrderListStrings?.itemAdded || ""
+            : window.quickOrderListStrings?.itemsAdded || "";
 
-        messages.forEach((msg) => (msg.innerHTML = textTemplate.replace('[quantity]', absQuantity)));
+        messages.forEach(msg => (msg.innerHTML = textTemplate.replace("[quantity]", absQuantity)));
 
         if (!isQuantityNegative) {
-          icons.forEach((i) => i.classList.remove('hidden'));
+          icons.forEach(i => i.classList.remove("hidden"));
         }
       }
 
       updateError(updatedValue, id) {
-        let message = '';
-        if (typeof updatedValue === 'undefined') {
-          message = window.cartStrings?.error || 'Error updating cart';
+        let message = "";
+        if (typeof updatedValue === "undefined") {
+          message = window.cartStrings?.error || "Error updating cart";
         } else {
-          message = (window.cartStrings?.quantityError || '').replace('[quantity]', updatedValue);
+          message = (window.cartStrings?.quantityError || "").replace("[quantity]", updatedValue);
         }
         this.updateLiveRegions(id, message);
       }
 
       updateLiveRegions(id, message) {
-        const variantItemErrorDesktop = document.getElementById(`Quick-order-list-item-error-desktop-${id}`);
+        const variantItemErrorDesktop = document.getElementById(
+          `Quick-order-list-item-error-desktop-${id}`
+        );
         if (variantItemErrorDesktop) {
-          const errorText = variantItemErrorDesktop.querySelector('.variant-item__error-text');
+          const errorText = variantItemErrorDesktop.querySelector(".variant-item__error-text");
           if (errorText) errorText.innerHTML = message;
-          const parentTr = variantItemErrorDesktop.closest('tr');
-          if (parentTr) parentTr.classList.remove('hidden');
+          const parentTr = variantItemErrorDesktop.closest("tr");
+          if (parentTr) parentTr.classList.remove("hidden");
         }
-        const variantItemErrorMobile = document.getElementById(`Quick-order-list-item-error-mobile-${id}`);
+        const variantItemErrorMobile = document.getElementById(
+          `Quick-order-list-item-error-mobile-${id}`
+        );
         if (variantItemErrorMobile) {
-          const errorTextMobile = variantItemErrorMobile.querySelector('.variant-item__error-text');
+          const errorTextMobile = variantItemErrorMobile.querySelector(".variant-item__error-text");
           if (errorTextMobile) errorTextMobile.innerHTML = message;
         }
 
-        const statusEl = this.querySelector('#shopping-cart-variant-item-status');
-        if (statusEl) statusEl.setAttribute('aria-hidden', true);
+        const statusEl = this.querySelector("#shopping-cart-variant-item-status");
+        if (statusEl) statusEl.setAttribute("aria-hidden", true);
 
-        const cartStatus = document.getElementById('quick-order-list-live-region-text');
+        const cartStatus = document.getElementById("quick-order-list-live-region-text");
         if (cartStatus) {
-          cartStatus.setAttribute('aria-hidden', false);
+          cartStatus.setAttribute("aria-hidden", false);
 
           setTimeout(() => {
-            cartStatus.setAttribute('aria-hidden', true);
+            cartStatus.setAttribute("aria-hidden", true);
           }, 1000);
         }
       }
 
       toggleLoading(loading, target = this) {
         if (!target) return;
-        const statusEl = target.querySelector('#shopping-cart-variant-item-status');
-        if (statusEl) statusEl.toggleAttribute('aria-hidden', !loading);
+        const statusEl = target.querySelector("#shopping-cart-variant-item-status");
+        if (statusEl) statusEl.toggleAttribute("aria-hidden", !loading);
         target
-          .querySelectorAll('.variant-remove-total .loading__spinner')
-          ?.forEach((spinner) => spinner.classList.toggle('hidden', !loading));
+          .querySelectorAll(".variant-remove-total .loading__spinner")
+          ?.forEach(spinner => spinner.classList.toggle("hidden", !loading));
       }
     }
   );
 }
 
-if (!customElements.get('quick-order-list-remove-all-button')) {
+if (!customElements.get("quick-order-list-remove-all-button")) {
   customElements.define(
-    'quick-order-list-remove-all-button',
+    "quick-order-list-remove-all-button",
     class QuickOrderListRemoveAllButton extends HTMLElement {
       constructor() {
         super();
-        this.quickOrderList = this.closest('quick-order-list');
+        this.quickOrderList = this.closest("quick-order-list");
 
         this.actions = {
-          confirm: 'confirm',
-          remove: 'remove',
-          cancel: 'cancel',
+          confirm: "confirm",
+          remove: "remove",
+          cancel: "cancel",
         };
 
-        this.addEventListener('click', (event) => {
+        this.addEventListener("click", event => {
           event.preventDefault();
           if (this.dataset.action === this.actions.confirm) {
             this.toggleConfirmation(false, true);
@@ -560,10 +591,10 @@ if (!customElements.get('quick-order-list-remove-all-button')) {
 
       toggleConfirmation(showConfirmation, showInfo) {
         if (!this.quickOrderList) return;
-        const conf = this.quickOrderList.querySelector('.quick-order-list-total__confirmation');
-        if (conf) conf.classList.toggle('hidden', showConfirmation);
-        const info = this.quickOrderList.querySelector('.quick-order-list-total__info');
-        if (info) info.classList.toggle('hidden', showInfo);
+        const conf = this.quickOrderList.querySelector(".quick-order-list-total__confirmation");
+        if (conf) conf.classList.toggle("hidden", showConfirmation);
+        const info = this.quickOrderList.querySelector(".quick-order-list-total__info");
+        if (info) info.classList.toggle("hidden", showInfo);
       }
     }
   );

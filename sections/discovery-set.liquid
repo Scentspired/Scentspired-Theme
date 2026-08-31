@@ -1,5 +1,5 @@
 {% comment %}
-Bundle Builder Section - 5 Products Only, No Discounts, Checkout Enabled Only When 5 Items Added
+  Bundle Builder Section - 5 Products Only, No Discounts, Checkout Enabled Only When 5 Items Added
 {% endcomment %}
 
 <div class="bundle-builder-section">
@@ -12,7 +12,7 @@ Bundle Builder Section - 5 Products Only, No Discounts, Checkout Enabled Only Wh
             <h1 class="bundle-title">Bundle.</h1>
             <p class="bundle-description">Choose 5 fragrances to complete your bundle and checkout.</p>
           </div>
-          
+
           <div class="bundle-selector">
             <div class="bundle-slider-container">
               <button class="bundle-nav-arrow left" id="scroll-left">
@@ -34,7 +34,7 @@ Bundle Builder Section - 5 Products Only, No Discounts, Checkout Enabled Only Wh
                   {% endfor %}
                 </div>
               </div>
-              
+
               <button class="bundle-nav-arrow right" id="scroll-right">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                   <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2"/>
@@ -43,7 +43,7 @@ Bundle Builder Section - 5 Products Only, No Discounts, Checkout Enabled Only Wh
             </div>
           </div>
         </div>
-        
+
         <!-- Pricing Sidebar -->
         <div class="bundle-sidebar">
           <div class="pricing-section">
@@ -53,20 +53,18 @@ Bundle Builder Section - 5 Products Only, No Discounts, Checkout Enabled Only Wh
             </div>
             <p class="savings-text" id="savings-message">Add 5 items to checkout</p>
           </div>
-          
+
           <div class="checkout-section">
             <div class="subtotal-row">
               <span>SUBTOTAL</span>
               <span>$<span id="subtotal-amount">0</span></span>
             </div>
-            <button class="checkout-button" id="checkout-btn" disabled>
-              CHECKOUT
-            </button>
+            <button class="checkout-button" id="checkout-btn" disabled>CHECKOUT</button>
           </div>
         </div>
       </div>
     </div>
-  </div>                 
+  </div>
 
   <!-- Product Filter Tabs -->
   <div class="product-filter-section">
@@ -75,7 +73,7 @@ Bundle Builder Section - 5 Products Only, No Discounts, Checkout Enabled Only Wh
         <button class="filter-tab active" data-filter="all">All Perfumes</button>
         <button class="filter-tab" data-filter="bestsellers">Bestsellers</button>
       </div>
-      
+
       <div class="search-box">
         <input type="text" placeholder="Search" class="search-input" id="product-search">
         <button class="search-button">
@@ -92,73 +90,73 @@ Bundle Builder Section - 5 Products Only, No Discounts, Checkout Enabled Only Wh
   <div class="products-grid-section">
     <div class="products-container">
       <div class="products-grid" id="products-grid">
-        {% assign collection_handle = section.settings.collection | default: 'all' %}
-        {% assign bestsellers_handle = section.settings.bestsellers_collection | default: 'bestsellers' %}
-        
+        {% assign collection_handle = section.settings.collection | default: "all" %}
+        {% assign bestsellers_handle = section.settings.bestsellers_collection | default: "bestsellers" %}
+
         {% if collections[collection_handle] %}
           {% assign all_products = collections[collection_handle].products %}
         {% else %}
           {% assign all_products = collections.all.products %}
         {% endif %}
-        
+
         {% if collections[bestsellers_handle] %}
           {% assign bestseller_products = collections[bestsellers_handle].products %}
         {% else %}
-          {% assign bestseller_products = collections.all.products | where: 'tags', 'Bestseller' %}
+          {% assign bestseller_products = collections.all.products | where: "tags", "Bestseller" %}
         {% endif %}
 
         {% for product in all_products limit: 20 %}
           {% assign is_bestseller = false %}
-          {% if product.tags contains 'Bestseller' %}
+          {% if product.tags contains "Bestseller" %}
             {% assign is_bestseller = true %}
           {% endif %}
-          
+
           {% for bestseller_product in bestseller_products %}
             {% if bestseller_product.id == product.id %}
               {% assign is_bestseller = true %}
               {% break %}
             {% endif %}
           {% endfor %}
-          
-          <div class="product-card" 
-               data-product-id="{{ product.variants.first.id }}" 
-               data-product-handle="{{ product.handle }}"
-               data-product-title="{{ product.title | escape }}"
-               data-product-price="{{ product.price }}"
-               data-product-image="{{ product.featured_image | img_url: '100x100' }}"
-               data-tags="{{ product.tags | join: ',' | downcase }}"
-               data-bestseller="{{ is_bestseller }}"
-               style="background-image: url('{{ product.featured_image | img_url: '400x400' }}');">
-            
+
+          <div
+            class="product-card"
+            data-product-id="{{ product.variants.first.id }}"
+            data-product-handle="{{ product.handle }}"
+            data-product-title="{{ product.title | escape }}"
+            data-product-price="{{ product.price }}"
+            data-product-image="{{ product.featured_image | img_url: '100x100' }}"
+            data-tags="{{ product.tags | join: ',' | downcase }}"
+            data-bestseller="{{ is_bestseller }}"
+            style="background-image: url('{{ product.featured_image | img_url: '400x400' }}');">
             <!-- Product Badges -->
             <div class="product-badges">
               {% for tag in product.tags %}
                 {% case tag %}
-                  {% when 'Women' %}
+                  {% when "Women" %}
                     <span class="badge category-badge">Women</span>
-                  {% when 'Men' %}
+                  {% when "Men" %}
                     <span class="badge category-badge">Men</span>
-                  {% when 'Unisex' %}
+                  {% when "Unisex" %}
                     <span class="badge category-badge">Unisex</span>
-                  {% when 'Bestseller' %}
+                  {% when "Bestseller" %}
                     <span class="badge bestseller-badge">Bestseller</span>
                 {% endcase %}
               {% endfor %}
             </div>
-            
+
             <!-- Price Overlay in Top Right -->
             <div class="product-price-overlay">${{ product.price | money_without_currency }}</div>
-            
+
             <!-- Product Info Overlay at Bottom -->
             <div class="product-info-overlay">
               <!-- Product Title -->
               <h3 class="product-title">{{ product.title | upcase }}</h3>
-              
+
               <!-- Inspired By / Vendor -->
               <p class="product-subtitle">
                 {{ product.metafields.custom.inspired_by.value | default: "Luxury Designer Fragrance" }}
               </p>
-              
+
               <!-- Stars -->
               <div class="product-rating">
                 {% assign rating = product.metafields.reviews.rating.value | default: 4.5 %}
@@ -174,11 +172,9 @@ Bundle Builder Section - 5 Products Only, No Discounts, Checkout Enabled Only Wh
                   {% endfor %}
                 </div>
               </div>
-              
+
               <!-- Add to Bundle Button -->
-              <button class="add-to-bundle-btn">
-                ADD TO BUNDLE
-              </button>
+              <button class="add-to-bundle-btn">ADD TO BUNDLE</button>
             </div>
           </div>
         {% endfor %}
@@ -197,7 +193,11 @@ Bundle Builder Section - 5 Products Only, No Discounts, Checkout Enabled Only Wh
   .bundle-builder-section {
     background-color: #f0ebe5;
     padding: 60px 20px;
-    font-family: 'PPMori', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family:
+      'PPMori',
+      -apple-system,
+      BlinkMacSystemFont,
+      sans-serif;
   }
 
   /* Bundle Header Area */
@@ -704,7 +704,7 @@ Bundle Builder Section - 5 Products Only, No Discounts, Checkout Enabled Only Wh
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function () {
     const bundleItemsRow = document.getElementById('bundle-items-row');
     const scrollLeftBtn = document.getElementById('scroll-left');
     const scrollRightBtn = document.getElementById('scroll-right');
@@ -732,10 +732,10 @@ Bundle Builder Section - 5 Products Only, No Discounts, Checkout Enabled Only Wh
       e.stopPropagation();
       const slot = e.target.closest('.bundle-slot-wrapper');
       const slotIndex = parseInt(slot.dataset.slot);
-      
+
       // Highlight products for selection
       productsGrid.querySelectorAll('.product-card').forEach(card => {
-        card.onclick = (e) => selectProductForBundle(e, slotIndex);
+        card.onclick = e => selectProductForBundle(e, slotIndex);
       });
     }
 
@@ -747,7 +747,7 @@ Bundle Builder Section - 5 Products Only, No Discounts, Checkout Enabled Only Wh
         title: card.dataset.productTitle,
         price: parseFloat(card.dataset.productPrice),
         image: card.dataset.productImage,
-        handle: card.dataset.productHandle
+        handle: card.dataset.productHandle,
       };
 
       bundledProducts[slotIndex] = productData;
@@ -815,7 +815,7 @@ Bundle Builder Section - 5 Products Only, No Discounts, Checkout Enabled Only Wh
 
     function updateCheckoutButton() {
       const addedCount = bundledProducts.filter(p => p !== null && p !== undefined).length;
-      
+
       if (addedCount === REQUIRED_ITEMS) {
         checkoutBtn.disabled = false;
         savingsMessage.textContent = 'Your bundle is ready!';
@@ -837,10 +837,12 @@ Bundle Builder Section - 5 Products Only, No Discounts, Checkout Enabled Only Wh
 
     // Checkout
     checkoutBtn.addEventListener('click', () => {
-      const bundleData = bundledProducts.filter(p => p).map(p => ({
-        id: p.id,
-        quantity: 1
-      }));
+      const bundleData = bundledProducts
+        .filter(p => p)
+        .map(p => ({
+          id: p.id,
+          quantity: 1,
+        }));
       console.log('Checkout with bundle:', bundleData);
       // Add your checkout logic here
     });
@@ -865,7 +867,7 @@ Bundle Builder Section - 5 Products Only, No Discounts, Checkout Enabled Only Wh
     }
 
     // Search functionality
-    searchInput.addEventListener('input', (e) => {
+    searchInput.addEventListener('input', e => {
       const query = e.target.value.toLowerCase();
       productsGrid.querySelectorAll('.product-card').forEach(card => {
         const title = card.dataset.productTitle.toLowerCase();

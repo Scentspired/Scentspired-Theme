@@ -1,52 +1,50 @@
-{{ 'customer.css' | asset_url | stylesheet_tag }}
+{{ "customer.css" | asset_url | stylesheet_tag }}
 
 {%- style -%}
-.customer.account {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 155px 20px;
-  font-family: "Unbounded", sans-serif;
-  color: #012169;
-}
-.customer.account h1,
-.customer.account h2,
-.customer.account h3 {
-  margin-bottom: 20px;
-}
-.customer.account .welcome {
-  font-size: 28px;
-  font-weight: 600;
-  margin-bottom: 30px;
-}
-.customer.account .section {
-  margin-bottom: 50px;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 30px;
-}
-.customer.account table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 15px;
-}
-.customer.account table th,
-.customer.account table td {
-  border: 1px solid #eee;
-  padding: 10px;
-  text-align: left;
-}
-.customer.account a {
-  color: #1a73e8;
-  text-decoration: none;
-}
-.customer.account a:hover {
-  text-decoration: underline;
-}
+  .customer.account {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 155px 20px;
+    font-family: 'Unbounded', sans-serif;
+    color: #012169;
+  }
+  .customer.account h1,
+  .customer.account h2,
+  .customer.account h3 {
+    margin-bottom: 20px;
+  }
+  .customer.account .welcome {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 30px;
+  }
+  .customer.account .section {
+    margin-bottom: 50px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 30px;
+  }
+  .customer.account table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+  }
+  .customer.account table th,
+  .customer.account table td {
+    border: 1px solid #eee;
+    padding: 10px;
+    text-align: left;
+  }
+  .customer.account a {
+    color: #1a73e8;
+    text-decoration: none;
+  }
+  .customer.account a:hover {
+    text-decoration: underline;
+  }
 {%- endstyle -%}
 
 <div class="customer account">
-  <div class="welcome">
-    Welcome, {{ customer.first_name }}!
-  </div>
+  <div class="welcome">Welcome, {{ customer.first_name }}!</div>
 
   <!-- Orders Section -->
   <div class="section orders">

@@ -1,74 +1,71 @@
-
 <style>
-@keyframes seamless-marquee {
-  0% {
-    transform: translateX(0);
+  @keyframes seamless-marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
   }
-  100% {
-    transform: translateX(-50%);
+
+  .running-text-wrapper {
+    overflow: hidden;
+    width: 100%;
+    background-color: transparent;
+    padding: 0px 0;
+    margin-bottom: 0px !important;
   }
-}
 
+  .running-text-track {
+    display: flex;
+    width: fit-content;
+    animation: seamless-marquee 15s linear infinite;
+  }
 
-.running-text-wrapper {
-  overflow: hidden;
-  width: 100%;
-  background-color: transparent;
-  padding: 0px 0;
-  margin-bottom: 0px !important;
-}
-
-.running-text-track {
-  display: flex;
-  width: fit-content;
-  animation: seamless-marquee 15s linear infinite;
-}
-
-.running-text-content {
-  display: flex;
-  align-items: center;
-  white-space: nowrap;
-  font-family: 'PPEditorialNew Ultralight Italic', serif;
-  font-style: italic;
-  font-weight: 600;
-  font-size: 60px;
-  color: #000;
-  gap: 160px; /* 👈 controls ALL spacing evenly */
-}
-.running-text-content {
-  display: flex;
-  align-items: center;
-  white-space: nowrap;
-  gap: 40px;
-  margin-left: 150px;
-}
-
-.marquee-spacer {
-  width: 0px;
-  flex-shrink: 0;
-}
-
-.running-text-content span,
-.running-text-content img {
-  margin: 0;
-}
-
-
-@media screen and (max-width: 768px) {
   .running-text-content {
-    font-size: 20px;
-     margin-left: 60px;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    font-family: 'PPEditorialNew Ultralight Italic', serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 60px;
+    color: #000;
+    gap: 160px; /* 👈 controls ALL spacing evenly */
   }
   .running-text-content {
-  gap: 10px !important;
-}
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    gap: 40px;
+    margin-left: 150px;
+  }
 
+  .marquee-spacer {
+    width: 0px;
+    flex-shrink: 0;
+  }
+
+  .running-text-content span,
   .running-text-content img {
-    width: 20px;
-    height: 20px;
-    margin: 0 20px;
+    margin: 0;
   }
-}
+
+  @media screen and (max-width: 768px) {
+    .running-text-content {
+      font-size: 20px;
+      margin-left: 60px;
+    }
+    .running-text-content {
+      gap: 10px !important;
+    }
+
+    .running-text-content img {
+      width: 20px;
+      height: 20px;
+      margin: 0 20px;
+    }
+  }
 </style>
 
 <div class="running-text-wrapper">

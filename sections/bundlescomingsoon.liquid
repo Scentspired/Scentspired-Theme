@@ -1,72 +1,72 @@
 {% if section.settings.enable_overlay %}
-<div id="coming-soon-overlay">
-  <div class="coming-soon-content">
-    <h1>{{ section.settings.heading }}</h1>
-    <div id="countdown"></div>
-    <a href="/" class="coming-soon-button">Go Back to Home</a>
+  <div id="coming-soon-overlay">
+    <div class="coming-soon-content">
+      <h1>{{ section.settings.heading }}</h1>
+      <div id="countdown"></div>
+      <a href="/" class="coming-soon-button">Go Back to Home</a>
+    </div>
   </div>
-</div>
 {% endif %}
 
 <style>
-/* Full-page overlay */
-#coming-soon-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.7);
-  backdrop-filter: blur(8px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
-  z-index: 9999;
-}
+  /* Full-page overlay */
+  #coming-soon-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    z-index: 9999;
+  }
 
-/* Coming Soon text */
-#coming-soon-overlay h1 {
-  font-size: 80px;
-  font-weight: bold;
-  color: white;
-  margin-bottom: 20px;
-}
+  /* Coming Soon text */
+  #coming-soon-overlay h1 {
+    font-size: 80px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 20px;
+  }
 
-/* Countdown timer */
-#countdown {
-  font-size: 50px;
-  font-weight: bold;
-  color: white;
-  margin-bottom: 40px;
-}
+  /* Countdown timer */
+  #countdown {
+    font-size: 50px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 40px;
+  }
 
-/* Yellow button - matching Scentspired buttons */
-.coming-soon-button {
-  display: inline-block;
-  padding: 15px 40px;
-  background-color: #f4ff41; /* your yellow button color */
-  color: #000000;
-  font-weight: bold;
-  text-transform: uppercase;
-  text-decoration: none;
-  border-radius: 40px;
-  font-family: 'PP MORI', sans-serif; /* your button font */
-  transition: background 0.3s ease;
-}
+  /* Yellow button - matching Scentspired buttons */
+  .coming-soon-button {
+    display: inline-block;
+    padding: 15px 40px;
+    background-color: #f4ff41; /* your yellow button color */
+    color: #000000;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 40px;
+    font-family: 'PP MORI', sans-serif; /* your button font */
+    transition: background 0.3s ease;
+  }
 
-.coming-soon-button:hover {
-  background-color: #e0e900;
-}
-@media (max-width: 768px) {
-#coming-soon-overlay h1 {
-  font-size: 50px;
-}
-#countdown {
-  font-size: 30px;
-}
-}
+  .coming-soon-button:hover {
+    background-color: #e0e900;
+  }
+  @media (max-width: 768px) {
+    #coming-soon-overlay h1 {
+      font-size: 50px;
+    }
+    #countdown {
+      font-size: 30px;
+    }
+  }
 </style>
 
 <script>

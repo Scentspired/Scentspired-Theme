@@ -1,105 +1,105 @@
 {% doc %}
   @prompt
     "Create a custom Shopify Liquid section that replicates the layout and typography shown in image_2055c8.png. The section should feature a center-aligned layout on a light cream background (approx. #F9F6F1). Use 'PP Editorial New', serif for the main headings, specifically ensuring the second heading uses 'PPEditorialNew Italic' to match the elegant serif style in the image. All body text must use 'PPMori Regular', Arial, sans-serif with appropriate line-height for readability.
-    
+
     The top portion should consist of a heading followed by a large, deep red rectangular container (approx. #8B1D22) with heavily rounded corners (approx. 50px). Inside this red box, place three distinct paragraphs of white text, center-aligned, with generous internal padding. Below the red box, include a second italicized heading followed by a paragraph of dark text on the cream background. Ensure the section is fully responsive, maintaining the centered text alignment on mobile, and include a Liquid schema that allows me to edit the headings, body text, and colors directly from the Shopify Theme Editor."
 {% enddoc %}
-{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+{% assign ai_gen_id = block.id | replace: "_", "" | downcase %}
 
 {% style %}
-  .ai-editorial-section-{{ ai_gen_id }} {
-    display: block;
-    width: {{ block.settings.desktop_width_percent }}%;
-    max-width: 100%;
-    background-color: {{ block.settings.background_color }};
-    padding: {{ block.settings.section_padding }}px 20px;
-    text-align: center;
-  }
-
-  .ai-editorial-section__container-{{ ai_gen_id }} {
-    max-width: {{ block.settings.max_width }}px;
-    margin: 0 auto;
-  }
-
-  .ai-editorial-section__heading-{{ ai_gen_id }} {
-    font-family: 'PPEditorialNew Ultralight Italic';
-    font-size: {{ block.settings.heading_size }}px;
-    color: {{ block.settings.heading_color }};
-    margin: 0 0 -34px 0;
-    line-height: 1.2;
-  }
-
-  .ai-editorial-section__red-box-{{ ai_gen_id }} {
-    background-color: {{ block.settings.box_color }};
-    border-radius: {{ block.settings.box_radius }}px;
-    padding: 30px 98px;
-    margin: 0 0 -10px 0;
-  }
-
-  .ai-editorial-section__box-text-{{ ai_gen_id }} {
-    font-family: 'PPMori Regular', Arial, sans-serif;
-    font-size: {{ block.settings.box_text_size }}px;
-    color: {{ block.settings.box_text_color }};
-    line-height: {{ block.settings.box_text_line_height }};
-    margin: 0 0 {{ block.settings.paragraph_spacing }}px 0;
-  }
-
-  a{
-   color: #fff;
-  }
-
-  .ai-editorial-section__box-text-{{ ai_gen_id }}:last-child {
-    margin-bottom: 0;
-  }
-
-  .ai-editorial-section__subheading-{{ ai_gen_id }} {
-    font-family: 'PPEditorialNew Ultralight Italic';
-    font-style: italic;
-    font-size: {{ block.settings.subheading_size }}px;
-    color: {{ block.settings.subheading_color }};
-    margin: 0 0 -37px 0;
-    line-height: 1.3;
-  }
-
-  .ai-editorial-section__bottom-text-{{ ai_gen_id }} {
-    font-family: 'PPMori Regular', Arial, sans-serif;
-    font-size: 24px;
-    color: {{ block.settings.bottom_text_color }};
-    line-height: {{ block.settings.bottom_text_line_height }};
-    margin: 0 auto;
-    max-width: 1000px;
-  }
-
-  .ai-editorial-section__bottom-text-{{ ai_gen_id }} a {
-  color: #000;
-}
-
-  @media screen and (max-width: 749px) {
     .ai-editorial-section-{{ ai_gen_id }} {
-      padding: {{ block.settings.section_padding | times: 0.6 }}px 16px;
+      display: block;
+      width: {{ block.settings.desktop_width_percent }}%;
+      max-width: 100%;
+      background-color: {{ block.settings.background_color }};
+      padding: {{ block.settings.section_padding }}px 20px;
+      text-align: center;
+    }
+
+    .ai-editorial-section__container-{{ ai_gen_id }} {
+      max-width: {{ block.settings.max_width }}px;
+      margin: 0 auto;
     }
 
     .ai-editorial-section__heading-{{ ai_gen_id }} {
-      font-size: 32px;
+      font-family: 'PPEditorialNew Ultralight Italic';
+      font-size: {{ block.settings.heading_size }}px;
+      color: {{ block.settings.heading_color }};
+      margin: 0 0 -34px 0;
+      line-height: 1.2;
     }
 
     .ai-editorial-section__red-box-{{ ai_gen_id }} {
-      padding: {{ block.settings.box_padding | times: 0.6 }}px;
-      border-radius: {{ block.settings.box_radius | times: 0.6 }}px;
+      background-color: {{ block.settings.box_color }};
+      border-radius: {{ block.settings.box_radius }}px;
+      padding: 30px 98px;
+      margin: 0 0 -10px 0;
     }
 
     .ai-editorial-section__box-text-{{ ai_gen_id }} {
-      font-size: 12.6px;
+      font-family: 'PPMori Regular', Arial, sans-serif;
+      font-size: {{ block.settings.box_text_size }}px;
+      color: {{ block.settings.box_text_color }};
+      line-height: {{ block.settings.box_text_line_height }};
+      margin: 0 0 {{ block.settings.paragraph_spacing }}px 0;
+    }
+
+    a{
+     color: #fff;
+    }
+
+    .ai-editorial-section__box-text-{{ ai_gen_id }}:last-child {
+      margin-bottom: 0;
     }
 
     .ai-editorial-section__subheading-{{ ai_gen_id }} {
-      font-size: 34px;
+      font-family: 'PPEditorialNew Ultralight Italic';
+      font-style: italic;
+      font-size: {{ block.settings.subheading_size }}px;
+      color: {{ block.settings.subheading_color }};
+      margin: 0 0 -37px 0;
+      line-height: 1.3;
     }
 
     .ai-editorial-section__bottom-text-{{ ai_gen_id }} {
-      font-size: 12.6px;
+      font-family: 'PPMori Regular', Arial, sans-serif;
+      font-size: 24px;
+      color: {{ block.settings.bottom_text_color }};
+      line-height: {{ block.settings.bottom_text_line_height }};
+      margin: 0 auto;
+      max-width: 1000px;
     }
+
+    .ai-editorial-section__bottom-text-{{ ai_gen_id }} a {
+    color: #000;
   }
+
+    @media screen and (max-width: 749px) {
+      .ai-editorial-section-{{ ai_gen_id }} {
+        padding: {{ block.settings.section_padding | times: 0.6 }}px 16px;
+      }
+
+      .ai-editorial-section__heading-{{ ai_gen_id }} {
+        font-size: 32px;
+      }
+
+      .ai-editorial-section__red-box-{{ ai_gen_id }} {
+        padding: {{ block.settings.box_padding | times: 0.6 }}px;
+        border-radius: {{ block.settings.box_radius | times: 0.6 }}px;
+      }
+
+      .ai-editorial-section__box-text-{{ ai_gen_id }} {
+        font-size: 12.6px;
+      }
+
+      .ai-editorial-section__subheading-{{ ai_gen_id }} {
+        font-size: 34px;
+      }
+
+      .ai-editorial-section__bottom-text-{{ ai_gen_id }} {
+        font-size: 12.6px;
+      }
+    }
 {% endstyle %}
 
 <div class="ai-editorial-section-{{ ai_gen_id }}" {{ block.shopify_attributes }}>

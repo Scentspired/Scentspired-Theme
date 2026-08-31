@@ -1,90 +1,89 @@
 {% doc %}
   @prompt
     1. Tabbed Layout
-    
+
     Section has a heading (editable in theme editor).
-    
+
     Under the heading, multiple tabs (up to 20).
-    
+
     Each tab has a label and links to a Shopify collection (selectable in theme editor).
-    
+
     When I click a tab, it shows the products from that collection without reloading the page.
-    
+
     The first tab should be active by default.
-    
+
     On mobile, tabs should scroll horizontally with smooth scrolling.
-    
+
     2. Product Card Design
-    
+
     Each product inside the tab should use the same design as my collection section.
     That means every product card must include:
-    
-    Image:
-    
-    Fixed portrait aspect ratio (square/rectangle, consistent height).
-    
-    Hover effect: zoom-in or show secondary image if available.
-    
-    Stock Badge:
-    
-    Small label in top-right corner of the product image.
-    
-    Shows “In Stock” (black/white) if available, hidden if sold out.
-    
-    Title:
-    
-    Product title below the image.
-    
-    2-line maximum, with ellipsis (…) if too long.
-    
-    Font: Nexa (weight 600).
-    
-    Price:
-    
-    Display currency + product price.
-    
-    If product has a discount: show sale price (red) and compare-at-price (gray, strikethrough).
-    
-    Stock Indicator (Optional):
-    
-    Small text below price showing quantity in stock (e.g., “12 in stock”).
-    
-    A colored dot (green for available, red for out of stock).
-    
-    Variant Options:
-    
-    If product has color options: show clickable color swatches (small circles).
-    
-    If product has size/options: show dropdowns or buttons depending on type.
-    
-    Quantity Selector:
-    
-    Plus (+) and minus (–) buttons with an input field between them.
-    
-    Add to Cart Button:
-    
-    Large, full-width, blue button with rounded corners.
-    
-    Shows “Add to cart” if available.
-    
-    Shows “Sold out” (gray, disabled) if unavailable.
-    
-    Must correctly add product to Shopify cart (with selected variant & quantity).
-    
-    3. Responsiveness
-    
-    Desktop/Laptop (≥1024px): 4 products per row.
-    
-    Mobile (≤767px): 2 products per row.
-    
-    Cards must have equal height for consistent layout.
-    
-    Section should be full width with only small side padding (around 20px) so it looks professional.
-    
-    4. Them
 
+    Image:
+
+    Fixed portrait aspect ratio (square/rectangle, consistent height).
+
+    Hover effect: zoom-in or show secondary image if available.
+
+    Stock Badge:
+
+    Small label in top-right corner of the product image.
+
+    Shows “In Stock” (black/white) if available, hidden if sold out.
+
+    Title:
+
+    Product title below the image.
+
+    2-line maximum, with ellipsis (…) if too long.
+
+    Font: Nexa (weight 600).
+
+    Price:
+
+    Display currency + product price.
+
+    If product has a discount: show sale price (red) and compare-at-price (gray, strikethrough).
+
+    Stock Indicator (Optional):
+
+    Small text below price showing quantity in stock (e.g., “12 in stock”).
+
+    A colored dot (green for available, red for out of stock).
+
+    Variant Options:
+
+    If product has color options: show clickable color swatches (small circles).
+
+    If product has size/options: show dropdowns or buttons depending on type.
+
+    Quantity Selector:
+
+    Plus (+) and minus (–) buttons with an input field between them.
+
+    Add to Cart Button:
+
+    Large, full-width, blue button with rounded corners.
+
+    Shows “Add to cart” if available.
+
+    Shows “Sold out” (gray, disabled) if unavailable.
+
+    Must correctly add product to Shopify cart (with selected variant & quantity).
+
+    3. Responsiveness
+
+    Desktop/Laptop (≥1024px): 4 products per row.
+
+    Mobile (≤767px): 2 products per row.
+
+    Cards must have equal height for consistent layout.
+
+    Section should be full width with only small side padding (around 20px) so it looks professional.
+
+    4. Them
 {% enddoc %}
-{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+{% assign ai_gen_id = block.id | replace: "_", "" | downcase %}
 
 {% style %}
   .ai-tabbed-collection-{{ ai_gen_id }} {
@@ -386,26 +385,26 @@
       font-size: 14px;
     }
   }
-{% endstyle %}<tabbed-collection-{{ ai_gen_id }}
+{% endstyle %}
+<tabbed-collection-{{ ai_gen_id }}
   class="ai-tabbed-collection-{{ ai_gen_id }}"
-  {{ block.shopify_attributes }}
->
+  {{ block.shopify_attributes }}>
   {% if block.settings.heading != blank %}
     <h2 class="ai-tabbed-collection__heading-{{ ai_gen_id }}">{{ block.settings.heading }}</h2>
   {% endif %}
 
-  <div class="ai-tabbed-collection__tabs-container-{{ ai_gen_id }}"><div class="ai-tabbed-collection__tabs-{{ ai_gen_id }}">
+  <div class="ai-tabbed-collection__tabs-container-{{ ai_gen_id }}">
+    <div class="ai-tabbed-collection__tabs-{{ ai_gen_id }}">
       {% for i in (1..20) %}
-        {% assign tab_label_key = 'tab_' | append: i | append: '_label' %}
-        {% assign tab_collection_key = 'tab_' | append: i | append: '_collection' %}
+        {% assign tab_label_key = "tab_" | append: i | append: "_label" %}
+        {% assign tab_collection_key = "tab_" | append: i | append: "_collection" %}
         {% assign tab_label = block.settings[tab_label_key] %}
         {% assign tab_collection = block.settings[tab_collection_key] %}
-        
+
         {% if tab_label != blank and tab_collection != blank %}
           <button
             class="ai-tabbed-collection__tab-{{ ai_gen_id }}{% if forloop.first %} active{% endif %}"
-            data-tab-index="{{ forloop.index0 }}"
-          >
+            data-tab-index="{{ forloop.index0 }}">
             {{ tab_label }}
           </button>
         {% endif %}
@@ -415,16 +414,15 @@
 
   <div class="ai-tabbed-collection__content-{{ ai_gen_id }}">
     {% for i in (1..20) %}
-      {% assign tab_label_key = 'tab_' | append: i | append: '_label' %}
-      {% assign tab_collection_key = 'tab_' | append: i | append: '_collection' %}
+      {% assign tab_label_key = "tab_" | append: i | append: "_label" %}
+      {% assign tab_collection_key = "tab_" | append: i | append: "_collection" %}
       {% assign tab_label = block.settings[tab_label_key] %}
       {% assign tab_collection = block.settings[tab_collection_key] %}
-      
+
       {% if tab_label != blank and tab_collection != blank %}
         <div
           class="ai-tabbed-collection__tab-content-{{ ai_gen_id }}{% if forloop.first %} active{% endif %}"
-          data-tab-content="{{ forloop.index0 }}"
-        >
+          data-tab-content="{{ forloop.index0 }}">
           {% if tab_collection.products.size > 0 %}
             <div class="ai-tabbed-collection__products-grid-{{ ai_gen_id }}">
               {% for product in tab_collection.products limit: block.settings.products_per_tab %}
@@ -437,25 +435,23 @@
                         class="ai-tabbed-collection__product-image-{{ ai_gen_id }}"
                         loading="lazy"
                         width="400"
-                        height="400"
-                      >
+                        height="400">
                     {% else %}
                       <div class="ai-tabbed-collection__product-image-placeholder-{{ ai_gen_id }}">
-                        {{ 'product-1' | placeholder_svg_tag }}
+                        {{ "product-1" | placeholder_svg_tag }}
                       </div>
                     {% endif %}
-                    
+
                     {% if product.available and block.settings.show_stock_badge %}
-                      <div class="ai-tabbed-collection__stock-badge-{{ ai_gen_id }}">
-                        In Stock
-                      </div>
+                      <div class="ai-tabbed-collection__stock-badge-{{ ai_gen_id }}">In Stock</div>
                     {% endif %}
                   </div>
 
                   <div class="ai-tabbed-collection__product-info-{{ ai_gen_id }}">
                     <h3 class="ai-tabbed-collection__product-title-{{ ai_gen_id }}">
                       {{ product.title }}
-                    </h3><div class="ai-tabbed-collection__product-price-{{ ai_gen_id }}">
+                    </h3>
+                    <div class="ai-tabbed-collection__product-price-{{ ai_gen_id }}">
                       {% if product.compare_at_price > product.price %}
                         <span class="ai-tabbed-collection__price-sale-{{ ai_gen_id }}">
                           {{ product.price | money }}
@@ -472,7 +468,8 @@
 
                     {% if block.settings.show_stock_indicator %}
                       <div class="ai-tabbed-collection__stock-indicator-{{ ai_gen_id }}">
-                        <span class="ai-tabbed-collection__stock-dot-{{ ai_gen_id }} {% if product.available %}in-stock{% else %}out-of-stock{% endif %}"></span>
+                        <span
+                          class="ai-tabbed-collection__stock-dot-{{ ai_gen_id }} {% if product.available %}in-stock{% else %}out-of-stock{% endif %}"></span>
                         {% if product.available %}
                           {% assign total_inventory = 0 %}
                           {% for variant in product.variants %}
@@ -488,7 +485,7 @@
                     {% if product.has_only_default_variant == false %}
                       <div class="ai-tabbed-collection__variants-{{ ai_gen_id }}">
                         {% for option in product.options_with_values %}
-                          {% if option.name == 'Color' %}
+                          {% if option.name == "Color" %}
                             <div class="ai-tabbed-collection__color-swatches-{{ ai_gen_id }}">
                               {% for value in option.values %}
                                 <div
@@ -502,8 +499,7 @@
                             <select
                               class="ai-tabbed-collection__variant-select-{{ ai_gen_id }}"
                               data-option-name="{{ option.name | escape }}"
-                              data-product-id="{{ product.id }}"
-                            >
+                              data-product-id="{{ product.id }}">
                               {% for value in option.values %}
                                 <option value="{{ value | escape }}">{{ value }}</option>
                               {% endfor %}
@@ -517,8 +513,7 @@
                       <button
                         class="ai-tabbed-collection__quantity-btn-{{ ai_gen_id }}"
                         data-action="decrease"
-                        data-product-id="{{ product.id }}"
-                      >
+                        data-product-id="{{ product.id }}">
                         −
                       </button>
                       <input
@@ -526,13 +521,11 @@
                         value="1"
                         min="1"
                         class="ai-tabbed-collection__quantity-input-{{ ai_gen_id }}"
-                        data-product-id="{{ product.id }}"
-                      >
+                        data-product-id="{{ product.id }}">
                       <button
                         class="ai-tabbed-collection__quantity-btn-{{ ai_gen_id }}"
                         data-action="increase"
-                        data-product-id="{{ product.id }}"
-                      >
+                        data-product-id="{{ product.id }}">
                         +
                       </button>
                     </div>
@@ -541,12 +534,13 @@
                       class="ai-tabbed-collection__add-to-cart-{{ ai_gen_id }}"
                       data-product-id="{{ product.id }}"
                       data-variant-id="{{ product.selected_or_first_available_variant.id }}"
-                      {% unless product.available %}disabled{% endunless %}
-                    >
+                      {% unless product.available %}
+                        disabled
+                      {% endunless %}>
                       {% if product.available %}
                         Add to cart
                       {% else %}
-                Sold out
+                        Sold out
                       {% endif %}
                     </button>
                   </div>
@@ -771,9 +765,9 @@
       "id": "heading_alignment",
       "label": "Heading alignment",
       "options": [
-        {"value": "left", "label": "Left"},
-        {"value": "center", "label": "Center"},
-        {"value": "right", "label": "Right"}
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
       ],
       "default": "center"
     },

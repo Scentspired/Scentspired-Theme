@@ -2,59 +2,58 @@
   @prompt
     Create a Shopify custom section (Liquid + CSS + schema) for an Instagram feed identical to the SERVA reference (https://webflow.com/made-in-webflow/website/serva-7019aa
     ).
-    
+
     Requirements:
-    
+
     Layout & Responsiveness
-    
+
     6 Instagram images in one row on large desktop.
-    
+
     3 images per row on tablets.
-    
+
     2 images per row on mobile.
-    
+
     Fully optimized for all screen sizes (desktop, tablet, mobile, MacBook).
-    
+
     Images & Link
-    
+
     Admin can upload 6 images from the Shopify theme editor (image_picker).
-    
+
     Each image should open a single Instagram profile link (url setting in schema).
-    
+
     Animation (Bounce Effect)
-    
+
     Each image bounces one-by-one in sequence, exactly like the SERVA reference.
-    
+
     Timing example: first image bounces → pause → second image bounces → pause → third image bounces → … → sixth image bounces → loop restarts.
-    
+
     The sequence must loop infinitely.
-    
+
     Use CSS keyframes bounce animation, not JavaScript.
-    
+
     Theme Editor Customization
-    
+
     Upload images via theme editor (6 slots).
-    
+
     Set Instagram profile link once (applied to all images).
-    
+
     Code Output
-    
+
     Provide complete Shopify section code (.liquid file).
-    
+
     Must include:
-    
+
     Liquid markup
-    
+
     Responsive CSS grid
-    
+
     Bounce animation with sequential delay
-    
+
     JSON schema for theme editor
-
 {% enddoc %}
-{% assign ai_gen_id = section.id | replace: '_', '' | downcase %}
+{% assign ai_gen_id = section.id | replace: "_", "" | downcase %}
 
-{% assign ai_gen_id = section.id | replace: '_', '' | downcase %}
+{% assign ai_gen_id = section.id | replace: "_", "" | downcase %}
 
 {% style %}
   .ai-instagram-feed-{{ ai_gen_id }} {
@@ -158,48 +157,90 @@
   <div class="ai-instagram-grid-{{ ai_gen_id }}">
     {% if section.settings.image_1 != blank %}
       <div class="ai-instagram-item-{{ ai_gen_id }}" style="animation-delay:0s">
-        <a href="{{ section.settings.instagram_url }}" target="_blank" rel="noopener" class="ai-instagram-link-{{ ai_gen_id }}">
-          <img src="{{ section.settings.image_1 | image_url: width: 600 }}" alt="Instagram Image 1" class="ai-instagram-image-{{ ai_gen_id }}">
+        <a
+          href="{{ section.settings.instagram_url }}"
+          target="_blank"
+          rel="noopener"
+          class="ai-instagram-link-{{ ai_gen_id }}">
+          <img
+            src="{{ section.settings.image_1 | image_url: width: 600 }}"
+            alt="Instagram Image 1"
+            class="ai-instagram-image-{{ ai_gen_id }}">
         </a>
       </div>
     {% endif %}
 
     {% if section.settings.image_2 != blank %}
       <div class="ai-instagram-item-{{ ai_gen_id }}" style="animation-delay:0.3s">
-        <a href="{{ section.settings.instagram_url }}" target="_blank" rel="noopener" class="ai-instagram-link-{{ ai_gen_id }}">
-          <img src="{{ section.settings.image_2 | image_url: width: 600 }}" alt="Instagram Image 2" class="ai-instagram-image-{{ ai_gen_id }}">
+        <a
+          href="{{ section.settings.instagram_url }}"
+          target="_blank"
+          rel="noopener"
+          class="ai-instagram-link-{{ ai_gen_id }}">
+          <img
+            src="{{ section.settings.image_2 | image_url: width: 600 }}"
+            alt="Instagram Image 2"
+            class="ai-instagram-image-{{ ai_gen_id }}">
         </a>
       </div>
     {% endif %}
 
     {% if section.settings.image_3 != blank %}
       <div class="ai-instagram-item-{{ ai_gen_id }}" style="animation-delay:0.6s">
-        <a href="{{ section.settings.instagram_url }}" target="_blank" rel="noopener" class="ai-instagram-link-{{ ai_gen_id }}">
-          <img src="{{ section.settings.image_3 | image_url: width: 600 }}" alt="Instagram Image 3" class="ai-instagram-image-{{ ai_gen_id }}">
+        <a
+          href="{{ section.settings.instagram_url }}"
+          target="_blank"
+          rel="noopener"
+          class="ai-instagram-link-{{ ai_gen_id }}">
+          <img
+            src="{{ section.settings.image_3 | image_url: width: 600 }}"
+            alt="Instagram Image 3"
+            class="ai-instagram-image-{{ ai_gen_id }}">
         </a>
       </div>
     {% endif %}
 
     {% if section.settings.image_4 != blank %}
       <div class="ai-instagram-item-{{ ai_gen_id }}" style="animation-delay:0.9s">
-        <a href="{{ section.settings.instagram_url }}" target="_blank" rel="noopener" class="ai-instagram-link-{{ ai_gen_id }}">
-          <img src="{{ section.settings.image_4 | image_url: width: 600 }}" alt="Instagram Image 4" class="ai-instagram-image-{{ ai_gen_id }}">
+        <a
+          href="{{ section.settings.instagram_url }}"
+          target="_blank"
+          rel="noopener"
+          class="ai-instagram-link-{{ ai_gen_id }}">
+          <img
+            src="{{ section.settings.image_4 | image_url: width: 600 }}"
+            alt="Instagram Image 4"
+            class="ai-instagram-image-{{ ai_gen_id }}">
         </a>
       </div>
     {% endif %}
 
     {% if section.settings.image_5 != blank %}
       <div class="ai-instagram-item-{{ ai_gen_id }}" style="animation-delay:1.2s">
-        <a href="{{ section.settings.instagram_url }}" target="_blank" rel="noopener" class="ai-instagram-link-{{ ai_gen_id }}">
-          <img src="{{ section.settings.image_5 | image_url: width: 600 }}" alt="Instagram Image 5" class="ai-instagram-image-{{ ai_gen_id }}">
+        <a
+          href="{{ section.settings.instagram_url }}"
+          target="_blank"
+          rel="noopener"
+          class="ai-instagram-link-{{ ai_gen_id }}">
+          <img
+            src="{{ section.settings.image_5 | image_url: width: 600 }}"
+            alt="Instagram Image 5"
+            class="ai-instagram-image-{{ ai_gen_id }}">
         </a>
       </div>
     {% endif %}
 
     {% if section.settings.image_6 != blank %}
       <div class="ai-instagram-item-{{ ai_gen_id }}" style="animation-delay:1.5s">
-        <a href="{{ section.settings.instagram_url }}" target="_blank" rel="noopener" class="ai-instagram-link-{{ ai_gen_id }}">
-          <img src="{{ section.settings.image_6 | image_url: width: 600 }}" alt="Instagram Image 6" class="ai-instagram-image-{{ ai_gen_id }}">
+        <a
+          href="{{ section.settings.instagram_url }}"
+          target="_blank"
+          rel="noopener"
+          class="ai-instagram-link-{{ ai_gen_id }}">
+          <img
+            src="{{ section.settings.image_6 | image_url: width: 600 }}"
+            alt="Instagram Image 6"
+            class="ai-instagram-image-{{ ai_gen_id }}">
         </a>
       </div>
     {% endif %}

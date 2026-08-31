@@ -1,287 +1,287 @@
 <style>
-  .hero-fragrance-banner {
-    width: 100%;
-    position: relative;
-    overflow: hidden;
-  }
+    .hero-fragrance-banner {
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+    }
 
-  .hero-fragrance-banner__container {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    min-height: 600px;
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-start;
-  }
-
-  .hero-fragrance-banner__overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(139, 21, 56, 0.2) 0%, rgba(196, 30, 58, 0.1) 50%, rgba(139, 21, 56, 0.2) 100%);
-    z-index: 1;
-  }
-
-  .hero-fragrance-banner__content {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 70px 80px 70px;
-    display: flex;
-    align-items: flex-end;
-    height: auto;
-  }
-
-  .hero-fragrance-banner__text {
-    max-width: 600px;
-  }
-
-  .hero-fragrance-banner__title {
-    font-family: 'PPMori Regular', sans-serif;
-    font-size: 72px;
-    font-weight: 300;
-    line-height: 0.9;
-    color: #E8F4F8;
-    margin: 0 0 30px 0;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  }
-
-  .hero-fragrance-banner__bottom-row {
-    display: flex;
-    align-items: flex-end;
-    gap: 40px;
-    flex-wrap: wrap;
-  }
-
-  .hero-fragrance-banner__description {
-    font-family: 'PPMori Regular', sans-serif;
-    font-size: 10px;
-    font-weight: 400;
-    line-height: 1.4;
-    color: #E8F4F8;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    max-width: 400px !important;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-    flex: 1;
-  }
-
-  .hero-fragrance-banner__button {
-    display: inline-block;
-    background-color: #FFFFFF;
-    color: #333333;
-    padding: 15px 30px;
-    font-family: 'PPMori Regular', sans-serif;
-    font-size: 12px;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    flex-shrink: 0;
-    white-space: nowrap;
-  }
-
-  .hero-fragrance-banner__button:hover {
-    background-color: #F0F0F0;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-  }
-
-  /* Mobile Background */
-  .hero-fragrance-banner__mobile-bg {
-    display: none;
-  }
-  @media screen and (min-width: 1024px) and (max-width: 1440px) {
-  .hero-fragrance-banner__content {
-    top: 50px !important;
-    left: -60px;
-  }
-  .hero-fragrance-banner__description {
-    font-size: 10px;
-    text-transform: uppercase;
-    max-width: 320px !important;
-  }
-  .hero-fragrance-banner__button {
-    margin-right: 20px !important;
-    margin-bottom: 5px !important;
-    padding: 15px 11px !important;
-    font-size: 9px;
-  }
-}
-  @media screen and (max-width: 767px) {
-.hero-fragrance-banner__content {
-  top: 120px !important;
-}
-.hero-fragrance-banner__description {
-  margin-left: 4px !important;
-}
-.hero-fragrance-banner__button {
-  margin-right: 126px !important;
-}
-}
-
-  /* Mobile Styles */
-  @media (max-width: 768px) {
-    
     .hero-fragrance-banner__container {
-      height: 500px;
-      min-height: 500px;
-      justify-content: center;
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 600px;
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      display: flex;
       align-items: flex-end;
+      justify-content: flex-start;
+    }
+
+    .hero-fragrance-banner__overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(139, 21, 56, 0.2) 0%, rgba(196, 30, 58, 0.1) 50%, rgba(139, 21, 56, 0.2) 100%);
+      z-index: 1;
     }
 
     .hero-fragrance-banner__content {
-      padding: 0 30px 60px 30px;
-      text-align: left;
-      justify-content: left;
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 70px 80px 70px;
+      display: flex;
+      align-items: flex-end;
+      height: auto;
     }
 
     .hero-fragrance-banner__text {
-      max-width: none;
-      width: 100%;
-      text-align: left;
+      max-width: 600px;
     }
 
     .hero-fragrance-banner__title {
-      font-size: 48px;
-      margin-bottom: 25px;
-      text-align: left;
+      font-family: 'PPMori Regular', sans-serif;
+      font-size: 72px;
+      font-weight: 300;
+      line-height: 0.9;
+      color: #E8F4F8;
+      margin: 0 0 30px 0;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     }
 
     .hero-fragrance-banner__bottom-row {
-      flex-direction: column;
-      gap: 20px;
-      align-items: left;
-      text-align: left;
+      display: flex;
+      align-items: flex-end;
+      gap: 40px;
+      flex-wrap: wrap;
     }
 
     .hero-fragrance-banner__description {
-      font-size: 12px;
-      text-align: left;
-      max-width: 280px;
-      margin: 0 auto;
+      font-family: 'PPMori Regular', sans-serif;
+      font-size: 10px;
+      font-weight: 400;
+      line-height: 1.4;
+      color: #E8F4F8;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      max-width: 400px !important;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+      flex: 1;
     }
 
     .hero-fragrance-banner__button {
-      padding: 12px 25px;
-      font-size: 11px;
+      display: inline-block;
+      background-color: #FFFFFF;
+      color: #333333;
+      padding: 15px 30px;
+      font-family: 'PPMori Regular', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      flex-shrink: 0;
+      white-space: nowrap;
     }
 
-    /* Show mobile background */
-    .hero-fragrance-banner__desktop-bg {
+    .hero-fragrance-banner__button:hover {
+      background-color: #F0F0F0;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Mobile Background */
+    .hero-fragrance-banner__mobile-bg {
       display: none;
     }
-
-    .hero-fragrance-banner__mobile-bg {
-      display: block;
-    }
-  }
-
-  /* Tablet Styles */
-  @media (max-width: 1024px) and (min-width: 769px) {
-    .hero-fragrance-banner__container {
-      min-height: 550px;
-    }
-
+    @media screen and (min-width: 1024px) and (max-width: 1440px) {
     .hero-fragrance-banner__content {
-      padding: 0 40px 60px 40px;
+      top: 50px !important;
+      left: -60px;
     }
-
-    .hero-fragrance-banner__title {
-      font-size: 60px;
-    }
-
     .hero-fragrance-banner__description {
-      font-size: 13px;
-    }
-
-    .hero-fragrance-banner__bottom-row {
-      gap: 30px;
-    }
-  }
-
-  /* Large Desktop */
-  @media (min-width: 1400px) {
-    .hero-fragrance-banner__title {
-      font-size: 84px;
-    }
-
-    .hero-fragrance-banner__description {
-      font-size: 16px;
-    }
-  }
-
-  /* Extra small mobile */
-  @media (max-width: 480px) {
-    .hero-fragrance-banner__container {
-      height: 450px;
-      min-height: 450px;
-    }
-
-    .hero-fragrance-banner__content {
-      padding: 0 20px 40px 20px;
-    }
-
-    .hero-fragrance-banner__title {
-      font-size: 40px;
-    }
-
-    .hero-fragrance-banner__description {
-      font-size: 11px;
-      max-width: 250px;
-    }
-
-    .hero-fragrance-banner__button {
-      padding: 10px 20px;
       font-size: 10px;
+      text-transform: uppercase;
+      max-width: 320px !important;
+    }
+    .hero-fragrance-banner__button {
+      margin-right: 20px !important;
+      margin-bottom: 5px !important;
+      padding: 15px 11px !important;
+      font-size: 9px;
     }
   }
-@media screen and (min-width: 1530px) and (max-width: 1850px) {
- .hero-fragrance-banner__content {
-        top: 50px !important;
-        left: -370px;
-        padding: 130px 200px;
-    }
+    @media screen and (max-width: 767px) {
+  .hero-fragrance-banner__content {
+    top: 120px !important;
   }
-  @media screen and (min-width: 1500px) and (max-width: 1520px) {
-.hero-fragrance-banner__content {
- padding: 0 250px 80px 250px;
-}
+  .hero-fragrance-banner__description {
+    margin-left: 4px !important;
+  }
+  .hero-fragrance-banner__button {
+    margin-right: 126px !important;
+  }
+  }
+
+    /* Mobile Styles */
+    @media (max-width: 768px) {
+
+      .hero-fragrance-banner__container {
+        height: 500px;
+        min-height: 500px;
+        justify-content: center;
+        align-items: flex-end;
+      }
+
+      .hero-fragrance-banner__content {
+        padding: 0 30px 60px 30px;
+        text-align: left;
+        justify-content: left;
+      }
+
+      .hero-fragrance-banner__text {
+        max-width: none;
+        width: 100%;
+        text-align: left;
+      }
+
+      .hero-fragrance-banner__title {
+        font-size: 48px;
+        margin-bottom: 25px;
+        text-align: left;
+      }
+
+      .hero-fragrance-banner__bottom-row {
+        flex-direction: column;
+        gap: 20px;
+        align-items: left;
+        text-align: left;
+      }
+
+      .hero-fragrance-banner__description {
+        font-size: 12px;
+        text-align: left;
+        max-width: 280px;
+        margin: 0 auto;
+      }
+
+      .hero-fragrance-banner__button {
+        padding: 12px 25px;
+        font-size: 11px;
+      }
+
+      /* Show mobile background */
+      .hero-fragrance-banner__desktop-bg {
+        display: none;
+      }
+
+      .hero-fragrance-banner__mobile-bg {
+        display: block;
+      }
+    }
+
+    /* Tablet Styles */
+    @media (max-width: 1024px) and (min-width: 769px) {
+      .hero-fragrance-banner__container {
+        min-height: 550px;
+      }
+
+      .hero-fragrance-banner__content {
+        padding: 0 40px 60px 40px;
+      }
+
+      .hero-fragrance-banner__title {
+        font-size: 60px;
+      }
+
+      .hero-fragrance-banner__description {
+        font-size: 13px;
+      }
+
+      .hero-fragrance-banner__bottom-row {
+        gap: 30px;
+      }
+    }
+
+    /* Large Desktop */
+    @media (min-width: 1400px) {
+      .hero-fragrance-banner__title {
+        font-size: 84px;
+      }
+
+      .hero-fragrance-banner__description {
+        font-size: 16px;
+      }
+    }
+
+    /* Extra small mobile */
+    @media (max-width: 480px) {
+      .hero-fragrance-banner__container {
+        height: 450px;
+        min-height: 450px;
+      }
+
+      .hero-fragrance-banner__content {
+        padding: 0 20px 40px 20px;
+      }
+
+      .hero-fragrance-banner__title {
+        font-size: 40px;
+      }
+
+      .hero-fragrance-banner__description {
+        font-size: 11px;
+        max-width: 250px;
+      }
+
+      .hero-fragrance-banner__button {
+        padding: 10px 20px;
+        font-size: 10px;
+      }
+    }
+  @media screen and (min-width: 1530px) and (max-width: 1850px) {
+   .hero-fragrance-banner__content {
+          top: 50px !important;
+          left: -370px;
+          padding: 130px 200px;
+      }
+    }
+    @media screen and (min-width: 1500px) and (max-width: 1520px) {
+  .hero-fragrance-banner__content {
+   padding: 0 250px 80px 250px;
+  }
 </style>
 
 <section class="hero-fragrance-banner">
-  <div class="hero-fragrance-banner__container hero-fragrance-banner__desktop-bg"
-       {% if section.settings.desktop_image != blank %}
-         style="background-image: url('{{ section.settings.desktop_image | img_url: '1920x' }}');"
-       {% endif %}>
-    
+  <div
+    class="hero-fragrance-banner__container hero-fragrance-banner__desktop-bg"
+    {% if section.settings.desktop_image != blank %}
+      style="background-image: url('{{ section.settings.desktop_image | img_url: '1920x' }}');"
+    {% endif %}>
     <div class="hero-fragrance-banner__overlay"></div>
-    
+
     <div class="hero-fragrance-banner__content">
       <div class="hero-fragrance-banner__text">
         {% if section.settings.title != blank %}
           <h1 class="hero-fragrance-banner__title">{{ section.settings.title }}</h1>
         {% endif %}
-        
+
         <div class="hero-fragrance-banner__bottom-row">
           {% if section.settings.description != blank %}
             <p class="hero-fragrance-banner__description">{{ section.settings.description }}</p>
           {% endif %}
-          
+
           {% if section.settings.button_text != blank and section.settings.button_url != blank %}
             <a href="{{ section.settings.button_url }}" class="hero-fragrance-banner__button">
               {{ section.settings.button_text }}
@@ -293,24 +293,24 @@
   </div>
 
   <!-- Mobile Background Container -->
-  <div class="hero-fragrance-banner__container hero-fragrance-banner__mobile-bg"
-       {% if section.settings.mobile_image != blank %}
-         style="background-image: url('{{ section.settings.mobile_image | img_url: '800x' }}');"
-       {% endif %}>
-    
+  <div
+    class="hero-fragrance-banner__container hero-fragrance-banner__mobile-bg"
+    {% if section.settings.mobile_image != blank %}
+      style="background-image: url('{{ section.settings.mobile_image | img_url: '800x' }}');"
+    {% endif %}>
     <div class="hero-fragrance-banner__overlay"></div>
-    
+
     <div class="hero-fragrance-banner__content">
       <div class="hero-fragrance-banner__text">
         {% if section.settings.title != blank %}
           <h1 class="hero-fragrance-banner__title">{{ section.settings.title }}</h1>
         {% endif %}
-        
+
         <div class="hero-fragrance-banner__bottom-row">
           {% if section.settings.description != blank %}
             <p class="hero-fragrance-banner__description">{{ section.settings.description }}</p>
           {% endif %}
-          
+
           {% if section.settings.button_text != blank and section.settings.button_url != blank %}
             <a href="{{ section.settings.button_url }}" class="hero-fragrance-banner__button">
               {{ section.settings.button_text }}

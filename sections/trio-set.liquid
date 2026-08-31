@@ -273,7 +273,7 @@
   }
 
   .add-to-cart-btn:disabled {
-     background-color: #f4ff41;
+    background-color: #f4ff41;
     opacity: 0.7;
     cursor: not-allowed;
   }
@@ -295,7 +295,7 @@
     display: block;
   }
 
-    .drawer-title {
+  .drawer-title {
     font-size: 20px;
     text-transform: uppercase;
     margin-bottom: 30px;
@@ -314,7 +314,7 @@
   .drawer-title-text {
     flex: 1;
   }
-.back-arrow-btn {
+  .back-arrow-btn {
     background: none;
     border: none;
     cursor: pointer;
@@ -463,21 +463,21 @@
       display: none;
     }
     .add-to-cart-btn {
-    font-size: 11px;
-  }
-  .sidebar-header h2 {
-    font-size: 19px;
-    margin: 0 0 10px;
-    color: #000;
-    font-weight: 600;
-}
-}
-  .cart{
-      padding: 15px 20px;
-      background: #f3f3f3;
-      border-bottom: 1px solid black;
+      font-size: 11px;
     }
-     .savings-row {
+    .sidebar-header h2 {
+      font-size: 19px;
+      margin: 0 0 10px;
+      color: #000;
+      font-weight: 600;
+    }
+  }
+  .cart {
+    padding: 15px 20px;
+    background: #f3f3f3;
+    border-bottom: 1px solid black;
+  }
+  .savings-row {
     padding: 15px;
     text-align: center;
     font-size: 14px;
@@ -490,19 +490,17 @@
     font-size: 14px;
     color: #000;
     background: #f3f3f3;
-        margin-top: -20px;
+    margin-top: -20px;
   }
- .saving {
-  font-weight: 600;
-  text-decoration: line-through;
-  color: #000;
-}
-
+  .saving {
+    font-weight: 600;
+    text-decoration: line-through;
+    color: #000;
+  }
 </style>
 
 <div class="perfume-bundle-section">
   <div class="builder-layout">
-    
     <!-- LEFT SIDEBAR: BUNDLE STATUS -->
     <div class="bundle-sidebar">
       <div class="sidebar-header">
@@ -535,18 +533,14 @@
       </div>
 
       <div class="sidebar-footer">
-      <div class="cart">
-<button class="add-to-cart-btn" id="MainActionBtn" disabled onclick="handleCheckout()">
-          <span>Add to Cart</span>
-          <span id="TotalDisplay">$ 0</span>
-        </button>
-      </div>
-      <div class="savings-row">
-         Standard Price: <span class="saving">$0</span>
-      </div>
-      <div class="save-row">
-        Total Saving <span>$0</span>
-      </div>
+        <div class="cart">
+          <button class="add-to-cart-btn" id="MainActionBtn" disabled onclick="handleCheckout()">
+            <span>Add to Cart</span>
+            <span id="TotalDisplay">$ 0</span>
+          </button>
+        </div>
+        <div class="savings-row">Standard Price: <span class="saving">$0</span></div>
+        <div class="save-row">Total Saving <span>$0</span></div>
       </div>
     </div>
 
@@ -554,17 +548,27 @@
     <div class="selection-drawer" id="SelectionDrawer">
       <div class="drawer-title">
         <div class="drawer-title-content">
-        <button onclick="goBackToStep()" class="back-arrow-btn" id="BackArrowBtn" title="Go back">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <button onclick="goBackToStep()" class="back-arrow-btn" id="BackArrowBtn" title="Go back">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round">
               <polyline points="15 18 9 12 15 6"></polyline>
             </svg>
           </button>
-        <span class="drawer-title-text" id="DrawerHeadline">Select Brand</span>
+          <span class="drawer-title-text" id="DrawerHeadline">Select Brand</span>
         </div>
-        <button onclick="closeSelector()" style="background: none; border: none; cursor: pointer; font-size: 25px;">×</button>
-       </div>
+        <button onclick="closeSelector()" style="background: none; border: none; cursor: pointer; font-size: 25px;">
+          ×
+        </button>
+      </div>
 
-       <div id="Step-Size" class="step-container">
+      <div id="Step-Size" class="step-container">
         <div class="option-list">
           <div class="option-item" onclick="selectSize('50ml')">
             <span>50ml</span>
@@ -585,7 +589,14 @@
         <div class="search-bar-wrapper">
           <div class="search-input-container">
             <input type="text" id="ProductSearch" placeholder="Search" />
-            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg
+              class="search-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round">
               <circle cx="11" cy="11" r="8"></circle>
               <path d="m21 21-4.35-4.35"></path>
             </svg>
@@ -596,7 +607,6 @@
         </div>
       </div>
     </div>
-
   </div>
 </div>
 
@@ -1108,9 +1118,6 @@ const PRICING = {
       window.isProcessingCartAction = false;
     }
   }
-
-
-
 </script>
 
 {% schema %}

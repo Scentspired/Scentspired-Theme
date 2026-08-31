@@ -1,7 +1,7 @@
-{{ 'component-cart.css' | asset_url | stylesheet_tag }}
-{{ 'component-totals.css' | asset_url | stylesheet_tag }}
-{{ 'component-price.css' | asset_url | stylesheet_tag }}
-{{ 'component-discounts.css' | asset_url | stylesheet_tag }}
+{{ "component-cart.css" | asset_url | stylesheet_tag }}
+{{ "component-totals.css" | asset_url | stylesheet_tag }}
+{{ "component-price.css" | asset_url | stylesheet_tag }}
+{{ "component-discounts.css" | asset_url | stylesheet_tag }}
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -20,36 +20,34 @@
 <div
   class="gradient color-{{ section.settings.color_scheme }}{% if cart == empty %} is-empty{% endif %}"
   id="main-cart-footer"
-  data-id="{{ section.id }}"
->
+  data-id="{{ section.id }}">
   <div class="page-width">
     <div class="cart__footer isolate section-{{ section.id }}-padding">
       {%- if settings.show_cart_note -%}
         <cart-note class="cart__note field">
-          <label for="Cart-note">{{ 'sections.cart.note' | t }}</label>
+          <label for="Cart-note">{{ "sections.cart.note" | t }}</label>
           <textarea
             class="text-area field__input"
             name="note"
             form="cart"
             id="Cart-note"
-            placeholder="{{ 'sections.cart.note' | t }}"
-          >{{ cart.note }}</textarea>
+            placeholder="{{ 'sections.cart.note' | t }}">{{ cart.note }}</textarea>
         </cart-note>
       {%- endif -%}
 
       <div class="cart__blocks">
         {% for block in section.blocks %}
           {%- case block.type -%}
-            {%- when '@app' -%}
+            {%- when "@app" -%}
               {% render block %}
-            {%- when 'subtotal' -%}
+            {%- when "subtotal" -%}
               <div class="js-contents" {{ block.shopify_attributes }}>
                 <div>
                   {%- if cart.cart_level_discount_applications.size > 0 -%}
                     <ul class="discounts list-unstyled" role="list" aria-label="{{ 'customer.order.discount' | t }}">
                       {%- for discount in cart.cart_level_discount_applications -%}
                         <li class="discounts__discount discounts__discount--position">
-                          {{- 'icon-discount.svg' | inline_asset_content -}}
+                          {{- "icon-discount.svg" | inline_asset_content -}}
                           {{ discount.title | escape }}
                           (-{{ discount.total_allocated_amount | money }})
                         </li>
@@ -59,44 +57,44 @@
                 </div>
 
                 <div class="totals">
-                  <h2 class="totals__total">{{ 'sections.cart.estimated_total' | t }}</h2>
+                  <h2 class="totals__total">{{ "sections.cart.estimated_total" | t }}</h2>
                   <p class="totals__total-value">{{ cart.total_price | money_with_currency }}</p>
                 </div>
 
                 <small class="tax-note caption-large rte">
                   {%- if cart.duties_included and cart.taxes_included -%}
                     {%- if shop.shipping_policy.body == blank -%}
-                      {{ 'sections.cart.duties_and_taxes_included_shipping_at_checkout_without_policy' | t }}
+                      {{ "sections.cart.duties_and_taxes_included_shipping_at_checkout_without_policy" | t }}
                     {%- else -%}
                       {{
-                        'sections.cart.duties_and_taxes_included_shipping_at_checkout_with_policy_html'
+                        "sections.cart.duties_and_taxes_included_shipping_at_checkout_with_policy_html"
                         | t: link: shop.shipping_policy.url
                       }}
                     {%- endif -%}
                   {%- elsif cart.duties_included == false and cart.taxes_included -%}
                     {%- if shop.shipping_policy.body == blank -%}
-                      {{ 'sections.cart.taxes_included_shipping_at_checkout_without_policy' | t }}
+                      {{ "sections.cart.taxes_included_shipping_at_checkout_without_policy" | t }}
                     {%- else -%}
                       {{
-                        'sections.cart.taxes_included_shipping_at_checkout_with_policy_html'
+                        "sections.cart.taxes_included_shipping_at_checkout_with_policy_html"
                         | t: link: shop.shipping_policy.url
                       }}
                     {%- endif -%}
                   {%- elsif cart.duties_included and cart.taxes_included == false -%}
                     {%- if shop.shipping_policy.body == blank -%}
-                      {{ 'sections.cart.duties_included_taxes_at_checkout_shipping_at_checkout_without_policy' | t }}
+                      {{ "sections.cart.duties_included_taxes_at_checkout_shipping_at_checkout_without_policy" | t }}
                     {%- else -%}
                       {{
-                        'sections.cart.duties_included_taxes_at_checkout_shipping_at_checkout_with_policy_html'
+                        "sections.cart.duties_included_taxes_at_checkout_shipping_at_checkout_with_policy_html"
                         | t: link: shop.shipping_policy.url
                       }}
                     {%- endif -%}
                   {%- elsif cart.duties_included == false and cart.taxes_included == false -%}
                     {%- if shop.shipping_policy.body == blank -%}
-                      {{ 'sections.cart.taxes_at_checkout_shipping_at_checkout_without_policy' | t }}
+                      {{ "sections.cart.taxes_at_checkout_shipping_at_checkout_without_policy" | t }}
                     {%- else -%}
                       {{
-                        'sections.cart.taxes_at_checkout_shipping_at_checkout_with_policy_html'
+                        "sections.cart.taxes_at_checkout_shipping_at_checkout_with_policy_html"
                         | t: link: shop.shipping_policy.url
                       }}
                     {%- endif -%}
@@ -113,9 +111,8 @@
                   {% if cart == empty %}
                     disabled
                   {% endif %}
-                  form="cart"
-                >
-                  {{ 'sections.cart.checkout' | t }}
+                  form="cart">
+                  {{ "sections.cart.checkout" | t }}
                 </button>
               </div>
 
@@ -147,7 +144,7 @@
     {
       "type": "header",
       "content": "t:sections.all.padding.section_padding_heading"
-    },    
+    },
     {
       "type": "range",
       "id": "padding_top",

@@ -1,4 +1,4 @@
-{{ 'customer.css' | asset_url | stylesheet_tag }}
+{{ "customer.css" | asset_url | stylesheet_tag }}
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -16,23 +16,23 @@
 
 <div class="customer activate section-{{ section.id }}-padding">
   <h1>
-    {{ 'customer.activate_account.title' | t }}
+    {{ "customer.activate_account.title" | t }}
   </h1>
   <p>
-    {{ 'customer.activate_account.subtext' | t }}
+    {{ "customer.activate_account.subtext" | t }}
   </p>
-  {%- form 'activate_customer_password' -%}
+  {%- form "activate_customer_password" -%}
     {%- if form.errors -%}
       <h2 class="form__message" tabindex="-1" autofocus>
         <span class="svg-wrapper">
-          {{- 'icon-error.svg' | inline_asset_content -}}
+          {{- "icon-error.svg" | inline_asset_content -}}
         </span>
-        {{ 'templates.contact.form.error_heading' | t }}
+        {{ "templates.contact.form.error_heading" | t }}
       </h2>
       <ul>
         {%- for field in form.errors -%}
           <li>
-            {%- if field == 'form' -%}
+            {%- if field == "form" -%}
               {{ form.errors.messages[field] }}
             {%- else -%}
               <a href="#{{ field }}">
@@ -52,18 +52,17 @@
         id="password"
         autocomplete="new-password"
         placeholder="{{ 'customer.activate_account.password' | t }}"
-        {% if form.errors contains 'password' %}
+        {% if form.errors contains "password" %}
           aria-invalid="true"
           aria-describedby="password-error"
-        {% endif %}
-      >
+        {% endif %}>
       <label for="password">
-        {{ 'customer.activate_account.password' | t }}
+        {{ "customer.activate_account.password" | t }}
       </label>
-      {%- if form.errors contains 'password' -%}
+      {%- if form.errors contains "password" -%}
         <small id="password-error" class="form__message">
           <span class="svg-wrapper">
-            {{- 'icon-error.svg' | inline_asset_content -}}
+            {{- "icon-error.svg" | inline_asset_content -}}
           </span>
           {{ form.errors.translated_fields.password | capitalize }}
           {{ form.errors.messages.password }}
@@ -78,18 +77,17 @@
         id="password_confirmation"
         autocomplete="new-password"
         placeholder="{{ 'customer.activate_account.password_confirm' | t }}"
-        {% if form.errors contains 'password' %}
+        {% if form.errors contains "password" %}
           aria-invalid="true"
           aria-describedby="password_confirmation-error"
-        {% endif %}
-      >
+        {% endif %}>
       <label for="password_confirmation">
-        {{ 'customer.activate_account.password_confirm' | t }}
+        {{ "customer.activate_account.password_confirm" | t }}
       </label>
-      {%- if form.errors contains 'password_confirmation' -%}
+      {%- if form.errors contains "password_confirmation" -%}
         <small id="password_confirmation-error" class="form__message">
           <span class="svg-wrapper">
-            {{- 'icon-error.svg' | inline_asset_content -}}
+            {{- "icon-error.svg" | inline_asset_content -}}
           </span>
           {{ form.errors.translated_fields.password_confirmation | capitalize }}
           {{ form.errors.messages.password_confirmation }}
@@ -98,10 +96,10 @@
     </div>
 
     <button>
-      {{ 'customer.activate_account.submit' | t }}
+      {{ "customer.activate_account.submit" | t }}
     </button>
     <button name="decline">
-      {{ 'customer.activate_account.cancel' | t }}
+      {{ "customer.activate_account.cancel" | t }}
     </button>
   {%- endform -%}
 </div>

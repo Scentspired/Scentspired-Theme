@@ -2,10 +2,10 @@
   @prompt
     "Develop a custom Shopify Liquid section for a product collection grid that displays exactly three products per row on desktop and stacks to one product per row on mobile, strictly following the design in image_e9e018.png. Each product card must be a horizontal rectangular block with a very light grey background (approx. #F2F2F2). The layout within each card should use a two-column flexbox: the left half features a square product image with a slight white border, and the right half contains the product details with generous left padding. For the typography, hardcode the fonts to maintain brand consistency: the product title must be in 'PPMori Regular', Arial, sans-serif with a large font size; directly below it, the text 'Inspired By' must be in 'PPEditorialNew Italic' at a medium size; and the 'Inspiration Name' (e.g., Baccarat Rouge 540) should be in 'PPMori Regular' at a smaller, subtle size. Ensure the section includes a Liquid setting to select a specific collection from the Shopify admin. The cards should have a subtle gap between them on desktop, and the entire text block must be vertically centered relative to the product image. On mobile, ensure the card maintains this horizontal layout but scales down to fit the screen width perfectly, without any theme-based font overrides." create exact same like ref image and make sure when someone click on product it redirects to that page , i want only max 3 products show not more than 3  and why it is not showing vendor below inspired by  and inspired by text is in italic, in vendor name there is also inspired by so use inspired by from vendor name and make sure inspired by text is in italic and in seprate line , it is showing ispired by text 2 times because inspired by text already i have in vendor name, it is showing now inspired by text from code and not showing vendor i dont want inspired by text from code i already have in vendore just i want in vendor inspired by text show in seprate line and in sepratefont PP editoria;, still same issue remove inspired by text and show vendor below  title, okay now only one inssue my vendor name is startinf from inspired by and then brand name so i want starting inspired by text show in pp editorial and remaining text in vendor same product title font
 {% enddoc %}
-{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+{% assign ai_gen_id = block.id | replace: "_", "" | downcase %}
 
 {% style %}
- 
+
 
   .ai-product-grid-container-{{ ai_gen_id }} {
     display: block;
@@ -155,7 +155,9 @@
   }
 {% endstyle %}
 
-<product-collection-grid-{{ ai_gen_id }} class="ai-product-grid-container-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+<product-collection-grid-{{ ai_gen_id }}
+  class="ai-product-grid-container-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}>
   {% if block.settings.collection != blank %}
     {% assign collection = block.settings.collection %}
     {% if collection.products.size > 0 %}
@@ -170,11 +172,10 @@
                   class="ai-product-image-{{ ai_gen_id }}"
                   loading="lazy"
                   width="600"
-                  height="600"
-                >
+                  height="600">
               {% else %}
                 <div class="ai-product-image-placeholder-{{ ai_gen_id }}">
-                  {{ 'product-1' | placeholder_svg_tag }}
+                  {{ "product-1" | placeholder_svg_tag }}
                 </div>
               {% endif %}
             </div>
@@ -183,18 +184,18 @@
               {% if product.vendor %}
                 <div class="ai-product-vendor-{{ ai_gen_id }}">
                   {% assign vendor_lower = product.vendor | downcase %}
-                  {% if vendor_lower contains 'inspired by' %}
-                    {% assign parts = product.vendor | split: 'Inspired By' %}
+                  {% if vendor_lower contains "inspired by" %}
+                    {% assign parts = product.vendor | split: "Inspired By" %}
                     {% if parts.size == 1 %}
-                      {% assign parts = product.vendor | split: 'inspired by' %}
+                      {% assign parts = product.vendor | split: "inspired by" %}
                     {% endif %}
                     {% if parts.size == 1 %}
-                      {% assign parts = product.vendor | split: 'Inspired by' %}
+                      {% assign parts = product.vendor | split: "Inspired by" %}
                     {% endif %}
                     {% if parts.size == 1 %}
-                      {% assign parts = product.vendor | split: 'INSPIRED BY' %}
+                      {% assign parts = product.vendor | split: "INSPIRED BY" %}
                     {% endif %}
-                    
+
                     {% if parts.size > 1 %}
                       <span class="ai-vendor-inspired-{{ ai_gen_id }}">Inspired By<br></span>
                       <span class="ai-vendor-brand-{{ ai_gen_id }}">{{ parts[1] | strip }}</span>
@@ -216,9 +217,7 @@
       </div>
     {% endif %}
   {% else %}
-    <div class="ai-empty-state-{{ ai_gen_id }}">
-      Select a collection to display products
-    </div>
+    <div class="ai-empty-state-{{ ai_gen_id }}">Select a collection to display products</div>
   {% endif %}
 </product-collection-grid-{{ ai_gen_id }}>
 

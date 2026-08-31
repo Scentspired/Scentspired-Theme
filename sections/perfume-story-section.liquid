@@ -3,7 +3,7 @@
   @import url('https://fonts.googleapis.com/css2?family=PP+Mori:wght@400;600&display=swap');
 
   .perfume-story-section {
-    background-color: #EFFF31;
+    background-color: #efff31;
     width: 100%;
     min-height: 100vh;
     padding: 0;
@@ -109,7 +109,7 @@
     }
 
     .perfume-story-content {
-              padding: 60px 0px 60px 20px;
+      padding: 60px 0px 60px 20px;
       order: 2;
     }
 
@@ -176,29 +176,34 @@
       <h1 class="main-headline">
         {{ section.settings.main_headline | default: "We are not just a perfume house." }}
       </h1>
-      
+
       <p class="story-text">
-        {{ section.settings.story_text | default: "We are storytellers of scent. And we invite you to find the fragrance that tells your story. Whether it's bold and daring, soft and nostalgic, or vibrant and unexpected—your signature scent is out there, waiting to be discovered. Let your senses lead the way, and begin your journey through our curated collection designed to speak to your soul." }}
+        {{
+          section.settings.story_text
+          | default: "We are storytellers of scent. And we invite you to find the fragrance that tells your story. Whether it's bold and daring, soft and nostalgic, or vibrant and unexpected—your signature scent is out there, waiting to be discovered. Let your senses lead the way, and begin your journey through our curated collection designed to speak to your soul."
+        }}
       </p>
-      
+
       <p class="get-scentspired">
         {{ section.settings.tagline | default: "Get Scentspired." }}
       </p>
-      
+
       <a href="{{ section.settings.button_link | default: '/collections/all' }}" class="shop-button">
         {{ section.settings.button_text | default: "SHOP PRODUCTS" }}
       </a>
     </div>
-    
+
     <div class="perfume-story-image">
       {% if section.settings.hero_image %}
-        <img src="{{ section.settings.hero_image | img_url: '1200x' }}" 
-             alt="{{ section.settings.hero_image.alt | default: 'Perfume Story' }}"
-             loading="lazy">
+        <img
+          src="{{ section.settings.hero_image | img_url: '1200x' }}"
+          alt="{{ section.settings.hero_image.alt | default: 'Perfume Story' }}"
+          loading="lazy">
       {% else %}
-        <img src="/images/image.png" 
-             alt="Woman holding perfume bottle"
-             loading="lazy">
+        <img
+          src="/images/image.png"
+          alt="Woman holding perfume bottle"
+          loading="lazy">
       {% endif %}
     </div>
   </div>

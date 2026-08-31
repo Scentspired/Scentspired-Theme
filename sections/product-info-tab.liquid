@@ -129,652 +129,650 @@
 
 <style>
   @media screen and (min-width: 1441px) {
-  .tab-nav {
-    max-width: 94% !important;
-    width: 94% !important;
+    .tab-nav {
+      max-width: 94% !important;
+      width: 94% !important;
+    }
+    .tab-nav button {
+      min-width: 350px !important;
+      text-align: center !important;
+      padding: 12px 150px !important;
+    }
   }
+
+  .product-tabs-wrapper {
+    width: 100%;
+    padding: 0;
+    font-family: 'PP Mori', sans-serif;
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+
+  .tab-nav {
+    display: flex;
+    justify-content: center;
+    background-color: #f7ff66;
+    border-radius: 40px;
+    margin: 20px auto;
+    padding: 8px;
+    gap: 10px;
+    max-width: 95%;
+    width: 95%;
+  }
+
   .tab-nav button {
-    min-width: 350px !important;
-    text-align: center !important;
-    padding: 12px 150px !important;
-  }
-}
-
-.product-tabs-wrapper {
-  width: 100%;
-  padding: 0;
-  font-family: 'PP Mori', sans-serif;
-   padding-left: 5rem;
-  padding-right: 5rem;
-}
-
-.tab-nav {
-  display: flex;
-  justify-content: center;
-  background-color: #f7ff66;
-  border-radius: 40px;
-  margin: 20px auto;
-  padding: 8px;
-  gap: 10px;
-  max-width: 95%;
-  width: 95%;
-}
-
-.tab-nav button {
-  background: none;
-  border: none;
-  padding: 12px 115px;
-  font-weight: 600;
-  font-size: 16px;
-  cursor: pointer;
-  color: black;
-  border-radius: 40px;
-  transition: 0.3s;
-  font-family: 'PP Mori', sans-serif;
-  min-width: 200px;
-  text-align: center;
-}
-
-.tab-nav button.active {
-  background: black;
-  color: white;
-}
-
-.tab-panel {
-  display: none;
-  width: 100%;
-  padding: 60px 20px;
-  margin: 0 auto;
-  max-width: 1600px;
-  align-items: flex-start;
-  gap: 50px;
-}
-
-.tab-panel.active {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.tab-panel .image-side {
-  flex: 1 1 45%;
-  min-width: 400px;
-}
-
-.tab-panel .image-side img {
-  width: 100%;
-  border-radius: 20px;
-}
-
-.tab-panel .content-side {
-  flex: 1 1 50%;
-  padding-right: 20px;
-  padding-left: 90px;
-  padding-top: 40px;
-  min-width: 400px;
-}
-
-.content-side h4 {
-  text-transform: uppercase;
-  font-size: 12px;
-  color: #888;
-  margin-bottom: 10px;
-  text-align: left;
-  font-family: 'PP Mori', sans-serif;
-}
-
-.content-side p {
-  font-size: 20px;
-  line-height: 1.6;
-  margin-bottom: 30px;
-  text-align: left;
-  font-family: 'PP Mori', sans-serif;
-  font-weight: 600 !important;
-}
-
-.content-side ul {
-  padding-left: 20px;
-  margin-bottom: 20px;
-  text-align: left;
-  font-family: 'PP Mori', sans-serif;
-  font-weight: 600 !important;
-}
-
-.two-column-section {
-  display: flex;
-  gap: 50px;
-  margin-bottom: 30px;
-}
-
-.column {
-  flex: 1;
-}
-
-.column h4 {
-  text-transform: uppercase;
-  font-size: 12px;
-  color: #888;
-  margin-bottom: 10px;
-  text-align: left;
-  font-family: 'PP Mori', sans-serif;
-}
-
-.column ul {
-  padding-left: 20px;
-  font-family: 'PP Mori', sans-serif;
-}
-
-.icon-row {
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 20px;
-  margin-top: 30px;
-  justify-content: space-between;
-}
-
-.icon-item {
-  text-align: center;
-  font-size: 14px;
-  font-family: 'PP Mori', sans-serif;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.icon-item img {
-  width: 40px;
-  height: 40px;
-  margin-bottom: 5px;
-  display: block;
-}
-
-.icon-item span {
-  display: block;
-  font-size: 12px;
-  font-family: 'PP Mori', sans-serif;
-  line-height: 1.2;
-  text-align: center;
-  font-weight: 600 !important;
-}
-
-/* Ingredients Table Styles */
-.ingredients-table-wrapper {
-  width: 100%;
-  position: relative;
-}
-
-.ingredients-header {
-  text-transform: uppercase;
-  font-size: 12px;
-  color: #888;
-  margin-bottom: 30px;
-  text-align: left;
-  font-family: 'PP Mori', sans-serif;
-}
-
-.ingredients-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-family: 'PP Mori', sans-serif;
-  table-layout: fixed;
-}
-
-.ingredients-table thead th {
-  text-transform: uppercase;
-  font-size: 12px;
-  color: #888;
-  font-weight: 600;
-  padding: 15px 10px;
-  text-align: left;
-  border-bottom: 2px solid #ddd;
-  background-color: #fff;
-}
-
-.ingredients-table thead th:first-child {
-  width: 50%;
-}
-
-.ingredients-table thead th:nth-child(2) {
-  width: 25%;
-  text-align: center;
-}
-
-.ingredients-table thead th:last-child {
-  width: 25%;
-  text-align: center;
-}
-
-.ingredients-table tbody td {
-  padding: 18px 10px;
-  font-size: 14px;
-  font-weight: 600;
-  color: #333;
-  border-bottom: 1px solid #ddd;
-  vertical-align: top;
-  line-height: 1.4;
-}
-
-.ingredients-table tbody td:nth-child(2) {
-  text-align: center;
-}
-
-.ingredients-table tbody td:last-child {
-  text-align: center;
-}
-
-.ingredients-table tbody tr:last-child td {
-  border-bottom: 1px solid #ddd;
-}
-
-.ingredients-table tbody tr {
-  display: none;
-}
-
-.ingredients-table tbody tr.visible {
-  display: table-row;
-}
-
-/* Pagination Arrows - Simple Style */
-.ingredients-pagination {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 40px;
-  position: relative;
-  width: 100%;
-}
-
-.pagination-arrow {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 10px;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  color: #333;
-  font-weight: 300;
-}
-
-.pagination-arrow:hover {
-  color: #666;
-}
-
-.pagination-arrow:disabled {
-  opacity: 0.3;
-  cursor: not-allowed;
-}
-
-.pagination-arrow:disabled:hover {
-  color: #333;
-}
-
-.pagination-arrow#prevArrow {
-  position: absolute;
-  left: 0;
-}
-
-.pagination-arrow#nextArrow {
-  position: absolute;
-  right: 0;
-}
-
-.ingredients-pagination.hidden {
-  display: none;
-}
-
-/* Usage Section Styles */
-.usage-content {
-  width: 100%;
-}
-
-.usage-section {
-  margin-bottom: 40px;
-}
-
-.usage-section h4 {
-  text-transform: uppercase;
-  font-size: 12px;
-  color: #888;
-  margin-bottom: 15px;
-  text-align: left;
-  font-family: 'PP Mori', sans-serif;
-}
-
-.usage-section p {
-  font-size: 18px;
-  line-height: 1.6;
-  color: #333;
-  font-family: 'PP Mori', sans-serif;
-  font-weight: 600;
-  margin: 0;
-}
-
-/* FAQ Styles */
-.faq-content {
-  width: 100%;
-}
-
-.faq-header {
-  text-transform: uppercase;
-  font-size: 12px;
-  color: #888;
-  margin-bottom: 30px;
-  text-align: left;
-  font-family: 'PP Mori', sans-serif;
-}
-
-.faq-list {
-  width: 100%;
-}
-
-.faq-item {
-  width: 100%;
-  border-bottom: 1px solid #ddd;
-  padding: 20px 0;
-}
-
-.faq-item:last-child {
-  border-bottom: none;
-}
-
-.faq-question {
-  font-weight: 600;
-  cursor: pointer;
-  position: relative;
-  padding-right: 30px;
-  font-size: 18px;
-  font-family: 'PP Mori', sans-serif;
-  color: #333;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.faq-question::after {
-  content: "+";
-  font-size: 24px;
-  font-weight: 300;
-  color: #333;
-}
-
-.faq-item.open .faq-question::after {
-  content: "–";
-}
-
-.faq-answer {
-  display: none;
-  padding-top: 15px;
-  font-size: 16px;
-  color: #666;
-  font-family: 'PP Mori', sans-serif;
-  line-height: 1.6;
-}
-
-.faq-item.open .faq-answer {
-  display: block;
-}
-
-/* Special layout for FAQ tab - reverse order */
-#faq.tab-panel.active {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row-reverse;
-}
-
-#faq .content-side {
-  padding-left: 20px;
-  padding-right: 90px;
-}
-
-/* Mobile Accordion Styles */
-.mobile-accordion {
-  display: none;
-  flex-direction: column;
-  gap: 12px;
-  margin: 20px 16px;
-  padding: 0;
-}
-
-.mobile-accordion-item {
-  border: none;
-  margin-bottom: 0;
-}
-
-.mobile-accordion-header {
-  background: #f7ff66;
-  border: none;
-  width: 100%;
-  padding: 16px 20px;
-  text-align: left;
-  font-family: 'PP Mori', sans-serif;
-  font-weight: 600;
-  font-size: 16px;
-  color: #000;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-radius: 30px;
-  margin-bottom: 0;
-  transition: all 0.3s ease;
-  box-shadow: none;
-  outline: none;
-}
-
-
-.mobile-accordion-header.active {
-  background: #000;
-  color: #fff;
-}
-
-.mobile-accordion-header::after {
-  content: "▾"; /* chevron down */
-  font-size: 18px;
-  font-weight: 400;
-  margin-left: auto;
-  transition: transform 0.3s ease;
-  color: #666;
-  display: inline-block;
-}
-
-.mobile-accordion-header.active::after {
-  transform: rotate(180deg);
-  color: #fff;
-}
-
-
-.mobile-accordion-content {
-  display: none;
-  padding: 0;
-  background: transparent;
-  margin-bottom: 0;
-  border: none;
-}
-
-.mobile-accordion-content.active {
-  display: block;
-}
-
-.mobile-tab-content {
-  padding: 20px 40px;
-}
-
-.mobile-tab-content .image-side {
-  margin-bottom: 20px;
-}
-
-.mobile-tab-content .image-side img {
-  width: 100%;
-  max-width: 100%;
-  height: auto;
-  border-radius: 15px;
-  object-fit: cover;
-}
-
-.mobile-tab-content .content-side {
-  padding: 0;
-}
-
-@media (min-width: 1200px) {
-  .tab-panel .content-side {
-    flex: 1 1 52%;
-    padding-right: 40px;
+    background: none;
+    border: none;
+    padding: 12px 115px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    color: black;
+    border-radius: 40px;
+    transition: 0.3s;
+    font-family: 'PP Mori', sans-serif;
+    min-width: 200px;
+    text-align: center;
   }
 
-  .tab-panel .image-side {
-    flex: 1 1 43%;
-  }
-
-  #faq .content-side {
-    padding-left: 40px;
-    padding-right: 20px;
-  }
-
-  .icon-row {
-    gap: 40px;
-  }
-
-  .icon-item span {
-    font-size: 14px;
-  }
-}
-
-@media (min-width: 1023px) and (max-width: 1199px) {
-  .tab-panel .image-side {
-    flex: 1 1 45%;
-    min-width: 350px;
-  }
-
-  .tab-panel .content-side {
-    flex: 1 1 50%;
-    min-width: 350px;
-    padding-left: 40px;
-  }
-
-  #faq .content-side {
-    padding-left: 40px;
-    padding-right: 20px;
-  }
-
-  .icon-row {
-    gap: 30px;
-  }
-
-  .icon-item span {
-    font-size: 14px;
-  }
-}
-
-@media (max-width: 1023px) {
-  .tab-nav {
-    display: none;
+  .tab-nav button.active {
+    background: black;
+    color: white;
   }
 
   .tab-panel {
     display: none;
-  }
-
-  .mobile-accordion {
-    display: flex;
+    width: 100%;
+    padding: 60px 20px;
+    margin: 0 auto;
+    max-width: 1600px;
+    align-items: flex-start;
+    gap: 50px;
   }
 
   .tab-panel.active {
-    flex-direction: column;
+    display: flex;
+    flex-wrap: wrap;
   }
 
-  .tab-panel .image-side,
+  .tab-panel .image-side {
+    flex: 1 1 45%;
+    min-width: 400px;
+  }
+
+  .tab-panel .image-side img {
+    width: 100%;
+    border-radius: 20px;
+  }
+
   .tab-panel .content-side {
-    min-width: auto;
+    flex: 1 1 50%;
+    padding-right: 20px;
+    padding-left: 90px;
+    padding-top: 40px;
+    min-width: 400px;
+  }
+
+  .content-side h4 {
+    text-transform: uppercase;
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 10px;
+    text-align: left;
+    font-family: 'PP Mori', sans-serif;
+  }
+
+  .content-side p {
+    font-size: 20px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    text-align: left;
+    font-family: 'PP Mori', sans-serif;
+    font-weight: 600 !important;
+  }
+
+  .content-side ul {
+    padding-left: 20px;
+    margin-bottom: 20px;
+    text-align: left;
+    font-family: 'PP Mori', sans-serif;
+    font-weight: 600 !important;
   }
 
   .two-column-section {
-    flex-direction: column;
-    gap: 20px;
+    display: flex;
+    gap: 50px;
+    margin-bottom: 30px;
   }
 
-  .tab-panel .content-side {
-    padding-right: 0;
-    padding-left: 0;
-    padding-top: 0;
+  .column {
+    flex: 1;
   }
 
-  #faq .content-side {
-    padding-left: 0;
-    padding-right: 0;
+  .column h4 {
+    text-transform: uppercase;
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 10px;
+    text-align: left;
+    font-family: 'PP Mori', sans-serif;
+  }
+
+  .column ul {
+    padding-left: 20px;
+    font-family: 'PP Mori', sans-serif;
   }
 
   .icon-row {
-    gap: 10px;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 20px;
+    margin-top: 30px;
+    justify-content: space-between;
   }
 
   .icon-item {
-    min-width: 0;
+    text-align: center;
+    font-size: 14px;
+    font-family: 'PP Mori', sans-serif;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .icon-item img {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
+    margin-bottom: 5px;
+    display: block;
   }
 
   .icon-item span {
-    font-size: 10px;
+    display: block;
+    font-size: 12px;
+    font-family: 'PP Mori', sans-serif;
+    line-height: 1.2;
+    text-align: center;
+    font-weight: 600 !important;
+  }
+
+  /* Ingredients Table Styles */
+  .ingredients-table-wrapper {
+    width: 100%;
+    position: relative;
+  }
+
+  .ingredients-header {
+    text-transform: uppercase;
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 30px;
+    text-align: left;
+    font-family: 'PP Mori', sans-serif;
   }
 
   .ingredients-table {
-    font-size: 12px;
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'PP Mori', sans-serif;
+    table-layout: fixed;
   }
 
-  .ingredients-table thead th,
-  .ingredients-table tbody td {
-    padding: 8px 5px;
+  .ingredients-table thead th {
+    text-transform: uppercase;
+    font-size: 12px;
+    color: #888;
+    font-weight: 600;
+    padding: 15px 10px;
+    text-align: left;
+    border-bottom: 2px solid #ddd;
+    background-color: #fff;
   }
 
   .ingredients-table thead th:first-child {
-    width: 45%;
+    width: 50%;
   }
 
   .ingredients-table thead th:nth-child(2) {
     width: 25%;
+    text-align: center;
   }
 
   .ingredients-table thead th:last-child {
-    width: 30%;
+    width: 25%;
+    text-align: center;
   }
 
-  .mobile-tab-content h4 {
+  .ingredients-table tbody td {
+    padding: 18px 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+    vertical-align: top;
+    line-height: 1.4;
+  }
+
+  .ingredients-table tbody td:nth-child(2) {
+    text-align: center;
+  }
+
+  .ingredients-table tbody td:last-child {
+    text-align: center;
+  }
+
+  .ingredients-table tbody tr:last-child td {
+    border-bottom: 1px solid #ddd;
+  }
+
+  .ingredients-table tbody tr {
+    display: none;
+  }
+
+  .ingredients-table tbody tr.visible {
+    display: table-row;
+  }
+
+  /* Pagination Arrows - Simple Style */
+  .ingredients-pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+    position: relative;
+    width: 100%;
+  }
+
+  .pagination-arrow {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #333;
+    font-weight: 300;
+  }
+
+  .pagination-arrow:hover {
+    color: #666;
+  }
+
+  .pagination-arrow:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  .pagination-arrow:disabled:hover {
+    color: #333;
+  }
+
+  .pagination-arrow#prevArrow {
+    position: absolute;
+    left: 0;
+  }
+
+  .pagination-arrow#nextArrow {
+    position: absolute;
+    right: 0;
+  }
+
+  .ingredients-pagination.hidden {
+    display: none;
+  }
+
+  /* Usage Section Styles */
+  .usage-content {
+    width: 100%;
+  }
+
+  .usage-section {
+    margin-bottom: 40px;
+  }
+
+  .usage-section h4 {
+    text-transform: uppercase;
     font-size: 12px;
     color: #888;
+    margin-bottom: 15px;
+    text-align: left;
+    font-family: 'PP Mori', sans-serif;
+  }
+
+  .usage-section p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #333;
+    font-family: 'PP Mori', sans-serif;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  /* FAQ Styles */
+  .faq-content {
+    width: 100%;
+  }
+
+  .faq-header {
     text-transform: uppercase;
-    margin-bottom: 10px;
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 30px;
+    text-align: left;
     font-family: 'PP Mori', sans-serif;
   }
 
-  .mobile-tab-content p {
+  .faq-list {
+    width: 100%;
+  }
+
+  .faq-item {
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    padding: 20px 0;
+  }
+
+  .faq-item:last-child {
+    border-bottom: none;
+  }
+
+  .faq-question {
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    padding-right: 30px;
+    font-size: 18px;
+    font-family: 'PP Mori', sans-serif;
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .faq-question::after {
+    content: '+';
+    font-size: 24px;
+    font-weight: 300;
+    color: #333;
+  }
+
+  .faq-item.open .faq-question::after {
+    content: '–';
+  }
+
+  .faq-answer {
+    display: none;
+    padding-top: 15px;
     font-size: 16px;
-    line-height: 1.5;
-    margin-bottom: 20px;
+    color: #666;
     font-family: 'PP Mori', sans-serif;
-    font-weight: 600;
+    line-height: 1.6;
   }
 
-  .mobile-tab-content ul {
+  .faq-item.open .faq-answer {
+    display: block;
+  }
+
+  /* Special layout for FAQ tab - reverse order */
+  #faq.tab-panel.active {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+  }
+
+  #faq .content-side {
     padding-left: 20px;
-    margin-bottom: 20px;
+    padding-right: 90px;
+  }
+
+  /* Mobile Accordion Styles */
+  .mobile-accordion {
+    display: none;
+    flex-direction: column;
+    gap: 12px;
+    margin: 20px 16px;
+    padding: 0;
+  }
+
+  .mobile-accordion-item {
+    border: none;
+    margin-bottom: 0;
+  }
+
+  .mobile-accordion-header {
+    background: #f7ff66;
+    border: none;
+    width: 100%;
+    padding: 16px 20px;
+    text-align: left;
     font-family: 'PP Mori', sans-serif;
     font-weight: 600;
+    font-size: 16px;
+    color: #000;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 30px;
+    margin-bottom: 0;
+    transition: all 0.3s ease;
+    box-shadow: none;
+    outline: none;
   }
-  .tab-panel.active { 
-    display: none !important; 
+
+  .mobile-accordion-header.active {
+    background: #000;
+    color: #fff;
   }
-  .icon-row {
+
+  .mobile-accordion-header::after {
+    content: '▾'; /* chevron down */
+    font-size: 18px;
+    font-weight: 400;
+    margin-left: auto;
+    transition: transform 0.3s ease;
+    color: #666;
+    display: inline-block;
+  }
+
+  .mobile-accordion-header.active::after {
+    transform: rotate(180deg);
+    color: #fff;
+  }
+
+  .mobile-accordion-content {
+    display: none;
+    padding: 0;
+    background: transparent;
+    margin-bottom: 0;
+    border: none;
+  }
+
+  .mobile-accordion-content.active {
+    display: block;
+  }
+
+  .mobile-tab-content {
+    padding: 20px 40px;
+  }
+
+  .mobile-tab-content .image-side {
+    margin-bottom: 20px;
+  }
+
+  .mobile-tab-content .image-side img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+    object-fit: cover;
+  }
+
+  .mobile-tab-content .content-side {
+    padding: 0;
+  }
+
+  @media (min-width: 1200px) {
+    .tab-panel .content-side {
+      flex: 1 1 52%;
+      padding-right: 40px;
+    }
+
+    .tab-panel .image-side {
+      flex: 1 1 43%;
+    }
+
+    #faq .content-side {
+      padding-left: 40px;
+      padding-right: 20px;
+    }
+
+    .icon-row {
+      gap: 40px;
+    }
+
+    .icon-item span {
+      font-size: 14px;
+    }
+  }
+
+  @media (min-width: 1023px) and (max-width: 1199px) {
+    .tab-panel .image-side {
+      flex: 1 1 45%;
+      min-width: 350px;
+    }
+
+    .tab-panel .content-side {
+      flex: 1 1 50%;
+      min-width: 350px;
+      padding-left: 40px;
+    }
+
+    #faq .content-side {
+      padding-left: 40px;
+      padding-right: 20px;
+    }
+
+    .icon-row {
+      gap: 30px;
+    }
+
+    .icon-item span {
+      font-size: 14px;
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .tab-nav {
+      display: none;
+    }
+
+    .tab-panel {
+      display: none;
+    }
+
+    .mobile-accordion {
+      display: flex;
+    }
+
+    .tab-panel.active {
+      flex-direction: column;
+    }
+
+    .tab-panel .image-side,
+    .tab-panel .content-side {
+      min-width: auto;
+    }
+
+    .two-column-section {
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .tab-panel .content-side {
+      padding-right: 0;
+      padding-left: 0;
+      padding-top: 0;
+    }
+
+    #faq .content-side {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .icon-row {
+      gap: 10px;
+    }
+
+    .icon-item {
+      min-width: 0;
+    }
+
+    .icon-item img {
+      width: 30px;
+      height: 30px;
+    }
+
+    .icon-item span {
+      font-size: 10px;
+    }
+
+    .ingredients-table {
+      font-size: 12px;
+    }
+
+    .ingredients-table thead th,
+    .ingredients-table tbody td {
+      padding: 8px 5px;
+    }
+
+    .ingredients-table thead th:first-child {
+      width: 45%;
+    }
+
+    .ingredients-table thead th:nth-child(2) {
+      width: 25%;
+    }
+
+    .ingredients-table thead th:last-child {
+      width: 30%;
+    }
+
+    .mobile-tab-content h4 {
+      font-size: 12px;
+      color: #888;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      font-family: 'PP Mori', sans-serif;
+    }
+
+    .mobile-tab-content p {
+      font-size: 16px;
+      line-height: 1.5;
+      margin-bottom: 20px;
+      font-family: 'PP Mori', sans-serif;
+      font-weight: 600;
+    }
+
+    .mobile-tab-content ul {
+      padding-left: 20px;
+      margin-bottom: 20px;
+      font-family: 'PP Mori', sans-serif;
+      font-weight: 600;
+    }
+    .tab-panel.active {
+      display: none !important;
+    }
+    .icon-row {
       display: grid !important;
       grid-template-columns: 1fr 1fr !important;
       gap: 0 !important;
       border-top: 1px solid #ddd !important;
-        border-bottom: 1px solid #ddd !important;
+      border-bottom: 1px solid #ddd !important;
       margin-top: 25px !important;
     }
 
@@ -792,11 +790,11 @@
       flex: none;
       font-family: 'PPMori Regular', sans-serif;
     }
-.icon-item:nth-child(n+3) {
-        border-bottom: 1px solid #ddd;
+    .icon-item:nth-child(n + 3) {
+      border-bottom: 1px solid #ddd;
     }
-        .icon-item:nth-child(2n) {
-       border-bottom: 1px solid #ddd;
+    .icon-item:nth-child(2n) {
+      border-bottom: 1px solid #ddd;
     }
 
     .icon-item img {
@@ -809,7 +807,7 @@
       padding: 0;
     }
 
-    .icon-item span{
+    .icon-item span {
       font-size: 12px;
       color: #333;
       margin: 0;
@@ -817,7 +815,7 @@
       line-height: 1.3;
       font-weight: 400;
     }
-}
+  }
 </style>
 
 <div class="product-tabs-wrapper">
@@ -831,14 +829,16 @@
   <div class="tab-panel active" id="about">
     <div class="image-side">
       {%- comment -%}
-      Use metafield for about image with fallback to section settings
+        Use metafield for about image with fallback to section settings
       {%- endcomment -%}
       {% if product.metafields.custom.about_image %}
         <img src="{{ product.metafields.custom.about_image | image_url }}" alt="About Image">
       {% elsif section.settings.about_image %}
         <img src="{{ section.settings.about_image | image_url }}" alt="About Image">
       {% else %}
-        <img src="https://cdn.shopify.com/s/files/1/0680/4150/7113/files/perfume.jpg?v=1666767765" alt="Default About Image">
+        <img
+          src="https://cdn.shopify.com/s/files/1/0680/4150/7113/files/perfume.jpg?v=1666767765"
+          alt="Default About Image">
       {% endif %}
     </div>
     <div class="content-side">
@@ -847,34 +847,34 @@
       {% assign about_mf = product.metafields.custom.about %}
       {% if about_mf != blank %}
         {% capture about_html %}{{ about_mf | metafield_tag }}{% endcapture %}
-        {% assign paragraphs = about_html | split: '</p>' %}
+        {% assign paragraphs = about_html | split: "</p>" %}
 
-        {% assign about_p1 = '' %}
-        {% assign about_p2 = '' %}
-        {% assign about_p3 = '' %}
+        {% assign about_p1 = "" %}
+        {% assign about_p2 = "" %}
+        {% assign about_p3 = "" %}
 
         {% if paragraphs.size > 0 and paragraphs[0] != blank %}
-          {% assign about_p1 = paragraphs[0] | append: '</p>' %}
+          {% assign about_p1 = paragraphs[0] | append: "</p>" %}
         {% endif %}
         {% if paragraphs.size > 1 and paragraphs[1] != blank %}
-          {% assign about_p2 = paragraphs[1] | append: '</p>' %}
+          {% assign about_p2 = paragraphs[1] | append: "</p>" %}
         {% endif %}
         {% if paragraphs.size > 2 and paragraphs[2] != blank %}
-          {% assign about_p3 = paragraphs[2] | append: '</p>' %}
+          {% assign about_p3 = paragraphs[2] | append: "</p>" %}
         {% endif %}
 
-        {% if about_p1 != '' %}
+        {% if about_p1 != "" %}
           {{ about_p1 }}
         {% endif %}
 
-        {% if about_p2 != '' or about_p3 != '' %}
+        {% if about_p2 != "" or about_p3 != "" %}
           <div class="two-column-section">
-            {% if about_p2 != '' %}
+            {% if about_p2 != "" %}
               <div class="column">
                 {{ about_p2 }}
               </div>
             {% endif %}
-            {% if about_p3 != '' %}
+            {% if about_p3 != "" %}
               <div class="column">
                 {{ about_p3 }}
               </div>
@@ -882,7 +882,10 @@
           </div>
         {% endif %}
       {% else %}
-        <p>A boost of antioxidant-rich nourishing renewal for dull, dry and tired skin. This super-absorbable oil helps clear dark spots & blemishes and creates a brighter complexion.</p>
+        <p>
+          A boost of antioxidant-rich nourishing renewal for dull, dry and tired skin. This super-absorbable oil helps
+          clear dark spots & blemishes and creates a brighter complexion.
+        </p>
 
         <div class="two-column-section">
           <div class="column">
@@ -906,7 +909,7 @@
       {% endif %}
 
       {%- comment -%}
-      Use metafield for icon images with fallback to section settings
+        Use metafield for icon images with fallback to section settings
       {%- endcomment -%}
       <div class="icon-row">
         <div class="icon-item">
@@ -986,20 +989,22 @@
   <div class="tab-panel" id="ingredients">
     <div class="image-side">
       {%- comment -%}
-      Use metafield for ingredients image with fallback to section settings
+        Use metafield for ingredients image with fallback to section settings
       {%- endcomment -%}
       {% if product.metafields.custom.ingredients_image %}
         <img src="{{ product.metafields.custom.ingredients_image | image_url }}" alt="Ingredients Image">
       {% elsif section.settings.ingredients_image %}
         <img src="{{ section.settings.ingredients_image | image_url }}" alt="Ingredients Image">
       {% else %}
-        <img src="https://cdn.shopify.com/s/files/1/0680/4150/7113/files/oil.jpg?v=1666767775" alt="Default Ingredients Image">
+        <img
+          src="https://cdn.shopify.com/s/files/1/0680/4150/7113/files/oil.jpg?v=1666767775"
+          alt="Default Ingredients Image">
       {% endif %}
     </div>
     <div class="content-side">
       <div class="usage-content">
         {%- comment -%}
-        Use metafield for usage content (rich text) with fallback to static content
+          Use metafield for usage content (rich text) with fallback to static content
         {%- endcomment -%}
         {% if product.metafields.custom.ingriedient_content %}
           {{ product.metafields.custom.ingriedient_content | metafield_tag }}
@@ -1011,12 +1016,18 @@
 
           <div class="usage-section">
             <h4>How to Use</h4>
-            <p>Apply a small amount to wet skin. Work into a lather & massage into skin for 60 Seconds. Rinse thoroughly & pat dry.</p>
+            <p>
+              Apply a small amount to wet skin. Work into a lather & massage into skin for 60 Seconds. Rinse thoroughly
+              & pat dry.
+            </p>
           </div>
 
           <div class="usage-section">
             <h4>Good to Know</h4>
-            <p>Increases your skin's sensitivity to the sun. Follow up with SPF. Not recommended for sensitive skin. Patch test advised</p>
+            <p>
+              Increases your skin's sensitivity to the sun. Follow up with SPF. Not recommended for sensitive skin.
+              Patch test advised
+            </p>
           </div>
 
           <div class="usage-section">
@@ -1027,29 +1038,30 @@
       </div>
     </div>
   </div>
-      </div>
-    </div>
-  </div>
+</div>
+</div>
+</div>
 
-
-  <div class="tab-panel" id="usage">
+<div class="tab-panel" id="usage">
   <div class="image-side">
     {%- comment -%}
-    Use metafield for usage image with fallback to section settings
+      Use metafield for usage image with fallback to section settings
     {%- endcomment -%}
     {% if product.metafields.custom.usage_image %}
       <img src="{{ product.metafields.custom.usage_image | image_url }}" alt="Usage Image">
     {% elsif section.settings.usage_image %}
       <img src="{{ section.settings.usage_image | image_url }}" alt="Usage Image">
     {% else %}
-      <img src="https://cdn.shopify.com/s/files/1/0680/4150/7113/files/serum.jpg?v=1666767779" alt="Default Usage Image">
+      <img
+        src="https://cdn.shopify.com/s/files/1/0680/4150/7113/files/serum.jpg?v=1666767779"
+        alt="Default Usage Image">
     {% endif %}
   </div>
 
   <div class="content-side">
     <div class="usage-content">
       {%- comment -%}
-      Use metafield for usage content (rich text) with fallback to static content
+        Use metafield for usage content (rich text) with fallback to static content
       {%- endcomment -%}
       {% if product.metafields.custom.usage_content %}
         {{ product.metafields.custom.usage_content | metafield_tag }}
@@ -1061,12 +1073,18 @@
 
         <div class="usage-section">
           <h4>How to Use</h4>
-          <p>Apply a small amount to wet skin. Work into a lather & massage into skin for 60 Seconds. Rinse thoroughly & pat dry.</p>
+          <p>
+            Apply a small amount to wet skin. Work into a lather & massage into skin for 60 Seconds. Rinse thoroughly &
+            pat dry.
+          </p>
         </div>
 
         <div class="usage-section">
           <h4>Good to Know</h4>
-          <p>Increases your skin's sensitivity to the sun. Follow up with SPF. Not recommended for sensitive skin. Patch test advised.</p>
+          <p>
+            Increases your skin's sensitivity to the sun. Follow up with SPF. Not recommended for sensitive skin. Patch
+            test advised.
+          </p>
         </div>
 
         <div class="usage-section">
@@ -1078,10 +1096,14 @@
       <h4>Highlight Notes</h4>
 
       {%- comment -%}
-      Determine if there are any metafield icons
+        Determine if there are any metafield icons
       {%- endcomment -%}
       {%- assign has_meta_icons = false -%}
-      {% if product.metafields.custom.nicon_1_image or product.metafields.custom.nicon_2_image or product.metafields.custom.nicon_3_image or product.metafields.custom.nicon_4_image %}
+      {% if product.metafields.custom.nicon_1_image
+        or product.metafields.custom.nicon_2_image
+        or product.metafields.custom.nicon_3_image
+        or product.metafields.custom.nicon_4_image
+      %}
         {%- assign has_meta_icons = true -%}
       {% endif %}
 
@@ -1139,7 +1161,7 @@
               {% endif %}
             </div>
           {% endif %}
-        
+
         {% else %}
           {%- comment -%} Fallback: Show theme icons from section settings {%- endcomment -%}
           {% if section.settings.icon_1 %}
@@ -1183,100 +1205,103 @@
   </div>
 </div>
 
-
-  <div class="tab-panel" id="faq">
-    <div class="image-side">
-  {% comment %}
-  Use product metafield for FAQ image with fallback to section setting or default
-  {% endcomment %}
-  {% if product.metafields.custom.faq_image %}
-    <img src="{{ product.metafields.custom.faq_image | image_url }}" alt="FAQ Image">
-  {% elsif section.settings.faq_image %}
-    <img src="{{ section.settings.faq_image | image_url }}" alt="FAQ Image">
-  {% else %}
-    <img src="https://cdn.shopify.com/s/files/1/0680/4150/7113/files/perfume.jpg?v=1666767765" alt="Default FAQ Image">
-  {% endif %}
-</div>
-    <div class="content-side">
-      <div class="faq-content">
-        <h4 class="faq-header">Frequently Asked Questions</h4>
-        <div class="faq-list">
-          {% for block in section.blocks %}
-            {% if block.type == 'faq' %}
-              <div class="faq-item">
-                <div class="faq-question">{{ block.settings.question }}</div>
-                <div class="faq-answer">{{ block.settings.answer }}</div>
-              </div>
-            {% endif %}
-          {% endfor %}
-          {% if section.blocks.size == 0 or section.blocks == blank %}
+<div class="tab-panel" id="faq">
+  <div class="image-side">
+    {% comment %}
+      Use product metafield for FAQ image with fallback to section setting or default
+    {% endcomment %}
+    {% if product.metafields.custom.faq_image %}
+      <img src="{{ product.metafields.custom.faq_image | image_url }}" alt="FAQ Image">
+    {% elsif section.settings.faq_image %}
+      <img src="{{ section.settings.faq_image | image_url }}" alt="FAQ Image">
+    {% else %}
+      <img
+        src="https://cdn.shopify.com/s/files/1/0680/4150/7113/files/perfume.jpg?v=1666767765"
+        alt="Default FAQ Image">
+    {% endif %}
+  </div>
+  <div class="content-side">
+    <div class="faq-content">
+      <h4 class="faq-header">Frequently Asked Questions</h4>
+      <div class="faq-list">
+        {% for block in section.blocks %}
+          {% if block.type == "faq" %}
             <div class="faq-item">
-              <div class="faq-question">How many times should I use this?</div>
-              <div class="faq-answer">Use this product 2-3 times per week for best results. Start with once a week and gradually increase frequency as your skin adjusts.</div>
-            </div>
-            <div class="faq-item">
-              <div class="faq-question">How many times should I use this?</div>
-              <div class="faq-answer">Use this product 2-3 times per week for best results. Start with once a week and gradually increase frequency as your skin adjusts.</div>
-            </div>
-            <div class="faq-item">
-              <div class="faq-question">How many times should I use this?</div>
-              <div class="faq-answer">Use this product 2-3 times per week for best results. Start with once a week and gradually increase frequency as your skin adjusts.</div>
-            </div>
-            <div class="faq-item">
-              <div class="faq-question">How many times should I use this?</div>
-              <div class="faq-answer">Use this product 2-3 times per week for best results. Start with once a week and gradually increase frequency as your skin adjusts.</div>
-            </div>
-            <div class="faq-item">
-              <div class="faq-question">How many times should I use this?</div>
-              <div class="faq-answer">Use this product 2-3 times per week for best results. Start with once a week and gradually increase frequency as your skin adjusts.</div>
-            </div>
-            <div class="faq-item">
-              <div class="faq-question">How many times should I use this?</div>
-              <div class="faq-answer">Use this product 2-3 times per week for best results. Start with once a week and gradually increase frequency as your skin adjusts.</div>
+              <div class="faq-question">{{ block.settings.question }}</div>
+              <div class="faq-answer">{{ block.settings.answer }}</div>
             </div>
           {% endif %}
-        </div>
+        {% endfor %}
+        {% if section.blocks.size == 0 or section.blocks == blank %}
+          <div class="faq-item">
+            <div class="faq-question">How many times should I use this?</div>
+            <div class="faq-answer">
+              Use this product 2-3 times per week for best results. Start with once a week and gradually increase
+              frequency as your skin adjusts.
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">How many times should I use this?</div>
+            <div class="faq-answer">
+              Use this product 2-3 times per week for best results. Start with once a week and gradually increase
+              frequency as your skin adjusts.
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">How many times should I use this?</div>
+            <div class="faq-answer">
+              Use this product 2-3 times per week for best results. Start with once a week and gradually increase
+              frequency as your skin adjusts.
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">How many times should I use this?</div>
+            <div class="faq-answer">
+              Use this product 2-3 times per week for best results. Start with once a week and gradually increase
+              frequency as your skin adjusts.
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">How many times should I use this?</div>
+            <div class="faq-answer">
+              Use this product 2-3 times per week for best results. Start with once a week and gradually increase
+              frequency as your skin adjusts.
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">How many times should I use this?</div>
+            <div class="faq-answer">
+              Use this product 2-3 times per week for best results. Start with once a week and gradually increase
+              frequency as your skin adjusts.
+            </div>
+          </div>
+        {% endif %}
       </div>
     </div>
   </div>
+</div>
 
-  <div class="mobile-accordion">
-    <div class="mobile-accordion-item">
-      <button class="mobile-accordion-header" data-mobile-tab="about">
-        About
-      </button>
-      <div class="mobile-accordion-content" id="mobile-about">
-        Content will be populated by JavaScript
-      </div>
-    </div>
-
-    <div class="mobile-accordion-item">
-      <button class="mobile-accordion-header" data-mobile-tab="ingredients">
-        Ingredients
-      </button>
-      <div class="mobile-accordion-content" id="mobile-ingredients">
-        Content will be populated by JavaScript
-      </div>
-    </div>
-
-    <div class="mobile-accordion-item">
-      <button class="mobile-accordion-header" data-mobile-tab="usage">
-        Notes
-      </button>
-      <div class="mobile-accordion-content" id="mobile-usage">
-        Content will be populated by JavaScript
-      </div>
-    </div>
-
-    <div class="mobile-accordion-item">
-      <button class="mobile-accordion-header" data-mobile-tab="faq">
-        FAQs
-      </button>
-      <div class="mobile-accordion-content" id="mobile-faq">
-        Content will be populated by JavaScript
-      </div>
-    </div>
+<div class="mobile-accordion">
+  <div class="mobile-accordion-item">
+    <button class="mobile-accordion-header" data-mobile-tab="about">About</button>
+    <div class="mobile-accordion-content" id="mobile-about">Content will be populated by JavaScript</div>
   </div>
+
+  <div class="mobile-accordion-item">
+    <button class="mobile-accordion-header" data-mobile-tab="ingredients">Ingredients</button>
+    <div class="mobile-accordion-content" id="mobile-ingredients">Content will be populated by JavaScript</div>
+  </div>
+
+  <div class="mobile-accordion-item">
+    <button class="mobile-accordion-header" data-mobile-tab="usage">Notes</button>
+    <div class="mobile-accordion-content" id="mobile-usage">Content will be populated by JavaScript</div>
+  </div>
+
+  <div class="mobile-accordion-item">
+    <button class="mobile-accordion-header" data-mobile-tab="faq">FAQs</button>
+    <div class="mobile-accordion-content" id="mobile-faq">Content will be populated by JavaScript</div>
+  </div>
+</div>
 </div>
 
 <script>
@@ -1443,13 +1468,13 @@
     });
   });
 
-  document.addEventListener('click', function(e) {
+  document.addEventListener('click', function (e) {
     if (e.target.classList.contains('faq-question')) {
       e.target.parentElement.classList.toggle('open');
     }
   });
 
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function () {
     initializeIngredientsPagination();
   });
 </script>

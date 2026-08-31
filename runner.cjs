@@ -4,36 +4,36 @@
  * ============================================================================
  * SCENTSPIRED THEME GUARDIAN — Universal CLI Quality Gate Runner
  * ============================================================================
- * 
+ *
  * Centralized, multi-store quality gate execution engine for Scentspired.
  * Evaluates any target Shopify theme directory across all 7 Quality Gate layers.
- * 
+ *
  * Usage:
  *   node runner.cjs --target=/path/to/theme
  *   node runner.cjs --target=../Scentspired-USA
  *   node runner.cjs --target=../Scentspired-UK
  *   THEME_TARGET_DIR=../Scentspired-USA node runner.cjs
- * 
+ *
  * Exit codes:
  *   0 = 100% Quality Gate Passed (Zero Errors, Zero Regressions)
  *   1 = Quality Gate Failed (Deployment Strictly Blocked)
  * ============================================================================
  */
 
-const fs = require('fs');
-const path = require('path');
-const { spawnSync } = require('child_process');
+const fs = require("fs");
+const path = require("path");
+const { spawnSync } = require("child_process");
 
 // Parse CLI Arguments
 const args = process.argv.slice(2);
 let targetDir = process.env.THEME_TARGET_DIR || null;
 
 for (const arg of args) {
-  if (arg.startsWith('--target=')) {
-    targetDir = arg.split('=')[1];
-  } else if (arg.startsWith('--target-dir=')) {
-    targetDir = arg.split('=')[1];
-  } else if (arg === '--target' && args[args.indexOf(arg) + 1]) {
+  if (arg.startsWith("--target=")) {
+    targetDir = arg.split("=")[1];
+  } else if (arg.startsWith("--target-dir=")) {
+    targetDir = arg.split("=")[1];
+  } else if (arg === "--target" && args[args.indexOf(arg) + 1]) {
     targetDir = args[args.indexOf(arg) + 1];
   }
 }
@@ -51,13 +51,15 @@ if (!fs.existsSync(resolvedTarget)) {
 }
 
 // Ensure theme elements exist
-const hasThemeFiles = ['layout', 'sections', 'snippets', 'assets', 'templates'].some(dir =>
+const hasThemeFiles = ["layout", "sections", "snippets", "assets", "templates"].some(dir =>
   fs.existsSync(path.join(resolvedTarget, dir))
 );
 
 if (!hasThemeFiles) {
-  console.error(`\n[FATAL] Target directory does not appear to be a valid Shopify theme: ${resolvedTarget}\n`);
-  console.error('Expected at least one of: layout/, sections/, snippets/, assets/, templates/\n');
+  console.error(
+    `\n[FATAL] Target directory does not appear to be a valid Shopify theme: ${resolvedTarget}\n`
+  );
+  console.error("Expected at least one of: layout/, sections/, snippets/, assets/, templates/\n");
   process.exit(1);
 }
 
@@ -65,61 +67,61 @@ if (!hasThemeFiles) {
 process.env.THEME_TARGET_DIR = resolvedTarget;
 
 const GUARDIAN_ROOT = __dirname;
-const TESTS_DIR = path.join(GUARDIAN_ROOT, 'tests');
+const TESTS_DIR = path.join(GUARDIAN_ROOT, "tests");
 
-console.log('');
-console.log('╔══════════════════════════════════════════════════════════════╗');
-console.log('║   SCENTSPIRED THEME GUARDIAN — MASTER QUALITY GATE           ║');
-console.log('╚══════════════════════════════════════════════════════════════╝');
+console.log("");
+console.log("╔══════════════════════════════════════════════════════════════╗");
+console.log("║   SCENTSPIRED THEME GUARDIAN — MASTER QUALITY GATE           ║");
+console.log("╚══════════════════════════════════════════════════════════════╝");
 console.log(`  Target Theme : ${resolvedTarget}`);
 console.log(`  Engine Root  : ${GUARDIAN_ROOT}`);
 console.log(`  Timestamp    : ${new Date().toISOString()}`);
-console.log('────────────────────────────────────────────────────────────────');
+console.log("────────────────────────────────────────────────────────────────");
 
 const LAYERS = [
   {
-    name: 'Layer 1: Prettier & Liquid Formatting Gate',
-    cmd: 'npx',
-    args: ['--yes', 'prettier', '--check', `${resolvedTarget}/**/*.{liquid,json,js,css}`],
+    name: "Layer 1: Prettier & Liquid Formatting Gate",
+    cmd: "npx",
+    args: ["--yes", "prettier", "--check", `${resolvedTarget}/**/*.{liquid,json,js,css}`],
     optional: true,
-    failMsg: 'Liquid formatting inconsistencies detected'
+    failMsg: "Liquid formatting inconsistencies detected",
   },
   {
-    name: 'Layer 2: AST JavaScript & Script Block Compiler',
-    cmd: 'node',
-    args: [path.join(TESTS_DIR, 'syntax-validator.cjs')],
-    failMsg: 'JavaScript AST syntax errors found'
+    name: "Layer 2: AST JavaScript & Script Block Compiler",
+    cmd: "node",
+    args: [path.join(TESTS_DIR, "syntax-validator.cjs")],
+    failMsg: "JavaScript AST syntax errors found",
   },
   {
-    name: 'Layer 3: Theme Guardian Static Code Analysis',
-    cmd: 'node',
-    args: [path.join(TESTS_DIR, 'static-analysis.cjs')],
-    failMsg: 'Static analysis rule violations detected'
+    name: "Layer 3: Theme Guardian Static Code Analysis",
+    cmd: "node",
+    args: [path.join(TESTS_DIR, "static-analysis.cjs")],
+    failMsg: "Static analysis rule violations detected",
   },
   {
-    name: 'Layer 4: Storefront Critical Funnel Simulator',
-    cmd: 'node',
-    args: [path.join(TESTS_DIR, 'critical-flow-simulator.cjs')],
-    failMsg: 'Critical purchase funnel simulations failed'
+    name: "Layer 4: Storefront Critical Funnel Simulator",
+    cmd: "node",
+    args: [path.join(TESTS_DIR, "critical-flow-simulator.cjs")],
+    failMsg: "Critical purchase funnel simulations failed",
   },
   {
-    name: 'Layer 5: Chaos, Fuzzing & Concurrency Engine',
-    cmd: 'node',
-    args: [path.join(TESTS_DIR, 'chaos-simulation-tests.cjs')],
-    failMsg: 'Chaos & fuzzing assertions failed'
+    name: "Layer 5: Chaos, Fuzzing & Concurrency Engine",
+    cmd: "node",
+    args: [path.join(TESTS_DIR, "chaos-simulation-tests.cjs")],
+    failMsg: "Chaos & fuzzing assertions failed",
   },
   {
-    name: 'Layer 6: Clarity & Sentry Crash Defense Verification',
-    cmd: 'node',
-    args: [path.join(TESTS_DIR, 'verify-clarity-detection.cjs')],
-    failMsg: 'Historical crash defense verification failed'
+    name: "Layer 6: Clarity & Sentry Crash Defense Verification",
+    cmd: "node",
+    args: [path.join(TESTS_DIR, "verify-clarity-detection.cjs")],
+    failMsg: "Historical crash defense verification failed",
   },
   {
-    name: 'Layer 7: Automated Master Scan Report Generator',
-    cmd: 'node',
-    args: [path.join(TESTS_DIR, 'generate-report.cjs')],
-    failMsg: 'Report generation failed'
-  }
+    name: "Layer 7: Automated Master Scan Report Generator",
+    cmd: "node",
+    args: [path.join(TESTS_DIR, "generate-report.cjs")],
+    failMsg: "Report generation failed",
+  },
 ];
 
 let totalPassed = 0;
@@ -131,9 +133,9 @@ for (let i = 0; i < LAYERS.length; i++) {
   console.log(`\n>>> RUNNING [${i + 1}/7]: ${layer.name}...`);
 
   const result = spawnSync(layer.cmd, layer.args, {
-    stdio: 'inherit',
+    stdio: "inherit",
     env: { ...process.env, THEME_TARGET_DIR: resolvedTarget },
-    cwd: GUARDIAN_ROOT
+    cwd: GUARDIAN_ROOT,
   });
 
   if (result.status !== 0) {
@@ -150,16 +152,16 @@ for (let i = 0; i < LAYERS.length; i++) {
 }
 
 const elapsedSec = ((Date.now() - startTime) / 1000).toFixed(2);
-console.log('\n==================================================================');
+console.log("\n==================================================================");
 
 if (totalFailed === 0) {
   console.log(`   ✅ ALL 7 QUALITY GATES PASSED (100% CLEAN & SECURE) — ${elapsedSec}s`);
   console.log(`   🚀 APPROVED FOR LIVE PRODUCTION DEPLOYMENT`);
-  console.log('==================================================================\n');
+  console.log("==================================================================\n");
   process.exit(0);
 } else {
   console.error(`   ❌ QUALITY GATE FAILED (${totalFailed} errors) — ${elapsedSec}s`);
   console.error(`   🚫 DEPLOYMENT STRICTLY BLOCKED`);
-  console.error('==================================================================\n');
+  console.error("==================================================================\n");
   process.exit(1);
 }

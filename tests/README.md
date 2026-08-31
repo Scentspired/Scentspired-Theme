@@ -59,15 +59,15 @@ Scans every `.liquid` and `.js` file across `sections/`, `snippets/`, `assets/`,
 
 ### Active Detection Rules:
 
-| Rule | Description | Catches |
-| :--- | :--- | :--- |
-| **`no-unguarded-getElementById`** | Direct property/method access on `getElementById` without null-check | `null is not an object (evaluating 'getElementById(...).addEventListener')` |
-| **`no-unguarded-querySelector`** | Direct property access on `querySelector` or `querySelectorAll` | `null is not an object (evaluating 'card.querySelector(...).value')` |
-| **`no-unguarded-dom-variable`** | Local variables assigned from DOM queries used without null guards | `table.querySelectorAll` crashes |
-| **`no-unsafe-inline-onclick`** | Dynamic template literals (`${...}`) in `onclick` with unescaped strings | `Uncaught SyntaxError: missing ) after argument list` (e.g. *Victoria's Secret*) |
-| **`no-unguarded-closest-chain`** | Calling properties on `.closest()` results without checking if parent exists | `cannot read properties of null (reading 'querySelectorAll')` |
-| **`balanced-script-tags`** | Verifies `<script>` and `</script>` tag counts match in Liquid templates | Page-breaking syntax crashes |
-| **`fetch-must-have-catch`** | Enforces that all `fetch()` chains include `.catch()` or `try/catch` | Buttons permanently stuck in "Adding..." on network drop |
+| Rule                              | Description                                                                  | Catches                                                                          |
+| :-------------------------------- | :--------------------------------------------------------------------------- | :------------------------------------------------------------------------------- |
+| **`no-unguarded-getElementById`** | Direct property/method access on `getElementById` without null-check         | `null is not an object (evaluating 'getElementById(...).addEventListener')`      |
+| **`no-unguarded-querySelector`**  | Direct property access on `querySelector` or `querySelectorAll`              | `null is not an object (evaluating 'card.querySelector(...).value')`             |
+| **`no-unguarded-dom-variable`**   | Local variables assigned from DOM queries used without null guards           | `table.querySelectorAll` crashes                                                 |
+| **`no-unsafe-inline-onclick`**    | Dynamic template literals (`${...}`) in `onclick` with unescaped strings     | `Uncaught SyntaxError: missing ) after argument list` (e.g. _Victoria's Secret_) |
+| **`no-unguarded-closest-chain`**  | Calling properties on `.closest()` results without checking if parent exists | `cannot read properties of null (reading 'querySelectorAll')`                    |
+| **`balanced-script-tags`**        | Verifies `<script>` and `</script>` tag counts match in Liquid templates     | Page-breaking syntax crashes                                                     |
+| **`fetch-must-have-catch`**       | Enforces that all `fetch()` chains include `.catch()` or `try/catch`         | Buttons permanently stuck in "Adding..." on network drop                         |
 
 ---
 
@@ -75,22 +75,22 @@ Scans every `.liquid` and `.js` file across `sections/`, `snippets/`, `assets/`,
 
 Executes actual theme JavaScript logic inside a sandboxed DOM environment to simulate real shopper interactions:
 
-* **Suite A: Product Detail Page (PDP) Add-to-Cart Lifecycle:**
-  * Tests physical button disabling on click.
-  * Tests multi-tap / rage-click debouncing (5 rapid clicks = 1 network request).
-  * Tests Sold-out (Shopify 422) handling & persistent button disable.
-  * Tests 500 error / offline network drop graceful recovery.
-* **Suite B: Collection & Best-Sellers Variant Switching:**
-  * Tests size swatch switching updates hidden variant ID input and price display.
-  * Tests defensive execution when cards lack variant inputs (zero crash).
-* **Suite C: Interactive Bundle & Box Builder:**
-  * Tests brand names with apostrophes (e.g., *Victoria's Secret*, *Kilian's*) evaluate without syntax errors.
-  * Tests 5-slot bundle completion and checkout button unlocking.
-* **Suite D: Cart Drawer UI & Tier Synchronization:**
-  * Tests `window.updateDossierCartUI` updates item count and total price.
-  * Tests `window.openDossierCart` slides drawer open.
-* **Suite E: Global `.item-form` Delegation:**
-  * Tests add-to-cart dispatch, button loading states, and network recovery.
+- **Suite A: Product Detail Page (PDP) Add-to-Cart Lifecycle:**
+  - Tests physical button disabling on click.
+  - Tests multi-tap / rage-click debouncing (5 rapid clicks = 1 network request).
+  - Tests Sold-out (Shopify 422) handling & persistent button disable.
+  - Tests 500 error / offline network drop graceful recovery.
+- **Suite B: Collection & Best-Sellers Variant Switching:**
+  - Tests size swatch switching updates hidden variant ID input and price display.
+  - Tests defensive execution when cards lack variant inputs (zero crash).
+- **Suite C: Interactive Bundle & Box Builder:**
+  - Tests brand names with apostrophes (e.g., _Victoria's Secret_, _Kilian's_) evaluate without syntax errors.
+  - Tests 5-slot bundle completion and checkout button unlocking.
+- **Suite D: Cart Drawer UI & Tier Synchronization:**
+  - Tests `window.updateDossierCartUI` updates item count and total price.
+  - Tests `window.openDossierCart` slides drawer open.
+- **Suite E: Global `.item-form` Delegation:**
+  - Tests add-to-cart dispatch, button loading states, and network recovery.
 
 ---
 
@@ -98,11 +98,11 @@ Executes actual theme JavaScript logic inside a sandboxed DOM environment to sim
 
 Continuously benchmarks the toolkit against the **543 historical error sessions** recorded in Microsoft Clarity:
 
-* ✅ `document.getElementById('mobileCartTrigger').addEventListener` (83 sessions) $\rightarrow$ **CAUGHT**
-* ✅ `table.querySelectorAll('tbody tr')` (40 sessions) $\rightarrow$ **CAUGHT**
-* ✅ `card.querySelector('.selected-variant-id').value` (32 sessions) $\rightarrow$ **CAUGHT**
-* ✅ `onclick selectBrand('${b.tag}')` apostrophe crashes (17 sessions) $\rightarrow$ **CAUGHT**
-* ✅ `document.getElementById(id).style` (5 sessions) $\rightarrow$ **CAUGHT**
+- ✅ `document.getElementById('mobileCartTrigger').addEventListener` (83 sessions) $\rightarrow$ **CAUGHT**
+- ✅ `table.querySelectorAll('tbody tr')` (40 sessions) $\rightarrow$ **CAUGHT**
+- ✅ `card.querySelector('.selected-variant-id').value` (32 sessions) $\rightarrow$ **CAUGHT**
+- ✅ `onclick selectBrand('${b.tag}')` apostrophe crashes (17 sessions) $\rightarrow$ **CAUGHT**
+- ✅ `document.getElementById(id).style` (5 sessions) $\rightarrow$ **CAUGHT**
 
 ---
 

@@ -1,6 +1,6 @@
 {% comment %}
-Bundle Builder Section - Hardcoded Collection Display
-Shows all products from a specific collection
+  Bundle Builder Section - Hardcoded Collection Display
+  Shows all products from a specific collection
 {% endcomment %}
 
 <div class="bundle-builder-section">
@@ -13,7 +13,7 @@ Shows all products from a specific collection
             <h1 class="bundle-title">Discovery Box</h1>
             <p class="bundle-description">Choose 5 fragrances to complete your box.</p>
           </div>
-          
+
           <div class="bundle-selector">
             <div class="bundle-slider-container">
               <button class="bundle-nav-arrow left" id="scroll-left">
@@ -35,7 +35,7 @@ Shows all products from a specific collection
                   {% endfor %}
                 </div>
               </div>
-              
+
               <button class="bundle-nav-arrow right" id="scroll-right">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                   <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2"/>
@@ -44,7 +44,7 @@ Shows all products from a specific collection
             </div>
           </div>
         </div>
-        
+
         <!-- Pricing Sidebar -->
         <div class="bundle-sidebar">
           <div class="pricing-section">
@@ -54,21 +54,19 @@ Shows all products from a specific collection
             </div>
             <p class="savings-text" id="savings-message">Add 5 items to checkout</p>
           </div>
-          
+
           <div class="checkout-section">
             <div class="subtotal-row">
               <span>SUBTOTAL</span>
               <span>$<span id="subtotal-amount">0</span></span>
             </div>
-            <button class="checkout-button" id="checkout-btn" disabled>
-              CHECKOUT
-            </button>
+            <button class="checkout-button" id="checkout-btn" disabled>CHECKOUT</button>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>                 
+</div>
 
 <!-- Search Box -->
 <div class="product-filter-section">
@@ -88,99 +86,84 @@ Shows all products from a specific collection
 <!-- Products Grid -->
 <div class="products-grid-section">
   <div class="products-container">
-
     {% assign collection_handle = "discovery" %}
     {% assign collection = collections[collection_handle] %}
 
     <!-- PAGINATE MAX 100 PRODUCTS -->
     {% paginate collection.products by 100 %}
-    
-    <div class="products-grid" id="products-grid" data-selected-collection="{{ collection_handle }}">
-
-      {% if collection.products_count > 0 %}
-        
-        {% for product in collection.products %}
-          
-
-          <div class="product-card"
-               data-product-id="{{ product.variants.first.id }}"
-               data-product-handle="{{ product.handle }}"
-               data-product-title="{{ product.title | escape }}"
-               data-product-price="{{ product.price }}"
-               data-product-image="{{ product.featured_image | img_url: '100x100' }}"
-               data-tags="{{ product.tags | join: ',' | downcase }}"
-               data-collection-name="{{ collection_handle }}"
-               data-bestseller="{{ is_bestseller }}"
-               style="background-image: url('{{ product.featured_image | img_url: '400x400' }}');">
-
-            <!-- Badges -->
-            <div class="product-badges">
-              {% for tag in product.tags %}
-                {% case tag %}
-                  {% when 'Women' %}
-                    <span class="badge category-badge">Women</span>
-                  {% when 'Men' %}
-                    <span class="badge category-badge">Men</span>
-                  {% when 'Unisex' %}
-                    <span class="badge category-badge">Unisex</span>
-                  {% when 'Bestseller' %}
-                    <span class="badge bestseller-badge">Bestseller</span>
-                {% endcase %}
-              {% endfor %}
-            </div>
-
-            <!-- Price -->
-            <div class="product-price-overlay">
-              ${{ product.price | money_without_currency }}
-            </div>
-
-            <!-- Product Info -->
-            <div class="product-info-overlay">
-
-              <h3 class="product-title">{{ product.title | upcase }}</h3>
-
-              <!-- Inspired By / Vendor -->
-              <p class="product-subtitle">
-                {{ product.metafields.custom.inspired_by.value | default: product.vendor }}
-              </p>
-
-              <!-- Rating -->
-              {% assign rating = product.metafields.reviews.rating.value | default: 4.5 %}
-              <div class="product-rating">
-                <div class="stars">
-                  {% for i in (1..5) %}
-                    {% if rating >= i %}
-                      <span class="star filled">★</span>
-                    {% else %}
-                      <span class="star empty">★</span>
-                    {% endif %}
-                  {% endfor %}
-                </div>
+      <div class="products-grid" id="products-grid" data-selected-collection="{{ collection_handle }}">
+        {% if collection.products_count > 0 %}
+          {% for product in collection.products %}
+            <div
+              class="product-card"
+              data-product-id="{{ product.variants.first.id }}"
+              data-product-handle="{{ product.handle }}"
+              data-product-title="{{ product.title | escape }}"
+              data-product-price="{{ product.price }}"
+              data-product-image="{{ product.featured_image | img_url: '100x100' }}"
+              data-tags="{{ product.tags | join: ',' | downcase }}"
+              data-collection-name="{{ collection_handle }}"
+              data-bestseller="{{ is_bestseller }}"
+              style="background-image: url('{{ product.featured_image | img_url: '400x400' }}');">
+              <!-- Badges -->
+              <div class="product-badges">
+                {% for tag in product.tags %}
+                  {% case tag %}
+                    {% when "Women" %}
+                      <span class="badge category-badge">Women</span>
+                    {% when "Men" %}
+                      <span class="badge category-badge">Men</span>
+                    {% when "Unisex" %}
+                      <span class="badge category-badge">Unisex</span>
+                    {% when "Bestseller" %}
+                      <span class="badge bestseller-badge">Bestseller</span>
+                  {% endcase %}
+                {% endfor %}
               </div>
 
-              <button class="add-to-bundle-btn">ADD TO BUNDLE</button>
+              <!-- Price -->
+              <div class="product-price-overlay">${{ product.price | money_without_currency }}</div>
+
+              <!-- Product Info -->
+              <div class="product-info-overlay">
+                <h3 class="product-title">{{ product.title | upcase }}</h3>
+
+                <!-- Inspired By / Vendor -->
+                <p class="product-subtitle">
+                  {{ product.metafields.custom.inspired_by.value | default: product.vendor }}
+                </p>
+
+                <!-- Rating -->
+                {% assign rating = product.metafields.reviews.rating.value | default: 4.5 %}
+                <div class="product-rating">
+                  <div class="stars">
+                    {% for i in (1..5) %}
+                      {% if rating >= i %}
+                        <span class="star filled">★</span>
+                      {% else %}
+                        <span class="star empty">★</span>
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+                </div>
+
+                <button class="add-to-bundle-btn">ADD TO BUNDLE</button>
+              </div>
             </div>
+          {% endfor %}
+
+        {% else %}
+          <div style="grid-column: 1 / -1; padding: 60px 20px; text-align: center;">
+            <p style="font-size: 16px; color: #666;">No products found in "{{ collection.title }}".</p>
           </div>
-        {% endfor %}
+        {% endif %}
+      </div>
 
-      {% else %}
-        <div style="grid-column: 1 / -1; padding: 60px 20px; text-align: center;">
-          <p style="font-size: 16px; color: #666;">
-            No products found in "{{ collection.title }}".
-          </p>
-        </div>
-      {% endif %}
-
-    </div>
-
-    <!-- PAGINATION BUTTONS -->
-    {{ paginate | default_pagination }}
-
+      <!-- PAGINATION BUTTONS -->
+      {{ paginate | default_pagination }}
     {% endpaginate %}
-
   </div>
 </div>
-
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700&display=swap');
@@ -396,7 +379,7 @@ Shows all products from a specific collection
   }
 
   .slot-number {
-    font-family: 'PPMori Regular', sans-serif;  
+    font-family: 'PPMori Regular', sans-serif;
     font-size: 24px;
     font-weight: 300;
     color: #000;
@@ -786,11 +769,11 @@ Shows all products from a specific collection
       max-width: 900px;
       gap: 30px;
     }
-    
+
     .bundle-sidebar {
       width: 240px;
     }
-    
+
     .products-grid {
       grid-template-columns: repeat(3, 1fr);
       gap: 20px;
@@ -803,26 +786,26 @@ Shows all products from a specific collection
       gap: 30px;
       max-width: 100%;
     }
-    
+
     .bundle-sidebar {
       width: 100%;
       max-width: 400px;
       margin: 0 auto;
     }
-    
+
     .bundle-title {
       font-size: 36px;
     }
-    
+
     .bundle-slider-container {
       flex-direction: column;
       align-items: stretch;
     }
-    
+
     .bundle-nav-arrow {
       display: none;
     }
-    
+
     .bundle-items-row {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -864,30 +847,30 @@ Shows all products from a specific collection
       line-height: 1.2;
       word-break: break-all;
     }
-    
+
     .filter-container {
       flex-direction: column;
       gap: 20px;
       align-items: stretch;
     }
-    
+
     .search-input {
       width: 100%;
     }
-    
+
     .products-grid {
       grid-template-columns: 1fr;
       gap: 16px;
     }
-    
+
     .product-card {
       height: 470px;
     }
-    
+
     .filter-tabs {
       justify-content: center;
     }
-    
+
     .products-grid-section,
     .product-filter-section {
       padding-left: 15px;
@@ -909,246 +892,243 @@ Shows all products from a specific collection
 </style>
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-  class BundleManager {
-    constructor() {
-      this.bundleItems = [];
-      this.maxItems = 5;
-      this.selectedCollection = document.getElementById('products-grid').dataset.selectedCollection;
-      console.log("[v0] Selected collection:", this.selectedCollection);
-      console.log("[v0] Total product cards found:", document.querySelectorAll('.product-card').length);
-      this.init();
-    }
+  document.addEventListener('DOMContentLoaded', function () {
+    class BundleManager {
+      constructor() {
+        this.bundleItems = [];
+        this.maxItems = 5;
+        this.selectedCollection = document.getElementById('products-grid').dataset.selectedCollection;
+        console.log('[v0] Selected collection:', this.selectedCollection);
+        console.log('[v0] Total product cards found:', document.querySelectorAll('.product-card').length);
+        this.init();
+      }
 
-    init() {
-      this.setupEventListeners();
-      this.updateUI();
-      this.updatePricing();
-    }
+      init() {
+        this.setupEventListeners();
+        this.updateUI();
+        this.updatePricing();
+      }
 
-    setupEventListeners() {
-      document.querySelectorAll('.add-to-bundle-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          const card = e.target.closest('.product-card');
-          this.addProductToBundle(card);
-        });
-      });
-
-      document.getElementById('checkout-btn').addEventListener('click', (e) => {
-        e.preventDefault();
-        this.proceedToCheckout();
-      });
-
-      
-      document.getElementById('product-search').addEventListener('input', (e) => {
-        this.searchProducts(e.target.value);
-      });
-
-      if (window.innerWidth > 768) {
-        document.getElementById('scroll-left').addEventListener('click', () => {
-          this.scrollBundleItems('left');
+      setupEventListeners() {
+        document.querySelectorAll('.add-to-bundle-btn').forEach(btn => {
+          btn.addEventListener('click', e => {
+            const card = e.target.closest('.product-card');
+            this.addProductToBundle(card);
+          });
         });
 
-        document.getElementById('scroll-right').addEventListener('click', () => {
-          this.scrollBundleItems('right');
+        document.getElementById('checkout-btn').addEventListener('click', e => {
+          e.preventDefault();
+          this.proceedToCheckout();
+        });
+
+        document.getElementById('product-search').addEventListener('input', e => {
+          this.searchProducts(e.target.value);
+        });
+
+        if (window.innerWidth > 768) {
+          document.getElementById('scroll-left').addEventListener('click', () => {
+            this.scrollBundleItems('left');
+          });
+
+          document.getElementById('scroll-right').addEventListener('click', () => {
+            this.scrollBundleItems('right');
+          });
+        }
+
+        document.querySelectorAll('.bundle-item.empty-slot').forEach(slot => {
+          slot.addEventListener('click', () => {
+            this.scrollToProducts();
+          });
         });
       }
 
-      document.querySelectorAll('.bundle-item.empty-slot').forEach(slot => {
-        slot.addEventListener('click', () => {
-          this.scrollToProducts();
-        });
-      });
-    }
+      addProductToBundle(card) {
+        if (this.bundleItems.length >= this.maxItems) {
+          alert('You have reached the maximum of ' + this.maxItems + ' items');
+          return;
+        }
 
-    addProductToBundle(card) {
-      if (this.bundleItems.length >= this.maxItems) {
-        alert('You have reached the maximum of ' + this.maxItems + ' items');
-        return;
+        const productId = card.dataset.productId;
+
+        const product = {
+          id: productId,
+          title: card.dataset.productTitle,
+          price: parseInt(card.dataset.productPrice),
+          image: card.dataset.productImage,
+          handle: card.dataset.productHandle,
+        };
+
+        this.bundleItems.push(product);
+        this.updateUI();
+        this.updatePricing();
+        this.showAddedFeedback(card);
       }
 
-      const productId = card.dataset.productId;
+      removeProductFromBundle(index) {
+        this.bundleItems.splice(index, 1);
+        this.updateUI();
+        this.updatePricing();
+      }
 
-      const product = {
-        id: productId,
-        title: card.dataset.productTitle,
-        price: parseInt(card.dataset.productPrice),
-        image: card.dataset.productImage,
-        handle: card.dataset.productHandle
-      };
+      updateUI() {
+        const slotWrappers = document.querySelectorAll('.bundle-slot-wrapper');
 
-      this.bundleItems.push(product);
-      this.updateUI();
-      this.updatePricing();
-      this.showAddedFeedback(card);
-    }
+        slotWrappers.forEach((wrapper, index) => {
+          const slotIndex = parseInt(wrapper.dataset.slot);
+          const bundleItem = wrapper.querySelector('.bundle-item');
+          const productName = wrapper.querySelector('.bundle-product-name');
 
-    removeProductFromBundle(index) {
-      this.bundleItems.splice(index, 1);
-      this.updateUI();
-      this.updatePricing();
-    }
-
-    updateUI() {
-      const slotWrappers = document.querySelectorAll('.bundle-slot-wrapper');
-
-      slotWrappers.forEach((wrapper, index) => {
-        const slotIndex = parseInt(wrapper.dataset.slot);
-        const bundleItem = wrapper.querySelector('.bundle-item');
-        const productName = wrapper.querySelector('.bundle-product-name');
-
-        if (slotIndex < this.bundleItems.length) {
-          const item = this.bundleItems[slotIndex];
-          bundleItem.className = 'bundle-item filled';
-          bundleItem.innerHTML = `
+          if (slotIndex < this.bundleItems.length) {
+            const item = this.bundleItems[slotIndex];
+            bundleItem.className = 'bundle-item filled';
+            bundleItem.innerHTML = `
             <button class="remove-item" onclick="bundleManager.removeProductFromBundle(${slotIndex})">×</button>
             <div class="item-image">
               <img src="${item.image}" alt="${item.title}">
             </div>
           `;
-          productName.textContent = item.title;
-        } else {
-          productName.textContent = '';
-          bundleItem.className = 'bundle-item empty-slot';
-          bundleItem.innerHTML = `<button class="add-button">+</button><span class="slot-number">${slotIndex + 1}</span>`;
-          bundleItem.addEventListener('click', () => {
-            this.scrollToProducts();
-          });
-        }
-      });
-
-      this.updateProductButtons();
-    }
-
-    updateProductButtons() {
-  document.querySelectorAll('.product-card').forEach(card => {
-    const button = card.querySelector('.add-to-bundle-btn');
-
-    if (this.bundleItems.length >= this.maxItems) {
-      button.textContent = 'BUNDLE FULL';
-      button.disabled = true;
-    } else {
-      button.textContent = 'ADD TO BUNDLE';
-      button.disabled = false;
-    }
-  });
-}
-
-
-    updatePricing() {
-      const itemCount = this.bundleItems.length;
-      let subtotal = this.bundleItems.reduce((sum, item) => sum + item.price / 100, 0);
-
-      document.getElementById('initial-price').textContent = subtotal.toFixed(2);
-      document.getElementById('subtotal-amount').textContent = subtotal.toFixed(2);
-
-      const savingsMessage = document.getElementById('savings-message');
-      const checkoutBtn = document.getElementById('checkout-btn');
-      
-      if (itemCount === this.maxItems) {
-        checkoutBtn.disabled = false;
-        savingsMessage.textContent = 'Your bundle is complete!';
-      } else {
-        checkoutBtn.disabled = true;
-        const remaining = this.maxItems - itemCount;
-        savingsMessage.textContent = `Add ${remaining} more item${remaining !== 1 ? 's' : ''} to checkout`;
-      }
-    }
-
-    showAddedFeedback(card) {
-      const button = card.querySelector('.add-to-bundle-btn');
-      button.textContent = 'ADDED!';
-      button.classList.add('success');
-      setTimeout(() => {
-        button.classList.remove('success');
-        this.updateProductButtons();
-      }, 2000);
-    }
-
-    async proceedToCheckout() {
-      if (this.bundleItems.length !== this.maxItems) {
-        alert('Please add all 5 items to your bundle');
-        return;
-      }
-
-      const checkoutBtn = document.getElementById('checkout-btn');
-      checkoutBtn.textContent = 'ADDING TO CART...';
-      checkoutBtn.disabled = true;
-
-      try {
-        await fetch('/cart/clear.js', { method: 'POST' });
-
-        const cartItems = this.bundleItems.map(item => ({
-          id: item.id,
-          quantity: 1
-        }));
-
-        const response = await fetch('/cart/add.js', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ items: cartItems })
+            productName.textContent = item.title;
+          } else {
+            productName.textContent = '';
+            bundleItem.className = 'bundle-item empty-slot';
+            bundleItem.innerHTML = `<button class="add-button">+</button><span class="slot-number">${slotIndex + 1}</span>`;
+            bundleItem.addEventListener('click', () => {
+              this.scrollToProducts();
+            });
+          }
         });
 
-        if (!response.ok) throw new Error('Cart add failed');
+        this.updateProductButtons();
+      }
 
-        checkoutBtn.textContent = 'REDIRECTING...';
-        window.location.href = '/checkout';
+      updateProductButtons() {
+        document.querySelectorAll('.product-card').forEach(card => {
+          const button = card.querySelector('.add-to-bundle-btn');
 
-      } catch (error) {
-        console.error('Checkout error:', error);
-        alert('There was an error processing your bundle. Please try again.');
-        checkoutBtn.textContent = 'CHECKOUT';
-        checkoutBtn.disabled = false;
+          if (this.bundleItems.length >= this.maxItems) {
+            button.textContent = 'BUNDLE FULL';
+            button.disabled = true;
+          } else {
+            button.textContent = 'ADD TO BUNDLE';
+            button.disabled = false;
+          }
+        });
+      }
+
+      updatePricing() {
+        const itemCount = this.bundleItems.length;
+        let subtotal = this.bundleItems.reduce((sum, item) => sum + item.price / 100, 0);
+
+        document.getElementById('initial-price').textContent = subtotal.toFixed(2);
+        document.getElementById('subtotal-amount').textContent = subtotal.toFixed(2);
+
+        const savingsMessage = document.getElementById('savings-message');
+        const checkoutBtn = document.getElementById('checkout-btn');
+
+        if (itemCount === this.maxItems) {
+          checkoutBtn.disabled = false;
+          savingsMessage.textContent = 'Your bundle is complete!';
+        } else {
+          checkoutBtn.disabled = true;
+          const remaining = this.maxItems - itemCount;
+          savingsMessage.textContent = `Add ${remaining} more item${remaining !== 1 ? 's' : ''} to checkout`;
+        }
+      }
+
+      showAddedFeedback(card) {
+        const button = card.querySelector('.add-to-bundle-btn');
+        button.textContent = 'ADDED!';
+        button.classList.add('success');
+        setTimeout(() => {
+          button.classList.remove('success');
+          this.updateProductButtons();
+        }, 2000);
+      }
+
+      async proceedToCheckout() {
+        if (this.bundleItems.length !== this.maxItems) {
+          alert('Please add all 5 items to your bundle');
+          return;
+        }
+
+        const checkoutBtn = document.getElementById('checkout-btn');
+        checkoutBtn.textContent = 'ADDING TO CART...';
+        checkoutBtn.disabled = true;
+
+        try {
+          await fetch('/cart/clear.js', { method: 'POST' });
+
+          const cartItems = this.bundleItems.map(item => ({
+            id: item.id,
+            quantity: 1,
+          }));
+
+          const response = await fetch('/cart/add.js', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ items: cartItems }),
+          });
+
+          if (!response.ok) throw new Error('Cart add failed');
+
+          checkoutBtn.textContent = 'REDIRECTING...';
+          window.location.href = '/checkout';
+        } catch (error) {
+          console.error('Checkout error:', error);
+          alert('There was an error processing your bundle. Please try again.');
+          checkoutBtn.textContent = 'CHECKOUT';
+          checkoutBtn.disabled = false;
+        }
+      }
+
+      // Removed filterProducts function as filter tabs are removed
+      // Modified searchProducts to filter by text only, not collection
+      searchProducts(query) {
+        const searchTerm = query.toLowerCase();
+        document.querySelectorAll('.product-card').forEach(product => {
+          const title = product.dataset.productTitle.toLowerCase();
+          const tags = product.dataset.tags.toLowerCase();
+          const matchesSearch = title.includes(searchTerm) || tags.includes(searchTerm);
+          product.style.display = matchesSearch ? 'block' : 'none';
+        });
+      }
+
+      scrollBundleItems(direction) {
+        if (window.innerWidth > 768) {
+          const container = document.getElementById('bundle-items-row');
+          const scrollAmount = direction === 'right' ? 150 : -150;
+          container.scrollLeft += scrollAmount;
+        }
+      }
+
+      scrollToProducts() {
+        document.querySelector('.products-grid-section').scrollIntoView({ behavior: 'smooth' });
       }
     }
 
-    // Removed filterProducts function as filter tabs are removed
-    // Modified searchProducts to filter by text only, not collection
-    searchProducts(query) {
-      const searchTerm = query.toLowerCase();
-      document.querySelectorAll('.product-card').forEach(product => {
-        const title = product.dataset.productTitle.toLowerCase();
-        const tags = product.dataset.tags.toLowerCase();
-        const matchesSearch = title.includes(searchTerm) || tags.includes(searchTerm);
-        product.style.display = matchesSearch ? 'block' : 'none';
-      });
-    }
+    window.bundleManager = new BundleManager();
 
-    scrollBundleItems(direction) {
-      if (window.innerWidth > 768) {
-        const container = document.getElementById('bundle-items-row');
-        const scrollAmount = direction === 'right' ? 150 : -150;
-        container.scrollLeft += scrollAmount;
+    if (window.innerWidth > 768) {
+      const bundleRow = document.getElementById('bundle-items-row');
+      const scrollRight = document.getElementById('scroll-right');
+      const scrollLeft = document.getElementById('scroll-left');
+
+      if (scrollRight) {
+        scrollRight.addEventListener('click', () => {
+          bundleRow.scrollBy({ left: 150, behavior: 'smooth' });
+        });
+      }
+
+      if (scrollLeft) {
+        scrollLeft.addEventListener('click', () => {
+          bundleRow.scrollBy({ left: -150, behavior: 'smooth' });
+        });
       }
     }
-
-    scrollToProducts() {
-      document.querySelector('.products-grid-section').scrollIntoView({ behavior: 'smooth' });
-    }
-  }
-
-  window.bundleManager = new BundleManager();
-
-  if (window.innerWidth > 768) {
-    const bundleRow = document.getElementById('bundle-items-row');
-    const scrollRight = document.getElementById('scroll-right');
-    const scrollLeft = document.getElementById('scroll-left');
-
-    if (scrollRight) {
-      scrollRight.addEventListener('click', () => {
-        bundleRow.scrollBy({ left: 150, behavior: 'smooth' });
-      });
-    }
-
-    if (scrollLeft) {
-      scrollLeft.addEventListener('click', () => {
-        bundleRow.scrollBy({ left: -150, behavior: 'smooth' });
-      });
-    }
-  }
-});
+  });
 </script>
 
 {% schema %}

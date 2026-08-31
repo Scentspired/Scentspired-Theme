@@ -2,7 +2,7 @@
   @prompt
     "Create a custom Shopify Liquid banner section that replicates the layout and design of image_e901e8.png. The section must include separate background image upload options for desktop and mobile, with the section height set to 'adapt to image' so it maintains the aspect ratio of the uploaded files. Position a text content block on the left side of the banner with a clear 'max-width' to prevent it from overlapping the focal point of the image. For the typography, hardcode the following styles: the first line should read 'Find the one that fits Buy it.' where 'Find the one that fits' is in 'PP Editorial New', serif in a dark charcoal color, and 'Buy it.' is in 'PPEditorialNew Italic' in a deep red color (approx. #8B1D22). The second line, 'That is exactly what it is there for.', must be entirely in 'PP Editorial New', serif in the same dark charcoal color. Ensure the text is left-aligned with a tight line-height to match the elegant, compact look in the reference image. The section should be fully responsive, switching to the mobile image upload while maintaining the left-aligned text positioning and the specific font-family and color assignments for each word without any theme-level overrides."
 {% enddoc %}
-{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+{% assign ai_gen_id = block.id | replace: "_", "" | downcase %}
 
 {% style %}
   .ai-editorial-banner-{{ ai_gen_id }} {
@@ -134,8 +134,7 @@
 
 <editorial-banner-{{ ai_gen_id }}
   class="ai-editorial-banner-{{ ai_gen_id }}"
-  {{ block.shopify_attributes }}
->
+  {{ block.shopify_attributes }}>
   <div class="ai-editorial-banner__image-wrapper-{{ ai_gen_id }}">
     {% if block.settings.desktop_image %}
       <img
@@ -144,14 +143,11 @@
         loading="lazy"
         width="{{ block.settings.desktop_image.width }}"
         height="{{ block.settings.desktop_image.height }}"
-        class="ai-editorial-banner__image-{{ ai_gen_id }} ai-editorial-banner__desktop-image-{{ ai_gen_id }}"
-      >
+        class="ai-editorial-banner__image-{{ ai_gen_id }} ai-editorial-banner__desktop-image-{{ ai_gen_id }}">
     {% else %}
       <div class="ai-editorial-banner__image-placeholder-{{ ai_gen_id }} ai-editorial-banner__desktop-image-{{ ai_gen_id }}">
-        {{ 'hero-apparel-1' | placeholder_svg_tag }}
-        <div class="ai-editorial-banner__empty-state-{{ ai_gen_id }}">
-          Next, add a desktop image
-        </div>
+        {{ "hero-apparel-1" | placeholder_svg_tag }}
+        <div class="ai-editorial-banner__empty-state-{{ ai_gen_id }}">Next, add a desktop image</div>
       </div>
     {% endif %}
 
@@ -162,14 +158,11 @@
         loading="lazy"
         width="{{ block.settings.mobile_image.width }}"
         height="{{ block.settings.mobile_image.height }}"
-        class="ai-editorial-banner__image-{{ ai_gen_id }} ai-editorial-banner__mobile-image-{{ ai_gen_id }}"
-      >
+        class="ai-editorial-banner__image-{{ ai_gen_id }} ai-editorial-banner__mobile-image-{{ ai_gen_id }}">
     {% else %}
       <div class="ai-editorial-banner__image-placeholder-{{ ai_gen_id }} ai-editorial-banner__mobile-image-{{ ai_gen_id }}">
-        {{ 'hero-apparel-1' | placeholder_svg_tag }}
-        <div class="ai-editorial-banner__empty-state-{{ ai_gen_id }}">
-          Next, add a mobile image
-        </div>
+        {{ "hero-apparel-1" | placeholder_svg_tag }}
+        <div class="ai-editorial-banner__empty-state-{{ ai_gen_id }}">Next, add a mobile image</div>
       </div>
     {% endif %}
 

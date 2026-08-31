@@ -1,6 +1,6 @@
-{{ 'section-collection-list.css' | asset_url | stylesheet_tag }}
-{{ 'component-card.css' | asset_url | stylesheet_tag }}
-{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+{{ "section-collection-list.css" | asset_url | stylesheet_tag }}
+{{ "component-card.css" | asset_url | stylesheet_tag }}
+{{ "component-slider.css" | asset_url | stylesheet_tag }}
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -30,8 +30,7 @@
       <div class="title-wrapper-with-link{% if show_mobile_slider %} title-wrapper--self-padded-tablet-down{% else %} title-wrapper--self-padded-mobile{% endif %} title-wrapper--no-top-margin">
         <h2
           id="SectionHeading-{{ section.id }}"
-          class="collection-list-title inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-        >
+          class="collection-list-title inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
           {{ section.settings.title }}
         </h2>
 
@@ -40,9 +39,8 @@
             href="{{ routes.collections_url }}"
             id="ViewAll-{{ section.id }}"
             class="link underlined-link large-up-hide{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-            aria-labelledby="ViewAll-{{ section.id }} SectionHeading-{{ section.id }}"
-          >
-            {{- 'sections.collection_list.view_all' | t -}}
+            aria-labelledby="ViewAll-{{ section.id }} SectionHeading-{{ section.id }}">
+            {{- "sections.collection_list.view_all" | t -}}
           </a>
         {%- endif -%}
       </div>
@@ -52,8 +50,7 @@
       <ul
         class="collection-list contains-card contains-card--collection{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down{% if section.settings.swipe_on_mobile %} slider slider--tablet grid--peek{% endif %} collection-list--{{ section.blocks.size }}-items"
         id="Slider-{{ section.id }}"
-        role="list"
-      >
+        role="list">
         {%- liquid
           assign columns = section.blocks.size
           if columns > 3
@@ -68,11 +65,10 @@
             {% if settings.animations_reveal_on_scroll %}
               data-cascade
               style="--animation-order: {{ forloop.index }};"
-            {% endif %}
-          >
+            {% endif %}>
             {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
-            {%- assign placeholder_image = 'collection-apparel-' | append: placeholder_image_index -%}
-            {% render 'card-collection',
+            {%- assign placeholder_image = "collection-apparel-" | append: placeholder_image_index -%}
+            {% render "card-collection",
               card_collection: block.settings.collection,
               media_aspect_ratio: section.settings.image_ratio,
               columns: columns,
@@ -87,26 +83,24 @@
             type="button"
             class="slider-button slider-button--prev"
             name="previous"
-            aria-label="{{ 'general.slider.previous_slide' | t }}"
-          >
+            aria-label="{{ 'general.slider.previous_slide' | t }}">
             <span class="svg-wrapper">
-              {{- 'icon-caret.svg' | inline_asset_content -}}
+              {{- "icon-caret.svg" | inline_asset_content -}}
             </span>
           </button>
           <div class="slider-counter caption">
             <span class="slider-counter--current">1</span>
             <span aria-hidden="true"> / </span>
-            <span class="visually-hidden">{{ 'general.slider.of' | t }}</span>
+            <span class="visually-hidden">{{ "general.slider.of" | t }}</span>
             <span class="slider-counter--total">{{ section.blocks.size }}</span>
           </div>
           <button
             type="button"
             class="slider-button slider-button--next"
             name="next"
-            aria-label="{{ 'general.slider.next_slide' | t }}"
-          >
+            aria-label="{{ 'general.slider.next_slide' | t }}">
             <span class="svg-wrapper">
-              {{- 'icon-caret.svg' | inline_asset_content -}}
+              {{- "icon-caret.svg" | inline_asset_content -}}
             </span>
           </button>
         </div>
@@ -118,15 +112,13 @@
         class="center collection-list-view-all{% if show_mobile_slider %} small-hide medium-hide{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
         {% if settings.animations_reveal_on_scroll %}
           data-cascade
-        {% endif %}
-      >
+        {% endif %}>
         <a
           href="{{ routes.collections_url }}"
           class="button"
           id="ViewAllButton-{{ section.id }}"
-          aria-labelledby="ViewAllButton-{{ section.id }} SectionHeading-{{ section.id }}"
-        >
-          {{- 'sections.collection_list.view_all' | t -}}
+          aria-labelledby="ViewAllButton-{{ section.id }} SectionHeading-{{ section.id }}">
+          {{- "sections.collection_list.view_all" | t -}}
         </a>
       </div>
     {%- endif -%}
@@ -180,7 +172,7 @@
     {
       "type": "header",
       "content": "t:sections.collection-list.settings.header_layout.content"
-    },    
+    },
     {
       "type": "select",
       "id": "image_ratio",
@@ -222,7 +214,7 @@
       "id": "show_view_all",
       "default": false,
       "label": "t:sections.collection-list.settings.show_view_all.label",
-      "info": "t:sections.collection-list.settings.show_view_all.info"   
+      "info": "t:sections.collection-list.settings.show_view_all.info"
     },
     {
       "type": "header",

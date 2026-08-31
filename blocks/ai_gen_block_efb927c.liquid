@@ -1,96 +1,95 @@
-
-{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+{% assign ai_gen_id = block.id | replace: "_", "" | downcase %}
 
 {% style %}
-  .ai-footer-copyright-{{ ai_gen_id }} {
-    display: block;
-    width: 100%;
-    padding: {{ block.settings.padding_top }}px 0 {{ block.settings.padding_bottom }}px;
-    background-color: {{ block.settings.background_color }};
-  }
+    .ai-footer-copyright-{{ ai_gen_id }} {
+      display: block;
+      width: 100%;
+      padding: {{ block.settings.padding_top }}px 0 {{ block.settings.padding_bottom }}px;
+      background-color: {{ block.settings.background_color }};
+    }
 
-  .ai-footer-copyright__container-{{ ai_gen_id }} {
-    max-width: {{ block.settings.container_width }}px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
+    .ai-footer-copyright__container-{{ ai_gen_id }} {
+      max-width: {{ block.settings.container_width }}px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
 
-  .ai-footer-copyright__content-{{ ai_gen_id }} {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-
-  .ai-footer-copyright__text-{{ ai_gen_id }} {
-    color: {{ block.settings.text_color }};
-    font-size: {{ block.settings.font_size }}px;
-    margin: 0;
-  }
-
-  .ai-footer-copyright__link-{{ ai_gen_id }} {
-    color: {{ block.settings.link_color }};
-    text-decoration: none;
-  }
-
-  .ai-footer-copyright__link-{{ ai_gen_id }}:hover {
-    color: {{ block.settings.link_hover_color }};
-    text-decoration: underline;
-  }
-   @media screen and (min-width: 1024px) {
-  .ai-footer-copyright__rcontent-{{ ai_gen_id }} {
-  justify-self: end;
-  text-align: right;
-}
-
-.ai-footer-copyright__right-{{ ai_gen_id }} {
-  color: #fff;
-  font-size: {{ block.settings.font_size }}px;
-  margin: 0;
-  margin-top: -26px;
-  margin-left: auto;
-  text-align: right;
-}
-    .ai-footer-copyright__text-{{ ai_gen_id }} {
-    color: #fff;
-    font-size: {{ block.settings.font_size }}px;
-    margin: 0;
-     margin-top: -26px;
-  }
-   }
-
-  @media screen and (max-width: 1024px) {
     .ai-footer-copyright__content-{{ ai_gen_id }} {
-          padding-bottom: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 8px;
+      flex-wrap: wrap;
     }
-    .ai-footer-copyright-aetrncunrtktlukljaaigenblockefb927cwgwqka {
-    display: block;
-    width: 100%;
-    padding: 20px 0 70px;
-    background-color: #121212;
-}
-  }
+
+    .ai-footer-copyright__text-{{ ai_gen_id }} {
+      color: {{ block.settings.text_color }};
+      font-size: {{ block.settings.font_size }}px;
+      margin: 0;
+    }
+
+    .ai-footer-copyright__link-{{ ai_gen_id }} {
+      color: {{ block.settings.link_color }};
+      text-decoration: none;
+    }
+
+    .ai-footer-copyright__link-{{ ai_gen_id }}:hover {
+      color: {{ block.settings.link_hover_color }};
+      text-decoration: underline;
+    }
+     @media screen and (min-width: 1024px) {
     .ai-footer-copyright__rcontent-{{ ai_gen_id }} {
-    display: flex;
-    align-items: left;
-    gap: 8px;
-    flex-wrap: wrap;
+    justify-self: end;
+    text-align: right;
   }
-    .ai-footer-copyright__right-{{ ai_gen_id }} {
+
+  .ai-footer-copyright__right-{{ ai_gen_id }} {
     color: #fff;
     font-size: {{ block.settings.font_size }}px;
     margin: 0;
-     margin-top: -26px;
+    margin-top: -26px;
+    margin-left: auto;
+    text-align: right;
   }
-    @media screen and (max-width: 1024px) {
-    .ai-footer-copyright__rcontent-{{ ai_gen_id }} {
-          padding-bottom: 100px;
+      .ai-footer-copyright__text-{{ ai_gen_id }} {
+      color: #fff;
+      font-size: {{ block.settings.font_size }}px;
+      margin: 0;
+       margin-top: -26px;
     }
-        .ai-footer-copyright__right-{{ ai_gen_id }} {
-    margin-top: 0px;
+     }
+
+    @media screen and (max-width: 1024px) {
+      .ai-footer-copyright__content-{{ ai_gen_id }} {
+            padding-bottom: 60px;
+      }
+      .ai-footer-copyright-aetrncunrtktlukljaaigenblockefb927cwgwqka {
+      display: block;
+      width: 100%;
+      padding: 20px 0 70px;
+      background-color: #121212;
   }
-  }
+    }
+      .ai-footer-copyright__rcontent-{{ ai_gen_id }} {
+      display: flex;
+      align-items: left;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+      .ai-footer-copyright__right-{{ ai_gen_id }} {
+      color: #fff;
+      font-size: {{ block.settings.font_size }}px;
+      margin: 0;
+       margin-top: -26px;
+    }
+      @media screen and (max-width: 1024px) {
+      .ai-footer-copyright__rcontent-{{ ai_gen_id }} {
+            padding-bottom: 100px;
+      }
+          .ai-footer-copyright__right-{{ ai_gen_id }} {
+      margin-top: 0px;
+    }
+    }
 {% endstyle %}
 
 <footer-copyright-{{ ai_gen_id }} class="ai-footer-copyright-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
@@ -98,33 +97,35 @@
     <div class="ai-footer-copyright__content-{{ ai_gen_id }}">
       <p class="ai-footer-copyright__text-{{ ai_gen_id }}">
         {% if block.settings.show_copyright_symbol %}© {% endif %}
-        {% if block.settings.show_year %}{{ 'now' | date: '%Y' }} {% endif %}
+        {% if block.settings.show_year %}{{ "now" | date: "%Y" }} {% endif %}
         {% if block.settings.copyright_text != blank %}
           {{ block.settings.copyright_text }}
         {% else %}
           {{ shop.name }}
         {% endif %}
-        All rights reserved. All logos, trademarks and brand names are the property of their respective trademark owners. Powered By <a href="https://reforcedigital.com" 
-     target="_blank" 
-     rel="noopener"
-     class="reforce-link">
-     Reforce Digital
-     </a>
+        All rights reserved. All logos, trademarks and brand names are the property of their respective trademark
+        owners. Powered By
+        <a
+          href="https://reforcedigital.com"
+          target="_blank"
+          rel="noopener"
+          class="reforce-link">
+          Reforce Digital
+        </a>
       </p>
       {% if block.settings.show_powered_by %}
         <span class="ai-footer-copyright__text-{{ ai_gen_id }}">
-          Powered by 
-          <a 
-            href="https://www.shopify.com" 
+          Powered by
+          <a
+            href="https://www.shopify.com"
             class="ai-footer-copyright__link-{{ ai_gen_id }}"
             target="_blank"
-            rel="noopener"
-          >
+            rel="noopener">
             Shopify
           </a>
         </span>
       {% endif %}
-      </div>
+    </div>
   </div>
 </footer-copyright-{{ ai_gen_id }}>
 

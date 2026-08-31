@@ -1,6 +1,6 @@
-if (!customElements.get('media-gallery')) {
+if (!customElements.get("media-gallery")) {
   customElements.define(
-    'media-gallery',
+    "media-gallery",
     class MediaGallery extends HTMLElement {
       constructor() {
         super();
@@ -9,16 +9,23 @@ if (!customElements.get('media-gallery')) {
           viewer: this.querySelector('[id^="GalleryViewer"]'),
           thumbnails: this.querySelector('[id^="GalleryThumbnails"]'),
         };
-        this.mql = window.matchMedia('(min-width: 750px)');
+        this.mql = window.matchMedia("(min-width: 750px)");
         if (!this.elements.thumbnails) return;
 
-        this.elements.viewer.addEventListener('slideChanged', debounce(this.onSlideChanged.bind(this), 500));
-        this.elements.thumbnails.querySelectorAll('[data-target]').forEach((mediaToSwitch) => {
+        this.elements.viewer.addEventListener(
+          "slideChanged",
+          debounce(this.onSlideChanged.bind(this), 500)
+        );
+        this.elements.thumbnails.querySelectorAll("[data-target]").forEach(mediaToSwitch => {
           mediaToSwitch
-            .querySelector('button')
-            .addEventListener('click', this.setActiveMedia.bind(this, mediaToSwitch.dataset.target, false));
+            .querySelector("button")
+            .addEventListener(
+              "click",
+              this.setActiveMedia.bind(this, mediaToSwitch.dataset.target, false)
+            );
         });
-        if (this.dataset.desktopLayout.includes('thumbnail') && this.mql.matches) this.removeListSemantic();
+        if (this.dataset.desktopLayout.includes("thumbnail") && this.mql.matches)
+          this.removeListSemantic();
       }
 
       onSlideChanged(event) {
@@ -31,21 +38,25 @@ if (!customElements.get('media-gallery')) {
       setActiveMedia(mediaId, prepend) {
         const activeMedia =
           this.elements.viewer.querySelector(`[data-media-id="${mediaId}"]`) ||
-          this.elements.viewer.querySelector('[data-media-id]');
+          this.elements.viewer.querySelector("[data-media-id]");
         if (!activeMedia) {
           return;
         }
-        this.elements.viewer.querySelectorAll('[data-media-id]').forEach((element) => {
-          element.classList.remove('is-active');
+        this.elements.viewer.querySelectorAll("[data-media-id]").forEach(element => {
+          element.classList.remove("is-active");
         });
-        activeMedia?.classList?.add('is-active');
+        activeMedia?.classList?.add("is-active");
 
         if (prepend) {
-          activeMedia.parentElement.firstChild !== activeMedia && activeMedia.parentElement.prepend(activeMedia);
+          activeMedia.parentElement.firstChild !== activeMedia &&
+            activeMedia.parentElement.prepend(activeMedia);
 
           if (this.elements.thumbnails) {
-            const activeThumbnail = this.elements.thumbnails.querySelector(`[data-target="${mediaId}"]`);
-            activeThumbnail.parentElement.firstChild !== activeThumbnail && activeThumbnail.parentElement.prepend(activeThumbnail);
+            const activeThumbnail = this.elements.thumbnails.querySelector(
+              `[data-target="${mediaId}"]`
+            );
+            activeThumbnail.parentElement.firstChild !== activeThumbnail &&
+              activeThumbnail.parentElement.prepend(activeThumbnail);
           }
 
           if (this.elements.viewer.slider) this.elements.viewer.resetPages();
@@ -60,12 +71,14 @@ if (!customElements.get('media-gallery')) {
           // Don't scroll if the image is already in view
           if (activeMediaRect.top > -0.5) return;
           const top = activeMediaRect.top + window.scrollY;
-          window.scrollTo({ top: top, behavior: 'smooth' });
+          window.scrollTo({ top: top, behavior: "smooth" });
         });
         this.playActiveMedia(activeMedia);
 
         if (!this.elements.thumbnails) return;
-        const activeThumbnail = this.elements.thumbnails.querySelector(`[data-target="${mediaId}"]`);
+        const activeThumbnail = this.elements.thumbnails.querySelector(
+          `[data-target="${mediaId}"]`
+        );
         this.setActiveThumbnail(activeThumbnail);
         this.announceLiveRegion(activeMedia, activeThumbnail.dataset.mediaPosition);
       }
@@ -74,11 +87,15 @@ if (!customElements.get('media-gallery')) {
         if (!this.elements.thumbnails || !thumbnail) return;
 
         this.elements.thumbnails
-          .querySelectorAll('button')
-          .forEach((element) => element.removeAttribute('aria-current'));
-        const thumbBtn = thumbnail.querySelector('button');
-        if (thumbBtn) thumbBtn.setAttribute('aria-current', true);
-        if (typeof this.elements.thumbnails.isSlideVisible === 'function' && this.elements.thumbnails.isSlideVisible(thumbnail, 10)) return;
+          .querySelectorAll("button")
+          .forEach(element => element.removeAttribute("aria-current"));
+        const thumbBtn = thumbnail.querySelector("button");
+        if (thumbBtn) thumbBtn.setAttribute("aria-current", true);
+        if (
+          typeof this.elements.thumbnails.isSlideVisible === "function" &&
+          this.elements.thumbnails.isSlideVisible(thumbnail, 10)
+        )
+          return;
 
         if (this.elements.thumbnails.slider) {
           this.elements.thumbnails.slider.scrollTo({ left: thumbnail.offsetLeft });
@@ -86,13 +103,16 @@ if (!customElements.get('media-gallery')) {
       }
 
       announceLiveRegion(activeItem, position) {
-        const image = activeItem.querySelector('.product__modal-opener--image img');
+        const image = activeItem.querySelector(".product__modal-opener--image img");
         if (!image) return;
         image.onload = () => {
-          this.elements.liveRegion.setAttribute('aria-hidden', false);
-          this.elements.liveRegion.innerHTML = window.accessibilityStrings.imageAvailable.replace('[index]', position);
+          this.elements.liveRegion.setAttribute("aria-hidden", false);
+          this.elements.liveRegion.innerHTML = window.accessibilityStrings.imageAvailable.replace(
+            "[index]",
+            position
+          );
           setTimeout(() => {
-            this.elements.liveRegion.setAttribute('aria-hidden', true);
+            this.elements.liveRegion.setAttribute("aria-hidden", true);
           }, 2000);
         };
         image.src = image.src;
@@ -100,20 +120,22 @@ if (!customElements.get('media-gallery')) {
 
       playActiveMedia(activeItem) {
         window.pauseAllMedia();
-        const deferredMedia = activeItem.querySelector('.deferred-media');
+        const deferredMedia = activeItem.querySelector(".deferred-media");
         if (deferredMedia) deferredMedia.loadContent(false);
       }
 
       preventStickyHeader() {
-        this.stickyHeader = this.stickyHeader || document.querySelector('sticky-header');
+        this.stickyHeader = this.stickyHeader || document.querySelector("sticky-header");
         if (!this.stickyHeader) return;
-        this.stickyHeader.dispatchEvent(new Event('preventHeaderReveal'));
+        this.stickyHeader.dispatchEvent(new Event("preventHeaderReveal"));
       }
 
       removeListSemantic() {
         if (!this.elements.viewer.slider) return;
-        this.elements.viewer.slider.setAttribute('role', 'presentation');
-        this.elements.viewer.sliderItems.forEach((slide) => slide.setAttribute('role', 'presentation'));
+        this.elements.viewer.slider.setAttribute("role", "presentation");
+        this.elements.viewer.sliderItems.forEach(slide =>
+          slide.setAttribute("role", "presentation")
+        );
       }
     }
   );

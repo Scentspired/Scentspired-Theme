@@ -1,24 +1,27 @@
-if (!customElements.get('quick-add-modal')) {
+if (!customElements.get("quick-add-modal")) {
   customElements.define(
-    'quick-add-modal',
+    "quick-add-modal",
     class QuickAddModal extends ModalDialog {
       constructor() {
         super();
         this.modalContent = this.querySelector('[id^="QuickAddInfo-"]');
 
-        this.addEventListener('product-info:loaded', ({ target }) => {
-          if (target && typeof target.addPreProcessCallback === 'function') {
+        this.addEventListener("product-info:loaded", ({ target }) => {
+          if (target && typeof target.addPreProcessCallback === "function") {
             target.addPreProcessCallback(this.preprocessHTML.bind(this));
           }
         });
       }
 
       hide(preventFocus = false) {
-        const cartNotification = document.querySelector('cart-notification') || document.querySelector('cart-drawer') || document.querySelector('#sp-cart-drawer');
-        if (cartNotification && typeof cartNotification.setActiveElement === 'function') {
+        const cartNotification =
+          document.querySelector("cart-notification") ||
+          document.querySelector("cart-drawer") ||
+          document.querySelector("#sp-cart-drawer");
+        if (cartNotification && typeof cartNotification.setActiveElement === "function") {
           cartNotification.setActiveElement(this.openedBy);
         }
-        if (this.modalContent) this.modalContent.innerHTML = '';
+        if (this.modalContent) this.modalContent.innerHTML = "";
 
         if (preventFocus) this.openedBy = null;
         super.hide();
@@ -26,27 +29,27 @@ if (!customElements.get('quick-add-modal')) {
 
       show(opener) {
         if (!opener) return;
-        opener.setAttribute('aria-disabled', true);
-        opener.classList.add('loading');
-        const spinner = opener.querySelector('.loading__spinner');
-        if (spinner) spinner.classList.remove('hidden');
+        opener.setAttribute("aria-disabled", true);
+        opener.classList.add("loading");
+        const spinner = opener.querySelector(".loading__spinner");
+        if (spinner) spinner.classList.remove("hidden");
 
-        const productUrl = opener.getAttribute('data-product-url');
+        const productUrl = opener.getAttribute("data-product-url");
         if (!productUrl) {
-          opener.removeAttribute('aria-disabled');
-          opener.classList.remove('loading');
-          if (spinner) spinner.classList.add('hidden');
+          opener.removeAttribute("aria-disabled");
+          opener.classList.remove("loading");
+          if (spinner) spinner.classList.add("hidden");
           return;
         }
 
         fetch(productUrl)
-          .then((response) => {
+          .then(response => {
             if (!response.ok) throw new Error(`HTTP error ${response.status}`);
             return response.text();
           })
-          .then((responseText) => {
-            const responseHTML = new DOMParser().parseFromString(responseText, 'text/html');
-            const productElement = responseHTML ? responseHTML.querySelector('product-info') : null;
+          .then(responseText => {
+            const responseHTML = new DOMParser().parseFromString(responseText, "text/html");
+            const productElement = responseHTML ? responseHTML.querySelector("product-info") : null;
 
             if (productElement && this.modalContent) {
               this.preprocessHTML(productElement);
@@ -56,27 +59,27 @@ if (!customElements.get('quick-add-modal')) {
             if (window.Shopify && Shopify.PaymentButton) {
               Shopify.PaymentButton.init();
             }
-            if (window.ProductModel && typeof window.ProductModel.loadShopifyXR === 'function') {
+            if (window.ProductModel && typeof window.ProductModel.loadShopifyXR === "function") {
               window.ProductModel.loadShopifyXR();
             }
 
             super.show(opener);
           })
-          .catch((err) => {
-            console.error('QuickAdd modal fetch error:', err);
+          .catch(err => {
+            console.error("QuickAdd modal fetch error:", err);
           })
           .finally(() => {
-            opener.removeAttribute('aria-disabled');
-            opener.classList.remove('loading');
-            const endSpinner = opener.querySelector('.loading__spinner');
-            if (endSpinner) endSpinner.classList.add('hidden');
+            opener.removeAttribute("aria-disabled");
+            opener.classList.remove("loading");
+            const endSpinner = opener.querySelector(".loading__spinner");
+            if (endSpinner) endSpinner.classList.add("hidden");
           });
       }
 
       preprocessHTML(productElement) {
         if (!productElement || !this.modalContent) return;
-        productElement.classList.forEach((classApplied) => {
-          if (classApplied.startsWith('color-') || classApplied === 'gradient')
+        productElement.classList.forEach(classApplied => {
+          if (classApplied.startsWith("color-") || classApplied === "gradient")
             this.modalContent.classList.add(classApplied);
         });
         this.preventDuplicatedIDs(productElement);
@@ -87,19 +90,19 @@ if (!customElements.get('quick-add-modal')) {
       }
 
       preventVariantURLSwitching(productElement) {
-        if (productElement) productElement.setAttribute('data-update-url', 'false');
+        if (productElement) productElement.setAttribute("data-update-url", "false");
       }
 
       removeDOMElements(productElement) {
         if (!productElement) return;
-        const pickupAvailability = productElement.querySelector('pickup-availability');
+        const pickupAvailability = productElement.querySelector("pickup-availability");
         if (pickupAvailability) pickupAvailability.remove();
 
-        const productModal = productElement.querySelector('product-modal');
+        const productModal = productElement.querySelector("product-modal");
         if (productModal) productModal.remove();
 
-        const modalDialog = productElement.querySelectorAll('modal-dialog');
-        if (modalDialog) modalDialog.forEach((modal) => modal.remove());
+        const modalDialog = productElement.querySelectorAll("modal-dialog");
+        if (modalDialog) modalDialog.forEach(modal => modal.remove());
       }
 
       preventDuplicatedIDs(productElement) {
@@ -110,7 +113,7 @@ if (!customElements.get('quick-add-modal')) {
         const oldId = sectionId;
         const newId = `quickadd-${sectionId}`;
         productElement.innerHTML = productElement.innerHTML.replaceAll(oldId, newId);
-        Array.from(productElement.attributes).forEach((attribute) => {
+        Array.from(productElement.attributes).forEach(attribute => {
           if (attribute.value && attribute.value.includes(oldId)) {
             productElement.setAttribute(attribute.name, attribute.value.replace(oldId, newId));
           }
@@ -124,29 +127,31 @@ if (!customElements.get('quick-add-modal')) {
         const galleryList = productElement.querySelector('[id^="Slider-Gallery"]');
         if (!galleryList) return;
 
-        galleryList.setAttribute('role', 'presentation');
-        galleryList.querySelectorAll('[id^="Slide-"]').forEach((li) => li.setAttribute('role', 'presentation'));
+        galleryList.setAttribute("role", "presentation");
+        galleryList
+          .querySelectorAll('[id^="Slide-"]')
+          .forEach(li => li.setAttribute("role", "presentation"));
       }
 
       updateImageSizes(productElement) {
         if (!productElement) return;
-        const product = productElement.querySelector('.product');
-        const desktopColumns = product?.classList.contains('product--columns');
+        const product = productElement.querySelector(".product");
+        const desktopColumns = product?.classList.contains("product--columns");
         if (!desktopColumns) return;
 
-        const mediaImages = product.querySelectorAll('.product__media img');
+        const mediaImages = product.querySelectorAll(".product__media img");
         if (!mediaImages || !mediaImages.length) return;
 
         let mediaImageSizes =
-          '(min-width: 1000px) 715px, (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)';
+          "(min-width: 1000px) 715px, (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)";
 
-        if (product.classList.contains('product--medium')) {
-          mediaImageSizes = mediaImageSizes.replace('715px', '605px');
-        } else if (product.classList.contains('product--small')) {
-          mediaImageSizes = mediaImageSizes.replace('715px', '495px');
+        if (product.classList.contains("product--medium")) {
+          mediaImageSizes = mediaImageSizes.replace("715px", "605px");
+        } else if (product.classList.contains("product--small")) {
+          mediaImageSizes = mediaImageSizes.replace("715px", "495px");
         }
 
-        mediaImages.forEach((img) => img.setAttribute('sizes', mediaImageSizes));
+        mediaImages.forEach(img => img.setAttribute("sizes", mediaImageSizes));
       }
     }
   );

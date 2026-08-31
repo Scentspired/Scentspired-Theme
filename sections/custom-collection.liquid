@@ -1,18 +1,20 @@
 {% comment %}
-Custom Collection Browse Section
+  Custom Collection Browse Section
 {% endcomment %}
 
 <style>
   @font-face {
     font-family: 'PPEditorialNew Italic';
-    src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPEditorialNew-Italic-BF644b214fb0c0a.otf?v=1751620955') format('opentype');
+    src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPEditorialNew-Italic-BF644b214fb0c0a.otf?v=1751620955')
+      format('opentype');
     font-weight: 900;
     font-style: italic;
   }
 
   @font-face {
     font-family: 'PPMori Regular';
-    src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPMori-Regular.otf?v=1751621372') format('opentype');
+    src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPMori-Regular.otf?v=1751621372')
+      format('opentype');
     font-weight: 400;
     font-style: normal;
   }
@@ -34,7 +36,7 @@ Custom Collection Browse Section
     margin: 0;
     background: #fff;
     text-decoration: underline;
-    text-decoration-color: #FADB95;
+    text-decoration-color: #fadb95;
     text-decoration-thickness: 2px;
     text-underline-offset: 2px;
   }
@@ -116,27 +118,26 @@ Custom Collection Browse Section
   }
 
   .collection-button {
-  background: #EFFC00;
-  color: #000;
-  border: none;
-  padding: 18px 40px;
-  font-family: 'PPMori Regular', sans-serif;
-  font-weight: 400;
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  border-radius: 0;
-  min-width: 160px;
-  height: 40px; /* Set to desired height */
-}
-
+    background: #effc00;
+    color: #000;
+    border: none;
+    padding: 18px 40px;
+    font-family: 'PPMori Regular', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 0;
+    min-width: 160px;
+    height: 40px; /* Set to desired height */
+  }
 
   /* Hide mobile content on desktop/laptop */
   .mobile-slider,
@@ -186,26 +187,26 @@ Custom Collection Browse Section
     }
   }
   @media screen and (min-width: 1024px) and (max-width: 1440px) {
-  .collection-description {
-    font-size: 15px;
-    margin-top: 440px;
-    width: 380px;
-  }
-  .collection-button {
-    padding: 16px 35px;
-    font-size: 13px;
-    min-width: 140px;
-    top: 510px;
-    width: 280px;
-    left: -40px;
-  }
-  .mobile-content .collection-button {
+    .collection-description {
+      font-size: 15px;
+      margin-top: 440px;
+      width: 380px;
+    }
+    .collection-button {
+      padding: 16px 35px;
+      font-size: 13px;
+      min-width: 140px;
+      top: 510px;
+      width: 280px;
+      left: -40px;
+    }
+    .mobile-content .collection-button {
       display: none;
     }
     .mobile-content .collection-description {
-    display: none;
-}
-}
+      display: none;
+    }
+  }
 
   /* Large desktop adjustments - maintain exact same structure */
   @media (min-width: 1299px) {
@@ -213,15 +214,15 @@ Custom Collection Browse Section
       font-size: 26px;
       padding: 45px 45px 22px;
     }
-    .collection-browse-section{
-    width: 99%;
-}
-       .collections-container {
-    display: flex;
-    width: 100%;
-    height: 860px;
-    position: relative;
-  }
+    .collection-browse-section {
+      width: 99%;
+    }
+    .collections-container {
+      display: flex;
+      width: 100%;
+      height: 860px;
+      position: relative;
+    }
     .collection-overlay {
       padding: 45px;
       display: flex;
@@ -248,7 +249,7 @@ Custom Collection Browse Section
       font-size: 15px;
       min-width: 180px;
     }
-     .mobile-content .collection-button {
+    .mobile-content .collection-button {
       display: none;
     }
   }
@@ -306,7 +307,7 @@ Custom Collection Browse Section
     }
 
     .mobile-content .collection-button {
-      background: #EFFC00;
+      background: #effc00;
       color: #000;
       width: 100%;
       padding: 18px;
@@ -356,34 +357,39 @@ Custom Collection Browse Section
       {% assign collection = collections[block.settings.collection] %}
       <div class="collection-item" {{ block.shopify_attributes }}>
         {% if block.settings.collection_image != blank %}
-          <img src="{{ block.settings.collection_image | img_url: '1920x1080' }}" 
-               alt="{{ collection.title | default: block.settings.collection_title }}"
-               class="collection-image"
-               loading="lazy">
+          <img
+            src="{{ block.settings.collection_image | img_url: '1920x1080' }}"
+            alt="{{ collection.title | default: block.settings.collection_title }}"
+            class="collection-image"
+            loading="lazy">
         {% elsif collection.featured_image %}
-          <img src="{{ collection.featured_image | img_url: '1920x1080' }}" 
-               alt="{{ collection.title }}"
-               class="collection-image"
-               loading="lazy">
+          <img
+            src="{{ collection.featured_image | img_url: '1920x1080' }}"
+            alt="{{ collection.title }}"
+            class="collection-image"
+            loading="lazy">
         {% else %}
-          <div class="collection-image" style="background: {{ block.settings.background_color | default: '#f5f5f5' }};"></div>
+          <div
+            class="collection-image"
+            style="background: {{ block.settings.background_color | default: '#f5f5f5' }};"></div>
         {% endif %}
 
         <div class="collection-overlay">
           <h3 class="collection-title">
             {{ block.settings.collection_title | default: collection.title | upcase }}
           </h3>
-          
+
           <div class="collection-content">
             {% if block.settings.collection_description != blank %}
               <p class="collection-description">{{ block.settings.collection_description }}</p>
             {% elsif collection.description != blank %}
               <p class="collection-description">{{ collection.description | truncate: 150 }}</p>
             {% endif %}
-            
-            <a href="{{ collection.url | default: block.settings.collection_url | default: '#' }}" 
-               class="collection-button">
-              {{ block.settings.button_text | default: 'Shop Now' }}
+
+            <a
+              href="{{ collection.url | default: block.settings.collection_url | default: '#' }}"
+              class="collection-button">
+              {{ block.settings.button_text | default: "Shop Now" }}
             </a>
           </div>
         </div>
@@ -398,17 +404,21 @@ Custom Collection Browse Section
         {% assign collection = collections[block.settings.collection] %}
         <div class="collection-item">
           {% if block.settings.collection_image != blank %}
-            <img src="{{ block.settings.collection_image | img_url: '1080x720' }}" 
-                 alt="{{ collection.title | default: block.settings.collection_title }}"
-                 class="collection-image"
-                 loading="lazy">
+            <img
+              src="{{ block.settings.collection_image | img_url: '1080x720' }}"
+              alt="{{ collection.title | default: block.settings.collection_title }}"
+              class="collection-image"
+              loading="lazy">
           {% elsif collection.featured_image %}
-            <img src="{{ collection.featured_image | img_url: '1080x720' }}" 
-                 alt="{{ collection.title }}"
-                 class="collection-image"
-                 loading="lazy">
+            <img
+              src="{{ collection.featured_image | img_url: '1080x720' }}"
+              alt="{{ collection.title }}"
+              class="collection-image"
+              loading="lazy">
           {% else %}
-            <div class="collection-image" style="background: {{ block.settings.background_color | default: '#f5f5f5' }};"></div>
+            <div
+              class="collection-image"
+              style="background: {{ block.settings.background_color | default: '#f5f5f5' }};"></div>
           {% endif %}
         </div>
       {% endfor %}
@@ -421,20 +431,24 @@ Custom Collection Browse Section
   <!-- Mobile Content (only visible on mobile) -->
   {% for block in section.blocks limit: 4 %}
     {% assign collection = collections[block.settings.collection] %}
-    <div class="mobile-content" id="mobileContent{{ forloop.index0 }}" style="{% unless forloop.first %}display: none;{% endunless %}">
+    <div
+      class="mobile-content"
+      id="mobileContent{{ forloop.index0 }}"
+      style="{% unless forloop.first %}display: none;{% endunless %}">
       <h3 class="collection-title">
         {{ block.settings.collection_title | default: collection.title | upcase }}
       </h3>
-      
+
       {% if block.settings.collection_description != blank %}
         <p class="collection-description">{{ block.settings.collection_description }}</p>
       {% elsif collection.description != blank %}
         <p class="collection-description">{{ collection.description | truncate: 150 }}</p>
       {% endif %}
-      
-      <a href="{{ collection.url | default: block.settings.collection_url | default: '#' }}" 
-         class="collection-button">
-        {{ block.settings.button_text | default: 'Shop Now' }}
+
+      <a
+        href="{{ collection.url | default: block.settings.collection_url | default: '#' }}"
+        class="collection-button">
+        {{ block.settings.button_text | default: "Shop Now" }}
       </a>
     </div>
   {% endfor %}

@@ -79,7 +79,9 @@
             {% endfor %}
           </div>
           {% if block.settings.headline != blank %}
-            <p class="headline"><em>{{ block.settings.headline }}</em></p>
+            <p class="headline">
+              <em>{{ block.settings.headline }}</em>
+            </p>
           {% endif %}
           <p class="content">{{ block.settings.content }}</p>
         </div>
@@ -98,129 +100,128 @@
 </section>
 
 <style>
-.review-slider-section {
-  background: #e2eb2f; /* Your exact background color */
-  padding: 40px 0;
-  font-family: Georgia, serif;
-  overflow: hidden;
-  padding-left: 5rem;
-  padding-right: 5rem;
-}
-
-.review-header {
-  margin-bottom: 20px;
-}
-
-.review-slider-wrapper {
-  overflow: hidden;
-}
-
-.review-slider {
-  display: flex;
-  gap: 20px;
-  overflow-x: hidden; /* Hide scroll bar */
-  scroll-behavior: smooth;
-}
-
-.review-card {
-  flex: 0 0 350px; /* Fixed width */
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-}
-
-.review-meta {
-  font-size: 14px;
-}
-
-.review-meta strong {
-  font-weight: bold;
-}
-
-.review-meta .verified {
-  font-weight: bold;
-  margin-left: 5px;
-}
-
-.review-date {
-  font-size: 12px;
-  margin-top: 2px;
-}
-
-.stars {
-  color: black;
-  margin: 5px 0;
-}
-
-.headline {
-  margin: 5px 0;
-}
-
-.content {
-  font-size: 14px;
-}
-
-.review-arrows {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  margin-top: 20px;
-}
-
-.review-arrows .arrow {
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.review-arrows img {
-  width: 30px;
-  height: auto;
-}
-
-@media (max-width: 768px) {
-  .review-card {
-    flex: 0 0 270px; /* Same as desktop to keep size */
+  .review-slider-section {
+    background: #e2eb2f; /* Your exact background color */
+    padding: 40px 0;
+    font-family: Georgia, serif;
+    overflow: hidden;
+    padding-left: 5rem;
+    padding-right: 5rem;
   }
+
+  .review-header {
+    margin-bottom: 20px;
+  }
+
+  .review-slider-wrapper {
+    overflow: hidden;
+  }
+
   .review-slider {
-  display: flex;
-  gap: 20px;
-  overflow-x: auto;              /* ✅ allow horizontal scroll */
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch; /* ✅ smooth iOS touch scroll */
-  scrollbar-width: none;         /* Firefox hide scrollbar */
-}
+    display: flex;
+    gap: 20px;
+    overflow-x: hidden; /* Hide scroll bar */
+    scroll-behavior: smooth;
+  }
 
-.review-slider::-webkit-scrollbar {
-  display: none;                 /* Chrome/Safari hide scrollbar */
-}
+  .review-card {
+    flex: 0 0 350px; /* Fixed width */
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+  }
 
-}
+  .review-meta {
+    font-size: 14px;
+  }
+
+  .review-meta strong {
+    font-weight: bold;
+  }
+
+  .review-meta .verified {
+    font-weight: bold;
+    margin-left: 5px;
+  }
+
+  .review-date {
+    font-size: 12px;
+    margin-top: 2px;
+  }
+
+  .stars {
+    color: black;
+    margin: 5px 0;
+  }
+
+  .headline {
+    margin: 5px 0;
+  }
+
+  .content {
+    font-size: 14px;
+  }
+
+  .review-arrows {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+  }
+
+  .review-arrows .arrow {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .review-arrows img {
+    width: 30px;
+    height: auto;
+  }
+
+  @media (max-width: 768px) {
+    .review-card {
+      flex: 0 0 270px; /* Same as desktop to keep size */
+    }
+    .review-slider {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto; /* ✅ allow horizontal scroll */
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch; /* ✅ smooth iOS touch scroll */
+      scrollbar-width: none; /* Firefox hide scrollbar */
+    }
+
+    .review-slider::-webkit-scrollbar {
+      display: none; /* Chrome/Safari hide scrollbar */
+    }
+  }
 </style>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const slider = document.querySelector('.review-slider');
-  const leftArrow = document.querySelector('.arrow.left');
-  const rightArrow = document.querySelector('.arrow.right');
+  document.addEventListener('DOMContentLoaded', function () {
+    const slider = document.querySelector('.review-slider');
+    const leftArrow = document.querySelector('.arrow.left');
+    const rightArrow = document.querySelector('.arrow.right');
 
-  if (!slider) return;
+    if (!slider) return;
 
-  function getCardWidth() {
-    const card = slider.querySelector('.review-card');
-    return (card ? card.offsetWidth : 300) + 20; // Include gap
-  }
+    function getCardWidth() {
+      const card = slider.querySelector('.review-card');
+      return (card ? card.offsetWidth : 300) + 20; // Include gap
+    }
 
-  if (leftArrow) {
-    leftArrow.addEventListener('click', () => {
-      slider.scrollBy({ left: -getCardWidth(), behavior: 'smooth' });
-    });
-  }
+    if (leftArrow) {
+      leftArrow.addEventListener('click', () => {
+        slider.scrollBy({ left: -getCardWidth(), behavior: 'smooth' });
+      });
+    }
 
-  if (rightArrow) {
-    rightArrow.addEventListener('click', () => {
-      slider.scrollBy({ left: getCardWidth(), behavior: 'smooth' });
-    });
-  }
-});
+    if (rightArrow) {
+      rightArrow.addEventListener('click', () => {
+        slider.scrollBy({ left: getCardWidth(), behavior: 'smooth' });
+      });
+    }
+  });
 </script>

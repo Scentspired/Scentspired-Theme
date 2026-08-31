@@ -1,16 +1,7 @@
 {
-  "scanPaths": [
-    "sections/",
-    "snippets/",
-    "assets/",
-    "layout/"
-  ],
+  "scanPaths": ["sections/", "snippets/", "assets/", "layout/"],
   "fileExtensions": [".liquid", ".js"],
-  "excludePatterns": [
-    "node_modules",
-    ".git",
-    "tests/"
-  ],
+  "excludePatterns": ["node_modules", ".git", "tests/"],
   "rules": {
     "no-unguarded-getElementById": {
       "enabled": true,

@@ -1,23 +1,23 @@
-{{ 'component-card.css' | asset_url | stylesheet_tag }}
-{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ "component-card.css" | asset_url | stylesheet_tag }}
+{{ "component-price.css" | asset_url | stylesheet_tag }}
 
-{{ 'component-slider.css' | asset_url | stylesheet_tag }}
-{{ 'template-collection.css' | asset_url | stylesheet_tag }}
+{{ "component-slider.css" | asset_url | stylesheet_tag }}
+{{ "template-collection.css" | asset_url | stylesheet_tag }}
 
-{% if section.settings.image_shape == 'blob' %}
-  {{ 'mask-blobs.css' | asset_url | stylesheet_tag }}
+{% if section.settings.image_shape == "blob" %}
+  {{ "mask-blobs.css" | asset_url | stylesheet_tag }}
 {%- endif -%}
 
-{%- unless section.settings.quick_add == 'none' -%}
-  {{ 'quick-add.css' | asset_url | stylesheet_tag }}
+{%- unless section.settings.quick_add == "none" -%}
+  {{ "quick-add.css" | asset_url | stylesheet_tag }}
   <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
 {%- endunless -%}
 
-{%- if section.settings.quick_add == 'standard' -%}
+{%- if section.settings.quick_add == "standard" -%}
   <script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
 {%- endif -%}
 
-{%- if section.settings.quick_add == 'bulk' -%}
+{%- if section.settings.quick_add == "bulk" -%}
   <script src="{{ 'quick-add-bulk.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'price-per-item.js' | asset_url }}" defer="defer"></script>
@@ -59,13 +59,11 @@
 -%}
 
 <div
-  class="color-{{ section.settings.color_scheme }} isolate gradient"
->
+  class="color-{{ section.settings.color_scheme }} isolate gradient">
   <div
     class="collection{% if section.settings.quick_add == 'bulk' %} collection-quick-add-bulk{% endif %} section-{{ section.id }}-padding{% if section.settings.full_width %} collection--full-width{% endif %}"
     id="collection-{{ section.id }}"
-    data-id="{{ section.id }}"
-  >
+    data-id="{{ section.id }}">
     <div class="collection__title title-wrapper title-wrapper--no-top-margin page-width{% if show_mobile_slider %} title-wrapper--self-padded-tablet-down{% endif %}{% if show_desktop_slider %} collection__title--desktop-slider{% endif %}">
       {%- if section.settings.title != blank -%}
         <h2 class="title inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
@@ -92,8 +90,7 @@
         data-id="{{ section.id }}"
         class="grid product-grid contains-card contains-card--product{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid--{{ section.settings.columns_desktop }}-col-desktop{% if section.settings.collection == blank %} grid--2-col-tablet-down{% else %} grid--{{ section.settings.columns_mobile }}-col-tablet-down{% endif %}{% if show_mobile_slider or show_desktop_slider %} slider{% if show_desktop_slider %} slider--desktop{% endif %}{% if show_mobile_slider %} slider--tablet grid--peek{% endif %}{% endif %}"
         role="list"
-        aria-label="{{ 'general.slider.name' | t }}"
-      >
+        aria-label="{{ 'general.slider.name' | t }}">
         {% assign skip_card_product_styles = false %}
 
         {%- if section.settings.collection.products.size > 0 -%}
@@ -105,9 +102,8 @@
                 {% if settings.animations_reveal_on_scroll %}
                   data-cascade
                   style="--animation-order: {{ forloop.index }};"
-                {% endif %}
-              >
-                {% render 'card-product',
+                {% endif %}>
+                {% render "card-product",
                   card_product: product,
                   media_aspect_ratio: section.settings.image_ratio,
                   image_shape: section.settings.image_shape,
@@ -129,8 +125,7 @@
               {% if settings.animations_reveal_on_scroll %}
                 data-cascade
                 style="--animation-order: {{ forloop.index }};"
-              {% endif %}
-            >
+              {% endif %}>
               {% liquid
                 assign ridx = forloop.rindex
                 case ridx
@@ -140,8 +135,8 @@
                     assign ridx = 2
                 endcase
               %}
-              {%- assign placeholder_image = 'product-apparel-' | append: ridx -%}
-              {% render 'card-product',
+              {%- assign placeholder_image = "product-apparel-" | append: ridx -%}
+              {% render "card-product",
                 show_vendor: section.settings.show_vendor,
                 media_aspect_ratio: section.settings.image_ratio,
                 image_shape: section.settings.image_shape,
@@ -158,16 +153,15 @@
             class="slider-button slider-button--prev"
             name="previous"
             aria-label="{{ 'general.slider.previous_slide' | t }}"
-            aria-controls="Slider-{{ section.id }}"
-          >
+            aria-controls="Slider-{{ section.id }}">
             <span class="svg-wrapper">
-              {{- 'icon-caret.svg' | inline_asset_content -}}
+              {{- "icon-caret.svg" | inline_asset_content -}}
             </span>
           </button>
           <div class="slider-counter caption">
             <span class="slider-counter--current">1</span>
             <span aria-hidden="true"> / </span>
-            <span class="visually-hidden">{{ 'general.slider.of' | t }}</span>
+            <span class="visually-hidden">{{ "general.slider.of" | t }}</span>
             <span class="slider-counter--total">{{ products_to_display }}</span>
           </div>
           <button
@@ -175,10 +169,9 @@
             class="slider-button slider-button--next"
             name="next"
             aria-label="{{ 'general.slider.next_slide' | t }}"
-            aria-controls="Slider-{{ section.id }}"
-          >
+            aria-controls="Slider-{{ section.id }}">
             <span class="svg-wrapper">
-              {{- 'icon-caret.svg' | inline_asset_content -}}
+              {{- "icon-caret.svg" | inline_asset_content -}}
             </span>
           </button>
         </div>
@@ -190,14 +183,13 @@
         <a
           href="{{ section.settings.collection.url }}"
           class="{% if section.settings.view_all_style == 'link' %}link underlined-link{% elsif section.settings.view_all_style == 'solid' %}button{% else %}button button--secondary{% endif %}"
-          aria-label="{{ 'sections.featured_collection.view_all_label' | t: collection_name: section.settings.collection.title | escape }}"
-        >
-          {{ 'sections.featured_collection.view_all' | t }}
+          aria-label="{{ 'sections.featured_collection.view_all_label' | t: collection_name: section.settings.collection.title | escape }}">
+          {{ "sections.featured_collection.view_all" | t }}
         </a>
       </div>
     {%- endif -%}
-    {% if section.settings.image_shape == 'arch' %}
-      {{ 'mask-arch.svg' | inline_asset_content }}
+    {% if section.settings.image_shape == "arch" %}
+      {{ "mask-arch.svg" | inline_asset_content }}
     {%- endif -%}
   </div>
 </div>
@@ -224,11 +216,11 @@
       "step": 1,
       "default": 4,
       "label": "t:sections.featured-collection.settings.products_to_show.label"
-    },     
+    },
     {
       "type": "header",
       "content": "t:sections.featured-collection.settings.header_text.content"
-    },   
+    },
     {
       "type": "inline_richtext",
       "id": "title",
@@ -272,7 +264,7 @@
       "type": "checkbox",
       "id": "show_description",
       "label": "t:sections.featured-collection.settings.show_description.label",
-      "default": false   
+      "default": false
     },
     {
       "type": "select",
@@ -297,7 +289,7 @@
     {
       "type": "header",
       "content": "t:sections.featured-collection.settings.header_collection.content"
-    },    
+    },
     {
       "type": "range",
       "id": "columns_desktop",
@@ -307,7 +299,7 @@
       "default": 4,
       "label": "t:sections.featured-collection.settings.columns_desktop.label"
     },
-        {
+    {
       "type": "checkbox",
       "id": "enable_desktop_slider",
       "label": "t:sections.featured-collection.settings.enable_desktop_slider.label",
@@ -345,7 +337,7 @@
         }
       ],
       "default": "solid"
-    }, 
+    },
     {
       "type": "color_scheme",
       "id": "color_scheme",
@@ -475,13 +467,13 @@
           "label": "t:sections.featured-collection.settings.columns_mobile.options__2.label"
         }
       ]
-    },    
+    },
     {
       "type": "checkbox",
       "id": "swipe_on_mobile",
       "default": false,
       "label": "t:sections.featured-collection.settings.swipe_on_mobile.label"
-    },          
+    },
     {
       "type": "header",
       "content": "t:sections.all.padding.section_padding_heading"

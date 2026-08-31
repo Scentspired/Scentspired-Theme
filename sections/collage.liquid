@@ -1,8 +1,8 @@
-{{ 'collage.css' | asset_url | stylesheet_tag }}
-{{ 'component-card.css' | asset_url | stylesheet_tag }}
-{{ 'component-price.css' | asset_url | stylesheet_tag }}
-{{ 'component-modal-video.css' | asset_url | stylesheet_tag }}
-{{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
+{{ "collage.css" | asset_url | stylesheet_tag }}
+{{ "component-card.css" | asset_url | stylesheet_tag }}
+{{ "component-price.css" | asset_url | stylesheet_tag }}
+{{ "component-modal-video.css" | asset_url | stylesheet_tag }}
+{{ "component-deferred-media.css" | asset_url | stylesheet_tag }}
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -34,11 +34,10 @@
           {% if settings.animations_reveal_on_scroll %}
             data-cascade
             style="--animation-order: {{ forloop.index }};"
-          {% endif %}
-        >
+          {% endif %}>
           {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
           {%- case block.type -%}
-            {%- when 'image' -%}
+            {%- when "image" -%}
               <div class="collage-card {% if section.settings.card_styles == 'none' %}global-media-settings{% else %}card-wrapper {{ section.settings.card_styles }} color-{{ settings.card_color_scheme }} gradient{% endif %}">
                 <div
                   class="media media--transparent ratio"
@@ -46,18 +45,17 @@
                     style="--ratio-percent: {{ 1 | divided_by: block.settings.image.aspect_ratio | times: 100 }}%"
                   {% else %}
                     style="--ratio-percent: 100%"
-                  {% endif %}
-                >
+                  {% endif %}>
                   {%- if block.settings.image != blank -%}
                     {%- liquid
-                      if section.settings.desktop_layout == 'left'
+                      if section.settings.desktop_layout == "left"
                         assign large_block = forloop.first
                       else
                         assign large_block = forloop.last
                       endif
 
-                      assign grid_space_desktop = settings.spacing_grid_horizontal | divided_by: 2 | append: 'px'
-                      assign grid_space_mobile = settings.spacing_grid_horizontal | divided_by: 4 | append: 'px'
+                      assign grid_space_desktop = settings.spacing_grid_horizontal | divided_by: 2 | append: "px"
+                      assign grid_space_mobile = settings.spacing_grid_horizontal | divided_by: 4 | append: "px"
                     -%}
                     {%- if large_block -%}
                       {%- capture sizes -%}
@@ -70,7 +68,7 @@
                         | image_url: width: 3200
                         | image_tag:
                           sizes: sizes,
-                          widths: '50, 75, 100, 150, 200, 300, 400, 500, 750, 1000, 1250, 1500, 1750, 2000, 2250, 2500, 2750, 3000, 3200'
+                          widths: "50, 75, 100, 150, 200, 300, 400, 500, 750, 1000, 1250, 1500, 1750, 2000, 2250, 2500, 2750, 3000, 3200"
                       }}
                     {%- else -%}
                       {%- capture sizes -%}
@@ -83,36 +81,36 @@
                         | image_url: width: 3200
                         | image_tag:
                           sizes: sizes,
-                          widths: '50, 75, 100, 150, 200, 300, 400, 500, 750, 1000, 1250, 1500, 1750, 2000, 2250, 2500, 2750, 3000, 3200'
+                          widths: "50, 75, 100, 150, 200, 300, 400, 500, 750, 1000, 1250, 1500, 1750, 2000, 2250, 2500, 2750, 3000, 3200"
                       }}
                     {%- endif -%}
                   {%- else -%}
-                    {{ 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                    {{ "detailed-apparel-1" | placeholder_svg_tag: "placeholder-svg" }}
                   {%- endif -%}
                 </div>
               </div>
-            {%- when 'product' -%}
-              {%- assign placeholder_image = 'product-apparel-' | append: placeholder_image_index -%}
-              {% render 'card-product',
+            {%- when "product" -%}
+              {%- assign placeholder_image = "product-apparel-" | append: placeholder_image_index -%}
+              {% render "card-product",
                 card_product: block.settings.product,
-                media_aspect_ratio: 'adapt',
+                media_aspect_ratio: "adapt",
                 show_secondary_image: block.settings.second_image,
                 extend_height: true,
                 placeholder_image: placeholder_image,
                 skip_styles: skip_card_product_styles
               %}
               {% assign skip_card_product_styles = true %}
-            {%- when 'collection' -%}
-              {%- assign placeholder_image = 'collection-apparel-' | append: placeholder_image_index -%}
-              {% render 'card-collection',
+            {%- when "collection" -%}
+              {%- assign placeholder_image = "collection-apparel-" | append: placeholder_image_index -%}
+              {% render "card-collection",
                 card_collection: block.settings.collection,
-                media_aspect_ratio: 'adapt',
+                media_aspect_ratio: "adapt",
                 columns: 2,
                 extend_height: true,
                 wrapper_class: section.settings.card_styles,
                 placeholder_image: placeholder_image
               %}
-            {%- when 'video' -%}
+            {%- when "video" -%}
               <div class="collage-card {% if section.settings.card_styles == 'none' %}global-media-settings{% else %}{{ section.settings.card_styles }} color-{{ settings.card_color_scheme }} gradient{% endif %}">
                 <modal-opener data-modal="#PopupModal-{{ block.id }}">
                   <div class="deferred-media">
@@ -121,19 +119,17 @@
                       type="button"
                       aria-label="{{ 'sections.video.load_video' | t: description: block.settings.description | escape }}"
                       aria-haspopup="dialog"
-                      data-media-id="{{ block.settings.video_url.id }}"
-                    >
+                      data-media-id="{{ block.settings.video_url.id }}">
                       <div
                         class="media media--transparent ratio"
                         {% if block.settings.cover_image != blank %}
                           style="--ratio-percent: {{ 1 | divided_by: block.settings.cover_image.aspect_ratio | times: 100 }}%"
                         {% else %}
                           style="--ratio-percent: 100%"
-                        {% endif %}
-                      >
+                        {% endif %}>
                         <span class="deferred-media__poster-button motion-reduce">
                           <span class="svg-wrapper">
-                            {{- 'icon-play.svg' | inline_asset_content -}}
+                            {{- "icon-play.svg" | inline_asset_content -}}
                           </span>
                         </span>
 
@@ -152,10 +148,10 @@
                           {{
                             block.settings.cover_image
                             | image_url: width: 3000
-                            | image_tag: sizes: sizes, widths: '550, 720, 990, 1100, 1500, 2200, 3000'
+                            | image_tag: sizes: sizes, widths: "550, 720, 990, 1100, 1500, 2200, 3000"
                           }}
                         {%- else -%}
-                          {{ 'hero-apparel-3' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
+                          {{ "hero-apparel-3" | placeholder_svg_tag: "placeholder-svg placeholder" }}
                         {%- endif -%}
                       </div>
                     </button>
@@ -163,44 +159,39 @@
                 </modal-opener>
                 <modal-dialog
                   id="PopupModal-{{ block.id }}"
-                  class="modal-video media-modal color-{{ settings.color_schemes | first }}"
-                >
+                  class="modal-video media-modal color-{{ settings.color_schemes | first }}">
                   <div
                     class="modal-video__content"
                     role="dialog"
                     aria-label="{{ block.settings.description | escape }}"
                     aria-modal="true"
-                    tabindex="-1"
-                  >
+                    tabindex="-1">
                     <button
                       id="ModalClose-{{ block.id }}"
                       type="button"
                       class="modal-video__toggle"
-                      aria-label="{{ 'accessibility.close' | t }}"
-                    >
+                      aria-label="{{ 'accessibility.close' | t }}">
                       <span class="svg-wrapper">
-                        {{- 'icon-close.svg' | inline_asset_content -}}
+                        {{- "icon-close.svg" | inline_asset_content -}}
                       </span>
                     </button>
                     <div class="modal-video__content-info">
                       <deferred-media class="modal-video__video template-popup">
                         <template>
-                          {%- if block.settings.video_url.type == 'youtube' -%}
+                          {%- if block.settings.video_url.type == "youtube" -%}
                             <iframe
                               src="https://www.youtube.com/embed/{{ block.settings.video_url.id }}?enablejsapi=1"
                               class="js-youtube"
                               allow="autoplay; encrypted-media"
                               allowfullscreen
-                              title="{{ block.settings.description | escape }}"
-                            ></iframe>
+                              title="{{ block.settings.description | escape }}"></iframe>
                           {%- else -%}
                             <iframe
                               src="https://player.vimeo.com/video/{{ block.settings.video_url.id }}"
                               class="js-vimeo"
                               allow="autoplay; encrypted-media"
                               allowfullscreen
-                              title="{{ block.settings.description | escape }}"
-                            ></iframe>
+                              title="{{ block.settings.description | escape }}"></iframe>
                           {%- endif -%}
                         </template>
                       </deferred-media>
@@ -261,7 +252,7 @@
     {
       "type": "header",
       "content": "t:sections.collage.settings.header_layout.content"
-    },       
+    },
     {
       "type": "select",
       "id": "desktop_layout",

@@ -1,6 +1,6 @@
 {%- liquid
-  assign image_position = section.settings.image_position | default: 'left'
-  assign section_height = section.settings.section_height | default: '600px'
+  assign image_position = section.settings.image_position | default: "left"
+  assign section_height = section.settings.section_height | default: "600px"
 -%}
 
 <section class="image-content-split" data-section-id="{{ section.id }}">
@@ -8,12 +8,11 @@
     <!-- Image Section -->
     <div class="image-section">
       {% if section.settings.image %}
-        <img 
-          src="{{ section.settings.image | img_url: '1200x800' }}" 
+        <img
+          src="{{ section.settings.image | img_url: '1200x800' }}"
           alt="{{ section.settings.image.alt | escape }}"
           loading="lazy"
-          class="split-image"
-        >
+          class="split-image">
       {% else %}
         <div class="placeholder-image">
           <span>Add Image</span>
@@ -27,17 +26,17 @@
         {% if section.settings.eyebrow_text != blank %}
           <p class="eyebrow-text">{{ section.settings.eyebrow_text }}</p>
         {% endif %}
-        
+
         {% if section.settings.heading != blank %}
           <h2 class="main-heading">{{ section.settings.heading }}</h2>
         {% endif %}
-        
+
         {% if section.settings.description != blank %}
           <div class="description">
             {{ section.settings.description }}
           </div>
         {% endif %}
-        
+
         {% if section.settings.button_text != blank and section.settings.button_url != blank %}
           <a href="{{ section.settings.button_url }}" class="cta-button">
             {{ section.settings.button_text }}

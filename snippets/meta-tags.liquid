@@ -1,14 +1,14 @@
 {%- liquid
   assign og_title = page_title | default: shop.name
   assign og_url = canonical_url | default: request.origin
-  assign og_type = 'website'
+  assign og_type = "website"
   assign og_description = page_description | default: shop.description | default: shop.name
 
-  if request.page_type == 'product'
-    assign og_type = 'product'
-  elsif request.page_type == 'article'
-    assign og_type = 'article'
-  elsif request.page_type == 'password'
+  if request.page_type == "product"
+    assign og_type = "product"
+  elsif request.page_type == "article"
+    assign og_type = "article"
+  elsif request.page_type == "password"
     assign og_url = request.origin
   endif
 %}
@@ -26,7 +26,7 @@
   <meta property="og:image:height" content="{{ page_image.height }}">
 {%- endif -%}
 
-{%- if request.page_type == 'product' -%}
+{%- if request.page_type == "product" -%}
   <meta property="og:price:amount" content="{{ product.price | money_without_currency | strip_html }}">
   <meta property="og:price:currency" content="{{ cart.currency.iso_code }}">
 {%- endif -%}

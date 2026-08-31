@@ -1,47 +1,46 @@
 {% doc %}
   @prompt
     Requirements:
-    
-    Layout:
-    
-    6 Instagram images in a row on large desktop.
-    
-    3 images per row on tablets.
-    
-    2 images per row on mobile.
-    
-    Fully responsive and optimized for all screens including MacBook sizes.
-    
-    Images:
-    
-    Admin can upload 6 images from the Shopify theme editor.
-    
-    Each image should link to a single Instagram profile link (set in theme settings).
-    
-    Animation:
-    
-    Each image should "shake" one by one in sequence.
-    
-    After the 6th image shakes, the animation should loop back to the 1st image.
-    
-    The loop should continue infinitely.
-    
-    Timing of shake should exactly match the SERVA reference (1st shakes → pause → 2nd shakes → pause → and so on).
-    
-    Customization in Theme Editor:
-    
-    Upload images (image_picker).
-    
-    Set Instagram profile link (url).
-    
-    Code Output:
-    
-    Provide a complete Shopify section code (Liquid + CSS + schema).
-    
-    Code should be clean, optimized, and ready to paste directly into Shopify.
 
+    Layout:
+
+    6 Instagram images in a row on large desktop.
+
+    3 images per row on tablets.
+
+    2 images per row on mobile.
+
+    Fully responsive and optimized for all screens including MacBook sizes.
+
+    Images:
+
+    Admin can upload 6 images from the Shopify theme editor.
+
+    Each image should link to a single Instagram profile link (set in theme settings).
+
+    Animation:
+
+    Each image should "shake" one by one in sequence.
+
+    After the 6th image shakes, the animation should loop back to the 1st image.
+
+    The loop should continue infinitely.
+
+    Timing of shake should exactly match the SERVA reference (1st shakes → pause → 2nd shakes → pause → and so on).
+
+    Customization in Theme Editor:
+
+    Upload images (image_picker).
+
+    Set Instagram profile link (url).
+
+    Code Output:
+
+    Provide a complete Shopify section code (Liquid + CSS + schema).
+
+    Code should be clean, optimized, and ready to paste directly into Shopify.
 {% enddoc %}
-{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+{% assign ai_gen_id = block.id | replace: "_", "" | downcase %}
 
 {% style %}
   .ai-instagram-gallery-{{ ai_gen_id }} {
@@ -135,7 +134,7 @@
       grid-template-columns: repeat(2, 1fr);
       gap: 10px;
     }
-    
+
     .ai-instagram-gallery-{{ ai_gen_id }} {
       padding: 15px;
     }
@@ -145,7 +144,7 @@
     .ai-instagram-grid-{{ ai_gen_id }} {
       gap: 8px;
     }
-    
+
     .ai-instagram-gallery-{{ ai_gen_id }} {
       padding: 10px;
     }
@@ -154,24 +153,24 @@
 
 <instagram-gallery-{{ ai_gen_id }}
   class="ai-instagram-gallery-{{ ai_gen_id }}"
-  {{ block.shopify_attributes }}
->
+  {{ block.shopify_attributes }}>
   <div class="ai-instagram-grid-{{ ai_gen_id }}">
     {% for i in (1..6) %}
-      {% assign image_key = 'image_' | append: i %}
+      {% assign image_key = "image_" | append: i %}
       {% assign current_image = block.settings[image_key] %}
-      
+
       <div class="ai-instagram-item-{{ ai_gen_id }}" data-index="{{ forloop.index0 }}">
         {% if block.settings.instagram_url != blank %}
-          <a href="{{ block.settings.instagram_url }}" 
-             class="ai-instagram-link-{{ ai_gen_id }}"
-             target="_blank"
-             rel="noopener noreferrer"
-             aria-label="View Instagram profile">
+          <a
+            href="{{ block.settings.instagram_url }}"
+            class="ai-instagram-link-{{ ai_gen_id }}"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="View Instagram profile">
         {% else %}
           <div class="ai-instagram-link-{{ ai_gen_id }}">
         {% endif %}
-        
+
         {% if current_image %}
           <img
             src="{{ current_image | image_url: width: 400 }}"
@@ -179,17 +178,14 @@
             class="ai-instagram-image-{{ ai_gen_id }}"
             loading="lazy"
             width="400"
-            height="400"
-          >
+            height="400">
         {% else %}
           <div class="ai-instagram-placeholder-{{ ai_gen_id }}">
-            {{ 'image' | placeholder_svg_tag }}
-            <div class="ai-instagram-empty-state-{{ ai_gen_id }}">
-              Add image {{ i }}
-            </div>
+            {{ "image" | placeholder_svg_tag }}
+            <div class="ai-instagram-empty-state-{{ ai_gen_id }}">Add image {{ i }}</div>
           </div>
         {% endif %}
-        
+
         {% if block.settings.instagram_url != blank %}
           </a>
         {% else %}

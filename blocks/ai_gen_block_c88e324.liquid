@@ -1,22 +1,21 @@
-
 {% doc %}
   @prompt
     Create a premium editorial Shopify section that exactly matches the provided reference image with pixel-perfect spacing, typography, alignment, proportions, and layout composition. The section should have a clean luxury magazine-style aesthetic with a soft light beige/off-white background color across the entire section. The design must feel minimal, elegant, and balanced exactly like the reference image.
-    
+
     SECTION STRUCTURE:
-    
+
     Create a two-column layout on desktop.
     Left column should contain the heading and image composition.
     Right column should contain large paragraph text content.
     Maintain the exact same spacing and proportions between both columns as shown in the reference image.
     The entire content should sit inside a centered container with generous white space around all sides.
-    
+
     LEFT SIDE LAYOUT:
     At the top-left area place the heading:
     “What We Make”
-    
+
     HEADING STYLE:
-    
+
     Font family:
     font-family: 'PP Editorial New', serif;
     Italic styling.
@@ -25,10 +24,10 @@
     Text color pure black.
     Letter spacing slightly tight.
     Position exactly like the image with generous top spacing and aligned slightly inward from the left edge.
-    
+
     IMAGE AREA:
     Below the heading place a square editorial image composition.
-    
+
     Add Shopify theme editor upload option for this image.
     Image should appear approximately 420x420px on desktop.
     Maintain exact same proportions as reference.
@@ -37,16 +36,16 @@
     Image should align perfectly under the heading with the same spacing as the reference image.
     Use object-fit cover.
     Keep clean edges and premium minimal presentation.
-    
+
     RIGHT SIDE CONTENT:
     Position the paragraph content exactly like the reference image.
-    
+
     Align the text block vertically starting near the top of the heading height.
     Content width should match the reference proportions.
     Keep generous line spacing and luxury editorial readability.
-    
+
     PARAGRAPH TYPOGRAPHY:
-    
+
     Font family:
     font-family: 'Helvetica Neue', sans-serif;
     or clean modern sans-serif equivalent.
@@ -56,32 +55,32 @@
     Line height approximately 1.15–1.25.
     Letter spacing slightly tight.
     Paragraph spacing exactly like the reference.
-    
+
     CONTENT STYLING:
-    
+
     Maintain manual paragraph breaks exactly like the image.
     Text should feel dense but elegant.
     Do not center anything.
     Keep all content left aligned.
     Preserve the same visual rhythm and editorial magazine feel.
-    
+
     SPACING & ALIGNMENT:
-    
+
     Add large top and bottom padding.
     Maintain the same left and right margins as the reference.
     Keep image and text perfectly aligned horizontally.
     Ensure the section does not look like a standard Shopify block layout — it should feel like a high-end fashion/perfume campaign editorial.
-    
+
     RESPONSIVE MOBILE DESIGN:
-    
+
     On mobile stack image above text.
     Keep heading at top.
     Maintain luxury spacing proportions.
     Scale typography carefully without breaking editorial look.
     Keep image square on mobile.
-    
+
     THEME EDITOR SETTINGS:
-    
+
     Heading text editable
     Image upload option
     Rich text paragraph editor
@@ -90,10 +89,10 @@
     Image width control
     Text width control
     Font size controls for heading and paragraphs
-    
+
     IMPORTANT:
     The final implementation must visually match the reference image exactly in:
-    
+
     Typography scale
     Text positioning
     Image size
@@ -103,7 +102,7 @@
     Minimal clean composition
     Overall visual balance and proportions.
 {% enddoc %}
-{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+{% assign ai_gen_id = block.id | replace: "_", "" | downcase %}
 
 {% style %}
   .ai-editorial-section-{{ ai_gen_id }} {
@@ -197,7 +196,7 @@
   }
   .ai-editorial-text-{{ ai_gen_id }} a{
     color: #000;
-  
+
   }
 
   .ai-editorial-text-{{ ai_gen_id }} p {
@@ -261,14 +260,11 @@
               loading="lazy"
               width="{{ block.settings.image.width }}"
               height="{{ block.settings.image.height }}"
-              class="ai-editorial-image-{{ ai_gen_id }}"
-            >
+              class="ai-editorial-image-{{ ai_gen_id }}">
           {% else %}
             <div class="ai-editorial-image-placeholder-{{ ai_gen_id }}">
-              {{ 'image' | placeholder_svg_tag }}
-              <div class="ai-editorial-empty-state-{{ ai_gen_id }}">
-                Add an editorial image
-              </div>
+              {{ "image" | placeholder_svg_tag }}
+              <div class="ai-editorial-empty-state-{{ ai_gen_id }}">Add an editorial image</div>
             </div>
           {% endif %}
         </div>

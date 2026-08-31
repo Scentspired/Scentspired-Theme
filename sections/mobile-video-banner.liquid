@@ -1,13 +1,14 @@
 <section id="mvps-{{ section.id }}" class="mvps-section" aria-label="Video product selector">
-  {% assign desktop_src = '' %}
-  {% assign mobile_src = '' %}
+  {% assign desktop_src = "" %}
+  {% assign mobile_src = "" %}
   {%- if section.settings.desktop_video != blank -%}
     {% assign dv = section.settings.desktop_video %}
     {%- if dv.sources and dv.sources.size > 0 -%}
       {% assign desktop_src = dv.sources[0].url %}
     {%- else -%}
       {% assign desktop_src = dv | file_url %}
-    {%- endif -%}c
+    {%- endif -%}
+    c
   {%- endif -%}
 
   {%- if section.settings.mobile_video != blank -%}
@@ -20,7 +21,14 @@
   {%- endif -%}
 
   <div class="mvps-video-wrap" aria-hidden="true">
-    <video class="mvps-video mvps-desktop mvps-mobile" autoplay muted loop playsinline preload="auto" style="filter: brightness(70%);">
+    <video
+      class="mvps-video mvps-desktop mvps-mobile"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+      style="filter: brightness(70%);">
       <source src="https://cdn.shopify.com/videos/c/o/v/2fe67c6edaa646b18805a79903b1059c.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
@@ -29,7 +37,7 @@
   <div class="mvps-overlay">
     <div class="mvps-top">
       <div class="mvps-subtitle">INSPIRED BY</div>
-      
+
       <!-- Two dropdown system with Brands and Notes -->
       <div class="mvps-dropdowns-wrapper">
         <!-- Brands Dropdown -->
@@ -37,21 +45,32 @@
           <div class="mvps-heading-wrap">
             <button class="mvps-dropdown-btn" id="mvps-brands-btn-{{ section.id }}" data-category="brands">
               <span class="mvps-dropdown-text">{{ section.settings.heading_1 }}</span>
-              <svg class="mvps-chevron" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="2">
+              <svg
+                class="mvps-chevron"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="#fff"
+                stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
               </svg>
             </button>
           </div>
-          
+
           <!-- Brands Popup -->
           <div class="mvps-popup" id="mvps-brands-popup-{{ section.id }}" style="display:none;">
             <div class="mvps-popup-content">
               <button class="mvps-popup-close" aria-label="Close">×</button>
               <div class="mvps-popup-items">
                 {% for i in (1..6) %}
-                  {% assign heading_key = 'heading_' | append: i %}
-                  {% assign collection_key = 'collection_' | append: i %}
-                  <button class="mvps-popup-item {% if i == 1 %}active{% endif %}" data-index="{{ i }}" data-collection="{{ collection_key }}">
+                  {% assign heading_key = "heading_" | append: i %}
+                  {% assign collection_key = "collection_" | append: i %}
+                  <button
+                    class="mvps-popup-item {% if i == 1 %}active{% endif %}"
+                    data-index="{{ i }}"
+                    data-collection="{{ collection_key }}">
                     {{ section.settings[heading_key] }}
                   </button>
                 {% endfor %}
@@ -65,20 +84,28 @@
           <div class="mvps-heading-wrap">
             <button class="mvps-dropdown-btn" id="mvps-notes-btn-{{ section.id }}" data-category="notes">
               <span class="mvps-dropdown-text">{{ section.settings.heading_notes_1 }}</span>
-              <svg class="mvps-chevron" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="2">
+              <svg
+                class="mvps-chevron"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="#fff"
+                stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
               </svg>
             </button>
           </div>
-          
+
           <!-- Notes Popup -->
           <div class="mvps-popup" id="mvps-notes-popup-{{ section.id }}" style="display:none;">
             <div class="mvps-popup-content">
               <button class="mvps-popup-close" aria-label="Close">×</button>
               <div class="mvps-popup-items">
                 {% for i in (1..6) %}
-                  {% assign heading_key = 'heading_notes_' | append: i %}
-                  {% assign collection_key = 'collection_notes_' | append: i %}
+                  {% assign heading_key = "heading_notes_" | append: i %}
+                  {% assign collection_key = "collection_notes_" | append: i %}
                   <button class="mvps-popup-item" data-index="{{ i }}" data-collection="{{ collection_key }}">
                     {{ section.settings[heading_key] }}
                   </button>
@@ -94,104 +121,106 @@
       <div class="mvps-fragrance-container">
         <!-- Brands Collections -->
         {% for i in (1..6) %}
-          {% assign collection_key = 'collection_' | append: i %}
+          {% assign collection_key = "collection_" | append: i %}
           {% assign coll_handle = section.settings[collection_key] %}
           {% assign coll = collections[coll_handle] %}
-          <div class="mvps-fragrance-layout" data-collection="{{ collection_key }}" {% if i == 1 %}data-active="true"{% else %}style="display:none"{% endif %}>
+          <div
+            class="mvps-fragrance-layout"
+            data-collection="{{ collection_key }}"
+            {% if i == 1 %}
+              data-active="true"
+            {% else %}
+              style="display:none"
+            {% endif %}>
             {% if coll and coll.products_count > 0 %}
-              {% for product in coll.products limit:12 %}
+              {% for product in coll.products limit: 12 %}
                 <div class="fragrance-item product-card" data-product-id="{{ product.id }}">
-          <!-- Badges -->
-          
+                  <!-- Badges -->
 
+                  <!-- Image with secondary image on hover -->
+                  <a href="{{ product.url }}" style="text-decoration: none; color: inherit;">
+                    <div class="fragrance-image-wrap">
+                      <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title }}">
+                      {% if product.images.size > 1 %}
+                        <img
+                          class="secondary-image"
+                          src="{{ product.images[1] | image_url: width: 600 }}"
+                          alt="{{ product.title }}">
+                      {% endif %}
+                      <div class="product-badges">
+                        {% for tag in product.tags %}
+                          {% if tag == "men" or tag == "Men" %}
+                            <span class="product-badge badge-men">Men</span>
+                            {% break %}
+                          {% elsif tag == "women" or tag == "Women" %}
+                            <span class="product-badge badge-women">Women</span>
+                            {% break %}
+                          {% elsif tag == "unisex" or tag == "Unisex" %}
+                            <span class="product-badge badge-unisex">Unisex</span>
+                            {% break %}
+                          {% endif %}
+                        {% endfor %}
+                      </div>
+                    </div>
+                  </a>
 
-          <!-- Image with secondary image on hover -->
-          <a href="{{ product.url }}" style="text-decoration: none; color: inherit;">
-            <div class="fragrance-image-wrap">
-              <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title }}">
-              {% if product.images.size > 1 %}
-                <img class="secondary-image" src="{{ product.images[1] | image_url: width: 600 }}" alt="{{ product.title }}">
-              {% endif %}
-              <div class="product-badges">
-  {% for tag in product.tags %}
-    {% if tag == 'men' or tag == 'Men' %}
-      <span class="product-badge badge-men">Men</span>
-      {% break %}
-    {% elsif tag == 'women' or tag == 'Women' %}
-      <span class="product-badge badge-women">Women</span>
-      {% break %}
-    {% elsif tag == 'unisex' or tag == 'Unisex' %}
-      <span class="product-badge badge-unisex">Unisex</span>
-      {% break %}
-    {% endif %}
-  {% endfor %}
-</div>
+                  <!-- Content section - grey background, NO hover effects -->
+                  <div class="fragrance-info">
+                    <!-- Stars -->
+                    <div class="fragrance-rating"></div>
+                    <a href="{{ product.url }}" style="text-decoration: none; color: inherit;">
+                      <!-- Product Title -->
+                      <div class="fragrance-name">{{ product.title }}</div>
+                    </a>
 
-            </div>
-          </a>
+                    <!-- Inspired by (Vendor) -->
+                    <div class="fragrance-brand">
+                      {{ product.vendor }}
+                    </div>
 
-          <!-- Content section - grey background, NO hover effects -->
-          <div class="fragrance-info">
-            <!-- Stars -->
-            <div class="fragrance-rating">
-  
-            </div>
-             <a href="{{ product.url }}" style="text-decoration: none; color: inherit;">
-            <!-- Product Title -->
-            <div class="fragrance-name">{{ product.title }}</div>
-             </a>
+                    <!-- Price section with discount -->
+                    <!-- Added unique ID to price display so it can be updated when variant changes -->
+                    <div class="price-section">
+                      <span class="product-price-display" data-price>
+                        {{ product.variants.first.price | money }}
+                      </span>
 
-            <!-- Inspired by (Vendor) -->
-            <div class="fragrance-brand">
-              {{ product.vendor }}
-            </div>
+                      {% if product.variants.first.compare_at_price > product.variants.first.price %}
+                        <span class="original-price" data-compare-price>
+                          {{ product.variants.first.compare_at_price | money }}
+                        </span>
+                        <span class="price-badge" data-sale-badge>Sale</span>
+                      {% endif %}
+                    </div>
 
-            <!-- Price section with discount -->
-            <!-- Added unique ID to price display so it can be updated when variant changes -->
-<div class="price-section">
-  <span class="product-price-display" data-price>
-    {{ product.variants.first.price | money }}
-  </span>
+                    <!-- Variant options -->
+                    <form method="post" action="/cart/add" class="item-form" data-product-id="{{ product.id }}">
+                      {% if product.variants.size > 1 %}
+                        <div class="variant-options" data-variant-options>
+                          {% for variant in product.variants %}
+                            <button
+                              type="button"
+                              class="variant-option-btn"
+                              data-variant-id="{{ variant.id }}"
+                              data-variant-price="{{ variant.price }}"
+                              data-variant-compare="{{ variant.compare_at_price }}"
+                              data-available="{{ variant.available }}"
+                              data-inventory="{{ variant.inventory_quantity }}">
+                              {{ variant.title }}
+                            </button>
+                          {% endfor %}
+                        </div>
+                        <!-- Added hidden input to store selected variant ID -->
+                        <input type="hidden" name="id" class="variant-id-input" value="{{ product.variants.first.id }}">
+                      {% else %}
+                        <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+                      {% endif %}
 
-  {% if product.variants.first.compare_at_price > product.variants.first.price %}
-    <span class="original-price" data-compare-price>
-      {{ product.variants.first.compare_at_price | money }}
-    </span>
-    <span class="price-badge" data-sale-badge>Sale</span>
-  {% endif %}
-</div>
-
-            <!-- Variant options -->
-            <form method="post" action="/cart/add" class="item-form" data-product-id="{{ product.id }}">
-              {% if product.variants.size > 1 %}
-                <div class="variant-options" data-variant-options>
-                  {% for variant in product.variants %}
-                   <button
-  type="button"
-  class="variant-option-btn"
-  data-variant-id="{{ variant.id }}"
-  data-variant-price="{{ variant.price }}"
-  data-variant-compare="{{ variant.compare_at_price }}"
-  data-available="{{ variant.available }}"
-  data-inventory="{{ variant.inventory_quantity }}"
->
-  {{ variant.title }}
-</button>
-                  {% endfor %}
+                      <!-- Add to cart button -->
+                      <button type="submit" class="cart-button">ADD TO CART</button>
+                    </form>
+                  </div>
                 </div>
-                <!-- Added hidden input to store selected variant ID -->
-                <input type="hidden" name="id" class="variant-id-input" value="{{ product.variants.first.id }}">
-              {% else %}
-                <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-              {% endif %}
-
-              <!-- Add to cart button -->
-              <button type="submit" class="cart-button">ADD TO CART</button>
-            </form>
-
-
-          </div>
-        </div>
               {% endfor %}
             {% else %}
               <div class="mvps-fragrance-item empty">No products in this collection</div>
@@ -201,108 +230,105 @@
 
         <!-- Notes Collections -->
         {% for i in (1..6) %}
-          {% assign collection_key = 'collection_notes_' | append: i %}
+          {% assign collection_key = "collection_notes_" | append: i %}
           {% assign coll_handle = section.settings[collection_key] %}
           {% assign coll = collections[coll_handle] %}
           <div class="mvps-fragrance-layout" data-collection="{{ collection_key }}" style="display:none;">
             {% if coll and coll.products_count > 0 %}
-              {% for product in coll.products limit:12 %}
-                   <div class="fragrance-item product-card" data-product-id="{{ product.id }}">
-          <!-- Badges -->
-          
+              {% for product in coll.products limit: 12 %}
+                <div class="fragrance-item product-card" data-product-id="{{ product.id }}">
+                  <!-- Badges -->
 
+                  <!-- Image with secondary image on hover -->
+                  <a href="{{ product.url }}" style="text-decoration: none; color: inherit;">
+                    <div class="fragrance-image-wrap">
+                      <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title }}">
+                      {% if product.images.size > 1 %}
+                        <img
+                          class="secondary-image"
+                          src="{{ product.images[1] | image_url: width: 600 }}"
+                          alt="{{ product.title }}">
+                      {% endif %}
+                      <div class="product-badges">
+                        {% for tag in product.tags %}
+                          {% if tag == "men" or tag == "Men" %}
+                            <span class="product-badge badge-men">Men</span>
+                            {% break %}
+                          {% elsif tag == "women" or tag == "Women" %}
+                            <span class="product-badge badge-women">Women</span>
+                            {% break %}
+                          {% elsif tag == "unisex" or tag == "Unisex" %}
+                            <span class="product-badge badge-unisex">Unisex</span>
+                            {% break %}
+                          {% endif %}
+                        {% endfor %}
+                      </div>
+                    </div>
+                  </a>
 
-          <!-- Image with secondary image on hover -->
-          <a href="{{ product.url }}" style="text-decoration: none; color: inherit;">
-            <div class="fragrance-image-wrap">
-              <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title }}">
-              {% if product.images.size > 1 %}
-                <img class="secondary-image" src="{{ product.images[1] | image_url: width: 600 }}" alt="{{ product.title }}">
-              {% endif %}
-              <div class="product-badges">
-  {% for tag in product.tags %}
-    {% if tag == 'men' or tag == 'Men' %}
-      <span class="product-badge badge-men">Men</span>
-      {% break %}
-    {% elsif tag == 'women' or tag == 'Women' %}
-      <span class="product-badge badge-women">Women</span>
-      {% break %}
-    {% elsif tag == 'unisex' or tag == 'Unisex' %}
-      <span class="product-badge badge-unisex">Unisex</span>
-      {% break %}
-    {% endif %}
-  {% endfor %}
-</div>
+                  <!-- Content section - grey background, NO hover effects -->
+                  <div class="fragrance-info">
+                    <!-- Stars -->
+                    <div class="fragrance-rating">
+                      <span class="rating-star filled">★</span>
+                      <span class="rating-star filled">★</span>
+                      <span class="rating-star filled">★</span>
+                      <span class="rating-star filled">★</span>
+                      <span class="rating-star">☆</span>
+                    </div>
+                    <a href="{{ product.url }}" style="text-decoration: none; color: inherit;">
+                      <!-- Product Title -->
+                      <div class="fragrance-name">{{ product.title }}</div>
+                    </a>
 
-            </div>
-          </a>
+                    <!-- Inspired by (Vendor) -->
+                    <div class="fragrance-brand">
+                      {{ product.vendor }}
+                    </div>
 
-          <!-- Content section - grey background, NO hover effects -->
-          <div class="fragrance-info">
-            <!-- Stars -->
-            <div class="fragrance-rating">
-              <span class="rating-star filled">★</span>
-              <span class="rating-star filled">★</span>
-              <span class="rating-star filled">★</span>
-              <span class="rating-star filled">★</span>
-              <span class="rating-star">☆</span>
-            </div>
-              <a href="{{ product.url }}" style="text-decoration: none; color: inherit;">
-            <!-- Product Title -->
-            <div class="fragrance-name">{{ product.title }}</div>
-              </a>
+                    <!-- Price section with discount -->
+                    <!-- Added unique ID to price display so it can be updated when variant changes -->
+                    <div class="price-section">
+                      <span class="product-price-display" data-price>
+                        {{ product.variants.first.price | money }}
+                      </span>
 
-            <!-- Inspired by (Vendor) -->
-            <div class="fragrance-brand">
-              {{ product.vendor }}
-            </div>
+                      {% if product.variants.first.compare_at_price > product.variants.first.price %}
+                        <span class="original-price" data-compare-price>
+                          {{ product.variants.first.compare_at_price | money }}
+                        </span>
+                        <span class="price-badge" data-sale-badge>Sale</span>
+                      {% endif %}
+                    </div>
+                    <!-- Variant options -->
+                    <form method="post" action="/cart/add" class="mvps-item-form" data-product-id="{{ product.id }}">
+                      {% if product.variants.size > 1 %}
+                        <div class="variant-options" data-variant-options>
+                          {% for variant in product.variants %}
+                            <button
+                              type="button"
+                              class="variant-option-btn"
+                              data-variant-id="{{ variant.id }}"
+                              data-variant-price="{{ variant.price }}"
+                              data-variant-compare="{{ variant.compare_at_price }}"
+                              data-available="{{ variant.available }}"
+                              data-inventory="{{ variant.inventory_quantity }}">
+                              {{ variant.title }}
+                            </button>
+                          {% endfor %}
+                        </div>
+                        <input type="hidden" name="id" class="variant-id-input" value="{{ product.variants.first.id }}">
+                      {% else %}
+                        <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+                      {% endif %}
 
-            <!-- Price section with discount -->
-            <!-- Added unique ID to price display so it can be updated when variant changes -->
-            <div class="price-section">
-  <span class="product-price-display" data-price>
-    {{ product.variants.first.price | money }}
-  </span>
+                      <!-- Force quantity to 1 -->
+                      <input type="hidden" name="quantity" value="1">
 
-  {% if product.variants.first.compare_at_price > product.variants.first.price %}
-    <span class="original-price" data-compare-price>
-      {{ product.variants.first.compare_at_price | money }}
-    </span>
-    <span class="price-badge" data-sale-badge>Sale</span>
-  {% endif %}
-</div>
-            <!-- Variant options -->
-           <form method="post" action="/cart/add" class="mvps-item-form" data-product-id="{{ product.id }}">
-  {% if product.variants.size > 1 %}
-    <div class="variant-options" data-variant-options>
-      {% for variant in product.variants %}
-<button
-  type="button"
-  class="variant-option-btn"
-  data-variant-id="{{ variant.id }}"
-  data-variant-price="{{ variant.price }}"
-  data-variant-compare="{{ variant.compare_at_price }}"
-  data-available="{{ variant.available }}"
-  data-inventory="{{ variant.inventory_quantity }}"
->
-          {{ variant.title }}
-        </button>
-      {% endfor %}
-    </div>
-    <input type="hidden" name="id" class="variant-id-input" value="{{ product.variants.first.id }}">
-  {% else %}
-    <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-  {% endif %}
-
-  <!-- Force quantity to 1 -->
-  <input type="hidden" name="quantity" value="1">
-
-  <button type="submit" class="cart-button">ADD TO CART</button>
-</form>
-
-
-          </div>
-        </div>
+                      <button type="submit" class="cart-button">ADD TO CART</button>
+                    </form>
+                  </div>
+                </div>
               {% endfor %}
             {% else %}
               <div class="mvps-fragrance-item empty">No products in this collection</div>
@@ -318,550 +344,685 @@
   </div>
 
   <style>
-    .mvps-section{position:relative;overflow:visible;background:#2e2e2e;color:#fff;font-family:'PP Editorial New',serif;}
-    .mvps-video-wrap{position:absolute;inset:0;z-index:0;overflow:hidden}
-    .mvps-video{width:100%;height:100%;object-fit:cover;min-height:480px;pointer-events:none}
-    .mvps-desktop{display:block}
-    .mvps-mobile{display:none}
+    .mvps-section {
+      position: relative;
+      overflow: visible;
+      background: #2e2e2e;
+      color: #fff;
+      font-family: 'PP Editorial New', serif;
+    }
+    .mvps-video-wrap {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .mvps-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      min-height: 480px;
+      pointer-events: none;
+    }
+    .mvps-desktop {
+      display: block;
+    }
+    .mvps-mobile {
+      display: none;
+    }
 
-    .mvps-overlay{position:relative;z-index:2;flex-direction:column;align-items:center;padding:18px 12px 40px;min-height:480px}
+    .mvps-overlay {
+      position: relative;
+      z-index: 2;
+      flex-direction: column;
+      align-items: center;
+      padding: 18px 12px 40px;
+      min-height: 480px;
+    }
 
-    .mvps-top{width:100%;display:flex;flex-direction:column;margin-top:14px}
-    .mvps-subtitle{
-      font-size:12px;
-      font-weight:400;
-      letter-spacing:2px;
-      text-transform:uppercase;
-      color:#fff;
-      margin-bottom:8px;
-      text-align:left;
-      padding-left:20px;
+    .mvps-top {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      margin-top: 14px;
+    }
+    .mvps-subtitle {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 8px;
+      text-align: left;
+      padding-left: 20px;
     }
 
     /* Dual dropdown styling */
-    .mvps-dropdowns-wrapper{
-      display:flex;
-      flex-direction:column;
-      gap:16px;
-      width:100%;
-      padding:0 20px;
+    .mvps-dropdowns-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      width: 100%;
+      padding: 0 20px;
     }
 
-    .mvps-dropdown-group{
-      position:relative;
+    .mvps-dropdown-group {
+      position: relative;
     }
 
-    .mvps-heading-wrap{
-      position:relative;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      width:100%;
-      border-radius:8px;
-      transition:border-color 0.3s ease;
+    .mvps-heading-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      border-radius: 8px;
+      transition: border-color 0.3s ease;
     }
 
-    .mvps-dropdown-btn{
-      appearance:none;
-      border:0;
-      background:transparent;
-      color:#fff;
-      font-family:'PP Editorial New',serif;
-      font-size:48px;
-      font-weight:400;
-      font-style:italic;
-      text-align:left;
-      padding:8px 0;
-      outline:none;
-      cursor:pointer;
-      flex:1;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
+    .mvps-dropdown-btn {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      color: #fff;
+      font-family: 'PP Editorial New', serif;
+      font-size: 48px;
+      font-weight: 400;
+      font-style: italic;
+      text-align: left;
+      padding: 8px 0;
+      outline: none;
+      cursor: pointer;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
     }
 
-    .mvps-dropdown-btn:focus{
-      outline:none;
+    .mvps-dropdown-btn:focus {
+      outline: none;
     }
 
-    .mvps-dropdown-text{
-      flex:1;
-      text-align:left;
+    .mvps-dropdown-text {
+      flex: 1;
+      text-align: left;
     }
 
-    .mvps-chevron{
-      pointer-events:none;
-      cursor:pointer;
-      transition:transform 0.3s ease;
-      width:24px;
-      height:24px;
-      flex-shrink:0;
+    .mvps-chevron {
+      pointer-events: none;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
     }
 
-    .mvps-dropdown-btn.active .mvps-chevron{
-      transform:rotate(180deg);
+    .mvps-dropdown-btn.active .mvps-chevron {
+      transform: rotate(180deg);
     }
 
     /* Popup with very high z-index and full viewport coverage */
-   .mvps-popup {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.8);
-  z-index: 9999 !important;
+    .mvps-popup {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 9999 !important;
 
-  display: flex;
-  align-items: flex-end;
+      display: flex;
+      align-items: flex-end;
 
-  overflow: hidden;
-}
-
-/* Animate ONLY the content, not the wrapper */
-@keyframes slideUp {
-  from {
-    transform: translateY(100%);
-  }
-  to {
-    transform: translateY(0);
-  }
-}
-
-.mvps-popup-content {
-  background: #1a1a1a;
-  width: 100%;
-  border-radius: 20px 20px 0 0;
-
-  padding: 24px 20px;
-  padding-bottom: calc(24px + env(safe-area-inset-bottom));
-
-  /* FLEX SCROLL FIX */
-  max-height: 100%;
-  min-height: 0;
-
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-
-  box-sizing: border-box;
-  position: relative;
-  z-index: 10000;
-
-  animation: slideUp 0.3s ease;
-}
-
-
-    .mvps-popup-close{
-      position:absolute;
-      top:12px;
-      right:16px;
-      background:none;
-      border:none;
-      color:#fff;
-      font-size:32px;
-      cursor:pointer;
-      padding:0;
-      width:32px;
-      height:32px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
+      overflow: hidden;
     }
 
-    .mvps-popup-items{
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-      margin-top:20px;
+    /* Animate ONLY the content, not the wrapper */
+    @keyframes slideUp {
+      from {
+        transform: translateY(100%);
+      }
+      to {
+        transform: translateY(0);
+      }
     }
 
-    .mvps-popup-item{
-      background:transparent;
-      border:2px solid #666;
-      color:#fff;
-      padding:16px 20px;
-      border-radius:12px;
-      font-size:18px;
-      font-family:'PP Editorial New',serif;
-      font-style:italic;
-      cursor:pointer;
-      transition:all 0.3s ease;
-      text-align:left;
+    .mvps-popup-content {
+      background: #1a1a1a;
+      width: 100%;
+      border-radius: 20px 20px 0 0;
+
+      padding: 24px 20px;
+      padding-bottom: calc(24px + env(safe-area-inset-bottom));
+
+      /* FLEX SCROLL FIX */
+      max-height: 100%;
+      min-height: 0;
+
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+
+      box-sizing: border-box;
+      position: relative;
+      z-index: 10000;
+
+      animation: slideUp 0.3s ease;
     }
 
-    .mvps-popup-item:hover{
-      border-color:#fff;
-      background:rgba(255,255,255,0.1);
+    .mvps-popup-close {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 32px;
+      cursor: pointer;
+      padding: 0;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .mvps-popup-item.active{
-      background:#f4ff41;
-      color:#000;
-      border-color:#f4ff41;
+    .mvps-popup-items {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 20px;
     }
 
-    .mvps-fragrance-container{max-width:1200px;margin:0 auto;padding:28px 18px;}
-    .mvps-fragrance-layout{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:12px 18px; -webkit-overflow-scrolling:touch; touch-action:manipulation; overscroll-behavior-x:contain;}
-    .mvps-fragrance-layout::-webkit-scrollbar{display:none}
+    .mvps-popup-item {
+      background: transparent;
+      border: 2px solid #666;
+      color: #fff;
+      padding: 16px 20px;
+      border-radius: 12px;
+      font-size: 18px;
+      font-family: 'PP Editorial New', serif;
+      font-style: italic;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: left;
+    }
 
-    .mvps-fragrance-item{flex:0 0 283px;position:relative;overflow:hidden;border-radius:18px;height:470px;background:#F8F8F8;scroll-snap-align:center}
-    .mvps-fragrance-item img{position:absolute;top:0;left:0;height:100%;width:100%;object-fit:cover;transition:opacity .4s;z-index:1}
-    .mvps-fragrance-item .secondary-image{opacity:0;transition:opacity .4s;z-index:2}
-    .mvps-fragrance-item:hover .secondary-image{opacity:1}
-    .mvps-fragrance-cost{position:absolute;top:20px;right:18px;font-size:16px;color:#000;z-index:2}
-    .mvps-fragrance-info{position:absolute;bottom:20px;left:20px;right:20px;z-index:2;color:black;text-align:center;transition:.3s}
-    .mvps-fragrance-item:hover .fragrance-info{transform:translateY(-40px);color:white}
-    .mvps-fragrance-name{font-size:16px;font-weight:400;margin:0;text-transform:uppercase}
-    .mvps-fragrance-brand{margin:0;font-size:13px}
-    .mvps-fragrance-rating{margin:3px 0;font-size:18px;color:#cbdd00}
-    .mvps-cart-button{margin-top:12px;background:#f4ff41;color:#000;font-weight:600;font-size:12px;padding:12px 36px;border-radius:999px;cursor:pointer;border:none;width:80%}
+    .mvps-popup-item:hover {
+      border-color: #fff;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .mvps-popup-item.active {
+      background: #f4ff41;
+      color: #000;
+      border-color: #f4ff41;
+    }
+
+    .mvps-fragrance-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 28px 18px;
+    }
+    .mvps-fragrance-layout {
+      display: flex;
+      gap: 18px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding: 12px 18px;
+      -webkit-overflow-scrolling: touch;
+      touch-action: manipulation;
+      overscroll-behavior-x: contain;
+    }
+    .mvps-fragrance-layout::-webkit-scrollbar {
+      display: none;
+    }
+
+    .mvps-fragrance-item {
+      flex: 0 0 283px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 18px;
+      height: 470px;
+      background: #f8f8f8;
+      scroll-snap-align: center;
+    }
+    .mvps-fragrance-item img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      transition: opacity 0.4s;
+      z-index: 1;
+    }
+    .mvps-fragrance-item .secondary-image {
+      opacity: 0;
+      transition: opacity 0.4s;
+      z-index: 2;
+    }
+    .mvps-fragrance-item:hover .secondary-image {
+      opacity: 1;
+    }
+    .mvps-fragrance-cost {
+      position: absolute;
+      top: 20px;
+      right: 18px;
+      font-size: 16px;
+      color: #000;
+      z-index: 2;
+    }
+    .mvps-fragrance-info {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      z-index: 2;
+      color: black;
+      text-align: center;
+      transition: 0.3s;
+    }
+    .mvps-fragrance-item:hover .fragrance-info {
+      transform: translateY(-40px);
+      color: white;
+    }
+    .mvps-fragrance-name {
+      font-size: 16px;
+      font-weight: 400;
+      margin: 0;
+      text-transform: uppercase;
+    }
+    .mvps-fragrance-brand {
+      margin: 0;
+      font-size: 13px;
+    }
+    .mvps-fragrance-rating {
+      margin: 3px 0;
+      font-size: 18px;
+      color: #cbdd00;
+    }
+    .mvps-cart-button {
+      margin-top: 12px;
+      background: #f4ff41;
+      color: #000;
+      font-weight: 600;
+      font-size: 12px;
+      padding: 12px 36px;
+      border-radius: 999px;
+      cursor: pointer;
+      border: none;
+      width: 80%;
+    }
 
     /* Hide mobile bottom nav when popup is open */
     body.mvps-popup-open .mobile-bottom-nav {
       display: none !important;
       visibility: hidden !important;
     }
-    @media (max-width:1024px){
-      .mvps-video{min-height:360px}
-      .mvps-desktop{display:none}
-      .mvps-mobile{display:block}
-      
+    @media (max-width: 1024px) {
+      .mvps-video {
+        min-height: 360px;
+      }
+      .mvps-desktop {
+        display: none;
+      }
+      .mvps-mobile {
+        display: block;
+      }
     }
     @media (min-width: 800px) and (max-width: 1024px) {
-.mvps-fragrance-layout {
-    display: flex;
-    gap: 18px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    padding: 12px 210px;
-    -webkit-overflow-scrolling: touch;
-    touch-action: pan-x;
-    overscroll-behavior-x: contain;
-    }
-    .fragrance-item {
-        flex: 0 0 50% !important;  /* roughly half of the row */
-        width: 50% !important;     /* match flex-basis */
+      .mvps-fragrance-layout {
+        display: flex;
+        gap: 18px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding: 12px 210px;
+        -webkit-overflow-scrolling: touch;
+        touch-action: pan-x;
+        overscroll-behavior-x: contain;
+      }
+      .fragrance-item {
+        flex: 0 0 50% !important; /* roughly half of the row */
+        width: 50% !important; /* match flex-basis */
         max-width: 100%;
         scroll-snap-align: start !important; /* optional: align items at start */
         border-radius: 12px;
         margin-bottom: 16px !important; /* spacing between rows */
         box-sizing: border-box;
+      }
     }
 
-}
-
-    @media (max-width:990px){
-      .mvps-video{min-height:360px}
-      .mvps-desktop{display:none}
-      .mvps-mobile{display:block}
-      .mvps-dropdown-btn{font-size:32px}
-      .mvps-subtitle{
-        font-size:11px;
-        padding-left:20px;
+    @media (max-width: 990px) {
+      .mvps-video {
+        min-height: 360px;
       }
-      .fragrance-layout{gap:0;padding:0}
-      .fragrance-item{flex:0 0 100%;width:100%;max-width:100%;scroll-snap-align:center;border-radius:12px}
+      .mvps-desktop {
+        display: none;
+      }
+      .mvps-mobile {
+        display: block;
+      }
+      .mvps-dropdown-btn {
+        font-size: 32px;
+      }
+      .mvps-subtitle {
+        font-size: 11px;
+        padding-left: 20px;
+      }
+      .fragrance-layout {
+        gap: 0;
+        padding: 0;
+      }
+      .fragrance-item {
+        flex: 0 0 100%;
+        width: 100%;
+        max-width: 100%;
+        scroll-snap-align: center;
+        border-radius: 12px;
+      }
     }
     @media screen and (min-width: 1025px) {
-      .mvps-section{
+      .mvps-section {
         display: none;
       }
     }
-    .visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px)}
-
-    <!-- Add pagination dots styling -->
-    .mvps-dots-wrapper{
-      display:flex;
-      justify-content:center;
-      padding:16px 0;
-      background:#2e2e2e;
-      position:relative;
-      z-index:1;
+    .visually-hidden {
+      position: absolute !important;
+      height: 1px;
+      width: 1px;
+      overflow: hidden;
+      clip: rect(1px, 1px, 1px, 1px);
     }
 
-    .mvps-dots-container{
-      display:flex;
-      gap:8px;
-      justify-content:center;
-      align-items:center;
+    <!-- Add pagination dots styling -- > .mvps-dots-wrapper {
+      display: flex;
+      justify-content: center;
+      padding: 16px 0;
+      background: #2e2e2e;
+      position: relative;
+      z-index: 1;
     }
 
-    .mvps-dot{
-      width:8px;
-      height:8px;
-      border-radius:50%;
-      background:rgba(255,255,255,0.4);
-      cursor:pointer;
-      transition:all 0.3s ease;
+    .mvps-dots-container {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      align-items: center;
     }
 
-    .mvps-dot.active{
-      background:#f4ff41;
-      width:24px;
-      border-radius:4px;
+    .mvps-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.4);
+      cursor: pointer;
+      transition: all 0.3s ease;
     }
 
-    .mvps-dot:hover{
-      background:rgba(255,255,255,0.6);
+    .mvps-dot.active {
+      background: #f4ff41;
+      width: 24px;
+      border-radius: 4px;
+    }
+
+    .mvps-dot:hover {
+      background: rgba(255, 255, 255, 0.6);
     }
   </style>
 
-<script>
-(async function() {
-  const section = document.getElementById('mvps-{{ section.id }}');
-  if (!section) return;
+  <script>
+    (async function () {
+      const section = document.getElementById('mvps-{{ section.id }}');
+      if (!section) return;
 
-  // --- Fetch current cart ---
-  async function getCart() {
-    try {
-      const res = await fetch('/cart.js');
-      if (!res.ok) throw new Error('Failed to fetch cart');
-      return await res.json();
-    } catch (err) {
-      console.error(err);
-      return { items: [] };
-    }
-  }
-
-  const cart = await getCart();
-
-  // --- Elements ---
-  const brandsBtnEl = section.querySelector('#mvps-brands-btn-{{ section.id }}');
-  const notesBtnEl = section.querySelector('#mvps-notes-btn-{{ section.id }}');
-  const brandsPopup = section.querySelector('#mvps-brands-popup-{{ section.id }}');
-  const notesPopup = section.querySelector('#mvps-notes-popup-{{ section.id }}');
-  const layouts = Array.from(section.querySelectorAll('.mvps-fragrance-layout'));
-  const dotsContainer = section.querySelector('#mvps-dots-{{ section.id }}');
-  const brandsItems = brandsPopup ? Array.from(brandsPopup.querySelectorAll('.mvps-popup-item')) : [];
-  const notesItems = notesPopup ? Array.from(notesPopup.querySelectorAll('.mvps-popup-item')) : [];
-
-  const BRANDS_CATEGORY = 'VIBES';
-  const NOTES_CATEGORY = 'OCCASIONS';
-  const firstBrandText = brandsItems[0]?.textContent.trim() || 'Brand 1';
-
-  let currentCategory = 'brands';
-  let currentCollection = 'collection_1';
-
-  // --- Dropdown functionality ---
-  function closeAllPopups() {
-    if (brandsPopup) brandsPopup.style.display = 'none';
-    if (notesPopup) notesPopup.style.display = 'none';
-    if (brandsBtnEl) brandsBtnEl.classList.remove('active');
-    if (notesBtnEl) notesBtnEl.classList.remove('active');
-    document.body.style.overflow = '';
-    document.body.classList.remove('mvps-popup-open');
-  }
-
-  function updateDropdownText(btn, text) {
-    if (!btn) return;
-    const textSpan = btn.querySelector('.mvps-dropdown-text');
-    if (textSpan) textSpan.textContent = text;
-  }
-
-  if (brandsBtnEl) {
-    brandsBtnEl.addEventListener('click', e => {
-      e.stopPropagation();
-      if (brandsPopup && brandsPopup.style.display === 'flex') closeAllPopups();
-      else if (brandsPopup) {
-        closeAllPopups();
-        brandsPopup.style.display = 'flex';
-        brandsBtnEl.classList.add('active');
-        document.body.style.overflow = 'hidden';
-        document.body.classList.add('mvps-popup-open');
-      }
-    });
-  }
-
-  if (notesBtnEl) {
-    notesBtnEl.addEventListener('click', e => {
-      e.stopPropagation();
-      if (notesPopup && notesPopup.style.display === 'flex') closeAllPopups();
-      else if (notesPopup) {
-        closeAllPopups();
-        notesPopup.style.display = 'flex';
-        notesBtnEl.classList.add('active');
-        document.body.style.overflow = 'hidden';
-        document.body.classList.add('mvps-popup-open');
-      }
-    });
-  }
-
-  brandsItems.forEach((item, index) => {
-    if (index === 0) item.classList.add('active');
-    item.addEventListener('click', () => {
-      brandsItems.forEach(i => i.classList.remove('active'));
-      item.classList.add('active');
-      const collectionKey = 'collection_' + (index + 1);
-      currentCollection = collectionKey;
-      currentCategory = 'brands';
-      updateDropdownText(brandsBtnEl, item.textContent.trim());
-      updateDropdownText(notesBtnEl, NOTES_CATEGORY);
-      notesItems.forEach(i => i.classList.remove('active'));
-      showLayout(collectionKey);
-      setTimeout(() => closeAllPopups(), 100);
-    });
-  });
-
-  notesItems.forEach((item, index) => {
-    item.addEventListener('click', () => {
-      notesItems.forEach(i => i.classList.remove('active'));
-      item.classList.add('active');
-      const collectionKey = 'collection_notes_' + (index + 1);
-      currentCollection = collectionKey;
-      currentCategory = 'notes';
-      updateDropdownText(notesBtnEl, item.textContent.trim());
-      updateDropdownText(brandsBtnEl, BRANDS_CATEGORY);
-      brandsItems.forEach(i => i.classList.remove('active'));
-      showLayout(collectionKey);
-      setTimeout(() => closeAllPopups(), 100);
-    });
-  });
-
-  // Close popup if click outside
-  const closeButtons = section.querySelectorAll('.mvps-popup-close');
-  closeButtons.forEach(btn => btn.addEventListener('click', closeAllPopups));
-  document.addEventListener('click', e => { if (!section.contains(e.target)) closeAllPopups(); });
-
-  // --- Show layout & dots ---
-  function createDots(productCount) {
-    dotsContainer.innerHTML = '';
-    for (let i = 0; i < productCount; i++) {
-      const dot = document.createElement('span');
-      dot.className = 'mvps-dot';
-      if (i === 0) dot.classList.add('active');
-      dotsContainer.appendChild(dot);
-    }
-  }
-
-  function showLayout(collectionKey) {
-    layouts.forEach(l => {
-      if (l.getAttribute('data-collection') === collectionKey) {
-        l.style.display = 'flex';
-        l.scrollTo({ left: 0 });
-        const productCount = l.querySelectorAll('.fragrance-item:not(.empty)').length;
-        createDots(productCount);
-        initVariants(l); // Initialize variants whenever layout is shown
-      } else l.style.display = 'none';
-    });
-  }
-
-  // --- Scroll dots ---
-  layouts.forEach(layout => {
-    layout.addEventListener('scroll', function() {
-      if (this.style.display === 'flex') {
-        const scrollLeft = this.scrollLeft;
-        const itemWidth = this.querySelector('.fragrance-item')?.offsetWidth || 283;
-        const currentIndex = Math.round(scrollLeft / (itemWidth + 18));
-        const dots = Array.from(dotsContainer.querySelectorAll('.mvps-dot'));
-        dots.forEach((dot, index) => dot.classList.toggle('active', index === currentIndex));
-      }
-    });
-  });
-
-  // --- Variant logic ---
-  function initVariants(layout) {
-    const fragranceItems = layout.querySelectorAll('.fragrance-item');
-
-    fragranceItems.forEach(card => {
-      const variantBtns = card.querySelectorAll('.variant-option-btn');
-      const variantIdInput = card.querySelector('.variant-id-input');
-      const priceDisplay = card.querySelector('[data-price]');
-      let firstAvailable = null;
-
-      variantBtns.forEach(btn => {
-        const totalInventory = parseInt(btn.dataset.inventory || 0);
-        const cartItem = cart.items.find(item => item.id == btn.dataset.variantId);
-        const cartQty = cartItem ? cartItem.quantity : 0;
-        const remaining = totalInventory - cartQty;
-
-        btn.classList.remove('disabled', 'active');
-        btn.style.textDecoration = '';
-        btn.style.cursor = '';
-
-        if (remaining <= 0) {
-          btn.classList.add('disabled');
-          btn.style.textDecoration = 'line-through';
-          btn.style.cursor = 'not-allowed';
-          btn.disabled = true;
-        } else if (!firstAvailable) firstAvailable = btn;
-
-        if (!btn.dataset.listenerAttached) {
-          btn.addEventListener('click', () => {
-            if (btn.classList.contains('disabled')) return;
-            variantBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            if (variantIdInput) variantIdInput.value = btn.dataset.variantId;
-            const price = parseInt(btn.dataset.variantPrice, 10);
-const compare = parseInt(btn.dataset.variantCompare, 10) || null;
-
-priceDisplay.textContent = '$' + (price / 100).toFixed(2);
-
-let compareEl = card.querySelector('[data-compare-price]');
-let badgeEl = card.querySelector('[data-sale-badge]');
-
-if (compare && compare > price) {
-  if (!compareEl) {
-    compareEl = document.createElement('span');
-    compareEl.className = 'original-price';
-    compareEl.setAttribute('data-compare-price', '');
-    priceDisplay.after(compareEl);
-  }
-
-  compareEl.textContent = '$' + (compare / 100).toFixed(2);
-
-  if (!badgeEl) {
-    badgeEl = document.createElement('span');
-    badgeEl.className = 'price-badge';
-    badgeEl.setAttribute('data-sale-badge', '');
-    badgeEl.textContent = 'Sale';
-    compareEl.after(badgeEl);
-  }
-} else {
-  if (compareEl) compareEl.remove();
-  if (badgeEl) badgeEl.remove();
-}
-
-          });
-          btn.dataset.listenerAttached = true;
+      // --- Fetch current cart ---
+      async function getCart() {
+        try {
+          const res = await fetch('/cart.js');
+          if (!res.ok) throw new Error('Failed to fetch cart');
+          return await res.json();
+        } catch (err) {
+          console.error(err);
+          return { items: [] };
         }
+      }
+
+      const cart = await getCart();
+
+      // --- Elements ---
+      const brandsBtnEl = section.querySelector('#mvps-brands-btn-{{ section.id }}');
+      const notesBtnEl = section.querySelector('#mvps-notes-btn-{{ section.id }}');
+      const brandsPopup = section.querySelector('#mvps-brands-popup-{{ section.id }}');
+      const notesPopup = section.querySelector('#mvps-notes-popup-{{ section.id }}');
+      const layouts = Array.from(section.querySelectorAll('.mvps-fragrance-layout'));
+      const dotsContainer = section.querySelector('#mvps-dots-{{ section.id }}');
+      const brandsItems = brandsPopup ? Array.from(brandsPopup.querySelectorAll('.mvps-popup-item')) : [];
+      const notesItems = notesPopup ? Array.from(notesPopup.querySelectorAll('.mvps-popup-item')) : [];
+
+      const BRANDS_CATEGORY = 'VIBES';
+      const NOTES_CATEGORY = 'OCCASIONS';
+      const firstBrandText = brandsItems[0]?.textContent.trim() || 'Brand 1';
+
+      let currentCategory = 'brands';
+      let currentCollection = 'collection_1';
+
+      // --- Dropdown functionality ---
+      function closeAllPopups() {
+        if (brandsPopup) brandsPopup.style.display = 'none';
+        if (notesPopup) notesPopup.style.display = 'none';
+        if (brandsBtnEl) brandsBtnEl.classList.remove('active');
+        if (notesBtnEl) notesBtnEl.classList.remove('active');
+        document.body.style.overflow = '';
+        document.body.classList.remove('mvps-popup-open');
+      }
+
+      function updateDropdownText(btn, text) {
+        if (!btn) return;
+        const textSpan = btn.querySelector('.mvps-dropdown-text');
+        if (textSpan) textSpan.textContent = text;
+      }
+
+      if (brandsBtnEl) {
+        brandsBtnEl.addEventListener('click', e => {
+          e.stopPropagation();
+          if (brandsPopup && brandsPopup.style.display === 'flex') closeAllPopups();
+          else if (brandsPopup) {
+            closeAllPopups();
+            brandsPopup.style.display = 'flex';
+            brandsBtnEl.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            document.body.classList.add('mvps-popup-open');
+          }
+        });
+      }
+
+      if (notesBtnEl) {
+        notesBtnEl.addEventListener('click', e => {
+          e.stopPropagation();
+          if (notesPopup && notesPopup.style.display === 'flex') closeAllPopups();
+          else if (notesPopup) {
+            closeAllPopups();
+            notesPopup.style.display = 'flex';
+            notesBtnEl.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            document.body.classList.add('mvps-popup-open');
+          }
+        });
+      }
+
+      brandsItems.forEach((item, index) => {
+        if (index === 0) item.classList.add('active');
+        item.addEventListener('click', () => {
+          brandsItems.forEach(i => i.classList.remove('active'));
+          item.classList.add('active');
+          const collectionKey = 'collection_' + (index + 1);
+          currentCollection = collectionKey;
+          currentCategory = 'brands';
+          updateDropdownText(brandsBtnEl, item.textContent.trim());
+          updateDropdownText(notesBtnEl, NOTES_CATEGORY);
+          notesItems.forEach(i => i.classList.remove('active'));
+          showLayout(collectionKey);
+          setTimeout(() => closeAllPopups(), 100);
+        });
       });
 
-      // Auto-select first available
-      if (firstAvailable) {
-        variantBtns.forEach(b => b.classList.remove('active'));
-        firstAvailable.classList.add('active');
-        if (variantIdInput) variantIdInput.value = firstAvailable.dataset.variantId;
-        if (priceDisplay) priceDisplay.textContent = '$' + (parseInt(firstAvailable.dataset.variantPrice)/100).toFixed(2);
+      notesItems.forEach((item, index) => {
+        item.addEventListener('click', () => {
+          notesItems.forEach(i => i.classList.remove('active'));
+          item.classList.add('active');
+          const collectionKey = 'collection_notes_' + (index + 1);
+          currentCollection = collectionKey;
+          currentCategory = 'notes';
+          updateDropdownText(notesBtnEl, item.textContent.trim());
+          updateDropdownText(brandsBtnEl, BRANDS_CATEGORY);
+          brandsItems.forEach(i => i.classList.remove('active'));
+          showLayout(collectionKey);
+          setTimeout(() => closeAllPopups(), 100);
+        });
+      });
+
+      // Close popup if click outside
+      const closeButtons = section.querySelectorAll('.mvps-popup-close');
+      closeButtons.forEach(btn => btn.addEventListener('click', closeAllPopups));
+      document.addEventListener('click', e => {
+        if (!section.contains(e.target)) closeAllPopups();
+      });
+
+      // --- Show layout & dots ---
+      function createDots(productCount) {
+        dotsContainer.innerHTML = '';
+        for (let i = 0; i < productCount; i++) {
+          const dot = document.createElement('span');
+          dot.className = 'mvps-dot';
+          if (i === 0) dot.classList.add('active');
+          dotsContainer.appendChild(dot);
+        }
       }
 
-     // Disable Add to Cart + Sold Out text handling
-const submitBtn = card.querySelector('.cart-button');
+      function showLayout(collectionKey) {
+        layouts.forEach(l => {
+          if (l.getAttribute('data-collection') === collectionKey) {
+            l.style.display = 'flex';
+            l.scrollTo({ left: 0 });
+            const productCount = l.querySelectorAll('.fragrance-item:not(.empty)').length;
+            createDots(productCount);
+            initVariants(l); // Initialize variants whenever layout is shown
+          } else l.style.display = 'none';
+        });
+      }
 
-if (submitBtn) {
-  if (!firstAvailable) {
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Sold Out';
-    submitBtn.style.cursor = 'not-allowed';
-    submitBtn.style.opacity = '0.6';
-  } else {
-    submitBtn.disabled = false;
-    submitBtn.textContent = 'Add to Cart';
-    submitBtn.style.cursor = 'pointer';
-    submitBtn.style.opacity = '1';
-  }
-}
+      // --- Scroll dots ---
+      layouts.forEach(layout => {
+        layout.addEventListener('scroll', function () {
+          if (this.style.display === 'flex') {
+            const scrollLeft = this.scrollLeft;
+            const itemWidth = this.querySelector('.fragrance-item')?.offsetWidth || 283;
+            const currentIndex = Math.round(scrollLeft / (itemWidth + 18));
+            const dots = Array.from(dotsContainer.querySelectorAll('.mvps-dot'));
+            dots.forEach((dot, index) => dot.classList.toggle('active', index === currentIndex));
+          }
+        });
+      });
 
-    });
-  }
+      // --- Variant logic ---
+      function initVariants(layout) {
+        const fragranceItems = layout.querySelectorAll('.fragrance-item');
 
-  // --- Initialize first layout & dropdown text ---
-  updateDropdownText(brandsBtnEl, firstBrandText);
-  updateDropdownText(notesBtnEl, NOTES_CATEGORY);
-  showLayout('collection_1');
+        fragranceItems.forEach(card => {
+          const variantBtns = card.querySelectorAll('.variant-option-btn');
+          const variantIdInput = card.querySelector('.variant-id-input');
+          const priceDisplay = card.querySelector('[data-price]');
+          let firstAvailable = null;
 
-})();
-</script>
+          variantBtns.forEach(btn => {
+            const totalInventory = parseInt(btn.dataset.inventory || 0);
+            const cartItem = cart.items.find(item => item.id == btn.dataset.variantId);
+            const cartQty = cartItem ? cartItem.quantity : 0;
+            const remaining = totalInventory - cartQty;
 
+            btn.classList.remove('disabled', 'active');
+            btn.style.textDecoration = '';
+            btn.style.cursor = '';
 
+            if (remaining <= 0) {
+              btn.classList.add('disabled');
+              btn.style.textDecoration = 'line-through';
+              btn.style.cursor = 'not-allowed';
+              btn.disabled = true;
+            } else if (!firstAvailable) firstAvailable = btn;
 
+            if (!btn.dataset.listenerAttached) {
+              btn.addEventListener('click', () => {
+                if (btn.classList.contains('disabled')) return;
+                variantBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                if (variantIdInput) variantIdInput.value = btn.dataset.variantId;
+                const price = parseInt(btn.dataset.variantPrice, 10);
+                const compare = parseInt(btn.dataset.variantCompare, 10) || null;
+
+                priceDisplay.textContent = '$' + (price / 100).toFixed(2);
+
+                let compareEl = card.querySelector('[data-compare-price]');
+                let badgeEl = card.querySelector('[data-sale-badge]');
+
+                if (compare && compare > price) {
+                  if (!compareEl) {
+                    compareEl = document.createElement('span');
+                    compareEl.className = 'original-price';
+                    compareEl.setAttribute('data-compare-price', '');
+                    priceDisplay.after(compareEl);
+                  }
+
+                  compareEl.textContent = '$' + (compare / 100).toFixed(2);
+
+                  if (!badgeEl) {
+                    badgeEl = document.createElement('span');
+                    badgeEl.className = 'price-badge';
+                    badgeEl.setAttribute('data-sale-badge', '');
+                    badgeEl.textContent = 'Sale';
+                    compareEl.after(badgeEl);
+                  }
+                } else {
+                  if (compareEl) compareEl.remove();
+                  if (badgeEl) badgeEl.remove();
+                }
+              });
+              btn.dataset.listenerAttached = true;
+            }
+          });
+
+          // Auto-select first available
+          if (firstAvailable) {
+            variantBtns.forEach(b => b.classList.remove('active'));
+            firstAvailable.classList.add('active');
+            if (variantIdInput) variantIdInput.value = firstAvailable.dataset.variantId;
+            if (priceDisplay)
+              priceDisplay.textContent = '$' + (parseInt(firstAvailable.dataset.variantPrice) / 100).toFixed(2);
+          }
+
+          // Disable Add to Cart + Sold Out text handling
+          const submitBtn = card.querySelector('.cart-button');
+
+          if (submitBtn) {
+            if (!firstAvailable) {
+              submitBtn.disabled = true;
+              submitBtn.textContent = 'Sold Out';
+              submitBtn.style.cursor = 'not-allowed';
+              submitBtn.style.opacity = '0.6';
+            } else {
+              submitBtn.disabled = false;
+              submitBtn.textContent = 'Add to Cart';
+              submitBtn.style.cursor = 'pointer';
+              submitBtn.style.opacity = '1';
+            }
+          }
+        });
+      }
+
+      // --- Initialize first layout & dropdown text ---
+      updateDropdownText(brandsBtnEl, firstBrandText);
+      updateDropdownText(notesBtnEl, NOTES_CATEGORY);
+      showLayout('collection_1');
+    })();
+  </script>
 </section>
 
 {% schema %}

@@ -1,6 +1,6 @@
-{{ 'component-article-card.css' | asset_url | stylesheet_tag }}
-{{ 'component-card.css' | asset_url | stylesheet_tag }}
-{{ 'section-main-blog.css' | asset_url | stylesheet_tag }}
+{{ "component-article-card.css" | asset_url | stylesheet_tag }}
+{{ "component-card.css" | asset_url | stylesheet_tag }}
+{{ "section-main-blog.css" | asset_url | stylesheet_tag }}
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -29,9 +29,8 @@
           {% if settings.animations_reveal_on_scroll %}
             data-cascade
             style="--animation-order: {{ forloop.index }};"
-          {% endif %}
-        >
-          {%- render 'article-card',
+          {% endif %}>
+          {%- render "article-card",
             article: article,
             media_height: section.settings.image_height,
             media_aspect_ratio: article.image.aspect_ratio,
@@ -45,7 +44,7 @@
     </div>
 
     {%- if paginate.pages > 1 -%}
-      {%- render 'pagination', paginate: paginate -%}
+      {%- render "pagination", paginate: paginate -%}
     {%- endif -%}
   </div>
 {%- endpaginate -%}

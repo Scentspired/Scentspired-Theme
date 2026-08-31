@@ -164,9 +164,7 @@
           "blocks": {}
         }
       },
-      "block_order": [
-        "ai_gen_block_efb927c_WGwQKa"
-      ],
+      "block_order": ["ai_gen_block_efb927c_WGwQKa"],
       "custom_css": [
         ".ai-footer-copyright__container-aetrncunrtktlukljaaigenblockefb927cwgwqka {max-width: 100%; margin: 0 auto; padding: 0px 35px;}",
         ".reforce-link {color: inherit; /* no color change */ text-decoration: underline;}",
@@ -175,8 +173,5 @@
       "settings": {}
     }
   },
-  "order": [
-    "footer",
-    "17677801892897efa9"
-  ]
+  "order": ["footer", "17677801892897efa9"]
 }

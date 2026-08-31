@@ -59,70 +59,64 @@
 }
 {% endschema %}
 
-
-
 <div class="video-banner-wrapper">
   <!-- Desktop Banner -->
   <div class="banner-desktop" id="banner-desktop">
     <!-- Video Container with poster image as background -->
     <div class="video-container">
       <!-- Poster Image - Inline data URI loads instantly with 0 delay -->
-      <img 
-        id="poster-desktop" 
-        src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAIBAQIBAQICAgICAgICAwUDAwwUAxMTAwMRBBMTExMRBxcTExcTGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsBAQICAgICAwUDAwwUAxMTAwMRBBMTExMRBxcTExcTGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsBAQICAgICAwUDAwwUAxMTAwMRBBMTExMRBxcTExcTGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxs" 
-        alt="Banner" 
+      <img
+        id="poster-desktop"
+        src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAIBAQIBAQICAgICAgICAwUDAwwUAxMTAwMRBBMTExMRBxcTExcTGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsBAQICAgICAwUDAwwUAxMTAwMRBBMTExMRBxcTExcTGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsBAQICAgICAwUDAwwUAxMTAwMRBBMTExMRBxcTExcTGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxs"
+        alt="Banner"
         class="poster-image"
         width="1920"
         height="1080"
-        style="background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%); display: block;"
-      >
+        style="background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%); display: block;">
       <!-- Video - Overlays on top when loaded -->
-      <video 
-        id="main-video-desktop" 
-        muted 
-        loop 
+      <video
+        id="main-video-desktop"
+        muted
+        loop
         playsinline
         preload="none"
-        class="video-element"
-      >
+        class="video-element">
         <source src="https://cdn.shopify.com/videos/c/o/v/01ece0dcb8c947ec83bd05667497d987.mp4" type="video/mp4">
       </video>
     </div>
   </div>
-  
+
   <!-- Mobile Banner -->
   <div class="banner-mobile" id="banner-mobile">
     <!-- Video Container with poster image as background -->
     <div class="video-container">
       <!-- Poster Image - Inline data URI loads instantly with 0 delay -->
-      <img 
-        id="poster-mobile" 
-        src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAIBAQIBAQICAgICAgICAwUDAwwUAxMTAwMRBBMTExMRBxcTExcTGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsBAQICAgICAwUDAwwUAxMTAwMRBBMTExMRBxcTExcTGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsBAQICAgICAwUDAwwUAxMTAwMRBBMTExMRBxcTExcTGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxs" 
-        alt="Banner Mobile" 
+      <img
+        id="poster-mobile"
+        src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAIBAQIBAQICAgICAgICAwUDAwwUAxMTAwMRBBMTExMRBxcTExcTGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsBAQICAgICAwUDAwwUAxMTAwMRBBMTExMRBxcTExcTGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsBAQICAgICAwUDAwwUAxMTAwMRBBMTExMRBxcTExcTGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxs"
+        alt="Banner Mobile"
         class="poster-image"
         width="750"
         height="800"
-        style="background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%); display: block;"
-      >
+        style="background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%); display: block;">
       <!-- Video - Overlays on top when loaded -->
-      <video 
-        id="main-video-mobile" 
-        muted 
-        loop 
+      <video
+        id="main-video-mobile"
+        muted
+        loop
         playsinline
         preload="none"
-        class="video-element"
-      >
+        class="video-element">
         <source src="https://cdn.shopify.com/videos/c/o/v/01ece0dcb8c947ec83bd05667497d987.mp4" type="video/mp4">
       </video>
     </div>
   </div>
-  
+
   <div class="video-content">
     {% if section.settings.logo_image != blank %}
       <img src="{{ section.settings.logo_image | image_url }}" alt="Logo" class="custom-logo">
     {% endif %}
-    
+
     <div class="main-title-container">
       <h2 class="main-title">
         <span class="title-editorial">{{ section.settings.main_title_part1 }}</span>
@@ -133,28 +127,30 @@
         <span class="subtitle-editorial">{{ section.settings.subtitle_part2 }}</span>
       </p>
     </div>
-    
+
     <div class="curved-line">
-      <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Vector%202-C6ze3HVovCJ3KMe0mS0Mr7hUlPTkYh.png" alt="Curved Line" class="curve-image">
+      <img
+        src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Vector%202-C6ze3HVovCJ3KMe0mS0Mr7hUlPTkYh.png"
+        alt="Curved Line"
+        class="curve-image">
     </div>
-    
+
     {% if section.settings.button_text != blank %}
       <a href="{{ section.settings.button_link }}" class="video-button-rounded">
         <span class="button-text">{{ section.settings.button_text }}</span>
         <div class="button-arrow-circle">
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-    <path d="M5 12H19M13 6L19 12L13 18"
-          stroke="white"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"/>
-  </svg>
-</div>
-
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <path d="M5 12H19M13 6L19 12L13 18"
+                  stroke="white"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"/>
+          </svg>
+        </div>
       </a>
     {% endif %}
   </div>
-  
+
   <div class="side-text-container">
     <p class="side-text">{{ section.settings.side_text }}</p>
   </div>
@@ -168,56 +164,56 @@
     const posterId = isMobile ? 'poster-mobile' : 'poster-desktop';
     const video = document.getElementById(videoId);
     const poster = document.getElementById(posterId);
-    
+
     if (!video) return;
-    
+
     video.muted = true;
-    
+
     // Desktop: Autoplay immediately
     if (!isMobile) {
-      video.preload = "auto";
+      video.preload = 'auto';
       // Slight delay to ensure poster is visible first
       setTimeout(() => {
         video.play().catch(e => {
-          console.warn("[v0] Desktop autoplay skipped");
+          console.warn('[v0] Desktop autoplay skipped');
         });
       }, 100);
-    } 
+    }
     // Mobile: Load on first interaction to save bandwidth
     else {
-      video.preload = "none";
-      
+      video.preload = 'none';
+
       const playVideoOnInteraction = () => {
         // Add loading state
         video.style.opacity = '0';
-        video.preload = "auto";
+        video.preload = 'auto';
         video.load();
-        
-        
-        video.addEventListener('canplay', () => {
-          video.style.opacity = '1';
-          video.play().catch(e => {
-            console.warn("[v0] Mobile play failed");
-          });
-        }, { once: true });
-        
+
+        video.addEventListener(
+          'canplay',
+          () => {
+            video.style.opacity = '1';
+            video.play().catch(e => {
+              console.warn('[v0] Mobile play failed');
+            });
+          },
+          { once: true }
+        );
 
         document.removeEventListener('click', playVideoOnInteraction);
         document.removeEventListener('touchstart', playVideoOnInteraction);
       };
-      
+
       document.addEventListener('click', playVideoOnInteraction, { once: true });
       document.addEventListener('touchstart', playVideoOnInteraction, { once: true });
     }
   }
-  
 
   if (document.readyState === 'loading') {
-    document.addEventListener("DOMContentLoaded", initializeVideoBanners);
+    document.addEventListener('DOMContentLoaded', initializeVideoBanners);
   } else {
     initializeVideoBanners();
   }
-  
 
   let resizeTimeout;
   window.addEventListener('resize', () => {
@@ -227,424 +223,419 @@
 </script>
 
 <style>
+  .video-banner-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
 
+  .banner-desktop {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+  }
 
-.video-banner-wrapper {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-}
+  /* Mobile Banner */
+  .banner-mobile {
+    position: relative;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+  }
 
-.banner-desktop {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-  background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
-}
+  /* Mobile Banner */
+  .banner-mobile {
+    position: relative;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    display: none;
+    background: #000;
+  }
 
-/* Mobile Banner */
-.banner-mobile {
-  position: relative;
-  width: 100%;
-  height: auto;
-  overflow: hidden;
-  background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
-}
+  /* Video Container - Relative positioning holds poster + video */
+  .video-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-/* Mobile Banner */
-.banner-mobile {
-  position: relative;
-  width: 100%;
-  height: auto;
-  overflow: hidden;
-  display: none;
-  background: #000;
-}
+  /* Poster Image - Inline data URI loads with ZERO delay */
+  .poster-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 1;
+    display: block;
+    contain: strict;
+    content-visibility: auto;
+    font-size: 0;
+    line-height: 0;
+  }
 
-/* Video Container - Relative positioning holds poster + video */
-.video-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+  /* Video Element - Overlays directly on top of poster */
+  .video-element {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    z-index: 2;
+    transition: opacity 0.3s ease-in-out;
+    opacity: 1;
+  }
 
-/* Poster Image - Inline data URI loads with ZERO delay */
-.poster-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  z-index: 1;
-  display: block;
-  contain: strict;
-  content-visibility: auto;
-  font-size: 0;
-  line-height: 0;
-}
+  .video-content {
+    position: absolute;
+    top: 73%;
+    left: 3%;
+    transform: translateY(-50%);
+    color: white;
+    z-index: 10;
+    max-width: 50%;
+  }
 
-/* Video Element - Overlays directly on top of poster */
-.video-element {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-  z-index: 2;
-  transition: opacity 0.3s ease-in-out;
-  opacity: 1;
-}
+  .custom-logo {
+    max-width: 200px;
+    margin-bottom: 2rem;
+  }
 
-.video-content {
-  position: absolute;
-  top: 73%;
-  left: 3%;
-  transform: translateY(-50%);
-  color: white;
-  z-index: 10;
-  max-width: 50%;
-}
+  .main-title-container {
+    margin-top: 30px;
+  }
 
-.custom-logo {
-  max-width: 200px;
-  margin-bottom: 2rem;
-}
+  /* Main title - "Scents that linger" on one line - LARGER FONTS */
+  .main-title {
+    font-size: 60px;
+    font-weight: 600;
+    margin: 0 0 2.5rem 0;
+    line-height: 1;
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
 
-.main-title-container {
+  .title-editorial {
+    font-family: 'Playfair Display', serif; /* PP Editorial alternative */
+    font-weight: 400;
+    font-style: italic;
+    color: white;
+    font-size: 60px;
+  }
 
-  margin-top: 30px;
-}
+  .title-sans {
+    font-family: 'Inter', sans-serif; /* PP Mori alternative */
+    font-weight: 600 !important;
+    color: white;
+  }
 
-/* Main title - "Scents that linger" on one line - LARGER FONTS */
-.main-title {
-  font-size: 60px;
-  font-weight: 600;
-  margin: 0 0 2.5rem 0;
-  line-height: 1;
-  display: flex;
-  align-items: baseline;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
+  /* Subtitle - "It's a Vibe." on one line - LARGER FONTS */
+  .subtitle-line {
+    margin-top: -60px !important;
+    font-weight: 600 !important;
+    color: white;
+    margin: 0;
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
 
-.title-editorial {
-  font-family: 'Playfair Display', serif; /* PP Editorial alternative */
-  font-weight: 400;
-  font-style: italic;
-  color: white;
-  font-size: 60px;
-}
+  .subtitle-sans {
+    font-size: 86px !important;
+    font-family: 'Inter', sans-serif; /* PP Mori alternative */
+    font-weight: 600 !important;
+  }
 
-.title-sans {
-  font-family: 'Inter', sans-serif; /* PP Mori alternative */
-  font-weight: 600 !important;
-  color: white;
-}
+  .subtitle-editorial {
+    font-family: 'Playfair Display', serif; /* PP Editorial alternative */
+    font-weight: 400;
+    font-style: italic;
+    font-size: 60px !important;
+  }
 
-/* Subtitle - "It's a Vibe." on one line - LARGER FONTS */
-.subtitle-line {
-  margin-top: -60px !important;
-  font-weight: 600 !important;
-  color: white;
-  margin: 0;
-  display: flex;
-  align-items: baseline;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
-.subtitle-sans {
-  font-size: 86px !important;
-  font-family: 'Inter', sans-serif; /* PP Mori alternative */
-  font-weight: 600 !important;
-}
-
-.subtitle-editorial {
-  font-family: 'Playfair Display', serif; /* PP Editorial alternative */
-  font-weight: 400;
-  font-style: italic;
-  font-size: 60px !important;
-}
-
-/* Curved line using your image */
-.curved-line {
+  /* Curved line using your image */
+  .curved-line {
     position: absolute;
     top: 47%;
     left: 68%;
-  transform: translateY(-50%);
-  z-index: 1;
-}
+    transform: translateY(-50%);
+    z-index: 1;
+  }
 
-.curve-image {
-  width: clamp(300px, 35vw, 500px);
-  height: auto;
-  opacity: 0.7;
-  filter: brightness(0) invert(1); /* Makes the image white */
-}
-
-/* Button styling to match reference */
-.video-button-rounded {
-  display: inline-flex;
-  align-items: center;
-  gap: 1.2rem;
-  padding: 1.2rem 2rem;
-  background: white;
-  color: black;
-  text-decoration: none;
-  font-family: 'Inter', sans-serif;
-  font-weight: 400;
-  font-size: 0.9rem;
-  letter-spacing: 0.5px;
-  border-radius: 50px;
-  transition: all 0.3s ease;
-  margin-top: 4rem;
-  text-transform: uppercase;
-  width: 353px;
-  height: 62px !important;
-  justify-content: center;
-}
-
-.button-text {
-  white-space: nowrap;
-  text-align: center;
-  font-size: 16px;
-}
-
-.button-arrow-circle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  background: black;
-  color: white;
-  border-radius: 50%;
-  margin-left: 20px;
-}
-
-.button-arrow {
-  font-size: 20px;
-  line-height: 1;      /* ✅ keeps arrow vertically centered */
-  display: block;
-}
-
-
-
-.video-button-rounded:hover {
-  background: rgba(255, 255, 255, 0.95);
-  transform: translateY(-2px);
-}
-
-.video-button-rounded:hover .button-arrow-circle {
-  transform: translateX(3px);
-}
-
-.side-text-container {
-  position: absolute;
-  bottom: 5%;
-  right: 5%;
-  z-index: 10;
-}
-
-.side-text {
-  font-family: 'Inter', sans-serif; /* PP Mori alternative */
-  font-size: 70px;
-  font-weight: 400;
-  color: white;
-  margin: 0;
-  text-align: right;
-}
-
-/* Mobile Responsive - IMPROVED */
-@media (max-width: 768px) {
-  .banner-desktop {
-    display: none !important;
-  }
-  
-  .banner-mobile {
-    display: block !important;
-    height: auto;
-  }
-  
-  .banner-mobile .video-container {
-    height: 500px;
-    width: 100%;
-  }
-  
-  .banner-mobile .video-element {
-    position: absolute;
-  }
-  
-  .banner-mobile .poster-image {
-    position: absolute;
-    height: 100%;
-  }
-  
-  .video-banner-wrapper {
-    height: auto;
-  }
-  .video-content {
-    left: 4%;
-    right: 4%;
-    top: 68% !important;
-    max-width: 92%;
-  }
-      .main-title-container {
-       margin-top: -45px;
-      }
-  
-  .main-title {
-    font-size: 20px;
-    flex-direction: row;
-    gap: 0;
-    margin-bottom: 45px;
-  }
-  .title-editorial{
-     font-size: 40px;
-  }
-  .title-sans{
-    font-size: 40px;
-  }
-  .subtitle-sans {
-    font-size: 40px !important;
-    margin-top: 40px;
-  }
-  .subtitle-editorial{
-    font-size: 40px !important;
-    margin-top: -40px;
-  }
-  
-  .subtitle-line {
-    font-size: 20px;
-    flex-direction: column;
-    gap: 0;
-  }
-  
-  .curved-line {
-    top: 25% !important;
-    left: 50% !important;
-    transform: translateY(-50%) scale(0.7);
-  }
-  
   .curve-image {
-    width: clamp(200px, 40vw, 300px);
+    width: clamp(300px, 35vw, 500px);
+    height: auto;
+    opacity: 0.7;
+    filter: brightness(0) invert(1); /* Makes the image white */
   }
-  
-  .side-text-container {
-    bottom: 15%;
-    right: 0%;
-  }
-  
-  .side-text {
-    font-size: clamp(2.2rem, 12vw, 4rem);
-    margin-top: -460px;
-    margin-right: 10px;
-  }
-  
-  .video-button-rounded {
-    padding: 1rem 1.5rem;
-    font-size: 0.8rem;
-    margin-top: 2.5rem;
-    gap: 1rem;
-    width: 320px;
-  }
-  
-  .button-arrow-circle {
-    width: 32px;
-    height: 32px;
-  }
-  
-  .main-title-container {
-    margin-bottom: 0.5rem;
-  }
-}
 
-@media (max-width: 680px) {
-  .video-content {
-    top: 68%;
-    left: 3%;
-    right: 6%;
-    max-width: 94%;
-  }
+  /* Button styling to match reference */
   .video-button-rounded {
-    margin-left: -7px !important;
-}
-.subtitle-line {
-    margin-left: 7px;
-}
-.main-title {
-        margin-left: 11px;
-    }
-  .subtitle-editorial{
-    margin-left: 18px;
+    display: inline-flex;
+    align-items: center;
+    gap: 1.2rem;
+    padding: 1.2rem 2rem;
+    background: white;
+    color: black;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    margin-top: 4rem;
+    text-transform: uppercase;
+    width: 353px;
+    height: 62px !important;
+    justify-content: center;
   }
-  .main-title {
-    font-size: clamp(2.2rem, 16vw, 4rem);
-  }
-  
-  .subtitle-line {
-    font-size: clamp(1.4rem, 12vw, 2.5rem);
-  }
-  
-  .side-text {
-    font-size: clamp(1.8rem, 14vw, 3rem);
-  }
-  
-  .curved-line {
-    top: 12%;
-    left: 65%;
-    transform: translateY(-50%) scale(0.6);
-  }
-  
-  .video-button-rounded {
-    padding: 0.9rem 1.3rem;
-    font-size: 0.75rem;
-    margin-top: 3rem;
-  }
-  
-  .button-arrow-circle {
-    width: 30px;
-    height: 30px;
-  }
-  .button-arrow {
+
+  .button-text {
+    white-space: nowrap;
+    text-align: center;
     font-size: 16px;
-    line-height: 1;
-    display: flex;
-     align-items: center; 
-     justify-content: center; 
-     margin-top: 0px;
-}
-}
-@media (min-width: 800px) and (max-width: 1024px) {
-  .banner-desktop {
-    display: block !important;
   }
-  
-  .banner-mobile {
-    display: none !important;
-  }
-  
-  .video-banner-wrapper {
-    height: 70vh;
-  }
-}
 
-@media (min-width: 769px) {
-  .banner-desktop {
-    display: block !important;
+  .button-arrow-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: black;
+    color: white;
+    border-radius: 50%;
+    margin-left: 20px;
   }
-  
-  .banner-mobile {
-    display: none !important;
+
+  .button-arrow {
+    font-size: 20px;
+    line-height: 1; /* ✅ keeps arrow vertically centered */
+    display: block;
   }
-}
-</style>                                                                                                                                                                  
+
+  .video-button-rounded:hover {
+    background: rgba(255, 255, 255, 0.95);
+    transform: translateY(-2px);
+  }
+
+  .video-button-rounded:hover .button-arrow-circle {
+    transform: translateX(3px);
+  }
+
+  .side-text-container {
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+    z-index: 10;
+  }
+
+  .side-text {
+    font-family: 'Inter', sans-serif; /* PP Mori alternative */
+    font-size: 70px;
+    font-weight: 400;
+    color: white;
+    margin: 0;
+    text-align: right;
+  }
+
+  /* Mobile Responsive - IMPROVED */
+  @media (max-width: 768px) {
+    .banner-desktop {
+      display: none !important;
+    }
+
+    .banner-mobile {
+      display: block !important;
+      height: auto;
+    }
+
+    .banner-mobile .video-container {
+      height: 500px;
+      width: 100%;
+    }
+
+    .banner-mobile .video-element {
+      position: absolute;
+    }
+
+    .banner-mobile .poster-image {
+      position: absolute;
+      height: 100%;
+    }
+
+    .video-banner-wrapper {
+      height: auto;
+    }
+    .video-content {
+      left: 4%;
+      right: 4%;
+      top: 68% !important;
+      max-width: 92%;
+    }
+    .main-title-container {
+      margin-top: -45px;
+    }
+
+    .main-title {
+      font-size: 20px;
+      flex-direction: row;
+      gap: 0;
+      margin-bottom: 45px;
+    }
+    .title-editorial {
+      font-size: 40px;
+    }
+    .title-sans {
+      font-size: 40px;
+    }
+    .subtitle-sans {
+      font-size: 40px !important;
+      margin-top: 40px;
+    }
+    .subtitle-editorial {
+      font-size: 40px !important;
+      margin-top: -40px;
+    }
+
+    .subtitle-line {
+      font-size: 20px;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .curved-line {
+      top: 25% !important;
+      left: 50% !important;
+      transform: translateY(-50%) scale(0.7);
+    }
+
+    .curve-image {
+      width: clamp(200px, 40vw, 300px);
+    }
+
+    .side-text-container {
+      bottom: 15%;
+      right: 0%;
+    }
+
+    .side-text {
+      font-size: clamp(2.2rem, 12vw, 4rem);
+      margin-top: -460px;
+      margin-right: 10px;
+    }
+
+    .video-button-rounded {
+      padding: 1rem 1.5rem;
+      font-size: 0.8rem;
+      margin-top: 2.5rem;
+      gap: 1rem;
+      width: 320px;
+    }
+
+    .button-arrow-circle {
+      width: 32px;
+      height: 32px;
+    }
+
+    .main-title-container {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  @media (max-width: 680px) {
+    .video-content {
+      top: 68%;
+      left: 3%;
+      right: 6%;
+      max-width: 94%;
+    }
+    .video-button-rounded {
+      margin-left: -7px !important;
+    }
+    .subtitle-line {
+      margin-left: 7px;
+    }
+    .main-title {
+      margin-left: 11px;
+    }
+    .subtitle-editorial {
+      margin-left: 18px;
+    }
+    .main-title {
+      font-size: clamp(2.2rem, 16vw, 4rem);
+    }
+
+    .subtitle-line {
+      font-size: clamp(1.4rem, 12vw, 2.5rem);
+    }
+
+    .side-text {
+      font-size: clamp(1.8rem, 14vw, 3rem);
+    }
+
+    .curved-line {
+      top: 12%;
+      left: 65%;
+      transform: translateY(-50%) scale(0.6);
+    }
+
+    .video-button-rounded {
+      padding: 0.9rem 1.3rem;
+      font-size: 0.75rem;
+      margin-top: 3rem;
+    }
+
+    .button-arrow-circle {
+      width: 30px;
+      height: 30px;
+    }
+    .button-arrow {
+      font-size: 16px;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 0px;
+    }
+  }
+  @media (min-width: 800px) and (max-width: 1024px) {
+    .banner-desktop {
+      display: block !important;
+    }
+
+    .banner-mobile {
+      display: none !important;
+    }
+
+    .video-banner-wrapper {
+      height: 70vh;
+    }
+  }
+
+  @media (min-width: 769px) {
+    .banner-desktop {
+      display: block !important;
+    }
+
+    .banner-mobile {
+      display: none !important;
+    }
+  }
+</style>

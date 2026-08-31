@@ -1,249 +1,248 @@
 <style>
-  @font-face {
-  font-family: "MElle HK Light";
-  src: url("https://db.onlinewebfonts.com/t/f120acc511b79fea64e46c0e2880c3df.woff2") format("woff2"),
-       url("https://db.onlinewebfonts.com/t/f120acc511b79fea64e46c0e2880c3df.woff") format("woff"),
-       url("https://db.onlinewebfonts.com/t/f120acc511b79fea64e46c0e2880c3df.ttf") format("truetype");
-  font-weight: 100;
-  font-style: normal;
-}
-  @font-face {
-  font-family: 'PPMori Extralight';
-  src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPMori-Extralight.otf?v=1751619970') format('opentype');
-  font-weight: 200;
-  font-style: normal;
-}
-  @font-face {
-  font-family: 'PPEditorialNew Italic';
-  src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPEditorialNew-Italic-BF644b214fb0c0a.otf?v=1751620955') format('opentype');
-  font-weight: 900px;
-  font-style: italic;
-}
-  @font-face {
-  font-family: 'PPMori Regular';
-  src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPMori-Regular.otf?v=1751621372') format('opentype');
-  font-weight: 400;
-  font-style: normal;
-}
-
-  .luxury-showcase {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    min-height: 1100px;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    --bg-color: {{ section.settings.background_color | default: '#f8f6f3' }};
-    --accent-color: {{ section.settings.accent_color | default: '#d4af37' }};
-    max-width: 2100px;
-  margin: 0 auto !important;
-   padding-left: 5rem;
-  padding-right: 5rem;
-  }
-  
-  .luxury-showcase__image-side {
-    position: relative;
-    overflow: hidden;
-    background-color: #fffcf4;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 40px;
-  }
-  
-  .luxury-showcase__main-image {
-    width: 70%;
-    height: 80%;
-    object-fit: cover;
-    display: block;
-    max-width: 400px;
-    max-height: 500px;
-  }
-  
-  .luxury-showcase__content-side {
-    background-color: #fffcf4;
-    padding: 80px 60px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
-  
-  .luxury-showcase__heading {
-    font-size: 58px;
+    @font-face {
+    font-family: "MElle HK Light";
+    src: url("https://db.onlinewebfonts.com/t/f120acc511b79fea64e46c0e2880c3df.woff2") format("woff2"),
+         url("https://db.onlinewebfonts.com/t/f120acc511b79fea64e46c0e2880c3df.woff") format("woff"),
+         url("https://db.onlinewebfonts.com/t/f120acc511b79fea64e46c0e2880c3df.ttf") format("truetype");
     font-weight: 100;
-    color: #999999;
-    margin: 0 0 8px 0;
-    line-height: 1.1;
-    letter-spacing: 1px;
-    font-family: 'PPMori Extralight', sans-serif;
+    font-style: normal;
   }
-  
-  .luxury-showcase__subheading {
-    font-size: 48px;
+    @font-face {
+    font-family: 'PPMori Extralight';
+    src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPMori-Extralight.otf?v=1751619970') format('opentype');
+    font-weight: 200;
+    font-style: normal;
+  }
+    @font-face {
+    font-family: 'PPEditorialNew Italic';
+    src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPEditorialNew-Italic-BF644b214fb0c0a.otf?v=1751620955') format('opentype');
+    font-weight: 900px;
     font-style: italic;
-    color: #333333;
-    margin: -10px 0 60px 0;
-    line-height: 1.1;
-    position: relative;
-    font-family: 'PPEditorialNew Italic', serif;
-    font-weight: 600;
   }
-  
-  .luxury-showcase__subheading::after {
-    content: '';
-    position: absolute;
-    bottom: 0px;
-    top: 45px;
-    left: 48%;
-    transform: translateX(-50%);
-    width: 308px;
-    height: 3px;
-    background-color: #FADB95 !important;
+    @font-face {
+    font-family: 'PPMori Regular';
+    src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPMori-Regular.otf?v=1751621372') format('opentype');
+    font-weight: 400;
+    font-style: normal;
   }
-  
-  .luxury-showcase__product-image {
-    width: 320px;
-    height: auto;
-    margin: 0 0 40px 0;
-  }
-  
-  .luxury-showcase__promise {
-    font-size: 14px;
-    font-weight: 500;
-    color: #000;
-    margin: 20px 0 20px 0;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    width: 220px;
-    font-family: 'PPMori Regular', sans-serif;
-  }
-  
-  .luxury-showcase__description {
-    font-size: 15px;
-    color: #000;
-    line-height: 1.6;
-    max-width: 390px;
-    margin: 0;
-    text-align: center;
-    font-weight: 500;
-    font-family: 'PPMori Regular', sans-serif;
-  }
-  
-  /* Tablet Styles */
-  @media (max-width: 1024px) {
-    .luxury-showcase__content-side {
-      padding: 60px 40px;
-    }
-    
-    .luxury-showcase__heading,
-    .luxury-showcase__subheading {
-      font-size: 42px;
-    }
-    
-    .luxury-showcase__image-side {
-      padding: 30px;
-    }
-    
-    .luxury-showcase__main-image {
-      width: 75%;
-      height: 75%;
-    }
-  }
-  
-  /* Mobile Styles */
-  @media (max-width: 768px) {
+
     .luxury-showcase {
-      grid-template-columns: 1fr;
-      min-height: auto;
-          padding-left: 1rem;
-    padding-right: 1rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 1100px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --bg-color: {{ section.settings.background_color | default: '#f8f6f3' }};
+      --accent-color: {{ section.settings.accent_color | default: '#d4af37' }};
+      max-width: 2100px;
+    margin: 0 auto !important;
+     padding-left: 5rem;
+    padding-right: 5rem;
     }
-    
+
     .luxury-showcase__image-side {
-      padding: 30px;
-      min-height: 90px !important;
-    }
-    
-    .luxury-showcase__main-image {
-      width: 60% important ;
-      height: 40% !important;
-      max-width: 250px !important ;
-      max-height: 500px !important ;
-    object-fit: cover !important ;
-    display: block;
-      margin-bottom: -70px;
-    }
-    
-    .luxury-showcase__content-side {
-      padding: 40px 20px;
-      text-align: center;
+      position: relative;
+      overflow: hidden;
+      background-color: #fffcf4;
+      display: flex;
       align-items: center;
+      justify-content: center;
+      padding: 10px 40px;
     }
-    
-    .luxury-showcase__heading{
-    font-size: 28px;
-    }
-    .luxury-showcase__subheading {
-      font-size: 32px;
-    }
-    
-    .luxury-showcase__subheading::after {
-      left: 50%;
-      transform: translateX(-50%);
-      width: 200px;
-      bottom: -30px !important;
-      top: 27px;
-    }
-    
-    .luxury-showcase__product-image {
-      width: 180px !important;
-    }
-  }
-  
-  /* Small Mobile Styles */
-  @media (max-width: 480px) {
-    .luxury-showcase__heading{
-    font-size: 32px;
-    }
-    .luxury-showcase__subheading {
-      font-size: 32px;
-    }
-    
-    .luxury-showcase__product-image {
-      width: 120px;
-    }
-    
-    .luxury-showcase__content-side {
-      padding: 30px 15px;
-    }
-    
-    .luxury-showcase__image-side {
-      padding: 20px;
-      min-height: 250px;
-    }
-    
+
     .luxury-showcase__main-image {
       width: 70%;
-      height: 70%;
-      max-width: 200px;
-      max-height: 250px;
+      height: 80%;
+      object-fit: cover;
+      display: block;
+      max-width: 400px;
+      max-height: 500px;
     }
-    
+
+    .luxury-showcase__content-side {
+      background-color: #fffcf4;
+      padding: 80px 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .luxury-showcase__heading {
+      font-size: 58px;
+      font-weight: 100;
+      color: #999999;
+      margin: 0 0 8px 0;
+      line-height: 1.1;
+      letter-spacing: 1px;
+      font-family: 'PPMori Extralight', sans-serif;
+    }
+
+    .luxury-showcase__subheading {
+      font-size: 48px;
+      font-style: italic;
+      color: #333333;
+      margin: -10px 0 60px 0;
+      line-height: 1.1;
+      position: relative;
+      font-family: 'PPEditorialNew Italic', serif;
+      font-weight: 600;
+    }
+
+    .luxury-showcase__subheading::after {
+      content: '';
+      position: absolute;
+      bottom: 0px;
+      top: 45px;
+      left: 48%;
+      transform: translateX(-50%);
+      width: 308px;
+      height: 3px;
+      background-color: #FADB95 !important;
+    }
+
+    .luxury-showcase__product-image {
+      width: 320px;
+      height: auto;
+      margin: 0 0 40px 0;
+    }
+
+    .luxury-showcase__promise {
+      font-size: 14px;
+      font-weight: 500;
+      color: #000;
+      margin: 20px 0 20px 0;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      width: 220px;
+      font-family: 'PPMori Regular', sans-serif;
+    }
+
     .luxury-showcase__description {
-      max-width: 100%;
+      font-size: 15px;
+      color: #000;
+      line-height: 1.6;
+      max-width: 390px;
+      margin: 0;
+      text-align: center;
+      font-weight: 500;
+      font-family: 'PPMori Regular', sans-serif;
     }
-  }
+
+    /* Tablet Styles */
+    @media (max-width: 1024px) {
+      .luxury-showcase__content-side {
+        padding: 60px 40px;
+      }
+
+      .luxury-showcase__heading,
+      .luxury-showcase__subheading {
+        font-size: 42px;
+      }
+
+      .luxury-showcase__image-side {
+        padding: 30px;
+      }
+
+      .luxury-showcase__main-image {
+        width: 75%;
+        height: 75%;
+      }
+    }
+
+    /* Mobile Styles */
+    @media (max-width: 768px) {
+      .luxury-showcase {
+        grid-template-columns: 1fr;
+        min-height: auto;
+            padding-left: 1rem;
+      padding-right: 1rem;
+      }
+
+      .luxury-showcase__image-side {
+        padding: 30px;
+        min-height: 90px !important;
+      }
+
+      .luxury-showcase__main-image {
+        width: 60% important ;
+        height: 40% !important;
+        max-width: 250px !important ;
+        max-height: 500px !important ;
+      object-fit: cover !important ;
+      display: block;
+        margin-bottom: -70px;
+      }
+
+      .luxury-showcase__content-side {
+        padding: 40px 20px;
+        text-align: center;
+        align-items: center;
+      }
+
+      .luxury-showcase__heading{
+      font-size: 28px;
+      }
+      .luxury-showcase__subheading {
+        font-size: 32px;
+      }
+
+      .luxury-showcase__subheading::after {
+        left: 50%;
+        transform: translateX(-50%);
+        width: 200px;
+        bottom: -30px !important;
+        top: 27px;
+      }
+
+      .luxury-showcase__product-image {
+        width: 180px !important;
+      }
+    }
+
+    /* Small Mobile Styles */
+    @media (max-width: 480px) {
+      .luxury-showcase__heading{
+      font-size: 32px;
+      }
+      .luxury-showcase__subheading {
+        font-size: 32px;
+      }
+
+      .luxury-showcase__product-image {
+        width: 120px;
+      }
+
+      .luxury-showcase__content-side {
+        padding: 30px 15px;
+      }
+
+      .luxury-showcase__image-side {
+        padding: 20px;
+        min-height: 250px;
+      }
+
+      .luxury-showcase__main-image {
+        width: 70%;
+        height: 70%;
+        max-width: 200px;
+        max-height: 250px;
+      }
+
+      .luxury-showcase__description {
+        max-width: 100%;
+      }
+    }
 </style>
 
 <section class="luxury-showcase">
   <div class="luxury-showcase__image-side">
     {% if section.settings.main_image %}
-      <img 
-  src="{{ section.settings.main_image | img_url: '2000x2000', scale: 2 }}"
-  alt="{{ section.settings.main_image.alt | default: section.settings.heading }}"
-  class="luxury-showcase__main-image"
-  loading="lazy"
->
+      <img
+        src="{{ section.settings.main_image | img_url: '2000x2000', scale: 2 }}"
+        alt="{{ section.settings.main_image.alt | default: section.settings.heading }}"
+        class="luxury-showcase__main-image"
+        loading="lazy">
 
     {% else %}
       <div style="background: linear-gradient(135deg, #d4a574 0%, #c4956d 100%); width: 200px; height: 250px; display: flex; align-items: center; justify-content: center; color: white; font-size: 16px; text-align: center; border-radius: 8px;">
@@ -251,33 +250,32 @@
       </div>
     {% endif %}
   </div>
-  
+
   <div class="luxury-showcase__content-side">
     {% if section.settings.heading != blank %}
       <h2 class="luxury-showcase__heading">{{ section.settings.heading }}</h2>
     {% endif %}
-    
+
     {% if section.settings.subheading != blank %}
       <h3 class="luxury-showcase__subheading">{{ section.settings.subheading }}</h3>
     {% endif %}
-    
+
     {% if section.settings.product_image %}
-      <img 
-        src="{{ section.settings.product_image | img_url: '2000x2000', scale: 2 }}" 
+      <img
+        src="{{ section.settings.product_image | img_url: '2000x2000', scale: 2 }}"
         alt="{{ section.settings.product_image.alt | default: 'Product' }}"
         class="luxury-showcase__product-image"
-        loading="lazy"
-      >
+        loading="lazy">
     {% else %}
       <div style="width: 180px; height: 180px; background: #e0e0e0; display: flex; align-items: center; justify-content: center; color: #999; font-size: 12px; margin: 0 0 40px 0; text-align: center; border-radius: 8px;">
         Upload Product Image
       </div>
     {% endif %}
-    
+
     {% if section.settings.promise_text != blank %}
       <p class="luxury-showcase__promise">{{ section.settings.promise_text }}</p>
     {% endif %}
-    
+
     {% if section.settings.description != blank %}
       <p class="luxury-showcase__description">{{ section.settings.description }}</p>
     {% endif %}

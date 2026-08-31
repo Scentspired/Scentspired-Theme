@@ -1,79 +1,78 @@
-
-{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+{% assign ai_gen_id = block.id | replace: "_", "" | downcase %}
 
 {% style %}
-  .ai-editorial-section-{{ ai_gen_id }} {
-    display: block;
-    width: 100%;
-    background-color: {{ block.settings.background_color }};
-    padding: {{ block.settings.padding_top }}px {{ block.settings.padding_horizontal }}px {{ block.settings.padding_bottom }}px;
-  }
-
-  .ai-editorial-container-{{ ai_gen_id }} {
-    max-width: 80%;
-    margin: 0 auto;
-  }
-
-  .ai-editorial-heading-{{ ai_gen_id }} {
-    font-family: 'PPEditorialNew Italic', Georgia, serif;
-    font-style: italic;
-    font-size: {{ block.settings.heading_size }}px;
-    line-height: {{ block.settings.heading_line_height }};
-    color: {{ block.settings.heading_color }};
-    margin: 0 0 {{ block.settings.heading_margin_bottom }}px 0;
-    text-align: left;
-    width: 100%;
-  }
-
-  .ai-editorial-columns-{{ ai_gen_id }} {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: {{ block.settings.column_gap }}px;
-  }
-
-  .ai-editorial-column-{{ ai_gen_id }} {
-    font-family: 'PPMori Regular', Arial, sans-serif;
-    font-size: 24px;
-    line-height: {{ block.settings.body_line_height }};
-    color: {{ block.settings.body_color }};
-    text-align: left;
-  }
-
-  .ai-editorial-column-{{ ai_gen_id }} p {
-    margin: 0 0 {{ block.settings.paragraph_spacing }}px 0;
-  }
-
-.ai-editorial-column-{{ ai_gen_id }} a {
-    color: #000000;
-    text-decoration: underline;
-}
-
-  .ai-editorial-column-{{ ai_gen_id }} p:last-child {
-    margin-bottom: 0;
-  }
-
-  @media screen and (max-width: 749px) {
     .ai-editorial-section-{{ ai_gen_id }} {
-      padding: {{ block.settings.padding_top_mobile }}px {{ block.settings.padding_horizontal_mobile }}px {{ block.settings.padding_bottom_mobile }}px;
+      display: block;
+      width: 100%;
+      background-color: {{ block.settings.background_color }};
+      padding: {{ block.settings.padding_top }}px {{ block.settings.padding_horizontal }}px {{ block.settings.padding_bottom }}px;
+    }
+
+    .ai-editorial-container-{{ ai_gen_id }} {
+      max-width: 80%;
+      margin: 0 auto;
     }
 
     .ai-editorial-heading-{{ ai_gen_id }} {
-      font-size: {{ block.settings.heading_size_mobile }}px;
-      margin-bottom: {{ block.settings.heading_margin_bottom_mobile }}px;
+      font-family: 'PPEditorialNew Italic', Georgia, serif;
+      font-style: italic;
+      font-size: {{ block.settings.heading_size }}px;
+      line-height: {{ block.settings.heading_line_height }};
+      color: {{ block.settings.heading_color }};
+      margin: 0 0 {{ block.settings.heading_margin_bottom }}px 0;
+      text-align: left;
+      width: 100%;
     }
 
     .ai-editorial-columns-{{ ai_gen_id }} {
-      grid-template-columns: 1fr;
-      gap: {{ block.settings.column_gap_mobile }}px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: {{ block.settings.column_gap }}px;
     }
 
     .ai-editorial-column-{{ ai_gen_id }} {
-      font-size: {{ block.settings.body_size_mobile }}px;
+      font-family: 'PPMori Regular', Arial, sans-serif;
+      font-size: 24px;
+      line-height: {{ block.settings.body_line_height }};
+      color: {{ block.settings.body_color }};
+      text-align: left;
     }
-    .ai-editorial-container-{{ ai_gen_id }} {
-    max-width: 100%;
+
+    .ai-editorial-column-{{ ai_gen_id }} p {
+      margin: 0 0 {{ block.settings.paragraph_spacing }}px 0;
+    }
+
+  .ai-editorial-column-{{ ai_gen_id }} a {
+      color: #000000;
+      text-decoration: underline;
   }
-  }
+
+    .ai-editorial-column-{{ ai_gen_id }} p:last-child {
+      margin-bottom: 0;
+    }
+
+    @media screen and (max-width: 749px) {
+      .ai-editorial-section-{{ ai_gen_id }} {
+        padding: {{ block.settings.padding_top_mobile }}px {{ block.settings.padding_horizontal_mobile }}px {{ block.settings.padding_bottom_mobile }}px;
+      }
+
+      .ai-editorial-heading-{{ ai_gen_id }} {
+        font-size: {{ block.settings.heading_size_mobile }}px;
+        margin-bottom: {{ block.settings.heading_margin_bottom_mobile }}px;
+      }
+
+      .ai-editorial-columns-{{ ai_gen_id }} {
+        grid-template-columns: 1fr;
+        gap: {{ block.settings.column_gap_mobile }}px;
+      }
+
+      .ai-editorial-column-{{ ai_gen_id }} {
+        font-size: {{ block.settings.body_size_mobile }}px;
+      }
+      .ai-editorial-container-{{ ai_gen_id }} {
+      max-width: 100%;
+    }
+    }
 {% endstyle %}
 
 <editorial-section-{{ ai_gen_id }} class="ai-editorial-section-{{ ai_gen_id }}" {{ block.shopify_attributes }}>

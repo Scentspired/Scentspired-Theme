@@ -1,4 +1,4 @@
-{{ 'component-image-with-text.css' | asset_url | stylesheet_tag }}
+{{ "component-image-with-text.css" | asset_url | stylesheet_tag }}
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -15,10 +15,10 @@
 {%- endstyle -%}
 
 {%- liquid
-  if section.settings.image_layout contains 'right'
-    assign odd_class = ' image-with-text__grid--reverse'
+  if section.settings.image_layout contains "right"
+    assign odd_class = " image-with-text__grid--reverse"
   else
-    assign even_class = ' image-with-text__grid--reverse'
+    assign even_class = " image-with-text__grid--reverse"
   endif
 
   if section.settings.row_color_scheme == section.settings.section_color_scheme
@@ -30,15 +30,15 @@
   endif
 
   if settings.text_boxes_border_thickness > 0 and settings.text_boxes_border_opacity > 0 and settings.media_border_thickness > 0 and settings.media_border_opacity > 0
-    assign borders_class = ' collapse-borders'
+    assign borders_class = " collapse-borders"
   endif
 
   if no_content_background and no_content_styles
-    assign padding_class = ' collapse-padding'
+    assign padding_class = " collapse-padding"
   endif
 
   unless no_content_background and no_content_styles
-    assign corners_class = ' collapse-corners'
+    assign corners_class = " collapse-corners"
   endunless
 -%}
 
@@ -47,16 +47,14 @@
     {%- for block in section.blocks -%}
       <div
         class="image-with-text isolate{{ borders_class }}{{ corners_class }}{{ padding_class }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-        {{ block.shopify_attributes }}
-      >
+        {{ block.shopify_attributes }}>
         <div class="image-with-text__grid grid grid--gapless grid--1-col grid--{% if section.settings.desktop_image_width == 'medium' %}2-col-tablet{% else %}3-col-tablet{% endif %}{% if section.settings.image_layout contains 'alternate' %}{% cycle odd_class, even_class %}{% else %}{{ odd_class }}{% endif %}">
           <div class="image-with-text__media-item image-with-text__media-item--{{ section.settings.desktop_image_width }} image-with-text__media-item--{{ section.settings.desktop_content_position }} grid__item">
             <div
               class="image-with-text__media image-with-text__media--{{ section.settings.image_height }} gradient color-{{ section.settings.row_color_scheme }} global-media-settings{% if block.settings.image != blank %} media{% else %} image-with-text__media--placeholder placeholder{% endif %}"
-              {% if section.settings.image_height == 'adapt' and block.settings.image != blank %}
+              {% if section.settings.image_height == "adapt" and block.settings.image != blank %}
                 style="padding-bottom: {{ 1 | divided_by: block.settings.image.aspect_ratio | times: 100 }}%;"
-              {% endif %}
-            >
+              {% endif %}>
               {%- if block.settings.image != blank -%}
                 {%- capture sizes -%}
                   (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px,
@@ -65,10 +63,10 @@
                 {{
                   block.settings.image
                   | image_url: width: 1500
-                  | image_tag: sizes: sizes, widths: '165, 360, 535, 750, 1070, 1500'
+                  | image_tag: sizes: sizes, widths: "165, 360, 535, 750, 1070, 1500"
                 }}
               {%- else -%}
-                {{ 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                {{ "detailed-apparel-1" | placeholder_svg_tag: "placeholder-svg" }}
               {%- endif -%}
             </div>
           </div>
@@ -94,8 +92,7 @@
                   {% else %}
                     href="{{ block.settings.button_link }}"
                   {% endif %}
-                  class="button button--{{ section.settings.button_style }}"
-                >
+                  class="button button--{{ section.settings.button_style }}">
                   {{ block.settings.button_label | escape }}
                 </a>
               {%- endif -%}
@@ -384,7 +381,7 @@
           "type": "text",
           "id": "button_label",
           "default": "t:sections.multirow.blocks.row.settings.button_label.default",
-          "label": "t:sections.multirow.blocks.row.settings.button_label.label", 
+          "label": "t:sections.multirow.blocks.row.settings.button_label.label",
           "info": "t:sections.multirow.blocks.row.settings.button_label.info"
         },
         {

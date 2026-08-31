@@ -15,27 +15,24 @@
     role="dialog"
     aria-label="{{ 'products.modal.label' | t }}"
     aria-modal="true"
-    tabindex="-1"
-  >
+    tabindex="-1">
     <button
       id="ModalClose-{{ section.id }}"
       type="button"
       class="product-media-modal__toggle"
-      aria-label="{{ 'accessibility.close' | t }}"
-    >
-      {{ 'icon-close.svg' | inline_asset_content }}
+      aria-label="{{ 'accessibility.close' | t }}">
+      {{ "icon-close.svg" | inline_asset_content }}
     </button>
 
     <div
       class="product-media-modal__content color-{{ section.settings.color_scheme }} gradient"
       role="document"
       aria-label="{{ 'products.modal.label' | t }}"
-      tabindex="0"
-    >
+      tabindex="0">
       {%- liquid
         if product.selected_or_first_available_variant.featured_media != null
           assign media = product.selected_or_first_available_variant.featured_media
-          render 'product-media', media: media, loop: section.settings.enable_video_looping, variant_image: section.settings.hide_variants
+          render "product-media", media: media, loop: section.settings.enable_video_looping, variant_image: section.settings.hide_variants
         endif
       -%}
 
@@ -48,7 +45,7 @@
           endif
 
           unless media.id == product.selected_or_first_available_variant.featured_media.id
-            render 'product-media', media: media, loop: section.settings.enable_video_looping, variant_image: variant_image
+            render "product-media", media: media, loop: section.settings.enable_video_looping, variant_image: variant_image
           endunless
         -%}
       {%- endfor -%}
