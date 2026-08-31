@@ -727,6 +727,46 @@ const RULE_SCANNERS = {
       }
     }
     return violations;
+  },
+
+  'bundle-inventory-availability-guard': function (content, filePath, lines) {
+    const violations = [];
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i];
+      if (line.includes('function addProductToBundle(')) {
+        const fnBlock = lines.slice(i, Math.min(lines.length, i + 35)).join('\n');
+        const hasAvailableGuard = fnBlock.includes('available === false') || fnBlock.includes('!variant.available') || fnBlock.includes('available !== false');
+        if (!hasAvailableGuard && !isApproved(filePath, i + 1, 'bundle-inventory-availability-guard')) {
+          violations.push(violation(
+            filePath, i + 1, 'bundle-inventory-availability-guard',
+            `addProductToBundle does not verify variant availability — out-of-stock items could be selected into bundles`,
+            line
+          ));
+        }
+      }
+    }
+    return violations;
+  },
+
+  'no-swallowed-cart-error-message': function (content, filePath, lines) {
+    const violations = [];
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i];
+      if (line.includes('catch (err)') || line.includes('catch(err)')) {
+        const catchBlock = lines.slice(i, Math.min(lines.length, i + 10)).join('\n');
+        if (catchBlock.includes("alert('Error") || catchBlock.includes('alert("Error') || catchBlock.includes("alert('Failed") || catchBlock.includes('alert("Failed')) {
+          const usesErrMessage = catchBlock.includes('err.message') || catchBlock.includes('errorData') || catchBlock.includes('err');
+          if (!usesErrMessage && !isApproved(filePath, i + 1, 'no-swallowed-cart-error-message')) {
+            violations.push(violation(
+              filePath, i + 1, 'no-swallowed-cart-error-message',
+              `Cart catch block uses static alert string without err.message fallback — swallows Shopify 422 inventory messages`,
+              line
+            ));
+          }
+        }
+      }
+    }
+    return violations;
   }
 };
 

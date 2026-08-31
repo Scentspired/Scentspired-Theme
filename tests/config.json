@@ -76,6 +76,16 @@
       "enabled": true,
       "severity": "error",
       "description": "Every Liquid {% render %} or {% include %} must reference a snippet file that exists on disk"
+    },
+    "bundle-inventory-availability-guard": {
+      "enabled": true,
+      "severity": "error",
+      "description": "All bundle/box slot addition functions must explicitly guard against available === false items"
+    },
+    "no-swallowed-cart-error-message": {
+      "enabled": true,
+      "severity": "error",
+      "description": "Cart error catch blocks must propagate dynamic err.message from Shopify and not swallow with generic alerts"
     }
   },
   "approvedExceptions": [
