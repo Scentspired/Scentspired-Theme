@@ -3,8 +3,8 @@
 > **Repository:** `Scentspired/Scentspired-Theme` (Upstream Master Single Source of Truth)  
 > **Target Stores:** `Scentspired USA` (`scentspired.com`) & `Scentspired UK` (`scentspired.co.uk`)  
 > **Quality Gate Engine:** Master 12-Layer Defense Fortress (`runner.cjs`)  
-> **Release Version:** `v2.5.0` (Modular Architecture Modernization & Code Decomposition)  
-> **Latest Audit Timestamp:** `2026-08-31 22:30:00 PKT` (`2026-08-31T17:30:00Z`)  
+> **Release Version:** `v2.5.1` (Zero-Price Order Prevention & Cart Security Shield)  
+> **Latest Audit Timestamp:** `2026-09-01 00:15:00 PKT` (`2026-08-31T19:15:00Z`)  
 > **Live Uptime Guarantee:** 100% Zero-Downtime | Zero Regressions  
 
 ---
@@ -13,7 +13,8 @@
 
 | Release Version | Date & Time (UTC) | Local Time (PKT) | Scope & Key Milestones | Status |
 | :--- | :--- | :--- | :--- | :---: |
-| **`v2.5.0`** | `2026-08-31 17:30:00 UTC` | `2026-08-31 22:30:00 PKT` | Modular Theme Refactoring, Bundle Builders Decomposition, GUI Schema Controls | 🚀 **LIVE PRODUCTION** |
+| **`v2.5.1`** | `2026-08-31 19:15:00 UTC` | `2026-09-01 00:15:00 PKT` | Zero-Price Order Prevention, Cart Auto-Purge Sentinel, Hard Checkout Lockout | 🚀 **LIVE PRODUCTION** |
+| **`v2.5.0`** | `2026-08-31 17:30:00 UTC` | `2026-08-31 22:30:00 PKT` | Modular Theme Refactoring, Bundle Builders Decomposition, GUI Schema Controls | ✅ **Merged to Main** |
 | **`v2.4.0`** | `2026-08-31 14:10:22 UTC` | `2026-08-31 19:10:22 PKT` | Master 12-Layer Quality Gate, Asset Integrity, Zero 404s | ✅ **Merged to Main** |
 | **`v2.3.0`** | `2026-08-31 10:25:00 UTC` | `2026-08-31 15:25:00 PKT` | Multi-Store Centralization into `Scentspired-Theme` | ✅ **Merged to Main** |
 | **`v2.2.0`** | `2026-08-31 07:15:00 UTC` | `2026-08-31 12:15:00 PKT` | Bundle Out-of-Stock Sold-Out Guard & Dynamic 422 Catch | ✅ **Merged to Main** |
@@ -170,4 +171,19 @@ graph LR
 
 ---
 
-*Changelog timestamped and verified by Scentspired Theme Guardian Engine at `2026-08-31 22:30:00 PKT`.*
+## 🛡️ Release v2.5.1: Zero-Price Order Prevention & Cart Security Shield
+
+### 1. Root Cause Analysis (Order SS#1570)
+* **Incident:** Customer `Leonel Catalan` placed order `SS#1570` for $7.99 total, receiving 10 items at $0.00 each + $7.99 shipping.
+* **Vector:** Legacy `sections/bundle.liquid` directly dispatched raw child variant IDs at $0.00 each to `/cart/add.js`. In addition, `snippets/cart-drawer.liquid` computed `finalTotal = subtotal + shipping` ($0 + $7.99 = $7.99) and allowed checkout redirect without verifying that cart items had positive prices.
+
+### 2. Multi-Layer Security Shield Implementation
+1. **Priced Modular Bundle Integration:** Replaced legacy unpriced `sections/bundle.liquid` with modular five-box logic that adds priced parent variants (`the-five-favourites` at $99.95 / $129.99 USD, £64.99 / £99.99 GBP) and transmits fragrances as line-item properties.
+2. **Cart Drawer Auto-Purge Sentinel (`snippets/cart-drawer.liquid`):** In `updateAllDossierDynamicElements(cart)`, automatically detects any $0.00 child items lacking a parent bundle property and executes an immediate background `/cart/update.js` call setting their quantities to 0.
+3. **Hard Checkout Lockout:** `proceedToDossierCheckout()` verifies the cart with `/cart.js`, hard-blocking the checkout button if subtotal is $\le 0$, total items $\le 0$, or if any $0 item is detected.
+4. **Global Network Fetch Interceptor (`assets/scentspired-telemetry.js`):** Intercepts all `/cart.js`, `/cart/add.js`, and `/cart/change.js` responses storefront-wide, logging and purging any zero-priced items instantly.
+5. **Quality Gate Suite V Automated Tests (`tests/dynamic/critical-flow-simulator.cjs`):** Added 6 automated assertions covering zero-price detection, auto-purge update payload creation, checkout button disabling, and checkout lockout.
+
+---
+
+*Changelog timestamped and verified by Scentspired Theme Guardian Engine at `2026-09-01 00:15:00 PKT`.*

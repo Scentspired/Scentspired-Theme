@@ -246,6 +246,60 @@
         const response = await originalFetch.apply(this, args);
         const duration = Math.round(performance.now() - startTime);
 
+        // ZERO-PRICE PROTECTION: Inspect Cart Responses & Auto-Sanitize
+        if (
+          (url.includes("/cart.js") ||
+            url.includes("/cart/add.js") ||
+            url.includes("/cart/change.js")) &&
+          response.ok
+        ) {
+          try {
+            const clonedForAudit = response.clone();
+            clonedForAudit
+              .json()
+              .then(data => {
+                const items = data.items || (data.id ? [data] : []);
+                const zeroItems = items.filter(
+                  i =>
+                    (i.price === 0 || i.original_price === 0 || i.line_price === 0) &&
+                    !i.properties?._bundle_parent
+                );
+                if (zeroItems.length > 0 && !window.__SCENTSPIRED_PURGING_ZERO__) {
+                  window.__SCENTSPIRED_PURGING_ZERO__ = true;
+                  const updates = {};
+                  zeroItems.forEach(zi => {
+                    updates[zi.key || zi.id] = 0;
+                  });
+                  originalFetch("/cart/update.js", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json", Accept: "application/json" },
+                    body: JSON.stringify({ updates }),
+                  })
+                    .then(r => {
+                      if (!r.ok) throw new Error("Cart purge failed");
+                      return r.json();
+                    })
+                    .then(cleanCart => {
+                      window.__SCENTSPIRED_PURGING_ZERO__ = false;
+                      if (typeof window.updateDossierCartUI === "function") {
+                        window.updateDossierCartUI(cleanCart);
+                      }
+                    })
+                    .catch(() => {
+                      window.__SCENTSPIRED_PURGING_ZERO__ = false;
+                    });
+
+                  const payload = buildErrorPayload("ZERO_PRICE_ITEM_PURGED", {
+                    message: `Detected and auto-purged ${zeroItems.length} zero-priced item(s) from cart: ${zeroItems.map(z => z.title || z.id).join(", ")}`,
+                    source: url,
+                  });
+                  dispatchTelemetry(payload);
+                }
+              })
+              .catch(() => {});
+          } catch (_) {}
+        }
+
         // Check for Shopify Cart HTTP Errors (400, 422, 500)
         if (!response.ok && isShopifyCartRoute) {
           const cloned = response.clone();

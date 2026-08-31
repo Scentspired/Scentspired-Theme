@@ -2214,13 +2214,49 @@ function selectShopMethod(method) {
 
 // OPTIMIZED: Single function to update all dynamic elements with one fetch
 function updateAllDossierDynamicElements(cart) {
+  // ZERO-PRICE PROTECTION: Auto-purge any $0.00 standalone items
+  const zeroPriceItems = (cart.items || []).filter(item => {
+    const isZero = item.price <= 0 || item.original_price <= 0 || item.line_price <= 0;
+    const isBundleChildWithoutParent = isZero && !item.properties?._bundle_parent;
+    return isBundleChildWithoutParent;
+  });
+
+  if (zeroPriceItems.length > 0 && !window.isPurgingZeroPriceItems) {
+    window.isPurgingZeroPriceItems = true;
+    const updates = {};
+    zeroPriceItems.forEach(item => {
+      updates[item.key || item.id] = 0;
+    });
+    fetch('/cart/update.js', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ updates })
+    })
+      .then(r => {
+        if (!r.ok) throw new Error('Failed to update cart');
+        return r.json();
+      })
+      .then(cleanCart => {
+        window.isPurgingZeroPriceItems = false;
+        if (typeof updateDossierCartUI === 'function') {
+          updateDossierCartUI(cleanCart);
+        }
+      })
+      .catch(() => {
+        window.isPurgingZeroPriceItems = false;
+      });
+  }
+
   // Calculate totals once
   let totalItems = 0;
   let subtotal = 0;
 
-  cart.items.forEach(item => {
-    totalItems += item.quantity;
-    subtotal += item.original_line_price;
+  (cart.items || []).forEach(item => {
+    // Only count items with positive price
+    if (item.original_line_price > 0) {
+      totalItems += item.quantity;
+      subtotal += item.original_line_price;
+    }
   });
 
   // 1. Update Progress Lines
@@ -2248,16 +2284,30 @@ function updateAllDossierDynamicElements(cart) {
 
   // 3. Update Pricing Display
   let shipping = 0;
-  if (subtotal < 7000) {
+  if (subtotal > 0 && subtotal < 7000) {
     shipping = 799; // $7.99
   } else {
     shipping = 0; // FREE
   }
 
-  const finalTotal = subtotal + shipping;
+  const finalTotal = subtotal > 0 ? (subtotal + shipping) : 0;
   const checkoutTotal = document.getElementById('checkout-total');
   if (checkoutTotal) {
     checkoutTotal.textContent = `$${(finalTotal / 100).toFixed(2)}`;
+  }
+
+  // Update Checkout Button State (Lock if cart is empty or subtotal <= 0)
+  const checkoutBtn = document.querySelector('.sp-checkout-btn');
+  if (checkoutBtn) {
+    if (subtotal <= 0 || totalItems === 0) {
+      checkoutBtn.disabled = true;
+      checkoutBtn.style.opacity = '0.5';
+      checkoutBtn.style.cursor = 'not-allowed';
+    } else {
+      checkoutBtn.disabled = false;
+      checkoutBtn.style.opacity = '1';
+      checkoutBtn.style.cursor = 'pointer';
+    }
   }
 
   // Update order summary
@@ -2462,7 +2512,60 @@ function addDossierRecommended(variantId, productTitle, productImage, productPri
 
 
 function proceedToDossierCheckout() {
-  window.location.href = '/checkout';
+  const checkoutBtn = document.querySelector('.sp-checkout-btn');
+  if (checkoutBtn && checkoutBtn.disabled) {
+    return;
+  }
+
+  if (checkoutBtn) {
+    checkoutBtn.disabled = true;
+    checkoutBtn.style.opacity = '0.7';
+  }
+
+  fetch('/cart.js')
+    .then(res => {
+      if (!res.ok) throw new Error('Failed to fetch cart');
+      return res.json();
+    })
+    .then(cart => {
+      const items = cart.items || [];
+      const zeroItems = items.filter(i => (i.price <= 0 || i.original_price <= 0) && !i.properties?._bundle_parent);
+
+      if (items.length === 0) {
+        alert('Your cart is empty.');
+        if (checkoutBtn) {
+          checkoutBtn.disabled = false;
+          checkoutBtn.style.opacity = '1';
+        }
+        return;
+      }
+
+      if (zeroItems.length > 0) {
+        alert('Your cart contains zero-priced items ($0.00) that cannot be purchased individually. Please configure a valid bundle set.');
+        updateAllDossierDynamicElements(cart);
+        if (checkoutBtn) {
+          checkoutBtn.disabled = false;
+          checkoutBtn.style.opacity = '1';
+        }
+        return;
+      }
+
+      if (cart.total_price <= 0) {
+        alert('Order subtotal cannot be $0.00. Please add a valid product to proceed.');
+        if (checkoutBtn) {
+          checkoutBtn.disabled = false;
+          checkoutBtn.style.opacity = '1';
+        }
+        return;
+      }
+
+      // 100% Valid Cart -> Proceed to Checkout
+      window.location.href = '/checkout';
+    })
+    .catch(err => {
+      console.error('Checkout verification error:', err);
+      window.location.href = '/checkout';
+    });
 }
 
 function initializeDossierCartTriggers() {

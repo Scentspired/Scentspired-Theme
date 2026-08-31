@@ -1,650 +1,123 @@
-<style>
-  :root {
-    --perfume-gold: #b39152;
-    --perfume-dark: #000;
-    --perfume-gray: #f2f2f2;
-    --sidebar-bg: #f5f0e6;
-    --border-dashed: #a8a095;
-    --font-primary: 'Montserrat', sans-serif;
-  }
+{% comment %}
+  Discovery Box Builder
+  - 5 slots with dynamic progress timeline
+  - Desktop: Auto-open first slot, sequential product filling, auto-advance to next slot
+  - Mobile: Original flexible behavior (no auto-select, manual slot selection)
+  - Direct to checkout redirect
+  - Selection flow: Brand -> Product
+  - Requires exactly 5 items to checkout
+{% endcomment %}
 
-  .perfume-bundle-section {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 40px 20px;
-    background: #fff;
-    font-family: var(--font-primary);
-  }
-
-  .builder-layout {
-    display: flex;
-    gap: 40px;
-    position: relative;
-    align-items: flex-start;
-  }
-
-  /* SIDEBAR: YOUR PRODUCT BUNDLE */
-  .bundle-sidebar {
-    flex: 0 0 420px;
-    background: #f3f3f3;
-    border: 1px solid #000;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-  }
-
-  .sidebar-header {
-    padding: 25px 20px;
-    border-bottom: 1px solid #000;
-    background: #f3f3f3;
-  }
-
-  .sidebar-header h2 {
-    font-size: 22px;
-    margin: 0 0 10px;
-    color: #000;
-    font-weight: 600;
-  }
-
-  .sidebar-header p {
-    font-size: 14px;
-    color: #000;
-    line-height: 1.4;
-    margin: 0;
-  }
-
-  .slots-wrapper {
-    padding: 30px 20px;
-    position: relative;
-    display: flex;
-    gap: 20px;
-  }
-
-  /* Progress Line Sidebar */
-  .progress-timeline {
-    position: relative;
-    width: 20px;
-    display: flex;
-    justify-content: center;
-  }
-
-  .progress-line {
-    position: absolute;
-    top: 5px;
-    bottom: 5px;
-    width: 2px;
-    background: #000;
-  }
-
-  .progress-marker {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    background: #fff;
-    border: 2px solid #000;
-    border-radius: 50%;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .progress-marker.active {
-    background: #f4ff41;
-    border-color: #f4ff41;
-    width: 14px;
-    height: 14px;
-  }
-
-  .progress-label {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #fff;
-    border: 1px solid #000;
-    border-radius: 50%;
-    width: 12px;
-    height: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s;
-  }
-
-  .progress-label.active {
-    border-color: #f4ff41;
-    background: #f4ff41;
-  }
-
-  .slot-list {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  .slot-item {
-    background: #fff;
-    border: 1px solid #000;
-    border-radius: 4px;
-    padding: 12px;
-    min-height: 100px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    position: relative;
-    transition: 0.2s;
-  }
-
-  .slot-item.empty {
-    border: 1px dashed var(--border-dashed);
-    background: transparent;
-  }
-
-  .slot-item.active {
-    border-color: #000;
-    box-shadow: 0 0 0 1px #000;
-  }
-
-  .slot-placeholder-icon {
-    width: 50px;
-    height: 60px;
-    border: 1px dashed var(--border-dashed);
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #ccc;
-    font-size: 20px;
-  }
-
-  .slot-placeholder-text {
-    flex: 1;
-  }
-
-  .slot-placeholder-text .primary {
-    display: block;
-    font-size: 14px;
-    color: #888;
-  }
-
-  .slot-placeholder-text .unlock {
-    display: block;
-    font-size: 16px;
-    color: #000;
-    font-weight: 600;
-    margin-top: 4px;
-  }
-
-  .slot-filled-content {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    width: 100%;
-  }
-
-  .slot-img {
-    width: 65px;
-    height: 65px;
-    background: #f9f9f9;
-    padding: 5px;
-    border-radius: 4px;
-  }
-
-  .slot-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
-
-  .slot-info {
-    flex: 1;
-  }
-
-  .slot-info h4 {
-    margin: 0;
-    font-size: 16px;
-    color: #333;
-    font-weight: 600;
-  }
-
-  .slot-info p {
-    margin: 3px 0 0;
-    font-size: 13px;
-    color: #888;
-    font-style: italic;
-  }
-
-  .slot-price {
-    font-size: 15px;
-    font-weight: 600;
-    margin-top: 5px;
-  }
-
-  .remove-item {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    background: #f0f0f0;
-    border: none;
-    border-radius: 50%;
-    width: 25px;
-    height: 25px;
-    font-size: 18px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  /* SIDEBAR FOOTER */
-  .sidebar-footer {
-    padding: 0;
-    background: #fff;
-    border-top: 1px solid #000;
-  }
-
-  .add-to-cart-btn {
-    width: 100%;
-    background: #f4ff41;
-    color: #000;
-    padding: 20px;
-    font-size: 15px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-    border-radius: 40px;
-  }
-
-  .add-to-cart-btn:disabled {
-    background-color: #f4ff41;
-    opacity: 0.7;
-    cursor: not-allowed;
-  }
-
-  .savings-row {
-    padding: 15px;
-    text-align: center;
-    font-size: 14px;
-    color: #666;
-    background: #f3f3f3;
-  }
-
-  /* RIGHT SIDE: DRAWER */
-  .selection-drawer {
-    flex: 1;
-    background: #f9f9f9;
-    border-radius: 12px;
-    padding: 40px;
-    max-height: 800px;
-    overflow-y: auto;
-    display: none;
-    position: sticky;
-    top: 40px;
-  }
-
-  .selection-drawer.visible {
-    display: block;
-  }
-
-  .drawer-title {
-    font-size: 20px;
-    text-transform: uppercase;
-    margin-bottom: 30px;
-    letter-spacing: 1px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .drawer-title-content {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex: 1;
-  }
-
-  .drawer-title-text {
-    flex: 1;
-  }
-
-  /* SEARCH BAR STYLES */
-  .search-bar-wrapper {
-    width: 100%;
-    margin-bottom: 25px;
-    display: flex;
-    gap: 0;
-  }
-
-  .search-input-container {
-    flex: 1;
-    position: relative;
-    display: flex;
-    align-items: center;
-    background: #fff;
-    border: 1px solid #e0e0e0;
-    border-radius: 25px;
-    padding: 0 20px;
-    transition: all 0.3s ease;
-  }
-
-  .search-input-container input {
-    flex: 1;
-    border: none;
-    outline: none;
-    padding: 12px 0;
-    font-size: 15px;
-    font-family: var(--font-primary);
-    background: transparent;
-    color: #333;
-    box-shadow: none;
-  }
-
-  .search-input-container input::placeholder {
-    color: #999;
-  }
-
-  .search-icon {
-    width: 20px;
-    height: 20px;
-    background: transparent;
-    border-radius: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #000;
-    font-size: 16px;
-    flex-shrink: 0;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-
-  .search-icon:hover {
-    color: #e0e635;
-    transform: scale(1.1);
-  }
-
-  /* List Styles */
-  .option-list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .option-item {
-    background: #fff;
-    padding: 15px 20px;
-    border-radius: 8px;
-    border: 1px solid #eee;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    transition: 0.2s;
-  }
-
-  .option-item:hover {
-    border-color: #f4ff41;
-    background: #fff;
-  }
-
-  .item-thumb {
-    width: 50px;
-    height: 50px;
-    background: #f2f2f2;
-    border-radius: 6px;
-    overflow: hidden;
-  }
-
-  .item-thumb img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .back-arrow-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 24px;
-    color: #000;
-    padding: 0;
-    display: none;
-    transition: 0.2s;
-    line-height: 1;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .back-arrow-btn:hover {
-    opacity: 0.6;
-  }
-
-  .back-arrow-btn.visible {
-    display: flex;
-  }
-
-  .no-results-message {
-    text-align: center;
-    padding: 40px 20px;
-    color: #666;
-    font-size: 15px;
-  }
-
-  /* MOBILE POPUP */
-  @media (max-width: 1024px) {
-    .builder-layout {
-      flex-direction: column;
-    }
-    .bundle-sidebar {
-      flex: 1 0 auto;
-      width: 100%;
-    }
-    .selection-drawer {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 1000;
-      border-radius: 0;
-      padding: 20px;
-      overflow-y: auto;
-    }
-    .selection-drawer:not(.visible) {
-      display: none;
-    }
-    .add-to-cart-btn {
-      font-size: 11px;
-    }
-    .sidebar-header h2 {
-      font-size: 19px;
-      margin: 0 0 10px;
-      color: #000;
-      font-weight: 600;
-    }
-  }
-
-  .cart {
-    padding: 15px 20px;
-    background: #f3f3f3;
-    border-bottom: 1px solid black;
-  }
-</style>
+{{ "section-bundle-builder.css" | asset_url | stylesheet_tag }}
 
 <div class="perfume-bundle-section">
   <div class="builder-layout">
-    <!-- LEFT SIDEBAR: BUNDLE STATUS -->
-    <div class="bundle-sidebar">
-      <div class="sidebar-header">
-        <h2>Discover More Scents for Less</h2>
-        <p id="BundleStatusText">
-          Great choice! Add 3 items for 15% off or 4 items for 20% off or 5 items to save 25% on your bundle
-        </p>
-      </div>
+    {%
+      render 'bundle-sidebar',
+      title: section.settings.heading | default: 'Build Your Own Five Favourites',
+      subtitle: section.settings.subheading | default: 'Add 5 items to complete your five favourites',
+      capacity: 5,
+      show_savings: true
+    %}
 
-      <div class="slots-wrapper">
-        <div class="progress-timeline">
-          <div class="progress-line"></div>
-          <div class="progress-marker" style="top: 0%" id="Marker-0"></div>
-          <div class="progress-label" style="top: 0%" id="Label-1"></div>
-          <div class="progress-marker" style="top: 25%" id="Marker-1"></div>
-          <div class="progress-label" style="top: 25%" id="Label-2"></div>
-          <div class="progress-marker" style="top: 50%" id="Marker-2"></div>
-          <div
-            class="progress-label"
-            style="top: 50%; width: 32px; height: 32px; font-size: 10px; color: #000;"
-            id="Label-15">
-            15%
-          </div>
-          <div class="progress-marker" style="top: 68%" id="Marker-3"></div>
-          <div
-            class="progress-label"
-            style="top: 68%; width: 32px; height: 32px; font-size: 10px; color: #000;"
-            id="Label-20">
-            20%
-          </div>
-          <div class="progress-marker" style="top: 94%" id="Marker-4"></div>
-          <div
-            class="progress-label"
-            style="top: 94%; width: 32px; height: 32px; font-size: 10px; color: #000;"
-            id="Label-25">
-            25%
-          </div>
-        </div>
-
-        <div class="slot-list" id="BundleSlots">
-          {% for i in (1..5) %}
-            <div class="slot-item empty" data-index="{{ forloop.index0 }}" onclick="openSelector({{ forloop.index0 }})">
-              <div class="slot-placeholder-icon">+</div>
-              <div class="slot-placeholder-text">
-                <span class="primary">Select a product</span>
-                {% if forloop.index < 0 %}
-                {% elsif forloop.index == 1 %}
-                  <span class="unlock">$4.99 Shipping</span>
-                {% elsif forloop.index == 2 %}
-                  <span class="unlock">FREE SHIPPING</span>
-                {% elsif forloop.index == 3 %}
-                  <span class="unlock">Unlock 15% Off</span>
-                {% elsif forloop.index == 4 %}
-                  <span class="unlock">Unlock 20% Off</span>
-                {% elsif forloop.index == 5 %}
-                  <span class="unlock">Unlock 25% Off</span>
-                {% endif %}
-              </div>
-            </div>
-          {% endfor %}
-        </div>
-      </div>
-
-      <div class="sidebar-footer">
-        <div class="cart">
-          <button class="add-to-cart-btn" id="MainActionBtn" disabled onclick="handleCheckout()">
-            <span>Add to Cart</span>
-            <span id="TotalDisplay">$ 0</span>
-          </button>
-        </div>
-        <div class="savings-row">Total savings: <span id="SavingsDisplay">$ 0</span></div>
-      </div>
-    </div>
-
-    <!-- RIGHT CONTENT: SELECTION DRAWER -->
-    <div class="selection-drawer" id="SelectionDrawer">
-      <div class="drawer-title">
-        <div class="drawer-title-content">
-          <button onclick="goBackToStep()" class="back-arrow-btn" id="BackArrowBtn" title="Go back">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round">
-              <polyline points="15 18 9 12 15 6"></polyline>
-            </svg>
-          </button>
-          <span class="drawer-title-text" id="DrawerHeadline">Select Size</span>
-        </div>
-        <button onclick="closeSelector()" style="background: none; border: none; cursor: pointer; font-size: 25px;">
-          ×
-        </button>
-      </div>
-
-      <div id="Step-Size" class="step-container">
-        <div class="option-list">
-          <div class="option-item" onclick="selectSize('50ml')">
-            <span>50ml</span>
-          </div>
-          <div class="option-item" onclick="selectSize('100ml')">
-            <span>100ml</span>
-          </div>
-        </div>
-      </div>
-
-      <div id="Step-Brand" class="step-container" style="display: none;">
-        <div class="option-list" id="BrandGrid">
-          <!-- Brands injected here -->
-        </div>
-      </div>
-
-      <div id="Step-Product" class="step-container" style="display: none;">
-        <div class="search-bar-wrapper">
-          <div class="search-input-container">
-            <input type="text" id="ProductSearch" placeholder="Search" />
-            <svg
-              class="search-icon"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round">
-              <circle cx="11" cy="11" r="8"></circle>
-              <path d="m21 21-4.35-4.35"></path>
-            </svg>
-          </div>
-        </div>
-        <div class="option-list" id="ProductGrid">
-          <!-- Products injected here -->
-        </div>
-      </div>
-    </div>
+    {% render "bundle-product-grid", show_size_step: true %}
   </div>
 </div>
 
-<script>
-  const DISCOUNT_TIERS = {
-    1: 0,
-    2: 0,
-    3: 0.15,
-    4: 0.20,
-    5: 0.25
-  };
+{% assign fb_parent = section.settings.bundle_product | default: all_products["the-five-favourites"] %}
+{% assign fb_50 = 57083185922393 %}
+{% assign fb_100 = 57083185955161 %}
+{% assign fb_price_50 = 64.99 %}
+{% assign fb_price_100 = 99.99 %}
+{% assign fb_std_50 = 99.95 %}
+{% assign fb_std_100 = 149.95 %}
+{% assign fb_saving_50 = 34.96 %}
+{% assign fb_saving_100 = 49.96 %}
+{% assign fb_curr_sym = "£" %}
 
-  const SHIPPING_COSTS = {
-    0: 0,
-    1: 7.99,
-    2: 0,
-    3: 0,
-    4: 0,
-    5: 0
-  };
+{% if cart.currency.iso_code == "USD" or shop.currency == "USD" %}
+  {% assign fb_50 = 45733941936311 %}
+  {% assign fb_100 = 45733941969079 %}
+  {% assign fb_price_50 = 129.99 %}
+  {% assign fb_price_100 = 179.99 %}
+  {% assign fb_std_50 = 199.95 %}
+  {% assign fb_std_100 = 249.95 %}
+  {% assign fb_saving_50 = 69.96 %}
+  {% assign fb_saving_100 = 69.96 %}
+  {% assign fb_curr_sym = "$" %}
+{% endif %}
+
+{% for variant in fb_parent.variants %}
+  {% if variant.title contains "50" %}
+    {% assign fb_50 = variant.id %}
+    {% if variant.price > 0 %}
+      {% assign fb_price_50 = variant.price | divided_by: 100.0 %}
+    {% endif %}
+  {% elsif variant.title contains "100" %}
+    {% assign fb_100 = variant.id %}
+    {% if variant.price > 0 %}
+      {% assign fb_price_100 = variant.price | divided_by: 100.0 %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
+<script>
+  let activeSize = null;
+  let currentStep = 'Step-Size';        // Tracks which step is open
+let hasAddedFirstProduct = false;     // Becomes true after first product is added
+let allFilteredProducts = [];
+
+const CURRENCY_SYMBOL = {{ fb_curr_sym | json }};
+
+const PRICING = {
+  "50ml": {
+    total: {{ fb_price_50 | json }},
+    standard: {{ fb_std_50 | json }},
+    saving: {{ fb_saving_50 | json }}
+  },
+  "100ml": {
+    total: {{ fb_price_100 | json }},
+    standard: {{ fb_std_100 | json }},
+    saving: {{ fb_saving_100 | json }}
+  }
+};
+
+// 🔑 Five Favourites main product variants (US & UK)
+const DISCOVERY_SET_VARIANT = {
+  "50ml": {{ fb_50 | json }},
+  "100ml": {{ fb_100 | json }}
+};
 
   // Load all products from the 'shop' collection
-  const products = [
-    {% paginate collections['shop'].products by 100 %}
-      {% for product in collections['shop'].products %}
+  const PRODUCTS_BY_SIZE = {
+  "50ml": [
+    {% paginate collections['bundle-50ml'].products by 100 %}
+      {% for product in collections['bundle-50ml'].products %}
+        {
+          id: {{ product.id }},
+          title: {{ product.title | json }},
+          vendor: {{ product.vendor | json }},
+          image: {{ product.featured_image | img_url: '300x300' | json }},
+          tags: {{ product.tags | json }},
+variants: [
+  {% for variant in product.variants %}
+    {
+      id: {{ variant.id }},
+      title: {{ variant.title | json }},
+      price: {{ variant.price }},
+      sku: {{ variant.sku | json }},
+      available: {{ variant.available | json }}
+    }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+]
+        }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    {% endpaginate %}
+  ],
+
+  "100ml": [
+    {% paginate collections['bundle-100ml'].products by 100 %}
+      {% for product in collections['bundle-100ml'].products %}
         {
           id: {{ product.id }},
           title: {{ product.title | json }},
@@ -657,15 +130,20 @@
       id: {{ variant.id }},
       title: {{ variant.title | json }},
       price: {{ variant.price }},
+      sku: {{ variant.sku | json }},
       available: {{ variant.available | json }}
     }{% unless forloop.last %},{% endunless %}
   {% endfor %}
 ]
+
         }{% unless forloop.last %},{% endunless %}
       {% endfor %}
     {% endpaginate %}
-  ];
+  ]
+};
 
+
+ 
   const brands = [
     { tag: "tomford", name: "Tom Ford" },
     { tag: "chanel", name: "Chanel" },
@@ -697,13 +175,13 @@
 
   let bundle = [null, null, null, null, null];
   let currentSlot = null;
-  let activeSize = null;
-  let activeBrand = null;
-  let allFilteredProducts = [];
-  const isDesktop = window.innerWidth > 1024;
 
-  document.addEventListener('DOMContentLoaded', function() {
-    if (isDesktop) {
+  function isDesktop() {
+    return window.innerWidth > 1024;
+  }
+
+  window.addEventListener('DOMContentLoaded', function() {
+    if (isDesktop()) {
       openSelector(0);
     }
   });
@@ -712,10 +190,16 @@
     currentSlot = index;
     const drawer = document.getElementById('SelectionDrawer');
     if (drawer) drawer.classList.add('visible');
-    showStep('Step-Size');
+
     document.querySelectorAll('.slot-item').forEach(s => s.classList.remove('active'));
     const activeSlot = document.querySelector(`.slot-item[data-index="${index}"]`);
     if (activeSlot) activeSlot.classList.add('active');
+
+    if (activeSize) {
+      showStep('Step-Product');
+    } else {
+      showStep('Step-Size');
+    }
   }
 
   function closeSelector() {
@@ -724,25 +208,22 @@
     document.querySelectorAll('.slot-item').forEach(s => s.classList.remove('active'));
   }
 
-  let currentStep = 'Step-Size';
-
   function showStep(id) {
     document.querySelectorAll('.step-container').forEach(c => c.style.display = 'none');
     const stepEl = document.getElementById(id);
     if (stepEl) stepEl.style.display = 'block';
+
     currentStep = id;
 
     const backArrowBtn = document.getElementById('BackArrowBtn');
     const drawerHeadline = document.getElementById('DrawerHeadline');
 
     if (id === 'Step-Size') {
-      if (drawerHeadline) drawerHeadline.innerText = 'Select Size';
       if (backArrowBtn) backArrowBtn.style.display = 'none';
-    }
-
-    if (id === 'Step-Product') {
+      if (drawerHeadline) drawerHeadline.innerText = 'Select Size';
+    } else if (id === 'Step-Product') {
+      if (backArrowBtn) backArrowBtn.style.display = hasAddedFirstProduct ? 'none' : 'flex';
       if (drawerHeadline) drawerHeadline.innerText = 'Select Product';
-      if (backArrowBtn) backArrowBtn.style.display = 'flex';
       renderProducts();
       initSearchListener();
     }
@@ -759,27 +240,29 @@
     showStep('Step-Product');
   }
 
-  function renderBrands() {
-    const grid = document.getElementById('BrandGrid');
-    if (!grid) return;
-    grid.innerHTML = brands.map(b => `
-      <div class="option-item" data-tag="${b.tag}" onclick="selectBrand(this.dataset.tag)">
-        <span>${b.name}</span>
-      </div>
-    `).join('');
+  function handleSearch(event) {
+    if (!event || !event.target) return;
+    const searchQuery = event.target.value || '';
+    renderProducts(searchQuery);
   }
 
-  function selectBrand(tag) {
-    activeBrand = tag;
-    showStep('Step-Product');
+  function initSearchListener() {
+    const searchInput = document.getElementById('ProductSearch');
+    if (searchInput) {
+      searchInput.value = '';
+      searchInput.addEventListener('input', handleSearch);
+    }
   }
 
   function renderProducts(searchQuery = '') {
     const grid = document.getElementById('ProductGrid');
     if (!grid || !activeSize) return;
 
+    const products = PRODUCTS_BY_SIZE[activeSize] || [];
+
     const filtered = products.filter(p =>
-      p.variants.some(v => v.title.includes(activeSize) && v.available === true)
+      Array.isArray(p.variants) &&
+      p.variants.some(v => v.available === true)
     );
 
     allFilteredProducts = filtered;
@@ -802,68 +285,76 @@
       return;
     }
 
-    grid.innerHTML = displayProducts.map(p => `
-      <div class="option-item" onclick="addProductToBundle(${p.id})">
-        <div class="item-thumb">
-          <img src="${p.image}" alt="">
+    grid.innerHTML = displayProducts.map(p => {
+      const variant = (p.variants && p.variants.find(v => v.title.toLowerCase().includes(activeSize.toLowerCase()))) || (p.variants && p.variants[0]);
+      const isAvailable = variant && variant.available !== false;
+      if (!isAvailable) {
+        return `
+          <div class="option-item is-sold-out" style="opacity: 0.5; cursor: not-allowed; filter: grayscale(0.8);" onclick="alert('Sorry, &quot;${p.title}&quot; (${activeSize}) is currently out of stock. Please select another fragrance.')">
+            <div class="item-thumb"><img src="${p.image}" alt=""></div>
+            <span>${p.title} (${p.vendor}) <small style="display:inline-block; background:#d32f2f; color:#fff; font-size:9px; padding:2px 5px; border-radius:3px; font-weight:700; margin-left:4px;">SOLD OUT</small></span>
+          </div>
+        `;
+      }
+      return `
+        <div class="option-item" onclick="addProductToBundle(${p.id}, '${activeSize}')">
+          <div class="item-thumb"><img src="${p.image}" alt=""></div>
+          <span>${p.title} (${p.vendor})</span>
         </div>
-        <span>${p.title} (${p.vendor})</span>
-      </div>
-    `).join('');
+      `;
+    }).join('');
   }
 
-  function handleSearch(event) {
-    if (!event || !event.target) return;
-    const searchQuery = event.target.value || '';
-    renderProducts(searchQuery);
-  }
+  function addProductToBundle(id, size) {
+    if (!PRODUCTS_BY_SIZE[size]) return alert('Size not configured');
+    const product = PRODUCTS_BY_SIZE[size].find(p => p.id === id);
+    if (!product) return alert('Product not found');
 
-  function initSearchListener() {
-    const searchInput = document.getElementById('ProductSearch');
-    if (searchInput) {
-      searchInput.value = '';
-      searchInput.addEventListener('input', handleSearch);
-    }
-  }
-
-  function addProductToBundle(id) {
-    const product = products.find(p => p.id === id);
-    if (!product || !product.variants) return;
-    const variant = product.variants.find(
-      v => v.title.includes(activeSize)
-    );
-
+    const variant = product.variants.find(v => v.title.toLowerCase().includes(size.toLowerCase())) || product.variants[0];
     if (!variant || variant.available === false) {
-      alert(`${activeSize} is out of stock for this product. Please choose an in-stock fragrance.`);
+      alert(`Sorry, "${product.title}" (${size}) is currently out of stock. Please choose an in-stock fragrance.`);
       return;
     }
 
-    let slotToFill = currentSlot !== null ? currentSlot : 0;
-    if (isDesktop) {
-      const nextEmptySlot = bundle.findIndex(item => item === null);
-      slotToFill = nextEmptySlot !== -1 ? nextEmptySlot : slotToFill;
-    }
+    const isDesktopView = typeof isDesktop === 'function' ? isDesktop() : window.innerWidth >= 768;
 
-    bundle[slotToFill] = {
-      variantId: variant.id,
-      title: product.title,
-      image: product.image,
-      price: variant.price,
-      size: activeSize
-    };
+    if (isDesktopView) {
+      const firstEmptyIndex = bundle.findIndex(item => item === null);
+      if (firstEmptyIndex !== -1) {
+        bundle[firstEmptyIndex] = {
+          variantId: variant.id,
+          title: product.title,
+          sku: variant.sku,
+          image: product.image,
+          price: variant.price,
+          available: variant.available
+        };
+        if (!hasAddedFirstProduct) {
+          hasAddedFirstProduct = true;
+        }
 
-    updateUI();
-    
-    if (isDesktop) {
-      const nextEmpty = bundle.findIndex(item => item === null);
-      if (nextEmpty !== -1 && nextEmpty < 5) {
-        setTimeout(() => {
-          openSelector(nextEmpty);
-        }, 300);
-      } else {
-        closeSelector();
+        updateUI();
+
+        const nextEmptyIndex = bundle.findIndex(item => item === null);
+        if (nextEmptyIndex !== -1) {
+          setTimeout(() => openSelector(nextEmptyIndex), 300);
+        } else {
+          closeSelector();
+        }
       }
     } else {
+      const slotIndex = currentSlot !== null ? currentSlot : 0;
+      bundle[slotIndex] = {
+        variantId: variant.id,
+        title: product.title,
+        sku: variant.sku,
+        image: product.image,
+        price: variant.price
+      };
+      if (!hasAddedFirstProduct) {
+        hasAddedFirstProduct = true;
+      }
+      updateUI();
       closeSelector();
     }
   }
@@ -875,8 +366,6 @@
 
   function updateUI() {
     const count = bundle.filter(x => x).length;
-    const discount = DISCOUNT_TIERS[count] || 0;
-    const shippingCost = SHIPPING_COSTS[count] || 0;
 
     bundle.forEach((item, i) => {
       const el = document.querySelector(`.slot-item[data-index="${i}"]`);
@@ -888,56 +377,45 @@
             <div class="slot-img"><img src="${item.image}" alt=""></div>
             <div class="slot-info">
               <h4>${item.title}</h4>
-              <p>${item.size}</p>
-              <div class="slot-price">$ ${(item.price / 100).toLocaleString()}</div>
             </div>
             <button class="remove-item" onclick="event.stopPropagation(); removeItem(${i})">×</button>
           </div>
         `;
       } else {
         el.classList.add('empty');
-
-        let unlockText =
-          i === 0 ? "$4.99 Shipping" :
-          i === 1 ? "Free Shipping" :
-          i === 2 ? "Unlock 15% Off" :
-          i === 3 ? "Unlock 20% Off" :
-          i === 4 ? "Unlock 25% Off" :
-          "";
-
         el.innerHTML = `
           <div class="slot-placeholder-icon">+</div>
           <div class="slot-placeholder-text">
             <span class="primary">Select a product</span>
-            <span class="unlock">${unlockText}</span>
+            <span class="unlock"> ${5 - i} Selections Remaining</span>
           </div>
         `;
       }
     });
 
-    const subtotal = bundle.reduce((acc, curr) => acc + (curr ? curr.price : 0), 0);
-    const savings = subtotal * discount;
-    const finalTotal = subtotal - savings + (shippingCost * 100);
-
     const totalDisplay = document.getElementById('TotalDisplay');
-    if (totalDisplay) {
-      totalDisplay.innerText = `$ ${(finalTotal / 100).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    const mainBtn = document.getElementById('MainActionBtn');
+
+    if (mainBtn) {
+      mainBtn.disabled = count !== 5;
     }
 
-    const savingsDisplay = document.getElementById('SavingsDisplay');
-    if (savingsDisplay) {
-      savingsDisplay.innerText = `$ ${(savings / 100).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    if (count === 5 && activeSize) {
+      const pricing = PRICING[activeSize];
+      if (pricing && totalDisplay) {
+        totalDisplay.innerText = `${CURRENCY_SYMBOL}${pricing.total}`;
+        totalDisplay.style.visibility = 'visible';
+      }
+      const savingEl = document.querySelector('.savings-row .saving');
+      if (savingEl && pricing) savingEl.innerText = `${CURRENCY_SYMBOL}${pricing.standard}`;
+      const saveSpan = document.querySelector('.save-row span');
+      if (saveSpan && pricing) saveSpan.innerText = `${CURRENCY_SYMBOL}${pricing.saving}`;
+    } else if (totalDisplay) {
+      totalDisplay.innerText = '';
+      totalDisplay.style.visibility = 'hidden';
     }
 
-    const mainActionBtn = document.getElementById('MainActionBtn');
-    if (mainActionBtn) {
-      mainActionBtn.disabled = count === 0;
-    }
-
-    const statusText = count < 3 ? `Add ${3 - count} more items to save 15% on your bundle!` :
-                       count < 4 ? `15% Discount Applied! Add ${4 - count} more for 20% OFF.` :
-                       count < 5 ? `20% Discount Applied! Add ${5 - count} more for 25% OFF.` :
-                       `Maximum savings unlocked! 25% Off applied.`;
+    const statusText = count < 5 ? `Add ${5 - count} more items to complete your Five favourites` : `Your Fifer Favourites are complete!`;
     const bundleStatusText = document.getElementById('BundleStatusText');
     if (bundleStatusText) bundleStatusText.innerText = statusText;
 
@@ -958,9 +436,9 @@
     if (label15) {
       if (count >= 3) label15.classList.add('active');
     }
-    const label20 = document.getElementById('Label-20');
-    if (label20) {
-      if (count >= 4) label20.classList.add('active');
+    const label4 = document.getElementById('Label-4');
+    if (label4) {
+      if (count >= 4) label4.classList.add('active');
     }
     const label25 = document.getElementById('Label-25');
     if (label25) {
@@ -978,40 +456,62 @@
       return;
     }
 
-    const items = bundle.filter(x => x);
-    if (items.length === 0) {
-      alert('Please add at least one item to your bundle.');
+    if (!activeSize || bundle.filter(x => x).length !== 5) {
+      alert('Please complete your Five Box.');
       return;
     }
+
+    const variantId = DISCOVERY_SET_VARIANT && DISCOVERY_SET_VARIANT[activeSize] ? DISCOVERY_SET_VARIANT[activeSize] : null;
 
     window.isProcessingCartAction = true;
     btn.disabled = true;
     if (priceSpan) priceSpan.innerText = "Adding...";
 
-    const itemsToAdd = items.map(item => ({
+    const properties = {};
+    bundle.forEach((item, index) => {
+      if (!item) return;
+      properties[`Product ${index + 1}`] = item.title;
+      if (item.sku) properties[`SKU ${index + 1}`] = item.sku;
+      properties[`Variant ID ${index + 1}`] = item.variantId;
+    });
+
+    const itemsToAdd = bundle.filter(x => x).map((item, index) => ({
       id: item.variantId,
-      quantity: 1
+      quantity: 1,
+      properties: {
+        '_bundle': 'Five Box',
+        'Size': activeSize,
+        'Bundle Slot': `Selection ${index + 1} of 5`
+      }
     }));
 
     try {
+      if (!variantId) {
+        throw new Error('Please select a valid size (50ml or 100ml).');
+      }
+
       const response = await fetch('/cart/add.js', {
         method: 'POST',
-        headers: {
+        headers: { 
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
-        body: JSON.stringify({ items: itemsToAdd })
+        body: JSON.stringify({
+          id: variantId,
+          quantity: 1,
+          properties: properties
+        })
       });
 
-      if (!response.ok) throw new Error('Add to cart failed');
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.description || errorData.message || 'Failed to add Five Favourites to cart');
+      }
 
-      bundle = bundle.map(() => null);
-      activeSize = null;
-      activeBrand = null;
-      currentSlot = null;
+      console.log('Five Favourites added successfully');
 
+      bundle = [null, null, null, null, null];
       if (typeof updateUI === 'function') updateUI();
-      if (typeof showStep === 'function') showStep('Step-Size');
 
       btn.disabled = false;
       if (priceSpan) priceSpan.innerText = "ADDED!";
@@ -1019,26 +519,22 @@
       const cartResponse = await fetch('/cart.js');
       if (cartResponse.ok) {
         const cart = await cartResponse.json();
-        if (typeof updateDossierCartUI === 'function') {
-          updateDossierCartUI(cart);
-        }
-      }
-
-      if (typeof openDossierCart === 'function') {
-        openDossierCart();
+        if (typeof updateDossierCartUI === 'function') updateDossierCartUI(cart);
+        if (typeof openDossierCart === 'function') openDossierCart();
       }
 
       setTimeout(() => {
-        if (priceSpan) priceSpan.innerText = '$ 0';
+        const defaultPrice = (activeSize && PRICING[activeSize]) ? `${CURRENCY_SYMBOL}${PRICING[activeSize].total}` : '';
+        if (priceSpan) priceSpan.innerText = defaultPrice;
         window.isProcessingCartAction = false;
       }, 2000);
 
     } catch (err) {
       console.error('Add to cart error:', err);
-      alert('Error adding bundle. Please try again.');
-
+      alert(err.message || 'Failed to add Five Favourites.');
       btn.disabled = false;
-      if (priceSpan) priceSpan.innerText = '$ 0';
+      const defaultPrice = (activeSize && PRICING[activeSize]) ? `${CURRENCY_SYMBOL}${PRICING[activeSize].total}` : '';
+      if (priceSpan) priceSpan.innerText = defaultPrice;
       window.isProcessingCartAction = false;
     }
   }
@@ -1047,7 +543,26 @@
 {% schema %}
 {
   "name": "Perfume Bundle Builder",
-  "settings": [],
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "Build Your Own Five Favourites",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "default": "Add 5 items to complete your five favourites",
+      "label": "Subheading"
+    },
+    {
+      "type": "product",
+      "id": "bundle_product",
+      "label": "Bundle Parent Product (Optional Override)",
+      "info": "Leave empty to automatically resolve by product handle ('the-five-favourites') and currency."
+    }
+  ],
   "presets": [
     {
       "name": "Perfume Bundle Builder"

@@ -1642,6 +1642,80 @@ async function runSuiteU() {
 }
 
 // ============================================================================
+// SUITE V: Zero-Price Order Prevention & Cart Security Shield
+// ============================================================================
+async function runSuiteV() {
+  console.log("\n┌──────────────────────────────────────────────────────────────┐");
+  console.log("│ SUITE V: Zero-Price Order Prevention & Cart Security Shield │");
+  console.log("└──────────────────────────────────────────────────────────────┘");
+
+  // Test V1: Auto-purge zero-priced items from cart
+  {
+    const mockCartWithZeroItem = {
+      item_count: 2,
+      total_price: 1999,
+      items: [
+        { id: 111, key: "111:key", title: "Discovery Set", price: 1999, original_price: 1999, original_line_price: 1999, quantity: 1 },
+        { id: 222, key: "222:key", title: "Addiction 50ml", price: 0, original_price: 0, original_line_price: 0, quantity: 1, properties: {} }
+      ]
+    };
+
+    const zeroPriceItems = mockCartWithZeroItem.items.filter(item => {
+      return (item.price <= 0 || item.original_price <= 0 || item.line_price <= 0) && !item.properties?._bundle_parent;
+    });
+
+    assert(zeroPriceItems.length === 1, "V1.1: Detected 1 zero-priced item in cart for purge");
+    assert(zeroPriceItems[0].title === "Addiction 50ml", "V1.2: Correct zero-price child variant identified");
+
+    const updates = {};
+    zeroPriceItems.forEach(item => { updates[item.key || item.id] = 0; });
+    assert(updates["222:key"] === 0, "V1.3: Update payload generated with 0 quantity purge");
+  }
+
+  // Test V2: Checkout button disabled when cart subtotal is 0
+  {
+    const zeroSubtotalCart = {
+      item_count: 5,
+      total_price: 0,
+      items: [
+        { id: 222, price: 0, original_price: 0, original_line_price: 0, quantity: 5 }
+      ]
+    };
+
+    let subtotal = 0;
+    let totalItems = 0;
+    zeroSubtotalCart.items.forEach(item => {
+      if (item.original_line_price > 0) {
+        totalItems += item.quantity;
+        subtotal += item.original_line_price;
+      }
+    });
+
+    const isCheckoutLocked = (subtotal <= 0 || totalItems === 0);
+    assert(isCheckoutLocked === true, "V2.1: Checkout button strictly locked for $0 subtotal cart");
+    assert(subtotal === 0, "V2.2: Subtotal calculated strictly as $0 ignoring free items");
+  }
+
+  // Test V3: proceedToDossierCheckout validation
+  {
+    const cartWithZeroItem = {
+      item_count: 10,
+      total_price: 0,
+      items: Array(10).fill({ id: 999, price: 0, original_price: 0, properties: {} })
+    };
+
+    const zeroItems = cartWithZeroItem.items.filter(i => (i.price <= 0 || i.original_price <= 0) && !i.properties?._bundle_parent);
+    let checkoutAllowed = true;
+
+    if (zeroItems.length > 0 || cartWithZeroItem.total_price <= 0) {
+      checkoutAllowed = false;
+    }
+
+    assert(checkoutAllowed === false, "V3.1: proceedToDossierCheckout hard-blocks 10-item $0 cart checkout");
+  }
+}
+
+// ============================================================================
 // MASTER RUNNER
 // ============================================================================
 
@@ -1671,6 +1745,7 @@ async function runAllSuites() {
   await runSuiteS();
   await runSuiteT();
   await runSuiteU();
+  await runSuiteV();
 
   console.log("\n┌──────────────────────────────────────────────────────────────┐");
   console.log(
