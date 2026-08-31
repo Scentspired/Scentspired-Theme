@@ -13,9 +13,9 @@
 const fs = require("fs");
 const path = require("path");
 
-const ROOT = path.resolve(__dirname, "..");
-const BASELINE_REPORT = path.join(__dirname, "reports/archive/SCAN_REPORT_2026-08-27T08-37-48.md");
-const QUEUE_FILE = path.join(__dirname, "remediation-queue.json");
+const ROOT = path.resolve(__dirname, "../..");
+const BASELINE_REPORT = path.join(__dirname, "../reporting/reports/archive/SCAN_REPORT_2026-08-27T08-37-48.md");
+const QUEUE_FILE = path.join(__dirname, "../config/remediation-queue.json");
 const CHANGELOG_DOCS = path.join(ROOT, "docs/CHANGELOG.md");
 const CHANGELOG_ROOT = path.join(ROOT, "CHANGELOG.md");
 

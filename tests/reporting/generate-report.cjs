@@ -21,7 +21,7 @@ const { execSync } = require("child_process");
 
 const ROOT = process.env.THEME_TARGET_DIR
   ? path.resolve(process.env.THEME_TARGET_DIR)
-  : path.resolve(__dirname, "..");
+  : path.resolve(__dirname, "../..");
 const REPORTS_DIR = path.join(__dirname, "reports");
 const ARCHIVE_DIR = path.join(REPORTS_DIR, "archive");
 
@@ -38,7 +38,7 @@ let staticData = {
   linesScanned: 0,
 };
 try {
-  const output = execSync("node " + path.join(__dirname, "static-analysis.cjs") + " --fix-report", {
+  const output = execSync("node " + path.join(__dirname, "../static/static-analysis.cjs") + " --fix-report", {
     encoding: "utf8",
     cwd: ROOT,
     stdio: ["pipe", "pipe", "pipe"],

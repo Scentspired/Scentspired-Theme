@@ -25,8 +25,8 @@ const { execSync } = require("child_process");
 
 const ROOT = process.env.THEME_TARGET_DIR
   ? path.resolve(process.env.THEME_TARGET_DIR)
-  : path.resolve(__dirname, "..");
-const QUEUE_FILE = path.join(__dirname, "remediation-queue.json");
+  : path.resolve(__dirname, "../..");
+const QUEUE_FILE = path.join(__dirname, "../config/remediation-queue.json");
 const CHANGELOG_FILE = path.join(ROOT, "docs/CHANGELOG.md");
 
 const args = process.argv.slice(2);
@@ -120,7 +120,7 @@ console.log("🛡️  Executing Theme Guardian Quality Gate...\n");
 
 let gatePassed = true;
 try {
-  execSync("node " + path.join(__dirname, "critical-flow-simulator.cjs"), {
+  execSync("node " + path.join(__dirname, "../dynamic/critical-flow-simulator.cjs"), {
     cwd: ROOT,
     stdio: "inherit",
   });
@@ -155,7 +155,7 @@ fs.writeFileSync(QUEUE_FILE, JSON.stringify(queueData, null, 2));
 
 // ── 4. REFRESH LATEST SCAN REPORT ────────────────────────────────────────
 try {
-  execSync("node " + path.join(__dirname, "generate-report.cjs"), {
+  execSync("node " + path.join(__dirname, "../reporting/generate-report.cjs"), {
     cwd: ROOT,
     stdio: "pipe",
   });

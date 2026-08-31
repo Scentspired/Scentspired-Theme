@@ -8,13 +8,13 @@ const fs = require("fs");
 
 const TARGET_ROOT = process.env.THEME_TARGET_DIR
   ? path.resolve(process.env.THEME_TARGET_DIR)
-  : path.resolve(__dirname, "..");
+  : path.resolve(__dirname, "../..");
 
 let rawOutput;
 try {
-  rawOutput = execSync("node " + path.join(__dirname, "static-analysis.cjs") + " --fix-report", {
+  rawOutput = execSync("node " + path.join(__dirname, "../static/static-analysis.cjs") + " --fix-report", {
     encoding: "utf8",
-    cwd: path.join(__dirname, ".."),
+    cwd: path.join(__dirname, "../.."),
     env: { ...process.env, THEME_TARGET_DIR: TARGET_ROOT },
     stdio: ["pipe", "pipe", "pipe"], // capture stdout and stderr separately
   });

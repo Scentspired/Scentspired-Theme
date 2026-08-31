@@ -1,113 +1,96 @@
 # 🛡️ Theme Guardian — Scentspired Automated Testing & Detection Toolkit
 
-> **Mission:** Zero errors slipped to production. Guarantee 100% purchase funnel continuity so customers can NEVER be prevented from completing an order.
+> **Mission:** Zero errors slipped to production. Guarantee 100% purchase funnel continuity and multi-store resilience across Scentspired Global Stores.
+
+---
+
+## 🏗️ Modular Test Suite Architecture
+
+Following enterprise software engineering principles (Separation of Concerns, Functional Cohesion, Clean Abstractions), the test suite is organized into distinct functional domains:
+
+```
+tests/
+├── config/                                 # Centralized Test Configuration & Rules
+│   ├── config.json                         # 16 Static analysis rules & exceptions
+│   └── remediation-queue.json              # Scheduled remediation task queue
+│
+├── static/                                 # Static Analysis, AST & Schema Linters
+│   ├── syntax-validator.cjs                # Layer 2: JavaScript AST & Script Compiler
+│   ├── static-analysis.cjs                 # Layer 3: Rule engine (Null guards, variant IDs, etc.)
+│   ├── json-schema-validator.cjs           # Layer 8: JSON templates & section schema validator
+│   ├── locale-integrity-validator.cjs      # Layer 9: Translation key dictionary integrity
+│   ├── asset-snippet-integrity.cjs         # Layer 11: Physical asset & snippet reference check
+│   └── asset-size-budget-guard.cjs         # Layer 12: Bundle size & asset performance budgets
+│
+├── dynamic/                                # Flow Simulators, Integration & Chaos Suites
+│   ├── critical-flow-simulator.cjs         # Layer 4: Purchase funnel simulations (PDP, Bundles, Drawer)
+│   ├── chaos-simulation-tests.cjs          # Layer 5: Concurrency, flood, race conditions, fuzzing
+│   ├── rigorous-integration-tests.cjs      # Comprehensive integration test suites
+│   └── verify-clarity-detection.cjs        # Layer 6: Clarity historical crash defense
+│
+├── live/                                   # Live Storefront & Catalog Probing
+│   ├── live-catalog-probe.cjs              # Layer 10: Multi-store catalog & bundle API probe
+│   └── live-smoke-test.cjs                 # Live storefront smoke tests
+│
+├── release/                                # Release Management & Remediation Automation
+│   ├── daily-release-manager.cjs           # Daily gated release coordinator
+│   ├── build-remediation-queue.cjs         # Remediation task queue builder
+│   ├── generate-full-87day-changelog.cjs   # Release history builder
+│   └── run-all.sh                          # Universal test runner shell script
+│
+├── reporting/                              # Report & Catalog Generators
+│   ├── generate-report.cjs                 # Layer 7: Master scan report generator
+│   ├── generate-master-catalog.cjs         # Master catalog generator
+│   └── reports/                            # Generated reports & archive
+│       ├── LATEST_SCAN_REPORT.md
+│       ├── latest_scan_report.json
+│       └── archive/
+│
+└── README.md                               # Test architecture documentation
+```
 
 ---
 
 ## 🚀 Quick Start Commands
 
 ```bash
-# Run Full Test Suite (Static Scanner + Flow Simulation + Clarity Verification)
+# Run Full 12-Layer Quality Gate
 npm test
 
-# Run Individual Detection Layers
-npm run test:scanner    # Layer 1: Static Code Scanner (67,000+ lines scanned in <1s)
-npm run test:flows      # Layer 2: Purchase Flow & PDP/Bundle Lifecycle Simulator
-npm run test:clarity    # Layer 3: Clarity Historical Bug Detection Verifier
+# Run Specific Test Layers
+npm run test:scanner    # Layer 3: Static AST Analysis Rules (16 active rules)
+npm run test:syntax     # Layer 2: JavaScript V8 AST Compiler
+npm run test:flows      # Layer 4: Critical Purchase Funnel Simulator (93 assertions)
+npm run test:chaos      # Layer 5: Chaos, Fuzzing & Concurrency Engine
+npm run test:clarity    # Layer 6: Historical Clarity Crash Defense Verifier
+npm run report:scan     # Layer 7: Generate Scan Markdown & JSON Reports
 ```
 
 ---
 
-## 🏗️ Architecture & Defense Layers
+## 🛡️ The 12-Layer Quality Gate
 
-```
-                               ┌─────────────────────────────┐
-                               │       THEME CODEBASE        │
-                               │  (Liquid, JS, Assets, CSS)  │
-                               └──────────────┬──────────────┘
-                                              │
-                      ┌───────────────────────┴───────────────────────┐
-                      ▼                                               ▼
-         ┌─────────────────────────┐                     ┌─────────────────────────┐
-         │         LAYER 1         │                     │         LAYER 2         │
-         │   Static Code Scanner   │                     │  Purchase Flow Simulate │
-         │ (AST & Pattern Analysis)│                     │ (Sandboxed DOM Lifecycle│
-         └────────────┬────────────┘                     └────────────┬────────────┘
-                      │                                               │
-                      └───────────────────────┬───────────────────────┘
-                                              │
-                                              ▼
-                                 ┌─────────────────────────┐
-                                 │         LAYER 3         │
-                                 │ Clarity Bug Verifier    │
-                                 │ (Historical Validation) │
-                                 └────────────┬────────────┘
-                                              │
-                                              ▼
-                                 ┌─────────────────────────┐
-                                 │      QUALITY GATE       │
-                                 │  (PASS = Clean Deploy)  │
-                                 │  (FAIL = Block Deploy)  │
-                                 └─────────────────────────┘
-```
+| Layer | Domain | Tool / Script | Purpose |
+| :--- | :--- | :--- | :--- |
+| **Layer 1** | Formatting | `prettier --check` | Enforces uniform Liquid, JS, JSON & CSS styling. |
+| **Layer 2** | Static | `tests/static/syntax-validator.cjs` | Compiles all inline `<script>` and JS files via V8 AST parser. |
+| **Layer 3** | Static | `tests/static/static-analysis.cjs` | Evaluates 16 rules (null guards, variant IDs, unescaped strings). |
+| **Layer 4** | Dynamic | `tests/dynamic/critical-flow-simulator.cjs` | Simulates PDP, Quick-Add, Bundles, and Cart Drawer funnels. |
+| **Layer 5** | Dynamic | `tests/dynamic/chaos-simulation-tests.cjs` | 50-request concurrent floods, XSS payloads, Safari Private Mode. |
+| **Layer 6** | Dynamic | `tests/dynamic/verify-clarity-detection.cjs` | Verifies protection against all 14 historical Clarity crash vectors. |
+| **Layer 7** | Reporting | `tests/reporting/generate-report.cjs` | Generates timestamped audit logs (`LATEST_SCAN_REPORT.md`). |
+| **Layer 8** | Static | `tests/static/json-schema-validator.cjs` | Validates JSON templates and section schema definitions. |
+| **Layer 9** | Static | `tests/static/locale-integrity-validator.cjs` | Ensures 100% of Liquid `{{ 'key' \| t }}` exist in locale files. |
+| **Layer 10**| Live | `tests/live/live-catalog-probe.cjs` | Probes live US & UK catalog endpoints and bundle variants. |
+| **Layer 11**| Static | `tests/static/asset-snippet-integrity.cjs` | Verifies all referenced snippets and assets exist on disk. |
+| **Layer 12**| Static | `tests/static/asset-size-budget-guard.cjs` | Prevents performance regressions by enforcing JS/CSS size budgets. |
 
 ---
 
-## 🔍 Layer 1: Static Code Scanner (`tests/static-analysis.cjs`)
+## ⚙️ How to Maintain as the Site Evolves
 
-Scans every `.liquid` and `.js` file across `sections/`, `snippets/`, `assets/`, and `layout/`.
+1. **To add/modify a static rule:** Edit `tests/config/config.json` and add the scanner to `tests/static/static-analysis.cjs`.
+2. **To whitelist an approved pattern:** Add the file path and rule name to `approvedExceptions` in `tests/config/config.json`.
+3. **To add a purchase journey assertion:** Add tests to `tests/dynamic/critical-flow-simulator.cjs`.
+4. **To adjust performance thresholds:** Update `tests/static/asset-size-budget-guard.cjs`.
 
-### Active Detection Rules:
-
-| Rule                              | Description                                                                  | Catches                                                                          |
-| :-------------------------------- | :--------------------------------------------------------------------------- | :------------------------------------------------------------------------------- |
-| **`no-unguarded-getElementById`** | Direct property/method access on `getElementById` without null-check         | `null is not an object (evaluating 'getElementById(...).addEventListener')`      |
-| **`no-unguarded-querySelector`**  | Direct property access on `querySelector` or `querySelectorAll`              | `null is not an object (evaluating 'card.querySelector(...).value')`             |
-| **`no-unguarded-dom-variable`**   | Local variables assigned from DOM queries used without null guards           | `table.querySelectorAll` crashes                                                 |
-| **`no-unsafe-inline-onclick`**    | Dynamic template literals (`${...}`) in `onclick` with unescaped strings     | `Uncaught SyntaxError: missing ) after argument list` (e.g. _Victoria's Secret_) |
-| **`no-unguarded-closest-chain`**  | Calling properties on `.closest()` results without checking if parent exists | `cannot read properties of null (reading 'querySelectorAll')`                    |
-| **`balanced-script-tags`**        | Verifies `<script>` and `</script>` tag counts match in Liquid templates     | Page-breaking syntax crashes                                                     |
-| **`fetch-must-have-catch`**       | Enforces that all `fetch()` chains include `.catch()` or `try/catch`         | Buttons permanently stuck in "Adding..." on network drop                         |
-
----
-
-## 🧪 Layer 2: Critical Flow Simulator (`tests/critical-flow-simulator.cjs`)
-
-Executes actual theme JavaScript logic inside a sandboxed DOM environment to simulate real shopper interactions:
-
-- **Suite A: Product Detail Page (PDP) Add-to-Cart Lifecycle:**
-  - Tests physical button disabling on click.
-  - Tests multi-tap / rage-click debouncing (5 rapid clicks = 1 network request).
-  - Tests Sold-out (Shopify 422) handling & persistent button disable.
-  - Tests 500 error / offline network drop graceful recovery.
-- **Suite B: Collection & Best-Sellers Variant Switching:**
-  - Tests size swatch switching updates hidden variant ID input and price display.
-  - Tests defensive execution when cards lack variant inputs (zero crash).
-- **Suite C: Interactive Bundle & Box Builder:**
-  - Tests brand names with apostrophes (e.g., _Victoria's Secret_, _Kilian's_) evaluate without syntax errors.
-  - Tests 5-slot bundle completion and checkout button unlocking.
-- **Suite D: Cart Drawer UI & Tier Synchronization:**
-  - Tests `window.updateDossierCartUI` updates item count and total price.
-  - Tests `window.openDossierCart` slides drawer open.
-- **Suite E: Global `.item-form` Delegation:**
-  - Tests add-to-cart dispatch, button loading states, and network recovery.
-
----
-
-## 📈 Layer 3: Clarity Historical Detection Verifier (`tests/verify-clarity-detection.cjs`)
-
-Continuously benchmarks the toolkit against the **543 historical error sessions** recorded in Microsoft Clarity:
-
-- ✅ `document.getElementById('mobileCartTrigger').addEventListener` (83 sessions) $\rightarrow$ **CAUGHT**
-- ✅ `table.querySelectorAll('tbody tr')` (40 sessions) $\rightarrow$ **CAUGHT**
-- ✅ `card.querySelector('.selected-variant-id').value` (32 sessions) $\rightarrow$ **CAUGHT**
-- ✅ `onclick selectBrand('${b.tag}')` apostrophe crashes (17 sessions) $\rightarrow$ **CAUGHT**
-- ✅ `document.getElementById(id).style` (5 sessions) $\rightarrow$ **CAUGHT**
-
----
-
-## ⚙️ How to Adapt & Maintain as the Site Evolves
-
-1. **To add a new rule:** Add rule definition to `tests/config.json` and create the scanner function in `tests/static-analysis.cjs`.
-2. **To whitelist an approved pattern:** Add the file path, rule name, and rationale to `approvedExceptions` in `tests/config.json`.
-3. **To add a new customer journey test:** Add an assertion to `tests/critical-flow-simulator.cjs`.

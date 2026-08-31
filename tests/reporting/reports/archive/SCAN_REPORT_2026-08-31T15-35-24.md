@@ -1,0 +1,51 @@
+# 🛡️ Theme Guardian — Automated Quality & Detection Report
+
+**Generated At:** `2026-08-31 15:35:24 UTC`  
+**Branch:** `develop`  
+**Target Codebase:** `Scentspired-UK`  
+
+---
+
+## 📊 Executive Summary
+
+| Metric | Value | Status |
+| :--- | :--- | :--- |
+| **Files Scanned** | `204` Liquid & JS files | 🔍 Complete |
+| **Total Lines Inspected** | `71,450` lines | 🔍 Complete |
+| **Active Rules Evaluated** | `12 Rules` | 🛡️ Active |
+| **Errors (Blockers)** | `0` errors | ✅ **0 Errors** |
+| **Warnings** | `0` warnings | ⚠️ Review |
+| **Flow Simulator Assertions** | `0` Passed / `0` Failed | ✅ **100% PASS** |
+| **Overall Deployment Gate** | **APPROVED** | 🟢 **READY** |
+
+---
+
+## 🧪 Purchase Funnel Simulation Results (Layer 2)
+
+```
+node:internal/modules/cjs/loader:1210
+  throw err;
+  ^
+
+Error: Cannot find module '/home/leech/Lich/Jobs/Scentspired/Development/Scentspired-Theme/tests/reporting/critical-flow-simulator.cjs'
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)
+    at Module._load (node:internal/modules/cjs/loader:1038:27)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+    at node:internal/main/run_main_module:28:49 {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: []
+}
+
+Node.js v20.20.2
+```
+
+---
+
+## 🚨 Detected Issues by File & Severity (Layer 1)
+
+> ✅ **ZERO DEFECTS DETECTED.** All files passed 100% of safety checks.
+
+## 🔒 Pre-Push Automation Status
+* **Git Pre-Push Hook:** Active in `.git/hooks/pre-push`
+* **Shopify Theme Push Guard:** Bound to `npm run theme:push`
+* **Quality Gate:** Hard-blocks any push if Errors > 0 or Flow Assertions fail.

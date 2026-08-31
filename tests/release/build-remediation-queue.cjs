@@ -17,13 +17,13 @@ const { execSync } = require("child_process");
 
 const ROOT = process.env.THEME_TARGET_DIR
   ? path.resolve(process.env.THEME_TARGET_DIR)
-  : path.resolve(__dirname, "..");
-const QUEUE_FILE = path.join(__dirname, "remediation-queue.json");
+  : path.resolve(__dirname, "../..");
+const QUEUE_FILE = path.join(__dirname, "../config/remediation-queue.json");
 
 // Run scanner to get all violations
 let scanResult = { violations: [] };
 try {
-  const raw = execSync("node " + path.join(__dirname, "static-analysis.cjs") + " --fix-report", {
+  const raw = execSync("node " + path.join(__dirname, "../static/static-analysis.cjs") + " --fix-report", {
     encoding: "utf8",
     cwd: ROOT,
     stdio: ["pipe", "pipe", "pipe"],

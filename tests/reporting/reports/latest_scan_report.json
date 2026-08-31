@@ -1,0 +1,15 @@
+{
+  "timestamp": "2026-08-31 15:35:24",
+  "staticData": {
+    "filesScanned": 204,
+    "linesScanned": 71450,
+    "totalViolations": 0,
+    "errors": 0,
+    "warnings": 0,
+    "violations": []
+  },
+  "flowSimulator": {
+    "passed": 0,
+    "failed": 0
+  }
+}

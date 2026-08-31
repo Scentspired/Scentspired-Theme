@@ -24,7 +24,7 @@ const path = require("path");
 
 const ROOT = process.env.THEME_TARGET_DIR
   ? path.resolve(process.env.THEME_TARGET_DIR)
-  : path.resolve(__dirname, "..");
+  : path.resolve(__dirname, "../..");
 
 // ── Mock DOM Architecture ──────────────────────────────────────────────────
 

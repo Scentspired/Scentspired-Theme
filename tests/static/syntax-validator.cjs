@@ -22,7 +22,7 @@ const vm = require("vm");
 
 const ROOT_DIR = process.env.THEME_TARGET_DIR
   ? path.resolve(process.env.THEME_TARGET_DIR)
-  : path.resolve(__dirname, "..");
+  : path.resolve(__dirname, "../..");
 
 console.log("");
 console.log("╔══════════════════════════════════════════════════════════════╗");

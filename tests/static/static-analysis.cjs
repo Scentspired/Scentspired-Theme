@@ -43,8 +43,8 @@ const path = require("path");
 // ── Configuration ──────────────────────────────────────────────────────────
 const ROOT = process.env.THEME_TARGET_DIR
   ? path.resolve(process.env.THEME_TARGET_DIR)
-  : path.resolve(__dirname, "..");
-const CONFIG_PATH = path.join(__dirname, "config.json");
+  : path.resolve(__dirname, "../..");
+const CONFIG_PATH = path.join(__dirname, "../config/config.json");
 
 let config;
 try {

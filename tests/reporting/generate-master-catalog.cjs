@@ -18,7 +18,7 @@ const fs = require("fs");
 const path = require("path");
 const { execSync } = require("child_process");
 
-const ROOT = path.resolve(__dirname, "..");
+const ROOT = path.resolve(__dirname, "../..");
 const PKG_PATH = path.join(ROOT, "package.json");
 const REPORT_JSON = path.join(__dirname, "reports/latest_scan_report.json");
 const OUTPUT_DOC = path.join(ROOT, "docs/MASTER_DEFECT_AND_IMPACT_CATALOG.md");
@@ -58,7 +58,7 @@ try {
 if (violations.length === 0) {
   try {
     const scannerOutput = execSync(
-      `node ${path.join(__dirname, "static-analysis.cjs")} --fix-report`,
+      `node ${path.join(__dirname, "../static/static-analysis.cjs")} --fix-report`,
       {
         encoding: "utf8",
         cwd: ROOT,
