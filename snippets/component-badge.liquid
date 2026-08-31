@@ -1,0 +1,25 @@
+{% comment %}
+  -----------------------------------------------------------------------------
+  ATOMIC COMPONENT: Promotional & Status Badge
+  -----------------------------------------------------------------------------
+  Parameters:
+    - type: 'sale' | 'sold_out' | 'custom'
+    - text: String (optional override)
+    - badge_class: String (optional)
+  -----------------------------------------------------------------------------
+{% endcomment %}
+
+{%- liquid
+  assign badge_label = text
+  if type == 'sold_out' and text == blank
+    assign badge_label = 'products.product.sold_out' | t | default: 'Sold Out'
+  elsif type == 'sale' and text == blank
+    assign badge_label = 'products.product.on_sale' | t | default: 'Sale'
+  endif
+-%}
+
+{%- if badge_label != blank -%}
+  <span class="badge badge--{{ type | default: 'default' }} {{ badge_class }}">
+    {{ badge_label }}
+  </span>
+{%- endif -%}

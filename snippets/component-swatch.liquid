@@ -1,0 +1,28 @@
+{% comment %}
+  -----------------------------------------------------------------------------
+  ATOMIC COMPONENT: Fragrance Variant & Size Swatch
+  -----------------------------------------------------------------------------
+  Parameters:
+    - option_name: String (e.g. 'Size')
+    - values: Array of string values (e.g. ['50ml', '100ml'])
+    - selected_value: String
+    - input_id_prefix: String
+  -----------------------------------------------------------------------------
+{% endcomment %}
+
+<div class="swatch-group" data-option-name="{{ option_name | escape }}">
+  {%- for val in values -%}
+    {%- assign radio_id = input_id_prefix | append: '-' | append: forloop.index0 -%}
+    <label class="swatch-label {% if val == selected_value %}active{% endif %}" for="{{ radio_id }}">
+      <input 
+        type="radio" 
+        id="{{ radio_id }}" 
+        name="{{ input_id_prefix }}" 
+        value="{{ val | escape }}" 
+        {% if val == selected_value %}checked{% endif %}
+        class="swatch-input visually-hidden"
+      >
+      <span class="swatch-pill">{{ val }}</span>
+    </label>
+  {%- endfor -%}
+</div>

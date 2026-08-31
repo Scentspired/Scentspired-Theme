@@ -1,0 +1,32 @@
+{% comment %}
+  -----------------------------------------------------------------------------
+  HEADER SUB-COMPONENT: Brand Logo & Title
+  -----------------------------------------------------------------------------
+  Parameters:
+    - logo: Image object (section.settings.logo)
+    - logo_width: Number (section.settings.logo_width)
+    - heading_tag: String ('h1' on index, 'div' on subpages)
+  -----------------------------------------------------------------------------
+{% endcomment %}
+
+{%- assign tag = heading_tag | default: 'div' -%}
+
+<{{ tag }} class="header__heading">
+  <a href="{{ routes.root_url }}" class="header__heading-link link link--text focus-inset">
+    {%- if logo != blank -%}
+      <div class="header__heading-logo-wrapper">
+        {%- assign logo_alt = logo.alt | default: shop.name | escape -%}
+        {{ logo | image_url: width: 600 | image_tag:
+          class: 'header__heading-logo motion-reduce',
+          widths: '50, 100, 150, 200, 250, 300, 400, 500, 600',
+          height: logo.height,
+          width: logo.width,
+          alt: logo_alt,
+          preload: true
+        }}
+      </div>
+    {%- else -%}
+      <span class="h2">{{ shop.name }}</span>
+    {%- endif -%}
+  </a>
+</{{ tag }}>
