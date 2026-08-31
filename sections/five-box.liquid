@@ -620,6 +620,21 @@
   </div>
 </div>
 
+{% assign fb_parent = all_products['the-five-favourites'] %}
+{% assign fb_50 = 57083185922393 %}
+{% assign fb_100 = 57083185955161 %}
+{% if cart.currency.iso_code == 'USD' or shop.currency == 'USD' %}
+  {% assign fb_50 = 45733941936311 %}
+  {% assign fb_100 = 45733941969079 %}
+{% endif %}
+{% for variant in fb_parent.variants %}
+  {% if variant.title contains '50' %}
+    {% assign fb_50 = variant.id %}
+  {% elsif variant.title contains '100' %}
+    {% assign fb_100 = variant.id %}
+  {% endif %}
+{% endfor %}
+
 <script>
   let activeSize = null;
   let currentStep = 'Step-Size';        // Tracks which step is open
@@ -638,10 +653,11 @@ const PRICING = {
     saving: 49.96
   }
 };
-// 🔑 Discovery Box main product variants
+
+// 🔑 Discovery Box main product variants (US & UK)
 const DISCOVERY_SET_VARIANT = {
-  "50ml": 57083185922393,   // <-- your 50ml variant ID
-  "100ml": 57083185955161  // <-- your 100ml variant ID
+  "50ml": {{ fb_50 | json }},
+  "100ml": {{ fb_100 | json }}
 };
 
   // Load all products from the 'shop' collection
@@ -1042,45 +1058,29 @@ variants: [
     }));
 
     try {
-      let response = null;
-      if (variantId) {
-        try {
-          response = await fetch('/cart/add.js', {
-            method: 'POST',
-            headers: { 
-              'Content-Type': 'application/json',
-              'Accept': 'application/json'
-            },
-            body: JSON.stringify({
-              id: variantId,
-              quantity: 1,
-              properties: properties
-            })
-          });
-        } catch (e) {
-          response = null;
-        }
+      if (!variantId) {
+        throw new Error('Please select a valid size (50ml or 100ml).');
       }
 
-      if (!response || !response.ok) {
-        response = await fetch('/cart/add.js', {
-          method: 'POST',
-          headers: { 
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          },
-          body: JSON.stringify({
-            items: itemsToAdd
-          })
-        });
-      }
+      const response = await fetch('/cart/add.js', {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          id: variantId,
+          quantity: 1,
+          properties: properties
+        })
+      });
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.description || errorData.message || 'Failed to add to cart');
+        throw new Error(errorData.description || errorData.message || 'Failed to add Five Favourites to cart');
       }
 
-      console.log('Discovery Box added successfully');
+      console.log('Five Favourites added successfully');
 
       bundle = [null, null, null, null, null];
       if (typeof updateUI === 'function') updateUI();

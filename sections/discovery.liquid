@@ -582,11 +582,26 @@
       </div>
     </div>
   </div>
-</div>
+{% assign discovery_parent = all_products['discovery-set'] | default: all_products['discovery-set-5ml'] %}
+{% assign disc_variant_id = 57083186217305 %}
+{% if cart.currency.iso_code == 'USD' or shop.currency == 'USD' %}
+  {% assign disc_variant_id = 45733851955383 %}
+{% endif %}
+{% if discovery_parent and discovery_parent.variants.size > 0 %}
+  {% assign disc_variant_id = discovery_parent.first_available_variant.id | default: discovery_parent.variants.first.id %}
+{% endif %}
+
+{% if discovery_parent and discovery_parent.price > 0 %}
+  {% assign disc_price_display = discovery_parent.price | money %}
+{% elsif cart.currency.iso_code == 'USD' or shop.currency == 'USD' %}
+  {% assign disc_price_display = '$19.99' %}
+{% else %}
+  {% assign disc_price_display = '£14.99' %}
+{% endif %}
 
 <script>
-
-  const DISCOVERY_SET_VARIANT_ID = 57083186217305; // Your single Discovery Set variant
+  const DISCOVERY_SET_VARIANT_ID = {{ disc_variant_id | json }}; // Dynamic Discovery Set variant (US & UK)
+  const DISCOVERY_PRICE_DISPLAY = {{ disc_price_display | json }}; // Dynamic currency formatted price
 
   // Load all products from the 'shop' collection
   const products = [
@@ -869,7 +884,7 @@
     if (mainBtn) mainBtn.disabled = count !== 5;
 
     if (count === 5 && totalDisplay) {
-      totalDisplay.innerText = '$14.99';
+      totalDisplay.innerText = typeof DISCOVERY_PRICE_DISPLAY !== 'undefined' ? DISCOVERY_PRICE_DISPLAY : '$14.99';
       totalDisplay.style.visibility = 'visible';
     } else if (totalDisplay) {
       totalDisplay.innerText = '';
@@ -944,45 +959,26 @@
     }));
 
     try {
-      let response = null;
-
-      // If a parent discovery set variant is specified, try adding it with properties
-      if (typeof DISCOVERY_SET_VARIANT_ID !== 'undefined' && DISCOVERY_SET_VARIANT_ID && DISCOVERY_SET_VARIANT_ID > 0) {
-        try {
-          response = await fetch('/cart/add.js', {
-            method: 'POST',
-            headers: { 
-              'Content-Type': 'application/json',
-              'Accept': 'application/json'
-            },
-            body: JSON.stringify({
-              id: DISCOVERY_SET_VARIANT_ID,
-              quantity: 1,
-              properties: properties
-            })
-          });
-        } catch (e) {
-          response = null;
-        }
+      if (!DISCOVERY_SET_VARIANT_ID) {
+        throw new Error('Discovery Set variant is not configured. Please contact support.');
       }
 
-      // If parent variant failed or was not found (404/422), add the 5 selected items directly
-      if (!response || !response.ok) {
-        response = await fetch('/cart/add.js', {
-          method: 'POST',
-          headers: { 
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          },
-          body: JSON.stringify({
-            items: itemsToAdd
-          })
-        });
-      }
+      const response = await fetch('/cart/add.js', {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          id: DISCOVERY_SET_VARIANT_ID,
+          quantity: 1,
+          properties: properties
+        })
+      });
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.description || errorData.message || 'Failed to add to cart');
+        throw new Error(errorData.description || errorData.message || 'Failed to add Discovery Set to cart');
       }
 
       console.log('Discovery Set added successfully');
@@ -1005,7 +1001,7 @@
       }
 
       setTimeout(() => {
-        if (priceSpan) priceSpan.innerText = '$14.99';
+        if (priceSpan) priceSpan.innerText = typeof DISCOVERY_PRICE_DISPLAY !== 'undefined' ? DISCOVERY_PRICE_DISPLAY : '$14.99';
         window.isProcessingCartAction = false;
       }, 2000);
 
@@ -1013,7 +1009,7 @@
       console.error('Add to cart error:', err);
       alert(err.message || 'Error adding Discovery Set to cart. Please try again.');
       btn.disabled = false;
-      if (priceSpan) priceSpan.innerText = '$14.99';
+      if (priceSpan) priceSpan.innerText = typeof DISCOVERY_PRICE_DISPLAY !== 'undefined' ? DISCOVERY_PRICE_DISPLAY : '$14.99';
       window.isProcessingCartAction = false;
     }
   }

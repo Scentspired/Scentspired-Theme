@@ -610,6 +610,21 @@
   </div>
 </div>
 
+{% assign trio_parent = all_products['the-signature-trio'] %}
+{% assign trio_50 = 57083186086233 %}
+{% assign trio_100 = 57083186119001 %}
+{% if cart.currency.iso_code == 'USD' or shop.currency == 'USD' %}
+  {% assign trio_50 = 45733933154487 %}
+  {% assign trio_100 = 45733933187255 %}
+{% endif %}
+{% for variant in trio_parent.variants %}
+  {% if variant.title contains '50' %}
+    {% assign trio_50 = variant.id %}
+  {% elsif variant.title contains '100' %}
+    {% assign trio_100 = variant.id %}
+  {% endif %}
+{% endfor %}
+
 <script>
   let activeSize = null;
 let currentStep = 'Step-Size';        // Tracks which step is open
@@ -1002,9 +1017,10 @@ const PRICING = {
     }
   }
 
+  // 🔑 Signature Trio main product variants (US & UK)
   const TRIO_SET_VARIANT = {
-    "50ml": 57083186086233,
-    "100ml": 57083186119001
+    "50ml": {{ trio_50 | json }},
+    "100ml": {{ trio_100 | json }}
   };
 
   async function handleCheckout() {
@@ -1036,53 +1052,27 @@ const PRICING = {
       properties[`Variant ID ${index + 1}`] = item.variantId;
     });
 
-    const itemsToAdd = bundle.filter(x => x).map((item, index) => ({
-      id: item.variantId,
-      quantity: 1,
-      properties: {
-        '_bundle': 'Trio Set',
-        'Size': activeSize,
-        'Bundle Slot': `Selection ${index + 1} of 3`
-      }
-    }));
-
     try {
-      let response = null;
-      if (variantId) {
-        try {
-          response = await fetch('/cart/add.js', {
-            method: 'POST',
-            headers: { 
-              'Content-Type': 'application/json',
-              'Accept': 'application/json'
-            },
-            body: JSON.stringify({
-              id: variantId,
-              quantity: 1,
-              properties: properties
-            })
-          });
-        } catch (e) {
-          response = null;
-        }
+      if (!variantId) {
+        throw new Error('Please select a valid size (50ml or 100ml).');
       }
 
-      if (!response || !response.ok) {
-        response = await fetch('/cart/add.js', {
-          method: 'POST',
-          headers: { 
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          },
-          body: JSON.stringify({
-            items: itemsToAdd
-          })
-        });
-      }
+      const response = await fetch('/cart/add.js', {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          id: variantId,
+          quantity: 1,
+          properties: properties
+        })
+      });
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.description || errorData.message || 'Add to cart failed');
+        throw new Error(errorData.description || errorData.message || 'Failed to add Signature Trio to cart');
       }
 
       console.log('Trio set added successfully');
