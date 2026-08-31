@@ -1,0 +1,73 @@
+{% comment %}
+  -----------------------------------------------------------------------------
+  MODULAR COMPONENT: Bundle Selection Drawer & Product Grid
+  -----------------------------------------------------------------------------
+  Parameters:
+    - show_size_step: Boolean (default: true)
+  -----------------------------------------------------------------------------
+{% endcomment %}
+
+<div class="selection-drawer" id="SelectionDrawer">
+  <div class="drawer-title">
+    <div class="drawer-title-content">
+      <button onclick="goBackToStep()" class="back-arrow-btn" id="BackArrowBtn" title="Go back">
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+      <span class="drawer-title-text" id="DrawerHeadline">Select Brand</span>
+    </div>
+    <button onclick="closeSelector()" style="background: none; border: none; cursor: pointer; font-size: 25px;">
+      ×
+    </button>
+  </div>
+
+  {% if show_size_step %}
+    <div id="Step-Size" class="step-container">
+      <div class="option-list">
+        <div class="option-item" onclick="selectSize('50ml')">
+          <span>50ml</span>
+        </div>
+        <div class="option-item" onclick="selectSize('100ml')">
+          <span>100ml</span>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  <div id="Step-Brand" class="step-container" {% if show_size_step == false %}style="display: block;"{% endif %}>
+    <div class="option-list" id="BrandGrid">
+      <!-- Brands injected here -->
+    </div>
+  </div>
+
+  <div id="Step-Product" class="step-container" style="display: none;">
+    <div class="search-bar-wrapper">
+      <div class="search-input-container">
+        <input type="text" id="ProductSearch" placeholder="Search" />
+        <svg
+          class="search-icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.35-4.35"></path>
+        </svg>
+      </div>
+    </div>
+    <div class="option-list" id="ProductGrid">
+      <!-- Products injected here -->
+    </div>
+  </div>
+</div>

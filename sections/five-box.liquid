@@ -12,118 +12,18 @@
 
 <div class="perfume-bundle-section">
   <div class="builder-layout">
-    <!-- LEFT SIDEBAR: BUNDLE STATUS -->
-    <div class="bundle-sidebar">
-      <div class="sidebar-header">
-        <h2>Build Your Own Five Favourites</h2>
-        <p id="BundleStatusText">Add 5 items to complete your five favourites</p>
-      </div>
+    {% render 'bundle-sidebar',
+      title: 'Build Your Own Five Favourites',
+      subtitle: 'Add 5 items to complete your five favourites',
+      capacity: 5
+    %}
 
-      <div class="slots-wrapper">
-        <div class="progress-timeline">
-          <div class="progress-line"></div>
-          <div class="progress-marker" style="top: 0%" id="Marker-0"></div>
-          <div class="progress-label" style="top: 0%" id="Label-1"></div>
-          <div class="progress-marker" style="top: 25%" id="Marker-1"></div>
-          <div class="progress-label" style="top: 25%" id="Label-2"></div>
-          <div class="progress-marker" style="top: 50%" id="Marker-2"></div>
-          <div class="progress-label" style="top: 50%;" id="Label-15"></div>
-          <div class="progress-marker" style="top: 75%" id="Marker-3"></div>
-          <div class="progress-label" style="top: 75%" id="Label-4"></div>
-          <div class="progress-marker" style="top: 98%" id="Marker-4"></div>
-          <div class="progress-label" style="top: 98%;" id="Label-25"></div>
-        </div>
-
-        <div class="slot-list" id="BundleSlots">
-          {% for i in (1..5) %}
-            <div class="slot-item empty" data-index="{{ forloop.index0 }}" onclick="openSelector({{ forloop.index0 }})">
-              <div class="slot-placeholder-icon">+</div>
-              <div class="slot-placeholder-text">
-                <span class="primary">Select a product</span>
-                <span class="unlock"> {{ 5 | minus: forloop.index | plus: 1 }} Selections Remaining</span>
-              </div>
-            </div>
-          {% endfor %}
-        </div>
-      </div>
-
-      <div class="sidebar-footer">
-        <div class="cart">
-          <button class="add-to-cart-btn" id="MainActionBtn" disabled onclick="handleCheckout()">
-            <span>Add to cart</span>
-            <span id="TotalDisplay">$ 0</span>
-          </button>
-        </div>
-        <div class="savings-row">Standard Price: <span class="saving">$0</span></div>
-        <div class="save-row">Total Saving <span>$0</span></div>
-      </div>
-    </div>
-
-    <!-- RIGHT CONTENT: SELECTION DRAWER -->
-    <div class="selection-drawer" id="SelectionDrawer">
-      <div class="drawer-title">
-        <div class="drawer-title-content">
-          <button onclick="goBackToStep()" class="back-arrow-btn" id="BackArrowBtn" title="Go back">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round">
-              <polyline points="15 18 9 12 15 6"></polyline>
-            </svg>
-          </button>
-          <span class="drawer-title-text" id="DrawerHeadline">Select Brand</span>
-        </div>
-        <button onclick="closeSelector()" style="background: none; border: none; cursor: pointer; font-size: 25px;">
-          ×
-        </button>
-      </div>
-
-      <div id="Step-Size" class="step-container">
-        <div class="option-list">
-          <div class="option-item" onclick="selectSize('50ml')">
-            <span>50ml</span>
-          </div>
-          <div class="option-item" onclick="selectSize('100ml')">
-            <span>100ml</span>
-          </div>
-        </div>
-      </div>
-
-      <div id="Step-Brand" class="step-container">
-        <div class="option-list" id="BrandGrid">
-          <!-- Brands injected here -->
-        </div>
-      </div>
-
-      <div id="Step-Product" class="step-container" style="display: none;">
-        <div class="search-bar-wrapper">
-          <div class="search-input-container">
-            <input type="text" id="ProductSearch" placeholder="Search" />
-            <svg
-              class="search-icon"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round">
-              <circle cx="11" cy="11" r="8"></circle>
-              <path d="m21 21-4.35-4.35"></path>
-            </svg>
-          </div>
-        </div>
-        <div class="option-list" id="ProductGrid">
-          <!-- Products injected here -->
-        </div>
-      </div>
-    </div>
+    {% render 'bundle-product-grid',
+      show_size_step: true
+    %}
   </div>
 </div>
+
 
 {% assign fb_parent = section.settings.bundle_product | default: all_products['the-five-favourites'] %}
 {% assign fb_50 = 57083185922393 %}

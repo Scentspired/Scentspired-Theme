@@ -1,0 +1,45 @@
+{% comment %}
+  Scent Stories Collection Section
+{% endcomment %}
+
+<div class="scent-stories-collection section-{{ section.id }}-padding">
+  {%- if section.settings.title != blank -%}
+    <div class="page-width">
+      <h2 class="title inline-richtext {{ section.settings.heading_size }}">
+        {{ section.settings.title }}
+      </h2>
+    </div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Scent Stories Collection",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "default": "Scent Stories",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "Small" },
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" }
+      ],
+      "default": "h1",
+      "label": "Heading size"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Scent Stories Collection"
+    }
+  ]
+}
+{% endschema %}
