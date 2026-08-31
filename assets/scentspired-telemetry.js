@@ -261,8 +261,10 @@
                 const items = data.items || (data.id ? [data] : []);
                 const zeroItems = items.filter(
                   i =>
-                    (i.price === 0 || i.original_price === 0 || i.line_price === 0) &&
-                    !i.properties?._bundle_parent
+                    i.price <= 0 ||
+                    i.original_price <= 0 ||
+                    i.line_price <= 0 ||
+                    (i.final_price !== undefined && i.final_price <= 0)
                 );
                 if (zeroItems.length > 0 && !window.__SCENTSPIRED_PURGING_ZERO__) {
                   window.__SCENTSPIRED_PURGING_ZERO__ = true;

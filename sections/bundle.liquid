@@ -475,16 +475,6 @@ variants: [
       properties[`Variant ID ${index + 1}`] = item.variantId;
     });
 
-    const itemsToAdd = bundle.filter(x => x).map((item, index) => ({
-      id: item.variantId,
-      quantity: 1,
-      properties: {
-        '_bundle': 'Five Box',
-        'Size': activeSize,
-        'Bundle Slot': `Selection ${index + 1} of 5`
-      }
-    }));
-
     try {
       if (!variantId) {
         throw new Error('Please select a valid size (50ml or 100ml).');

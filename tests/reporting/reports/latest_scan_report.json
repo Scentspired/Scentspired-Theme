@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-08-31 19:13:24",
+  "timestamp": "2026-08-31 19:25:52",
   "staticData": {
     "filesScanned": 211,
-    "linesScanned": 69801,
+    "linesScanned": 69776,
     "totalViolations": 0,
     "errors": 0,
     "warnings": 0,

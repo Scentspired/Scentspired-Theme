@@ -2214,11 +2214,9 @@ function selectShopMethod(method) {
 
 // OPTIMIZED: Single function to update all dynamic elements with one fetch
 function updateAllDossierDynamicElements(cart) {
-  // ZERO-PRICE PROTECTION: Auto-purge any $0.00 standalone items
+  // ZERO-PRICE PROTECTION: Auto-purge any $0.00 items unconditionally
   const zeroPriceItems = (cart.items || []).filter(item => {
-    const isZero = item.price <= 0 || item.original_price <= 0 || item.line_price <= 0;
-    const isBundleChildWithoutParent = isZero && !item.properties?._bundle_parent;
-    return isBundleChildWithoutParent;
+    return item.price <= 0 || item.original_price <= 0 || item.line_price <= 0 || (item.final_price !== undefined && item.final_price <= 0);
   });
 
   if (zeroPriceItems.length > 0 && !window.isPurgingZeroPriceItems) {
@@ -2529,7 +2527,7 @@ function proceedToDossierCheckout() {
     })
     .then(cart => {
       const items = cart.items || [];
-      const zeroItems = items.filter(i => (i.price <= 0 || i.original_price <= 0) && !i.properties?._bundle_parent);
+      const zeroItems = items.filter(i => i.price <= 0 || i.original_price <= 0 || i.line_price <= 0 || (i.final_price !== undefined && i.final_price <= 0));
 
       if (items.length === 0) {
         alert('Your cart is empty.');
@@ -2564,7 +2562,11 @@ function proceedToDossierCheckout() {
     })
     .catch(err => {
       console.error('Checkout verification error:', err);
-      window.location.href = '/checkout';
+      if (checkoutBtn) {
+        checkoutBtn.disabled = false;
+        checkoutBtn.style.opacity = '1';
+      }
+      alert('Unable to verify cart. Please refresh the page and try again.');
     });
 }
 

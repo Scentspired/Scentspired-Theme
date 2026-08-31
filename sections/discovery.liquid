@@ -396,15 +396,6 @@
       properties[`Variant ID ${index + 1}`] = item.variantId;
     });
 
-    const itemsToAdd = selectedItems.map((item, index) => ({
-      id: item.variantId,
-      quantity: 1,
-      properties: {
-        '_bundle': 'Discovery Box',
-        'Bundle Slot': `Selection ${index + 1} of 5`
-      }
-    }));
-
     try {
       if (!DISCOVERY_SET_VARIANT_ID) {
         throw new Error('Discovery Set variant is not configured. Please contact support.');
