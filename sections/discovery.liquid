@@ -8,38 +8,42 @@
   - Requires exactly 5 items to checkout
 {% endcomment %}
 
-{{ 'section-bundle-builder.css' | asset_url | stylesheet_tag }}
+{{ "section-bundle-builder.css" | asset_url | stylesheet_tag }}
 
 <div class="perfume-bundle-section">
   <div class="builder-layout">
-    {% render 'bundle-sidebar',
+    {%
+      render 'bundle-sidebar',
       title: section.settings.heading | default: 'Your Fragrance Discovery Starts Here',
       subtitle: section.settings.subheading | default: 'Add 5 items to complete your Discovery Box',
       capacity: 5,
       show_savings: false
     %}
 
-    {% render 'bundle-product-grid',
-      show_size_step: false
-    %}
+    {% render "bundle-product-grid", show_size_step: false %}
   </div>
 </div>
 
-{% assign discovery_parent = section.settings.bundle_product | default: all_products['discovery-set'] | default: all_products['discovery-set-5ml'] %}
+{% assign discovery_parent = section.settings.bundle_product
+  | default: all_products["discovery-set"]
+  | default: all_products["discovery-set-5ml"]
+%}
 {% assign disc_variant_id = 57083186217305 %}
-{% if cart.currency.iso_code == 'USD' or shop.currency == 'USD' %}
+{% if cart.currency.iso_code == "USD" or shop.currency == "USD" %}
   {% assign disc_variant_id = 45733851955383 %}
 {% endif %}
 {% if discovery_parent and discovery_parent.variants.size > 0 %}
-  {% assign disc_variant_id = discovery_parent.first_available_variant.id | default: discovery_parent.variants.first.id %}
+  {% assign disc_variant_id = discovery_parent.first_available_variant.id
+    | default: discovery_parent.variants.first.id
+  %}
 {% endif %}
 
 {% if discovery_parent and discovery_parent.price > 0 %}
   {% assign disc_price_display = discovery_parent.price | money %}
-{% elsif cart.currency.iso_code == 'USD' or shop.currency == 'USD' %}
-  {% assign disc_price_display = '$19.99' %}
+{% elsif cart.currency.iso_code == "USD" or shop.currency == "USD" %}
+  {% assign disc_price_display = "$19.99" %}
 {% else %}
-  {% assign disc_price_display = '£14.99' %}
+  {% assign disc_price_display = "£14.99" %}
 {% endif %}
 
 <script>

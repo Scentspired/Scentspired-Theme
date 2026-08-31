@@ -11,10 +11,10 @@
 
 {%- liquid
   assign badge_label = text
-  if type == 'sold_out' and text == blank
-    assign badge_label = 'products.product.sold_out' | t | default: 'Sold Out'
-  elsif type == 'sale' and text == blank
-    assign badge_label = 'products.product.on_sale' | t | default: 'Sale'
+  if type == "sold_out" and text == blank
+    assign badge_label = "products.product.sold_out" | t | default: "Sold Out"
+  elsif type == "sale" and text == blank
+    assign badge_label = "products.product.on_sale" | t | default: "Sale"
   endif
 -%}
 

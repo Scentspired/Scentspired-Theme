@@ -8,25 +8,23 @@
   - Requires exactly 5 items to checkout
 {% endcomment %}
 
-{{ 'section-bundle-builder.css' | asset_url | stylesheet_tag }}
+{{ "section-bundle-builder.css" | asset_url | stylesheet_tag }}
 
 <div class="perfume-bundle-section">
   <div class="builder-layout">
-    {% render 'bundle-sidebar',
+    {%
+      render 'bundle-sidebar',
       title: section.settings.heading | default: 'Build Your Own Signature Trio Set',
       subtitle: section.settings.subheading | default: 'Add 3 items to complete your Signature Trio Set',
       capacity: 3,
       show_savings: true
     %}
 
-    {% render 'bundle-product-grid',
-      show_size_step: true
-    %}
+    {% render "bundle-product-grid", show_size_step: true %}
   </div>
 </div>
 
-
-{% assign trio_parent = section.settings.bundle_product | default: all_products['the-signature-trio'] %}
+{% assign trio_parent = section.settings.bundle_product | default: all_products["the-signature-trio"] %}
 {% assign trio_50 = 57083186086233 %}
 {% assign trio_100 = 57083186119001 %}
 {% assign trio_price_50 = 39.99 %}
@@ -35,9 +33,9 @@
 {% assign trio_std_100 = 89.97 %}
 {% assign trio_saving_50 = 19.98 %}
 {% assign trio_saving_100 = 29.98 %}
-{% assign trio_curr_sym = '£' %}
+{% assign trio_curr_sym = "£" %}
 
-{% if cart.currency.iso_code == 'USD' or shop.currency == 'USD' %}
+{% if cart.currency.iso_code == "USD" or shop.currency == "USD" %}
   {% assign trio_50 = 45733933154487 %}
   {% assign trio_100 = 45733933187255 %}
   {% assign trio_price_50 = 79.99 %}
@@ -46,16 +44,16 @@
   {% assign trio_std_100 = 179.97 %}
   {% assign trio_saving_50 = 39.98 %}
   {% assign trio_saving_100 = 59.98 %}
-  {% assign trio_curr_sym = '$' %}
+  {% assign trio_curr_sym = "$" %}
 {% endif %}
 
 {% for variant in trio_parent.variants %}
-  {% if variant.title contains '50' %}
+  {% if variant.title contains "50" %}
     {% assign trio_50 = variant.id %}
     {% if variant.price > 0 %}
       {% assign trio_price_50 = variant.price | divided_by: 100.0 %}
     {% endif %}
-  {% elsif variant.title contains '100' %}
+  {% elsif variant.title contains "100" %}
     {% assign trio_100 = variant.id %}
     {% if variant.price > 0 %}
       {% assign trio_price_100 = variant.price | divided_by: 100.0 %}

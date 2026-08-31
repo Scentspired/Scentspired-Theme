@@ -8,25 +8,23 @@
   - Requires exactly 5 items to checkout
 {% endcomment %}
 
-{{ 'section-bundle-builder.css' | asset_url | stylesheet_tag }}
+{{ "section-bundle-builder.css" | asset_url | stylesheet_tag }}
 
 <div class="perfume-bundle-section">
   <div class="builder-layout">
-    {% render 'bundle-sidebar',
+    {%
+      render 'bundle-sidebar',
       title: section.settings.heading | default: 'Build Your Own Five Favourites',
       subtitle: section.settings.subheading | default: 'Add 5 items to complete your five favourites',
       capacity: 5,
       show_savings: true
     %}
 
-    {% render 'bundle-product-grid',
-      show_size_step: true
-    %}
+    {% render "bundle-product-grid", show_size_step: true %}
   </div>
 </div>
 
-
-{% assign fb_parent = section.settings.bundle_product | default: all_products['the-five-favourites'] %}
+{% assign fb_parent = section.settings.bundle_product | default: all_products["the-five-favourites"] %}
 {% assign fb_50 = 57083185922393 %}
 {% assign fb_100 = 57083185955161 %}
 {% assign fb_price_50 = 64.99 %}
@@ -35,9 +33,9 @@
 {% assign fb_std_100 = 149.95 %}
 {% assign fb_saving_50 = 34.96 %}
 {% assign fb_saving_100 = 49.96 %}
-{% assign fb_curr_sym = '£' %}
+{% assign fb_curr_sym = "£" %}
 
-{% if cart.currency.iso_code == 'USD' or shop.currency == 'USD' %}
+{% if cart.currency.iso_code == "USD" or shop.currency == "USD" %}
   {% assign fb_50 = 45733941936311 %}
   {% assign fb_100 = 45733941969079 %}
   {% assign fb_price_50 = 129.99 %}
@@ -46,16 +44,16 @@
   {% assign fb_std_100 = 249.95 %}
   {% assign fb_saving_50 = 69.96 %}
   {% assign fb_saving_100 = 69.96 %}
-  {% assign fb_curr_sym = '$' %}
+  {% assign fb_curr_sym = "$" %}
 {% endif %}
 
 {% for variant in fb_parent.variants %}
-  {% if variant.title contains '50' %}
+  {% if variant.title contains "50" %}
     {% assign fb_50 = variant.id %}
     {% if variant.price > 0 %}
       {% assign fb_price_50 = variant.price | divided_by: 100.0 %}
     {% endif %}
-  {% elsif variant.title contains '100' %}
+  {% elsif variant.title contains "100" %}
     {% assign fb_100 = variant.id %}
     {% if variant.price > 0 %}
       {% assign fb_price_100 = variant.price | divided_by: 100.0 %}
