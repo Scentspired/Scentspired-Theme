@@ -9,9 +9,15 @@
     {%- unless logo_url == blank -%}
       "image": "{{ logo_url | remove: '\' }}",
       "logo": "{{ logo_url | remove: '\' }}",
+    {%- elsif settings.logo != blank -%}
+      "image": "https:{{ settings.logo | image_url }}",
+      "logo": "https:{{ settings.logo | image_url }}",
+    {%- elsif shop.brand.logo != blank -%}
+      "image": "https:{{ shop.brand.logo | image_url }}",
+      "logo": "https:{{ shop.brand.logo | image_url }}",
     {%- else -%}
-      "image": "https:{{ 'logo.png' | asset_url }}",
-      "logo": "https:{{ 'logo.png' | asset_url }}",
+      "image": "",
+      "logo": "",
     {%- endunless -%}
     "address": {
       "@type": "PostalAddress",
@@ -349,7 +355,11 @@
     "name": {{ article.title | json }},
     "publisher": {
       "@type": "Organization",
-      "logo": {"@type": "ImageObject","url": "https:{{ 'logo.png' | asset_url }}"},
+      {%- if settings.logo != blank -%}
+        "logo": {"@type": "ImageObject","url": "https:{{ settings.logo | image_url }}"},
+      {%- elsif shop.brand.logo != blank -%}
+        "logo": {"@type": "ImageObject","url": "https:{{ shop.brand.logo | image_url }}"},
+      {%- endif -%}
       "name": {{ shop.name | json }}
     },
     "headline": {{ article.title | json }},

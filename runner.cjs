@@ -141,6 +141,18 @@ const LAYERS = [
     optional: true,
     failMsg: "Live catalog endpoint probing failed",
   },
+  {
+    name: "Layer 11: Asset & Snippet Physical Integrity Linter",
+    cmd: "node",
+    args: [path.join(TESTS_DIR, "asset-snippet-integrity.cjs")],
+    failMsg: "Referenced asset or snippet missing from disk",
+  },
+  {
+    name: "Layer 12: Asset Performance & Size Budget Guard",
+    cmd: "node",
+    args: [path.join(TESTS_DIR, "asset-size-budget-guard.cjs")],
+    failMsg: "Asset file size exceeded performance budget",
+  },
 ];
 
 let totalPassed = 0;
