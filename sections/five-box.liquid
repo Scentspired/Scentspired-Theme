@@ -623,15 +623,37 @@
 {% assign fb_parent = all_products['the-five-favourites'] %}
 {% assign fb_50 = 57083185922393 %}
 {% assign fb_100 = 57083185955161 %}
+{% assign fb_price_50 = 64.99 %}
+{% assign fb_price_100 = 99.99 %}
+{% assign fb_std_50 = 99.95 %}
+{% assign fb_std_100 = 149.95 %}
+{% assign fb_saving_50 = 34.96 %}
+{% assign fb_saving_100 = 49.96 %}
+{% assign fb_curr_sym = '£' %}
+
 {% if cart.currency.iso_code == 'USD' or shop.currency == 'USD' %}
   {% assign fb_50 = 45733941936311 %}
   {% assign fb_100 = 45733941969079 %}
+  {% assign fb_price_50 = 129.99 %}
+  {% assign fb_price_100 = 179.99 %}
+  {% assign fb_std_50 = 199.95 %}
+  {% assign fb_std_100 = 249.95 %}
+  {% assign fb_saving_50 = 69.96 %}
+  {% assign fb_saving_100 = 69.96 %}
+  {% assign fb_curr_sym = '$' %}
 {% endif %}
+
 {% for variant in fb_parent.variants %}
   {% if variant.title contains '50' %}
     {% assign fb_50 = variant.id %}
+    {% if variant.price > 0 %}
+      {% assign fb_price_50 = variant.price | divided_by: 100.0 %}
+    {% endif %}
   {% elsif variant.title contains '100' %}
     {% assign fb_100 = variant.id %}
+    {% if variant.price > 0 %}
+      {% assign fb_price_100 = variant.price | divided_by: 100.0 %}
+    {% endif %}
   {% endif %}
 {% endfor %}
 
@@ -641,20 +663,22 @@
 let hasAddedFirstProduct = false;     // Becomes true after first product is added
 let allFilteredProducts = [];
 
+const CURRENCY_SYMBOL = {{ fb_curr_sym | json }};
+
 const PRICING = {
   "50ml": {
-    total: 64.99,
-    standard: 99.95,
-    saving: 34.96
+    total: {{ fb_price_50 | json }},
+    standard: {{ fb_std_50 | json }},
+    saving: {{ fb_saving_50 | json }}
   },
   "100ml": {
-    total: 99.99,
-    standard: 149.95,
-    saving: 49.96
+    total: {{ fb_price_100 | json }},
+    standard: {{ fb_std_100 | json }},
+    saving: {{ fb_saving_100 | json }}
   }
 };
 
-// 🔑 Discovery Box main product variants (US & UK)
+// 🔑 Five Favourites main product variants (US & UK)
 const DISCOVERY_SET_VARIANT = {
   "50ml": {{ fb_50 | json }},
   "100ml": {{ fb_100 | json }}
@@ -975,13 +999,13 @@ variants: [
     if (count === 5 && activeSize) {
       const pricing = PRICING[activeSize];
       if (pricing && totalDisplay) {
-        totalDisplay.innerText = `$ ${pricing.total}`;
+        totalDisplay.innerText = `${CURRENCY_SYMBOL}${pricing.total}`;
         totalDisplay.style.visibility = 'visible';
       }
       const savingEl = document.querySelector('.savings-row .saving');
-      if (savingEl && pricing) savingEl.innerText = `$ ${pricing.standard}`;
+      if (savingEl && pricing) savingEl.innerText = `${CURRENCY_SYMBOL}${pricing.standard}`;
       const saveSpan = document.querySelector('.save-row span');
-      if (saveSpan && pricing) saveSpan.innerText = `$ ${pricing.saving}`;
+      if (saveSpan && pricing) saveSpan.innerText = `${CURRENCY_SYMBOL}${pricing.saving}`;
     } else if (totalDisplay) {
       totalDisplay.innerText = '';
       totalDisplay.style.visibility = 'hidden';
@@ -1096,15 +1120,17 @@ variants: [
       }
 
       setTimeout(() => {
-        if (priceSpan) priceSpan.innerText = activeSize === '50ml' ? '$29.99' : '$49.99';
+        const defaultPrice = (activeSize && PRICING[activeSize]) ? `${CURRENCY_SYMBOL}${PRICING[activeSize].total}` : '';
+        if (priceSpan) priceSpan.innerText = defaultPrice;
         window.isProcessingCartAction = false;
       }, 2000);
 
     } catch (err) {
       console.error('Add to cart error:', err);
-      alert(err.message || 'Failed to add Discovery Box.');
+      alert(err.message || 'Failed to add Five Favourites.');
       btn.disabled = false;
-      if (priceSpan) priceSpan.innerText = activeSize === '50ml' ? '$29.99' : '$49.99';
+      const defaultPrice = (activeSize && PRICING[activeSize]) ? `${CURRENCY_SYMBOL}${PRICING[activeSize].total}` : '';
+      if (priceSpan) priceSpan.innerText = defaultPrice;
       window.isProcessingCartAction = false;
     }
   }

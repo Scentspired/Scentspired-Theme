@@ -613,15 +613,37 @@
 {% assign trio_parent = all_products['the-signature-trio'] %}
 {% assign trio_50 = 57083186086233 %}
 {% assign trio_100 = 57083186119001 %}
+{% assign trio_price_50 = 39.99 %}
+{% assign trio_price_100 = 59.99 %}
+{% assign trio_std_50 = 59.97 %}
+{% assign trio_std_100 = 89.97 %}
+{% assign trio_saving_50 = 19.98 %}
+{% assign trio_saving_100 = 29.98 %}
+{% assign trio_curr_sym = '£' %}
+
 {% if cart.currency.iso_code == 'USD' or shop.currency == 'USD' %}
   {% assign trio_50 = 45733933154487 %}
   {% assign trio_100 = 45733933187255 %}
+  {% assign trio_price_50 = 79.99 %}
+  {% assign trio_price_100 = 119.99 %}
+  {% assign trio_std_50 = 119.97 %}
+  {% assign trio_std_100 = 179.97 %}
+  {% assign trio_saving_50 = 39.98 %}
+  {% assign trio_saving_100 = 59.98 %}
+  {% assign trio_curr_sym = '$' %}
 {% endif %}
+
 {% for variant in trio_parent.variants %}
   {% if variant.title contains '50' %}
     {% assign trio_50 = variant.id %}
+    {% if variant.price > 0 %}
+      {% assign trio_price_50 = variant.price | divided_by: 100.0 %}
+    {% endif %}
   {% elsif variant.title contains '100' %}
     {% assign trio_100 = variant.id %}
+    {% if variant.price > 0 %}
+      {% assign trio_price_100 = variant.price | divided_by: 100.0 %}
+    {% endif %}
   {% endif %}
 {% endfor %}
 
@@ -630,17 +652,18 @@
 let currentStep = 'Step-Size';        // Tracks which step is open
 let hasAddedFirstProduct = false;     // Becomes true after first product is added
 
+const CURRENCY_SYMBOL = {{ trio_curr_sym | json }};
 
 const PRICING = {
   "50ml": {
-    total: 39.99,
-    standard: 59.97,
-    saving: 19.98
+    total: {{ trio_price_50 | json }},
+    standard: {{ trio_std_50 | json }},
+    saving: {{ trio_saving_50 | json }}
   },
   "100ml": {
-    total: 59.99,
-    standard: 89.97,
-    saving: 29.98
+    total: {{ trio_price_100 | json }},
+    standard: {{ trio_std_100 | json }},
+    saving: {{ trio_saving_100 | json }}
   }
 };
 
@@ -981,13 +1004,13 @@ const PRICING = {
     if (count === 3 && activeSize) {
       const pricing = PRICING[activeSize];
       if (pricing && totalDisplay) {
-        totalDisplay.innerText = `$ ${pricing.total}`;
+        totalDisplay.innerText = `${CURRENCY_SYMBOL}${pricing.total}`;
         totalDisplay.style.visibility = 'visible';
       }
       const savingEl = document.querySelector('.savings-row .saving');
-      if (savingEl && pricing) savingEl.innerText = `$ ${pricing.standard}`;
+      if (savingEl && pricing) savingEl.innerText = `${CURRENCY_SYMBOL}${pricing.standard}`;
       const saveSpan = document.querySelector('.save-row span');
-      if (saveSpan && pricing) saveSpan.innerText = `$ ${pricing.saving}`;
+      if (saveSpan && pricing) saveSpan.innerText = `${CURRENCY_SYMBOL}${pricing.saving}`;
     } else if (totalDisplay) {
       totalDisplay.innerText = '';
       totalDisplay.style.visibility = 'hidden';
@@ -1096,7 +1119,8 @@ const PRICING = {
       }
 
       setTimeout(() => {
-        if (priceSpan) priceSpan.innerText = '$44.99';
+        const defaultPrice = (activeSize && PRICING[activeSize]) ? `${CURRENCY_SYMBOL}${PRICING[activeSize].total}` : '';
+        if (priceSpan) priceSpan.innerText = defaultPrice;
         window.isProcessingCartAction = false;
       }, 2000);
 
@@ -1104,7 +1128,8 @@ const PRICING = {
       console.error('Add to cart error:', err);
       alert(err.message || 'Error adding Trio set to cart. Please try again.');
       btn.disabled = false;
-      if (priceSpan) priceSpan.innerText = activeSize === '50ml' ? '$44.99' : '$79.99';
+      const defaultPrice = (activeSize && PRICING[activeSize]) ? `${CURRENCY_SYMBOL}${PRICING[activeSize].total}` : '';
+      if (priceSpan) priceSpan.innerText = defaultPrice;
       window.isProcessingCartAction = false;
     }
   }
