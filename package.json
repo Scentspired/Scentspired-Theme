@@ -1,0 +1,45 @@
+{
+  "name": "scentspired-theme",
+  "version": "1.0.0",
+  "description": "Internal Shopify theme repository for Scentspired USA",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "bash tests/run-all.sh",
+    "test:scanner": "node tests/static-analysis.cjs",
+    "test:syntax": "node tests/syntax-validator.cjs",
+    "test:flows": "node tests/critical-flow-simulator.cjs",
+    "test:integration": "node tests/rigorous-integration-tests.cjs",
+    "test:chaos": "node tests/chaos-simulation-tests.cjs",
+    "test:clarity": "node tests/verify-clarity-detection.cjs",
+    "release:today": "node tests/daily-release-manager.cjs",
+    "release:queue": "node tests/daily-release-manager.cjs --list-queue",
+    "release:rebuild-queue": "node tests/build-remediation-queue.cjs",
+    "report:catalog": "node tests/generate-master-catalog.cjs",
+    "report:scan": "node tests/generate-report.cjs",
+    "report:all": "node tests/generate-report.cjs && node tests/generate-master-catalog.cjs",
+    "dev": "shopify theme dev",
+    "dev:store": "shopify theme dev --store=$npm_config_store",
+    "check": "shopify theme check --fail-level error",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "theme:pull": "shopify theme pull",
+    "theme:push": "npm test && shopify theme push",
+    "theme:push:dev": "npm test && shopify theme push --development",
+    "theme:publish": "npm test && shopify theme publish",
+    "theme:package": "shopify theme package --path=.",
+    "theme:list": "shopify theme list",
+    "theme:open": "shopify theme open",
+    "theme:info": "shopify theme info"
+  },
+  "devDependencies": {
+    "@shopify/cli": "^3.94.0",
+    "@shopify/prettier-plugin-liquid": "^1.11.0",
+    "prettier": "^3.5.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "author": "Scentspired",
+  "license": "UNLICENSED"
+}

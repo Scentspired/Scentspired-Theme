@@ -1,0 +1,107 @@
+{
+  "scanPaths": [
+    "sections/",
+    "snippets/",
+    "assets/",
+    "layout/"
+  ],
+  "fileExtensions": [".liquid", ".js"],
+  "excludePatterns": [
+    "node_modules",
+    ".git",
+    "tests/"
+  ],
+  "rules": {
+    "no-unguarded-getElementById": {
+      "enabled": true,
+      "severity": "error",
+      "description": "document.getElementById() result must be null-checked before property access"
+    },
+    "no-unguarded-querySelector": {
+      "enabled": true,
+      "severity": "error",
+      "description": "querySelector/querySelectorAll result must be null-checked before property access"
+    },
+    "no-unsafe-inline-onclick": {
+      "enabled": true,
+      "severity": "error",
+      "description": "Dynamic template literals inside onclick attributes must escape apostrophes"
+    },
+    "no-unguarded-closest-chain": {
+      "enabled": true,
+      "severity": "error",
+      "description": ".closest() result must be null-checked before property access"
+    },
+    "balanced-script-tags": {
+      "enabled": true,
+      "severity": "error",
+      "description": "Every <script> tag must have a matching </script>"
+    },
+    "fetch-must-have-catch": {
+      "enabled": true,
+      "severity": "warning",
+      "description": "Every fetch() chain should have a .catch() or be inside try/catch"
+    },
+    "no-unguarded-dom-variable": {
+      "enabled": true,
+      "severity": "error",
+      "description": "Variables assigned from getElementById/querySelector must be null-checked before property access"
+    },
+    "add-to-cart-response-status-check": {
+      "enabled": true,
+      "severity": "error",
+      "description": "Add-to-cart fetch handlers must verify response.ok or response.status to prevent silent failures"
+    },
+    "cart-drawer-sync-integrity": {
+      "enabled": true,
+      "severity": "warning",
+      "description": "Add-to-cart handlers must synchronize with #sp-cart-drawer rather than defunct <cart-drawer>"
+    },
+    "button-disabled-finally-guarantee": {
+      "enabled": true,
+      "severity": "error",
+      "description": "Disabled/loading buttons must have guaranteed re-enabling in finally/catch blocks"
+    },
+    "form-variant-id-completeness": {
+      "enabled": true,
+      "severity": "error",
+      "description": "Forms submitting to /cart/add must declare a name=id input"
+    },
+    "checkout-url-integrity": {
+      "enabled": true,
+      "severity": "error",
+      "description": "Checkout buttons and redirects must point to valid /checkout destinations"
+    },
+    "no-missing-snippet-assets": {
+      "enabled": true,
+      "severity": "error",
+      "description": "Every Liquid {% render %} or {% include %} must reference a snippet file that exists on disk"
+    }
+  },
+  "approvedExceptions": [
+    {
+      "file": "sections/five-box.liquid",
+      "line": 853,
+      "rule": "no-unsafe-inline-onclick",
+      "reason": "removeItem(${i}) uses numeric index only, no string injection risk"
+    },
+    {
+      "file": "sections/trio-set.liquid",
+      "line": 849,
+      "rule": "no-unsafe-inline-onclick",
+      "reason": "removeItem(${i}) uses numeric index only, no string injection risk"
+    },
+    {
+      "file": "sections/bundle.liquid",
+      "line": 778,
+      "rule": "no-unsafe-inline-onclick",
+      "reason": "removeItem(${i}) uses numeric index only, no string injection risk"
+    },
+    {
+      "file": "sections/discovery.liquid",
+      "line": 786,
+      "rule": "no-unsafe-inline-onclick",
+      "reason": "removeItem(${i}) uses numeric index only, no string injection risk"
+    }
+  ]
+}
