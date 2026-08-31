@@ -13,9 +13,10 @@
 <div class="perfume-bundle-section">
   <div class="builder-layout">
     {% render 'bundle-sidebar',
-      title: 'Your Fragrance Discovery Starts Here',
-      subtitle: 'Add 5 items to complete your Discovery Box',
-      capacity: 5
+      title: section.settings.heading | default: 'Your Fragrance Discovery Starts Here',
+      subtitle: section.settings.subheading | default: 'Add 5 items to complete your Discovery Box',
+      capacity: 5,
+      show_savings: false
     %}
 
     {% render 'bundle-product-grid',
@@ -461,6 +462,18 @@
 {
   "name": "Discovery",
   "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "Your Fragrance Discovery Starts Here",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "default": "Add 5 items to complete your Discovery Box",
+      "label": "Subheading"
+    },
     {
       "type": "product",
       "id": "bundle_product",

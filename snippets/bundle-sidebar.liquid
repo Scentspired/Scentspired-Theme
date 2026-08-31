@@ -59,7 +59,9 @@
         <span id="TotalDisplay">$ 0</span>
       </button>
     </div>
-    <div class="savings-row">Standard Price: <span class="saving">$0</span></div>
-    <div class="save-row">Total Saving <span>$0</span></div>
+    {%- if show_savings -%}
+      <div class="savings-row">Standard Price: <span class="saving">$0</span></div>
+      <div class="save-row">Total Saving <span>$0</span></div>
+    {%- endif -%}
   </div>
 </div>

@@ -13,9 +13,10 @@
 <div class="perfume-bundle-section">
   <div class="builder-layout">
     {% render 'bundle-sidebar',
-      title: 'Build Your Own Signature Trio Set',
-      subtitle: 'Add 3 items to complete your Signature Trio Set',
-      capacity: 3
+      title: section.settings.heading | default: 'Build Your Own Signature Trio Set',
+      subtitle: section.settings.subheading | default: 'Add 3 items to complete your Signature Trio Set',
+      capacity: 3,
+      show_savings: true
     %}
 
     {% render 'bundle-product-grid',
@@ -554,6 +555,18 @@ const PRICING = {
 {
   "name": "Trio",
   "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "Build Your Own Signature Trio Set",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "default": "Add 3 items to complete your Signature Trio Set",
+      "label": "Subheading"
+    },
     {
       "type": "product",
       "id": "bundle_product",

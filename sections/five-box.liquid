@@ -13,9 +13,10 @@
 <div class="perfume-bundle-section">
   <div class="builder-layout">
     {% render 'bundle-sidebar',
-      title: 'Build Your Own Five Favourites',
-      subtitle: 'Add 5 items to complete your five favourites',
-      capacity: 5
+      title: section.settings.heading | default: 'Build Your Own Five Favourites',
+      subtitle: section.settings.subheading | default: 'Add 5 items to complete your five favourites',
+      capacity: 5,
+      show_savings: true
     %}
 
     {% render 'bundle-product-grid',
@@ -545,6 +546,18 @@ variants: [
 {
   "name": "Five Box",
   "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "Build Your Own Five Favourites",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "default": "Add 5 items to complete your five favourites",
+      "label": "Subheading"
+    },
     {
       "type": "product",
       "id": "bundle_product",
