@@ -122,6 +122,25 @@ const LAYERS = [
     args: [path.join(TESTS_DIR, "generate-report.cjs")],
     failMsg: "Report generation failed",
   },
+  {
+    name: "Layer 8: JSON Template & Schema Validator",
+    cmd: "node",
+    args: [path.join(TESTS_DIR, "json-schema-validator.cjs")],
+    failMsg: "JSON template or schema inconsistencies detected",
+  },
+  {
+    name: "Layer 9: Localization Key Integrity Linter",
+    cmd: "node",
+    args: [path.join(TESTS_DIR, "locale-integrity-validator.cjs")],
+    failMsg: "Localization translation key check failed",
+  },
+  {
+    name: "Layer 10: Dynamic Live Catalog & Inventory Probe",
+    cmd: "node",
+    args: [path.join(TESTS_DIR, "live-catalog-probe.cjs")],
+    optional: true,
+    failMsg: "Live catalog endpoint probing failed",
+  },
 ];
 
 let totalPassed = 0;
@@ -130,7 +149,7 @@ const startTime = Date.now();
 
 for (let i = 0; i < LAYERS.length; i++) {
   const layer = LAYERS[i];
-  console.log(`\n>>> RUNNING [${i + 1}/7]: ${layer.name}...`);
+  console.log(`\n>>> RUNNING [${i + 1}/${LAYERS.length}]: ${layer.name}...`);
 
   const result = spawnSync(layer.cmd, layer.args, {
     stdio: "inherit",
@@ -151,17 +170,18 @@ for (let i = 0; i < LAYERS.length; i++) {
   }
 }
 
-const elapsedSec = ((Date.now() - startTime) / 1000).toFixed(2);
-console.log("\n==================================================================");
+const duration = ((Date.now() - startTime) / 1000).toFixed(2);
 
 if (totalFailed === 0) {
-  console.log(`   ✅ ALL 7 QUALITY GATES PASSED (100% CLEAN & SECURE) — ${elapsedSec}s`);
-  console.log(`   🚀 APPROVED FOR LIVE PRODUCTION DEPLOYMENT`);
+  console.log("\n==================================================================");
+  console.log(`   ✅ ALL ${LAYERS.length} QUALITY GATES PASSED (100% CLEAN & SECURE) — ${duration}s`);
+  console.log("   🚀 APPROVED FOR LIVE PRODUCTION DEPLOYMENT");
   console.log("==================================================================\n");
   process.exit(0);
 } else {
-  console.error(`   ❌ QUALITY GATE FAILED (${totalFailed} errors) — ${elapsedSec}s`);
-  console.error(`   🚫 DEPLOYMENT STRICTLY BLOCKED`);
+  console.error("\n==================================================================");
+  console.error(`   ❌ QUALITY GATE FAILED (${totalFailed} errors) — ${duration}s`);
+  console.error("   🚫 DEPLOYMENT STRICTLY BLOCKED");
   console.error("==================================================================\n");
   process.exit(1);
 }
