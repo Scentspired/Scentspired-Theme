@@ -1,0 +1,182 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "meet_link_iFTfzA": {
+          "type": "meet_link",
+          "settings": {
+            "link_text": "SHOP ALL",
+            "link_url": "shopify://collections/shop"
+          }
+        },
+        "meet_link_zBeEaW": {
+          "type": "meet_link",
+          "settings": {
+            "link_text": "ABOUT US",
+            "link_url": "shopify://pages/about-us"
+          }
+        },
+        "meet_link_ee9EPm": {
+          "type": "meet_link",
+          "settings": {
+            "link_text": "DISCLAIMER",
+            "link_url": "shopify://pages/disclaimer"
+          }
+        },
+        "meet_link_7wHn8h": {
+          "type": "meet_link",
+          "settings": {
+            "link_text": "SCENT NOTES",
+            "link_url": "shopify://pages/scent-notes"
+          }
+        },
+        "meet_link_RtxnQW": {
+          "type": "meet_link",
+          "settings": {
+            "link_text": "FRAGRANCE FINDER",
+            "link_url": "shopify://pages/fragrance-finder"
+          }
+        },
+        "meet_link_UApMzJ": {
+          "type": "meet_link",
+          "settings": {
+            "link_text": "BLOGS",
+            "link_url": "shopify://pages/blogs"
+          }
+        },
+        "question_link_YTwJfr": {
+          "type": "question_link",
+          "settings": {
+            "link_text": "CONTACT",
+            "link_url": "shopify://pages/contact"
+          }
+        },
+        "question_link_ndwkWx": {
+          "type": "question_link",
+          "settings": {
+            "link_text": "FAQs",
+            "link_url": "shopify://pages/faqs"
+          }
+        },
+        "question_link_YrdyBf": {
+          "type": "question_link",
+          "settings": {
+            "link_text": "PRIVACY POLICY",
+            "link_url": "shopify://pages/privacy-policy"
+          }
+        },
+        "question_link_DGCBK7": {
+          "type": "question_link",
+          "settings": {
+            "link_text": "RETURNS",
+            "link_url": "shopify://pages/returns"
+          }
+        },
+        "question_link_RFe4EW": {
+          "type": "question_link",
+          "settings": {
+            "link_text": "TERMS AND CONDITIONS",
+            "link_url": "shopify://pages/terms-and-conditions"
+          }
+        },
+        "additional_link_tUGf9H": {
+          "type": "additional_link",
+          "disabled": true,
+          "settings": {
+            "link_text": "dddddddd",
+            "link_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "meet_link_iFTfzA",
+        "meet_link_zBeEaW",
+        "meet_link_ee9EPm",
+        "meet_link_7wHn8h",
+        "meet_link_RtxnQW",
+        "meet_link_UApMzJ",
+        "question_link_YTwJfr",
+        "question_link_ndwkWx",
+        "question_link_YrdyBf",
+        "question_link_DGCBK7",
+        "question_link_RFe4EW",
+        "additional_link_tUGf9H"
+      ],
+      "custom_css": [
+        ".footer-background-text {position: absolute; bottom: -370px; left: 55%; transform: translateX(-50%); font-weight: 900; color: rgba(0, 0, 0, 0.1); white-space: nowrap; pointer-events: none; z-index: 1;}",
+        ".custom-footer {padding: 30px 0 320px; position: relative; overflow: hidden;}",
+        "@media only screen and (max-width: 900px) {.custom-footer {padding: 0px 0 650px; position: relative; overflow: hidden; } .footer-background-text {position: absolute; bottom: -650px; left: 40%; z-index: 1; }}"
+      ],
+      "settings": {
+        "footer_bg_color": "#121212",
+        "footer_text_color": "#ffffff",
+        "brand_description": "At Scentspired, we believe fragrance should do more than smell good; it should feel personal. Inspired by iconic scents and crafted with precision, our fragrances are designed to become part of your everyday story.",
+        "footer_bg_image": "shopify://shop_images/Scentspired_logo_WHITE_2.png",
+        "brand_tagline": "",
+        "social_heading": "FOLLOW US FOR FEEL-GOOD CONTENT",
+        "facebook_url": "https://www.facebook.com/profile.php?id=61568107508172&sk=about",
+        "instagram_url": "https://www.instagram.com/thescentspired/",
+        "tiktok_url": "https://www.tiktok.com/@thescentspireduk?",
+        "threads_url": "https://www.threads.com/@thescentspired?",
+        "pinterest_url": "https://pin.it/4Oxas1d7Y",
+        "youtube_url": "https://youtube.com/@thescentspired?",
+        "sign_in_text": "My Account",
+        "create_account_text": "",
+        "meet_heading": "QUICK LINKS",
+        "questions_heading": "HAVE QUESTIONS? WE'VE GOT ANSWERS",
+        "background_text": "ScentSpired"
+      }
+    },
+    "17677801892897efa9": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_efb927c_WGwQKa": {
+          "type": "ai_gen_block_efb927c",
+          "settings": {
+            "show_copyright_symbol": true,
+            "show_year": true,
+            "copyright_text": "",
+            "rights_text": "",
+            "show_powered_by": false,
+            "background_color": "#121212",
+            "text_color": "#ffffff",
+            "link_color": "#ffffff",
+            "link_hover_color": "#cccccc",
+            "font_size": 14,
+            "container_width": 1000,
+            "padding_top": 50,
+            "padding_bottom": 20,
+            "mobile_alignment": "center",
+            "desktop_width_percent": 100
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_efb927c_WGwQKa"
+      ],
+      "custom_css": [
+        ".ai-footer-copyright__container-aetrncunrtktlukljaaigenblockefb927cwgwqka {max-width: 100%; margin: 0 auto; padding: 0px 35px;}",
+        ".reforce-link {color: inherit; /* no color change */ text-decoration: underline;}",
+        ".reforce-link:hover,.reforce-link:visited,.reforce-link:active {color: inherit; /* prevent default link colors */}"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "footer",
+    "17677801892897efa9"
+  ]
+}

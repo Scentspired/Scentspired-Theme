@@ -1,0 +1,618 @@
+
+{% doc %}
+  @prompt
+    Create a premium editorial Shopify section that exactly matches the provided reference image with pixel-perfect spacing, typography, alignment, proportions, and layout composition. The section should have a clean luxury magazine-style aesthetic with a soft light beige/off-white background color across the entire section. The design must feel minimal, elegant, and balanced exactly like the reference image.
+    
+    SECTION STRUCTURE:
+    
+    Create a two-column layout on desktop.
+    Left column should contain the heading and image composition.
+    Right column should contain large paragraph text content.
+    Maintain the exact same spacing and proportions between both columns as shown in the reference image.
+    The entire content should sit inside a centered container with generous white space around all sides.
+    
+    LEFT SIDE LAYOUT:
+    At the top-left area place the heading:
+    “What We Make”
+    
+    HEADING STYLE:
+    
+    Font family:
+    font-family: 'PP Editorial New', serif;
+    Italic styling.
+    Font size approximately 58–68px.
+    Font weight light/thin.
+    Text color pure black.
+    Letter spacing slightly tight.
+    Position exactly like the image with generous top spacing and aligned slightly inward from the left edge.
+    
+    IMAGE AREA:
+    Below the heading place a square editorial image composition.
+    
+    Add Shopify theme editor upload option for this image.
+    Image should appear approximately 420x420px on desktop.
+    Maintain exact same proportions as reference.
+    No border radius.
+    No extra shadows.
+    Image should align perfectly under the heading with the same spacing as the reference image.
+    Use object-fit cover.
+    Keep clean edges and premium minimal presentation.
+    
+    RIGHT SIDE CONTENT:
+    Position the paragraph content exactly like the reference image.
+    
+    Align the text block vertically starting near the top of the heading height.
+    Content width should match the reference proportions.
+    Keep generous line spacing and luxury editorial readability.
+    
+    PARAGRAPH TYPOGRAPHY:
+    
+    Font family:
+    font-family: 'Helvetica Neue', sans-serif;
+    or clean modern sans-serif equivalent.
+    Font size around 22–28px desktop.
+    Font weight normal/medium.
+    Text color #111111.
+    Line height approximately 1.15–1.25.
+    Letter spacing slightly tight.
+    Paragraph spacing exactly like the reference.
+    
+    CONTENT STYLING:
+    
+    Maintain manual paragraph breaks exactly like the image.
+    Text should feel dense but elegant.
+    Do not center anything.
+    Keep all content left aligned.
+    Preserve the same visual rhythm and editorial magazine feel.
+    
+    SPACING & ALIGNMENT:
+    
+    Add large top and bottom padding.
+    Maintain the same left and right margins as the reference.
+    Keep image and text perfectly aligned horizontally.
+    Ensure the section does not look like a standard Shopify block layout — it should feel like a high-end fashion/perfume campaign editorial.
+    
+    RESPONSIVE MOBILE DESIGN:
+    
+    On mobile stack image above text.
+    Keep heading at top.
+    Maintain luxury spacing proportions.
+    Scale typography carefully without breaking editorial look.
+    Keep image square on mobile.
+    
+    THEME EDITOR SETTINGS:
+    
+    Heading text editable
+    Image upload option
+    Rich text paragraph editor
+    Desktop/mobile padding controls
+    Background color picker
+    Image width control
+    Text width control
+    Font size controls for heading and paragraphs
+    
+    IMPORTANT:
+    The final implementation must visually match the reference image exactly in:
+    
+    Typography scale
+    Text positioning
+    Image size
+    Column spacing
+    Margins
+    Editorial luxury aesthetic
+    Minimal clean composition
+    Overall visual balance and proportions.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-editorial-section-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    background-color: {{ block.settings.background_color }};
+    padding: 60px 0 58px;
+  }
+
+  .ai-editorial-container-{{ ai_gen_id }} {
+    padding: 0px 70px;
+  }
+
+  .ai-editorial-grid-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: {{ block.settings.left_column_width }}% {{ block.settings.right_column_width }}%;
+    gap: {{ block.settings.column_gap }}px;
+    align-items: start;
+  }
+
+  .ai-editorial-left-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: {{ block.settings.heading_image_gap }}px;
+  }
+
+  .ai-editorial-heading-{{ ai_gen_id }} {
+    font-family: 'PPEditorialNew Ultralight Italic';
+    font-weight: {{ block.settings.heading_font.weight }};
+    font-style: {{ block.settings.heading_font.style }};
+    font-size: {{ block.settings.heading_size }}px;
+    color: {{ block.settings.heading_color }};
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin: 0;
+    padding-left: {{ block.settings.heading_indent }}px;
+  }
+
+  .ai-editorial-image-wrapper-{{ ai_gen_id }} {
+    width: 100%;
+    max-width: {{ block.settings.image_max_width }}px;
+  }
+
+  .ai-editorial-image-{{ ai_gen_id }} {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  .ai-editorial-image-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .ai-editorial-image-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    max-width: 300px;
+    max-height: 300px;
+  }
+
+  .ai-editorial-empty-state-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 20px;
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  .ai-editorial-right-{{ ai_gen_id }} {
+    padding-top: {{ block.settings.text_vertical_offset }}px;
+  }
+
+  .ai-editorial-text-{{ ai_gen_id }} {
+    font-family: 'PPMori Regular';
+    font-weight: 500;
+    font-size: 24px;
+    color: {{ block.settings.body_color }};
+    line-height: 1.6;
+    max-width: 920px;
+  }
+  .ai-editorial-text-{{ ai_gen_id }} a{
+    color: #000;
+  
+  }
+
+  .ai-editorial-text-{{ ai_gen_id }} p {
+    margin: 0 0 {{ block.settings.paragraph_spacing }}px 0;
+  }
+
+  .ai-editorial-text-{{ ai_gen_id }} p:last-child {
+    margin-bottom: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-editorial-section-{{ ai_gen_id }} {
+      padding: {{ block.settings.mobile_padding_top }}px 0 {{ block.settings.mobile_padding_bottom }}px;
+    }
+
+    .ai-editorial-container-{{ ai_gen_id }} {
+      padding: 0 {{ block.settings.mobile_horizontal_padding }}px;
+    }
+
+    .ai-editorial-grid-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      gap: {{ block.settings.mobile_gap }}px;
+    }
+
+    .ai-editorial-heading-{{ ai_gen_id }} {
+      font-size: {{ block.settings.mobile_heading_size }}px;
+      padding-left: {{ block.settings.mobile_heading_indent }}px;
+    }
+
+    .ai-editorial-left-{{ ai_gen_id }} {
+      gap: {{ block.settings.mobile_heading_image_gap }}px;
+    }
+
+    .ai-editorial-right-{{ ai_gen_id }} {
+      padding-top: 0;
+    }
+
+    .ai-editorial-text-{{ ai_gen_id }} {
+      font-size: {{ block.settings.mobile_body_size }}px;
+    }
+
+    .ai-editorial-text-{{ ai_gen_id }} p {
+      margin-bottom: {{ block.settings.mobile_paragraph_spacing }}px;
+    }
+  }
+{% endstyle %}
+
+<editorial-section-{{ ai_gen_id }} class="ai-editorial-section-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-editorial-container-{{ ai_gen_id }}">
+    <div class="ai-editorial-grid-{{ ai_gen_id }}">
+      <div class="ai-editorial-left-{{ ai_gen_id }}">
+        {% if block.settings.heading != blank %}
+          <h2 class="ai-editorial-heading-{{ ai_gen_id }}">{{ block.settings.heading }}</h2>
+        {% endif %}
+
+        <div class="ai-editorial-image-wrapper-{{ ai_gen_id }}">
+          {% if block.settings.image %}
+            <img
+              src="{{ block.settings.image | image_url: width: 1000 }}"
+              alt="{{ block.settings.image.alt | escape }}"
+              loading="lazy"
+              width="{{ block.settings.image.width }}"
+              height="{{ block.settings.image.height }}"
+              class="ai-editorial-image-{{ ai_gen_id }}"
+            >
+          {% else %}
+            <div class="ai-editorial-image-placeholder-{{ ai_gen_id }}">
+              {{ 'image' | placeholder_svg_tag }}
+              <div class="ai-editorial-empty-state-{{ ai_gen_id }}">
+                Add an editorial image
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="ai-editorial-right-{{ ai_gen_id }}">
+        {% if block.settings.body_text != blank %}
+          <div class="ai-editorial-text-{{ ai_gen_id }}">
+            {{ block.settings.body_text }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</editorial-section-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class EditorialSection{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+    }
+    customElements.define('editorial-section-{{ ai_gen_id }}', EditorialSection{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Editorial section",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "container_width",
+      "label": "Container width",
+      "min": 800,
+      "max": 1600,
+      "step": 50,
+      "unit": "px",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "left_column_width",
+      "label": "Left column width",
+      "min": 30,
+      "max": 60,
+      "step": 5,
+      "unit": "%",
+      "default": 45
+    },
+    {
+      "type": "range",
+      "id": "right_column_width",
+      "label": "Right column width",
+      "min": 40,
+      "max": 70,
+      "step": 5,
+      "unit": "%",
+      "default": 55
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "label": "Column gap",
+      "min": 20,
+      "max": 120,
+      "step": 10,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "What We Make"
+    },
+    {
+      "type": "font_picker",
+      "id": "heading_font",
+      "label": "Font",
+      "default": "serif"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Size",
+      "min": 30,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "mobile_heading_size",
+      "label": "Mobile size",
+      "min": 24,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "heading_indent",
+      "label": "Left indent",
+      "min": 0,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mobile_heading_indent",
+      "label": "Mobile left indent",
+      "min": 0,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "range",
+      "id": "image_max_width",
+      "label": "Max width",
+      "min": 300,
+      "max": 600,
+      "step": 20,
+      "unit": "px",
+      "default": 420
+    },
+    {
+      "type": "range",
+      "id": "heading_image_gap",
+      "label": "Gap below heading",
+      "min": 2,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "mobile_heading_image_gap",
+      "label": "Mobile gap below heading",
+      "min": 15,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 25
+    },
+    {
+      "type": "header",
+      "content": "Body text"
+    },
+    {
+      "type": "richtext",
+      "id": "body_text",
+      "label": "Text",
+      "default": "<p>We create premium fragrances inspired by luxury scents, crafted with care and attention to detail. Each bottle tells a story of elegance and sophistication.</p><p>Our collection features carefully curated notes that evoke emotion and memory, designed for those who appreciate the finer things in life.</p>"
+    },
+    {
+      "type": "font_picker",
+      "id": "body_font",
+      "label": "Font",
+      "default": "sans-serif"
+    },
+    {
+      "type": "range",
+      "id": "body_size",
+      "label": "Size",
+      "min": 14,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "mobile_body_size",
+      "label": "Mobile size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "body_color",
+      "label": "Color",
+      "default": "#111111"
+    },
+    {
+      "type": "range",
+      "id": "paragraph_spacing",
+      "label": "Paragraph spacing",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mobile_paragraph_spacing",
+      "label": "Mobile paragraph spacing",
+      "min": 10,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "text_vertical_offset",
+      "label": "Vertical offset",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#F5F3EF"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 40,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 40,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "horizontal_padding",
+      "label": "Horizontal padding",
+      "min": 20,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "label": "Mobile top padding",
+      "min": 30,
+      "max": 120,
+      "step": 10,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "label": "Mobile bottom padding",
+      "min": 30,
+      "max": 120,
+      "step": 10,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "mobile_horizontal_padding",
+      "label": "Mobile horizontal padding",
+      "min": 15,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mobile_gap",
+      "label": "Mobile section gap",
+      "min": 20,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    }
+  ],
+  "presets": [
+    {
+      "name": "Editorial section"
+    }
+  ]
+}
+{% endschema %}

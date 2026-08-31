@@ -1,0 +1,2567 @@
+<style>
+  .sp-bundle-container {
+    background-color: #f3f3f3;
+  }
+  .sp-logo-text {
+    color: #cbdd00 !important;
+  }
+  .sp-plus-badge {
+    background-color: #cbdd00 !important;
+  }
+  .sp-tier-active {
+    background-color: #cbdd00 !important;
+    border-color: #cbdd00 !important;
+  }
+  .sp-section-number {
+    background-color: #cbdd00 !important;
+  }
+  .sp-discounted-price {
+    color: #cbdd00 !important;
+  }
+  .sp-product-category-badge {
+    color: #cbdd00 !important;
+    border-color: #cbdd00 !important;
+  }
+  .sp-logo-inline {
+    color: #cbdd00 !important;
+  }
+  .sp-plus-small {
+    background-color: #cbdd00 !important;
+  }
+  .sp-option-selected {
+    border-color: #cbdd00 !important;
+  }
+  .sp-radio-label {
+    border-color: #cbdd00 !important;
+    color: #cbdd00 !important;
+  }
+  .sp-option-price {
+    color: #cbdd00 !important;
+  }
+  .sp-summary-box {
+    border-color: #cbdd00 !important;
+  }
+  .sp-recommended-item {
+    background-color: #fff !important;
+  }
+  .sp-cart-container {
+    background-color: #f5f5f5 !important;
+  }
+  .sp-product-details {
+    background-color: #f3f3f3 !important;
+  }
+  .sp-shop-box {
+    background-color: #f3f3f3 !important;
+  }
+  .sp-section-header {
+    background-color: #f3f3f3 !important;
+    background: #f3f3f3 !important;
+  }
+  .sp-benefits-header {
+    background-color: #f3f3f3 !important;
+  }
+  .sp-checkout-btn {
+    background-color: #e5ff00 !important;
+    color: #000 !important;
+  }
+
+  /* Reset and hide drawer by default */
+  .sp-cart-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .sp-cart-overlay.sp-active {
+    display: block;
+    opacity: 1;
+  }
+
+  .sp-cart-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    max-width: 400px;
+    height: 100%;
+    background: white;
+    z-index: 10000;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    display: none;
+  }
+
+  .sp-cart-drawer.sp-active {
+    display: block;
+    transform: translateX(0);
+  }
+
+  .sp-cart-content {
+    padding: 0;
+    min-height: 100%;
+  }
+
+  /* Header */
+  .sp-cart-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid #e0ddd4;
+    background: white;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .sp-back-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+    font-weight: 500;
+  }
+
+  /* Empty Cart Full Container - Takes over entire drawer */
+  .sp-empty-cart-full-container {
+    padding: 40px 20px;
+    background: white;
+    min-height: calc(100vh - 80px); /* Account for header */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .sp-empty-cart-content {
+    text-align: center;
+    max-width: 320px;
+    width: 100%;
+  }
+
+  .sp-empty-title {
+    font-size: 32px;
+    font-weight: 400;
+    color: #333;
+    margin: 0 0 8px 0;
+    letter-spacing: -0.5px;
+  }
+
+  .sp-empty-subtitle {
+    font-size: 16px;
+    color: #666;
+    margin: 0 0 4px 0;
+    font-weight: 400;
+  }
+
+  .sp-empty-help {
+    font-size: 16px;
+    color: #666;
+    margin: 0 0 32px 0;
+    font-weight: 400;
+  }
+
+  /* Collections Grid - Modified for 1 column */
+  .sp-collections-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Changed to 1 column */
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .sp-collection-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background: #f8f8f8;
+    border-radius: 12px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+  }
+
+  .sp-collection-card:hover {
+    background: #f0f0f0;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .sp-collection-image {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: #e8e4d9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .sp-collection-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .sp-collection-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f5f1e8 0%, #e8e4d9 100%);
+  }
+
+  /* Collection placeholder bottles */
+  .sp-bottles-group {
+    display: flex;
+    gap: 2px;
+    align-items: flex-end;
+  }
+
+  .sp-bottle {
+    border-radius: 1px 1px 2px 2px;
+    position: relative;
+  }
+
+  .sp-bottle::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3px;
+    height: 2px;
+    background: #999;
+    border-radius: 1px;
+  }
+
+  /* Impressions bottles */
+  .sp-bottle.impressions {
+    width: 8px;
+    height: 14px;
+    background: #d4756b;
+  }
+
+  .sp-bottle.impressions-2 {
+    width: 8px;
+    height: 16px;
+    background: #e67e5b;
+  }
+
+  .sp-bottle.impressions-3 {
+    width: 8px;
+    height: 12px;
+    background: #c66a5a;
+  }
+
+  /* Originals bottle */
+  .sp-single-bottle.originals {
+    width: 16px;
+    height: 24px;
+    background: #e67e5b;
+    border-radius: 2px 2px 4px 4px;
+    position: relative;
+  }
+
+  .sp-single-bottle.originals::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 4px;
+    background: #999;
+    border-radius: 2px;
+  }
+
+  /* Best-sellers bottles */
+  .sp-bottle.best-1 {
+    width: 10px;
+    height: 16px;
+    background: #e67e5b;
+  }
+
+  .sp-bottle.best-2 {
+    width: 10px;
+    height: 18px;
+    background: #d4756b;
+  }
+
+  /* Home Scents bottle */
+  .sp-single-bottle.home-scents {
+    width: 16px;
+    height: 24px;
+    background: #c8a882;
+    border-radius: 2px 2px 4px 4px;
+    position: relative;
+  }
+
+  .sp-single-bottle.home-scents::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 4px;
+    background: #999;
+    border-radius: 2px;
+  }
+
+  .sp-collection-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    margin: 0;
+    text-align: left;
+    line-height: 1.3;
+  }
+
+  /* Shop All Button */
+  .sp-shop-all-btn {
+    display: inline-block;
+    background: #cbdd00;
+    color: white;
+    padding: 16px 32px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    border: 2px solid #cbdd00;
+    margin-bottom: 20px;
+  }
+
+  .sp-shop-all-btn:hover {
+    background: white;
+    color: #cbdd00;
+    border-color: #cbdd00;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(230, 126, 91, 0.2);
+  }
+
+  /* Free Shipping Text */
+  .sp-free-shipping-text {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+    font-weight: 400;
+  }
+
+  /* Bundle Section - Beige background with rounded corners */
+  .sp-bundle-section {
+    padding: 20px;
+    background: white;
+  }
+
+  .sp-bundle-container {
+    background: #f5f1e8;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+
+  .sp-bundle-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+
+  .sp-logo-text {
+    font-weight: 600;
+    color: #e67e5b;
+    font-size: 14px;
+  }
+
+  .sp-plus-badge {
+    background: #e67e5b;
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 4px;
+    border-radius: 2px;
+    line-height: 1;
+  }
+
+  .sp-membership-text {
+    font-size: 11px;
+    font-weight: 600;
+    color: #666;
+    letter-spacing: 0.5px;
+  }
+
+  .sp-info-icon {
+    width: 16px;
+    height: 16px;
+    color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+  }
+
+  /* Progress Lines */
+  .sp-progress-lines {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 16px;
+    justify-content: center;
+  }
+
+  .sp-progress-line {
+    width: 60px;
+    height: 4px;
+    background: white;
+    border-radius: 2px;
+    transition: background-color 0.3s ease;
+  }
+
+  .sp-progress-line.sp-active {
+    background: #333;
+  }
+
+  /* Updated bundle tiers from 3 to 5 tiers with new discount and shipping structure */
+  .sp-bundle-tiers {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 16px;
+  }
+
+  .sp-tier {
+    flex: 1;
+    text-align: center;
+    padding: 8px 4px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 2px solid transparent;
+    border-radius: 6px;
+    position: relative;
+  }
+
+  .sp-tier.sp-tier-active {
+    border-color: #e67e5b;
+    background: #e67e5b;
+    color: white;
+  }
+
+  .sp-tier-items {
+    font-size: 10px;
+    margin-bottom: 2px;
+    font-weight: 500;
+  }
+
+  .sp-tier-discount {
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  /* Updated shipping message for 2+ items */
+  .sp-free-shipping {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #333;
+    display: none;
+  }
+
+  .sp-shipping-circle {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+  }
+
+  /* Login Section - Updated Design */
+  .sp-login-section {
+    padding: 0 20px 20px;
+    background: white;
+  }
+
+  .sp-login-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+  }
+
+  .sp-go-to-summary {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: none;
+    color: #cbdd00;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 0;
+    transition: color 0.2s ease;
+  }
+
+  .sp-go-to-summary:hover {
+    color: #cbdd00;
+  }
+
+  .sp-go-to-summary svg {
+    color: #cbdd00;
+    transition: color 0.2s ease;
+  }
+
+  .sp-go-to-summary:hover svg {
+    color: #cbdd00;
+  }
+
+  .sp-login-link {
+    color: #cbdd00;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+
+  .sp-login-link:hover {
+    color: #cbdd00;
+  }
+
+  /* Cart Section - ALL PRODUCTS VERTICAL */
+  .sp-cart-section {
+    padding: 0 20px 20px;
+    background: white;
+  }
+
+  .sp-cart-container {
+    background: #f5f1e8;
+    border-radius: 12px;
+    padding: 20px;
+  }
+
+  .sp-cart-header-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .sp-section-number {
+    width: 28px;
+    height: 28px;
+    background: #e67e5b;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .sp-cart-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0;
+    color: #333;
+    letter-spacing: 0.5px;
+  }
+
+  .sp-cart-items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .sp-product-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    transition: opacity 0.3s ease;
+  }
+
+  .sp-product-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .sp-product-image-container {
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .sp-product-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    background: white;
+  }
+
+  .sp-product-category-badge {
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    background: white;
+    color: #e67e5b;
+    font-size: 9px;
+    font-weight: 600;
+    padding: 3px 6px;
+    border-radius: 8px;
+    text-transform: capitalize;
+    border: 1px solid #e67e5b;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .sp-product-details {
+    flex: 1;
+    min-width: 0;
+    background: #fffcf7;
+    padding: 12px;
+    border-radius: 8px;
+  }
+
+  .sp-product-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+  }
+
+  .sp-product-title {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0;
+    color: #333;
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+    flex: 1;
+    margin-right: 16px;
+    max-width: 180px;
+  }
+
+  .sp-product-pricing {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+    flex-shrink: 0;
+  }
+
+  .sp-discounted-price {
+    font-size: 14px;
+    font-weight: 700;
+    color: #e67e5b;
+    line-height: 1;
+  }
+
+  .sp-original-price {
+    font-size: 12px;
+    color: #999;
+    text-decoration: line-through;
+    line-height: 1;
+  }
+
+  .sp-product-description {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 4px;
+    line-height: 1.3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+
+  .sp-product-vendor {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  .sp-product-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .sp-quantity-section {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    background: white;
+    overflow: hidden;
+  }
+
+  .sp-qty-decrease,
+  .sp-qty-increase {
+    width: 32px;
+    height: 32px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    transition: background-color 0.2s ease;
+  }
+
+  .sp-qty-decrease:hover,
+  .sp-qty-increase:hover {
+    background: #f5f5f5;
+  }
+
+  .sp-qty-increase.sp-qty-disabled {
+    opacity: 0.4 !important;
+    cursor: not-allowed !important;
+    pointer-events: none !important;
+    background: none !important;
+  }
+
+  .sp-qty-increase.sp-qty-disabled:hover {
+    background: none !important;
+  }
+
+  .sp-qty-decrease.sp-qty-disabled {
+    opacity: 0.4 !important;
+    cursor: not-allowed !important;
+    pointer-events: none !important;
+    background: none !important;
+  }
+
+  .sp-qty-decrease.sp-qty-disabled:hover {
+    background: none !important;
+  }
+
+  .sp-quantity-display {
+    padding: 0 16px;
+    font-size: 14px;
+    font-weight: 600;
+    min-width: 24px;
+    text-align: center;
+    color: #333;
+  }
+
+  .sp-remove-product {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #999;
+    padding: 6px;
+    border-radius: 4px;
+    transition: color 0.2s ease;
+  }
+
+  .sp-remove-product:hover {
+    color: #666;
+    background: rgba(0, 0, 0, 0.05);
+  }
+
+  /* Shop Method Section - Fixed Border Colors */
+  .sp-shop-method-section {
+    padding: 0 20px 20px;
+  }
+
+  .sp-shop-box {
+    background: #e8e4d9;
+    border-radius: 12px;
+    padding: 16px;
+  }
+
+  .sp-section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .sp-section-header .sp-section-number {
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+  }
+
+  .sp-section-header h2 {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0;
+    color: #333;
+    letter-spacing: 0.5px;
+  }
+
+  .sp-shop-options {
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .sp-shop-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    border: 2px solid #ccc;
+    border-radius: 12px;
+    cursor: pointer;
+    background: transparent;
+    transition: all 0.2s ease;
+  }
+
+  .sp-shop-option.sp-option-selected {
+    border-color: #e67e5b;
+    background: transparent;
+  }
+
+  .sp-radio-container {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+
+  .sp-shop-option input[type='radio'] {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    cursor: pointer;
+  }
+
+  .sp-radio-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .sp-shop-option.sp-option-selected .sp-radio-label {
+    border-color: #e67e5b;
+    background: white;
+  }
+
+  .sp-shop-option.sp-option-selected .sp-radio-label::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #e67e5b;
+  }
+
+  .sp-option-content {
+    flex: 1;
+  }
+
+  .sp-option-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+  }
+
+  .sp-option-left {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+  }
+
+  .sp-logo-inline {
+    font-weight: 600;
+    color: #e67e5b;
+    font-size: 14px;
+  }
+
+  .sp-plus-small {
+    background: #e67e5b;
+    color: white;
+    font-size: 8px;
+    font-weight: 700;
+    padding: 1px 3px;
+    border-radius: 2px;
+    line-height: 1;
+    vertical-align: super;
+  }
+
+  .sp-option-price {
+    font-size: 16px;
+    font-weight: 700;
+    color: #333;
+  }
+
+  .sp-shop-option.sp-option-selected .sp-option-price {
+    color: #e67e5b;
+  }
+
+  .sp-option-subtext {
+    font-size: 12px;
+    color: #666;
+    margin: 0;
+  }
+
+  /* Sp+ Benefits - Updated Colors */
+  .sp-benefits {
+    background: transparent;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .sp-benefits-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 12px;
+    cursor: pointer;
+    background: #f1e9dd;
+    border-radius: 8px;
+  }
+
+  .sp-benefits-header .sp-logo-text {
+    font-size: 14px;
+  }
+
+  .sp-chevron {
+    margin-left: auto;
+    transition: transform 0.3s ease;
+  }
+
+  .sp-benefits.sp-expanded .sp-chevron {
+    transform: rotate(180deg);
+  }
+
+  .sp-benefits.sp-expanded .sp-benefits-header {
+    border-radius: 8px 8px 0 0;
+  }
+
+  .sp-benefits-content {
+    padding: 12px;
+    display: none;
+    background: #faf6f0;
+    border-radius: 0 0 8px 8px;
+  }
+
+  .sp-benefits.sp-expanded .sp-benefits-content {
+    display: block;
+  }
+
+  .sp-benefits-content p {
+    font-size: 11px;
+    line-height: 1.4;
+    color: #666;
+    margin-bottom: 8px;
+  }
+
+  .sp-opt-out-btn {
+    background: none;
+    border: none;
+    color: #e67e5b;
+    font-size: 11px;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  /* Order Summary - Updated to match reference image */
+  .sp-order-summary-section {
+    padding: 0 20px 20px;
+  }
+
+  .sp-order-summary-section.sp-hidden {
+    display: none;
+  }
+
+  .sp-summary-box {
+    background: white;
+    border: 2px solid #e67e5b;
+    border-radius: 12px;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .sp-summary-box .sp-section-header {
+    background: #f1e9dd;
+    padding: 16px;
+    margin: 0;
+    border-radius: 0;
+  }
+
+  .sp-summary-details {
+    padding: 16px;
+    background: white;
+  }
+
+  .sp-summary-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+
+  .sp-summary-label {
+    color: #333;
+    font-weight: 600;
+  }
+
+  .sp-summary-price {
+    color: #333;
+    font-weight: 400;
+  }
+
+  .sp-summary-line.sp-member-discount-line {
+    color: #e67e5b;
+    font-weight: 600;
+  }
+
+  .sp-tax-note {
+    font-size: 12px;
+    color: #999;
+    text-align: right;
+    margin-top: 12px;
+  }
+
+  .sp-discount-notice {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #f1e9dd;
+    padding: 8px;
+    border-radius: 4px;
+    margin-top: 12px;
+  }
+
+  /* Recommendations - Updated to match reference image */
+  .sp-recommendations-section {
+    padding: 0 20px 20px;
+  }
+
+  .sp-recommendations-section h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #333;
+  }
+
+  .sp-recommended-products {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    scroll-behavior: smooth;
+  }
+
+  .sp-recommended-products::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  .sp-recommended-products::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 2px;
+  }
+
+  .sp-recommended-products::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 2px;
+  }
+
+  .sp-recommended-products::-webkit-scrollbar-thumb:hover {
+    background: #999;
+  }
+
+  .sp-recommended-item {
+    flex-shrink: 0;
+    width: 140px;
+    background: #fffcf7;
+    border-radius: 8px;
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #f0f0f0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sp-rec-image {
+    width: 100%;
+    height: 120px;
+    margin-bottom: 12px;
+    background: #f8f8f8;
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .sp-rec-product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 6px;
+  }
+
+  .sp-rec-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f5f1e8 0%, #e8e4d9 100%);
+  }
+
+  .sp-bottles-group {
+    display: flex;
+    gap: 2px;
+    align-items: flex-end;
+  }
+
+  .sp-bottle {
+    width: 12px;
+    height: 20px;
+    background: #d4756b;
+    border-radius: 1px 1px 3px 3px;
+    position: relative;
+  }
+
+  .sp-bottle:nth-child(2) {
+    height: 24px;
+    background: #e67e5b;
+  }
+
+  .sp-bottle:nth-child(3) {
+    height: 18px;
+    background: #c66a5a;
+  }
+
+  .sp-bottle::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 3px;
+    background: #999;
+    border-radius: 1px;
+  }
+
+  .sp-single-bottle {
+    width: 20px;
+    height: 32px;
+    background: #e67e5b;
+    border-radius: 2px 2px 6px 6px;
+    position: relative;
+  }
+
+  .sp-single-bottle.citrus {
+    background: #f4d03f;
+  }
+
+  .sp-single-bottle::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 6px;
+    background: #999;
+    border-radius: 2px;
+  }
+
+  .sp-rec-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    flex: 1; /* key */
+  }
+
+  .sp-rec-details h4 {
+    font-size: 12px;
+    font-weight: 700;
+    margin: 0;
+    color: #333;
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+    text-align: center;
+    min-height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .sp-rec-vendor {
+    font-size: 10px;
+    color: #666;
+    margin: 0;
+    line-height: 1.2;
+    text-align: center;
+    min-height: 12px;
+  }
+
+  .sp-rec-inspired {
+    font-size: 9px;
+    color: #666;
+    margin: 0;
+    line-height: 1.2;
+    text-align: center;
+    min-height: 12px;
+  }
+
+  .sp-rec-price {
+    font-size: 14px;
+    font-weight: 700;
+    color: #333;
+    margin: 8px 0;
+    text-align: center;
+  }
+
+  .sp-add-to-cart-btn {
+    background: #f4ff41;
+    padding: 8px 12px;
+    font-size: 10px;
+    font-weight: 600;
+    border-radius: 20px;
+    cursor: pointer;
+    width: 100%;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.2s ease;
+    color: #000;
+    border: none;
+    margin-top: auto; /* key */
+  }
+
+  .sp-add-to-cart-btn:hover {
+    background: #f4ff41;
+    color: #000;
+  }
+
+  /* Checkout Section */
+  .sp-checkout-section {
+    padding: 20px;
+    background: white;
+    border-top: 1px solid #e0ddd4;
+  }
+
+  .sp-checkout-btn {
+    width: 100%;
+    background: #f4ff41 !important;
+    color: #000;
+    border: none;
+    padding: 16px;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .sp-checkout-btn:hover {
+    background: #f4ff41 !important;
+  }
+
+  .sp-checkout-total {
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .sp-checkout-notice {
+    text-align: center;
+  }
+
+  .sp-checkout-notice p {
+    font-size: 10px;
+    color: #666;
+    line-height: 1.3;
+    margin: 0;
+  }
+
+  .sp-checkout-notice a {
+    color: #e67e5b;
+    text-decoration: underline;
+  }
+
+  /* Responsive */
+  @media (max-width: 480px) {
+    .sp-cart-drawer {
+      max-width: 80%;
+    }
+
+    .sp-product-actions {
+      width: 105px;
+    }
+    .sp-remove-product {
+      padding: 0px;
+    }
+    .sp-bundle-tiers {
+      flex-wrap: wrap;
+    }
+
+    .sp-tier {
+      min-width: calc(50% - 3px);
+    }
+
+    .sp-product-item {
+      flex-direction: row;
+      gap: 3px;
+    }
+
+    .sp-product-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .sp-product-pricing {
+      align-items: flex-start;
+    }
+
+    .sp-product-title {
+      max-width: 100%;
+    }
+
+    .sp-empty-cart-full-container {
+      padding: 30px 15px;
+    }
+
+    .sp-empty-title {
+      font-size: 28px;
+    }
+
+    .sp-collections-grid {
+      gap: 12px;
+    }
+
+    .sp-collection-card {
+      padding: 12px;
+      gap: 10px;
+    }
+
+    .sp-collection-image {
+      width: 40px;
+      height: 40px;
+    }
+
+    .sp-collection-name {
+      font-size: 13px;
+    }
+
+    .sp-shop-all-btn {
+      padding: 14px 28px;
+      font-size: 13px;
+    }
+  }
+  .sp-original-price-bundle {
+    font-size: 14px;
+    color: #cbdd00 !important;
+    line-height: 1;
+    font-weight: 700;
+  }
+  .bundle-restrict {
+    color: #000 !important;
+    font-size: 13px;
+    text-align: left;
+    font-style: italic;
+  }
+  .sp-logo-image {
+    height: 30px !important; /* adjust as needed */
+    width: auto;
+    display: block;
+  }
+  .sp-rec-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+</style>
+
+{% comment %}
+  Renders cart drawer with empty state collections and all other sections.
+  Usage: {% render 'cart-drawer-complete' %}
+{% endcomment %}
+
+<!-- Cart Drawer Overlay -->
+<div id="sp-cart-overlay" class="sp-cart-overlay" onclick="closeDossierCart()"></div>
+
+<!-- Cart Drawer -->
+<div id="sp-cart-drawer" class="sp-cart-drawer">
+  <div class="sp-cart-content">
+    <!-- Header -->
+    <div class="sp-cart-header">
+      <button class="sp-back-btn" onclick="closeDossierCart()">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Back
+      </button>
+    </div>
+
+    <!-- Empty Cart State - Full Drawer -->
+    <div
+      class="sp-empty-cart-full-container"
+      id="sp-empty-cart-full-container"
+      {% if cart.items.size > 0 %}
+        style="display: none;"
+      {% endif %}>
+      <div class="sp-empty-cart-content">
+        <h2 class="sp-empty-title">Oops...</h2>
+        <p class="sp-empty-subtitle">You have no items in your bag.</p>
+        <p class="sp-empty-help">Let us help!</p>
+
+        <!-- Collections Grid -->
+        <div class="sp-collections-grid">
+          {% comment %} You can change these collection handles as needed {% endcomment %}
+          {% assign collection_handles = "men,women,bestsellers,unisex" | split: "," %}
+          {% assign collection_names = "Men Inspired Impressions,Women Inspired Impressions,Best-sellers,Unisex Inspired Impression"
+            | split: ","
+          %}
+
+          {% for handle in collection_handles %}
+            {% assign collection = collections[handle] %}
+            {% assign collection_name = collection_names[forloop.index0] %}
+
+            <a
+              href="{{ collection.url | default: '/collections/all' }}"
+              class="sp-collection-card"
+              onclick="closeDossierCart()">
+              <div class="sp-collection-image">
+                {% if collection.image %}
+                  <img src="{{ collection.image | img_url: '120x120' }}" alt="{{ collection_name }}" loading="lazy">
+                {% else %}
+                  <!-- Fallback placeholder based on collection type -->
+                  <div class="sp-collection-placeholder" data-collection="{{ forloop.index }}">
+                    {% case forloop.index %}
+                      {% when 1 %}
+                        <!-- Impressions placeholder -->
+                        <div class="sp-bottles-group">
+                          <div class="sp-bottle impressions"></div>
+                          <div class="sp-bottle impressions-2"></div>
+                          <div class="sp-bottle impressions-3"></div>
+                        </div>
+                      {% when 2 %}
+                        <!-- Originals placeholder -->
+                        <div class="sp-single-bottle originals"></div>
+                      {% when 3 %}
+                        <!-- Best-sellers placeholder -->
+                        <div class="sp-bottles-group bestsellers">
+                          <div class="sp-bottle best-1"></div>
+                          <div class="sp-bottle best-2"></div>
+                        </div>
+                      {% when 4 %}
+                        <!-- Home Scents placeholder -->
+                        <div class="sp-single-bottle home-scents"></div>
+                    {% endcase %}
+                  </div>
+                {% endif %}
+              </div>
+              <h3 class="sp-collection-name">{{ collection_name }}</h3>
+            </a>
+          {% endfor %}
+        </div>
+
+        <!-- Shop All Button -->
+        <a
+          href="https://scentspired.myshopify.com/collections/shop"
+          class="sp-shop-all-btn"
+          onclick="closeDossierCart()">
+          SHOP ALL PERFUMES
+        </a>
+
+        <!-- Free Shipping Text -->
+        <p class="sp-free-shipping-text">Free Shipping over 70$</p>
+      </div>
+    </div>
+
+    <!-- Full Cart Sections -->
+    <div
+      id="sp-full-cart-sections"
+      {% if cart.items.size == 0 %}
+        style="display: none;"
+      {% endif %}>
+      <!-- Bundle Offers Section -->
+      <div class="sp-bundle-section">
+        <div class="sp-bundle-container">
+          <div class="sp-bundle-header">
+            <img
+              src="https://scentspired.com/cdn/shop/files/Scentspired_logo.png?v=1758619291&width=200"
+              alt="Scentspired"
+              class="sp-logo-image" />
+
+            <div class="sp-info-icon">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <circle cx="7" cy="7" r="6" stroke="#999" stroke-width="1"/>
+                <path d="M7 5v4M7 9h.01" stroke="#999" stroke-width="1"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Updated bundle tiers from 3 to 5 tiers with new discount and shipping structure -->
+          <div class="sp-bundle-tiers">
+            <div class="sp-tier" data-items="1">
+              <div class="sp-tier-items">Below $70</div>
+              <div class="sp-tier-discount">$7.99 Shipping</div>
+            </div>
+            <div class="sp-tier" data-items="2">
+              <div class="sp-tier-items">$70+</div>
+              <div class="sp-tier-discount">Free Shipping</div>
+            </div>
+          </div>
+          <!-- Free Shipping Threshold -->
+          <div class="sp-free-shipping">
+            <div class="sp-shipping-circle">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <circle cx="8" cy="8" r="7" stroke="#666" stroke-width="2"/>
+                <circle cx="8" cy="8" r="3" fill="#666"/>
+              </svg>
+            </div>
+            <span><strong>FREE</strong> shipping on orders over $70 | $7.99 shipping under $70</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Login Section - Updated Design -->
+      <div class="sp-login-section">
+        <div class="sp-login-header">
+          <button class="sp-go-to-summary" onclick="scrollToOrderSummary()">
+            <span>Go to Order Summary</span>
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+
+          {% if customer %}
+            <a href="/account" class="sp-login-link">View Account</a>
+          {% else %}
+            <a href="/account/login" class="sp-login-link">Login</a>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Your Cart Section - ALL PRODUCTS VERTICAL -->
+      <div class="sp-cart-section">
+        <div class="sp-cart-container">
+          <div class="sp-cart-header-section">
+            <div class="sp-section-number">1</div>
+            <h2 class="sp-cart-title">YOUR CART</h2>
+          </div>
+
+          <div class="sp-cart-items-list" id="sp-cart-items-list">
+            {% comment %} This content will be dynamically updated by JavaScript {% endcomment %}
+            {% comment %} Initial render based on Liquid for first load {% endcomment %}
+            {% assign total_cart_quantity = 0 %}
+            {% for item in cart.items %}
+              {% assign total_cart_quantity = total_cart_quantity | plus: item.quantity %}
+            {% endfor %}
+
+            <!-- SHIPPING LOGIC ONLY: No Discounts -->
+            {% assign bundle_discount_percentage = 0 %}
+            {% assign shipping_cost_cents = 799 %}
+
+            {% for item in cart.items %}
+              <div
+                class="sp-product-item"
+                data-key="{{ item.key }}"
+                data-variant-id="{{ item.variant.id }}"
+                data-inventory="{{ item.variant.inventory_quantity | default: 999 }}">
+                <div class="sp-product-image-container">
+                  <img src="{{ item.image | img_url: '120x120' }}" alt="{{ item.title }}" class="sp-product-image">
+                </div>
+
+                <div class="sp-product-details">
+                  <div class="sp-product-header">
+                    <h3 class="sp-product-title">{{ item.product.title | upcase }}</h3>
+                    <div class="sp-product-pricing">
+                      {% assign original_price_per_item = item.original_price %}
+                      {% assign total_discounted_line_price = original_price_per_item | times: item.quantity %}
+
+                      <span class="sp-discounted-price">
+                        $<span
+                          class="price-value"
+                          data-single-price="{{ original_price_per_item | money_without_currency }}"
+                          data-original-single="{{ original_price_per_item | money_without_currency }}"
+                          data-discount="0">
+                          {{- total_discounted_line_price | money_without_currency -}}
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="sp-product-description">
+                    {% if item.product.description != blank %}
+                      {{ item.product.description | strip_html | truncate: 60 }}
+                    {% else %}
+                      Eau de Parfum, Size: {{ item.variant.option1 | default: "50ml" }} / 1.7oz
+                    {% endif %}
+                  </div>
+
+                  <div class="sp-product-vendor">
+                    {% if item.product.metafields.custom.inspired_by != blank %}
+                      Inspired by {{ item.product.metafields.custom.inspired_by }}
+                    {% elsif item.vendor != blank and item.vendor != "Your Store" %}
+                      {{ item.vendor }}
+                    {% else %}
+                      Dossier Perfumes
+                    {% endif %}
+                  </div>
+
+                  <div class="sp-product-actions">
+                    <div class="sp-quantity-section">
+                      <button class="sp-qty-decrease">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                          <path d="M3 7h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                      </button>
+                      <span class="sp-quantity-display" data-quantity="{{ item.quantity }}">{{ item.quantity }}</span>
+                      <button class="sp-qty-increase">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                          <path d="M7 3v8M3 7h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                      </button>
+                    </div>
+
+                    <button class="sp-remove-product" onclick="removeDossierCartItem('{{ item.key }}')">
+                      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                        <path d="M2.25 4.5h13.5M6 4.5V3a1.5 1.5 0 011.5-1.5h3A1.5 1.5 0 0112 3v1.5m3 0v10.5a1.5 1.5 0 01-1.5 1.5h-9A1.5 1.5 0 013 15V4.5h12z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Order Summary Section - Move this right after Pick the Way You Shop -->
+      <div class="sp-order-summary-section" id="sp-order-summary">
+        <div class="sp-summary-box">
+          <div class="sp-section-header">
+            <span class="sp-section-number">2</span>
+            <h2>ORDER SUMMARY</h2>
+          </div>
+
+          <div class="sp-summary-details">
+            <div class="sp-summary-line">
+              <span class="sp-summary-label"> Cart Subtotal </span>
+              <span class="sp-summary-price" id="summary-initial-price">$0.00</span>
+            </div>
+
+            <div class="sp-summary-line">
+              <span class="sp-summary-label">Shipping</span>
+              <span class="sp-summary-price" id="sp-shipping-cost">$3.95</span>
+            </div>
+
+            <div class="sp-summary-line sp-member-discount-line" id="member-discount-line" style="display: none;">
+              <span>d<sup>+</sup> Discount: 10% OFF</span>
+              <span id="summary-member-discount">-$0.00</span>
+            </div>
+
+            <div class="sp-tax-note" style="display: none;">
+              <span>Tax is calculated at next step</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Move discount notice outside the box -->
+        <div class="sp-discount-notice" id="discount-notice" style="display: none;">
+          <div class="sp-check-icon">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <rect width="16" height="16" rx="8" fill="#e67e5b"/>
+              <path d="M4.5 8l2.5 2.5 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <span>Your Sp+ discount has been automatically added to your total.</span>
+        </div>
+      </div>
+
+      <!-- You Might Like to Add Section -->
+      <div class="sp-recommendations-section">
+        <h3>You might like to add</h3>
+
+        <div class="sp-recommended-products">
+          {% comment %} Get products from most-popular collection {% endcomment %}
+          {% assign recommended_collection = collections.bestsellers %}
+          {% if recommended_collection.products.size > 0 %}
+            {% for product in recommended_collection.products limit: 10 %}
+              <div class="sp-recommended-item" data-product-id="{{ product.id }}">
+                <a href="{{ product.url }}" class="sp-rec-link">
+                  <div class="sp-rec-image">
+                    {% if product.featured_image %}
+                      <img
+                        src="{{ product.featured_image | img_url: '200x200' }}"
+                        alt="{{ product.title }}"
+                        class="sp-rec-product-image">
+                    {% else %}
+                      <div class="sp-rec-placeholder">
+                        <div class="sp-single-bottle"></div>
+                      </div>
+                    {% endif %}
+                  </div>
+                  <div class="sp-rec-details">
+                    <h4>{{ product.title | upcase }}</h4>
+                    <p class="sp-rec-vendor">
+                      {% if product.vendor and product.vendor != "Your Store" %}
+                        {{ product.vendor }}
+                      {% else %}
+                        Dossier Perfumes
+                      {% endif %}
+                    </p>
+                    {% if product.metafields.custom.inspired_by %}
+                      <p class="sp-rec-inspired">Inspired by {{ product.metafields.custom.inspired_by }}</p>
+                    {% endif %}
+                    <div class="sp-rec-price">${{ product.price | money_without_currency }}</div>
+                  </div>
+                </a>
+                <button
+                  class="sp-add-to-cart-btn"
+                  onclick="addDossierRecommended('{{ product.variants.first.id }}', '{{ product.title | escape }}', '{{ product.featured_image | img_url: '120x120' }}', {{ product.price }}, {{ product.compare_at_price | default: product.price }})">
+                  ADD TO CART
+                </button>
+              </div>
+            {% endfor %}
+          {% else %}
+            {% comment %} Fallback products if collection doesn't exist {% endcomment %}
+            <div class="sp-recommended-item">
+              <div class="sp-rec-image">
+                <div class="sp-rec-placeholder">
+                  <div class="sp-bottles-group">
+                    <div class="sp-bottle"></div>
+                    <div class="sp-bottle"></div>
+                    <div class="sp-bottle"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="sp-rec-details">
+                <h4>DISCOVERY SET</h4>
+                <p class="sp-rec-vendor">Dossier Perfumes</p>
+                <div class="sp-rec-price">$99</div>
+                <button class="sp-add-to-cart-btn" onclick="addDossierRecommended('discovery-set')">ADD TO CART</button>
+              </div>
+            </div>
+
+            <div class="sp-recommended-item">
+              <div class="sp-rec-image">
+                <div class="sp-rec-placeholder">
+                  <div class="sp-single-bottle"></div>
+                </div>
+              </div>
+              <div class="sp-rec-details">
+                <h4>WOODY SAGE</h4>
+                <p class="sp-rec-vendor">Inspired by</p>
+                <p class="sp-rec-inspired">Jo Malone's Wood Sage & Sea Salt</p>
+                <div class="sp-rec-price">$29</div>
+                <button class="sp-add-to-cart-btn" onclick="addDossierRecommended('woody-sage')">ADD TO CART</button>
+              </div>
+            </div>
+
+            <div class="sp-recommended-item">
+              <div class="sp-rec-image">
+                <div class="sp-rec-placeholder">
+                  <div class="sp-single-bottle citrus"></div>
+                </div>
+              </div>
+              <div class="sp-rec-details">
+                <h4>FLORA LAVENDER</h4>
+                <p class="sp-rec-vendor">Inspired by</p>
+                <p class="sp-rec-inspired">YSL's Libre</p>
+                <div class="sp-rec-price">$29</div>
+                <button class="sp-add-to-cart-btn" onclick="addDossierRecommended('flora-lavender')">
+                  ADD TO CART
+                </button>
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Checkout Button -->
+      <div class="sp-checkout-section">
+        <button class="sp-checkout-btn" onclick="proceedToDossierCheckout()">
+          GO TO CHECKOUT
+          <span class="sp-checkout-total" id="checkout-total">$0.00</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Global variables
+let isUserLoggedIn = false;
+let currentShopMethod = 'guest';
+let isProcessingCartAction = false; // Added flag to prevent duplicate submissions
+
+// Helper function to generate HTML for a single cart item
+function generateCartItemHtml(item) {
+  const originalPricePerItem = item.original_price;
+  const totalDiscountedLinePrice = originalPricePerItem * item.quantity;
+
+  const categoryBadge = 'Unisex';
+  const description = `Eau de Parfum, Size: ${item.variant_options[0] || '50ml'} / 1.7oz`;
+  const vendor = item.vendor && item.vendor !== 'Your Store' ? item.vendor : 'Dossier Perfumes';
+
+  return `
+    <div class="sp-product-item" data-key="${item.key}" data-variant-id="${item.variant_id}" data-inventory="${item.variant_inventory_quantity || 999}">
+      <div class="sp-product-image-container">
+        <img
+          src="${item.image.replace(/(\.[^.]*)$/, '_200x$1')}"
+          alt="${item.title}"
+          class="sp-product-image"
+          loading="lazy"
+          width="80"
+          height="100">
+      </div>
+
+      <div class="sp-product-details">
+           <div class="sp-product-header">
+  <h3 class="sp-product-title">
+    ${
+      // Keywords that make the title non-clickable
+      !['SET', 'FAVOURITES', 'SIGNATURE', 'DISCOVERY SET'].some(keyword =>
+        item.title.toUpperCase().includes(keyword)
+      )
+        ? `<a href="${item.url}" style="text-decoration: none; color: inherit;">
+            ${item.title.toUpperCase()}
+          </a>`
+        : item.title.toUpperCase()
+    }
+  </h3>
+  <div class="sp-product-pricing">
+    <span class="sp-discounted-price">
+      $<span class="price-value"
+        data-single-price="${(originalPricePerItem / 100).toFixed(2)}"
+        data-original-single="${(originalPricePerItem / 100).toFixed(2)}"
+        data-discount="0">${(totalDiscountedLinePrice / 100).toFixed(2)}
+      </span>
+    </span>
+  </div>
+</div>
+
+        <div class="sp-product-vendor">${vendor}</div>
+
+        <!-- quantity and remove buttons -->
+        <div class="sp-product-actions">
+                  <div class="sp-quantity-section">
+                      <button class="sp-qty-decrease">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                          <path d="M3 7h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                      </button>
+                      <span class="sp-quantity-display" data-quantity="${item.quantity}">${item.quantity}</span>
+                      <button class="sp-qty-increase">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                          <path d="M7 3v8M3 7h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                      </button>
+                    </div>
+
+          <button class="sp-remove-product" data-key="${item.key}" onclick="removeDossierCartItem(this.dataset.key)">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path d="M2.25 4.5h13.5M6 4.5V3a1.5 1.5 0 011.5-1.5h3A1.5 1.5 0 0112 3v1.5m3 0v10.5a1.5 1.5 0 01-1.5 1.5h-9A1.5 1.5 0 013 15V4.5h12z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// Main function to update the entire cart UI based on new cart data
+function updateDossierCartUI(cart) {
+  const emptyCartContainer = document.getElementById('sp-empty-cart-full-container');
+  const fullCartSections = document.getElementById('sp-full-cart-sections');
+  const cartItemsList = document.getElementById('sp-cart-items-list');
+  {% comment %} const cartCount = document.querySelector('.cart-count, [data-cart-count]'); {% endcomment %}
+
+  if (cart.item_count === 0) {
+    if (emptyCartContainer) emptyCartContainer.style.display = 'flex';
+    if (fullCartSections) fullCartSections.style.display = 'none';
+  } else {
+    if (emptyCartContainer) emptyCartContainer.style.display = 'none';
+    if (fullCartSections) fullCartSections.style.display = 'block';
+
+    // Re-render cart items
+    let itemsHtml = '';
+    
+    cart.items.forEach(item => {
+      itemsHtml += generateCartItemHtml(item);
+    });
+
+
+
+   if (cartItemsList) {
+  cartItemsList.innerHTML = itemsHtml;
+
+  // Add click listeners for qty buttons
+cart.items.forEach(item => {
+  const itemEl = document.querySelector(`[data-key="${item.key}"]`);
+  if (!itemEl) return;
+
+  const plusBtn = itemEl.querySelector('.sp-qty-increase');
+  const minusBtn = itemEl.querySelector('.sp-qty-decrease');
+
+  if (plusBtn) {
+    plusBtn.onclick = async () => {
+      const quantityEl = itemEl.querySelector('.sp-quantity-display');
+      let currentQty = parseInt(quantityEl?.textContent || '0', 10);
+      const maxQty = item.variant_inventory_quantity;
+
+      if (item.variant_inventory_policy === 'deny' && currentQty >= maxQty) {
+        showCartDrawerMessage(`You can only add up to ${maxQty} of this item.`);
+        return; // stop
+      }
+
+      // Disable button instantly for better UX
+      plusBtn.disabled = true;
+      plusBtn.classList.add('sp-qty-disabled');
+      plusBtn.style.pointerEvents = 'none';
+      plusBtn.style.cursor = 'not-allowed';
+
+      await updateDossierItemQuantity(item.key, currentQty + 1);
+    };
+  }
+
+  if (minusBtn) {
+    minusBtn.onclick = async () => {
+      const quantityEl = itemEl.querySelector('.sp-quantity-display');
+      let currentQty = parseInt(quantityEl?.textContent || '0', 10);
+
+      if (currentQty <= 1) return; // stop at 1
+
+      // Disable button instantly for better UX
+      minusBtn.disabled = true;
+      minusBtn.classList.add('sp-qty-disabled');
+      minusBtn.style.pointerEvents = 'none';
+
+      await updateDossierItemQuantity(item.key, currentQty - 1);
+    };
+  }
+});
+
+  // CRITICAL: Enforce inventory limits AFTER event listeners are attached
+  // This will properly disable buttons that are at max quantity
+  enforceInventoryButtons(cart);
+}
+
+}
+
+  // Update global cart count
+  {% comment %} if (cartCount) {
+    cartCount.textContent = cart.item_count;
+  } {% endcomment %}
+
+// Update global cart count - FIXED FOR MULTIPLE CART ICONS
+// Update global cart count - FIXED FOR EMPTY CART
+const cartIconBubbles = document.querySelectorAll('#cart-icon-bubble');
+
+cartIconBubbles.forEach(cartIcon => {
+  if (cart.item_count > 0) {
+    // Check if cart-count-bubble already exists
+    let cartCountBubble = cartIcon.querySelector('.cart-count-bubble');
+    
+    if (!cartCountBubble) {
+      // Create the bubble if it doesn't exist (cart was empty)
+      cartCountBubble = document.createElement('div');
+      cartCountBubble.className = 'cart-count-bubble';
+      
+      const countSpan = document.createElement('span');
+      countSpan.setAttribute('aria-hidden', 'true');
+      countSpan.textContent = cart.item_count;
+      
+      const srSpan = document.createElement('span');
+      srSpan.className = 'visually-hidden';
+      srSpan.textContent = `Cart count: ${cart.item_count}`;
+      
+      cartCountBubble.appendChild(countSpan);
+      cartCountBubble.appendChild(srSpan);
+      cartIcon.appendChild(cartCountBubble);
+    } else {
+      // Update existing bubble
+      const cartCountSpan = cartCountBubble.querySelector('span[aria-hidden="true"]');
+      if (cartCountSpan) {
+        cartCountSpan.textContent = cart.item_count;
+      }
+      
+      const cartCountSR = cartCountBubble.querySelector('.visually-hidden');
+      if (cartCountSR) {
+        cartCountSR.textContent = `Cart count: ${cart.item_count}`;
+      }
+      
+      cartCountBubble.style.display = 'block';
+    }
+  } else {
+    // Remove or hide the bubble when cart is empty
+    const cartCountBubble = cartIcon.querySelector('.cart-count-bubble');
+    if (cartCountBubble) {
+      cartCountBubble.remove();
+    }
+  }
+});
+function enforceInventoryButtons(cart) {
+  if (!cart || !cart.items) return;
+
+  cart.items.forEach(item => {
+    const itemEl = document.querySelector(`[data-key="${item.key}"]`);
+    if (!itemEl) return;
+
+    const plusBtn = itemEl.querySelector('.sp-qty-increase');
+    const minusBtn = itemEl.querySelector('.sp-qty-decrease');
+
+    if (!plusBtn || !minusBtn) return;
+
+    // Get inventory from HTML data attribute (set during page render)
+    const inventory = parseInt(itemEl.getAttribute('data-inventory') || '999');
+
+  // Disable + if quantity reaches max inventory using CSS class
+  if (item.quantity >= inventory) {
+  plusBtn.classList.add('sp-qty-disabled');
+  plusBtn.disabled = true;
+  } else {
+  plusBtn.classList.remove('sp-qty-disabled');
+  plusBtn.disabled = false;
+  }
+
+    // Disable - if quantity 1
+    if (item.quantity <= 1) {
+      minusBtn.disabled = true;
+      minusBtn.style.opacity = '0.3';
+      minusBtn.style.pointerEvents = 'none';
+      minusBtn.style.cursor = 'not-allowed';
+      minusBtn.setAttribute('title', 'Minimum quantity is 1');
+    } else {
+      minusBtn.disabled = false;
+      minusBtn.style.opacity = '1';
+      minusBtn.style.pointerEvents = 'auto';
+      minusBtn.style.cursor = 'pointer';
+      minusBtn.removeAttribute('title');
+    }
+  });
+}
+  // Update all dynamic elements with a single fetch
+  updateAllDossierDynamicElements(cart);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Check if customer is logged in
+  {% if customer %}
+    isUserLoggedIn = true;
+  {% else %}
+    isUserLoggedIn = false;
+  {% endif %}
+
+  // Initial UI update based on current cart state
+  fetch('/cart.js')
+    .then(response => response.json())
+    .then(cart => {
+      updateDossierCartUI(cart);
+      // Set default selection based on login status after initial UI update
+      if (!isUserLoggedIn) {
+        selectShopMethod('guest');
+      }
+    })
+    .catch(error => console.error('Error fetching initial cart:', error));
+
+  // Delay to ensure all other theme scripts have loaded before overriding
+  setTimeout(function() {
+    initializeDossierCartTriggers();
+  }, 500); // Reduced delay, adjust if needed
+});
+
+// Dossier Cart Drawer Functions
+function openDossierCart() {
+  const drawer = document.getElementById('sp-cart-drawer');
+  const overlay = document.getElementById('sp-cart-overlay');
+
+  if (drawer) drawer.classList.add('sp-active');
+  if (overlay) overlay.classList.add('sp-active');
+  if (drawer || overlay) {
+    document.body.style.overflow = 'hidden';
+
+    // Update pricing when cart opens
+    setTimeout(() => {
+      fetch('/cart.js')
+        .then(res => {
+          if (!res.ok) throw new Error('Failed to fetch cart');
+          return res.json();
+        })
+        .then(cart => {
+          updateAllDossierDynamicElements(cart);
+        })
+        .catch(err => console.error('Error updating pricing:', err));
+    }, 100);
+  }
+}
+
+function closeDossierCart() {
+  const drawer = document.getElementById('sp-cart-drawer');
+  const overlay = document.getElementById('sp-cart-overlay');
+
+  if (drawer) drawer.classList.remove('sp-active');
+  if (overlay) overlay.classList.remove('sp-active');
+  document.body.style.overflow = '';
+}
+function showCartDrawerMessage(message) {
+  const cartDrawer = document.getElementById('sp-cart-drawer');
+  if (!cartDrawer) return alert(message); // fallback
+
+  // Create message element
+  const msgElem = document.createElement('div');
+  msgElem.style.padding = '1rem';
+  msgElem.style.background = '#ffe0e0';
+  msgElem.style.color = '#900';
+  msgElem.style.marginBottom = '1rem';
+  msgElem.textContent = message;
+
+  cartDrawer.querySelector('.sp-cart-items')?.prepend(msgElem); // prepend inside drawer
+  openDossierCart();
+
+  setTimeout(() => msgElem.remove(), 3000); // auto remove after 3s
+}
+
+
+function toggleDossierBenefits() {
+  const benefits = document.querySelector('.sp-benefits');
+  if (benefits) {
+    benefits.classList.toggle('sp-expanded');
+  }
+}
+
+// Function to scroll to order summary section
+function scrollToOrderSummary() {
+  const orderSummary = document.getElementById('sp-order-summary');
+  if (orderSummary) {
+    orderSummary.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+  }
+}
+
+function selectShopMethod(method) {
+  // If user is not logged in and tries to select sp+, redirect to login
+  if (method === 'sp-plus' && !isUserLoggedIn) {
+    alert('Please log in to your account to access Sp+ benefits and get an additional 10% off.');
+    window.location.href = '/account/login';
+    return;
+  }
+
+  currentShopMethod = method;
+
+  // Update UI
+  const options = document.querySelectorAll('.sp-shop-option');
+  options.forEach(option => {
+    option.classList.remove('sp-option-selected');
+    const radio = option.querySelector('input[type="radio"]');
+    if (radio) radio.checked = false;
+  });
+
+  const selectedOption = document.querySelector(`[data-method="${method}"]`);
+  if (selectedOption) {
+    selectedOption.classList.add('sp-option-selected');
+    const radio = selectedOption.querySelector('input[type="radio"]');
+    if (radio) radio.checked = true;
+  }
+
+  // Update pricing immediately with single fetch
+  fetch('/cart.js')
+    .then(res => res.json())
+    .then(cart => {
+      updateAllDossierDynamicElements(cart);
+    })
+    .catch(err => console.error('Error updating pricing:', err));
+}
+
+// OPTIMIZED: Single function to update all dynamic elements with one fetch
+function updateAllDossierDynamicElements(cart) {
+  // Calculate totals once
+  let totalItems = 0;
+  let subtotal = 0;
+
+  cart.items.forEach(item => {
+    totalItems += item.quantity;
+    subtotal += item.original_line_price;
+  });
+
+  // 1. Update Progress Lines
+  const effectiveItems = Math.max(0, totalItems - 2);
+  const progressLines = document.querySelectorAll('.sp-progress-line');
+  progressLines.forEach((line, index) => {
+    if (index < effectiveItems) {
+      line.classList.add('sp-active');
+    } else {
+      line.classList.remove('sp-active');
+    }
+  });
+
+  // 2. Update Bundle Tier
+  const tiers = document.querySelectorAll('.sp-tier');
+  tiers.forEach(tier => tier.classList.remove('sp-tier-active'));
+
+  if (subtotal >= 7000) { // $70 or more
+    const tier2 = document.querySelector('[data-items="2"]');
+    if (tier2) tier2.classList.add('sp-tier-active');
+  } else { // Less than $70
+    const tier1 = document.querySelector('[data-items="1"]');
+    if (tier1) tier1.classList.add('sp-tier-active');
+  }
+
+  // 3. Update Pricing Display
+  let shipping = 0;
+  if (subtotal < 7000) {
+    shipping = 799; // $7.99
+  } else {
+    shipping = 0; // FREE
+  }
+
+  const finalTotal = subtotal + shipping;
+  const checkoutTotal = document.getElementById('checkout-total');
+  if (checkoutTotal) {
+    checkoutTotal.textContent = `$${(finalTotal / 100).toFixed(2)}`;
+  }
+
+  // Update order summary
+  updateOrderSummary(subtotal, shipping);
+}
+
+// Update order summary - No Discounts
+function updateOrderSummary(subtotal, shipping) {
+  // Show initial price (no discounts)
+  const initialPrice = document.getElementById('summary-initial-price');
+  if (initialPrice) {
+    initialPrice.textContent = `$${(subtotal / 100).toFixed(2)}`;
+  }
+
+  // Update shipping UI
+  const shippingCost = document.getElementById('sp-shipping-cost');
+  if (shippingCost) {
+    shippingCost.textContent = shipping === 0
+      ? 'FREE'
+      : `$${(shipping / 100).toFixed(2)}`;
+  }
+
+  // Hide discount lines since there are no discounts
+  const memberDiscountLine = document.getElementById('member-discount-line');
+  if (memberDiscountLine) {
+    memberDiscountLine.style.display = 'none';
+  }
+
+  // Hide discount notice
+  const discountNotice = document.getElementById('discount-notice');
+  if (discountNotice) {
+    discountNotice.style.display = 'none';
+  }
+}
+
+
+
+async function updateDossierItemQuantity(key, newQuantity) {
+  if (isProcessingCartAction) return;
+  isProcessingCartAction = true;
+
+  try {
+    await fetch('/cart/change.js', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: key, quantity: newQuantity })
+    });
+
+    const cart = await fetch('/cart.js').then(r => r.json());
+    
+    // Find the item element and its inventory
+    const itemEl = document.querySelector(`[data-key="${key}"]`);
+    if (itemEl) {
+      const cartItem = cart.items.find(item => item.key === key);
+      const inventory = parseInt(itemEl.getAttribute('data-inventory') || '999', 10);
+      const plusBtn = itemEl.querySelector('.sp-qty-increase');
+      if (plusBtn) {
+        if (cartItem && cartItem.quantity >= inventory) {
+          plusBtn.classList.add('sp-qty-disabled');
+          plusBtn.disabled = true;
+        } else {
+          plusBtn.classList.remove('sp-qty-disabled');
+          plusBtn.disabled = false;
+        }
+      }
+    }
+    
+    // Update the full UI - this will call enforceInventoryButtons
+    updateDossierCartUI(cart);
+
+  } catch (err) {
+    console.error(err);
+  }
+
+  isProcessingCartAction = false;
+}
+
+
+
+function removeDossierCartItem(key) {
+  if (isProcessingCartAction) {
+    console.warn('Cart action already in progress');
+    return;
+  }
+
+  isProcessingCartAction = true;
+
+  // Remove item from UI immediately
+  const productItem = document.querySelector(`[data-key="${key}"]`);
+  if (productItem) {
+    productItem.style.opacity = '0.5';
+    productItem.style.pointerEvents = 'none';
+  }
+
+  fetch('/cart/change.js', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      id: key,
+      quantity: 0
+    })
+  })
+  .then(response => response.json())
+  .then(cart => {
+    // Remove item from DOM
+    if (productItem) {
+      productItem.remove();
+    }
+
+    // Update all prices and UI
+    updateDossierCartUI(cart); // Use the new comprehensive update function
+
+    // If cart is now empty, reload to fully reset to the empty state (optional, but ensures Liquid re-eval)
+    if (cart.item_count === 0) {
+      location.reload();
+    }
+  })
+  .catch(error => {
+    console.error('Error removing item:', error);
+    // Revert UI changes on error
+    if (productItem) {
+      productItem.style.opacity = '1';
+      productItem.style.pointerEvents = 'auto';
+    }
+  })
+  .finally(() => {
+    isProcessingCartAction = false;
+  });
+}
+
+function addDossierRecommended(variantId, productTitle, productImage, productPrice, originalPrice) {
+  if (isProcessingCartAction) {
+    console.warn('Cart action already in progress');
+    return;
+  }
+
+  // Convert variantId to number if it's a string (variant IDs are numeric)
+  const numericVariantId = parseInt(variantId, 10);
+  if (isNaN(numericVariantId)) {
+    console.error('Invalid variant ID:', variantId);
+    alert('Unable to add this product. Please try again.');
+    return;
+  }
+
+  isProcessingCartAction = true;
+
+  // Add the product to cart
+  fetch('/cart/add.js', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      id: numericVariantId,
+      quantity: 1
+    })
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log("[v0] Product added successfully:", productTitle);
+    // Update UI and open drawer, no page reload
+    fetch('/cart.js') // Fetch latest cart state
+      .then(res => res.json())
+      .then(cart => {
+        console.log("[v0] Cart updated, item count:", cart.item_count);
+        updateDossierCartUI(cart); // Update all UI elements
+        openDossierCart(); // Ensure drawer is open
+      });
+  })
+  .catch(error => {
+    console.error('Error adding recommended product to cart:', error);
+
+    // Show error feedback
+    const button = document.querySelector(`button[onclick*="${variantId}"]`);
+    if (button) {
+      const originalText = button.textContent;
+      button.textContent = 'ERROR';
+      button.style.background = '#f44336';
+      button.style.color = 'white';
+      button.style.borderColor = '#f44336';
+
+      setTimeout(() => {
+        button.textContent = originalText;
+        button.style.background = '';
+        button.style.color = '';
+        button.style.borderColor = '';
+      }, 1500);
+    }
+  })
+  .finally(() => {
+    isProcessingCartAction = false;
+  });
+}
+
+
+
+function proceedToDossierCheckout() {
+  window.location.href = '/checkout';
+}
+
+function initializeDossierCartTriggers() {
+  if (window.spCartTriggersInitialized) {
+    return;
+  }
+  window.spCartTriggersInitialized = true;
+
+  // Find all possible cart triggers
+  const cartSelectors = [
+    'a[href="/cart"]',
+    'a[href*="/cart"]',
+    '.cart-icon',
+    '.cart-link',
+    '.header-cart',
+    '.cart-toggle',
+    '.js-cart-trigger',
+    '[data-cart-trigger]',
+    '.cart-count-bubble',
+    '.site-header__cart',
+    '.header__icon--cart',
+    '.cart-drawer-toggle',
+    '.header-cart-link',
+    '.cart-icon-wrapper'
+  ];
+
+  cartSelectors.forEach(selector => {
+    const elements = document.querySelectorAll(selector);
+    elements.forEach(element => {
+      if (!element.hasAttribute('data-sp-listener')) {
+        element.setAttribute('data-sp-listener', 'true');
+
+        // Add click handler to open the drawer
+        element.addEventListener('click', function(e) {
+          e.preventDefault(); // Prevent default navigation to cart page
+          e.stopPropagation();
+          e.stopImmediatePropagation(); // Stop other listeners on this element
+          openDossierCart();
+          return false; // Ensure no further action
+        }, true); // Use capture phase to ensure it runs before other handlers
+      }
+    });
+  });
+
+  const cartForms = document.querySelectorAll('form[action="/cart/add"], form[action*="/cart/add"]');
+  cartForms.forEach(form => {
+    if (!form.hasAttribute('data-sp-form-listener')) {
+      form.setAttribute('data-sp-form-listener', 'true');
+      
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        
+        if (isProcessingCartAction) {
+          console.warn('Form submission already in progress');
+          return;
+        }
+        
+        isProcessingCartAction = true;
+        
+        const formData = new FormData(this);
+        const variantId = formData.get('id');
+        const quantity = parseInt(formData.get('quantity')) || 1;
+        
+        fetch('/cart/add.js', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            id: variantId,
+            quantity: quantity
+          })
+        })
+        .then(response => {
+          if (!response.ok) throw new Error('Add to cart failed');
+          return response.json();
+        })
+        .then(data => {
+          fetch('/cart.js')
+            .then(res => {
+              if (!res.ok) throw new Error('Cart refresh failed');
+              return res.json();
+            })
+            .then(cart => {
+              updateDossierCartUI(cart);
+              openDossierCart();
+            })
+            .catch(cartError => console.error('Error fetching cart after add:', cartError));
+        })
+        .catch(error => {
+          console.error('Error adding to cart:', error);
+          alert('Failed to add product to cart. Please try again.');
+        })
+        .finally(() => {
+          isProcessingCartAction = false;
+        });
+      }, true);
+    }
+  });
+}
+</script>

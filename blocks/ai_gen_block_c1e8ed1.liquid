@@ -1,0 +1,746 @@
+{% doc %}
+  @prompt
+    Create a custom Shopify Liquid section that replicates the layout, design, and infographic details seen in image_7049c4.jpg. The section should sit on a very light mint-green background (approx. #EDF7F4) with a full-width header block at the top in a deep forest green color (approx. #134E3A). The header must contain the title 'WHERE TO APPLY YOUR FRAGRANCE' in a bold, clean sans-serif and the subtitle 'Pulse points emit heat to activate and project scent all day' in white text below it.
+    
+    The main content area must use a two-column desktop flexbox layout separated by a thin vertical rule. The left column should feature a detailed line illustration of a male figure. Overlay dark green circular badges containing numbers (1, 2, 3, 4) onto the body illustration at exact relative positions (neck, inner elbows, wrists, and knees) with a soft green outer glow effect around each badge. The right column should display a matching vertical list of four pulse points. Each list item must contain a circular number badge on the left, a small circular zoom-in sketch illustration of that specific body part in the middle, and the text description on the right.
+    
+    For the typography, hardcode all titles ('Neck', 'Inside of elbows', etc.) and the 'PRO TIP' heading to use 'PPMori Regular', Arial, sans-serif in a bold, dark green weight. All paragraph body text must use 'PPMori Regular' in a regular, dark gray/green weight. At the bottom right, include a 'PRO TIP' callout container with a rounded green border, containing a teardrop/droplet icon on the left and left-aligned body text on the right. On mobile screens, the section must stack responsively with the full-body illustration taking priority at the top, ensuring all text strings and custom font mappings remain identical without any theme font overrides."
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-fragrance-guide-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    background-color: {{ block.settings.background_color }};
+    padding: 0;
+    margin: 0;
+  }
+
+  .ai-fragrance-guide-header-{{ ai_gen_id }} {
+    background-color: {{ block.settings.header_bg_color }};
+    padding: 40px 20px;
+    text-align: center;
+  }
+
+  .ai-fragrance-guide-title-{{ ai_gen_id }} {
+    font-size: 32px;
+    font-weight: 700;
+    color: {{ block.settings.header_text_color }};
+    margin: 0 0 12px 0;
+    letter-spacing: 0.5px;
+    text-transform: capitalize;
+    font-family: 'PPEditorialNew Italic', Georgia, serif;
+    font-style: italic;
+  }
+
+  .ai-fragrance-guide-subtitle-{{ ai_gen_id }} {
+    font-family: 'PPMori Regular', Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: {{ block.settings.header_text_color }};
+    margin: 0;
+  }
+
+  .ai-fragrance-guide-content-{{ ai_gen_id }} {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    display: flex;
+    gap: 60px;
+    align-items: flex-start;
+  }
+
+  .ai-fragrance-guide-left-{{ ai_gen_id }} {
+    flex: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .ai-fragrance-guide-divider-{{ ai_gen_id }} {
+    width: 1px;
+    background-color: {{ block.settings.divider_color }};
+    align-self: stretch;
+  }
+
+  .ai-fragrance-guide-right-{{ ai_gen_id }} {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .ai-fragrance-guide-illustration-{{ ai_gen_id }} {
+    position: relative;
+    max-width: 400px;
+    width: 100%;
+  }
+
+  .ai-fragrance-guide-illustration-{{ ai_gen_id }} img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .ai-fragrance-guide-badge-{{ ai_gen_id }} {
+    position: absolute;
+    width: {{ block.settings.badge_size }}px;
+    height: {{ block.settings.badge_size }}px;
+    border-radius: 50%;
+    background-color: {{ block.settings.badge_bg_color }};
+    color: {{ block.settings.badge_text_color }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'PPMori Regular', Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    box-shadow: 0 0 0 8px {{ block.settings.badge_glow_color }};
+    transform: translate(-50%, -50%);
+  }
+
+  .ai-fragrance-guide-badge-1-{{ ai_gen_id }} {
+    top: {{ block.settings.badge_1_y }}%;
+    left: {{ block.settings.badge_1_x }}%;
+  }
+
+  .ai-fragrance-guide-badge-2-{{ ai_gen_id }} {
+    top: {{ block.settings.badge_2_y }}%;
+    left: {{ block.settings.badge_2_x }}%;
+  }
+
+  .ai-fragrance-guide-badge-3-{{ ai_gen_id }} {
+    top: {{ block.settings.badge_3_y }}%;
+    left: {{ block.settings.badge_3_x }}%;
+  }
+
+  .ai-fragrance-guide-badge-4-{{ ai_gen_id }} {
+    top: {{ block.settings.badge_4_y }}%;
+    left: {{ block.settings.badge_4_x }}%;
+  }
+
+  .ai-fragrance-guide-point-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .ai-fragrance-guide-point-number-{{ ai_gen_id }} {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: {{ block.settings.badge_bg_color }};
+    color: {{ block.settings.badge_text_color }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'PPMori Regular', Arial, sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .ai-fragrance-guide-point-sketch-{{ ai_gen_id }} {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    border: 2px solid {{ block.settings.sketch_border_color }};
+    flex-shrink: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-fragrance-guide-point-sketch-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-fragrance-guide-point-text-{{ ai_gen_id }} {
+    flex: 1;
+  }
+
+  .ai-fragrance-guide-point-title-{{ ai_gen_id }} {
+    font-family: 'PPMori Regular', Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: {{ block.settings.point_title_color }};
+    margin: 0 0 8px 0;
+  }
+
+  .ai-fragrance-guide-point-description-{{ ai_gen_id }} {
+    font-family: 'PPMori Regular', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: {{ block.settings.point_text_color }};
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .ai-fragrance-guide-protip-{{ ai_gen_id }} {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px;
+    border: 2px solid {{ block.settings.protip_border_color }};
+    border-radius: 12px;
+    background-color: {{ block.settings.background_color }};
+    margin-top: 20px;
+  }
+
+  .ai-fragrance-guide-protip-icon-{{ ai_gen_id }} {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    color: {{ block.settings.protip_icon_color }};
+  }
+
+  .ai-fragrance-guide-protip-content-{{ ai_gen_id }} {
+    flex: 1;
+  }
+
+  .ai-fragrance-guide-protip-heading-{{ ai_gen_id }} {
+    font-family: 'PPMori Regular', Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: {{ block.settings.point_title_color }};
+    margin: 0 0 8px 0;
+  }
+
+  .ai-fragrance-guide-protip-text-{{ ai_gen_id }} {
+    font-family: 'PPMori Regular', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: {{ block.settings.point_text_color }};
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-fragrance-guide-content-{{ ai_gen_id }} {
+      flex-direction: column;
+      gap: 40px;
+      padding: 40px 20px;
+    }
+
+    .ai-fragrance-guide-divider-{{ ai_gen_id }} {
+      display: none;
+    }
+
+    .ai-fragrance-guide-title-{{ ai_gen_id }} {
+      font-size: 24px;
+    }
+
+    .ai-fragrance-guide-subtitle-{{ ai_gen_id }} {
+      font-size: 14px;
+    }
+
+    .ai-fragrance-guide-badge-{{ ai_gen_id }} {
+      width: {{ block.settings.badge_size | times: 0.8 }}px;
+      height: {{ block.settings.badge_size | times: 0.8 }}px;
+      font-size: 14px;
+      box-shadow: 0 0 0 6px {{ block.settings.badge_glow_color }};
+    }
+
+    .ai-fragrance-guide-point-number-{{ ai_gen_id }} {
+      width: 40px;
+      height: 40px;
+      font-size: 16px;
+    }
+
+    .ai-fragrance-guide-point-sketch-{{ ai_gen_id }} {
+      width: 60px;
+      height: 60px;
+    }
+
+    .ai-fragrance-guide-point-title-{{ ai_gen_id }} {
+      font-size: 16px;
+    }
+
+    .ai-fragrance-guide-point-description-{{ ai_gen_id }} {
+      font-size: 13px;
+    }
+  }
+{% endstyle %}
+
+<fragrance-guide-{{ ai_gen_id }} class="ai-fragrance-guide-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-fragrance-guide-header-{{ ai_gen_id }}">
+    <h2 class="ai-fragrance-guide-title-{{ ai_gen_id }}">{{ block.settings.title }}</h2>
+    <p class="ai-fragrance-guide-subtitle-{{ ai_gen_id }}">{{ block.settings.subtitle }}</p>
+  </div>
+
+  <div class="ai-fragrance-guide-content-{{ ai_gen_id }}">
+    <div class="ai-fragrance-guide-left-{{ ai_gen_id }}">
+      <div class="ai-fragrance-guide-illustration-{{ ai_gen_id }}">
+        {% if block.settings.body_illustration %}
+          <img
+            src="{{ block.settings.body_illustration | image_url: width: 800 }}"
+            alt="Body illustration showing pulse points"
+            loading="lazy"
+            width="{{ block.settings.body_illustration.width }}"
+            height="{{ block.settings.body_illustration.height }}"
+          >
+        {% else %}
+          <div style="aspect-ratio: 1/2; background: #f0f0f0; display: flex; align-items: center; justify-content: center;">
+            {{ 'image' | placeholder_svg_tag }}
+          </div>
+        {% endif %}
+
+        <div class="ai-fragrance-guide-badge-{{ ai_gen_id }} ai-fragrance-guide-badge-1-{{ ai_gen_id }}">1</div>
+        <div class="ai-fragrance-guide-badge-{{ ai_gen_id }} ai-fragrance-guide-badge-2-{{ ai_gen_id }}">2</div>
+        <div class="ai-fragrance-guide-badge-{{ ai_gen_id }} ai-fragrance-guide-badge-3-{{ ai_gen_id }}">3</div>
+        <div class="ai-fragrance-guide-badge-{{ ai_gen_id }} ai-fragrance-guide-badge-4-{{ ai_gen_id }}">4</div>
+      </div>
+    </div>
+
+    <div class="ai-fragrance-guide-divider-{{ ai_gen_id }}"></div>
+
+    <div class="ai-fragrance-guide-right-{{ ai_gen_id }}">
+      <div class="ai-fragrance-guide-point-{{ ai_gen_id }}">
+        <div class="ai-fragrance-guide-point-number-{{ ai_gen_id }}">1</div>
+        <div class="ai-fragrance-guide-point-sketch-{{ ai_gen_id }}">
+          {% if block.settings.sketch_1 %}
+            <img
+              src="{{ block.settings.sketch_1 | image_url: width: 160 }}"
+              alt="Neck detail"
+              loading="lazy"
+            >
+          {% else %}
+            {{ 'image' | placeholder_svg_tag }}
+          {% endif %}
+        </div>
+        <div class="ai-fragrance-guide-point-text-{{ ai_gen_id }}">
+          <h3 class="ai-fragrance-guide-point-title-{{ ai_gen_id }}">{{ block.settings.point_1_title }}</h3>
+          <p class="ai-fragrance-guide-point-description-{{ ai_gen_id }}">{{ block.settings.point_1_description }}</p>
+        </div>
+      </div>
+
+      <div class="ai-fragrance-guide-point-{{ ai_gen_id }}">
+        <div class="ai-fragrance-guide-point-number-{{ ai_gen_id }}">2</div>
+        <div class="ai-fragrance-guide-point-sketch-{{ ai_gen_id }}">
+          {% if block.settings.sketch_2 %}
+            <img
+              src="{{ block.settings.sketch_2 | image_url: width: 160 }}"
+              alt="Inner elbow detail"
+              loading="lazy"
+            >
+          {% else %}
+            {{ 'image' | placeholder_svg_tag }}
+          {% endif %}
+        </div>
+        <div class="ai-fragrance-guide-point-text-{{ ai_gen_id }}">
+          <h3 class="ai-fragrance-guide-point-title-{{ ai_gen_id }}">{{ block.settings.point_2_title }}</h3>
+          <p class="ai-fragrance-guide-point-description-{{ ai_gen_id }}">{{ block.settings.point_2_description }}</p>
+        </div>
+      </div>
+
+      <div class="ai-fragrance-guide-point-{{ ai_gen_id }}">
+        <div class="ai-fragrance-guide-point-number-{{ ai_gen_id }}">3</div>
+        <div class="ai-fragrance-guide-point-sketch-{{ ai_gen_id }}">
+          {% if block.settings.sketch_3 %}
+            <img
+              src="{{ block.settings.sketch_3 | image_url: width: 160 }}"
+              alt="Wrist detail"
+              loading="lazy"
+            >
+          {% else %}
+            {{ 'image' | placeholder_svg_tag }}
+          {% endif %}
+        </div>
+        <div class="ai-fragrance-guide-point-text-{{ ai_gen_id }}">
+          <h3 class="ai-fragrance-guide-point-title-{{ ai_gen_id }}">{{ block.settings.point_3_title }}</h3>
+          <p class="ai-fragrance-guide-point-description-{{ ai_gen_id }}">{{ block.settings.point_3_description }}</p>
+        </div>
+      </div>
+
+      <div class="ai-fragrance-guide-point-{{ ai_gen_id }}">
+        <div class="ai-fragrance-guide-point-number-{{ ai_gen_id }}">4</div>
+        <div class="ai-fragrance-guide-point-sketch-{{ ai_gen_id }}">
+          {% if block.settings.sketch_4 %}
+            <img
+              src="{{ block.settings.sketch_4 | image_url: width: 160 }}"
+              alt="Knee detail"
+              loading="lazy"
+            >
+          {% else %}
+            {{ 'image' | placeholder_svg_tag }}
+          {% endif %}
+        </div>
+        <div class="ai-fragrance-guide-point-text-{{ ai_gen_id }}">
+          <h3 class="ai-fragrance-guide-point-title-{{ ai_gen_id }}">{{ block.settings.point_4_title }}</h3>
+          <p class="ai-fragrance-guide-point-description-{{ ai_gen_id }}">{{ block.settings.point_4_description }}</p>
+        </div>
+      </div>
+
+      {% if block.settings.show_protip %}
+        <div class="ai-fragrance-guide-protip-{{ ai_gen_id }}">
+          <div class="ai-fragrance-guide-protip-icon-{{ ai_gen_id }}">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M12 22a7 7 0 0 0 7-7c0-4.3-7-13-7-13S5 10.7 5 15a7 7 0 0 0 7 7z"/>
+</svg>
+
+          </div>
+          <div class="ai-fragrance-guide-protip-content-{{ ai_gen_id }}">
+            <h4 class="ai-fragrance-guide-protip-heading-{{ ai_gen_id }}">{{ block.settings.protip_heading }}</h4>
+            <p class="ai-fragrance-guide-protip-text-{{ ai_gen_id }}">{{ block.settings.protip_text }}</p>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</fragrance-guide-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class FragranceGuide{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+      }
+    }
+
+    customElements.define('fragrance-guide-{{ ai_gen_id }}', FragranceGuide{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Fragrance guide",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Header"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "WHERE TO APPLY YOUR FRAGRANCE"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Pulse points emit heat to activate and project scent all day"
+    },
+    {
+      "type": "color",
+      "id": "header_bg_color",
+      "label": "Background color",
+      "default": "#134E3A"
+    },
+    {
+      "type": "color",
+      "id": "header_text_color",
+      "label": "Text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#EDF7F4"
+    },
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "Divider color",
+      "default": "#D1E7DD"
+    },
+    {
+      "type": "header",
+      "content": "Body illustration"
+    },
+    {
+      "type": "image_picker",
+      "id": "body_illustration",
+      "label": "Body illustration"
+    },
+    {
+      "type": "header",
+      "content": "Badges"
+    },
+    {
+      "type": "range",
+      "id": "badge_size",
+      "label": "Badge size",
+      "min": 30,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 44
+    },
+    {
+      "type": "color",
+      "id": "badge_bg_color",
+      "label": "Badge background",
+      "default": "#134E3A"
+    },
+    {
+      "type": "color",
+      "id": "badge_text_color",
+      "label": "Badge text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "badge_glow_color",
+      "label": "Badge glow color",
+      "default": "#A7D7C5"
+    },
+    {
+      "type": "header",
+      "content": "Badge 1 position"
+    },
+    {
+      "type": "range",
+      "id": "badge_1_x",
+      "label": "Horizontal position",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "badge_1_y",
+      "label": "Vertical position",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 15
+    },
+    {
+      "type": "header",
+      "content": "Badge 2 position"
+    },
+    {
+      "type": "range",
+      "id": "badge_2_x",
+      "label": "Horizontal position",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "badge_2_y",
+      "label": "Vertical position",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 35
+    },
+    {
+      "type": "header",
+      "content": "Badge 3 position"
+    },
+    {
+      "type": "range",
+      "id": "badge_3_x",
+      "label": "Horizontal position",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 70
+    },
+    {
+      "type": "range",
+      "id": "badge_3_y",
+      "label": "Vertical position",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 45
+    },
+    {
+      "type": "header",
+      "content": "Badge 4 position"
+    },
+    {
+      "type": "range",
+      "id": "badge_4_x",
+      "label": "Horizontal position",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "badge_4_y",
+      "label": "Vertical position",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 75
+    },
+    {
+      "type": "header",
+      "content": "Point 1"
+    },
+    {
+      "type": "text",
+      "id": "point_1_title",
+      "label": "Title",
+      "default": "Neck"
+    },
+    {
+      "type": "textarea",
+      "id": "point_1_description",
+      "label": "Description",
+      "default": "Apply to the sides of your neck where the pulse is strongest. The warmth helps diffuse the scent throughout the day."
+    },
+    {
+      "type": "image_picker",
+      "id": "sketch_1",
+      "label": "Sketch illustration"
+    },
+    {
+      "type": "header",
+      "content": "Point 2"
+    },
+    {
+      "type": "text",
+      "id": "point_2_title",
+      "label": "Title",
+      "default": "Inside of elbows"
+    },
+    {
+      "type": "textarea",
+      "id": "point_2_description",
+      "label": "Description",
+      "default": "The inner elbow is a warm area that helps project fragrance when you move your arms."
+    },
+    {
+      "type": "image_picker",
+      "id": "sketch_2",
+      "label": "Sketch illustration"
+    },
+    {
+      "type": "header",
+      "content": "Point 3"
+    },
+    {
+      "type": "text",
+      "id": "point_3_title",
+      "label": "Title",
+      "default": "Wrists"
+    },
+    {
+      "type": "textarea",
+      "id": "point_3_description",
+      "label": "Description",
+      "default": "Classic pulse point. Apply and avoid rubbing—let it dry naturally to preserve the fragrance notes."
+    },
+    {
+      "type": "image_picker",
+      "id": "sketch_3",
+      "label": "Sketch illustration"
+    },
+    {
+      "type": "header",
+      "content": "Point 4"
+    },
+    {
+      "type": "text",
+      "id": "point_4_title",
+      "label": "Title",
+      "default": "Behind knees"
+    },
+    {
+      "type": "textarea",
+      "id": "point_4_description",
+      "label": "Description",
+      "default": "A subtle application point that allows scent to rise naturally throughout the day."
+    },
+    {
+      "type": "image_picker",
+      "id": "sketch_4",
+      "label": "Sketch illustration"
+    },
+    {
+      "type": "header",
+      "content": "Pro tip"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_protip",
+      "label": "Show pro tip",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "protip_heading",
+      "label": "Heading",
+      "default": "PRO TIP"
+    },
+    {
+      "type": "textarea",
+      "id": "protip_text",
+      "label": "Text",
+      "default": "Layer your fragrance by applying to multiple pulse points for longer-lasting scent. Start with moisturized skin for best results."
+    },
+    {
+      "type": "color",
+      "id": "protip_border_color",
+      "label": "Border color",
+      "default": "#134E3A"
+    },
+    {
+      "type": "color",
+      "id": "protip_icon_color",
+      "label": "Icon color",
+      "default": "#134E3A"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "point_title_color",
+      "label": "Point title color",
+      "default": "#134E3A"
+    },
+    {
+      "type": "color",
+      "id": "point_text_color",
+      "label": "Point text color",
+      "default": "#2D5F4F"
+    },
+    {
+      "type": "color",
+      "id": "sketch_border_color",
+      "label": "Sketch border color",
+      "default": "#D1E7DD"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fragrance guide"
+    }
+  ]
+}
+{% endschema %}

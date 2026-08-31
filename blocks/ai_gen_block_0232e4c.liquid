@@ -1,0 +1,567 @@
+{% doc %}
+  @prompt
+    Create a custom Shopify section that exactly matches the provided luxury perfume banner design. The section should have a clean premium aesthetic with a soft off-white/light beige background and a centered layout. Add equal white spacing/padding around the entire section exactly like the reference image, including the thin white border area around the banner image. The layout should be split into two columns on desktop: text content on the left side and image on the right side. The left content must be vertically centered and aligned exactly like the reference with proper spacing from the left edge. The right side should display a large uploaded image that fills the area naturally without distortion. Add full image upload support from the Shopify theme editor for both desktop and mobile images.
+    
+    The heading text should be fully editable from the theme customizer and support mixed fonts exactly like the design. The words “Meet”, “Scents”, and the remaining heading text should use font-family: 'PP Editorial New', serif; while the word “spired” should use font-family: 'PPEditorialNew Italic', serif;. The word “Scentspired” should visually appear as one word with only “spired” italicized. Typography must match the exact luxury editorial style from the image with elegant spacing, refined line height, and soft black text color. Maintain the same text width and line breaks as the reference image. The content alignment, padding, spacing, image proportions, and overall composition must match the screenshot exactly.
+    
+    The section should be fully responsive. On mobile, stack the image above the text while maintaining premium spacing and proportions. Keep the same soft background tone and outer white spacing on mobile as well. Add theme editor settings for heading text, desktop image, mobile image, section padding top/bottom, content max width, and image width. Ensure the section is coded as a reusable Shopify section using Liquid, HTML, CSS, and minimal JavaScript if needed. The final result should feel identical to the provided reference design with pixel-perfect alignment and luxury branding aesthetics., i dont want image in right i want image in full box content is on the image not outside, give heading and paragraph box different and i dont want any gap between heading and paragrapgh 
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-luxury-banner-outer-{{ ai_gen_id }} {
+    background-color: #ffffff;
+    padding: {{ block.settings.outer_spacing }}px;
+    width: 100%;
+    display: block;
+  }
+
+  .ai-luxury-banner-container-{{ ai_gen_id }} {
+    background-color: {{ block.settings.background_color }};
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ai-luxury-banner-image-wrapper-{{ ai_gen_id }} {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .ai-luxury-banner-image-{{ ai_gen_id }} {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  .ai-luxury-banner-image-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    aspect-ratio: {{ block.settings.image_aspect_ratio }};
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .ai-luxury-banner-image-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    max-width: 400px;
+    max-height: 400px;
+  }
+
+  .ai-luxury-banner-empty-state-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 20px;
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  .ai-luxury-banner-content-overlay-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: {{ block.settings.vertical_alignment }};
+    justify-content: {{ block.settings.horizontal_alignment }};
+    padding: {{ block.settings.content_padding }}px;
+  }
+
+  .ai-luxury-banner-content-{{ ai_gen_id }} {
+    max-width: {{ block.settings.content_max_width_inner }}px;
+    text-align: {{ block.settings.text_alignment }};
+    text-transform: capitalize;
+  }
+
+  .ai-luxury-banner-heading-{{ ai_gen_id }} {
+    font-family: 'PP Editorial New', serif;
+    font-size: {{ block.settings.heading_size }}px;
+    line-height: {{ block.settings.heading_line_height }};
+    color: {{ block.settings.heading_color }};
+    margin: 0;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+
+  .ai-luxury-banner-heading-{{ ai_gen_id }} .italic-text {
+    font-family: 'PPEditorialNew Ultralight Italic';
+    font-style: italic;
+  }
+
+  .ai-luxury-banner-paragraph-{{ ai_gen_id }} {
+    font-size: {{ block.settings.paragraph_size }}px;
+    line-height: {{ block.settings.paragraph_line_height }};
+    color: {{ block.settings.paragraph_color }};
+    margin: 0;
+    font-weight: 400;
+    font-family: 'PP Editorial New', serif;
+  }
+
+  .ai-luxury-banner-paragraph-{{ ai_gen_id }} p {
+    margin: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-luxury-banner-outer-{{ ai_gen_id }} {
+      padding: {{ block.settings.mobile_outer_spacing }}px;
+    }
+
+    .ai-luxury-banner-content-overlay-{{ ai_gen_id }} {
+      padding: {{ block.settings.mobile_content_padding }}px;
+      align-items: {{ block.settings.mobile_vertical_alignment }};
+      justify-content: {{ block.settings.mobile_horizontal_alignment }};
+    }
+
+    .ai-luxury-banner-content-{{ ai_gen_id }} {
+      max-width: 57%;
+      text-align: {{ block.settings.mobile_text_alignment }};
+    }
+
+    .ai-luxury-banner-heading-{{ ai_gen_id }} {
+      font-size: {{ block.settings.mobile_heading_size }}px;
+    }
+
+    .ai-luxury-banner-paragraph-{{ ai_gen_id }} {
+      font-size: {{ block.settings.mobile_paragraph_size }}px;
+    }
+  }
+{% endstyle %}
+
+<luxury-banner-{{ ai_gen_id }} class="ai-luxury-banner-outer-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-luxury-banner-container-{{ ai_gen_id }}">
+    <div class="ai-luxury-banner-image-wrapper-{{ ai_gen_id }}">
+      {% if block.settings.desktop_image != blank %}
+        <picture>
+          {% if block.settings.mobile_image != blank %}
+            <source
+              media="(max-width: 749px)"
+              srcset="{{ block.settings.mobile_image | image_url: width: 800 }}"
+            >
+          {% endif %}
+          <img
+            src="{{ block.settings.desktop_image | image_url: width: 1600 }}"
+            alt="{{ block.settings.desktop_image.alt | escape }}"
+            loading="lazy"
+            width="{{ block.settings.desktop_image.width }}"
+            height="{{ block.settings.desktop_image.height }}"
+            class="ai-luxury-banner-image-{{ ai_gen_id }}"
+          >
+        </picture>
+      {% else %}
+        <div class="ai-luxury-banner-image-placeholder-{{ ai_gen_id }}">
+          {{ 'image' | placeholder_svg_tag }}
+          <div class="ai-luxury-banner-empty-state-{{ ai_gen_id }}">
+            Next, add an image
+          </div>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="ai-luxury-banner-content-overlay-{{ ai_gen_id }}">
+      <div class="ai-luxury-banner-content-{{ ai_gen_id }}">
+        {% if block.settings.heading != blank %}
+          <h2 class="ai-luxury-banner-heading-{{ ai_gen_id }}">
+            {{ block.settings.heading }}
+          </h2>
+        {% endif %}
+        {% if block.settings.paragraph != blank %}
+          <div class="ai-luxury-banner-paragraph-{{ ai_gen_id }}">
+            {{ block.settings.paragraph }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</luxury-banner-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class LuxuryBanner{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.processHeading();
+      }
+
+      processHeading() {
+        const heading = this.querySelector('.ai-luxury-banner-heading-{{ ai_gen_id }}');
+        if (!heading) return;
+
+        const text = heading.textContent.trim();
+        const scentspiredMatch = text.match(/Scentspired/i);
+        
+        if (scentspiredMatch) {
+          const newHTML = text.replace(/Scentspired/i, 'Scent<span class="italic-text">spired</span>');
+          heading.innerHTML = newHTML;
+        }
+      }
+    }
+
+    customElements.define('luxury-banner-{{ ai_gen_id }}', LuxuryBanner{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Luxury perfume banner",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>Meet Scentspired</p>"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Size",
+      "min": 24,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "mobile_heading_size",
+      "label": "Mobile size",
+      "min": 12,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "heading_line_height",
+      "label": "Line height",
+      "min": 1,
+      "max": 2,
+      "step": 0.1,
+      "default": 1.2
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "header",
+      "content": "Paragraph"
+    },
+    {
+      "type": "richtext",
+      "id": "paragraph",
+      "label": "Paragraph",
+      "default": "<p>Discover our collection of premium-inspired scents</p>"
+    },
+    {
+      "type": "range",
+      "id": "paragraph_size",
+      "label": "Size",
+      "min": 12,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "mobile_paragraph_size",
+      "label": "Mobile size",
+      "min": 12,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "paragraph_line_height",
+      "label": "Line height",
+      "min": 1,
+      "max": 2,
+      "step": 0.1,
+      "default": 1.5
+    },
+    {
+      "type": "color",
+      "id": "paragraph_color",
+      "label": "Color",
+      "default": "#4a4a4a"
+    },
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "Desktop image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile image"
+    },
+    {
+      "type": "select",
+      "id": "image_aspect_ratio",
+      "label": "Image aspect ratio",
+      "options": [
+        {
+          "value": "21/9",
+          "label": "Ultra wide (21:9)"
+        },
+        {
+          "value": "16/9",
+          "label": "Landscape (16:9)"
+        },
+        {
+          "value": "3/2",
+          "label": "Landscape (3:2)"
+        },
+        {
+          "value": "4/3",
+          "label": "Landscape (4:3)"
+        },
+        {
+          "value": "1/1",
+          "label": "Square (1:1)"
+        },
+        {
+          "value": "4/5",
+          "label": "Portrait (4:5)"
+        }
+      ],
+      "default": "16/9"
+    },
+    {
+      "type": "header",
+      "content": "Desktop content position"
+    },
+    {
+      "type": "select",
+      "id": "horizontal_alignment",
+      "label": "Horizontal alignment",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "flex-end",
+          "label": "Right"
+        }
+      ],
+      "default": "flex-start"
+    },
+    {
+      "type": "select",
+      "id": "vertical_alignment",
+      "label": "Vertical alignment",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Top"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "flex-end",
+          "label": "Bottom"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "content_padding",
+      "label": "Content padding",
+      "min": 20,
+      "max": 150,
+      "step": 10,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "content_max_width_inner",
+      "label": "Content max width",
+      "min": 200,
+      "max": 800,
+      "step": 20,
+      "unit": "px",
+      "default": 500
+    },
+    {
+      "type": "header",
+      "content": "Mobile content position"
+    },
+    {
+      "type": "select",
+      "id": "mobile_horizontal_alignment",
+      "label": "Horizontal alignment",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "flex-end",
+          "label": "Right"
+        }
+      ],
+      "default": "flex-start"
+    },
+    {
+      "type": "select",
+      "id": "mobile_vertical_alignment",
+      "label": "Vertical alignment",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Top"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "flex-end",
+          "label": "Bottom"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "mobile_text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "mobile_content_padding",
+      "label": "Content padding",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "content_max_width",
+      "label": "Section max width",
+      "min": 800,
+      "max": 1600,
+      "step": 100,
+      "unit": "px",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "outer_spacing",
+      "label": "Outer white spacing",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mobile_outer_spacing",
+      "label": "Mobile outer spacing",
+      "min": 0,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#f5f3f0"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Luxury perfume banner"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,196 @@
+<section class="scent-carousel">
+  <!-- Header -->
+  <div class="scent-header">
+    <h2 class="scent-title">What People</h2>
+    <p class="scent-sub">Say About Us</p>
+  </div>
+
+  
+  <!-- Bottom Spacing -->
+  <div class="carousel-spacing"></div>
+</section>
+
+<style>
+  .scent-carousel {
+    width: 100%;
+    background: white;
+    overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  .scent-header {
+    text-align: center;
+    padding: 4rem 1rem;
+    margin-top: 100px;
+  }
+
+  .scent-title {
+    font-size: 48px;
+    font-weight: 100;
+    color: #666;
+    letter-spacing: 0.05em;
+    text-align: center;
+    margin: 0 auto;
+    font-family: 'PPMori Extralight', sans-serif;
+    display: block;
+  }
+
+  .scent-sub {
+    font-size: 28px;
+    font-weight: 900;
+    color: black;
+    font-style: italic;
+    letter-spacing: 0.05em;
+    margin-top: -10px !important;
+    font-family: 'PPEditorialNew Italic', serif;
+  }
+
+  .carousel-container {
+    position: relative;
+    height: 500px;
+    overflow: hidden;
+  }
+
+  @media (min-width: 768px) {
+    .carousel-container {
+      height: 600px;
+    }
+  }
+
+  .background-text-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .text-item {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: clamp(2rem, 4vw, 4rem);
+    font-weight: 600;
+    color: black;
+    white-space: nowrap;
+    transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    font-family: 'PPMori SemiBold', sans-serif;
+    opacity: 0;
+  }
+
+  .carousel-track {
+    position: relative;
+    height: 100%;
+    z-index: 10;
+  }
+
+  .slide-image-container {
+    position: absolute;
+    width: 300px;
+    height: 425px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all 1s ease-in-out;
+    z-index: 15;
+    opacity: 0;
+  }
+
+  .slide-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0px;
+    position: relative;
+    z-index: 20;
+  }
+
+  .carousel-spacing {
+    height: 4rem;
+  }
+
+  @media (min-width: 768px) {
+    .carousel-spacing {
+      height: 5rem;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .scent-title {
+      font-size: 25px;
+      font-weight: 100;
+      color: #666;
+      letter-spacing: 0.05em;
+      margin-left: 0px !important;
+    }
+
+    .scent-sub {
+      font-size: 15px;
+      font-weight: 900;
+      color: black;
+      font-style: italic;
+      letter-spacing: 0.05em;
+      margin-top: 0px !important;
+    }
+
+    .carousel-container {
+      height: auto;
+      min-height: 450px;
+      padding-bottom: 4rem;
+    }
+
+    .slide-image-container {
+      width: 180px;
+      height: 255px;
+      margin: 0 auto 1rem auto;
+      position: relative;
+      top: auto;
+      transform: none;
+      opacity: 0;
+      display: none;
+    }
+
+    .slide-image-container.active {
+      opacity: 1;
+      display: block;
+    }
+
+    .background-text-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .text-item {
+      width: 100%;
+      height: auto;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: clamp(1.5rem, 6vw, 3rem);
+      opacity: 0.1;
+      display: none;
+    }
+
+    .text-item.active {
+      display: block;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Instagram Videos",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Instagram Videos"
+    }
+  ]
+}
+{% endschema %}

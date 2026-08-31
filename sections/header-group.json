@@ -1,0 +1,74 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.header.name",
+  "type": "header",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "blocks": {
+        "announcement_EiQRND": {
+          "type": "announcement",
+          "settings": {
+            "text": "<p><strong>Free Delivery on Orders over $70 - Free Returns</strong></p>",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "announcement_EiQRND"
+      ],
+      "custom_css": [
+        ".announcement-bar {padding-top: 1px; padding-bottom: 0px; margin-bottom: 0px;}",
+        ".announcement-bar__message {line-height: 0.2; font-size: 12px; /* optional: adjust text size */ font-weight: 400;}",
+        "@media only screen and (max-width: 767px) {.announcement-bar__message {line-height: 01.6; font-size: 8px; }}"
+      ],
+      "settings": {
+        "auto_rotate": false,
+        "change_slides_speed": 5,
+        "color_scheme": "",
+        "show_line_separator": true,
+        "show_social": false,
+        "enable_country_selector": false,
+        "enable_language_selector": false
+      }
+    },
+    "header": {
+      "type": "header",
+      "custom_css": [
+        ".header {position: absolute; max-width: 2100px; width: 100%; z-index: 1000;}",
+        "@media only screen and (min-width: 1440px) {.header__inline-menu {padding-left: 300px !important; }}",
+        "@media only screen and (min-width: 1251px) and (max-width: 1329px) {.header__inline-menu {padding-left: 70px !important; }}",
+        "@media only screen and (min-width: 1440px) and (max-width: 1510px) {.header__inline-menu {padding-left: 163px !important; }}",
+        "@media only screen and (min-width: 1330px) and (max-width: 1439px) {.header__inline-menu {padding-left: 110px !important; }}"
+      ],
+      "settings": {
+        "logo_position": "middle-left",
+        "mobile_logo_position": "center",
+        "menu": "main-menu",
+        "menu_type_desktop": "dropdown",
+        "sticky_header_type": "on-scroll-up",
+        "show_line_separator": false,
+        "color_scheme": "scheme-2",
+        "menu_color_scheme": "",
+        "enable_country_selector": false,
+        "enable_language_selector": false,
+        "enable_customer_avatar": false,
+        "margin_bottom": 0,
+        "padding_top": 36,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "announcement-bar",
+    "header"
+  ]
+}

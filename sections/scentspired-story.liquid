@@ -1,0 +1,493 @@
+<div class="scentspired-story-section">
+  <div class="story-container">
+    <!-- Desktop Lines Image -->
+    {% if section.settings.desktop_lines_image != blank %}
+      <div class="lines-desktop">
+        <img src="{{ section.settings.desktop_lines_image | img_url: 'master' }}" 
+             alt="Decorative lines" 
+             loading="lazy">
+      </div>
+    {% endif %}
+    
+    <!-- Mobile Lines Image -->
+    {% if section.settings.mobile_lines_image != blank %}
+      <div class="lines-mobile">
+        <img src="{{ section.settings.mobile_lines_image | img_url: 'master' }}" 
+             alt="Decorative lines" 
+             loading="lazy">
+      </div>
+    {% endif %}
+    
+    <div class="story-content">
+      {% if section.settings.icon_image != blank %}
+        <div class="story-icon">
+          <img src="{{ section.settings.icon_image | img_url: '100x100' }}" 
+               alt="{{ section.settings.icon_alt | default: 'Icon' }}" 
+               loading="lazy">
+        </div>
+      {% endif %}
+      
+      <div class="story-text">
+        {% if section.settings.main_heading != blank %}
+          <h2 class="story-heading">{{ section.settings.main_heading }}</h2>
+        {% endif %}
+        
+        {% if section.settings.description != blank %}
+          <div class="story-description">
+            {{ section.settings.description }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.scentspired-story-section {
+  padding: {{ section.settings.section_padding_top }}px 20px {{ section.settings.section_padding_bottom }}px;
+  background-color: {{ section.settings.background_color }};
+  position: relative;
+  overflow: hidden;
+}
+
+.story-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  padding: 80px 40px;
+  min-height: 400px;
+}
+
+.story-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 80px;
+  position: relative;
+  z-index: 2;
+  padding: 40px 0;
+}
+
+.story-icon {
+  flex-shrink: 0;
+  width: 100px;
+  height: 100px;
+}
+
+.story-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.story-text {
+  flex: 1;
+  max-width: 700px;
+}
+
+.story-heading {
+  font-size: 32px;
+  font-weight: 400;
+  color: {{ section.settings.heading_color }};
+  line-height: 1.4;
+  margin: 0 0 30px 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.story-description {
+  font-size: 16px;
+  color: {{ section.settings.text_color }};
+  line-height: 1.6;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.story-description p {
+  margin: 0 0 20px 0;
+}
+
+.story-description p:last-child {
+  margin-bottom: 0;
+}
+
+/* Desktop Lines Positioning */
+.lines-desktop {
+  position: absolute;
+  top: {{ section.settings.desktop_lines_top }}px;
+  left: {{ section.settings.desktop_lines_left }}px;
+  right: {{ section.settings.desktop_lines_right }}px;
+  bottom: {{ section.settings.desktop_lines_bottom }}px;
+  z-index: 1;
+  pointer-events: none;
+  display: block;
+}
+
+.lines-desktop img {
+  width: 100%;
+  height: 100%;
+  object-fit: {{ section.settings.desktop_lines_fit }};
+  opacity: {{ section.settings.desktop_lines_opacity | divided_by: 100.0 }};
+}
+
+/* Mobile Lines Positioning */
+.lines-mobile {
+  position: absolute;
+  top: {{ section.settings.mobile_lines_top }}px;
+  left: {{ section.settings.mobile_lines_left }}px;
+  right: {{ section.settings.mobile_lines_right }}px;
+  bottom: {{ section.settings.mobile_lines_bottom }}px;
+  z-index: 1;
+  pointer-events: none;
+  display: none;
+}
+
+.lines-mobile img {
+  width: 100%;
+  height: 100%;
+  object-fit: {{ section.settings.mobile_lines_fit }};
+  opacity: {{ section.settings.mobile_lines_opacity | divided_by: 100.0 }};
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .story-container {
+    padding: 60px 20px;
+    min-height: 300px;
+  }
+  
+  .story-content {
+    flex-direction: column;
+    gap: 30px;
+    align-items: flex-start;
+    padding: 30px 0;
+  }
+  
+  .story-icon {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .story-heading {
+    font-size: 28px;
+    margin-bottom: 25px;
+  }
+  
+  .story-description {
+    font-size: 15px;
+  }
+  
+  /* Show mobile lines, hide desktop lines */
+  .lines-desktop {
+    display: none;
+  }
+  
+  .lines-mobile {
+    display: block;
+  }
+}
+
+@media (max-width: 480px) {
+  .scentspired-story-section {
+    padding: {{ section.settings.section_padding_top | minus: 20 }}px 15px {{ section.settings.section_padding_bottom | minus: 20 }}px;
+  }
+  
+  .story-container {
+    padding: 40px 15px;
+  }
+  
+  .story-content {
+    gap: 25px;
+    padding: 20px 0;
+  }
+  
+  .story-icon {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .story-heading {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .story-description {
+    font-size: 14px;
+  }
+}
+    /* Specific screen adjustments (unchanged) */
+  @media screen and (min-width: 413px) and (max-width: 415px) {
+    .story-icon {
+      margin-top: -40px !important;
+    }
+  }
+
+  @media screen and (min-width: 428px) and (max-width: 432px) {
+    .story-icon {
+      margin-top: -70px !important;
+    }
+  }
+
+  @media screen and (min-width: 410px) and (max-width: 412px) {
+    .story-icon {
+      margin-top: -40px !important;
+    }
+  }
+
+  @media screen and (min-width: 765px) and (max-width: 770px) {
+    .story-icon {
+      margin-top: -100px !important;
+      margin-left: 180px;
+    }
+  }
+
+  @media screen and (min-width: 815px) and (max-width: 825px) {
+    .lines-desktop {
+      left: 100px !important;
+    }
+
+    .story-icon {
+      margin-top: 60px;
+    }
+  }
+
+  @media screen and (min-width: 1020px) and (max-width: 1030px) {
+    .lines-desktop {
+      left: 100px !important;
+    }
+
+    .story-icon {
+      margin-top: 80px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Scentspired Story",
+  "tag": "section",
+  "class": "section-scentspired-story",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_image",
+      "label": "Icon Image",
+      "info": "Upload your custom icon (recommended size: 100x100px)"
+    },
+    {
+      "type": "text",
+      "id": "icon_alt",
+      "label": "Icon Alt Text",
+      "default": "Scentspired Icon"
+    },
+    {
+      "type": "richtext",
+      "id": "main_heading",
+      "label": "Main Heading",
+      "default": "<p>Welcome to Scentspired — where fragrance becomes poetry, and each bottle tells a story more enchanting than the last.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description Text",
+      "default": "<p>Our journey began not in a lab, but in a dusty antique bookstore in Florence, where the founder stumbled upon a handwritten journal filled with aromatic recipes passed down through centuries — a secret map of scents once worn by poets, rebels, queens, and dreamers. That spark ignited a passion: to recreate the world's most iconic perfumes and make them accessible, inspired, and unforgettable.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Lines Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_lines_image",
+      "label": "Desktop Lines Image",
+      "info": "Upload your desktop curved lines image"
+    },
+    {
+      "type": "range",
+      "id": "desktop_lines_top",
+      "label": "Desktop Lines - Top Position",
+      "min": -100,
+      "max": 200,
+      "step": 5,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "desktop_lines_left",
+      "label": "Desktop Lines - Left Position",
+      "min": -100,
+      "max": 200,
+      "step": 5,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "desktop_lines_right",
+      "label": "Desktop Lines - Right Position",
+      "min": -100,
+      "max": 200,
+      "step": 5,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "desktop_lines_bottom",
+      "label": "Desktop Lines - Bottom Position",
+      "min": -100,
+      "max": 200,
+      "step": 5,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "desktop_lines_fit",
+      "label": "Desktop Lines - Image Fit",
+      "options": [
+        { "value": "contain", "label": "Contain" },
+        { "value": "cover", "label": "Cover" },
+        { "value": "fill", "label": "Fill" },
+        { "value": "none", "label": "Original Size" }
+      ],
+      "default": "contain"
+    },
+    {
+      "type": "range",
+      "id": "desktop_lines_opacity",
+      "label": "Desktop Lines - Opacity",
+      "min": 10,
+      "max": 100,
+      "step": 10,
+      "default": 100,
+      "unit": "%"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Lines Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_lines_image",
+      "label": "Mobile Lines Image",
+      "info": "Upload your mobile curved lines image"
+    },
+    {
+      "type": "range",
+      "id": "mobile_lines_top",
+      "label": "Mobile Lines - Top Position",
+      "min": -100,
+      "max": 200,
+      "step": 5,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "mobile_lines_left",
+      "label": "Mobile Lines - Left Position",
+      "min": -100,
+      "max": 200,
+      "step": 5,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "mobile_lines_right",
+      "label": "Mobile Lines - Right Position",
+      "min": -100,
+      "max": 200,
+      "step": 5,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "mobile_lines_bottom",
+      "label": "Mobile Lines - Bottom Position",
+      "min": -100,
+      "max": 200,
+      "step": 5,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "mobile_lines_fit",
+      "label": "Mobile Lines - Image Fit",
+      "options": [
+        { "value": "contain", "label": "Contain" },
+        { "value": "cover", "label": "Cover" },
+        { "value": "fill", "label": "Fill" },
+        { "value": "none", "label": "Original Size" }
+      ],
+      "default": "contain"
+    },
+    {
+      "type": "range",
+      "id": "mobile_lines_opacity",
+      "label": "Mobile Lines - Opacity",
+      "min": 10,
+      "max": 100,
+      "step": 10,
+      "default": 100,
+      "unit": "%"
+    },
+    {
+      "type": "header",
+      "content": "Color Settings"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#666666"
+    },
+    {
+      "type": "header",
+      "content": "Spacing Settings"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "label": "Section Padding Top",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "default": 50,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "label": "Section Padding Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "default": 50,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Scentspired Story"
+    }
+  ]
+}
+{% endschema %}

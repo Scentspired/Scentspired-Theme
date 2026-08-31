@@ -1,0 +1,398 @@
+{%- liquid
+  assign image_position = section.settings.image_position | default: 'left'
+  assign section_height = section.settings.section_height | default: '600px'
+-%}
+
+<section class="image-content-split" data-section-id="{{ section.id }}">
+  <div class="split-container {% if image_position == 'right' %}reverse-layout{% endif %}">
+    <!-- Image Section -->
+    <div class="image-section">
+      {% if section.settings.image %}
+        <img 
+          src="{{ section.settings.image | img_url: '1200x800' }}" 
+          alt="{{ section.settings.image.alt | escape }}"
+          loading="lazy"
+          class="split-image"
+        >
+      {% else %}
+        <div class="placeholder-image">
+          <span>Add Image</span>
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- Content Section -->
+    <div class="content-section {% if image_position == 'right' %}content-left{% else %}content-right{% endif %}">
+      <div class="content-wrapper">
+        {% if section.settings.eyebrow_text != blank %}
+          <p class="eyebrow-text">{{ section.settings.eyebrow_text }}</p>
+        {% endif %}
+        
+        {% if section.settings.heading != blank %}
+          <h2 class="main-heading">{{ section.settings.heading }}</h2>
+        {% endif %}
+        
+        {% if section.settings.description != blank %}
+          <div class="description">
+            {{ section.settings.description }}
+          </div>
+        {% endif %}
+        
+        {% if section.settings.button_text != blank and section.settings.button_url != blank %}
+          <a href="{{ section.settings.button_url }}" class="cta-button">
+            {{ section.settings.button_text }}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Custom Font Faces */
+  @font-face {
+    font-family: 'PPMori Regular';
+    src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPMori-Regular.otf?v=1751621372') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'PPEditorialNew Italic';
+    src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPEditorialNew-Italic-BF644b214fb0c0a.otf?v=1751620955') format('opentype');
+    font-weight: 900;
+    font-style: italic;
+  }
+
+  .image-content-split {
+    width: 99vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    overflow: hidden;
+  }
+
+  .split-container {
+    display: flex;
+    min-height: {{ section_height }};
+    width: 100%;
+  }
+
+  .split-container.reverse-layout {
+    flex-direction: row-reverse;
+  }
+
+  .image-section,
+  .content-section {
+    flex: 0 0 50%;
+    width: 50%;
+    max-width: 50%;
+  }
+
+  .image-section {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .split-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  .placeholder-image {
+    width: 100%;
+    height: 100%;
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    font-size: 18px;
+    font-family: 'PPMori Regular', Arial, sans-serif;
+  }
+
+  .content-section {
+    display: flex;
+    align-items: center;
+    background-color: {{ section.settings.background_color | default: '#f8f8f8' }};
+    position: relative;
+  }
+
+  /* Content positioning based on image position */
+  .content-section.content-right {
+    justify-content: flex-end;
+    padding-right: 5px;
+    padding-left: 60px;
+  }
+
+  .content-section.content-left {
+    justify-content: flex-start;
+    padding-left: 5px;
+    padding-right: 0px;
+  }
+
+  .content-wrapper {
+    max-width: 800px;
+    width: 100%;
+    padding: 60px 0;
+    padding-left: 22px;
+    padding-right: 0px;
+  }
+
+  .eyebrow-text {
+    font-family: 'PPMori Regular', Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: {{ section.settings.eyebrow_color | default: '#666' }};
+    margin: 0 0 20px 0;
+    font-weight: 400;
+  }
+
+  .main-heading {
+    font-family: 'PPEditorialNew Italic', Georgia, serif;
+    font-size: 48px;
+    font-weight: 900;
+    font-style: italic;
+    line-height: 1.1;
+    margin: 0 0 30px 0;
+    color: {{ section.settings.heading_color | default: '#333' }};
+    letter-spacing: -1px;
+    text-decoration: underline;
+    text-decoration-color: #FADB95;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 2px;
+  }
+  .description {
+    font-family: 'PPMori Regular', Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: {{ section.settings.text_color | default: '#666' }};
+    margin: 0 0 40px 0;
+    font-weight: 400;
+  }
+
+  .description p {
+    margin: 0 0 20px 0;
+  }
+
+  .description p:last-child {
+    margin-bottom: 0;
+  }
+
+  .cta-button {
+    font-family: 'PPMori Regular', Arial, sans-serif;
+    display: inline-block;
+    padding: 15px 35px;
+    border: none;
+    border-radius: 50px;
+    background-color: #e5ff00;
+    color: #000;
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    font-weight: 400;
+  }
+
+  .cta-button:hover {
+    background-color: #d4ed00;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(229, 255, 0, 0.3);
+  }
+
+  /* Tablet Styles */
+  @media screen and (max-width: 1024px) {
+    .content-section.content-right {
+      padding-right: 5px;
+      padding-left: 40px;
+    }
+
+    .content-section.content-left {
+      padding-left: 5px;
+      padding-right: 40px;
+    }
+
+    .content-wrapper {
+      max-width: 450px;
+    }
+
+    .main-heading {
+      font-size: 42px;
+    }
+  }
+
+  /* Mobile Styles */
+  @media screen and (max-width: 768px) {
+    .split-container,
+    .split-container.reverse-layout {
+      flex-direction: column;
+      min-height: auto;
+    }
+
+    .image-section,
+    .content-section {
+      flex: none;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .image-section {
+      height: 300px;
+    }
+
+    .content-section.content-right,
+    .content-section.content-left {
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    .content-wrapper {
+      max-width: none;
+      padding: 0;
+    }
+
+    .main-heading {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    .description {
+      font-size: 14px;
+      margin-bottom: 30px;
+    }
+
+    .cta-button {
+      padding: 12px 30px;
+    }
+    .image-content-split {
+    width: 100vw;
+  }
+  }
+
+  @media screen and (max-width: 480px) {
+    .content-section.content-right,
+    .content-section.content-left {
+      padding: 30px 15px;
+    }
+
+    .main-heading {
+      font-size: 28px;
+    }
+
+    .eyebrow-text {
+      font-size: 11px;
+      margin-bottom: 15px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Image Content Split",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image Position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "text",
+      "id": "section_height",
+      "label": "Section Height (Desktop)",
+      "default": "600px",
+      "info": "Use CSS units like px, vh, etc."
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow_text",
+      "label": "Eyebrow Text",
+      "default": "IN COLLABORATION WITH NATURE"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "A RADICAL APPROACH"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Behind every Abel fragrance is a radical approach to how we operate. In a fragrance world shrouded by secrecy, we're always transparent.</p><p>In a culture fuelled by hype and excess, we favour the long view and curbing our environmental footprint. And in our use of biotechnology, guided by the artistry of our master perfumer, we create long-lasting 100% natural fragrances that eliminate the need for petrochemical-derived synthetic ingredients.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "READ MORE ABOUT OUR PRACTICE"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#f8f8f8"
+    },
+    {
+      "type": "color",
+      "id": "eyebrow_color",
+      "label": "Eyebrow Text Color",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#666666"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image Content Split"
+    }
+  ]
+}
+{% endschema %}

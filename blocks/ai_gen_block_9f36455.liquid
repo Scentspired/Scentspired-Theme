@@ -1,0 +1,1165 @@
+{% comment %}
+Bundle Builder Section - Hardcoded Collection Display
+Shows all products from a specific collection
+{% endcomment %}
+
+<div class="bundle-builder-section">
+  <!-- Bundle Header Section -->
+  <div class="bundle-header-outer">
+    <div class="bundle-header-area">
+      <div class="bundle-container">
+        <div class="bundle-main-content">
+          <div class="bundle-intro">
+            <h1 class="bundle-title">Discovery Box</h1>
+            <p class="bundle-description">Choose 5 fragrances to complete your box.</p>
+          </div>
+          
+          <div class="bundle-selector">
+            <div class="bundle-slider-container">
+              <button class="bundle-nav-arrow left" id="scroll-left">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                  <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2"/>
+                </svg>
+              </button>
+
+              <div class="bundle-content-wrapper">
+                <div class="bundle-items-row" id="bundle-items-row">
+                  {% for i in (1..5) %}
+                    <div class="bundle-slot-wrapper" data-slot="{{ forloop.index0 }}">
+                      <div class="bundle-item empty-slot">
+                        <button class="add-button">+</button>
+                        <span class="slot-number">{{ forloop.index }}</span>
+                      </div>
+                      <div class="bundle-product-name"></div>
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+              
+              <button class="bundle-nav-arrow right" id="scroll-right">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                  <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Pricing Sidebar -->
+        <div class="bundle-sidebar">
+          <div class="pricing-section">
+            <div class="initial-price-row">
+              <span>Total Price</span>
+              <span>$<span id="initial-price">0</span></span>
+            </div>
+            <p class="savings-text" id="savings-message">Add 5 items to checkout</p>
+          </div>
+          
+          <div class="checkout-section">
+            <div class="subtotal-row">
+              <span>SUBTOTAL</span>
+              <span>$<span id="subtotal-amount">0</span></span>
+            </div>
+            <button class="checkout-button" id="checkout-btn" disabled>
+              CHECKOUT
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>                 
+
+<!-- Search Box -->
+<div class="product-filter-section">
+  <div class="filter-container">
+    <div class="search-box">
+      <input type="text" placeholder="Search" class="search-input" id="product-search">
+      <button class="search-button">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+          <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
+          <path d="m21 21-4.35-4.35" stroke="currentColor" stroke-width="2"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Products Grid -->
+<div class="products-grid-section">
+  <div class="products-container">
+
+    {% assign collection_handle = "discovery" %}
+    {% assign collection = collections[collection_handle] %}
+
+    <!-- PAGINATE MAX 100 PRODUCTS -->
+    {% paginate collection.products by 100 %}
+    
+    <div class="products-grid" id="products-grid" data-selected-collection="{{ collection_handle }}">
+
+      {% if collection.products_count > 0 %}
+        
+        {% for product in collection.products %}
+          
+
+          <div class="product-card"
+               data-product-id="{{ product.variants.first.id }}"
+               data-product-handle="{{ product.handle }}"
+               data-product-title="{{ product.title | escape }}"
+               data-product-price="{{ product.price }}"
+               data-product-image="{{ product.featured_image | img_url: '100x100' }}"
+               data-tags="{{ product.tags | join: ',' | downcase }}"
+               data-collection-name="{{ collection_handle }}"
+               data-bestseller="{{ is_bestseller }}"
+               style="background-image: url('{{ product.featured_image | img_url: '400x400' }}');">
+
+            <!-- Badges -->
+            <div class="product-badges">
+              {% for tag in product.tags %}
+                {% case tag %}
+                  {% when 'Women' %}
+                    <span class="badge category-badge">Women</span>
+                  {% when 'Men' %}
+                    <span class="badge category-badge">Men</span>
+                  {% when 'Unisex' %}
+                    <span class="badge category-badge">Unisex</span>
+                  {% when 'Bestseller' %}
+                    <span class="badge bestseller-badge">Bestseller</span>
+                {% endcase %}
+              {% endfor %}
+            </div>
+
+            <!-- Price -->
+            <div class="product-price-overlay">
+              ${{ product.price | money_without_currency }}
+            </div>
+
+            <!-- Product Info -->
+            <div class="product-info-overlay">
+
+              <h3 class="product-title">{{ product.title | upcase }}</h3>
+
+              <!-- Inspired By / Vendor -->
+              <p class="product-subtitle">
+                {{ product.metafields.custom.inspired_by.value | default: product.vendor }}
+              </p>
+
+              <!-- Rating -->
+              {% assign rating = product.metafields.reviews.rating.value | default: 4.5 %}
+              <div class="product-rating">
+                <div class="stars">
+                  {% for i in (1..5) %}
+                    {% if rating >= i %}
+                      <span class="star filled">★</span>
+                    {% else %}
+                      <span class="star empty">★</span>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              </div>
+
+              <button class="add-to-bundle-btn">ADD TO BUNDLE</button>
+            </div>
+          </div>
+        {% endfor %}
+
+      {% else %}
+        <div style="grid-column: 1 / -1; padding: 60px 20px; text-align: center;">
+          <p style="font-size: 16px; color: #666;">
+            No products found in "{{ collection.title }}".
+          </p>
+        </div>
+      {% endif %}
+
+    </div>
+
+    <!-- PAGINATION BUTTONS -->
+    {{ paginate | default_pagination }}
+
+    {% endpaginate %}
+
+  </div>
+</div>
+
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;700&display=swap');
+  @font-face {
+    font-family: 'Monument Extended';
+    src: url('{{ "MonumentExtended-Regular.woff2" | asset_url }}') format("woff2");
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Recta Small Caps';
+    src: url('{{ "Recta-Light-SmallCaps.woff2" | asset_url }}') format("woff2");
+    font-weight: 300;
+    font-style: normal;
+    font-variant: small-caps;
+  }
+  @font-face {
+    font-family: 'PPMori Extralight';
+    src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPMori-Extralight.otf?v=1751619970') format('opentype');
+    font-weight: 200;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'PPEditorialNew Italic';
+    src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPEditorialNew-Italic-BF644b214fb0c0a.otf?v=1751620955') format('opentype');
+    font-weight: 900;
+    font-style: italic;
+  }
+  @font-face {
+    font-family: 'PPMori Regular';
+    src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPMori-Regular.otf?v=1751621372') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+  }
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;1,400;1,500&display=swap');
+
+  /* Bundle Builder Styles */
+  .bundle-builder-section {
+    font-family: 'PPMori Regular', sans-serif;
+    background-color: #f8f8f8;
+    min-height: 30vh;
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* Bundle Header Area */
+  .bundle-header-area {
+    background-color: #f0ebe5;
+    padding: 40px 20px;
+    width: 100%;
+  }
+
+  .bundle-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .bundle-main-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .bundle-intro {
+    margin-bottom: 30px;
+  }
+
+  .bundle-title {
+    font-family: 'PPMori Regular', sans-serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: #2c2c2c;
+    margin: 0 0 12px 0;
+    line-height: 1;
+  }
+
+  .bundle-description {
+    font-family: 'PPMori Regular', sans-serif;
+    font-size: 16px;
+    color: #666;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  /* Bundle Selector */
+  .bundle-slider-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+  }
+
+  .bundle-content-wrapper {
+    flex: 1;
+    overflow: hidden;
+  }
+
+  /* Desktop Layout */
+  .bundle-items-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+    position: relative;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .bundle-items-row::-webkit-scrollbar {
+    display: none;
+  }
+
+  .bundle-slot-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .bundle-item {
+    width: 100px;
+    height: 120px;
+    background: white;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    margin-bottom: 8px;
+  }
+
+  .bundle-product-name {
+    width: 100px;
+    font-size: 11px;
+    font-family: 'PPMori Regular', sans-serif;
+    text-align: center;
+    color: #666;
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-height: 14px;
+    line-height: 1.3;
+  }
+
+  .bundle-item.filled {
+    border-color: #e0e0e0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .bundle-item.filled .item-image {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+  }
+
+  .bundle-item.filled .item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  .bundle-item.empty-slot {
+    border: 2px dashed #ccc;
+    background: #fafafa;
+  }
+
+  .bundle-item.empty-slot:hover {
+    border-color: #e5ff00;
+    background: #fff;
+  }
+
+  .remove-item {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    border: none;
+    font-family: 'PPMori Regular', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+  }
+
+  .item-image {
+    width: 100%;
+    height: 100%;
+  }
+
+  .item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  .slot-number {
+    font-family: 'PPMori Regular', sans-serif;  
+    font-size: 24px;
+    font-weight: 300;
+    color: #000;
+  }
+
+  .add-button {
+    background: none;
+    border: none;
+    font-family: 'PPMori Regular', sans-serif;
+    font-size: 36px;
+    color: #000;
+    cursor: pointer;
+    margin-bottom: 8px;
+    line-height: 1;
+  }
+
+  .bundle-nav-arrow {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #666;
+    flex-shrink: 0;
+    z-index: 2;
+  }
+
+  .bundle-nav-arrow.left {
+    margin-right: 8px;
+  }
+
+  .bundle-nav-arrow.right {
+    margin-left: 8px;
+  }
+
+  .bundle-nav-arrow:hover {
+    background: #f8f8f8;
+  }
+
+  .bundle-nav-arrow:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  /* Bundle Sidebar */
+  .bundle-sidebar {
+    width: 280px;
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    height: fit-content;
+    flex-shrink: 0;
+  }
+
+  .pricing-section {
+    margin-bottom: 24px;
+  }
+
+  .initial-price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    font-family: 'PPMori Regular', sans-serif;
+    font-weight: 600;
+    color: #2c2c2c;
+    margin-bottom: 8px;
+  }
+
+  .savings-text {
+    font-size: 12px;
+    font-family: 'PPMori Regular', sans-serif;
+    color: #666;
+    margin: 0;
+  }
+
+  .checkout-section {
+    border-top: 1px solid #f0f0f0;
+    padding-top: 20px;
+  }
+
+  .subtotal-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    font-family: 'PPMori Regular', sans-serif;
+    font-weight: 600;
+    color: #2c2c2c;
+    margin-bottom: 16px;
+  }
+
+  .checkout-button {
+    width: 100%;
+    background: #e5ff00;
+    color: #000;
+    border: none;
+    border-radius: 24px;
+    padding: 12px;
+    font-size: 14px;
+    font-family: 'PPMori Regular', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .checkout-button:hover:not(:disabled) {
+    background: #e5ff00;
+  }
+
+  .checkout-button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  /* Product Filter Section - RESTORED LAYOUT */
+  .product-filter-section {
+    background: white;
+    padding: 30px 20px;
+    width: 100%;
+  }
+
+  .filter-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+  }
+
+  .filter-tabs {
+    display: flex;
+    gap: 20px;
+  }
+
+  .filter-tab {
+    background: none;
+    border: 1px solid #e0e0e0;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 13px;
+    font-family: 'PPMori Regular', sans-serif;
+    font-weight: 500;
+    color: #000;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .filter-tab.active,
+  .filter-tab:hover {
+    background: #e5ff00;
+    color: black;
+    border-color: #e5ff00;
+  }
+
+  .search-box {
+    position: relative;
+  }
+
+  .search-input {
+    width: 250px;
+    padding: 10px 36px 10px 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 20px;
+    font-size: 13px;
+    font-family: 'PPMori Regular', sans-serif;
+    outline: none;
+  }
+
+  .search-input:focus {
+    border-color: #e5ff00;
+  }
+
+  .search-button {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #e5ff00;
+    border: none;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    cursor: pointer;
+  }
+
+  /* Products Grid Section */
+  .products-grid-section {
+    background: white;
+    padding: 0 61px 60px;
+    width: 100%;
+  }
+
+  .products-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    width: 100%;
+  }
+
+  .product-card {
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #f0f0f0;
+    width: 100%;
+    height: 560px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .product-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: transparent;
+    z-index: 1;
+  }
+
+  .product-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.1);
+  }
+
+  .product-badges {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .badge {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-family: 'PPMori Regular', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .category-badge {
+    background: rgba(255, 255, 255, 0.95);
+    color: #000;
+  }
+
+  .bestseller-badge {
+    background: #f4f1e8;
+    color: #8b6914;
+  }
+
+  .product-price-overlay {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    color: #2c2c2c;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: 'PPMori Regular', sans-serif;
+    font-weight: 300;
+    z-index: 3;
+  }
+
+  .product-info-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px 16px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .product-rating {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-top: -15px;
+  }
+
+  .stars {
+    display: flex;
+    gap: 1px;
+    justify-content: center;
+    font-size: 20px;
+  }
+
+  .star {
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .star.filled {
+    color:  #cbdd00;
+  }
+
+  .star.half {
+    color:  #cbdd00;
+  }
+
+  .review-count {
+    font-size: 11px;
+    font-family: 'PPMori Regular', sans-serif;
+    color: rgba(0, 0, 0, 0.6);
+    text-decoration: underline;
+  }
+
+  .product-title {
+    font-size: 14px;
+    font-family: 'PPMori Regular', sans-serif;
+    font-weight: 300;
+    color: #2c2c2c;
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .product-subtitle {
+    font-size: 11px;
+    font-family: 'PPMori Regular', sans-serif;
+    color: #000;
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .add-to-bundle-btn {
+    background: #f4ff41;
+    border: none;
+    color: #000;
+    padding: 10px 16px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-family: 'PPMori Regular', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    margin-top: -10px;
+    margin-bottom: -12px;
+  }
+
+  .add-to-bundle-btn:hover {
+    background: #f4ff41;
+    transform: scale(1.05);
+  }
+
+  .add-to-bundle-btn:disabled {
+    background: #ccc;
+    color: #999;
+    cursor: not-allowed;
+    transform: scale(1);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .bundle-container {
+      max-width: 900px;
+      gap: 30px;
+    }
+    
+    .bundle-sidebar {
+      width: 240px;
+    }
+    
+    .products-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .bundle-container {
+      flex-direction: column;
+      gap: 30px;
+      max-width: 100%;
+    }
+    
+    .bundle-sidebar {
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    
+    .bundle-title {
+      font-size: 36px;
+    }
+    
+    .bundle-slider-container {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    
+    .bundle-nav-arrow {
+      display: none;
+    }
+    
+    .bundle-items-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      overflow: visible;
+      max-width: 100%;
+    }
+
+    .bundle-slot-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: none;
+      min-width: 0;
+    }
+
+    .bundle-item {
+      width: 100%;
+      max-width: 90px;
+      min-width: 70px;
+      height: 100px;
+      margin-bottom: 4px;
+      flex-shrink: 0;
+    }
+
+    .bundle-product-name {
+      width: 100%;
+      max-width: 90px;
+      min-width: 70px;
+      font-size: 9px;
+      text-align: center;
+      color: #666;
+      font-weight: 500;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      min-height: 14px;
+      line-height: 1.2;
+      word-break: break-all;
+    }
+    
+    .filter-container {
+      flex-direction: column;
+      gap: 20px;
+      align-items: stretch;
+    }
+    
+    .search-input {
+      width: 100%;
+    }
+    
+    .products-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    
+    .product-card {
+      height: 470px;
+    }
+    
+    .filter-tabs {
+      justify-content: center;
+    }
+    
+    .products-grid-section,
+    .product-filter-section {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  }
+
+  .add-to-bundle-btn.loading {
+    background: #ccc;
+    color: #999;
+    border-color: #ccc;
+  }
+
+  .add-to-bundle-btn.success {
+    background: #4caf50;
+    color: white;
+    border-color: #4caf50;
+  }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  class BundleManager {
+    constructor() {
+      this.bundleItems = [];
+      this.maxItems = 5;
+      this.selectedCollection = document.getElementById('products-grid').dataset.selectedCollection;
+      console.log("[v0] Selected collection:", this.selectedCollection);
+      console.log("[v0] Total product cards found:", document.querySelectorAll('.product-card').length);
+      this.init();
+    }
+
+    init() {
+      this.setupEventListeners();
+      this.updateUI();
+      this.updatePricing();
+    }
+
+    setupEventListeners() {
+      document.querySelectorAll('.add-to-bundle-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const card = e.target.closest('.product-card');
+          this.addProductToBundle(card);
+        });
+      });
+
+      document.getElementById('checkout-btn').addEventListener('click', (e) => {
+        e.preventDefault();
+        this.proceedToCheckout();
+      });
+
+      
+      document.getElementById('product-search').addEventListener('input', (e) => {
+        this.searchProducts(e.target.value);
+      });
+
+      if (window.innerWidth > 768) {
+        document.getElementById('scroll-left').addEventListener('click', () => {
+          this.scrollBundleItems('left');
+        });
+
+        document.getElementById('scroll-right').addEventListener('click', () => {
+          this.scrollBundleItems('right');
+        });
+      }
+
+      document.querySelectorAll('.bundle-item.empty-slot').forEach(slot => {
+        slot.addEventListener('click', () => {
+          this.scrollToProducts();
+        });
+      });
+    }
+
+    addProductToBundle(card) {
+      if (this.bundleItems.length >= this.maxItems) {
+        alert('You have reached the maximum of ' + this.maxItems + ' items');
+        return;
+      }
+
+      const productId = card.dataset.productId;
+
+      const product = {
+        id: productId,
+        title: card.dataset.productTitle,
+        price: parseInt(card.dataset.productPrice),
+        image: card.dataset.productImage,
+        handle: card.dataset.productHandle
+      };
+
+      this.bundleItems.push(product);
+      this.updateUI();
+      this.updatePricing();
+      this.showAddedFeedback(card);
+    }
+
+    removeProductFromBundle(index) {
+      this.bundleItems.splice(index, 1);
+      this.updateUI();
+      this.updatePricing();
+    }
+
+    updateUI() {
+      const slotWrappers = document.querySelectorAll('.bundle-slot-wrapper');
+
+      slotWrappers.forEach((wrapper, index) => {
+        const slotIndex = parseInt(wrapper.dataset.slot);
+        const bundleItem = wrapper.querySelector('.bundle-item');
+        const productName = wrapper.querySelector('.bundle-product-name');
+
+        if (slotIndex < this.bundleItems.length) {
+          const item = this.bundleItems[slotIndex];
+          bundleItem.className = 'bundle-item filled';
+          bundleItem.innerHTML = `
+            <button class="remove-item" onclick="bundleManager.removeProductFromBundle(${slotIndex})">×</button>
+            <div class="item-image">
+              <img src="${item.image}" alt="${item.title}">
+            </div>
+          `;
+          productName.textContent = item.title;
+        } else {
+          productName.textContent = '';
+          bundleItem.className = 'bundle-item empty-slot';
+          bundleItem.innerHTML = `<button class="add-button">+</button><span class="slot-number">${slotIndex + 1}</span>`;
+          bundleItem.addEventListener('click', () => {
+            this.scrollToProducts();
+          });
+        }
+      });
+
+      this.updateProductButtons();
+    }
+
+    updateProductButtons() {
+  document.querySelectorAll('.product-card').forEach(card => {
+    const button = card.querySelector('.add-to-bundle-btn');
+
+    if (this.bundleItems.length >= this.maxItems) {
+      button.textContent = 'BUNDLE FULL';
+      button.disabled = true;
+    } else {
+      button.textContent = 'ADD TO BUNDLE';
+      button.disabled = false;
+    }
+  });
+}
+
+
+    updatePricing() {
+      const itemCount = this.bundleItems.length;
+      let subtotal = this.bundleItems.reduce((sum, item) => sum + item.price / 100, 0);
+
+      document.getElementById('initial-price').textContent = subtotal.toFixed(2);
+      document.getElementById('subtotal-amount').textContent = subtotal.toFixed(2);
+
+      const savingsMessage = document.getElementById('savings-message');
+      const checkoutBtn = document.getElementById('checkout-btn');
+      
+      if (itemCount === this.maxItems) {
+        checkoutBtn.disabled = false;
+        savingsMessage.textContent = 'Your bundle is complete!';
+      } else {
+        checkoutBtn.disabled = true;
+        const remaining = this.maxItems - itemCount;
+        savingsMessage.textContent = `Add ${remaining} more item${remaining !== 1 ? 's' : ''} to checkout`;
+      }
+    }
+
+    showAddedFeedback(card) {
+      const button = card.querySelector('.add-to-bundle-btn');
+      button.textContent = 'ADDED!';
+      button.classList.add('success');
+      setTimeout(() => {
+        button.classList.remove('success');
+        this.updateProductButtons();
+      }, 2000);
+    }
+
+    async proceedToCheckout() {
+      if (this.bundleItems.length !== this.maxItems) {
+        alert('Please add all 5 items to your bundle');
+        return;
+      }
+
+      const checkoutBtn = document.getElementById('checkout-btn');
+      checkoutBtn.textContent = 'ADDING TO CART...';
+      checkoutBtn.disabled = true;
+
+      try {
+        await fetch('/cart/clear.js', { method: 'POST' });
+
+        const cartItems = this.bundleItems.map(item => ({
+          id: item.id,
+          quantity: 1
+        }));
+
+        const response = await fetch('/cart/add.js', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ items: cartItems })
+        });
+
+        if (!response.ok) throw new Error('Cart add failed');
+
+        checkoutBtn.textContent = 'REDIRECTING...';
+        window.location.href = '/checkout';
+
+      } catch (error) {
+        console.error('Checkout error:', error);
+        alert('There was an error processing your bundle. Please try again.');
+        checkoutBtn.textContent = 'CHECKOUT';
+        checkoutBtn.disabled = false;
+      }
+    }
+
+    // Removed filterProducts function as filter tabs are removed
+    // Modified searchProducts to filter by text only, not collection
+    searchProducts(query) {
+      const searchTerm = query.toLowerCase();
+      document.querySelectorAll('.product-card').forEach(product => {
+        const title = product.dataset.productTitle.toLowerCase();
+        const tags = product.dataset.tags.toLowerCase();
+        const matchesSearch = title.includes(searchTerm) || tags.includes(searchTerm);
+        product.style.display = matchesSearch ? 'block' : 'none';
+      });
+    }
+
+    scrollBundleItems(direction) {
+      if (window.innerWidth > 768) {
+        const container = document.getElementById('bundle-items-row');
+        const scrollAmount = direction === 'right' ? 150 : -150;
+        container.scrollLeft += scrollAmount;
+      }
+    }
+
+    scrollToProducts() {
+      document.querySelector('.products-grid-section').scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  window.bundleManager = new BundleManager();
+
+  if (window.innerWidth > 768) {
+    const bundleRow = document.getElementById('bundle-items-row');
+    const scrollRight = document.getElementById('scroll-right');
+    const scrollLeft = document.getElementById('scroll-left');
+
+    if (scrollRight) {
+      scrollRight.addEventListener('click', () => {
+        bundleRow.scrollBy({ left: 150, behavior: 'smooth' });
+      });
+    }
+
+    if (scrollLeft) {
+      scrollLeft.addEventListener('click', () => {
+        bundleRow.scrollBy({ left: -150, behavior: 'smooth' });
+      });
+    }
+  }
+});
+</script>
+
+{% schema %}
+{
+  "name": "Bundle Builder",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Bundle Builder",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

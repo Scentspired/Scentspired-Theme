@@ -1,0 +1,295 @@
+{% doc %}
+  @prompt
+    "Create a custom Shopify Liquid banner section that replicates the layout and design of image_e901e8.png. The section must include separate background image upload options for desktop and mobile, with the section height set to 'adapt to image' so it maintains the aspect ratio of the uploaded files. Position a text content block on the left side of the banner with a clear 'max-width' to prevent it from overlapping the focal point of the image. For the typography, hardcode the following styles: the first line should read 'Find the one that fits Buy it.' where 'Find the one that fits' is in 'PP Editorial New', serif in a dark charcoal color, and 'Buy it.' is in 'PPEditorialNew Italic' in a deep red color (approx. #8B1D22). The second line, 'That is exactly what it is there for.', must be entirely in 'PP Editorial New', serif in the same dark charcoal color. Ensure the text is left-aligned with a tight line-height to match the elegant, compact look in the reference image. The section should be fully responsive, switching to the mobile image upload while maintaining the left-aligned text positioning and the specific font-family and color assignments for each word without any theme-level overrides."
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-editorial-banner-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    display: block;
+  }
+
+  .ai-editorial-banner__image-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    height: auto;
+  }
+
+  .ai-editorial-banner__image-{{ ai_gen_id }} {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .ai-editorial-banner__image-placeholder-{{ ai_gen_id }} {
+    background-color: #f4f4f4;
+    width: 100%;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .ai-editorial-banner__image-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    max-width: 500px;
+    max-height: 500px;
+  }
+
+  .ai-editorial-banner__empty-state-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 20px;
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  .ai-editorial-banner__content-{{ ai_gen_id }} {
+    position: absolute;
+    top: 50%;
+    left: {{ block.settings.text_horizontal_position }}%;
+    transform: translateY(-50%);
+    max-width: {{ block.settings.text_max_width }}px;
+    padding: 0 20px;
+    z-index: 2;
+  }
+
+  .ai-editorial-banner__text-{{ ai_gen_id }} {
+    font-family: 'PP Editorial New', serif;
+    font-size: {{ block.settings.text_size }}px;
+    line-height: {{ block.settings.line_height }};
+    text-align: left;
+    margin: 0;
+  }
+
+  .ai-editorial-banner__line-1-{{ ai_gen_id }} {
+    display: block;
+  }
+
+  .ai-editorial-banner__line-1-part-1-{{ ai_gen_id }} {
+    font-family: 'PP Editorial New', serif;
+    font-style: normal;
+    color: #2b2b2b;
+  }
+
+  .ai-editorial-banner__line-1-part-2-{{ ai_gen_id }} {
+    font-family: 'PPEditorialNew Italic', serif;
+    font-style: italic;
+    color: #8B1D22;
+    font-size: 60px;
+  }
+
+  .ai-editorial-banner__line-2-{{ ai_gen_id }} {
+    display: block;
+    font-family: 'PP Editorial New', serif;
+    font-style: normal;
+    color: #2b2b2b;
+  }
+
+  .ai-editorial-banner__mobile-image-{{ ai_gen_id }} {
+    display: none;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-editorial-banner__desktop-image-{{ ai_gen_id }} {
+      display: none;
+    }
+
+    .ai-editorial-banner__mobile-image-{{ ai_gen_id }} {
+      display: block;
+    }
+
+    .ai-editorial-banner__content-{{ ai_gen_id }} {
+      max-width: calc(100% - 40px);
+    }
+
+    .ai-editorial-banner__text-{{ ai_gen_id }} {
+      font-family: 'PP Editorial New', serif;
+      font-size: 13px;
+      line-height: {{ block.settings.line_height }};
+      text-align: left;
+      margin: 0;
+    }
+
+    .ai-editorial-banner__line-1-part-2-{{ ai_gen_id }} {
+      font-family: 'PPEditorialNew Italic', serif;
+      font-style: italic;
+      color: #8B1D22;
+      font-size: 25px;
+    }
+
+    .ai-editorial-banner__content-{{ ai_gen_id }} {
+      left: 0%;
+    }
+  }
+{% endstyle %}
+
+<editorial-banner-{{ ai_gen_id }}
+  class="ai-editorial-banner-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-editorial-banner__image-wrapper-{{ ai_gen_id }}">
+    {% if block.settings.desktop_image %}
+      <img
+        src="{{ block.settings.desktop_image | image_url: width: 2000 }}"
+        alt="{{ block.settings.desktop_image.alt | escape }}"
+        loading="lazy"
+        width="{{ block.settings.desktop_image.width }}"
+        height="{{ block.settings.desktop_image.height }}"
+        class="ai-editorial-banner__image-{{ ai_gen_id }} ai-editorial-banner__desktop-image-{{ ai_gen_id }}"
+      >
+    {% else %}
+      <div class="ai-editorial-banner__image-placeholder-{{ ai_gen_id }} ai-editorial-banner__desktop-image-{{ ai_gen_id }}">
+        {{ 'hero-apparel-1' | placeholder_svg_tag }}
+        <div class="ai-editorial-banner__empty-state-{{ ai_gen_id }}">
+          Next, add a desktop image
+        </div>
+      </div>
+    {% endif %}
+
+    {% if block.settings.mobile_image %}
+      <img
+        src="{{ block.settings.mobile_image | image_url: width: 1000 }}"
+        alt="{{ block.settings.mobile_image.alt | escape }}"
+        loading="lazy"
+        width="{{ block.settings.mobile_image.width }}"
+        height="{{ block.settings.mobile_image.height }}"
+        class="ai-editorial-banner__image-{{ ai_gen_id }} ai-editorial-banner__mobile-image-{{ ai_gen_id }}"
+      >
+    {% else %}
+      <div class="ai-editorial-banner__image-placeholder-{{ ai_gen_id }} ai-editorial-banner__mobile-image-{{ ai_gen_id }}">
+        {{ 'hero-apparel-1' | placeholder_svg_tag }}
+        <div class="ai-editorial-banner__empty-state-{{ ai_gen_id }}">
+          Next, add a mobile image
+        </div>
+      </div>
+    {% endif %}
+
+    <div class="ai-editorial-banner__content-{{ ai_gen_id }}">
+      <p class="ai-editorial-banner__text-{{ ai_gen_id }}">
+        {% if block.settings.heading_line_1_part_1 != blank or block.settings.heading_line_1_part_2 != blank %}
+          <span class="ai-editorial-banner__line-1-{{ ai_gen_id }}">
+            {% if block.settings.heading_line_1_part_1 != blank %}
+              <span class="ai-editorial-banner__line-1-part-1-{{ ai_gen_id }}">{{ block.settings.heading_line_1_part_1 }}</span>
+            {% endif %}
+            {% if block.settings.heading_line_1_part_2 != blank %}
+              <span class="ai-editorial-banner__line-1-part-2-{{ ai_gen_id }}"> {{ block.settings.heading_line_1_part_2 }}</span>
+            {% endif %}
+          </span>
+        {% endif %}
+        {% if block.settings.heading_line_2 != blank %}
+          <span class="ai-editorial-banner__line-2-{{ ai_gen_id }}">{{ block.settings.heading_line_2 }}</span>
+        {% endif %}
+      </p>
+    </div>
+  </div>
+</editorial-banner-{{ ai_gen_id }}>
+
+{% schema %}
+{
+  "name": "Editorial banner",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "Desktop image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile image"
+    },
+    {
+      "type": "header",
+      "content": "Text content"
+    },
+    {
+      "type": "text",
+      "id": "heading_line_1_part_1",
+      "label": "Heading — line 1 (regular)",
+      "default": "Find the one that fits",
+      "info": "Displayed in PP Editorial New, dark charcoal."
+    },
+    {
+      "type": "text",
+      "id": "heading_line_1_part_2",
+      "label": "Heading — line 1 (italic accent)",
+      "default": "Buy it.",
+      "info": "Displayed in PP Editorial New Italic, deep red (#8B1D22)."
+    },
+    {
+      "type": "text",
+      "id": "heading_line_2",
+      "label": "Heading — line 2",
+      "default": "That is exactly what it is there for.",
+      "info": "Displayed in PP Editorial New, dark charcoal."
+    },
+    {
+      "type": "header",
+      "content": "Text positioning"
+    },
+    {
+      "type": "range",
+      "id": "text_horizontal_position",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "%",
+      "label": "Horizontal position",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "text_max_width",
+      "min": 200,
+      "max": 800,
+      "step": 50,
+      "unit": "px",
+      "label": "Max width",
+      "default": 500
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "min": 20,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Font size",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "line_height",
+      "min": 0.8,
+      "max": 1.5,
+      "step": 0.1,
+      "unit": "em",
+      "label": "Line height",
+      "default": 1
+    }
+  ],
+  "presets": [
+    {
+      "name": "Editorial banner"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,816 @@
+{% stylesheet %}
+
+/* Updated section base styles for consistency */
+.bs-section {
+    max-width: 2100px;
+    margin: 0 auto !important;
+    padding: 0px 0;
+    background-color: #ffffff;
+    padding-left: 2rem;
+}
+
+@media only screen and (min-width: 1024px) {
+    .bs-section {
+        padding-left: 5rem;
+    }
+}
+@media only screen and (max-width: 1024px) {
+     .fragrance-item {
+        width: 100% !important;
+        }
+      }
+
+.bs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items: start;
+}
+
+.bs-products-side {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-bottom: 60px;
+    padding-top: 20px;
+}
+
+/* Updated Card Design Styles from form-aRxqB.tsx */
+.fragrance-item {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #F5F5F5;
+    position: relative;
+    min-width: 0; /* Fix for flexbox grid issues */
+}
+
+.fragrance-image-wrap {
+    position: relative;
+    height: 350px;
+    width: 100%;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.fragrance-image-wrap img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    transition: opacity 0.4s ease;
+}
+
+.fragrance-image-wrap .secondary-image {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.fragrance-image-wrap:hover .secondary-image {
+    opacity: 1;
+}
+
+.product-badges {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    pointer-events: none;
+}
+
+.product-badge {
+    color: #fff !important;
+    font-family: 'PPMori Regular', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    padding: 4px 18px;
+    border-radius: 20px;
+    width: fit-content;
+    white-space: nowrap;
+}
+
+.badge-men { background-color: #242521 !important; }
+.badge-women { background-color: #8b5b5d !important; }
+.badge-unisex { background-color: #7a795c !important; }
+
+.fragrance-info {
+    background-color: #F5F5F5;
+    padding: 16px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+    flex: 1;
+}
+
+.fragrance-rating {
+    font-size: 24px;
+    color: #cbdd00;
+    letter-spacing: -2px;
+    margin: 0;
+    text-align: left;
+    margin-top: -10px;
+}
+
+.fragrance-name {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+    font-family: 'PPMori Regular', sans-serif;
+    text-transform: uppercase;
+    text-align: left;
+    line-height: 1.3;
+    color: #000;
+}
+
+.fragrance-brand {
+    margin: 0;
+    font-size: 12px;
+    font-family: 'PPMori Regular', sans-serif;
+    font-weight: 400;
+    text-align: left;
+    color: #666;
+}
+
+.product-price-display {
+    font-size: 18px;
+    font-weight: 600;
+    color: #000;
+    font-family: 'PPMori Regular', sans-serif;
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.price-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.compare-price {
+    font-size: 14px;
+    color: #666;
+    text-decoration: line-through;
+    font-weight: 400;
+}
+
+.sale-badge {
+    background-color: #fa0000ff;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: 'PPMori Regular', sans-serif;
+    white-space: nowrap;
+}
+
+.variant-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 4px 0 0 0;
+}
+
+.variant-option-btn {
+    padding: 6px 16px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    font-size: 11px;
+    cursor: pointer;
+    font-family: 'PPMori Regular', sans-serif;
+    transition: all 0.2s ease;
+    color: #000;
+}
+
+.variant-option-btn.active {
+    background-color: #f4ff41;
+    color: #000;
+    border-color: #000;
+}
+
+.cart-button {
+    margin-top: 8px;
+    background: #f4ff41;
+    color: #000;
+    font-weight: 600;
+    font-size: 12px;
+    padding: 16px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    border: none;
+    width: 100%;
+    font-family: 'PPMori Regular', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.cart-button:hover { background: #e0ea36; }
+
+.cart-button.sold-out {
+    background: #f4ff41;
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Updated heading layout to match requested design (Title left, Nav right) */
+.bs-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 20px;
+}
+
+.bs-heading-content {
+    flex: 1;
+}
+
+/* Existing Navigation Styles */
+.bs-navigation { display: flex; gap: 10px; align-items: center; }
+.bs-nav-arrow {
+    width: 45px; height: 45px; background: #f4ff41; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: all 0.3s ease; border: 2px solid #f4ff41 !important;
+    font-size: 24px;
+}
+.bs-nav-counter { font-family: 'PPMori Regular', sans-serif; font-size: 14px; color: #666; }
+
+.bs-title {
+    font-family: 'PPEditorialNew Italic', serif;
+    font-size: 48px; font-weight: 400; font-style: italic; color: #000; margin: 0;
+    text-decoration: underline;
+    text-decoration-color: #FADB95;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 2px;
+}
+
+
+.bs-products-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    overflow: hidden;
+}
+
+.bs-image-side { 
+    height: auto; 
+    padding-top: 80px; 
+}
+.bs-featured-image { width: 100%; height: auto; border-radius: 16px; overflow: hidden; }
+.bs-featured-image img { width: 100%; height: 100%; object-fit: cover; }
+
+@media screen and (max-width: 800px) {
+    .bs-section { padding-left: 1rem; padding-right: 1rem; }
+    .bs-grid { grid-template-columns: 1fr; gap: 0px; }
+    .bs-products-grid { grid-template-columns: 1fr; gap: 15px; }
+    .fragrance-image-wrap { height: 200px; }
+    .bs-image-side { padding-top: 0; margin-top: 20px; }
+    .bs-title { font-size: 32px; }
+    .fragrance-name { font-size: 13px; }
+    .fragrance-brand { font-size: 11px; }
+    .variant-option-btn { padding: 4px 10px; font-size: 10px; }
+    .cart-button { padding: 12px; font-size: 10px; }
+    .bs-products-side {
+    padding-top: 30px;
+}
+    @media screen and (max-width: 800px) {
+    .cart-button {
+        font-size: 11px;
+        padding: 16px 12px;
+    }
+}
+.bs-subheading {
+    margin-top: 30px;
+    max-width: 450px;
+}
+
+.bs-subheading p {
+    font-family: 'PPMori Regular', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #000;
+    text-transform: uppercase;
+    margin: 0;
+}
+@media screen and (max-width: 800px) {
+    .bs-image-side {
+       display: none;
+        margin-top: 20px;
+       }
+      }
+{% endstylesheet %}
+
+
+
+<section class="bs-section">
+    <div class="bs-container">
+        <div class="bs-grid">
+            <div class="bs-products-side">
+                <div class="bs-heading">
+                    <div class="bs-heading-content">
+                        <h2 class="bs-title">{{ section.settings.section_title }}</h2>
+                    </div>
+                    <div class="bs-navigation">
+                        <button class="bs-nav-arrow" id="prevBtn" onclick="navigateProducts(-1)">‹</button>
+                        <span class="bs-nav-counter">
+                            <span id="currentPage">1</span> / <span id="totalPages">1</span>
+                        </span>
+                        <button class="bs-nav-arrow" id="nextBtn" onclick="navigateProducts(1)">›</button>
+                    </div>
+                </div>
+                        
+                <div class="bs-products-grid" id="productsGrid">
+                    <!-- Cards are rendered here via JavaScript -->
+                </div>
+
+                {% if section.settings.subheading %}
+                    <div class="bs-subheading">
+                        <p>{{ section.settings.subheading }}</p>
+                    </div>
+                {% endif %}
+                        
+                {% if section.settings.view_all_link != blank %}
+                    <div style="text-align: center; margin-top: 0px;">
+                        <a href="{{ section.settings.view_all_link }}" class="view-all-button" style="display: inline-block; padding: 16px 80px; background: #f4ff41; border-radius: 999px; text-decoration: none; color: #000; font-family: 'PPMori Regular', sans-serif; font-weight: 500; text-transform: uppercase;">
+                            View All Products
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+                  
+            <div class="bs-image-side">
+                {% if section.settings.featured_image %}
+                    <div class="bs-featured-image">
+                        <img src="{{ section.settings.featured_image | image_url: width: 1200 }}" alt="{{ section.settings.featured_image.alt }}" loading="lazy">
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+let allProducts = [];
+let currentIndex = 0;
+let totalProducts = 0;
+let totalPages = 0;
+let isMobile = window.innerWidth <= 800;
+
+// Determine products per page
+function getPerPage() {
+  return isMobile ? 1 : 2;
+}
+
+// Format price to currency
+function formatPrice(priceInCents) {
+  return '$' + (priceInCents / 100).toFixed(2);
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  {% assign collection = collections[section.settings.collection] %}
+  allProducts = [
+  {% for product in collection.products %}
+  {
+    id: {{ product.id }},
+    title: "{{ product.title | escape }}",
+    vendor: "{{ product.vendor | escape }}",
+    url: "{{ product.url }}",
+    featured_image: "{{ product.featured_image | image_url: width: 600 }}",
+    hover_image: {% if product.images.size > 1 %}"{{ product.images[1] | image_url: width: 600 }}"{% else %}null{% endif %},
+    tags: "{{ product.tags | join: ',' }}",
+    variants: [
+      {% for variant in product.variants %}
+      {
+        id: {{ variant.id }},
+        title: "{{ variant.title | escape }}",
+        price: "{{ variant.price | money }}",
+        priceRaw: {{ variant.price }},
+        compareAtPrice: {{ variant.compare_at_price | default: 0 }},
+        available: {{ variant.available | json }},
+        availableInventory: {{ variant.inventory_quantity }}
+      }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ]
+  }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+];
+
+  totalProducts = allProducts.length;
+  updatePageCalculation();
+  updateProductsDisplay();
+  const totalPagesEl = document.getElementById('totalPages');
+  if (totalPagesEl) totalPagesEl.textContent = totalPages;
+
+  updateVariantAvailability();
+  setInterval(updateVariantAvailability, 2000);
+
+  // Handle window resize for mobile / desktop
+  window.addEventListener('resize', function () {
+    const prevState = isMobile;
+    isMobile = window.innerWidth <= 800;
+    if (prevState !== isMobile) {
+      currentIndex = 0;
+      updatePageCalculation();
+      updateProductsDisplay();
+      const tp = document.getElementById('totalPages');
+      if (tp) tp.textContent = totalPages;
+      const cp = document.getElementById('currentPage');
+      if (cp) cp.textContent = 1;
+      updateVariantAvailability();
+    }
+  });
+});
+
+// Calculate total pages
+function updatePageCalculation() {
+  totalPages = Math.ceil(totalProducts / getPerPage());
+}
+
+// Navigate products
+function navigateProducts(direction) {
+  const perPage = getPerPage();
+  currentIndex += direction * perPage;
+
+  if (currentIndex >= totalProducts) currentIndex = 0;
+  if (currentIndex < 0) {
+    currentIndex = Math.floor((totalProducts - 1) / perPage) * perPage;
+  }
+
+  updateProductsDisplay();
+  const cp = document.getElementById('currentPage');
+  if (cp) {
+    cp.textContent = Math.floor(currentIndex / perPage) + 1;
+  }
+}
+
+// Get product badges
+function getBadgeHTML(tagsString) {
+  const tags = (tagsString || '').toLowerCase().split(',');
+  if (tags.includes('men')) return '<span class="product-badge badge-men">Men</span>';
+  if (tags.includes('women')) return '<span class="product-badge badge-women">Women</span>';
+  if (tags.includes('unisex')) return '<span class="product-badge badge-unisex">Unisex</span>';
+  return '';
+}
+
+function updateVariantAvailability() {
+  fetch('/cart.js')
+    .then(res => {
+      if (!res.ok) throw new Error('Failed to fetch cart');
+      return res.json();
+    })
+    .then(cartData => {
+      const variantQtyMap = {};
+      (cartData.items || []).forEach(item => {
+        variantQtyMap[item.variant_id] = item.quantity;
+      });
+
+      document.querySelectorAll('.variant-option-btn').forEach(btn => {
+        const variantId = parseInt(btn.dataset.variantId);
+        const inventory = parseInt(btn.dataset.inventory) || 0;
+        const cartQty = variantQtyMap[variantId] || 0;
+
+        if (inventory <= 0 || inventory <= cartQty) {
+          btn.classList.add('disabled');
+          btn.style.opacity = '0.5';
+          btn.style.cursor = 'not-allowed';
+        } else {
+          btn.classList.remove('disabled');
+          btn.style.opacity = '1';
+          btn.style.cursor = 'pointer';
+        }
+      });
+
+      // Update cart buttons based on available variants
+      document.querySelectorAll('.product-form').forEach(form => {
+        const productCard = form.closest('.fragrance-item');
+        if (!productCard) return;
+        const cartBtn = form.querySelector('.cart-button');
+        if (!cartBtn) return;
+        const availableVariants = productCard.querySelectorAll('.variant-option-btn:not(.disabled)');
+        
+        if (availableVariants.length === 0) {
+          cartBtn.classList.add('sold-out');
+          cartBtn.innerText = 'Sold Out';
+          cartBtn.disabled = true;
+          cartBtn.style.pointerEvents = 'none';
+        } else {
+          cartBtn.classList.remove('sold-out');
+          cartBtn.innerText = 'Add to Cart';
+          cartBtn.disabled = false;
+          cartBtn.style.pointerEvents = 'auto';
+        }
+      });
+    })
+    .catch(err => console.warn('Cart fetch error:', err));
+}
+
+// Render products in grid
+function updateProductsDisplay() {
+  const grid = document.getElementById('productsGrid');
+  if (!grid) return;
+  const perPage = getPerPage();
+  const productsToShow = allProducts.slice(currentIndex, currentIndex + perPage);
+
+  grid.innerHTML = '';
+  productsToShow.forEach(product => {
+    const badgeHTML = getBadgeHTML(product.tags);
+    const variantsHTML = product.variants.length > 1 ? `
+  <div class="variant-options">
+    ${product.variants.map(v => `
+      <button
+        type="button"
+        class="variant-option-btn ${v.available ? '' : 'disabled'}"
+        data-variant-id="${v.id}"
+        data-variant-price="${v.price}"
+        data-compare-price="${v.compareAtPrice || 0}"
+        data-inventory="${v.availableInventory}"
+        data-available="${v.available}">
+        ${v.title}
+      </button>
+    `).join('')}
+  </div>` : '';
+
+    grid.innerHTML += `
+      <div class="fragrance-item" data-product-id="${product.id}">
+        <a href="${product.url}" style="text-decoration: none; color: inherit;">
+          <div class="fragrance-image-wrap">
+            <img src="${product.featured_image}" alt="${product.title}">
+            ${product.hover_image ? `<img class="secondary-image" src="${product.hover_image}" alt="${product.title}">` : ''}
+            <div class="product-badges">${badgeHTML}</div>
+          </div>
+        </a>
+        <div class="fragrance-info">
+         <a href="${product.url}" style="text-decoration: none; color: inherit;">
+          <div class="fragrance-name">${product.title}</div>
+          </a>
+          <div class="fragrance-brand">${product.vendor}</div>
+          <div class="product-price-display" data-price-display>
+            <div class="price-wrapper">
+              <span data-current-price>${product.variants[0].price}</span>
+              ${product.variants[0].compareAtPrice > 0 ? `<span class="compare-price">${formatPrice(product.variants[0].compareAtPrice)}</span>` : ''}
+              ${product.variants[0].compareAtPrice > 0 ? '<span class="sale-badge">SALE</span>' : ''}
+            </div>
+          </div>
+
+          <!-- Shopify native cart form -->
+          <form method="post" action="/cart/add" class="product-form" data-product-id="${product.id}">
+            <input type="hidden" name="id" class="selected-variant-id" value="${product.variants[0].id}">
+            ${variantsHTML}
+            <button type="submit" class="cart-button" data-all-variants="${JSON.stringify(product.variants.map(v => ({ available: v.available, id: v.id })))}">Add to Cart</button>
+          </form>
+        </div>
+      </div>`;
+  });
+
+  // Auto-select first AVAILABLE variant per product
+  grid.querySelectorAll('.fragrance-item').forEach(card => {
+    const variantBtns = card.querySelectorAll('.variant-option-btn');
+    const idInput = card.querySelector('.selected-variant-id');
+    const priceDisplay = card.querySelector('[data-price-display]');
+    const cartBtn = card.querySelector('.cart-button');
+
+    let firstAvailableBtn = null;
+    let hasAnyAvailable = false;
+
+    variantBtns.forEach(btn => {
+      const available = btn.dataset.available === 'true';
+      const inventory = parseInt(btn.dataset.inventory) || 0;
+      
+      // Check if variant has stock and is available
+      if (!available || inventory === 0) {
+        btn.classList.add('disabled');
+        return;
+      }
+      hasAnyAvailable = true;
+      if (!firstAvailableBtn) {
+        firstAvailableBtn = btn;
+      }
+    });
+
+    // Check if ALL variants are out of stock
+    if (cartBtn) {
+      if (!hasAnyAvailable) {
+        cartBtn.classList.add('sold-out');
+        cartBtn.innerText = 'Sold Out';
+        cartBtn.disabled = true;
+        if (idInput) idInput.value = '';
+      } else {
+        cartBtn.classList.remove('sold-out');
+        cartBtn.innerText = 'Add to Cart';
+        cartBtn.disabled = false;
+      }
+    }
+
+    if (firstAvailableBtn) {
+      variantBtns.forEach(b => b.classList.remove('active'));
+      firstAvailableBtn.classList.add('active');
+
+      if (idInput) idInput.value = firstAvailableBtn.dataset.variantId;
+      
+      const comparePrice = parseFloat(firstAvailableBtn.dataset.comparePrice) || 0;
+      const currentPrice = firstAvailableBtn.dataset.variantPrice;
+      
+      let priceHTML = `<div class="price-wrapper">`;
+      priceHTML += `<span data-current-price>${currentPrice}</span>`;
+      if (comparePrice > 0) {
+        priceHTML += `<span class="compare-price">${formatPrice(comparePrice)}</span>`;
+        priceHTML += `<span class="sale-badge">SALE</span>`;
+      }
+      priceHTML += `</div>`;
+      
+      if (priceDisplay) priceDisplay.innerHTML = priceHTML;
+    }
+  });
+
+  // IMPORTANT: Rebind event handlers AFTER all HTML is added to DOM
+  rebindProductEvents();
+}
+
+// Check if all variants are out of stock
+function checkAllVariantAvailability(product) {
+  return (product.variants || []).every(v => !v.available);
+}
+
+// Update cart button state based on product availability
+function updateCartButtonState(card) {
+  if (!card) return;
+  const cartBtn = card.querySelector('.cart-button');
+  if (!cartBtn) return;
+  const variantData = cartBtn.dataset.allVariants;
+  
+  if (!variantData) return;
+  
+  try {
+    const variants = JSON.parse(variantData);
+    const allOutOfStock = variants.every(v => !v.available);
+    
+    if (allOutOfStock) {
+      cartBtn.classList.add('sold-out');
+      cartBtn.innerText = 'Sold Out';
+      cartBtn.disabled = true;
+    } else {
+      cartBtn.classList.remove('sold-out');
+      cartBtn.innerText = 'Add to Cart';
+      cartBtn.disabled = false;
+    }
+  } catch (e) {
+    console.warn('Error parsing variant data:', e);
+  }
+}
+
+// Separate function to rebind all product events after DOM update
+function rebindProductEvents() {
+  /* UPDATE CART BUTTON STATES ON LOAD */
+  document.querySelectorAll('.fragrance-item').forEach(card => {
+    updateCartButtonState(card);
+  });
+
+  /* VARIANT BUTTONS */
+  document.querySelectorAll('.variant-option-btn').forEach(btn => {
+    btn.addEventListener('click', function (e) {
+      if (btn.classList.contains('disabled')) return;
+
+      const card = btn.closest('.fragrance-item');
+      if (!card) return;
+
+      card.querySelectorAll('.variant-option-btn')
+        .forEach(b => b.classList.remove('active'));
+
+      btn.classList.add('active');
+
+      const idInput = card.querySelector('.selected-variant-id');
+      if (idInput) idInput.value = btn.dataset.variantId;
+      
+      const comparePrice = parseFloat(btn.dataset.comparePrice) || 0;
+      const currentPrice = btn.dataset.variantPrice;
+      const priceDisplay = card.querySelector('[data-price-display]');
+      
+      let priceHTML = `<div class="price-wrapper">`;
+      priceHTML += `<span data-current-price>${currentPrice}</span>`;
+      if (comparePrice > 0) {
+        priceHTML += `<span class="compare-price">${formatPrice(comparePrice)}</span>`;
+        priceHTML += `<span class="sale-badge">SALE</span>`;
+      }
+      priceHTML += `</div>`;
+      
+      if (priceDisplay) priceDisplay.innerHTML = priceHTML;
+    });
+  });
+
+  /* ADD TO CART */
+  document.querySelectorAll('.product-form').forEach(form => {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const varInput = form.querySelector('.selected-variant-id');
+      const variantId = varInput ? varInput.value : null;
+      if (!variantId) return;
+
+      const submitBtn = form.querySelector('.cart-button');
+      let originalText = 'Add to Cart';
+      if (submitBtn) {
+        originalText = submitBtn.innerText;
+        submitBtn.disabled = true;
+        submitBtn.innerText = 'Adding...';
+      }
+
+      fetch('/cart/add.js', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({ id: variantId, quantity: 1 })
+      })
+      .then(res => {
+        if (!res.ok) throw new Error('Add to cart failed');
+        return res.json();
+      })
+      .then(() => {
+        updateVariantAvailability();
+        return fetch('/cart.js');
+      })
+      .then(res => {
+        if (!res.ok) throw new Error('Failed to fetch cart');
+        return res.json();
+      })
+      .then(cartData => {
+        if (typeof window.updateDossierCartUI === 'function') {
+          window.updateDossierCartUI(cartData);
+        }
+        if (typeof window.openDossierCart === 'function') {
+          window.openDossierCart();
+        }
+
+        if (submitBtn) submitBtn.innerText = 'ADDED!';
+        setTimeout(() => {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerText = originalText;
+          }
+        }, 2000);
+      })
+      .catch(err => {
+        console.error(err);
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerText = originalText;
+        }
+      });
+    });
+  });
+}
+
+window.rebindProductEvents = rebindProductEvents;
+</script>
+{% schema %}
+{
+  "name": "Best Sellers Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Best Sellers"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "STAY GLOWING AND HEALTHY WITHOUT HAVING TO THINK ABOUT IT."
+    },
+    {
+      "type": "image_picker",
+      "id": "featured_image",
+      "label": "Featured Image"
+    },
+    {
+      "type": "url",
+      "id": "view_all_link",
+      "label": "View All Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Best Sellers Section"
+    }
+  ]
+}
+{% endschema %}

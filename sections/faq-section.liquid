@@ -1,0 +1,693 @@
+{% comment %}  The `faq-section` is a customizable section for displaying privacy policies or FAQ content.  It includes a sidebar for navigation and dynamic content blocks.{% endcomment %}
+<style>
+/* Custom Fonts */
+@font-face {
+  font-family: 'PPMori Regular';
+  src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPMori-Regular.otf?v=1751621372') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'PPEditorialNew Italic';
+  src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPEditorialNew-Italic-BF644b214fb0c0a.otf?v=1751620955') format('opentype');
+  font-weight: 900;
+  font-style: italic;
+}
+/* Base Styles */
+.faq-section {
+  font-family: 'PPMori Regular', sans-serif;
+  background-color: white;
+  padding: 40px 0;
+  margin-top: 100px; /* Added from your global CSS */
+}
+.faq-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+.faq-header {
+  margin-bottom: 40px;
+  border-top: 1px solid #bfbec0; /* Border moved here to span full width */
+  padding-top: 3px; /* Space between border and title */
+  display: flex; /* Added for centering title with lines */
+  align-items: center; /* Added for centering title with lines */
+  justify-content: center; /* Added for centering title with lines */
+  gap: 20px; /* Space between lines and title */
+}
+.faq-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: -30px; /* Reset negative margin */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #333;
+  /* Removed border-top and margin-left */
+  font-family: 'PPEditorialNew Italic', serif;
+  flex-shrink: 0; /* Prevent title from shrinking */
+}
+.faq-title-line { /* New CSS for the lines on either side of the title */
+  flex-grow: 1;
+  height: 1px;
+  background-color: #bfbec0;
+  display: none;
+}
+.faq-content {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 0;
+  position: relative;
+  border-top: 1px solid #bfbec0 !important;
+}
+.faq-content::after {
+  content: '';
+  position: absolute;
+  left: 600px; /* Keeping user's original value */
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: #e5e5e5;
+}
+.faq-sidebar {
+  padding-right: 0;
+  position: sticky;
+  margin-top: 20px;
+  height: fit-content;
+}
+.faq-sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.faq-sidebar li {
+  margin-bottom: 15px;
+}
+.faq-sidebar a {
+  color: #666;
+  text-decoration: none;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  display: block; /* Ensures the background covers the full width */
+  padding: 4px 8px; /* Adds padding around the text within the block */
+  border-radius: 4px;
+  font-family: 'PPMori Regular', sans-serif;
+}
+.faq-sidebar a:hover {
+  color: #000;
+  background-color: #EFFF31; /* Yellow background on hover */
+}
+.faq-sidebar a.active {
+  color: #000;
+  background-color: #EFFF31; /* Yellow background for active state */
+}
+.faq-main {
+  padding-left: 40px;
+  border-right: 1px solid #e5e5e5;
+  padding-right: 20px;
+}
+.faq-category {
+  margin-bottom: 40px;
+}
+.faq-category-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #333;
+  font-family: 'PPMori Regular', sans-serif;
+}
+.faq-item {
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 0;
+}
+.faq-question {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 15px 30px 15px 0;
+  text-align: left;
+  font-family: 'PPMori Regular', sans-serif;
+  font-size: 13px;
+  color: #333;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.3s ease;
+  line-height: 1.4;
+}
+.faq-question:hover {
+  color: #000;
+}
+.faq-question::after {
+  content: '+';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  transition: transform 0.3s ease;
+}
+.faq-question.active::after {
+  transform: translateY(-50%) rotate(45deg);
+}
+.faq-answer {
+  padding: 0 0 15px 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #666;
+  display: none;
+  font-family: 'PPMori Regular', sans-serif;
+}
+.faq-answer.active {
+  display: block;
+}
+@media (max-width: 768px) {
+  .faq-content {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .faq-content::after {
+    display: none;
+  }
+  .faq-sidebar {
+    position: static;
+    order: 1;
+    overflow-x: auto;
+    padding-bottom: 10px;
+  }
+  .faq-sidebar ul {
+    display: flex;
+    gap: 20px;
+    white-space: nowrap;
+    padding-bottom: 10px;
+  }
+  .faq-sidebar li {
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+  .faq-main {
+    padding-left: 0;
+    order: 2;
+    border-right: none;
+    padding-right: 0;
+  }
+  .faq-title {
+    font-size: 20px;
+  }
+  .faq-category-title {
+    font-size: 14px;
+  }
+  .faq-question {
+    font-size: 12px;
+    padding: 12px 25px 12px 0;
+  }
+  .faq-answer {
+    font-size: 12px;
+    padding: 0 0 12px 0;
+  }
+}
+/* Custom scrollbar for mobile sidebar */
+.faq-sidebar::-webkit-scrollbar {
+  height: 3px;
+}
+.faq-sidebar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+.faq-sidebar::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
+}
+.faq-sidebar::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+
+/* Consolidated and updated media queries */
+@media screen and (min-width: 1441px) {
+  .faq-container {
+    max-width: 1900px;
+    margin: 0 auto;
+    padding: 0 5px;
+  }
+  .faq-main {
+    padding-left: 240px !important;
+  }
+  .faq-content::after {
+    left: 433px !important;
+  }
+}
+@media screen and (min-width: 1024px) and (max-width: 1440px) {
+  .faq-main {
+    padding-left: 100px !important;
+  }
+  .faq-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 10px;
+  }
+  .faq-content::after {
+    left: 298px !important;
+  }
+}
+@media screen and (min-width: 700px) and (max-width: 1024px) {
+    .faq-content::after {
+        content: '';
+        position: absolute;
+        left: 200px;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background-color: #e5e5e5;
+    }
+}
+</style>
+<div class="faq-section">
+  <div class="faq-container">
+    <div class="faq-header">
+      <div class="faq-title-line"></div>
+      <h1 class="faq-title">{{ section.settings.page_title | default: 'Frequently Asked Questions' }}</h1>
+      <div class="faq-title-line"></div>
+    </div>
+    <div class="faq-content">
+      <aside class="faq-sidebar">
+        <ul>
+          {% comment %}
+            The active class is now added by JavaScript based on the current URL.
+            Removed Liquid 'active' class logic to avoid conflicts.
+          {% endcomment %}
+          {% if section.settings.link_1_text != blank %}
+            <li><a href="{{ section.settings.link_1_url }}">{{ section.settings.link_1_text }}</a></li>
+          {% endif %}
+          {% if section.settings.link_2_text != blank %}
+            <li><a href="{{ section.settings.link_2_url }}">{{ section.settings.link_2_text }}</a></li>
+          {% endif %}
+          {% if section.settings.link_3_text != blank %}
+            <li><a href="{{ section.settings.link_3_url }}">{{ section.settings.link_3_text }}</a></li>
+          {% endif %}
+          {% if section.settings.link_4_text != blank %}
+            <li><a href="{{ section.settings.link_4_url }}">{{ section.settings.link_4_text }}</a></li>
+          {% endif %}
+          {% if section.settings.link_5_text != blank %}
+            <li><a href="{{ section.settings.link_5_url }}">{{ section.settings.link_5_text }}</a></li>
+          {% endif %}
+          {% if section.settings.link_6_text != blank %}
+            <li><a href="{{ section.settings.link_6_url }}">{{ section.settings.link_6_text }}</a></li>
+          {% endif %}
+          {% if section.settings.link_7_text != blank %}
+            <li><a href="{{ section.settings.link_7_url }}">{{ section.settings.link_7_text }}</a></li>
+          {% endif %}
+          {% if section.settings.link_8_text != blank %}
+            <li><a href="{{ section.settings.link_8_url }}">{{ section.settings.link_8_text }}</a></li>
+          {% endif %}
+        </ul>
+      </aside>
+      <main class="faq-main">
+        <!-- Perfumes -->
+        <div class="faq-category">
+          <h2 class="faq-category-title">ABOUT FRAGRANCES</h2>
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              I’m unsure about which scent to choose — can I try samples first?
+            </button>
+            <div class="faq-answer">
+            Yes. We offer discovery set options so you can explore different scents before committing to a full-size bottle. It’s the best way to find what truly suits you.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              How strong or concentrated are your perfumes?
+            </button>
+            <div class="faq-answer">
+              Our perfumes are crafted as Extrait de Parfum, with a high fragrance oil concentration of up to 35%, designed for depth, richness, and long-lasting performance.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              Are your perfumes made entirely from natural ingredients?
+            </button>
+            <div class="faq-answer">
+              Our fragrances are made using a carefully balanced blend of natural and safe synthetic ingredients. This approach ensures consistency, longevity, and skin safety while preserving the character of each scent.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              Why is there sediment or cloudiness in my perfume?
+            </button>
+            <div class="faq-answer">
+              This can occasionally occur due to the high concentration of fragrance oils or changes in temperature. It’s completely normal and does not affect the quality or performance of the fragrance.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              How can I extend the wear time of my perfume?
+            </button>
+            <div class="faq-answer">
+              Apply your fragrance to pulse points such as the wrists, neck, and behind the ears. Applying on moisturised skin and avoiding rubbing can also help the scent last longer.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              Do your fragrances contain alcohol?
+            </button>
+            <div class="faq-answer">
+              Yes. Our perfumes contain cosmetic-grade alcohol, which helps the fragrance project properly and ensures a smooth, even application.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              Are your fragrances gluten-free?
+            </button>
+            <div class="faq-answer">
+              Our fragrances do not intentionally contain gluten-based ingredients. However, if you have specific sensitivities, we recommend consulting a medical professional before use.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              Do your perfumes contain harmful chemicals like BPA or parabens?
+            </button>
+            <div class="faq-answer">
+              No. Our perfumes are formulated without BPA or parabens and are created in compliance with international cosmetic safety standards.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+             What is the shelf life of your perfumes?
+            </button>
+            <div class="faq-answer">
+              When stored properly, away from direct sunlight and heat, our perfumes typically have a shelf life of around 2 years, and often longer due to their high oil concentration.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+             Are these real brand fragrances?
+            </button>
+            <div class="faq-answer">
+              No. Scentspired fragrances are independent creations inspired by iconic scent profiles. We are not affiliated with, endorsed by, or associated with any designer or luxury brands.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+             Why are they so affordable? Do they have the same quality as brand perfumes?
+            </button>
+            <div class="faq-answer">
+              Our focus is on craft and composition, not excessive branding or mark-ups. By working directly with premium fragrance oils and producing efficiently, we’re able to offer high-quality Extrait de Parfum at a more considered price point.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+             Are these fragrances long-lasting?
+            </button>
+            <div class="faq-answer">
+             Yes. Our fragrances are crafted as Extrait de Parfum with up to 35% oil concentration, designed to provide long-lasting wear, depth, and strong presence throughout the day.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+            How long will the fragrance bottle last?
+            </button>
+            <div class="faq-answer">
+              This depends on usage, but with regular wear, a 50ml bottle typically lasts several months. A little goes a long way due to the high concentration.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+            Are the fragrances tested on animals?
+            </button>
+            <div class="faq-answer">
+             No. Our fragrances are not tested on animals.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+             Do you also provide a sample with the 50ml bottle?
+            </button>
+            <div class="faq-answer">
+             Yes. Every 50ml and 100ml bottle includes a complimentary 5ml sample. This sample is a different fragrance from your full-size bottle, curated to help you explore more scents from our collection. It’s a simple way to experience new profiles and discover your next favorite before committing to another full size.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+             When do I get charged?
+            </button>
+            <div class="faq-answer">
+             You are charged at the time of checkout once your order is confirmed.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+             I have a question about fragrances, can I talk to you about it?
+            </button>
+            <div class="faq-answer">
+             We’ve got people who love chatting about all things fragrance related, email us at support@scentspired.com to get a quick, personal reply. Don’t worry—we check it constantly.
+            </div>
+          </div>
+        </div>
+        <!-- Orders & Shipping -->
+        <div class="faq-category">
+          <h2 class="faq-category-title">Orders & Shipping</h2>
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              How can I track my order status?
+            </button>
+            <div class="faq-answer">
+              Once your order ships, you'll receive an email with a tracking link to follow your package in real-time.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              Can I change my order or shipping address after placing it?
+            </button>
+            <div class="faq-answer">
+              If you need to update your order or shipping address after placing it, please email us at support@scentspired.com as soon as possible and we will be happy to assist you. Make sure to include your order number and the correct shipping details. Changes can only be made before the order has been processed or shipped.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              What if my package is lost or delivered incorrectly?
+            </button>
+            <div class="faq-answer">
+              Please contact our team with your order number, and we'll work with the courier to resolve the issue promptly.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              What are your shipping charges, and do you offer free shipping?
+            </button>
+            <div class="faq-answer">
+              We offer free shipping on qualifying orders. Exact shipping rates and free-shipping thresholds are shown at checkout.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              How long will it take to receive my order?
+            </button>
+            <div class="faq-answer">
+              Delivery typically takes 3–7 business days depending on your location and shipping method.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              How do I cancel my order?
+            </button>
+            <div class="faq-answer">
+              If you have changed your mind on your order, email us at support@scentspired.com as soon as possible and we will be happy to assist you. Please ensure to include your order number.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              Why is my tracking number not working?
+            </button>
+            <div class="faq-answer">
+              All packages take up to 24 hours to update, as the carrier needs to receive, process the package, and update it in their system.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              Why was my order cancelled?
+            </button>
+            <div class="faq-answer">
+              Although this rarely takes place, occasionally orders will be canceled under the suspicion of fraud. We have metrics in place that protect our customers, and if flags are raised an order cancellation may be necessary. If this occurs, we will email you immediately with an explanation.  
+            </div>
+          </div>
+        </div>
+        <!-- Room Spray -->
+        <div class="faq-category">
+          <h2 class="faq-category-title">Returns & Exchanges</h2>
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              How can I return or exchange my order?
+            </button>
+            <div class="faq-answer">
+              To initiate a refund or exchange, please email us at returns@scentspired.com
+ with your order number and the items you wish to return or exchange.
+
+We gladly accept returns and exchanges within 30 days of purchase. Unfortunately, if more than 30 days have passed, we are unable to offer a refund or exchange. To be eligible, items must be unused, in the same condition as received, and returned in their original packaging. Proof of purchase is required to complete your return.
+
+Once your return is received and inspected, we will notify you via email. You will also be informed whether your refund has been approved or rejected. If approved, your refund will be processed and credited back to your original payment method within 3–7 business days, depending on your bank.
+
+If you haven’t received your refund yet, please first check your bank account. Then contact your credit card provider, as it may take some time for the refund to be officially posted. If needed, reach out to your bank as well. If you’ve completed all these steps and still haven’t received your refund, please contact us at support@scentspired.com
+.
+
+Return shipping costs are the customer’s responsibility and are non-refundable. Delivery times for exchanged items may vary based on location. For items valued over $70, we recommend using a trackable shipping service or purchasing shipping insurance, as we cannot guarantee receipt of returned items.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+             What should I do if my product arrives damaged?
+            </button>
+            <div class="faq-answer">
+            <p>
+  All of our products are carefully packaged, and we take every precaution to ensure your order arrives safely and on time.
+  However, in rare cases, damage may occur during transit.
+  If this happens, please contact us at returns@scentspired.com
+  and include the following details:
+</p>
+
+<ul>
+  <li>Clear photos of the damaged product and packaging</li>
+  <li>The quantity of items that arrived damaged</li>
+  <li>Your order number</li>
+</ul>
+
+<p>
+  Once we receive your email with the required information, we will review it and arrange a replacement shipment as quickly as possible.
+</p>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const sidebarLinks = document.querySelectorAll('.faq-sidebar a');
+    const currentPath = window.location.pathname;
+    sidebarLinks.forEach(link => {
+      // Normalize href to match pathname (remove domain, query params, hash)
+      const linkPath = new URL(link.href).pathname;
+      // Check if the link's path matches the current page's path
+      if (linkPath === currentPath) {
+        link.classList.add('active');
+      }
+    });
+  });
+
+  function toggleFaq(button) {
+    const answer = button.nextElementSibling;
+    const isActive = button.classList.contains('active');
+    // Close all other FAQs
+    document.querySelectorAll('.faq-question.active').forEach(q => {
+      q.classList.remove('active');
+      q.nextElementSibling.classList.remove('active');
+    });
+    // Toggle current FAQ
+    if (!isActive) {
+      button.classList.add('active');
+      answer.classList.add('active');
+    }
+  }
+</script>
+{% schema %}
+{
+  "name": "FAQ Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "page_title",
+      "label": "Page Title",
+      "default": "Frequently Asked Questions"
+    },
+    {
+      "type": "text",
+      "id": "link_1_text",
+      "label": "Link 1 Text",
+      "default": "Contact Us"
+    },
+    {
+      "type": "url",
+      "id": "link_1_url",
+      "label": "Link 1 URL"
+    },
+    {
+      "type": "text",
+      "id": "link_2_text",
+      "label": "Link 2 Text",
+      "default": "[ FAQs ]"
+    },
+    {
+      "type": "url",
+      "id": "link_2_url",
+      "label": "Link 2 URL"
+    },
+    {
+      "type": "text",
+      "id": "link_3_text",
+      "label": "Link 3 Text",
+      "default": "Stockists"
+    },
+    {
+      "type": "url",
+      "id": "link_3_url",
+      "label": "Link 3 URL"
+    },
+    {
+      "type": "text",
+      "id": "link_4_text",
+      "label": "Link 4 Text",
+      "default": "Privacy Policy"
+    },
+    {
+      "type": "url",
+      "id": "link_4_url",
+      "label": "Link 4 URL"
+    },
+    {
+      "type": "text",
+      "id": "link_5_text",
+      "label": "Link 5 Text",
+      "default": "Terms and Conditions"
+    },
+    {
+      "type": "url",
+      "id": "link_5_url",
+      "label": "Link 5 URL"
+    },
+    {
+      "type": "text",
+      "id": "link_6_text",
+      "label": "Link 6 Text"
+    },
+    {
+      "type": "url",
+      "id": "link_6_url",
+      "label": "Link 6 URL"
+    },
+    {
+      "type": "text",
+      "id": "link_7_text",
+      "label": "Link 7 Text"
+    },
+    {
+      "type": "url",
+      "id": "link_7_url",
+      "label": "Link 7 URL"
+    },
+    {
+      "type": "text",
+      "id": "link_8_text",
+      "label": "Link 8 Text"
+    },
+    {
+      "type": "url",
+      "id": "link_8_url",
+      "label": "Link 8 URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ Section"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,303 @@
+{% doc %}
+  @prompt
+    Requirements:
+    
+    Layout:
+    
+    6 Instagram images in a row on large desktop.
+    
+    3 images per row on tablets.
+    
+    2 images per row on mobile.
+    
+    Fully responsive and optimized for all screens including MacBook sizes.
+    
+    Images:
+    
+    Admin can upload 6 images from the Shopify theme editor.
+    
+    Each image should link to a single Instagram profile link (set in theme settings).
+    
+    Animation:
+    
+    Each image should "shake" one by one in sequence.
+    
+    After the 6th image shakes, the animation should loop back to the 1st image.
+    
+    The loop should continue infinitely.
+    
+    Timing of shake should exactly match the SERVA reference (1st shakes → pause → 2nd shakes → pause → and so on).
+    
+    Customization in Theme Editor:
+    
+    Upload images (image_picker).
+    
+    Set Instagram profile link (url).
+    
+    Code Output:
+    
+    Provide a complete Shopify section code (Liquid + CSS + schema).
+    
+    Code should be clean, optimized, and ready to paste directly into Shopify.
+
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-instagram-gallery-{{ ai_gen_id }} {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .ai-instagram-grid-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 16px;
+    width: 100%;
+  }
+
+  .ai-instagram-item-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+  }
+
+  .ai-instagram-item-{{ ai_gen_id }}.shake {
+    animation: ai-instagram-shake-{{ ai_gen_id }} 0.6s ease-in-out;
+  }
+
+  .ai-instagram-link-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+  }
+
+  .ai-instagram-image-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .ai-instagram-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .ai-instagram-placeholder-{{ ai_gen_id }} svg {
+    width: 60%;
+    height: 60%;
+    opacity: 0.3;
+  }
+
+  .ai-instagram-empty-state-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 10px;
+    color: #666;
+    text-align: center;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .ai-instagram-link-{{ ai_gen_id }}:hover .ai-instagram-image-{{ ai_gen_id }} {
+    transform: scale(1.05);
+  }
+
+  @keyframes ai-instagram-shake-{{ ai_gen_id }} {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-3px); }
+    20%, 40%, 60%, 80% { transform: translateX(3px); }
+  }
+
+  @media screen and (max-width: 1024px) {
+    .ai-instagram-grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-instagram-grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    
+    .ai-instagram-gallery-{{ ai_gen_id }} {
+      padding: 15px;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .ai-instagram-grid-{{ ai_gen_id }} {
+      gap: 8px;
+    }
+    
+    .ai-instagram-gallery-{{ ai_gen_id }} {
+      padding: 10px;
+    }
+  }
+{% endstyle %}
+
+<instagram-gallery-{{ ai_gen_id }}
+  class="ai-instagram-gallery-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-instagram-grid-{{ ai_gen_id }}">
+    {% for i in (1..6) %}
+      {% assign image_key = 'image_' | append: i %}
+      {% assign current_image = block.settings[image_key] %}
+      
+      <div class="ai-instagram-item-{{ ai_gen_id }}" data-index="{{ forloop.index0 }}">
+        {% if block.settings.instagram_url != blank %}
+          <a href="{{ block.settings.instagram_url }}" 
+             class="ai-instagram-link-{{ ai_gen_id }}"
+             target="_blank"
+             rel="noopener noreferrer"
+             aria-label="View Instagram profile">
+        {% else %}
+          <div class="ai-instagram-link-{{ ai_gen_id }}">
+        {% endif %}
+        
+        {% if current_image %}
+          <img
+            src="{{ current_image | image_url: width: 400 }}"
+            alt="{{ current_image.alt | escape }}"
+            class="ai-instagram-image-{{ ai_gen_id }}"
+            loading="lazy"
+            width="400"
+            height="400"
+          >
+        {% else %}
+          <div class="ai-instagram-placeholder-{{ ai_gen_id }}">
+            {{ 'image' | placeholder_svg_tag }}
+            <div class="ai-instagram-empty-state-{{ ai_gen_id }}">
+              Add image {{ i }}
+            </div>
+          </div>
+        {% endif %}
+        
+        {% if block.settings.instagram_url != blank %}
+          </a>
+        {% else %}
+          </div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</instagram-gallery-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class InstagramGallery{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.currentIndex = 0;
+        this.items = [];
+        this.animationInterval = null;
+      }
+
+      connectedCallback() {
+        this.items = this.querySelectorAll('.ai-instagram-item-{{ ai_gen_id }}');
+        this.startAnimation();
+      }
+
+      disconnectedCallback() {
+        if (this.animationInterval) {
+          clearInterval(this.animationInterval);
+        }
+      }
+
+      startAnimation() {
+        if (this.items.length === 0) return;
+
+        this.animationInterval = setInterval(() => {
+          this.shakeItem(this.currentIndex);
+          this.currentIndex = (this.currentIndex + 1) % this.items.length;
+        }, 1000);
+      }
+
+      shakeItem(index) {
+        const item = this.items[index];
+        if (item) {
+          item.classList.add('shake');
+          setTimeout(() => {
+            item.classList.remove('shake');
+          }, 600);
+        }
+      }
+    }
+
+    customElements.define('instagram-gallery-{{ ai_gen_id }}', InstagramGallery{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Instagram gallery",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Instagram link"
+    },
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram profile URL"
+    },
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Image 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_4",
+      "label": "Image 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_5",
+      "label": "Image 5"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_6",
+      "label": "Image 6"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Instagram gallery"
+    }
+  ],
+  "tag": null
+}
+{% endschema %}

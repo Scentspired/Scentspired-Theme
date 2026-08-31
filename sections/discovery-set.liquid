@@ -1,0 +1,894 @@
+{% comment %}
+Bundle Builder Section - 5 Products Only, No Discounts, Checkout Enabled Only When 5 Items Added
+{% endcomment %}
+
+<div class="bundle-builder-section">
+  <!-- Bundle Header Section -->
+  <div class="bundle-header-outer">
+    <div class="bundle-header-area">
+      <div class="bundle-container">
+        <div class="bundle-main-content">
+          <div class="bundle-intro">
+            <h1 class="bundle-title">Bundle.</h1>
+            <p class="bundle-description">Choose 5 fragrances to complete your bundle and checkout.</p>
+          </div>
+          
+          <div class="bundle-selector">
+            <div class="bundle-slider-container">
+              <button class="bundle-nav-arrow left" id="scroll-left">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                  <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2"/>
+                </svg>
+              </button>
+
+              <div class="bundle-content-wrapper">
+                <div class="bundle-items-row" id="bundle-items-row">
+                  {% for i in (1..5) %}
+                    <div class="bundle-slot-wrapper" data-slot="{{ forloop.index0 }}">
+                      <div class="bundle-item empty-slot">
+                        <button class="add-button">+</button>
+                        <span class="slot-number">{{ forloop.index }}</span>
+                      </div>
+                      <div class="bundle-product-name"></div>
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+              
+              <button class="bundle-nav-arrow right" id="scroll-right">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                  <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Pricing Sidebar -->
+        <div class="bundle-sidebar">
+          <div class="pricing-section">
+            <div class="initial-price-row">
+              <span>Total Price</span>
+              <span>$<span id="initial-price">0</span></span>
+            </div>
+            <p class="savings-text" id="savings-message">Add 5 items to checkout</p>
+          </div>
+          
+          <div class="checkout-section">
+            <div class="subtotal-row">
+              <span>SUBTOTAL</span>
+              <span>$<span id="subtotal-amount">0</span></span>
+            </div>
+            <button class="checkout-button" id="checkout-btn" disabled>
+              CHECKOUT
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>                 
+
+  <!-- Product Filter Tabs -->
+  <div class="product-filter-section">
+    <div class="filter-container">
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all">All Perfumes</button>
+        <button class="filter-tab" data-filter="bestsellers">Bestsellers</button>
+      </div>
+      
+      <div class="search-box">
+        <input type="text" placeholder="Search" class="search-input" id="product-search">
+        <button class="search-button">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
+            <path d="m21 21-4.35-4.35" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Products Grid -->
+  <div class="products-grid-section">
+    <div class="products-container">
+      <div class="products-grid" id="products-grid">
+        {% assign collection_handle = section.settings.collection | default: 'all' %}
+        {% assign bestsellers_handle = section.settings.bestsellers_collection | default: 'bestsellers' %}
+        
+        {% if collections[collection_handle] %}
+          {% assign all_products = collections[collection_handle].products %}
+        {% else %}
+          {% assign all_products = collections.all.products %}
+        {% endif %}
+        
+        {% if collections[bestsellers_handle] %}
+          {% assign bestseller_products = collections[bestsellers_handle].products %}
+        {% else %}
+          {% assign bestseller_products = collections.all.products | where: 'tags', 'Bestseller' %}
+        {% endif %}
+
+        {% for product in all_products limit: 20 %}
+          {% assign is_bestseller = false %}
+          {% if product.tags contains 'Bestseller' %}
+            {% assign is_bestseller = true %}
+          {% endif %}
+          
+          {% for bestseller_product in bestseller_products %}
+            {% if bestseller_product.id == product.id %}
+              {% assign is_bestseller = true %}
+              {% break %}
+            {% endif %}
+          {% endfor %}
+          
+          <div class="product-card" 
+               data-product-id="{{ product.variants.first.id }}" 
+               data-product-handle="{{ product.handle }}"
+               data-product-title="{{ product.title | escape }}"
+               data-product-price="{{ product.price }}"
+               data-product-image="{{ product.featured_image | img_url: '100x100' }}"
+               data-tags="{{ product.tags | join: ',' | downcase }}"
+               data-bestseller="{{ is_bestseller }}"
+               style="background-image: url('{{ product.featured_image | img_url: '400x400' }}');">
+            
+            <!-- Product Badges -->
+            <div class="product-badges">
+              {% for tag in product.tags %}
+                {% case tag %}
+                  {% when 'Women' %}
+                    <span class="badge category-badge">Women</span>
+                  {% when 'Men' %}
+                    <span class="badge category-badge">Men</span>
+                  {% when 'Unisex' %}
+                    <span class="badge category-badge">Unisex</span>
+                  {% when 'Bestseller' %}
+                    <span class="badge bestseller-badge">Bestseller</span>
+                {% endcase %}
+              {% endfor %}
+            </div>
+            
+            <!-- Price Overlay in Top Right -->
+            <div class="product-price-overlay">${{ product.price | money_without_currency }}</div>
+            
+            <!-- Product Info Overlay at Bottom -->
+            <div class="product-info-overlay">
+              <!-- Product Title -->
+              <h3 class="product-title">{{ product.title | upcase }}</h3>
+              
+              <!-- Inspired By / Vendor -->
+              <p class="product-subtitle">
+                {{ product.metafields.custom.inspired_by.value | default: "Luxury Designer Fragrance" }}
+              </p>
+              
+              <!-- Stars -->
+              <div class="product-rating">
+                {% assign rating = product.metafields.reviews.rating.value | default: 4.5 %}
+                {% assign review_count = product.metafields.reviews.count.value | default: 1000 %}
+                <div class="stars">
+                  {% for i in (1..5) %}
+                    {% assign star_value = i %}
+                    {% if rating >= star_value %}
+                      <span class="star filled">★</span>
+                    {% else %}
+                      <span class="star empty">★</span>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              </div>
+              
+              <!-- Add to Bundle Button -->
+              <button class="add-to-bundle-btn">
+                ADD TO BUNDLE
+              </button>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .bundle-builder-section {
+    background-color: #f0ebe5;
+    padding: 60px 20px;
+    font-family: 'PPMori', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  /* Bundle Header Area */
+  .bundle-header-outer {
+    margin-bottom: 80px;
+  }
+
+  .bundle-header-area {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .bundle-container {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+  }
+
+  .bundle-main-content {
+    flex: 1;
+  }
+
+  .bundle-intro {
+    margin-bottom: 40px;
+  }
+
+  .bundle-title {
+    font-size: 72px;
+    font-weight: 400;
+    letter-spacing: -2px;
+    margin-bottom: 16px;
+  }
+
+  .bundle-description {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.6;
+  }
+
+  /* Bundle Selector */
+  .bundle-selector {
+    margin-bottom: 40px;
+  }
+
+  .bundle-slider-container {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .bundle-nav-arrow {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    transition: opacity 0.3s;
+  }
+
+  .bundle-nav-arrow:hover {
+    opacity: 0.6;
+  }
+
+  .bundle-nav-arrow:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  .bundle-content-wrapper {
+    overflow: hidden;
+    flex: 1;
+  }
+
+  .bundle-items-row {
+    display: flex;
+    gap: 16px;
+    scroll-behavior: smooth;
+  }
+
+  .bundle-slot-wrapper {
+    flex: 0 0 auto;
+    min-width: 120px;
+  }
+
+  .bundle-item {
+    width: 120px;
+    height: 120px;
+    border: 2px solid #000;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .bundle-item.empty-slot {
+    flex-direction: column;
+  }
+
+  .bundle-item.empty-slot .add-button {
+    font-size: 32px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-weight: 300;
+  }
+
+  .bundle-item.empty-slot .slot-number {
+    position: absolute;
+    bottom: 8px;
+    right: 12px;
+    font-size: 12px;
+    color: #999;
+  }
+
+  .bundle-item.filled-slot {
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+
+  .bundle-item.filled-slot .remove-btn {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .bundle-product-name {
+    font-size: 12px;
+    margin-top: 8px;
+    text-align: center;
+    min-height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    word-break: break-word;
+  }
+
+  /* Sidebar */
+  .bundle-sidebar {
+    flex: 0 0 280px;
+    background: #fff;
+    padding: 32px 24px;
+    border: 2px solid #000;
+    height: fit-content;
+    position: sticky;
+    top: 20px;
+  }
+
+  .pricing-section {
+    margin-bottom: 32px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 24px;
+  }
+
+  .initial-price-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-size: 14px;
+  }
+
+  .savings-text {
+    font-size: 12px;
+    color: #999;
+    margin-top: 8px;
+  }
+
+  .checkout-section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .subtotal-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .checkout-button {
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 14px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    letter-spacing: 1px;
+  }
+
+  .checkout-button:hover:not(:disabled) {
+    background: #333;
+  }
+
+  .checkout-button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  /* Product Filter Section */
+  .product-filter-section {
+    max-width: 1400px;
+    margin: 60px auto 40px;
+    padding: 0 20px;
+  }
+
+  .filter-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .filter-tabs {
+    display: flex;
+    gap: 24px;
+  }
+
+  .filter-tab {
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    position: relative;
+    padding: 8px 0;
+    transition: opacity 0.3s;
+  }
+
+  .filter-tab::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #000;
+    transition: width 0.3s;
+  }
+
+  .filter-tab.active::after,
+  .filter-tab:hover::after {
+    width: 100%;
+  }
+
+  .search-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid #ddd;
+    padding: 8px 16px;
+    border-radius: 4px;
+  }
+
+  .search-input {
+    border: none;
+    outline: none;
+    font-size: 14px;
+    flex: 1;
+    background: none;
+  }
+
+  .search-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+  }
+
+  /* Products Grid */
+  .products-grid-section {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .products-container {
+    background: #fff;
+    padding: 40px;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 24px;
+  }
+
+  .product-card {
+    position: relative;
+    height: 350px;
+    background-size: cover;
+    background-position: center;
+    border: 1px solid #ddd;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .product-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .product-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0);
+    transition: background 0.3s;
+  }
+
+  .product-card:hover::after {
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  .product-badges {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .badge {
+    font-size: 11px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+  }
+
+  .category-badge {
+    background: #fff;
+    color: #000;
+    border: 1px solid #000;
+  }
+
+  .bestseller-badge {
+    background: #e5ff00;
+    color: #000;
+  }
+
+  .product-price-overlay {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #fff;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    z-index: 2;
+  }
+
+  .product-info-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0));
+    padding: 40px 16px 16px;
+    color: #fff;
+    z-index: 3;
+  }
+
+  .product-title {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    letter-spacing: 0.5px;
+  }
+
+  .product-subtitle {
+    font-size: 12px;
+    color: #ccc;
+    margin-bottom: 8px;
+  }
+
+  .product-rating {
+    margin-bottom: 12px;
+  }
+
+  .stars {
+    display: flex;
+    gap: 2px;
+  }
+
+  .star {
+    font-size: 12px;
+    color: #f4ff41;
+  }
+
+  .star.empty {
+    color: #666;
+  }
+
+  .add-to-bundle-btn {
+    width: 100%;
+    background: #e5ff00;
+    color: #000;
+    border: none;
+    padding: 10px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    letter-spacing: 0.5px;
+  }
+
+  .add-to-bundle-btn:hover {
+    background: #f4ff41;
+    transform: scale(1.02);
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .bundle-container {
+      flex-direction: column;
+    }
+
+    .bundle-sidebar {
+      width: 100%;
+      position: static;
+      margin-top: 24px;
+    }
+
+    .products-grid {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .product-card {
+      height: 280px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .bundle-title {
+      font-size: 48px;
+    }
+
+    .filter-container {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .products-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .product-card {
+      height: 240px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .bundle-title {
+      font-size: 36px;
+    }
+
+    .products-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .bundle-items-row {
+      gap: 8px;
+    }
+
+    .bundle-slot-wrapper {
+      min-width: 100px;
+    }
+
+    .bundle-item {
+      width: 100px;
+      height: 100px;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const bundleItemsRow = document.getElementById('bundle-items-row');
+    const scrollLeftBtn = document.getElementById('scroll-left');
+    const scrollRightBtn = document.getElementById('scroll-right');
+    const checkoutBtn = document.getElementById('checkout-btn');
+    const productsGrid = document.getElementById('products-grid');
+    const filterTabs = document.querySelectorAll('.filter-tab');
+    const searchInput = document.getElementById('product-search');
+    const initialPriceSpan = document.getElementById('initial-price');
+    const subtotalSpan = document.getElementById('subtotal-amount');
+    const savingsMessage = document.getElementById('savings-message');
+
+    let bundledProducts = [];
+    const REQUIRED_ITEMS = 5;
+
+    // Bundle slot management
+    const bundleSlots = document.querySelectorAll('.bundle-slot-wrapper');
+    bundleSlots.forEach(slot => {
+      const addBtn = slot.querySelector('.add-button');
+      if (addBtn) {
+        addBtn.addEventListener('click', openProductSelector);
+      }
+    });
+
+    function openProductSelector(e) {
+      e.stopPropagation();
+      const slot = e.target.closest('.bundle-slot-wrapper');
+      const slotIndex = parseInt(slot.dataset.slot);
+      
+      // Highlight products for selection
+      productsGrid.querySelectorAll('.product-card').forEach(card => {
+        card.onclick = (e) => selectProductForBundle(e, slotIndex);
+      });
+    }
+
+    function selectProductForBundle(e, slotIndex) {
+      e.preventDefault();
+      const card = e.currentTarget;
+      const productData = {
+        id: card.dataset.productId,
+        title: card.dataset.productTitle,
+        price: parseFloat(card.dataset.productPrice),
+        image: card.dataset.productImage,
+        handle: card.dataset.productHandle
+      };
+
+      bundledProducts[slotIndex] = productData;
+      updateBundleDisplay(slotIndex, productData);
+      updateBundlePrice();
+      updateCheckoutButton();
+    }
+
+    function updateBundleDisplay(slotIndex, product) {
+      const slot = bundleSlots[slotIndex];
+      if (!slot) return;
+      const bundleItem = slot.querySelector('.bundle-item');
+      const bundleName = slot.querySelector('.bundle-product-name');
+      if (!bundleItem) return;
+
+      bundleItem.classList.remove('empty-slot');
+      bundleItem.classList.add('filled-slot');
+      bundleItem.style.backgroundImage = `url('${product.image}')`;
+
+      let removeBtn = bundleItem.querySelector('.remove-btn');
+      if (!removeBtn) {
+        removeBtn = document.createElement('button');
+        removeBtn.className = 'remove-btn';
+        removeBtn.innerHTML = '×';
+        removeBtn.onclick = () => removeProductFromBundle(slotIndex);
+        bundleItem.innerHTML = '';
+        bundleItem.appendChild(removeBtn);
+      }
+
+      if (bundleName) bundleName.textContent = product.title;
+    }
+
+    function removeProductFromBundle(slotIndex) {
+      bundledProducts[slotIndex] = null;
+      const slot = bundleSlots[slotIndex];
+      if (!slot) return;
+      const bundleItem = slot.querySelector('.bundle-item');
+      const bundleName = slot.querySelector('.bundle-product-name');
+      const slotNum = slotIndex + 1;
+
+      if (bundleItem) {
+        bundleItem.classList.add('empty-slot');
+        bundleItem.classList.remove('filled-slot');
+        bundleItem.innerHTML = `<button class="add-button">+</button><span class="slot-number">${slotNum}</span>`;
+        const addBtn = bundleItem.querySelector('.add-button');
+        if (addBtn) addBtn.addEventListener('click', openProductSelector);
+      }
+      if (bundleName) bundleName.textContent = '';
+
+      updateBundlePrice();
+      updateCheckoutButton();
+    }
+
+    function updateBundlePrice() {
+      let totalPrice = 0;
+      bundledProducts.forEach(product => {
+        if (product) {
+          totalPrice += product.price;
+        }
+      });
+
+      initialPriceSpan.textContent = totalPrice.toFixed(2);
+      subtotalSpan.textContent = totalPrice.toFixed(2);
+    }
+
+    function updateCheckoutButton() {
+      const addedCount = bundledProducts.filter(p => p !== null && p !== undefined).length;
+      
+      if (addedCount === REQUIRED_ITEMS) {
+        checkoutBtn.disabled = false;
+        savingsMessage.textContent = 'Your bundle is ready!';
+      } else {
+        checkoutBtn.disabled = true;
+        const remaining = REQUIRED_ITEMS - addedCount;
+        savingsMessage.textContent = `Add ${remaining} more item${remaining !== 1 ? 's' : ''} to checkout`;
+      }
+    }
+
+    // Scroll functionality
+    scrollLeftBtn.addEventListener('click', () => {
+      bundleItemsRow.scrollBy({ left: -140, behavior: 'smooth' });
+    });
+
+    scrollRightBtn.addEventListener('click', () => {
+      bundleItemsRow.scrollBy({ left: 140, behavior: 'smooth' });
+    });
+
+    // Checkout
+    checkoutBtn.addEventListener('click', () => {
+      const bundleData = bundledProducts.filter(p => p).map(p => ({
+        id: p.id,
+        quantity: 1
+      }));
+      console.log('Checkout with bundle:', bundleData);
+      // Add your checkout logic here
+    });
+
+    // Filter functionality
+    filterTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        filterTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        filterProducts(tab.dataset.filter);
+      });
+    });
+
+    function filterProducts(filter) {
+      productsGrid.querySelectorAll('.product-card').forEach(card => {
+        if (filter === 'all') {
+          card.style.display = '';
+        } else if (filter === 'bestsellers') {
+          card.style.display = card.dataset.bestseller === 'true' ? '' : 'none';
+        }
+      });
+    }
+
+    // Search functionality
+    searchInput.addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase();
+      productsGrid.querySelectorAll('.product-card').forEach(card => {
+        const title = card.dataset.productTitle.toLowerCase();
+        card.style.display = title.includes(query) ? '' : 'none';
+      });
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Discovery Set",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "collection",
+      "id": "bestsellers_collection",
+      "label": "Bestsellers Collection"
+    }
+  ]
+}
+{% endschema %}

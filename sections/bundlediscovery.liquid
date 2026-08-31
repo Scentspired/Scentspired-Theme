@@ -1,0 +1,558 @@
+{% stylesheet %}
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;1,400;1,500&display=swap');  
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;700&display=swap');
+
+/* ... existing fonts ... */
+@font-face {
+    font-family: 'PPEditorialNew Italic';
+    src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPEditorialNew-Italic-BF644b214fb0c0a.otf?v=1751620955') format('opentype');
+    font-weight: 900;
+    font-style: italic;
+}    
+@font-face {
+    font-family: 'PPMori Regular';
+    src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPMori-Regular.otf?v=1751621372') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Updated section base styles for consistency */
+.bs-section {
+    max-width: 2100px;
+    margin: 0 auto !important;
+    padding: 0px 0;
+    background-color: #ffffff;
+    padding-left: 2rem;
+}
+
+@media only screen and (min-width: 1024px) {
+    .bs-section {
+        padding-left: 5rem;
+    }
+}
+
+.bs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items: start;
+}
+
+.bs-products-side {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-bottom: 60px;
+    padding-top: 20px;
+}
+
+/* Updated Card Design Styles from form-aRxqB.tsx */
+.fragrance-item {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #F5F5F5;
+    position: relative;
+    min-width: 0; /* Fix for flexbox grid issues */
+}
+
+.fragrance-image-wrap {
+    position: relative;
+    height: 350px;
+    width: 100%;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.fragrance-image-wrap img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    transition: opacity 0.4s ease;
+}
+
+.fragrance-image-wrap .secondary-image {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.fragrance-image-wrap:hover .secondary-image {
+    opacity: 1;
+}
+
+.product-badges {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    pointer-events: none;
+}
+
+.product-badge {
+    color: #fff !important;
+    font-family: 'PPMori Regular', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    padding: 4px 18px;
+    border-radius: 20px;
+    width: fit-content;
+    white-space: nowrap;
+}
+
+.badge-men { background-color: #242521 !important; }
+.badge-women { background-color: #8b5b5d !important; }
+.badge-unisex { background-color: #7a795c !important; }
+
+.fragrance-info {
+    background-color: #F5F5F5;
+    padding: 16px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+    flex: 1;
+}
+
+.fragrance-rating {
+    font-size: 24px;
+    color: #cbdd00;
+    letter-spacing: -2px;
+    margin: 0;
+    text-align: left;
+    margin-top: -10px;
+}
+
+.fragrance-name {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+    font-family: 'PPMori Regular', sans-serif;
+    text-transform: uppercase;
+    text-align: left;
+    line-height: 1.3;
+    color: #000;
+}
+
+.fragrance-brand {
+    margin: 0;
+    font-size: 12px;
+    font-family: 'PPMori Regular', sans-serif;
+    font-weight: 400;
+    text-align: left;
+    color: #666;
+}
+
+.product-price-display {
+    font-size: 18px;
+    font-weight: 600;
+    color: #000;
+    font-family: 'PPMori Regular', sans-serif;
+    margin-top: 2px;
+}
+
+.variant-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 4px 0 0 0;
+}
+
+.variant-option-btn {
+    padding: 6px 16px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    font-size: 11px;
+    cursor: pointer;
+    font-family: 'PPMori Regular', sans-serif;
+    transition: all 0.2s ease;
+    color: #000;
+}
+
+.variant-option-btn.active {
+    background-color: #f4ff41;
+    color: #000;
+    border-color: #000;
+}
+
+.cart-button {
+    margin-top: 8px;
+    background: #f4ff41;
+    color: #000;
+    font-weight: 600;
+    font-size: 12px;
+    padding: 16px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    border: none;
+    width: 100%;
+    font-family: 'PPMori Regular', sans-serif;
+}
+
+.cart-button:hover { background: #e0ea36; }
+
+/* Updated heading layout to match requested design (Title left, Nav right) */
+.bs-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 20px;
+}
+
+.bs-heading-content {
+    flex: 1;
+}
+
+/* Existing Navigation Styles */
+.bs-navigation { display: flex; gap: 10px; align-items: center; }
+.bs-nav-arrow {
+    width: 45px; height: 45px; background: #f4ff41; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: all 0.3s ease; border: 2px solid #f4ff41 !important;
+    font-size: 24px;
+}
+.bs-nav-counter { font-family: 'PPMori Regular', sans-serif; font-size: 14px; color: #666; }
+
+.bs-title {
+    font-family: 'PPEditorialNew Italic', serif;
+    font-size: 48px; font-weight: 400; font-style: italic; color: #000; margin: 0;
+}
+
+.bs-underline {
+    width: 230px; height: 3px; background-color: #FADB95; margin-top: -5px;
+}
+
+.bs-products-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    overflow: hidden;
+}
+
+.bs-image-side { 
+    height: auto; 
+    padding-top: 80px; 
+}
+.bs-featured-image { width: 100%; height: auto; border-radius: 16px; overflow: hidden; }
+.bs-featured-image img { width: 100%; height: 100%; object-fit: cover; }
+
+@media screen and (max-width: 990px) {
+    .bs-section { padding-left: 1rem; padding-right: 1rem; }
+    .bs-grid { grid-template-columns: 1fr; gap: 0px; }
+    .bs-products-grid { grid-template-columns: 1fr; gap: 15px; }
+    .fragrance-image-wrap { height: 200px; }
+    .bs-image-side { padding-top: 0; margin-top: 20px; }
+    .bs-title { font-size: 32px; }
+    .bs-underline { width: 150px; }
+    .fragrance-name { font-size: 13px; }
+    .fragrance-brand { font-size: 11px; }
+    .variant-option-btn { padding: 4px 10px; font-size: 10px; }
+    .cart-button { padding: 12px; font-size: 10px; }
+    .bs-products-side {
+    padding-top: 30px;
+}
+    @media screen and (max-width: 990px) {
+    .cart-button {
+        font-size: 11px;
+        padding: 16px 12px;
+    }
+}
+.bs-subheading {
+    margin-top: 30px;
+    max-width: 450px;
+}
+
+.bs-subheading p {
+    font-family: 'PPMori Regular', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #000;
+    text-transform: uppercase;
+    margin: 0;
+}
+{% endstylesheet %}
+
+<section class="bs-section">
+    <div class="bs-container">
+        <div class="bs-grid">
+            <div class="bs-image-side">
+                {% if section.settings.featured_image %}
+                    <div class="bs-featured-image">
+                        <img src="{{ section.settings.featured_image | image_url: width: 1200 }}" alt="{{ section.settings.featured_image.alt }}" loading="lazy">
+                    </div>
+                {% endif %}
+            </div>
+            <div class="bs-products-side">
+                <div class="bs-heading">
+                    <div class="bs-heading-content">
+                        <h2 class="bs-title">{{ section.settings.section_title }}</h2>
+                        <div class="bs-underline"></div>
+                    </div>
+                    <div class="bs-navigation">
+                        <button class="bs-nav-arrow" id="prevBtn" onclick="navigateProducts(-1)">‹</button>
+                        <span class="bs-nav-counter">
+                            <span id="currentPage">1</span> / <span id="totalPages">1</span>
+                        </span>
+                        <button class="bs-nav-arrow" id="nextBtn" onclick="navigateProducts(1)">›</button>
+                    </div>
+                </div>
+                        
+                <div class="bs-products-grid" id="productsGrid">
+                    <!-- Cards are rendered here via JavaScript -->
+                </div>
+
+                {% if section.settings.subheading %}
+                    <div class="bs-subheading">
+                        <p>{{ section.settings.subheading }}</p>
+                    </div>
+                {% endif %}
+                        
+                {% if section.settings.view_all_link != blank %}
+                    <div style="text-align: center; margin-top: 0px;">
+                        <a href="{{ section.settings.view_all_link }}" class="view-all-button" style="display: inline-block; padding: 16px 80px; background: #f4ff41; border-radius: 999px; text-decoration: none; color: #000; font-family: 'PPMori Regular', sans-serif; font-weight: 500; text-transform: uppercase;">
+                            View All Products
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+let allProducts = [];
+let currentIndex = 0;
+let totalProducts = 0;
+let totalPages = 0;
+let isMobile = window.innerWidth <= 990;
+
+  function getPerPage() {
+  return isMobile ? 1 : 2;
+}
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  {% assign collection = collections[section.settings.collection] %}
+  allProducts = [
+    {% for product in collection.products %}
+      {
+        id: {{ product.id }},
+        title: "{{ product.title | escape }}",
+        vendor: "{{ product.vendor | escape }}",
+        price: "{{ product.price | money }}",
+        url: "{{ product.url }}",
+        featured_image: "{{ product.featured_image | image_url: width: 600 }}",
+        hover_image: {% if product.images.size > 1 %}"{{ product.images[1] | image_url: width: 600 }}"{% else %}null{% endif %},
+        tags: "{{ product.tags | join: ',' }}",
+        variants: [
+          {% for variant in product.variants %}
+            { id: {{ variant.id }}, title: "{{ variant.title | escape }}", price: "{{ variant.price | money }}" }
+            {% unless forloop.last %},{% endunless %}
+          {% endfor %}
+        ]
+      }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ];
+
+  totalProducts = allProducts.length;
+  updatePageCalculation();
+  updateProductsDisplay();
+  const totalPagesEl = document.getElementById('totalPages');
+  if (totalPagesEl) totalPagesEl.textContent = totalPages;
+
+  window.addEventListener('resize', function () {
+    const prevState = isMobile;
+    isMobile = window.innerWidth <= 990;
+    if (prevState !== isMobile) {
+      currentIndex = 0;
+      updatePageCalculation();
+      updateProductsDisplay();
+      const tpEl = document.getElementById('totalPages');
+      if (tpEl) tpEl.textContent = totalPages;
+      const cpEl = document.getElementById('currentPage');
+      if (cpEl) cpEl.textContent = 1;
+    }
+  });
+});
+
+function updatePageCalculation() {
+  totalPages = Math.ceil(totalProducts / getPerPage());
+}
+
+function navigateProducts(direction) {
+  const perPage = getPerPage();
+  currentIndex += direction * perPage;
+
+  if (currentIndex >= totalProducts) currentIndex = 0;
+  if (currentIndex < 0) {
+    currentIndex = Math.floor((totalProducts - 1) / perPage) * perPage;
+  }
+
+  updateProductsDisplay();
+  const cpEl = document.getElementById('currentPage');
+  if (cpEl) {
+    cpEl.textContent = Math.floor(currentIndex / perPage) + 1;
+  }
+}
+
+function getBadgeHTML(tagsString) {
+  const tags = (tagsString || '').toLowerCase().split(',');
+  if (tags.includes('men')) return '<span class="product-badge badge-men">Men</span>';
+  if (tags.includes('women')) return '<span class="product-badge badge-women">Women</span>';
+  if (tags.includes('unisex')) return '<span class="product-badge badge-unisex">Unisex</span>';
+  return '';
+}
+
+function updateProductsDisplay() {
+  const grid = document.getElementById('productsGrid');
+  if (!grid) return;
+  const perPage = getPerPage();
+  const productsToShow = allProducts.slice(currentIndex, currentIndex + perPage);
+
+  grid.innerHTML = '';
+  productsToShow.forEach(product => {
+    const badgeHTML = getBadgeHTML(product.tags);
+    const variantsHTML = product.variants && product.variants.length > 1 ? `
+      <div class="variant-options">
+        ${product.variants.map((v, i) => `
+          <button type="button" class="variant-option-btn ${i === 0 ? 'active' : ''}" data-variant-id="${v.id}" data-variant-price="${v.price}">
+            ${v.title}
+          </button>
+        `).join('')}
+      </div>` : '';
+
+    const firstPrice = product.variants && product.variants[0] ? product.variants[0].price : '';
+    const firstId = product.variants && product.variants[0] ? product.variants[0].id : '';
+
+    grid.innerHTML += `
+      <div class="fragrance-item" data-product-id="${product.id}">
+        <a href="${product.url}" style="text-decoration: none; color: inherit;">
+          <div class="fragrance-image-wrap">
+            <img src="${product.featured_image}" alt="${product.title}">
+            ${product.hover_image ? `<img class="secondary-image" src="${product.hover_image}" alt="${product.title}">` : ''}
+            <div class="product-badges">${badgeHTML}</div>
+          </div>
+        </a>
+        <div class="fragrance-info">
+          <div class="fragrance-rating">★★★★☆</div>
+          <div class="fragrance-name">${product.title}</div>
+          <div class="fragrance-brand">${product.vendor}</div>
+          <div class="product-price-display" data-price-display>${firstPrice}</div>
+          <form class="product-form" data-product-id="${product.id}">
+            <input type="hidden" name="id" class="selected-variant-id" value="${firstId}">
+            ${variantsHTML}
+            <button type="submit" class="cart-button">ADD TO CART</button>
+          </form>
+        </div>
+      </div>`;
+  });
+}
+
+// Global click listener for variant buttons
+document.addEventListener('click', e => {
+  const btn = e.target.closest('.variant-option-btn');
+  if (!btn) return;
+
+  const card = btn.closest('.fragrance-item');
+  if (card) {
+    card.querySelectorAll('.variant-option-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const varInput = card.querySelector('.selected-variant-id');
+    if (varInput && btn.dataset.variantId) varInput.value = btn.dataset.variantId;
+    const priceDisplay = card.querySelector('[data-price-display]');
+    if (priceDisplay && btn.dataset.variantPrice) priceDisplay.textContent = btn.dataset.variantPrice;
+  }
+});
+
+// Add to cart handler
+document.addEventListener('submit', async function(e) {
+  const form = e.target.closest('.product-form');
+  if (!form) return;
+  e.preventDefault();
+
+  const varInput = form.querySelector('.selected-variant-id');
+  if (!varInput) return;
+  const variantId = varInput.value;
+  const submitBtn = form.querySelector('.cart-button');
+  let originalText = 'ADD TO CART';
+  if (submitBtn) {
+    originalText = submitBtn.innerText;
+    submitBtn.disabled = true;
+    submitBtn.innerText = 'Adding...';
+  }
+
+  try {
+    const res = await fetch('/cart/add.js', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ id: variantId, quantity: 1 })
+    });
+    if (!res.ok) throw new Error('Failed to add');
+
+    const cartRes = await fetch('/cart.js');
+    if (cartRes.ok) {
+      const cart = await cartRes.json();
+      if (typeof updateDossierCartUI === 'function') updateDossierCartUI(cart);
+      if (typeof openDossierCart === 'function') openDossierCart();
+    }
+  } catch (err) {
+    console.error('Add to cart error:', err);
+    alert('Failed to add product to cart.');
+  } finally {
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.innerText = originalText;
+    }
+  }
+});
+</script>
+
+{% schema %}
+{
+  "name": "bundleDiscovery Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Best Sellers"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "STAY GLOWING AND HEALTHY WITHOUT HAVING TO THINK ABOUT IT."
+    },
+    {
+      "type": "image_picker",
+      "id": "featured_image",
+      "label": "Featured Image"
+    },
+    {
+      "type": "url",
+      "id": "view_all_link",
+      "label": "View All Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bundle Discovery Section"
+    }
+  ]
+}
+{% endschema %}

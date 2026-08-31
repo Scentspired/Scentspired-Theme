@@ -1,11 +1,11 @@
 {
   "name": "scentspired-theme",
   "version": "1.0.0",
-  "description": "Internal Shopify theme repository for Scentspired USA",
+  "description": "Central Upstream Core Theme Engine for Scentspired Global Stores",
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "bash tests/run-all.sh",
+    "test": "node runner.cjs --target=.",
     "test:scanner": "node tests/static-analysis.cjs",
     "test:syntax": "node tests/syntax-validator.cjs",
     "test:flows": "node tests/critical-flow-simulator.cjs",

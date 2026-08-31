@@ -1,0 +1,1276 @@
+{% comment %}
+AI-Powered Perfume Recommendation Quiz Section - REDESIGNED
+Premium card-based interface with user name personalization
+{% endcomment %}
+
+<div class="perfume-quiz-wrapper">
+  <div class="hero-section">
+    <div class="hero-content-wrapper">
+      <div class="hero-image-container">
+        <img src="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Website_-_ScentFinder_Footer_01.png?v=1767001740" class="hero-image" alt="Fragrance">
+      </div>
+      <div class="hero-text-container">
+        <p class="fragrance-finder-text">Fragrance Finder</p>
+        <h2 class="hero-heading">Discover the Scent That Defines You — Scentspired</h2>
+        <button id="quiz-trigger-btn" class="show-all-btn">START THE QUIZ</button>
+      </div>
+    </div>
+    <div class="hero-bottom-nav">
+      <a href="#" class="nav-item">NURTURE</a>
+      <a href="#" class="nav-item">BLACK ANISE</a>
+      <a href="#" class="nav-item">CYAN NORI</a>
+      <a href="#" class="nav-item">THE APARTMENT</a>
+      <a href="#" class="nav-item">PINK IRIS</a>
+      <a href="#" class="nav-item">PAUSE</a>
+    </div>
+  </div>
+
+  {% comment %} Premium Quiz Modal {% endcomment %}
+  <div id="quiz-modal" class="quiz-modal hidden">
+    <div class="quiz-modal-overlay"></div>
+    <div class="quiz-modal-content">
+      <button id="close-quiz-btn" class="close-btn">&times;</button>
+      
+      <div id="quiz-container">
+        {% comment %} Step 0: User Name Input {% endcomment %}
+        <div class="quiz-step" data-step="0">
+          <div class="quiz-progress">
+            <div class="progress-bar" style="width: 14%"></div>
+          </div>
+          <div class="quiz-step-content">
+            <div class="quiz-step-header">
+              <span class="quiz-step-number">1 of 5</span>
+              <h3 class="quiz-title-main">What's your name?</h3>
+              <p class="quiz-subtitle">Let us personalize your fragrance journey</p>
+            </div>
+            <div class="quiz-input-group">
+              <input type="text" id="user-name-input" class="quiz-name-input" placeholder="Enter your name..." maxlength="50">
+            </div>
+            <button class="quiz-next-btn" id="name-next-btn">CONTINUE</button>
+          </div>
+        </div>
+
+        {% comment %} Question 1: Gender {% endcomment %}
+        <div class="quiz-step hidden" data-step="1">
+          <div class="quiz-progress">
+            <div class="progress-bar" style="width: 28%"></div>
+          </div>
+          <div class="quiz-step-content">
+            <div class="quiz-step-header">
+              <span class="quiz-step-number">2 of 5</span>
+              <h3 class="quiz-title-main">What's your gender preference?</h3>
+              <p class="quiz-subtitle">This helps us narrow down your perfect match</p>
+            </div>
+            <div class="quiz-cards-grid">
+              <button class="quiz-card" data-answer="Men">
+                <div class="card-inner">
+                  <div class="card-content">Men</div>
+                </div>
+              </button>
+              <button class="quiz-card" data-answer="Women">
+                <div class="card-inner">
+                  <div class="card-content">Women</div>
+                </div>
+              </button>
+              <button class="quiz-card" data-answer="Unisex">
+                <div class="card-inner">
+                  <div class="card-content">Unisex</div>
+                </div>
+              </button>
+            </div>
+            <div class="quiz-nav">
+              <button class="quiz-back-btn" data-back="true">GO BACK</button>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} Question 2: Scent Family {% endcomment %}
+        <div class="quiz-step hidden" data-step="2">
+          <div class="quiz-progress">
+            <div class="progress-bar" style="width: 42%"></div>
+          </div>
+          <div class="quiz-step-content">
+            <div class="quiz-step-header">
+              <span class="quiz-step-number">3 of 5</span>
+              <h3 class="quiz-title-main">What's your preferred scent family?</h3>
+              <p class="quiz-subtitle">Choose the fragrance profile that speaks to you</p>
+            </div>
+            <div class="quiz-cards-grid">
+              <button class="quiz-card" data-answer="Fresh">
+                <div class="card-inner">
+                  <div class="card-content">Fresh</div>
+                </div>
+              </button>
+              <button class="quiz-card" data-answer="Flowery">
+                <div class="card-inner">
+                  <div class="card-content">Flowery</div>
+                </div>
+              </button>
+              <button class="quiz-card" data-answer="Warm">
+                <div class="card-inner">
+                  <div class="card-content">Warm</div>
+                </div>
+              </button>
+              <button class="quiz-card" data-answer="Earthy">
+                <div class="card-inner">
+                  <div class="card-content">Earthy</div>
+                </div>
+              </button>
+              <button class="quiz-card" data-answer="Gourmand">
+                <div class="card-inner">
+                  <div class="card-content">Gourmand</div>
+                </div>
+              </button>
+              <button class="quiz-card" data-answer="Herbal">
+                <div class="card-inner">
+                  <div class="card-content">Herbal</div>
+                </div>
+              </button>
+            </div>
+            <div class="quiz-nav">
+              <button class="quiz-back-btn" data-back="true">GO BACK</button>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} Question 3: Intensity {% endcomment %}
+        <div class="quiz-step hidden" data-step="3">
+          <div class="quiz-progress">
+            <div class="progress-bar" style="width: 56%"></div>
+          </div>
+          <div class="quiz-step-content">
+            <div class="quiz-step-header">
+              <span class="quiz-step-number">4 of 5</span>
+              <h3 class="quiz-title-main">What's your desired intensity?</h3>
+              <p class="quiz-subtitle">Select how bold or subtle you prefer your scent</p>
+            </div>
+            <div class="quiz-cards-grid">
+              <button class="quiz-card" data-answer="Light">
+                <div class="card-inner">
+                  <div class="card-content">Light & Fresh</div>
+                </div>
+              </button>
+              <button class="quiz-card" data-answer="Medium">
+                <div class="card-inner">
+                  <div class="card-content">Balanced & Elegant</div>
+                </div>
+              </button>
+              <button class="quiz-card" data-answer="Strong">
+                <div class="card-inner">
+                  <div class="card-content">Bold & Intense</div>
+                </div>
+              </button>
+            </div>
+            <div class="quiz-nav">
+              <button class="quiz-back-btn" data-back="true">GO BACK</button>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} Question 4: Occasion {% endcomment %}
+        <div class="quiz-step hidden" data-step="4">
+          <div class="quiz-progress">
+            <div class="progress-bar" style="width: 70%"></div>
+          </div>
+          <div class="quiz-step-content">
+            <div class="quiz-step-header">
+              <span class="quiz-step-number">5 of 5</span>
+              <h3 class="quiz-title-main">What's your preferred occasion?</h3>
+              <p class="quiz-subtitle">Tell us when you'll wear your signature scent</p>
+            </div>
+            <div class="quiz-cards-grid">
+              <button class="quiz-card" data-answer="Daily">
+                <div class="card-inner">
+                  <div class="card-content">Daily Wear</div>
+                </div>
+              </button>
+              <button class="quiz-card" data-answer="Evening">
+                <div class="card-inner">
+                  <div class="card-content">Evening & Special</div>
+                </div>
+              </button>
+              <button class="quiz-card" data-answer="Versatile">
+                <div class="card-inner">
+                  <div class="card-content">Versatile & All-Time</div>
+                </div>
+              </button>
+            </div>
+            <div class="quiz-nav">
+              <button class="quiz-back-btn" data-back="true">GO BACK</button>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} Loading State {% endcomment %}
+        <div class="quiz-step hidden" data-step="loading">
+          <div class="loading-container">
+            <div class="spinner"></div>
+            <p class="loading-text">Finding your perfect fragrance...</p>
+          </div>
+        </div>
+
+        {% comment %} Results State {% endcomment %}
+        <div class="quiz-step hidden" data-step="results">
+          <div class="results-container">
+            <div class="results-header">
+              <h3 class="results-title">Your Perfect Match,</h3>
+              <p class="results-name" id="result-user-name"></p>
+            </div>
+            <div id="result-card" class="result-card">
+              <h2 id="result-perfume-name" class="perfume-name"></h2>
+              <p id="result-inspired-by" class="inspired-by"></p>
+              <div class="result-details">
+                <div class="detail-section">
+                  <p class="detail-label">HEAD NOTES</p>
+                  <p id="result-head-notes" class="detail-content"></p>
+                </div>
+                <div class="detail-section">
+                  <p class="detail-label">HEART NOTES</p>
+                  <p id="result-heart-notes" class="detail-content"></p>
+                </div>
+                <div class="detail-section">
+                  <p class="detail-label">BASE NOTES</p>
+                  <p id="result-base-notes" class="detail-content"></p>
+                </div>
+              </div>
+              <p id="result-ai-reason" class="ai-reason"></p>
+            </div>
+            <div class="result-actions">
+              <a id="view-product-btn" href="#" class="view-product-btn">EXPLORE FRAGRANCE</a>
+              <button id="restart-quiz-btn" class="restart-quiz-btn">TRY AGAIN</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  @font-face {
+    font-family: "PPMori Regular";
+    src: url("https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPMori-Regular.otf?v=1751621372") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .perfume-quiz-wrapper {
+    width: 100%;
+  }
+
+  /* ... existing code ... */
+  .hero-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 90vh;
+    overflow: hidden;
+  }
+
+  .hero-content-wrapper {
+    display: flex;
+    flex-grow: 1;
+  }
+
+  .hero-image-container {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    background-color: #fff;
+  }
+
+  .hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .hero-text-container {
+    flex: 1;
+    background-color: #f8f7f4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 80px;
+    box-sizing: border-box;
+  }
+
+  .fragrance-finder-text {
+    font-family: "PPMori Regular", sans-serif;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+
+  .hero-heading {
+    font-family: "PPMori Regular", sans-serif;
+    font-size: 40px;
+    line-height: 1.1;
+    font-weight: 400;
+    color: #000;
+    margin-bottom: 40px;
+    max-width: 400px;
+  }
+
+  .show-all-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px 94px;
+    background: #f4ff41;
+    color: #000;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    border-radius: 999px;
+    transition: background 0.3s ease;
+    font-family: "PPMori Regular", sans-serif;
+    text-transform: uppercase;
+    width: 359px;
+    height: 67px;
+    margin-top: 97px;
+    box-sizing: border-box;
+    border: none;
+    cursor: pointer;
+  }
+
+  .show-all-btn:hover {
+    background: #e0f030;
+  }
+
+  .hero-bottom-nav {
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px 0;
+    font-family: "PPMori Regular", sans-serif;
+    font-size: 14px;
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+
+  .nav-item {
+    color: #fff;
+    text-decoration: none;
+    padding: 0 15px;
+    white-space: nowrap;
+  }
+
+  .nav-item:hover {
+    text-decoration: underline;
+  }
+
+  /* <CHANGE> REDESIGNED Quiz Modal Styles - Premium Card-Based UI */
+  .quiz-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    font-family: "PPMori Regular", sans-serif;
+  }
+
+  .quiz-modal.hidden {
+    display: none;
+  }
+
+  .quiz-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(4px);
+  }
+
+  .quiz-modal-content {
+    position: relative;
+    background: #ffffff;
+    border-radius: 24px;
+    width: 90%;
+    max-width: 700px;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 50px 45px;
+    z-index: 10000;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.25);
+    animation: slideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(40px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 32px;
+    cursor: pointer;
+    color: #999;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+  }
+
+  .close-btn:hover {
+    color: #000;
+  }
+
+  .quiz-step {
+    animation: fadeIn 0.3s ease;
+  }
+
+  .quiz-step.hidden {
+    display: none;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* <CHANGE> Premium progress bar styling */
+  .quiz-progress {
+    width: 100%;
+    height: 3px;
+    background: #e8e8e8;
+    border-radius: 2px;
+    margin-bottom: 40px;
+    overflow: hidden;
+  }
+
+  .progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #000 0%, #333 100%);
+    transition: width 0.4s ease;
+  }
+
+  /* <CHANGE> Quiz step content layout */
+  .quiz-step-content {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+  }
+
+  .quiz-step-header {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .quiz-step-number {
+    font-size: 12px;
+    font-weight: 600;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+
+  .quiz-title-main {
+    font-size: 28px;
+    font-weight: 500;
+    color: #000;
+    line-height: 1.3;
+    margin: 0;
+  }
+
+  .quiz-subtitle {
+    font-size: 15px;
+    color: #888;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* <CHANGE> Card-based grid layout for options */
+  .quiz-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 16px;
+  }
+
+  .quiz-card {
+    padding: 0;
+    border: 2px solid #e0e0e0;
+    background: #ffffff;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .card-content {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    transition: color 0.3s ease;
+  }
+
+  .quiz-card:hover {
+    border-color: #ccc;
+    background: #f5f5f5;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  .quiz-card.selected {
+    background: #000;
+    border-color: #000;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  }
+
+  .quiz-card.selected .card-content {
+    color: #fff;
+  }
+
+  /* <CHANGE> Name input field styling */
+  .quiz-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .quiz-name-input {
+    padding: 14px 18px;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    font-family: "PPMori Regular", sans-serif;
+    font-size: 16px;
+    color: #000;
+    background: #ffffff;
+    transition: all 0.3s ease;
+  }
+
+  .quiz-name-input:focus {
+    outline: none;
+    border-color: #000;
+    background: #fafafa;
+  }
+
+  .quiz-name-input::placeholder {
+    color: #999;
+  }
+
+  /* Navigation buttons */
+  .quiz-nav {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .quiz-back-btn {
+    font-size: 13px;
+    font-weight: 600;
+    color: #666;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: color 0.2s ease;
+    padding: 0;
+  }
+
+  .quiz-back-btn:hover {
+    color: #000;
+  }
+
+  /* <CHANGE> Action buttons - continue/next styling */
+  .quiz-next-btn {
+    padding: 14px 32px;
+    background: #000;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-family: "PPMori Regular", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    width: 100%;
+  }
+
+  .quiz-next-btn:hover {
+    background: #333;
+  }
+
+  .quiz-next-btn:active {
+    transform: scale(0.98);
+  }
+
+  /* Loading State */
+  .loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    gap: 20px;
+  }
+
+  .spinner {
+    width: 48px;
+    height: 48px;
+    border: 3px solid #e8e8e8;
+    border-top: 3px solid #000;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .loading-text {
+    font-size: 16px;
+    color: #666;
+    font-weight: 400;
+  }
+
+  /* <CHANGE> Premium results display with user name */
+  .results-container {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .results-header {
+    text-align: center;
+  }
+
+  .results-title {
+    font-size: 18px;
+    font-weight: 500;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0 0 8px 0;
+  }
+
+  .results-name {
+    font-size: 32px;
+    font-weight: 600;
+    color: #000;
+    margin: 0;
+  }
+
+  .result-card {
+    background: #f9f9f9;
+    border: 1px solid #e5e5e5;
+    border-radius: 16px;
+    padding: 32px;
+    margin: 0;
+  }
+
+  .perfume-name {
+    font-size: 26px;
+    font-weight: 600;
+    color: #000;
+    margin: 0 0 8px 0;
+  }
+
+  .inspired-by {
+    font-size: 13px;
+    color: #999;
+    margin: 0 0 24px 0;
+    font-style: italic;
+  }
+
+  .result-details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin: 24px 0;
+    padding: 24px 0;
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  .detail-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .detail-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .detail-content {
+    font-size: 14px;
+    color: #444;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .ai-reason {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
+    font-weight: 400;
+  }
+
+  /* Result Actions */
+  .result-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .view-product-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 24px;
+    background: #000;
+    border: none;
+    border-radius: 12px;
+    font-family: "PPMori Regular", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    color: #fff;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+
+  .view-product-btn:hover {
+    background: #333;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .restart-quiz-btn {
+    padding: 15px 24px;
+    border: 2px solid #e0e0e0;
+    background: #ffffff;
+    border-radius: 12px;
+    font-family: "PPMori Regular", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+
+  .restart-quiz-btn:hover {
+    border-color: #000;
+    background: #f5f5f5;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .hero-section {
+      min-height: auto;
+    }
+
+    .hero-content-wrapper {
+      flex-direction: column;
+    }
+
+    .hero-image-container {
+      height: 60vh;
+      min-height: 400px;
+    }
+
+    .hero-text-container {
+      padding: 40px 20px;
+      text-align: center;
+      align-items: center;
+    }
+
+    .hero-heading {
+      font-size: 32px;
+      max-width: 100%;
+      margin-bottom: 30px;
+    }
+
+    .show-all-btn {
+      width: 100%;
+      max-width: 300px;
+      margin-top: 40px;
+    }
+
+    .hero-bottom-nav {
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 15px 10px;
+      gap: 10px;
+    }
+
+    .nav-item {
+      padding: 5px 10px;
+    }
+
+    .quiz-modal-content {
+      width: 95%;
+      padding: 35px 20px;
+      border-radius: 20px;
+    }
+
+    .quiz-title-main {
+      font-size: 22px;
+    }
+
+    .quiz-subtitle {
+      font-size: 14px;
+    }
+
+    .quiz-cards-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .result-details {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .results-name {
+      font-size: 24px;
+    }
+
+    .perfume-name {
+      font-size: 22px;
+    }
+
+    .close-btn {
+      top: 15px;
+      right: 15px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .quiz-cards-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .quiz-modal-content {
+      padding: 25px 15px;
+    }
+
+    .result-card {
+      padding: 20px;
+    }
+  }
+</style>
+
+<script>
+  // ... existing code ... COMPLETE PERFUME DATABASE (50+ entries unchanged)
+  const perfumeDatabase = [
+    { name: "Addiction", originalName: "MFK Baccarat Rouge 540", category: "Unisex", scent_family: "Warm", head_notes: "Saffron, Jasmine", heart_notes: "Amberwood, Ambergris", base_notes: "Fir Resin, Cedar", price_tier: "Premium" },
+    { name: "Invictor", originalName: "Creed Aventus", category: "Men", scent_family: "Fresh", head_notes: "Bergamot, Black Currant, Apple, Lemon, Pink Pepper", heart_notes: "Pineapple, Patchouli, Moroccan Jasmine", base_notes: "Birch, Musk, Oakmoss, Cedarwood, Ambroxan", price_tier: "Premium" },
+    { name: "Pink Whisper", originalName: "Parfums de Marly Delina", category: "Women", scent_family: "Flowery", head_notes: "Litchi, Rhubarb, Bergamot, Nutmeg", heart_notes: "Turkish Rose, Peony, Musk, Petalia, Vanilla", base_notes: "Cashmeran, Incense, Cedar, Haitian Vetiver", price_tier: "Premium" },
+    { name: "Supreme Power", originalName: "Initio Oud for Greatness", category: "Unisex", scent_family: "Warm", head_notes: "Saffron, Nutmeg, Lavender", heart_notes: "Agarwood (Oud)", base_notes: "Patchouli, Musk", price_tier: "Premium" },
+    { name: "Timeless Grace", originalName: "Chanel Coco Mademoiselle", category: "Women", scent_family: "Flowery", head_notes: "Orange, Mandarin Orange, Bergamot, Orange Blossom", heart_notes: "Turkish Rose, Jasmine, Mimosa, Ylang-Ylang", base_notes: "Patchouli, White Musk, Vanilla, Vetiver, Tonka Bean, Opoponax", price_tier: "Mid" },
+    { name: "Cool Alpine", originalName: "Creed Silver Mountain Water", category: "Unisex", scent_family: "Fresh", head_notes: "Bergamot, Mandarin Orange", heart_notes: "Green Tea, Black Currant", base_notes: "Musk, Sandalwood, Petitgrain, Galbanum", price_tier: "Premium" },
+    { name: "Black Poison", originalName: "YSL Black Opium", category: "Women", scent_family: "Warm", head_notes: "Pear, Pink Pepper, Orange Blossom", heart_notes: "Coffee, Jasmine, Bitter Almond, Licorice", base_notes: "Vanilla, Patchouli, Cashmere Wood, Cedar", price_tier: "Mid" },
+    { name: "Feminine Fancy", originalName: "Carolina Herrera Good Girl", category: "Women", scent_family: "Gourmand", head_notes: "Almond, Coffee, Bergamot, Lemon", heart_notes: "Tuberose, Jasmine Sambac, Orange Blossom, Bulgarian Rose, Orris", base_notes: "Tonka Bean, Cacao, Vanilla, Praline, Sandalwood, Cinnamon, Cedar", price_tier: "Mid" },
+    { name: "Fate", originalName: "Chanel Chance (EDP)", category: "Women", scent_family: "Flowery", head_notes: "Pink Pepper", heart_notes: "Jasmine, Iris", base_notes: "Patchouli, Musk, Vanilla, Vetiver", price_tier: "Mid" },
+    { name: "Mirage", originalName: "Maison Crivelli Oud Maracujá", category: "Unisex", scent_family: "Earthy", head_notes: "Passionfruit, Fruity Notes, Saffron, Turkish Rose", heart_notes: "Agarwood (Oud), Benzoin, Indonesian Patchouli Leaf", base_notes: "Leather, Akigalawood, Amber, Vanilla, Labdanum", price_tier: "Premium" },
+    { name: "Majesty", originalName: "Maison Crivelli Hibiscus Mahajád", category: "Unisex", scent_family: "Flowery", head_notes: "Cassis, Hibiscus", heart_notes: "Damask Rose, Leather, Cinnamon", base_notes: "Vanilla, Ambroxan, Musk", price_tier: "Premium" },
+    { name: "Iconic Desire", originalName: "Le Labo Santal 33", category: "Unisex", scent_family: "Earthy", head_notes: "Violet, Cardamom", heart_notes: "Iris, Papyrus", base_notes: "Ambroxan, Sandalwood, Cedar, Leather, Spicy Notes", price_tier: "Premium" },
+    { name: "Eternal Verde", originalName: "Nishane Hacivat", category: "Unisex", scent_family: "Fresh", head_notes: "Pineapple, Grapefruit, Bergamot", heart_notes: "Cedar, Patchouli, Jasmine", base_notes: "Oakmoss, Woody Notes, Clearwood", price_tier: "Premium" },
+    { name: "Fierce", originalName: "Dior Sauvage (Parfum)", category: "Men", scent_family: "Warm", head_notes: "Bergamot, Mandarin Orange, Elemi", heart_notes: "Sandalwood", base_notes: "Olibanum, Tonka Bean, Vanilla", price_tier: "Mid" },
+    { name: "Marine", originalName: "Chanel Bleu de Chanel", category: "Men", scent_family: "Fresh", head_notes: "Grapefruit, Lemon, Mint, Pink Pepper", heart_notes: "Ginger, Nutmeg, Jasmine, Iso E Super", base_notes: "Incense, Vetiver, Cedar, Sandalwood, Patchouli, Labdanum, White Musk", price_tier: "Mid" },
+    { name: "Silk Odyssey", originalName: "Maison Francis Kurkdjian Oud Satin Mood", category: "Unisex", scent_family: "Warm", head_notes: "Bulgarian Rose, Violet, Strawberry", heart_notes: "Turkish Rose, Benzoin", base_notes: "Agarwood (Oud), Vanilla, Amber, Caramel, Cedar", price_tier: "Premium" },
+    { name: "Wanderer", originalName: "Louis Vuitton Ombre Nomade", category: "Unisex", scent_family: "Earthy", head_notes: "Agarwood (Oud), Incense", heart_notes: "Rose, Raspberry, Saffron, Birch", base_notes: "Amber, Benzoin, Geranium", price_tier: "Premium" },
+    { name: "Luminous Wonder", originalName: "Dior J'Adore", category: "Women", scent_family: "Flowery", head_notes: "Ylang-Ylang, Pear, Melon, Magnolia, Peach, Orange, Bergamot", heart_notes: "Jasmine, Lily, Tuberose, Freesia, Rose, Orchid, Violet, Plum", base_notes: "Musk, Vanilla, Blackberry, Cedar", price_tier: "Mid" },
+    { name: "Liberty", originalName: "YSL Libre", category: "Women", scent_family: "Herbal", head_notes: "Lavender, Mandarin Orange, Black Currant, Petitgrain", heart_notes: "Lavender, Orange Blossom, Jasmine", base_notes: "Madagascar Vanilla, Musk, Cedar, Ambergris", price_tier: "Mid" },
+    { name: "Visionary", originalName: "Louis Vuitton Imagination", category: "Men", scent_family: "Fresh", head_notes: "Citron, Calabrian bergamot, Sicilian Orange", heart_notes: "Tunisian Neroli, Nigerian Ginger, Ceylon Cinnamon", base_notes: "Chinese Black Tea, Ambroxan, Guaiac Wood, Olibanum", price_tier: "Premium" },
+    { name: "Heaven's Pour", originalName: "By Kilian Angel's Share", category: "Unisex", scent_family: "Gourmand", head_notes: "Cognac", heart_notes: "Cinnamon, Tonka Bean, Oak", base_notes: "Vanilla, Praline, Sandalwood", price_tier: "Premium" },
+    { name: "Anō 13", originalName: "Le Labo Another 13", category: "Unisex", scent_family: "Fresh", head_notes: "Pear, Apple, Citruses", heart_notes: "Ambrette (Musk Mallow), Amyl Salicylate, Moss, Jasmine", base_notes: "Iso E Super, Cetalox, Helvetolide, Ambrettolide", price_tier: "Premium" },
+    { name: "Sheer Grace", originalName: "Lancôme La Vie Est Belle", category: "Women", scent_family: "Gourmand", head_notes: "Black Currant, Pear", heart_notes: "Iris, Jasmine, Orange Blossom", base_notes: "Patchouli, Tonka Bean, Vanilla, Praline", price_tier: "Mid" },
+    { name: "Steely Temptation", originalName: "Tom Ford Ombre Leather", category: "Unisex", scent_family: "Warm", head_notes: "Cardamom", heart_notes: "Leather, Jasmine Sambac", base_notes: "Amber, Moss, Patchouli", price_tier: "Premium" },
+    { name: "Ocean di Vita", originalName: "Giorgio Armani Acqua Di Gio", category: "Men", scent_family: "Fresh", head_notes: "Lime, Lemon, Bergamot, Jasmine, Orange, Mandarin Orange, Neroli", heart_notes: "Sea Notes, Jasmine, Rosemary", base_notes: "White Musk, Cedar, Oakmoss, Patchouli, Amber", price_tier: "Mid" },
+    { name: "Silent Dunes", originalName: "Byredo Mojave Ghost", category: "Unisex", scent_family: "Earthy", head_notes: "Sapodilla, Ambrette (Musk Mallow)", heart_notes: "Magnolia, Violet, Sandalwood", base_notes: "Ambergris, Cedar, Musk", price_tier: "Premium" },
+    { name: "Illusion Cove", originalName: "Tom Ford Neroli Portofino", category: "Unisex", scent_family: "Fresh", head_notes: "Bergamot, Mandarin Orange, Lemon, Orange, Lavender, Rosemary", heart_notes: "African Orange Flower, Neroli, Jasmine, Pitosporum", base_notes: "Amber, Angelica, Ambrette (Musk Mallow)", price_tier: "Premium" },
+    { name: "Deep Attraction", originalName: "Le Labo Thé Noir 29", category: "Unisex", scent_family: "Herbal", head_notes: "Fig, Bay Leaf, Bergamot", heart_notes: "Cedar, Vetiver, Musk", base_notes: "Tobacco, Hay", price_tier: "Premium" },
+    { name: "Millionaire", originalName: "Paco Rabanne One Million", category: "Men", scent_family: "Gourmand", head_notes: "Blood Mandarin, Grapefruit, Mint", heart_notes: "Cinnamon, Spicy Notes, Rose", base_notes: "Amber, Leather, Woody Notes, Indian Patchouli", price_tier: "Budget" },
+    { name: "Ocean Drift", originalName: "Louis Vuitton Pacific Chill", category: "Unisex", scent_family: "Herbal", head_notes: "Citron, Mint, Orange, Lemon, Black Currant, Coriander", heart_notes: "Apricot, Basil, Carrot Seeds, May Rose", base_notes: "Fig, Dates, Ambrette", price_tier: "Premium" },
+    { name: "Rosy Dawn", originalName: "Dior Miss Dior (2017)", category: "Women", scent_family: "Flowery", head_notes: "Pink Pepper, Mandarin Orange, Calabrian bergamot, Lemon", heart_notes: "Rose de Grasse, Damask Rose, Jasmine Leaf", base_notes: "Patchouli, Palisander Rosewood, Ambroxan, White Musk", price_tier: "Mid" },
+    { name: "Floral Whisper", originalName: "Gucci Bloom", category: "Women", scent_family: "Flowery", head_notes: "Green Notes", heart_notes: "Tuberose, Jasmine, Honeysuckle", base_notes: "Orris Root, Sandalwood, Vanilla", price_tier: "Mid" },
+    { name: "Wild Innocence", originalName: "By Kilian Good Girl Gone Bad", category: "Women", scent_family: "Flowery", head_notes: "Osmanthus, Jasmine, May Rose", heart_notes: "Indian Tuberose, Jasmine, Narcissus", base_notes: "Amber, Cedar", price_tier: "Premium" },
+    { name: "Active Pulse", originalName: "Chanel Allure Homme Sport", category: "Men", scent_family: "Fresh", head_notes: "Orange, Sea Notes, Aldehydes, Mandarin Orange", heart_notes: "Pepper, Neroli, Cedar", base_notes: "Tonka Bean, Vanilla, White Musk, Amber, Vetiver, Elemi Resin", price_tier: "Mid" },
+    { name: "Three Peaks", originalName: "Diptyque Tam Dao", category: "Unisex", scent_family: "Earthy", head_notes: "Lime, Coriander, Ginger", heart_notes: "Sandalwood, Cedar", base_notes: "Amber, Vanilla, Musk, Brazilian Rosewood", price_tier: "Premium" },
+    { name: "Extrême", originalName: "Dior Homme Intense", category: "Men", scent_family: "Flowery", head_notes: "Lavender", heart_notes: "Iris, Ambrette (Musk Mallow), Pear", base_notes: "Vetiver, Virginia Cedar", price_tier: "Mid" },
+    { name: "Panthera", originalName: "Bvlgari Tygar", category: "Men", scent_family: "Fresh", head_notes: "Grapefruit, Ginger", heart_notes: "Geranium, Ambroxan", base_notes: "White Woods, Musk", price_tier: "Budget" },
+    { name: "Smoky Leather", originalName: "Tom Ford Tobacco Vanille", category: "Unisex", scent_family: "Gourmand", head_notes: "Tobacco Leaf, Spicy Notes", heart_notes: "Tonka Bean, Tobacco Blossom, Vanilla, Cacao", base_notes: "Dried Fruits, Woody Notes", price_tier: "Premium" },
+    { name: "Azure Charm", originalName: "Ex Nihilo Blue Talisman", category: "Unisex", scent_family: "Fresh", head_notes: "Bergamot, Ginger, Mandarin Orange", heart_notes: "Pear, Georgywood, Rose", base_notes: "Ambroxan, Musk, Sandalwood", price_tier: "Premium" },
+    { name: "Classic Attire", originalName: "YSL's Tuxedo", category: "Unisex", scent_family: "Warm", head_notes: "Violet Leaf, Coriander, Bergamot", heart_notes: "Rose, Black Pepper, Lily-of-the-Valley", base_notes: "Vanilla, Patchouli, Ambroxan, Black Pepper", price_tier: "Mid" },
+    { name: "Sinful Desire", originalName: "Tom Ford Lost Cherry", category: "Unisex", scent_family: "Gourmand", head_notes: "Sour Cherry, Bitter Almond, Liquor", heart_notes: "Sour Cherry, Plum, Turkish Rose, Jasmine Sambac", base_notes: "Peru Balsam, Tonka Bean, Sandalwood, Vetiver, Cedar, Vanilla", price_tier: "Premium" },
+    { name: "Mythic Moves", originalName: "Byredo Bal d'Afrique", category: "Unisex", scent_family: "Fresh", head_notes: "African Marigold, Bergamot, Bucchu", heart_notes: "Violet, Jasmine, Cyclamen", base_notes: "Black Amber, Musk, Vetiver, Moroccan Cedarwood", price_tier: "Premium" },
+    { name: "Amber Vale", originalName: "Parfums de Marly Layton", category: "Unisex", scent_family: "Warm", head_notes: "Apple, Lavender, Mandarin Orange, Bergamot", heart_notes: "Geranium, Violet, Jasmine", base_notes: "Vanilla, Cardamom, Sandalwood, Pepper, Guaiac Wood, Patchouli", price_tier: "Premium" },
+    { name: "HerOra", originalName: "Narciso Rodriguez For Her", category: "Women", scent_family: "Warm", head_notes: "Honey Flower, Orange Blossom, Osmanthus", heart_notes: "Amberlyn", base_notes: "Musk, Vanilla, Tactile Woods, Vetiver", price_tier: "Mid" },
+    { name: "Black Spice", originalName: "Byredo's Black Saffron", category: "Unisex", scent_family: "Warm", head_notes: "Saffron, Juniper Berries, Black Violet", heart_notes: "Leather, Crystal Rose", base_notes: "Raspberry, Cashmeran, Vetiver", price_tier: "Premium" },
+    { name: "Sun Soaked", originalName: "Louis Vuitton Afternoon Swim", category: "Unisex", scent_family: "Fresh", head_notes: "Sicilian Orange, Calabrian bergamot, Mandarin Orange", heart_notes: "Ginger", base_notes: "Ambroxan", price_tier: "Premium" },
+    { name: "Britannia", originalName: "Burberry's Her", category: "Women", scent_family: "Gourmand", head_notes: "Strawberry, Raspberry, Blackberry, Cherry, Black Currant, Orange", heart_notes: "Violet, Jasmine", base_notes: "Musk, Vanilla, Cashmeran, Woody Notes, Ambroxan, Oakmoss, Amber", price_tier: "Mid" },
+    { name: "Earthbound", originalName: "Hermès Terre d'Hermès", category: "Men", scent_family: "Earthy", head_notes: "Orange, Grapefruit", heart_notes: "Pepper, Pelargonium", base_notes: "Vetiver, Cedar, Patchouli, Benzoin", price_tier: "Mid" },
+    { name: "On High", originalName: "Ex Nihilo's Fleur Narcotique", category: "Unisex", scent_family: "Flowery", head_notes: "Bergamot, Litchi, Peach", heart_notes: "Peony, Jasmine, Orange Blossom, Petalia", base_notes: "Woody Notes, Musk, Moss", price_tier: "Premium" },
+    { name: "Forbidden Love", originalName: "By Kilian Love, Don't Be Shy", category: "Women", scent_family: "Gourmand", head_notes: "Neroli, Bergamot, Pink Pepper, Coriander", heart_notes: "Iris, Jasmine, Honeysuckle, Orange Blossom, Rose", base_notes: "Marshmallow, Vanilla, Caramel, Sugar, Labdanum, Musk, Civet", price_tier: "Premium" },
+    { name: "Noir Hashish", originalName: "Nasomatto's Black Afgano", category: "Unisex", scent_family: "Earthy", head_notes: "Cannabis, Green Notes", heart_notes: "Resins, Wood Notes, Tobacco, Coffee", base_notes: "Agarwood (Oud), Incense", price_tier: "Premium" },
+    { name: "Sensual", originalName: "Chanel No. 5", category: "Women", scent_family: "Flowery", head_notes: "Aldehydes, Ylang-Ylang, Neroli, Bergamot, Lemon", heart_notes: "Iris, Jasmine, Rose, Orris Root, Lily-of-the-Valley", base_notes: "Civet, Sandalwood, Vanilla, Musk, Oakmoss, Vetiver, Amber, Patchouli", price_tier: "Mid" },
+    { name: "Dark Illusion", originalName: "By Kilian Black Phantom", category: "Unisex", scent_family: "Gourmand", head_notes: "Rum, Sugar Cane", heart_notes: "Dark Chocolate, Coffee, Caramel", base_notes: "Sandalwood, Heliotrope", price_tier: "Premium" },
+    { name: "Biting Temptation", originalName: "Tom Ford Bitter Peach", category: "Unisex", scent_family: "Gourmand", head_notes: "Peach, Blood Orange, Cardamom, Heliotrope", heart_notes: "Rum, Cognac, Davana, Jasmine", base_notes: "Patchouli, Vanilla, Sandalwood, Tonka Bean, Cashmeran", price_tier: "Premium" },
+    { name: "Divine Her", originalName: "Burberry Goddess", category: "Women", scent_family: "Gourmand", head_notes: "Vanilla", heart_notes: "Vanilla Caviar", base_notes: "Vanilla Absolute, Lavender", price_tier: "Mid" },
+    { name: "Fresh Mist", originalName: "Creed Green Irish Tweed", category: "Men", scent_family: "Herbal", head_notes: "Lemon Verbena, Iris", heart_notes: "Violet Leaf", base_notes: "Ambergris, Sandalwood", price_tier: "Premium" },
+    { name: "Exotic Night", originalName: "Tom Ford Black Orchid", category: "Women", scent_family: "Warm", head_notes: "Jasmine, Gardenia, Lemon, Bergamot, Orange, Ylang-Ylang, Truffle", heart_notes: "Orchid, Spices, Gardenia, Fruity Notes, Ylang-Ylang, Jasmine, Lotus", base_notes: "Mexican Chocolate, Patchouli, Vanilla, Incense, Amber, Sandalwood", price_tier: "Premium" },
+    { name: "Maverick", originalName: "Maison Crivelli Oud Stallion", category: "Unisex", scent_family: "Earthy", head_notes: "Agarwood (Oud), Nutmeg, Saffron", heart_notes: "Agarwood (Oud), Styrax, Cedar", base_notes: "Agarwood (Oud), Leather, Patchouli, Castoreum, Vanilla, Labdanum", price_tier: "Premium" },
+    { name: "Pure Light", originalName: "Byredo Blanche", category: "Unisex", scent_family: "Flowery", head_notes: "White Rose, Pink Pepper, Aldehydes", heart_notes: "Violet, Neroli, Peony", base_notes: "Blonde Woods, Sandalwood, Musk", price_tier: "Premium" },
+    { name: "Intense Ardour", originalName: "Tom Ford Fucking Fabulous", category: "Unisex", scent_family: "Warm", head_notes: "Clary Sage, Lavender", heart_notes: "Bitter Almond, Vanilla, Leather, Orris", base_notes: "Tonka Bean, Leather, Cashmeran, White Woods, Amber", price_tier: "Premium" },
+    { name: "L'Infini", originalName: "Louis Vuitton L'Immensité", category: "Men", scent_family: "Herbal", head_notes: "Grapefruit, Ginger, Bergamot", heart_notes: "Sage, Rosemary, Geranium, Water Notes", base_notes: "Ambroxan, Amber, Labdanum", price_tier: "Premium" }
+  ];
+
+  // <CHANGE> UPDATED QUIZ LOGIC - Name input + personalized results
+  let quizAnswers = {
+    userName: '',
+    gender: null,
+    scent_family: null,
+    intensity: null,
+    occasion: null
+  };
+
+  let currentStep = 0;
+  let recommendedPerfume = null;
+
+  const quizTriggerBtn = document.getElementById('quiz-trigger-btn');
+  const closeQuizBtn = document.getElementById('close-quiz-btn');
+  const quizModal = document.getElementById('quiz-modal');
+  const quizCards = document.querySelectorAll('.quiz-card');
+  const restartBtn = document.getElementById('restart-quiz-btn');
+  const viewProductBtn = document.getElementById('view-product-btn');
+  const nameInput = document.getElementById('user-name-input');
+  const nameNextBtn = document.getElementById('name-next-btn');
+  const backBtns = document.querySelectorAll('.quiz-back-btn');
+
+  // Open modal
+  quizTriggerBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    quizModal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    currentStep = 0;
+    showStep(0);
+  });
+
+  // Close modal
+  closeQuizBtn.addEventListener('click', closeModal);
+  quizModal.addEventListener('click', (e) => {
+    if (e.target === quizModal.querySelector('.quiz-modal-overlay')) closeModal();
+  });
+
+  function closeModal() {
+    quizModal.classList.add('hidden');
+    document.body.style.overflow = 'auto';
+  }
+
+  // <CHANGE> Name input handler
+  nameNextBtn.addEventListener('click', () => {
+    if (nameInput.value.trim()) {
+      quizAnswers.userName = nameInput.value.trim();
+      currentStep = 1;
+      showStep(1);
+    }
+  });
+
+  nameInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter' && nameInput.value.trim()) {
+      quizAnswers.userName = nameInput.value.trim();
+      currentStep = 1;
+      showStep(1);
+    }
+  });
+
+  // Handle quiz card clicks
+  quizCards.forEach(card => {
+    card.addEventListener('click', () => {
+      const step = card.closest('.quiz-step');
+      const siblings = step.querySelectorAll('.quiz-card');
+      
+      siblings.forEach(s => s.classList.remove('selected'));
+      card.classList.add('selected');
+
+      const answer = card.getAttribute('data-answer');
+      
+      if (currentStep === 1) quizAnswers.gender = answer;
+      if (currentStep === 2) quizAnswers.scent_family = answer;
+      if (currentStep === 3) quizAnswers.intensity = answer;
+      if (currentStep === 4) quizAnswers.occasion = answer;
+
+      setTimeout(() => {
+        if (currentStep < 4) {
+          currentStep++;
+          showStep(currentStep);
+        } else {
+          showStep('loading');
+          setTimeout(() => getRecommendation(), 1500);
+        }
+      }, 300);
+    });
+  });
+
+  // Back button
+  backBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (currentStep > 1) {
+        currentStep--;
+        showStep(currentStep);
+      }
+    });
+  });
+
+  function showStep(stepNum) {
+    document.querySelectorAll('.quiz-step').forEach(s => s.classList.add('hidden'));
+    const targetStep = document.querySelector(`[data-step="${stepNum}"]`);
+    if (targetStep) targetStep.classList.remove('hidden');
+  }
+
+  function getRecommendation() {
+    recommendedPerfume = findBestMatch(quizAnswers);
+    displayRecommendation(recommendedPerfume);
+  }
+
+  function findBestMatch(answers) {
+    let scores = perfumeDatabase.map(perfume => {
+      let score = 0;
+
+      // Gender matching
+      if (perfume.category === 'Unisex') score += 30;
+      else if (perfume.category === answers.gender) score += 30;
+
+      // Scent family matching
+      if (perfume.scent_family === answers.scent_family) score += 40;
+
+      // Intensity preference
+      if (answers.intensity === 'Light' && ['Fresh', 'Herbal'].includes(perfume.scent_family)) score += 5;
+      else if (answers.intensity === 'Strong' && ['Warm', 'Earthy'].includes(perfume.scent_family)) score += 5;
+      else if (answers.intensity === 'Medium') score += 3;
+
+      // Occasion preference
+      if (answers.occasion === 'Daily' && perfume.scent_family === 'Fresh') score += 5;
+      else if (answers.occasion === 'Evening' && ['Warm', 'Earthy'].includes(perfume.scent_family)) score += 5;
+      else if (answers.occasion === 'Versatile') score += 3;
+
+      return { perfume, score };
+    });
+
+    scores.sort((a, b) => b.score - a.score);
+    return scores[0].perfume;
+  }
+
+  // <CHANGE> Display recommendation with user name
+  function displayRecommendation(perfume) {
+    if (!perfume) return;
+    const reasons = {
+      Fresh: "This fresh and citrusy fragrance aligns perfectly with your preference for invigorating scents.",
+      Flowery: "This floral masterpiece captures the elegance and romance you're seeking.",
+      Warm: "This warm and spicy composition creates a captivating signature that turns heads.",
+      Earthy: "This grounding scent with woody and earthy notes provides a sophisticated choice.",
+      Gourmand: "This sweet and indulgent fragrance delivers comfort and luxury.",
+      Herbal: "This herbal and green composition offers a fresh, nature-inspired character."
+    };
+
+    const uName = document.getElementById('result-user-name');
+    if (uName) uName.textContent = quizAnswers.userName;
+    const pName = document.getElementById('result-perfume-name');
+    if (pName) pName.textContent = perfume.name;
+    const pInsp = document.getElementById('result-inspired-by');
+    if (pInsp) pInsp.textContent = `Inspired by: ${perfume.originalName}`;
+    const pHead = document.getElementById('result-head-notes');
+    if (pHead) pHead.textContent = perfume.head_notes;
+    const pHeart = document.getElementById('result-heart-notes');
+    if (pHeart) pHeart.textContent = perfume.heart_notes;
+    const pBase = document.getElementById('result-base-notes');
+    if (pBase) pBase.textContent = perfume.base_notes;
+    const pAi = document.getElementById('result-ai-reason');
+    if (pAi) {
+      pAi.textContent =
+        reasons[perfume.scent_family] ||
+        `Based on your preferences for ${perfume.scent_family} scents and ${perfume.gender} fragrances, ${perfume.name} is your perfect match.`;
+    }
+
+    if (viewProductBtn) {
+      const productHandle = (perfume.name || '').toLowerCase().replace(/\s+/g, '-');
+      viewProductBtn.href = `/products/${productHandle}`;
+    }
+
+    showStep('results');
+  }
+
+  if (restartBtn) {
+    restartBtn.addEventListener('click', () => {
+      quizAnswers = { userName: '', gender: null, scent_family: null, intensity: null, occasion: null };
+      currentStep = 0;
+      if (nameInput) nameInput.value = '';
+      document.querySelectorAll('.quiz-card').forEach(card => card.classList.remove('selected'));
+      showStep(0);
+    });
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Hero Section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Hero Image"
+    },
+    {
+      "type": "text",
+      "id": "pre_heading",
+      "label": "Pre-heading Text",
+      "default": "Fragrance Finder"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<h2>DISCOVER YOUR SIGNATURE ABEL SCENT</h2>"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "START THE QUIZ"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Bottom Navigation Items"
+    },
+    {
+      "type": "text",
+      "id": "nav_item_1_text",
+      "label": "Nav Item 1 Text",
+      "default": "NURTURE"
+    },
+    {
+      "type": "url",
+      "id": "nav_item_1_link",
+      "label": "Nav Item 1 Link"
+    },
+    {
+      "type": "text",
+      "id": "nav_item_2_text",
+      "label": "Nav Item 2 Text",
+      "default": "BLACK ANISE"
+    },
+    {
+      "type": "url",
+      "id": "nav_item_2_link",
+      "label": "Nav Item 2 Link"
+    },
+    {
+      "type": "text",
+      "id": "nav_item_3_text",
+      "label": "Nav Item 3 Text",
+      "default": "CYAN NORI"
+    },
+    {
+      "type": "url",
+      "id": "nav_item_3_link",
+      "label": "Nav Item 3 Link"
+    },
+    {
+      "type": "text",
+      "id": "nav_item_4_text",
+      "label": "Nav Item 4 Text",
+      "default": "THE APARTMENT"
+    },
+    {
+      "type": "url",
+      "id": "nav_item_4_link",
+      "label": "Nav Item 4 Link"
+    },
+    {
+      "type": "text",
+      "id": "nav_item_5_text",
+      "label": "Nav Item 5 Text",
+      "default": "PINK IRIS"
+    },
+    {
+      "type": "url",
+      "id": "nav_item_5_link",
+      "label": "Nav Item 5 Link"
+    },
+    {
+      "type": "text",
+      "id": "nav_item_6_text",
+      "label": "Nav Item 6 Text",
+      "default": "PAUSE"
+    },
+    {
+      "type": "url",
+      "id": "nav_item_6_link",
+      "label": "Nav Item 6 Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Section",
+      "category": "Image"
+    }
+  ]
+}
+{% endschema %}

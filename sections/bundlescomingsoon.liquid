@@ -1,0 +1,134 @@
+{% if section.settings.enable_overlay %}
+<div id="coming-soon-overlay">
+  <div class="coming-soon-content">
+    <h1>{{ section.settings.heading }}</h1>
+    <div id="countdown"></div>
+    <a href="/" class="coming-soon-button">Go Back to Home</a>
+  </div>
+</div>
+{% endif %}
+
+<style>
+/* Full-page overlay */
+#coming-soon-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  z-index: 9999;
+}
+
+/* Coming Soon text */
+#coming-soon-overlay h1 {
+  font-size: 80px;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 20px;
+}
+
+/* Countdown timer */
+#countdown {
+  font-size: 50px;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 40px;
+}
+
+/* Yellow button - matching Scentspired buttons */
+.coming-soon-button {
+  display: inline-block;
+  padding: 15px 40px;
+  background-color: #f4ff41; /* your yellow button color */
+  color: #000000;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 40px;
+  font-family: 'PP MORI', sans-serif; /* your button font */
+  transition: background 0.3s ease;
+}
+
+.coming-soon-button:hover {
+  background-color: #e0e900;
+}
+@media (max-width: 768px) {
+#coming-soon-overlay h1 {
+  font-size: 50px;
+}
+#countdown {
+  font-size: 30px;
+}
+}
+</style>
+
+<script>
+{% if section.settings.enable_overlay %}
+(function() {
+  const launchDate = new Date("{{ section.settings.launch_date }}").getTime();
+  const countdownEl = document.getElementById("countdown");
+  if (!countdownEl) return;
+
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = launchDate - now;
+
+    if (distance <= 0) {
+      if (countdownEl) countdownEl.innerHTML = "We are live!";
+      clearInterval(interval);
+      const overlay = document.getElementById("coming-soon-overlay");
+      if (overlay) overlay.style.display = "none";
+      return;
+    }
+
+    const days = Math.floor(distance / (1000*60*60*24));
+    const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+    const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+    const seconds = Math.floor((distance % (1000*60)) / 1000);
+
+    if (countdownEl) countdownEl.innerHTML = `${days}d : ${hours}h : ${minutes}m : ${seconds}s`;
+  }
+
+  const interval = setInterval(updateCountdown, 1000);
+  updateCountdown();
+})();
+{% endif %}
+</script>
+
+{% schema %}
+{
+  "name": "Full Page Coming Soon",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_overlay",
+      "label": "Enable Overlay",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading Text",
+      "default": "COMING SOON"
+    },
+    {
+      "type": "text",
+      "id": "launch_date",
+      "label": "Launch Date (YYYY-MM-DD HH:MM:SS)",
+      "default": "2026-02-15 00:00:00"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Full Page Coming Soon Overlay"
+    }
+  ]
+}
+{% endschema %}

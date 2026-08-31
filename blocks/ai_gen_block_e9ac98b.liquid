@@ -1,0 +1,381 @@
+{% doc %}
+  @prompt
+    Develop a custom Shopify Liquid section that precisely mirrors the two-column split layout shown in image_1f7fb9.png. The section should be divided into two main parts: a left-aligned heading block and a right-aligned descriptive text block. For the left block, the first line should read 'New to Scentspired' where 'New to' is in 'PP Editorial New', serif and 'Scentspired' is in a larger, bold 'PPMori Regular' weight; the second line below it should read 'Start with the bestsellers.' with 'Start with the' in 'PP Editorial New' and 'bestsellers.' in 'PPEditorialNew Italic'. The right block should contain the body text 'These are the fragrances that turned skeptics into regulars, the ones people reorder & then tell their friends about.' using 'PPMori Regular', Arial, sans-serif with a smaller font size and a clean, left-aligned orientation within its own column. Ensure there is a wide gutter between the two columns, and use flexbox to vertically align the top of both text blocks. The entire section should sit on a white background with ample top and bottom padding, maintaining a sophisticated, minimalist editorial aesthetic that is fully responsive for mobile devices." create exact same section like ref image, "Build a custom Shopify Liquid section that creates a precise two-column layout as shown in image_1f7fb9.png, ensuring a sophisticated editorial feel. On the left side, create a heading block where the first line says 'New to Scentspired' and the second line says 'Start with the bestsellers.' Use 'PP Editorial New', serif for 'New to' and 'Start with the'. Use a bold weight of 'PPMori Regular' for the word 'Scentspired' and ensure it is slightly larger than the surrounding text. The word 'bestsellers.' must be in 'PPEditorialNew Italic'. Tighten the line-height and letter-spacing for these headings so they appear compact and elegant, just like the image. On the right side, place the body text 'These are the fragrances that turned skeptics into regulars, the ones people reorder & then tell their friends about.' using 'PPMori Regular', Arial, sans-serif at a significantly smaller font size (approx. 14px-16px). For the layout, use a flexbox container with justify-content: space-between and align-items: flex-start. To fix the spacing issue, set the left heading block to a max-width of 45% and the right text block to a max-width of 40%, ensuring the gap between them is clean and not excessively wide. The background must be pure white with balanced padding, and the section must stack vertically on mobile while maintaining the specific font-family assignments for every word.", dont give option in theme to use font i have already font in backend just use css of font and "Build a custom Shopify Liquid section that creates a precise two-column layout as shown in image_1f7fb9.png, ensuring a sophisticated editorial feel. On the left side, create a heading block where the first line says 'New to Scentspired' and the second line says 'Start with the bestsellers.' and Spired Use 'PP Editorial New', serif for 'New to' and 'Start with the'. Use a bold weight of 'PPMori Regular' for the word 'Scentspired' and ensure it is slightly larger than the surrounding text. The word 'bestsellers.' and spired must be in 'PPEditorialNew Italic'. Tighten the line-height and letter-spacing for these headings so they appear compact and elegant, just like the image. On the right side, place the body text 'These are the fragrances that turned skeptics into regulars, the ones people reorder & then tell their friends about.' using 'PPMori Regular', Arial, sans-serif at a significantly smaller font size (approx. 14px-16px). For the layout, use a flexbox container with justify-content: space-between and align-items: flex-start. To fix the spacing issue, set the left heading block to a max-width of 45% and the right text block to a max-width of 40%, ensuring the gap between them is clean and not excessively wide. The background must be pure white with balanced padding, and the section must stack vertically on mobile while maintaining the specific font-family assignments for every word.", in first line of left side Scent is in PP Editorial New', serif and spired word in 'PPEditorialNew Italic'. and reduce gap between left and right side 
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-split-editorial-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    background-color: {{ block.settings.background_color }};
+    padding: 40px 0 35px;
+  }
+
+  .ai-split-editorial-container-{{ ai_gen_id }} {
+    max-width: {{ block.settings.container_width }}px;
+    margin: 0 auto;
+    padding: 0 {{ block.settings.horizontal_padding }}px;
+  }
+
+  .ai-split-editorial-wrapper-{{ ai_gen_id }} {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: {{ block.settings.column_gap }}px;
+  }
+
+  .ai-split-editorial-left-{{ ai_gen_id }} {
+    max-width: 45%;
+  }
+
+  .ai-split-editorial-right-{{ ai_gen_id }} {
+    max-width: 72%;
+  }
+
+  .ai-split-editorial-heading-line1-{{ ai_gen_id }} {
+    margin: 0 0 {{ block.settings.heading_line_spacing }}px;
+    line-height: {{ block.settings.heading_line_height }};
+    letter-spacing: -0.02em;
+  }
+
+  .ai-split-editorial-prefix-{{ ai_gen_id }} {
+    font-family: 'PP Editorial New', serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: {{ block.settings.prefix_font_size }}px;
+    color: {{ block.settings.heading_color }};
+  }
+
+  .ai-split-editorial-brand-scent-{{ ai_gen_id }} {
+    font-family: 'PP Editorial New', serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: {{ block.settings.brand_font_size }}px;
+    color: {{ block.settings.heading_color }};
+  }
+
+  .ai-split-editorial-brand-spired-{{ ai_gen_id }} {
+    font-family: 'PPEditorialNew Ultralight Italic';
+    font-weight: 400;
+    font-style: italic;
+    font-size: {{ block.settings.brand_font_size }}px;
+    color: {{ block.settings.heading_color }};
+  }
+
+  .ai-split-editorial-heading-line2-{{ ai_gen_id }} {
+    margin: 0;
+    line-height: {{ block.settings.heading_line_height }};
+    letter-spacing: -0.02em;
+  }
+
+  .ai-split-editorial-start-{{ ai_gen_id }} {
+    font-family: 'PP Editorial New', serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: {{ block.settings.start_font_size }}px;
+    color: {{ block.settings.heading_color }};
+    margin-right: 5px;
+  }
+
+  .ai-split-editorial-bestsellers-{{ ai_gen_id }} {
+    font-family: 'PPEditorialNew Italic', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: {{ block.settings.bestsellers_font_size }}px;
+    color: {{ block.settings.heading_color }};
+  }
+
+  .ai-split-editorial-body-{{ ai_gen_id }} {
+    font-family: 'PPMori Regular', Arial, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: {{ block.settings.body_font_size }}px;
+    line-height: {{ block.settings.body_line_height }};
+    color: {{ block.settings.body_color }};
+    margin: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-split-editorial-wrapper-{{ ai_gen_id }} {
+      flex-direction: column;
+      gap: {{ block.settings.mobile_gap }}px;
+    }
+
+    .ai-split-editorial-left-{{ ai_gen_id }},
+    .ai-split-editorial-right-{{ ai_gen_id }} {
+      max-width: 100%;
+    }
+
+    .ai-split-editorial-prefix-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.prefix_font_size }}px * {{ block.settings.mobile_scale }});
+    }
+
+    .ai-split-editorial-brand-scent-{{ ai_gen_id }},
+    .ai-split-editorial-brand-spired-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.brand_font_size }}px * {{ block.settings.mobile_scale }});
+    }
+
+    .ai-split-editorial-start-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.start_font_size }}px * {{ block.settings.mobile_scale }});
+    }
+
+    .ai-split-editorial-bestsellers-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.bestsellers_font_size }}px * {{ block.settings.mobile_scale }});
+    }
+
+    .ai-split-editorial-body-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.body_font_size }}px * 0.6);
+    }
+  }
+{% endstyle %}
+
+<div class="ai-split-editorial-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-split-editorial-container-{{ ai_gen_id }}">
+    <div class="ai-split-editorial-wrapper-{{ ai_gen_id }}">
+      <div class="ai-split-editorial-left-{{ ai_gen_id }}">
+        <h2 class="ai-split-editorial-heading-line1-{{ ai_gen_id }}">
+          <span class="ai-split-editorial-prefix-{{ ai_gen_id }}">{{ block.settings.prefix_text }}</span>
+          <span class="ai-split-editorial-brand-scent-{{ ai_gen_id }}">{{ block.settings.brand_scent_text }}</span><span class="ai-split-editorial-brand-spired-{{ ai_gen_id }}">{{ block.settings.brand_spired_text }}</span>
+        </h2>
+        <p class="ai-split-editorial-heading-line2-{{ ai_gen_id }}">
+          <span class="ai-split-editorial-start-{{ ai_gen_id }}">{{ block.settings.start_text }}</span>
+          <span class="ai-split-editorial-bestsellers-{{ ai_gen_id }}">{{ block.settings.bestsellers_text }}</span>
+        </p>
+      </div>
+      <div class="ai-split-editorial-right-{{ ai_gen_id }}">
+        <p class="ai-split-editorial-body-{{ ai_gen_id }}">{{ block.settings.body_text }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Split text editorial",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "container_width",
+      "label": "Container width",
+      "min": 800,
+      "max": 1600,
+      "step": 100,
+      "unit": "px",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "horizontal_padding",
+      "label": "Horizontal padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "label": "Column gap",
+      "min": 20,
+      "max": 150,
+      "step": 10,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "mobile_gap",
+      "label": "Mobile gap",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "mobile_scale",
+      "label": "Mobile font scale",
+      "min": 0.5,
+      "max": 1,
+      "step": 0.1,
+      "default": 0.8
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Left column - Line 1"
+    },
+    {
+      "type": "text",
+      "id": "prefix_text",
+      "label": "Prefix text",
+      "default": "New to"
+    },
+    {
+      "type": "range",
+      "id": "prefix_font_size",
+      "label": "Prefix font size",
+      "min": 16,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "text",
+      "id": "brand_scent_text",
+      "label": "Brand text (Scent)",
+      "default": "Scent"
+    },
+    {
+      "type": "text",
+      "id": "brand_spired_text",
+      "label": "Brand text (spired)",
+      "default": "spired"
+    },
+    {
+      "type": "range",
+      "id": "brand_font_size",
+      "label": "Brand font size",
+      "min": 20,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "header",
+      "content": "Left column - Line 2"
+    },
+    {
+      "type": "text",
+      "id": "start_text",
+      "label": "Start text",
+      "default": "Start with the"
+    },
+    {
+      "type": "range",
+      "id": "start_font_size",
+      "label": "Start font size",
+      "min": 16,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "text",
+      "id": "bestsellers_text",
+      "label": "Bestsellers text",
+      "default": "bestsellers."
+    },
+    {
+      "type": "range",
+      "id": "bestsellers_font_size",
+      "label": "Bestsellers font size",
+      "min": 16,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "heading_line_spacing",
+      "label": "Line spacing",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "heading_line_height",
+      "label": "Line height",
+      "min": 0.8,
+      "max": 2,
+      "step": 0.1,
+      "default": 1
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#121212"
+    },
+    {
+      "type": "header",
+      "content": "Right column - Body text"
+    },
+    {
+      "type": "textarea",
+      "id": "body_text",
+      "label": "Body text",
+      "default": "These are the fragrances that turned skeptics into regulars, the ones people reorder & then tell their friends about."
+    },
+    {
+      "type": "range",
+      "id": "body_font_size",
+      "label": "Body font size",
+      "min": 12,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "body_line_height",
+      "label": "Body line height",
+      "min": 1,
+      "max": 2,
+      "step": 0.1,
+      "default": 1.6
+    },
+    {
+      "type": "color",
+      "id": "body_color",
+      "label": "Body color",
+      "default": "#121212"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Split text editorial"
+    }
+  ]
+}
+{% endschema %}

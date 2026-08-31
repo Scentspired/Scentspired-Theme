@@ -1,0 +1,1532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Aroma Interactive Section</title>
+    <style>
+        @font-face {
+            font-family: 'PPEditorialNew Italic';
+            src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPEditorialNew-Italic-BF644b214fb0c0a.otf?v=1751620955') format('opentype');
+            font-weight: 900;
+            font-style: italic;
+        }
+        
+        @font-face {
+            font-family: 'PPMori Regular';
+            src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPMori-Regular.otf?v=1751621372') format('opentype');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .select-aroma-section {
+            width: 100%;
+            height: 70vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .select-aroma-container {
+            display: flex;
+            height: 70vh;
+            width: 100%;
+            border-top: 1px solid #bfbec0;
+            border-bottom: 1px solid #bfbec0;
+        }
+
+        .aroma-categories {
+            width: 33.33%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .aroma-image {
+            width: 33.33%;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+            border-right: 1px solid #bfbec0;
+        }
+
+        .aroma-details {
+            width: 33.33%;
+            padding: 40px 30px;
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow-y: auto;
+            border-top: 1px solid #bfbec0;
+        }
+
+        .blocks-row {
+            display: flex;
+            height: 33.33%;
+        }
+
+        .blocks-row.row-1 .aroma-block,
+        .blocks-row.row-2 .aroma-block {
+            width: 25%;
+            height: 100%;
+        }
+
+        .blocks-row.row-3 .aroma-block:nth-child(1),
+        .blocks-row.row-3 .aroma-block:nth-child(2) {
+            width: 25%;
+            height: 100%;
+        }
+
+        .blocks-row.row-3 .aroma-block:nth-child(3) {
+            width: 25%;
+            height: 100%;
+        }
+         .blocks-row.row-3 .aroma-block:nth-child(4) {
+            width: 25%;
+            height: 100%;
+        }
+
+        .aroma-block {
+            position: relative;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            padding: 20px;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            background-color: #888;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .aroma-block::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .aroma-block:hover::before {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .aroma-block.active::before {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .aroma-block h3 {
+            color: white;
+            font-size: 16px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin: 0;
+            position: relative;
+            z-index: 2;
+            font-family: 'PPMori Regular', sans-serif;
+        }
+
+        .product-title {
+            color: white;
+            font-size: 42px;
+            font-weight: 300;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            text-align: center;
+            font-family: 'PPMori Regular', sans-serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .aroma-image.default-state .product-title {
+            color: #666;
+            font-size: 42px;
+            font-weight: 300;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            text-align: center;
+            font-family: 'PPMori Regular', sans-serif;
+            text-shadow: none;
+        }
+
+        .aroma-image.default-state .pagination-numbers {
+            display: none;
+        }
+
+        .fragrance-notes {
+            margin-bottom: 30px;
+        }
+
+        .note-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 12px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .note-row:last-child {
+            border-bottom: none;
+        }
+
+        .note-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #333;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-family: 'PPMori Regular', sans-serif;
+            width: 70px;
+            flex-shrink: 0;
+        }
+
+        .note-value {
+            font-size: 13px;
+            color: #666;
+            text-align: right;
+            font-family: 'PPMori Regular', sans-serif;
+            flex: 1;
+            margin-left: 20px;
+        }
+
+        .mood-section {
+            margin-bottom: 30px;
+        }
+
+        .mood-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #333;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+            font-family: 'PPMori Regular', sans-serif;
+        }
+
+        .mood-description {
+            font-size: 15px;
+            line-height: 1.5;
+            color: #666;
+            font-family: 'PPMori Regular', sans-serif;
+        }
+
+        .shop-button {
+            border: 2px solid #333;
+            background: transparent;
+            color: #333;
+            padding: 14px 28px;
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'PPMori Regular', sans-serif;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            align-self: flex-start;
+        }
+
+        .shop-button:hover {
+            background: #333;
+            color: white;
+        }
+
+        /* Product Numbers in Center Image - Like Reference Image */
+        .pagination-numbers {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 10;
+        }
+
+        .pagination-number {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 16px;
+            font-weight: 400;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'PPMori Regular', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .pagination-number.active {
+            color: white;
+            font-weight: 600;
+        }
+
+        .pagination-number:hover {
+            color: white;
+        }
+
+        .pagination-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .pagination-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .pagination-dot.active {
+            background: white;
+        }
+
+        /* Mobile Product Numbers */
+        .mobile-pagination-numbers {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 10;
+        }
+
+        .mobile-pagination-number {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 16px;
+            font-weight: 400;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'PPMori Regular', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .mobile-pagination-number.active {
+            color: white;
+            font-weight: 600;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .select-aroma-section {
+                height: auto;
+            }
+
+            .select-aroma-container {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .aroma-categories {
+                width: 100%;
+                height: auto;
+                min-height: auto;
+                padding: 0;
+                display: block;
+            }
+
+            .blocks-row {
+                display: flex;
+                flex-wrap: wrap;
+                width: 100%;
+                height: auto;
+                border: none;
+            }
+
+            .aroma-block {
+                width: 50%;
+                flex-basis: 50%;
+                max-width: 50%;
+                flex-shrink: 0;
+                flex-grow: 0;
+                height: 200px;
+                padding: 20px;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+            }
+
+           
+
+            .aroma-block h3 {
+                font-size: 14px;
+                letter-spacing: 1px;
+            }
+
+            .aroma-image,
+            .aroma-details {
+                display: none;
+            }
+
+            .mobile-header {
+                position: static;
+                background: none;
+                padding: 40px 20px 20px;
+                text-align: left;
+                z-index: auto;
+            }
+
+            .mobile-header h2 {
+                font-size: 28px;
+                font-weight: 300;
+                letter-spacing: 3px;
+                text-transform: uppercase;
+                margin: 0;
+                color: #333;
+                font-family: 'PPMori Regular', sans-serif;
+            }
+
+            .back-button {
+                display: none;
+            }
+
+            .aroma-expanded-content {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                background: #f5f5f5;
+                padding: 0;
+                position: relative;
+            }
+
+            .aroma-expanded-content .product-image-container {
+                width: 100%;
+                height: 60vh;
+                position: relative;
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .aroma-expanded-content .product-title {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                color: white;
+                font-size: 32px;
+                letter-spacing: 2px;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+                font-family: 'PPMori Regular', sans-serif;
+                display: none;
+            }
+
+            .aroma-expanded-content .details-content {
+                padding: 30px 20px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="select-aroma-section">
+        <div class="mobile-header">
+            <h2>SELECT AROMA</h2>
+        </div>
+        <div class="select-aroma-container">
+            <div class="aroma-categories" id="aromaCategories">
+                <div class="blocks-row row-1">
+                    <div class="aroma-block active" data-category="citrus" onclick="selectAroma('citrus', this)">
+                        <h3>Saffron</h3>
+                    </div>
+                    <div class="aroma-block" data-category="green" onclick="selectAroma('green', this)">
+                        <h3>Vanilla </h3>
+                    </div>
+                    <div class="aroma-block" data-category="water" onclick="selectAroma('water', this)">
+                        <h3>Jasmine </h3>
+                    </div>
+                    <div class="aroma-block" data-category="musk" onclick="selectAroma('musk', this)">
+                        <h3>Cedarwood</h3>
+                    </div>
+                </div>
+                <div class="blocks-row row-2">
+                    <div class="aroma-block" data-category="fruit" onclick="selectAroma('fruit', this)">
+                        <h3>Amber</h3>
+                    </div>
+                    <div class="aroma-block" data-category="floral" onclick="selectAroma('floral', this)">
+                        <h3>Musk</h3>
+                    </div>
+                    <div class="aroma-block" data-category="spice" onclick="selectAroma('spice', this)">
+                        <h3>Patchouli</h3>
+                    </div>
+                    <div class="aroma-block" data-category="wood" onclick="selectAroma('wood', this)">
+                        <h3>Tonka Bean</h3>
+                    </div>
+                </div>
+                <div class="blocks-row row-3">
+                    <div class="aroma-block" data-category="amber" onclick="selectAroma('amber', this)">
+                        <h3>Rose</h3>
+                    </div>
+                    <div class="aroma-block" data-category="gourmand" onclick="selectAroma('gourmand', this)">
+                        <h3>Bergamot</h3>
+                    </div>
+                    <div class="aroma-block" data-category="leather" onclick="selectAroma('leather', this)">
+                        <h3>Ambergris</h3>
+                    </div>
+                    <div class="aroma-block" data-category="Orange" onclick="selectAroma('Orange', this)">
+                        <h3>Orange Blossom</h3>
+                    </div>
+                   
+                </div>
+            </div>
+            <div class="aroma-image default-state" id="aromaImage">
+                <h1 class="product-title" id="productTitle">SELECT AROMA</h1>
+                <div class="pagination-numbers" id="paginationNumbers" style="display: none;">
+                     Numbers will be dynamically generated here 
+                </div> 
+                <div class="pagination-dots" id="categoryDots">
+                    <div class="pagination-dot active" onclick="selectAroma('citrus')"></div>
+                    <div class="pagination-dot" onclick="selectAroma('green')"></div>
+                    <div class="pagination-dot" onclick="selectAroma('water')"></div>
+                    <div class="pagination-dot" onclick="selectAroma('musk')"></div>
+                    <div class="pagination-dot" onclick="selectAroma('fruit')"></div>
+                    <div class="pagination-dot" onclick="selectAroma('floral')"></div>
+                    <div class="pagination-dot" onclick="selectAroma('spice')"></div>
+                    <div class="pagination-dot" onclick="selectAroma('wood')"></div>
+                    <div class="pagination-dot" onclick="selectAroma('amber')"></div>
+                    <div class="pagination-dot" onclick="selectAroma('gourmand')"></div>
+                    <div class="pagination-dot" onclick="selectAroma('leather')"></div>
+                    <div class="pagination-dot" onclick="selectAroma('Orange')"></div>
+                </div>
+            </div>
+            <div class="aroma-details" id="aromaDetails">
+                 Content will be dynamically loaded here 
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const aromaData = {
+            "citrus": [
+                {
+                    productName: "ADDICTION",
+                    productImage: "https://scentspired.com/cdn/shop/files/Addiction_-_5_Card_Lifestyle_Image_6bdf93f7-0dca-4ffd-9bc1-d722f327a917.jpg?v=1765436707&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Saffron.png?v=1766131997",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Saffron.png?v=1766131997",
+                    topNote: "Saffron, Jasmine",
+                    heartNote: "Amberwood, Ambergris",
+                    baseNote: "Fir Resin, Cedar",
+                    moodDescription: "Inspired by one of the world’s most celebrated scents, Addiction captures opulence in simplicity. Its sweet, resinous trail lingers like a memory you can’t forget — bold, radiant, and beautifully balanced. This luxury unisex perfume is confidence bottled — addictive, refined, and impossible to ignore.",
+                    productUrl: "/products/addiction"
+                },
+                {
+                    productName: "SUPREME POWER",
+                    productImage: "https://scentspired.com/cdn/shop/files/Supreme_Power_-_2_Card_Second_Image.jpg?v=1765466005&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Saffron.png?v=1766131997",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Saffron.png?v=1766131997",
+                    topNote: "Saffron, Nutmeg, Lavender",
+                    heartNote: "Agarwood (Oud)",
+                    baseNote: "Patchouli, Musk",
+                    moodDescription: "Crafted for those who command attention through quiet power, Supreme Power is strength turned graceful. It’s bold yet meditative — a fragrance that defines presence without force. Elegant and enduring, it resonates long after you’ve left the room.",
+                    productUrl: "/products/supreme-power"
+                },
+                {
+                    productName: "MIRAGE",
+                    productImage: "https://scentspired.com/cdn/shop/files/Mirage_-_5_Card_Second_Image.jpg?v=1764929630&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Saffron.png?v=1766131997",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Saffron.png?v=1766131997",
+                    topNote: "Passionfruit, Fruity Notes, Saffron, Turkish Rose",
+                    heartNote: "Agarwood (Oud), Benzoin, Indonesian Patchouli Leaf",
+                    baseNote: "Leather, Akigalawood, Amber, Vanilla, Labdanum",
+                    moodDescription: "This scent redefines sensuality — luminous yet shadowed, modern yet timeless. Mirage feels like a dream between dusk and dawn, where warmth meets wonder. An irresistible unisex perfume that transforms every moment into a work of art.",
+                    productUrl: "/products/mirage"
+                },
+                {
+                    productName: "BLACK SPICE",
+                    productImage: "https://scentspired.com/cdn/shop/files/Black_Spice_-_2_Card_Second_Image.jpg?v=1765437016&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Saffron.png?v=1766131997",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Saffron.png?v=1766131997",
+                    topNote: "Saffron, Juniper Berries, Black Violet",
+                    heartNote: "Leather, Crystal Rose",
+                    baseNote: "Raspberry, Cashmeran, Vetiver",
+                    moodDescription: "Crafted for those who stand out without effort, Black Spice is daring yet graceful. It moves between strength and sensuality with ease, leaving a darkly elegant trail that lingers long after you’ve gone. A bold, luxurious unisex fragrance that commands attention through confidence, not volume.",
+                    productUrl: "/products/black-spice"
+                },
+                {
+                    productName: "MAVERICK",
+                    productImage: "https://scentspired.com/cdn/shop/files/Maverick_-_2_Card_Second_Image.jpg?v=1765458641&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Saffron.png?v=1766131997",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Saffron.png?v=1766131997",
+                    topNote: "Agarwood (Oud), Nutmeg, Saffron",
+                    heartNote: "Agarwood (Oud), Styrax, Cedar",
+                    baseNote: "Agarwood (Oud), Leather, Patchouli, Castoreum, Vanilla, Labdanum",
+                    moodDescription: "For the unconventional achiever, Maverick is individuality personified. It’s bold but balanced — daring without shouting. A fragrance that embodies quiet power and sophistication, leaving a lasting impression wherever it goes.",
+                    productUrl: "/products/maverick"
+                }
+            ],
+            "green": [
+                {
+                    productName: "Black Poison",
+                    productImage: "https://scentspired.com/cdn/shop/files/BlackPoison-5_CardLifestyleImage.jpg?v=1765436983&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Vanilla.png?v=1766131997",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Vanilla.png?v=1766131997",
+                    topNote: "Pear, Pink Pepper, Orange Blossom",
+                    heartNote: "Coffee, Jasmine, Bitter Almond, Licorice",
+                    baseNote: "Vanilla, Patchouli, Cashmere Wood, Cedar",
+                    moodDescription: "Crafted for women who define their own rules, Black Poison is dark, daring, and unapologetically sensual. Its intoxicating trail evokes mystery and allure — perfect for evenings that linger beyond midnight. This luxury women’s perfume turns confidence into temptation and elegance into an unforgettable statement.",
+                    productUrl: "/products/black-poison"
+                },
+                {
+                    productName: "Feminine Fancy",
+                    productImage: "https://scentspired.com/cdn/shop/files/Feminine_Fancy_-_2_Card_Second_Image.jpg?v=1765437578&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Vanilla.png?v=1766131997",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Vanilla.png?v=1766131997",
+                    topNote: "Almond, Coffee, Bergamot, Lemon",
+                    heartNote: "Tuberose, Jasmine Sambac, Orange Blossom, Bulgarian Rose, Orris",
+                    baseNote: "Tonka Bean, Cacao, Vanilla, Praline, Sandalwood, Cinnamon, Cedar",
+                    moodDescription: "Created for the woman who balances power and grace, Feminine Fancy captures allure in its purest form. Every note feels magnetic — sensual yet refined, bold yet beautifully balanced. It’s a fragrance that commands attention softly, making every entrance unforgettable.",
+                    productUrl: "/products/feminine-fancy"
+                },
+                {
+                    productName: "Sheer Grace",
+                    productImage: "https://scentspired.com/cdn/shop/files/Sheer_Grace_-_2_Card_Second_Image.jpg?v=1765465508&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Vanilla.png?v=1766131997",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Vanilla.png?v=1766131997",
+                    topNote: "Black Currant, Pear",
+                    heartNote: "Iris, Jasmine, Orange Blossom",
+                    baseNote: "Patchouli, Tonka Bean, Vanilla, Praline",
+                    moodDescription: "For women who see beauty in joy, Sheer Grace is the essence of happiness bottled. Its floral-gourmand charm feels radiant and uplifting — the perfect balance of sweetness and sophistication. It’s not just a fragrance; it’s a reminder to find grace in every moment.",
+                    productUrl: "/products/sheer-grace"
+                },
+                {
+                    productName: "Smoky Leather",
+                    productImage: "https://scentspired.com/cdn/shop/files/Smoky_Leather_-_2_Card_Second_Image.jpg?v=1765465835&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Vanilla.png?v=1766131997",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Vanilla.png?v=1766131997",
+                    topNote: "Tobacco Leaf, Spicy Notes",
+                    heartNote: "Tonka Bean, Tobacco Blossom, Vanilla, Cacao",
+                    baseNote: "Dried Fruits, Woody Notes",
+                    moodDescription: "This fragrance is the definition of understated seduction. Smoky Leather celebrates confidence and sophistication, capturing the energy of late-night elegance. A truly timeless composition for those who embody passion and power.",
+                    productUrl: "/products/smoky-leather"
+                },
+                {
+                    productName: "Biting Temptation",
+                    productImage: "https://scentspired.com/cdn/shop/files/Biting_Temp_-_2_Card_Second_Image.jpg?v=1765436916&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Vanilla.png?v=1766131997",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Vanilla.png?v=1766131997",
+                    topNote: "Peach, Blood Orange, Cardamom, Heliotrope",
+                    heartNote: "Rum, Cognac, Davana, Jasmine",
+                    baseNote: "Patchouli, Vanilla, Sandalwood, Tonka Bean, Cashmeran",
+                    moodDescription: "This fragrance captures temptation at its most elegant. Biting Temptation feels playful yet refined — a dance between sweetness and sophistication. It’s made for the confident soul who enjoys life’s pleasures unapologetically, leaving behind an irresistibly magnetic trail.",
+                    productUrl: "/products/biting-temptation"
+                }
+            ],
+            "water": [
+                {
+                    productName: "ADDICTION",
+                    productImage: "https://scentspired.com/cdn/shop/files/Addiction_-_5_Card_Lifestyle_Image_6bdf93f7-0dca-4ffd-9bc1-d722f327a917.jpg?v=1765436707&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Jasmine.png?v=1766131998",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Jasmine.png?v=1766131998",
+                    topNote: "Saffron, Jasmine",
+                    heartNote: "Amberwood, Ambergris",
+                    baseNote: "Fir Resin, Cedar",
+                    moodDescription: "Inspired by one of the world’s most celebrated scents, Addiction captures opulence in simplicity. Its sweet, resinous trail lingers like a memory you can’t forget — bold, radiant, and beautifully balanced. This luxury unisex perfume is confidence bottled — addictive, refined, and impossible to ignore.",
+                    productUrl: "/products/addiction"
+                },
+                {
+                    productName: "Timeless Grace",
+                    productImage: "https://scentspired.com/cdn/shop/files/Timeless_Grace_-_2_Card_Second_Image.jpg?v=1765466146&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Jasmine.png?v=1766131998",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Jasmine.png?v=1766131998",
+                    topNote: "Orange, Mandarin Orange, Bergamot, Orange Blossom",
+                    heartNote: "Turkish Rose, Jasmine, Mimosa, Ylang-Ylang",
+                    baseNote: "Patchouli, White Musk, Vanilla, Vetiver, Tonka Bean, Opoponax",
+                    moodDescription: "This fragrance was created for women who embody refinement and strength. Timeless Grace feels like confidence woven in silk — fresh yet profound, bold yet feminine. Its elegant trail enhances every moment with charm and composure. The kind of scent that leaves admiration in your wake — graceful, golden, unforgettable.",
+                    productUrl: "/products/timeless-grace"
+                },
+                {
+                    productName: "Rosy Dawn",
+                    productImage: "https://scentspired.com/cdn/shop/files/RosyDawn-2_CardSecondImage.jpg?v=1765465378&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Jasmine.png?v=1766131998",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Jasmine.png?v=1766131998",
+                    topNote: "Pink Pepper, Mandarin Orange, Calabrian bergamot, Lemon",
+                    heartNote: "Rose de Grasse, Damask Rose, Jasmine Leaf",
+                    baseNote: "Patchouli, Palisander Rosewood, Ambroxan, White Musk",
+                    moodDescription: "This scent was created for women who turn ordinary mornings into something beautiful. Rosy Dawn is feminine, optimistic, and effortlessly graceful — a fragrance that feels like sunlight through silk curtains. Every note radiates renewal and quiet confidence.",
+                    productUrl: "/products/rosy-dawn"
+                },
+                {
+                    productName: "Sinful Desire",
+                    productImage: "https://scentspired.com/cdn/shop/files/Sinful_Desire_-_2_Card_Second_Image.jpg?v=1765465718&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Jasmine.png?v=1766131998",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Jasmine.png?v=1766131998",
+                    topNote: "Sour Cherry, Bitter Almond, Liquor",
+                    heartNote: "Sour Cherry, Plum, Turkish Rose, Jasmine Sambac",
+                    baseNote: "Peru Balsam, Tonka Bean, Sandalwood, Vetiver, Cedar, Vanilla",
+                    moodDescription: "Inspired by one of the world’s most celebrated scents, Addiction captures opulence in simplicity. Its sweet, resinous trail lingers like a memory you can’t forget — bold, radiant, and beautifully balanced. This luxury unisex perfume is confidence bottled — addictive, refined, and impossible to ignore.",
+                    productUrl: "/products/sinful-desire"
+                },
+                {
+                    productName: "On High",
+                    productImage: "https://scentspired.com/cdn/shop/files/On_High_-_5.jpg?v=1765458952&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Jasmine.png?v=1766131998",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Jasmine.png?v=1766131998",
+                    topNote: "Bergamot, Litchi, Peach",
+                    heartNote: "Peony, Jasmine, Orange Blossom, Petalia",
+                    baseNote: "Woody Notes, Musk, Moss",
+                    moodDescription: "It’s the fragrance of pure optimism — weightless yet magnetic. On High was created for those who lead with quiet brilliance. Its soft floral energy and luminous citrus notes rise effortlessly, leaving behind a clean, confident trail. Modern, gentle, and endlessly fresh.",
+                    productUrl: "/products/on-high"
+                },
+            ],
+            "musk": [
+                {
+                    productName: "Invictor",
+                    productImage: "https://scentspired.com/cdn/shop/files/Invictor_-_2.jpg?v=1764929566&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Cedar_Wood.png?v=1766131998",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Cedar_Wood.png?v=1766131998",
+                    topNote: "Bergamot, Black Currant, Apple, Lemon, Pink Pepper",
+                    heartNote: "Pineapple, Patchouli, Moroccan Jasmine",
+                    baseNote: "Birch, Musk, Oakmoss, Cedarwood, Ambroxan",
+                    moodDescription: "Inspired by a world-renowned fragrance of triumph, Invictor redefines strength through elegance. It evolves from crisp brightness to a smooth, woody base, leaving behind a lasting aura of success. Crafted for achievers, this luxury men’s perfume is bold, confident, and built to conquer every challenge.",
+                    productUrl: "/products/invictor"
+                },
+                {
+                    productName: "Cool Alpine",
+                    productImage: "https://scentspired.com/cdn/shop/files/Cool_Alpine_-_5.jpg?v=1765437174&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Cedar_Wood.png?v=1766131998",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Cedar_Wood.png?v=1766131998",
+                    topNote: "Bergamot, Mandarin Orange",
+                    heartNote: "Green Tea, Black Currant",
+                    baseNote: "Musk, Sandalwood, Petitgrain, Galbanum",
+                    moodDescription: "Inspired by nature’s purest moments, Cool Alpine captures the serenity of mountain air meeting polished modernity. It’s an effortlessly elegant fragrance — subtle yet unforgettable. Designed for every season, it embodies cool confidence and ageless charm.Inspired by nature’s purest moments, Cool Alpine captures the serenity of mountain air meeting polished modernity. It’s an effortlessly elegant fragrance — subtle yet unforgettable. Designed for every season, it embodies cool confidence and ageless charm.",
+                    productUrl: "/products/cool-alpine"
+                },
+                {
+                    productName: "Visionary",
+                    productImage: "https://scentspired.com/cdn/shop/files/Visionary_-_3.jpg?v=1764929689&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Cedar_Wood.png?v=1766131998",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Cedar_Wood.png?v=1766131998",
+                    topNote: "Citron, Calabrian bergamot, Sicilian Orange",
+                    heartNote: "Tunisian Neroli, Nigerian Ginger, Ceylon Cinnamon",
+                    baseNote: "Chinese Black Tea, Ambroxan, Guaiac Wood, Olibanum",
+                    moodDescription: "Crafted for thinkers, dreamers, and innovators, Visionary reflects ambition turned into reality. The fragrance evolves with a confident, intelligent balance — refined yet bold. With its clean finish and lingering warmth, Visionary is the signature scent of leadership, intellect, and inspiration.",
+                    productUrl: "/products/visionary"
+                },
+                {
+                    productName: "Floral Whisper",
+                    productImage: "https://scentspired.com/cdn/shop/files/Floral_Whisper_-_5.jpg?v=1765437745&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Cedar_Wood.png?v=1766131998",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Cedar_Wood.png?v=1766131998",
+                    topNote: "Green Notes",
+                    heartNote: "Tuberose, Jasmine, Honeysuckle",
+                    baseNote: "Orris Root, Sandalwood, Vanilla",
+                    moodDescription: "Floral Whisper embodies femininity at its purest — tender, romantic, and full of life. It’s a fragrance for dreamers and believers, those who find beauty in simplicity. Delicate yet captivating, it’s your invitation to carry a garden wherever you go.",
+                    productUrl: "/products/floral-whisper"
+                },
+                {
+                    productName: "Exotic Night",
+                    productImage: "https://scentspired.com/cdn/shop/files/Exotic_Night_-_5.jpg?v=1765438652&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Cedar_Wood.png?v=1766131998",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Cedar_Wood.png?v=1766131998",
+                    topNote: "Jasmine, Gardenia, Lemon, Bergamot, Orange, Ylang-Ylang, Truffle",
+                    heartNote: "Orchid, Spices, Gardenia, Fruity Notes, Ylang-Ylang, Jasmine, Lotus",
+                    baseNote: "Mexican Chocolate, Patchouli, Vanilla, Incense, Amber, Sandalwood",
+                    moodDescription: "For the woman who turns every glance into intrigue, Exotic Night is power in perfume form. Bold yet sophisticated, it’s a fragrance that thrives in candlelight and conversation. Seductive, luxurious, and unforgettable — it transforms night into pure enchantment.",
+                    productUrl: "/products/exotic-night"
+                }
+            ],
+            "fruit": [
+                {
+                    productName: "Fierce",
+                    productImage: "https://scentspired.com/cdn/shop/files/Fierece_-_5.jpg?v=1765437674&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Amber_Resin.png?v=1766131998",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Amber_Resin.png?v=1766131998",
+                    topNote: "Bergamot, Mandarin Orange, Elemi",
+                    heartNote: "Sandalwood",
+                    baseNote: "Olibanum, Tonka Bean, Vanilla",
+                    moodDescription: "Designed for men who lead fearlessly, Fierce radiates self-assurance and charm. It transitions from citrus fire to warm sensuality, adapting beautifully to day or night. Confident, daring, and undeniably magnetic, Fierce is the scent of a man who owns his power — effortlessly.",
+                    productUrl: "/products/fierce"
+                },
+                {
+                    productName: "Wanderer",
+                    productImage: "https://scentspired.com/cdn/shop/files/Wanderer_-_2_Card_Second_Image.jpg?v=1765466216&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Amber_Resin.png?v=1766131998",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Amber_Resin.png?v=1766131998",
+                    topNote: "Agarwood (Oud), Incense",
+                    heartNote: "Rose, Raspberry, Saffron, Birch",
+                    baseNote: "Amber, Benzoin, Geranium",
+                    moodDescription: "Made for explorers of mind and spirit, Wanderer embodies freedom and introspection. Each note unfolds like a journey — bold, soulful, and captivating. A luxury unisex perfume, it captures the art of movement and the peace of self-discovery.",
+                    productUrl: "/products/wanderer"
+                },
+                {
+                    productName: "Heaven’s Pour",
+                    productImage: "https://scentspired.com/cdn/shop/files/Heaven_s_Pour_-_5.jpg?v=1765456307&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Amber_Resin.png?v=1766131998",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Amber_Resin.png?v=1766131998",
+                    topNote: "Cognac",
+                    heartNote: "Cinnamon, Tonka Bean, Oak",
+                    baseNote: "Vanilla, Praline, Sandalwood",
+                    moodDescription: "This fragrance is comfort and luxury intertwined. Heaven’s Pour evokes quiet evenings, glowing light, and timeless indulgence. It’s a scent of sophistication that wraps you like velvet — a celebration of warmth, connection, and quiet pleasure.",
+                    productUrl: "/products/heavens-pour"
+                },
+                {
+                    productName: "Azure Charm",
+                    productImage: "https://scentspired.com/cdn/shop/files/Azure_Charm_-_5.jpg?v=1765436850&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Amber_Resin.png?v=1766131998",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Amber_Resin.png?v=1766131998",
+                    topNote: "Bergamot, Ginger, Mandarin Orange",
+                    heartNote: "Pear, Georgywood, Rose",
+                    baseNote: "Ambroxan, Musk, Sandalwood",
+                    moodDescription: "Made for those who exude quiet charisma, Azure Charm radiates calm allure. It’s as refreshing as a breeze yet as lasting as a memory — a sophisticated unisex perfume that redefines subtlety through brilliance.",
+                    productUrl: "/products/azure-charm"
+                },
+                {
+                    productName: "Deep Attraction",
+                    productImage: "https://scentspired.com/cdn/shop/files/Deep_Attraction_-_5.jpg?v=1765437275&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Amber_Resin.png?v=1766131998",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Amber_Resin.png?v=1766131998",
+                    topNote: "Fig, Bay Leaf, Bergamot",
+                    heartNote: "Cedar, Vetiver, Musk",
+                    baseNote: "Tobacco, Hay",
+                    moodDescription: "Crafted for those who draw attention without trying, Deep Attraction embodies depth and confidence. It’s warm but sophisticated, mysterious yet soothing. A modern unisex fragrance that’s as intriguing as the person who wears it.",
+                    productUrl: "/products/deep-attraction"
+                }
+            ],
+            "floral": [
+                {
+                    productName: "Pink Whisper",
+                    productImage: "https://scentspired.com/cdn/shop/files/Pink_Whisper_-_2_Card_Second_Image.jpg?v=1765465263&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Musk.png?v=1766131997",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Musk.png?v=1766131997",
+                    topNote: "Litchi, Rhubarb, Bergamot, Nutmeg",
+                    heartNote: "Turkish Rose, Peony, Musk, Petalia, Vanilla",
+                    baseNote: "Cashmeran, Incense, Cedar, Haitian Vetiver",
+                    moodDescription: "Inspired by a world-adored fragrance of timeless beauty, Pink Whisper celebrates the woman who embraces confidence with tenderness. Its blend of fruity brightness and velvety florals feels modern yet eternal — a scent that blooms with sophistication and lingers with poise. It’s your everyday luxury, bottled in pure femininity.",
+                    productUrl: "/products/pink-whisper"
+                },
+                {
+                    productName: "Luminous Wonder",
+                    productImage: "https://scentspired.com/cdn/shop/files/Luminous_Wonder_-_4.jpg?v=1764928973&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Musk.png?v=1766131997",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Musk.png?v=1766131997",
+                    topNote: "Ylang-Ylang, Pear, Melon, Magnolia, Peach, Orange, Bergamot",
+                    heartNote: "Jasmine, Lily, Tuberose, Freesia, Rose, Orchid, Violet, Plum",
+                    baseNote: "Musk, Vanilla, Blackberry, Cedar",
+                    moodDescription: "Inspired by timeless elegance, Luminous Wonder is made for women who shine without trying. It captures the feeling of soft light against skin — radiant, feminine, and deeply comforting. This luxury floral fragrance turns everyday moments into memories touched by gold.",
+                    productUrl: "/products/luminous-wonder"
+                },
+                {
+                    productName: "Anō 13",
+                    productImage: "https://scentspired.com/cdn/shop/files/Ano13_-_3.jpg?v=1765436803&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Musk.png?v=1766131997",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Musk.png?v=1766131997",
+                    topNote: "Pear, Apple, Citruses",
+                    heartNote: "Ambrette (Musk Mallow), Amyl Salicylate, Moss, Jasmine",
+                    baseNote: "Iso E Super, Cetalox, Helvetolide, Ambrettolide",
+                    moodDescription: "Created for those who appreciate subtlety, Anô 13 is effortlessly elegant. Its delicate warmth evolves uniquely on every wearer, blending seamlessly with natural skin scent. This modern unisex perfume embodies purity, serenity, and sophistication in perfect harmony.",
+                    productUrl: "/products/ano-13"
+                },
+                {
+                    productName: "Pure Light",
+                    productImage: "https://scentspired.com/cdn/shop/files/Pure_Light_-_5.jpg?v=1765465323&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Musk.png?v=1766131997",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Musk.png?v=1766131997",
+                    topNote: "White Rose, Pink Pepper, Aldehydes",
+                    heartNote: "Violet, Neroli, Peony",
+                    baseNote: "Blonde Woods, Sandalwood, Musk",
+                    moodDescription: "This perfume is serenity reimagined — fresh, elegant, and timeless. Pure Light celebrates simplicity and purity, evoking the calm confidence of morning light. It’s a modern, minimalist fragrance designed to uplift, soothe, and inspire.",
+                    productUrl: "/products/pure-light"
+                },
+                {
+                    productName: "Sun Soaked",
+                    productImage: "https://scentspired.com/cdn/shop/files/Sun_Soaked_-_2_Card_Second_Image.jpg?v=1765465925&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Musk.png?v=1766131997",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Musk.png?v=1766131997",
+                    topNote: "Sicilian Orange, Calabrian bergamot, Mandarin Orange",
+                    heartNote: "Ginger",
+                    baseNote: "Ambroxan",
+                    moodDescription: "Made for free spirits and optimists, Sun Soaked is the fragrance of endless summer. It evokes laughter, salt air, and glowing skin — an expression of joy that feels as natural as the sun itself. Radiant and full of life, it’s a scent that never fades into the background.",
+                    productUrl: "/products/sun-soaked"
+                }
+            ],
+            "spice": [
+                {
+                    productName: "Timeless Grace",
+                    productImage: "https://scentspired.com/cdn/shop/files/Timeless_Grace_-_2_Card_Second_Image.jpg?v=1765466146&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_PAtchouli.png?v=1766131997",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_PAtchouli.png?v=1766131997",
+                    topNote: "Orange, Mandarin Orange, Bergamot, Orange Blossom",
+                    heartNote: "Turkish Rose, Jasmine, Mimosa, Ylang-Ylang",
+                    baseNote: "Patchouli, White Musk, Vanilla, Vetiver, Tonka Bean, Opoponax",
+                    moodDescription: "This fragrance was created for women who embody refinement and strength. Timeless Grace feels like confidence woven in silk — fresh yet profound, bold yet feminine. Its elegant trail enhances every moment with charm and composure. The kind of scent that leaves admiration in your wake — graceful, golden, unforgettable.",
+                    productUrl: "/products/timeless-grace"
+                },
+                {
+                    productName: "Pink Whisper",
+                    productImage: "https://scentspired.com/cdn/shop/files/Pink_Whisper_-_2_Card_Second_Image.jpg?v=1765465263&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_PAtchouli.png?v=1766131997",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_PAtchouli.png?v=1766131997",
+                    topNote: "Litchi, Rhubarb, Bergamot, Nutmeg",
+                    heartNote: "Turkish Rose, Peony, Musk, Petalia, Vanilla",
+                    baseNote: "Cashmeran, Incense, Cedar, Haitian Vetiver",
+                    moodDescription: "Inspired by a world-adored fragrance of timeless beauty, Pink Whisper celebrates the woman who embraces confidence with tenderness. Its blend of fruity brightness and velvety florals feels modern yet eternal — a scent that blooms with sophistication and lingers with poise. It’s your everyday luxury, bottled in pure femininity.",
+                    productUrl: "/products/pink-whisper"
+                },
+                {
+                    productName: "Sheer Grace",
+                    productImage: "https://scentspired.com/cdn/shop/files/Sheer_Grace_-_2_Card_Second_Image.jpg?v=1765465508&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_PAtchouli.png?v=1766131997",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_PAtchouli.png?v=1766131997",
+                    topNote: "Black Currant, Pear",
+                    heartNote: "Iris, Jasmine, Orange Blossom",
+                    baseNote: "Patchouli, Tonka Bean, Vanilla, Praline",
+                    moodDescription: "For women who see beauty in joy, Sheer Grace is the essence of happiness bottled. Its floral-gourmand charm feels radiant and uplifting — the perfect balance of sweetness and sophistication. It’s not just a fragrance; it’s a reminder to find grace in every moment.",
+                    productUrl: "/products/sheer-grace"
+                },
+                {
+                    productName: " Silk Odyssey",
+                    productImage: "https://scentspired.com/cdn/shop/files/Silk_Odyssey_-_2_Card_Second_Image.jpg?v=1765465672&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_PAtchouli.png?v=1766131997",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_PAtchouli.png?v=1766131997",
+                    topNote: "Bulgarian Rose, Violet, Strawberry",
+                    heartNote: "Turkish Rose, Benzoin",
+                    baseNote: "Agarwood (Oud), Vanilla, Amber, Caramel, Cedar",
+                    moodDescription: "Crafted for the free spirit with refined taste, Silk Odyssey feels like traveling through layers of silk and amber light. The scent evolves with sophistication and warmth — elegant by day, alluring by night. A true modern classic.",
+                    productUrl: "/products/silk-odyssey"
+                },
+                {
+                    productName: "Amber Vale",
+                    productImage: "https://scentspired.com/cdn/shop/files/Amber_Vale_-_4_93bcd84c-ba0d-4b4e-aa83-789de48d3288.jpg?v=1765456221&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_PAtchouli.png?v=1766131997",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_PAtchouli.png?v=1766131997",
+                    topNote: "Apple, Lavender, Mandarin Orange, Bergamot",
+                    heartNote: "Geranium, Violet, Jasmine",
+                    baseNote: "Vanilla, Cardamom, Sandalwood, Pepper, Guaiac Wood, Patchouli",
+                    moodDescription: "This fragrance redefines balance — bright yet sensual, fresh yet grounded. Amber Vale embodies understated elegance and confidence, making it a versatile companion for every season. It’s the scent of quiet charisma — timeless, comforting, and irresistibly refined.",
+                    productUrl: "/products/amber-vale"
+                },
+
+            ],
+            "wood": [
+                {
+                    productName: "Fierce",
+                    productImage: "https://scentspired.com/cdn/shop/files/Fierece_-_5.jpg?v=1765437674&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Tonka.png?v=1766131998",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Tonka.png?v=1766131998",
+                    topNote: "Bergamot, Mandarin Orange, Elemi",
+                    heartNote: "Sandalwood",
+                    baseNote: "Olibanum, Tonka Bean, Vanilla",
+                    moodDescription: "Designed for men who lead fearlessly, Fierce radiates self-assurance and charm. It transitions from citrus fire to warm sensuality, adapting beautifully to day or night. Confident, daring, and undeniably magnetic, Fierce is the scent of a man who owns his power — effortlessly.",
+                    productUrl: "/products/fierce"
+                },
+                {
+                    productName: "Feminine Fancy",
+                    productImage: "https://scentspired.com/cdn/shop/files/Feminine_Fancy_-_2_Card_Second_Image.jpg?v=1765437578&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Tonka.png?v=1766131998",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Tonka.png?v=1766131998",
+                    topNote: "Almond, Coffee, Bergamot, Lemon",
+                    heartNote: "Tuberose, Jasmine Sambac, Orange Blossom, Bulgarian Rose, Orris",
+                    baseNote: "Tonka Bean, Cacao, Vanilla, Praline, Sandalwood, Cinnamon, Cedar",
+                    moodDescription: "Created for the woman who balances power and grace, Feminine Fancy captures allure in its purest form. Every note feels magnetic — sensual yet refined, bold yet beautifully balanced. It’s a fragrance that commands attention softly, making every entrance unforgettable.",
+                    productUrl: "/products/feminine-fancy"
+                },
+                {
+                    productName: "Dark Illusion",
+                    productImage: "https://scentspired.com/cdn/shop/files/Dark_Illusion_-_2_Card_Second_Image.jpg?v=1765438512&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Tonka.png?v=1766131998",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Tonka.png?v=1766131998",
+                    topNote: "Rum, Sugar Cane",
+                    heartNote: "Dark Chocolate, Coffee, Caramel",
+                    baseNote: "Sandalwood, Heliotrope",
+                    moodDescription: "A gourmand masterpiece, Dark Illusion is sophistication dipped in temptation. It’s made for evenings that blur time — elegant, inviting, and addictive. A luxury unisex fragrance that turns comfort into allure and darkness into something divine.",
+                    productUrl: "/products/dark-illusion"
+                },
+                {
+                    productName: "Intense Ardour",
+                    productImage: "https://scentspired.com/cdn/shop/files/Intense_Ardour_-_5.jpg?v=1765456556&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Tonka.png?v=1766131998",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Tonka.png?v=1766131998",
+                    topNote: "Clary Sage, Lavender",
+                    heartNote: "Bitter Almond, Vanilla, Leather, Orris",
+                    baseNote: "Tonka Bean, Leather, Cashmeran, White Woods, Amber",
+                    moodDescription: "For those who live and love with intensity, Intense Ardour embodies passion refined through elegance. It’s daring yet polished — a scent that expresses strength without losing softness. Powerful, timeless, and deeply captivating, it’s made to leave hearts and memories stirred.",
+                    productUrl: "/products/intense-ardour"
+                },
+                {
+                    productName: "Classic Attire",
+                    productImage: "https://scentspired.com/cdn/shop/files/Classic_Attire_-_5.jpg?v=1765437132&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Tonka.png?v=1766131998",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Tonka.png?v=1766131998",
+                    topNote: "Violet Leaf, Coriander, Bergamot",
+                    heartNote: "Rose, Black Pepper, Lily-of-the-Valley",
+                    baseNote: "Vanilla, Patchouli, Ambroxan, Black Pepper",
+                    moodDescription: "For those who prefer sophistication in simplicity, Classic Attire is the perfect fit. It’s confident without being loud — a refined scent for every occasion. Like a perfectly tailored suit, it never goes out of style.",
+                    productUrl: "/products/classic-attire"
+                }
+            ],
+            "amber": [
+                {
+                    productName: "Pink Whisper",
+                    productImage: "https://scentspired.com/cdn/shop/files/Pink_Whisper_-_2_Card_Second_Image.jpg?v=1765465263&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Rose.png?v=1766131997",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Rose.png?v=1766131997",
+                    topNote: "Litchi, Rhubarb, Bergamot, Nutmeg",
+                    heartNote: "Turkish Rose, Peony, Musk, Petalia, Vanilla",
+                    baseNote: "Cashmeran, Incense, Cedar, Haitian Vetiver",
+                    moodDescription: "Inspired by a world-adored fragrance of timeless beauty, Pink Whisper celebrates the woman who embraces confidence with tenderness. Its blend of fruity brightness and velvety florals feels modern yet eternal — a scent that blooms with sophistication and lingers with poise. It’s your everyday luxury, bottled in pure femininity.",
+                    productUrl: "/products/pink-whisper"
+                },
+                {
+                    productName: " Silk Odyssey",
+                    productImage: "https://scentspired.com/cdn/shop/files/Silk_Odyssey_-_2_Card_Second_Image.jpg?v=1765465672&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Rose.png?v=1766131997",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Rose.png?v=1766131997",
+                    topNote: "Bulgarian Rose, Violet, Strawberry",
+                    heartNote: "Turkish Rose, Benzoin",
+                    baseNote: "Agarwood (Oud), Vanilla, Amber, Caramel, Cedar",
+                    moodDescription: "Crafted for the free spirit with refined taste, Silk Odyssey feels like traveling through layers of silk and amber light. The scent evolves with sophistication and warmth — elegant by day, alluring by night. A true modern classic.",
+                    productUrl: "/products/silk-odyssey"
+                },
+                {
+                    productName: "Rosy Dawn",
+                    productImage: "https://scentspired.com/cdn/shop/files/RosyDawn-2_CardSecondImage.jpg?v=1765465378&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Rose.png?v=1766131997",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Rose.png?v=1766131997",
+                    topNote: "Pink Pepper, Mandarin Orange, Calabrian bergamot, Lemon",
+                    heartNote: "Rose de Grasse, Damask Rose, Jasmine Leaf",
+                    baseNote: "Patchouli, Palisander Rosewood, Ambroxan, White Musk",
+                    moodDescription: "This scent was created for women who turn ordinary mornings into something beautiful. Rosy Dawn is feminine, optimistic, and effortlessly graceful — a fragrance that feels like sunlight through silk curtains. Every note radiates renewal and quiet confidence.",
+                    productUrl: "/products/rosy-dawn"
+                },
+                {
+                    productName: "Sinful Desire",
+                    productImage: "https://scentspired.com/cdn/shop/files/Sinful_Desire_-_2_Card_Second_Image.jpg?v=1765465718&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Rose.png?v=1766131997",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Rose.png?v=1766131997",
+                    topNote: "Sour Cherry, Bitter Almond, Liquor",
+                    heartNote: "Sour Cherry, Plum, Turkish Rose, Jasmine Sambac",
+                    baseNote: "Peru Balsam, Tonka Bean, Sandalwood, Vetiver, Cedar, Vanilla",
+                    moodDescription: "Inspired by one of the world’s most celebrated scents, Addiction captures opulence in simplicity. Its sweet, resinous trail lingers like a memory you can’t forget — bold, radiant, and beautifully balanced. This luxury unisex perfume is confidence bottled — addictive, refined, and impossible to ignore.",
+                    productUrl: "/products/sinful-desire"
+                },
+                {
+                    productName: "Ocean Drift",
+                    productImage: "https://scentspired.com/cdn/shop/files/Ocean_Drift_-_5.jpg?v=1765458894&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Rose.png?v=1766131997",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Rose.png?v=1766131997",
+                    topNote: "Citron, Mint, Orange, Lemon, Black Currant, Coriander",
+                    heartNote: "Apricot, Basil, Carrot Seeds, May Rose",
+                    baseNote: "Fig, Dates, Ambrette",
+                    moodDescription: "This fragrance captures the essence of wind, water, and freedom. Ocean Drift was designed for the open-minded — those who seek clarity and movement. Crisp and optimistic, it’s a refreshing statement of purity, strength, and balance.",
+                    productUrl: "/products/ocean-drift"
+                }
+            ],
+            "gourmand": [
+                {
+                    productName: "Invictor",
+                    productImage: "https://scentspired.com/cdn/shop/files/Invictor_-_2.jpg?v=1764929566&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_bergamot.png?v=1766131997",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_bergamot.png?v=1766131997",
+                    topNote: "Bergamot, Black Currant, Apple, Lemon, Pink Pepper",
+                    heartNote: "Pineapple, Patchouli, Moroccan Jasmine",
+                    baseNote: "Birch, Musk, Oakmoss, Cedarwood, Ambroxan",
+                    moodDescription: "Inspired by a world-renowned fragrance of triumph, Invictor redefines strength through elegance. It evolves from crisp brightness to a smooth, woody base, leaving behind a lasting aura of success. Crafted for achievers, this luxury men’s perfume is bold, confident, and built to conquer every challenge.",
+                    productUrl: "/products/invictor"
+                },
+                {
+                    productName: "Cool Alpine",
+                    productImage: "https://scentspired.com/cdn/shop/files/Cool_Alpine_-_5.jpg?v=1765437174&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_bergamot.png?v=1766131997",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_bergamot.png?v=1766131997",
+                    topNote: "Bergamot, Mandarin Orange",
+                    heartNote: "Green Tea, Black Currant",
+                    baseNote: "Musk, Sandalwood, Petitgrain, Galbanum",
+                    moodDescription: "Inspired by nature’s purest moments, Cool Alpine captures the serenity of mountain air meeting polished modernity. It’s an effortlessly elegant fragrance — subtle yet unforgettable. Designed for every season, it embodies cool confidence and ageless charm.Inspired by nature’s purest moments, Cool Alpine captures the serenity of mountain air meeting polished modernity. It’s an effortlessly elegant fragrance — subtle yet unforgettable. Designed for every season, it embodies cool confidence and ageless charm.",
+                    productUrl: "/products/cool-alpine"
+                },
+                {
+                    productName: "Illusion Cove",
+                    productImage: "https://scentspired.com/cdn/shop/files/Illusion_Cove_-_5.jpg?v=1765456402&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_bergamot.png?v=1766131997",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_bergamot.png?v=1766131997",
+                    topNote: "Bergamot, Mandarin Orange, Lemon,Orange, Lavender, Rosemary",
+                    heartNote: "African Orange Flower, Neroli, Jasmine, Pitosporum",
+                    baseNote: "Amber, Angelica, Ambrette (Musk Mallow)",
+                    moodDescription: "This scent captures coastal sophistication — sunlight over sea breeze and salt air turned elegant. Illusion Cove feels modern and confident, the perfect fragrance for those who value purity and poise. Refreshing yet refined, it’s luxury in its lightest, most natural form.",
+                    productUrl: "/products/illusion-cove"
+                },
+                {
+                    productName: "Mythic Moves",
+                    productImage: "https://scentspired.com/cdn/shop/files/Mythic_Moves_-_5.jpg?v=1765458733&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_bergamot.png?v=1766131997",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_bergamot.png?v=1766131997",
+                    topNote: "African Marigold, Bergamot, Bucchu",
+                    heartNote: "Violet, Jasmine, Cyclamen",
+                    baseNote: "Black Amber, Musk, Vetiver, Moroccan Cedarwood",
+                    moodDescription: "Inspired by global spirit and artistic energy, Mythic Moves celebrates individuality. It’s the scent of movement, creativity, and effortless charm. Smooth, versatile, and beautifully composed — this is modern sophistication in motion.",
+                    productUrl: "/products/mythic-moves"
+                },
+                {
+                    productName: "Visionary",
+                    productImage: "https://scentspired.com/cdn/shop/files/Visionary_-_3.jpg?v=1764929689&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_bergamot.png?v=17661319971",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_bergamot.png?v=1766131997",
+                    topNote: "Citron, Calabrian bergamot, Sicilian Orange",
+                    heartNote: "Tunisian Neroli, Nigerian Ginger, Ceylon Cinnamon",
+                    baseNote: "Chinese Black Tea, Ambroxan, Guaiac Wood, Olibanum",
+                    moodDescription: "Crafted for thinkers, dreamers, and innovators, Visionary reflects ambition turned into reality. The fragrance evolves with a confident, intelligent balance — refined yet bold. With its clean finish and lingering warmth, Visionary is the signature scent of leadership, intellect, and inspiration.",
+                    productUrl: "/products/visionary"
+                }
+            ],
+            "leather": [
+                {
+                    productName: "ADDICTION",
+                    productImage: "https://scentspired.com/cdn/shop/files/Addiction_-_5_Card_Lifestyle_Image_6bdf93f7-0dca-4ffd-9bc1-d722f327a917.jpg?v=1765436707&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Ambergris.png?v=1766131997",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Ambergris.png?v=1766131997",
+                    topNote: "Saffron, Jasmine",
+                    heartNote: "Amberwood, Ambergris",
+                    baseNote: "Fir Resin, Cedar",
+                    moodDescription: "Inspired by one of the world’s most celebrated scents, Addiction captures opulence in simplicity. Its sweet, resinous trail lingers like a memory you can’t forget — bold, radiant, and beautifully balanced. This luxury unisex perfume is confidence bottled — addictive, refined, and impossible to ignore.",
+                    productUrl: "/products/addiction"
+                },
+                {
+                    productName: "Liberty",
+                    productImage: "https://scentspired.com/cdn/shop/files/Liberty_-_5.jpg?v=1765458279&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Ambergris.png?v=1766131997",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Ambergris.png?v=1766131997",
+                    topNote: "Lavender, Mandarin Orange, Black Currant, Petitgrain",
+                    heartNote: "Lavender, Orange Blossom, Jasmine",
+                    baseNote: "Madagascar Vanilla, Musk, Cedar, Ambergris",
+                    moodDescription: "It’s the scent of women who live without limits. Liberty celebrates independence, confidence, and modern sophistication — a fearless blend of strength and softness. Its signature trail embodies liberation and allure, defining a spirit that is wild, elegant, and forever free.",
+                    productUrl: "/products/liberty"
+                },
+                {
+                    productName: "Mythic Moves",
+                    productImage: "https://scentspired.com/cdn/shop/files/Mythic_Moves_-_5.jpg?v=1765458733&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Ambergris.png?v=1766131997",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Ambergris.png?v=1766131997",
+                    topNote: "African Marigold, Bergamot, Bucchu",
+                    heartNote: "Violet, Jasmine, Cyclamen",
+                    baseNote: "Black Amber, Musk, Vetiver, Moroccan Cedarwood",
+                    moodDescription: "Inspired by global spirit and artistic energy, Mythic Moves celebrates individuality. It’s the scent of movement, creativity, and effortless charm. Smooth, versatile, and beautifully composed — this is modern sophistication in motion.",
+                    productUrl: "/products/mythic-moves"
+                },
+                {
+                    productName: "Anō 13",
+                    productImage: "https://scentspired.com/cdn/shop/files/Ano13_-_3.jpg?v=1765436803&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Ambergris.png?v=1766131997",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Ambergris.png?v=1766131997",
+                    topNote: "Pear, Apple, Citruses",
+                    heartNote: "Ambrette (Musk Mallow), Amyl Salicylate, Moss, Jasmine",
+                    baseNote: "Iso E Super, Cetalox, Helvetolide, Ambrettolide",
+                    moodDescription: "Created for those who appreciate subtlety, Anô 13 is effortlessly elegant. Its delicate warmth evolves uniquely on every wearer, blending seamlessly with natural skin scent. This modern unisex perfume embodies purity, serenity, and sophistication in perfect harmony.",
+                    productUrl: "/products/ano-13"
+                },
+                {
+                    productName: "Iconic Desire",
+                    productImage: "https://scentspired.com/cdn/shop/files/Iconic_Desire_-_4_636c1814-29e0-45f2-86b0-cc989e8e0671.jpg?v=1765439013&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Ambergris.png?v=1766131997",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Ambergris.png?v=1766131997",
+                    topNote: "Violet, Cardamom",
+                    heartNote: "Iris, Papyrus",
+                    baseNote: "Ambroxan, Sandalwood, Cedar, Leather, Spicy Notes",
+                    moodDescription: "Created for modern romantics, Iconic Desire is a whisper of luxury on the skin. It’s graceful and magnetic — a scent that stays close yet never goes unnoticed. Perfectly balanced between warmth and purity, it captures the beauty of understatement.",
+                    productUrl: "/products/iconic-desire"
+                }
+            ],
+            "Orange": [
+                {
+                    productName: "Black Poison",
+                    productImage: "https://scentspired.com/cdn/shop/files/BlackPoison-5_CardLifestyleImage.jpg?v=1765436983&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Orange_Blossom.png?v=1766131997",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Orange_Blossom.png?v=1766131997",
+                    topNote: "Pear, Pink Pepper, Orange Blossom",
+                    heartNote: "Coffee, Jasmine, Bitter Almond, Licorice",
+                    baseNote: "Vanilla, Patchouli, Cashmere Wood, Cedar",
+                    moodDescription: "Crafted for women who define their own rules, Black Poison is dark, daring, and unapologetically sensual. Its intoxicating trail evokes mystery and allure — perfect for evenings that linger beyond midnight. This luxury women’s perfume turns confidence into temptation and elegance into an unforgettable statement.",
+                    productUrl: "/products/black-poison"
+                },
+                {
+                    productName: "Timeless Grace",
+                    productImage: "https://scentspired.com/cdn/shop/files/Timeless_Grace_-_2_Card_Second_Image.jpg?v=1765466146&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Orange_Blossom.png?v=1766131997",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Orange_Blossom.png?v=1766131997",
+                    topNote: "Orange, Mandarin Orange, Bergamot, Orange Blossom",
+                    heartNote: "Turkish Rose, Jasmine, Mimosa, Ylang-Ylang",
+                    baseNote: "Patchouli, White Musk, Vanilla, Vetiver, Tonka Bean, Opoponax",
+                    moodDescription: "This fragrance was created for women who embody refinement and strength. Timeless Grace feels like confidence woven in silk — fresh yet profound, bold yet feminine. Its elegant trail enhances every moment with charm and composure. The kind of scent that leaves admiration in your wake — graceful, golden, unforgettable.",
+                    productUrl: "/products/timeless-grace"
+                },
+                {
+                    productName: "Luminous Wonder",
+                    productImage: "https://scentspired.com/cdn/shop/files/Luminous_Wonder_-_4.jpg?v=1764928973&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Orange_Blossom.png?v=1766131997",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Orange_Blossom.png?v=1766131997",
+                    topNote: "Ylang-Ylang, Pear, Melon, Magnolia, Peach, Orange, Bergamot",
+                    heartNote: "Jasmine, Lily, Tuberose, Freesia, Rose, Orchid, Violet, Plum",
+                    baseNote: "Musk, Vanilla, Blackberry, Cedar",
+                    moodDescription: "Inspired by timeless elegance, Luminous Wonder is made for women who shine without trying. It captures the feeling of soft light against skin — radiant, feminine, and deeply comforting. This luxury floral fragrance turns everyday moments into memories touched by gold.",
+                    productUrl: "/products/luminous-wonder"
+                },
+                {
+                    productName: "On High",
+                    productImage: "https://scentspired.com/cdn/shop/files/On_High_-_5.jpg?v=1765458952&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Orange_Blossom.png?v=1766131997",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Orange_Blossom.png?v=1766131997",
+                    topNote: "Bergamot, Litchi, Peach",
+                    heartNote: "Peony, Jasmine, Orange Blossom, Petalia",
+                    baseNote: "Woody Notes, Musk, Moss",
+                    moodDescription: "It’s the fragrance of pure optimism — weightless yet magnetic. On High was created for those who lead with quiet brilliance. Its soft floral energy and luminous citrus notes rise effortlessly, leaving behind a clean, confident trail. Modern, gentle, and endlessly fresh.",
+                    productUrl: "/products/on-high"
+                },
+                {
+                    productName: "Forbidden Love",
+                    productImage: "https://scentspired.com/cdn/shop/files/Forbidden_Love_-_5.jpg?v=1765437875&width=1000",
+                    categoryImage: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Orange_Blossom.png?v=1766131997",
+                    categoryImageMobile: "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Orange_Blossom.png?v=1766131997",
+                    topNote: "Neroli, Bergamot, Pink Pepper, Coriander",
+                    heartNote: "Iris, Jasmine, Honeysuckle, Orange Blossom, Rose",
+                    baseNote: "Marshmallow, Vanilla, Caramel, Sugar, Labdanum, Musk, Civet",
+                    moodDescription: "Crafted for women unafraid to express desire, Forbidden Love is both innocent and daring. Its gourmand sweetness meets deep emotion, leaving an unforgettable trail. This perfume turns attraction into art — warm, romantic, and passionately feminine.",
+                    productUrl: "/products/forbidden-love"
+                }
+            ]
+        };
+
+        let activeExpandedContent = null;
+        let currentProductIndex = {};
+
+        // Initialize current product index for each category
+        Object.keys(aromaData).forEach(category => {
+            currentProductIndex[category] = 0;
+        });
+
+        function setBlockBackgrounds() {
+            const isMobile = window.innerWidth <= 768;
+            document.querySelectorAll('.aroma-block').forEach(block => {
+                const category = block.dataset.category;
+                if (aromaData[category] && aromaData[category].length > 0) {
+                    const currentIndex = currentProductIndex[category] || 0;
+                    const imageUrl = isMobile ? 
+                        aromaData[category][currentIndex].categoryImageMobile : 
+                        aromaData[category][currentIndex].categoryImage;
+                    block.style.backgroundImage = `url('${imageUrl}')`;
+                }
+            });
+        }
+
+        function resetDesktopView() {
+            const centerImage = document.getElementById('aromaImage');
+            const productTitle = document.getElementById('productTitle');
+            const aromaDetails = document.getElementById('aromaDetails');
+            const paginationNumbers = document.getElementById('paginationNumbers');
+            const categoryDots = document.getElementById('categoryDots');
+
+            centerImage.style.backgroundImage = 'none';
+            centerImage.classList.add('default-state');
+            productTitle.textContent = 'SELECT AROMA';
+
+            paginationNumbers.style.display = 'none';
+            categoryDots.style.display = 'flex';
+
+            aromaDetails.innerHTML = '';
+        }
+
+        function selectProduct(category, productIndex) {
+            currentProductIndex[category] = productIndex;
+            
+            // Update block background
+            setBlockBackgrounds();
+
+            // If this category is currently selected, update the main display
+            const activeBlock = document.querySelector('.aroma-block.active');
+            if (activeBlock && activeBlock.dataset.category === category) {
+                selectAroma(category, activeBlock, productIndex);
+            }
+        }
+
+        function selectAroma(category, element, productIndex = null) {
+            const isMobile = window.innerWidth <= 768;
+            
+            if (productIndex === null) {
+                productIndex = currentProductIndex[category] || 0;
+            } else {
+                currentProductIndex[category] = productIndex;
+            }
+
+            const data = aromaData[category][productIndex];
+
+            // Remove active class from all blocks
+            document.querySelectorAll('.aroma-block').forEach(block => block.classList.remove('active'));
+            
+            // Add active class to clicked element
+            if (element) {
+                element.classList.add('active');
+            }
+
+            if (isMobile) {
+                // Remove any existing expanded content
+                if (activeExpandedContent) {
+                    activeExpandedContent.remove();
+                    activeExpandedContent = null;
+                }
+
+                // Create the expanded content container
+                const expandedContent = document.createElement('div');
+                expandedContent.classList.add('aroma-expanded-content');
+
+                // Product Image Section
+                const productImageContainer = document.createElement('div');
+                productImageContainer.classList.add('product-image-container');
+                productImageContainer.style.backgroundImage = `url('${data.productImage}')`;
+
+                const productTitleElement = document.createElement('h1');
+                productTitleElement.classList.add('product-title');
+                productTitleElement.textContent = data.productName;
+                productImageContainer.appendChild(productTitleElement);
+
+                // Mobile Product Numbers (like reference image)
+                if (aromaData[category].length > 1) {
+                    const mobilePaginationNumbers = document.createElement('div');
+                    mobilePaginationNumbers.classList.add('mobile-pagination-numbers');
+                    
+                    aromaData[category].forEach((product, index) => {
+                        const numberElement = document.createElement('div');
+                        numberElement.classList.add('mobile-pagination-number');
+                        if (index === productIndex) {
+                            numberElement.classList.add('active');
+                        }
+                        numberElement.textContent = String(index + 1).padStart(2, '0'); // Format like "01", "02", "03"
+                        numberElement.onclick = (e) => {
+                            e.stopPropagation();
+                            selectAroma(category, element, index);
+                        };
+                        mobilePaginationNumbers.appendChild(numberElement);
+                    });
+                    
+                    productImageContainer.appendChild(mobilePaginationNumbers);
+                }
+
+                expandedContent.appendChild(productImageContainer);
+
+                // Product Details Section
+                const detailsContent = document.createElement('div');
+                detailsContent.classList.add('details-content');
+                detailsContent.innerHTML = `
+                    <div class="fragrance-notes">
+                        <div class="note-row">
+                            <span class="note-label">TOP</span>
+                            <span class="note-value">${data.topNote}</span>
+                        </div>
+                        <div class="note-row">
+                            <span class="note-label">HEART</span>
+                            <span class="note-value">${data.heartNote}</span>
+                        </div>
+                        <div class="note-row">
+                            <span class="note-label">BASE</span>
+                            <span class="note-value">${data.baseNote}</span>
+                        </div>
+                    </div>
+                    <div class="mood-section">
+                        <div class="mood-label">MOOD</div>
+                        <div class="mood-description">
+                            ${data.moodDescription}
+                        </div>
+                    </div>
+                    <a href="${data.productUrl}" class="shop-button">
+                        SHOP ${data.productName}
+                    </a>
+                `;
+                expandedContent.appendChild(detailsContent);
+
+                // Insert the expanded content after the clicked block's row
+                const clickedRow = element.closest('.blocks-row');
+                if (clickedRow) {
+                    clickedRow.after(expandedContent);
+                    activeExpandedContent = expandedContent;
+                }
+            } else {
+                // Desktop logic
+                const centerImage = document.getElementById('aromaImage');
+                const productTitle = document.getElementById('productTitle');
+                const aromaDetails = document.getElementById('aromaDetails');
+                const paginationNumbers = document.getElementById('paginationNumbers');
+                const categoryDots = document.getElementById('categoryDots');
+
+                centerImage.classList.remove('default-state');
+
+                centerImage.style.backgroundImage = `url('${data.productImage}')`;
+                centerImage.style.backgroundSize = 'cover';
+                centerImage.style.backgroundPosition = 'center';
+                centerImage.style.backgroundRepeat = 'no-repeat';
+
+                productTitle.textContent = data.productName;
+
+                // Show/hide pagination based on product count
+                if (aromaData[category].length > 1) {
+                    // Show product numbers, hide category dots
+                    paginationNumbers.style.display = 'flex';
+                    categoryDots.style.display = 'none';
+                    
+                    // Generate product numbers
+                    paginationNumbers.innerHTML = '';
+                    aromaData[category].forEach((product, index) => {
+                        const numberElement = document.createElement('div');
+                        numberElement.classList.add('pagination-number');
+                        if (index === productIndex) {
+                            numberElement.classList.add('active');
+                        }
+                        numberElement.textContent = String(index + 1).padStart(2, '0'); // Format like "01", "02", "03"
+                        numberElement.onclick = () => selectProduct(category, index);
+                        paginationNumbers.appendChild(numberElement);
+                    });
+                } else {
+                    // Hide product numbers, show category dots
+                    paginationNumbers.style.display = 'none';
+                    categoryDots.style.display = 'flex';
+                }
+
+                aromaDetails.innerHTML = `
+                    <div class="fragrance-notes">
+                        <div class="note-row">
+                            <span class="note-label">TOP</span>
+                            <span class="note-value">${data.topNote}</span>
+                        </div>
+                        <div class="note-row">
+                            <span class="note-label">HEART</span>
+                            <span class="note-value">${data.heartNote}</span>
+                        </div>
+                        <div class="note-row">
+                            <span class="note-label">BASE</span>
+                            <span class="note-value">${data.baseNote}</span>
+                        </div>
+                    </div>
+                    <div class="mood-section">
+                        <div class="mood-label">MOOD</div>
+                        <div class="mood-description">
+                            ${data.moodDescription}
+                        </div>
+                    </div>
+                    <a href="${data.productUrl}" class="shop-button">
+                        SHOP ${data.productName}
+                    </a>
+                `;
+
+                // Update category pagination dot for desktop
+                document.querySelectorAll('.pagination-dot').forEach(dot => dot.classList.remove('active'));
+                const blocks = Array.from(document.querySelectorAll('.aroma-block'));
+                const index = blocks.findIndex(block => block.dataset.category === category);
+                if (index !== -1) {
+                    document.querySelectorAll('.pagination-dot')[index].classList.add('active');
+                }
+            }
+        }
+
+        // Initial setup on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            setBlockBackgrounds();
+            const isMobile = window.innerWidth <= 768;
+           if (!isMobile) {
+    const firstBlock = document.querySelector('.aroma-block.active') 
+                    || document.querySelector('.aroma-block');
+    if (firstBlock) {
+        // Run it immediately to populate without delay
+        selectAroma(firstBlock.dataset.category, firstBlock);
+    }
+}
+ else {
+    document.getElementById('aromaImage').style.display = 'none';
+    document.getElementById('aromaDetails').style.display = 'none';
+}
+
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            setBlockBackgrounds();
+            const isMobile = window.innerWidth <= 768;
+           if (!isMobile) {
+    document.getElementById('aromaImage').style.display = 'flex';
+    document.getElementById('aromaDetails').style.display = 'flex';
+    if (activeExpandedContent) {
+        activeExpandedContent.remove();
+        activeExpandedContent = null;
+    }
+    // Auto-select first block again on resize back to desktop
+    const firstBlock = document.querySelector('.aroma-block');
+    if (firstBlock) {
+        selectAroma(firstBlock.dataset.category, firstBlock);
+    }
+} else {
+    document.getElementById('aromaImage').style.display = 'none';
+    document.getElementById('aromaDetails').style.display = 'none';
+    if (activeExpandedContent) {
+        activeExpandedContent.remove();
+        activeExpandedContent = null;
+    }
+}
+
+        });
+
+        // Prevent mobile expanded content from closing on scroll
+        document.addEventListener('scroll', function(e) {
+            // Don't close expanded content on scroll
+        }, { passive: true });
+
+        // Prevent touch events from closing expanded content
+        document.addEventListener('touchmove', function(e) {
+            // Don't close expanded content on touch move
+        }, { passive: true });
+    </script>
+</body>
+</html>
+
+{% schema %}
+{
+  "name": "Aroma notes",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Scent Profile"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    }
+  ],
+  "presets": [
+    {
+      "name": "Aroma notes"
+    }
+  ]
+}
+{% endschema %}

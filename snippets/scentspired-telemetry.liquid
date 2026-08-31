@@ -1,0 +1,76 @@
+<!-- Sentry.io Enterprise Observability Loader -->
+<script src="https://js.sentry-cdn.com/314455254b3e53ad0250625ccba3fd29.min.js" crossorigin="anonymous"></script>
+
+<script>
+  window.__SCENTSPIRED_TELEMETRY__ = {
+    template: {{ template.name | default: 'unknown' | json }},
+    customerId: {% if customer %}{{ customer.id | json }}{% else %}null{% endif %},
+    customerEmail: {% if customer %}{{ customer.email | json }}{% else %}null{% endif %},
+    cartItemCount: {{ cart.item_count | default: 0 }},
+    cartTotalPrice: {{ cart.total_price | default: 0 }},
+    currency: {{ cart.currency.iso_code | default: 'USD' | json }},
+    themeId: {{ theme.id | json }},
+    storeUrl: {{ shop.permanent_domain | json }}
+  };
+
+  // Initialize Sentry SDK on load
+  if (window.Sentry && window.Sentry.onLoad) {
+    window.Sentry.onLoad(function() {
+      window.Sentry.init({
+        dsn: "https://314455254b3e53ad0250625ccba3fd29@o4511982699806720.ingest.us.sentry.io/4511982711275520",
+        tracesSampleRate: 1.0,
+        ignoreErrors: [
+          'Failed to fetch dynamically imported module',
+          'Importing a module script failed',
+          'asset.fwcdn3.com',
+          'ResizeObserver loop limit exceeded',
+          'ResizeObserver loop completed with undelivered notifications',
+          'Non-Error promise rejection captured',
+          'Script error.',
+          'NetworkError: Load failed',
+          'Load failed',
+          'network error',
+          'Failed to fetch'
+        ],
+        denyUrls: [
+          /asset\.fwcdn3\.com/i,
+          /connect\.facebook\.net/i,
+          /clarity\.ms/i,
+          /google-analytics\.com/i,
+          /doubleclick\.net/i,
+          /azurefd\.net/i,
+          /linktr\.ee/i,
+          /googletagmanager\.com/i
+        ],
+        beforeSend(event, hint) {
+          const error = hint && hint.originalException;
+          const msg = error && (error.message || String(error)) || '';
+          if (
+            /fwcdn3|azurefd|clarity|facebook|doubleclick|linktr\.ee|Script error/i.test(msg) ||
+            (event.message && /Script error|Load failed/i.test(event.message))
+          ) {
+            return null;
+          }
+          return event;
+        }
+      });
+
+      {% if customer %}
+        window.Sentry.setUser({ id: {{ customer.id | json }}, email: {{ customer.email | json }} });
+      {% endif %}
+
+      window.Sentry.setContext('Shopify', {
+        template: {{ template.name | default: 'unknown' | json }},
+        cartItemCount: {{ cart.item_count | default: 0 }},
+        currency: {{ cart.currency.iso_code | default: 'USD' | json }}
+      });
+    });
+  }
+
+  // ── GitHub Issues Auto-Filer (Secure Private Repo Ingestion) ────────────
+  window.__SCENTSPIRED_GITHUB_CONFIG__ = {
+    endpoint: 'https://scentspired-telemetry.ahmadhassan-bted.workers.dev'
+  };
+</script>
+
+<script src="{{ 'scentspired-telemetry.js' | asset_url }}" defer></script>

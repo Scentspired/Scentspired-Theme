@@ -1,0 +1,25 @@
+name: Sync Core Updates to Regional Stores
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  notify-sync:
+    name: Notify Regional Stores of Upstream Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Scentspired-Theme
+        uses: actions/checkout@v4
+
+      - name: Validate Core Theme Quality Gate
+        run: |
+          npm ci
+          node runner.cjs --target=.
+
+      - name: Upstream Release Log
+        run: |
+          echo "✅ Scentspired-Theme core update verified and ready for regional sync."
+          echo "Commit SHA: ${{ github.sha }}"

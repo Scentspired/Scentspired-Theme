@@ -1,0 +1,310 @@
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-instagram-grid-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: {{ block.settings.gap_desktop }}px;
+    padding: {{ block.settings.padding_vertical }}px {{ block.settings.padding_horizontal }}px;
+    max-width: 2100px;
+    margin: 0 auto !important;
+   padding-left: 5rem;
+  padding-right: 5rem;
+
+  }
+
+  .ai-instagram-item-{{ ai_gen_id }} {
+    position: relative;
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: {{ block.settings.border_radius }}px;
+    animation: ai-instagram-bounce-{{ ai_gen_id }} 3s ease-in-out infinite;
+  }
+
+  .ai-instagram-item-{{ ai_gen_id }}:nth-child(1) {
+    animation-delay: 0s;
+  }
+
+  .ai-instagram-item-{{ ai_gen_id }}:nth-child(2) {
+    animation-delay: 0.5s;
+  }
+
+  .ai-instagram-item-{{ ai_gen_id }}:nth-child(3) {
+    animation-delay: 1s;
+  }
+
+  .ai-instagram-item-{{ ai_gen_id }}:nth-child(4) {
+    animation-delay: 1.5s;
+  }
+
+  .ai-instagram-item-{{ ai_gen_id }}:nth-child(5) {
+    animation-delay: 2s;
+  }
+
+  .ai-instagram-item-{{ ai_gen_id }}:nth-child(6) {
+    animation-delay: 2.5s;
+  }
+
+  .ai-instagram-link-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+  }
+
+  .ai-instagram-image-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .ai-instagram-link-{{ ai_gen_id }}:hover .ai-instagram-image-{{ ai_gen_id }} {
+    transform: scale(1.05);
+  }
+
+  .ai-instagram-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .ai-instagram-placeholder-{{ ai_gen_id }} svg {
+    width: 60%;
+    height: 60%;
+    opacity: 0.3;
+  }
+
+  .ai-instagram-empty-state-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 10px;
+    color: #666;
+    text-align: center;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  @keyframes ai-instagram-bounce-{{ ai_gen_id }} {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-10px);
+    }
+    60% {
+      transform: translateY(-5px);
+    }}
+
+  @media screen and (max-width: 1199px) {
+    .ai-instagram-grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat(3, 1fr);
+      gap: {{ block.settings.gap_tablet }}px;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-instagram-grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat(2, 1fr);
+      gap: {{ block.settings.gap_mobile }}px;
+      padding: {{ block.settings.padding_vertical_mobile }}px {{ block.settings.padding_horizontal_mobile }}px;
+    }
+  }
+
+  @media screen and (max-width: 1440px) and (min-width: 1200px) {
+    .ai-instagram-grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat(6, 1fr);
+      gap: {{ block.settings.gap_desktop }}px;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-instagram-grid-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  {% for i in (1..6) %}
+    {% liquid
+      assign image_key = 'image_' | append: i
+      assign image = block.settings[image_key]
+    %}
+    <div class="ai-instagram-item-{{ ai_gen_id }}">
+      {% if block.settings.instagram_url != blank %}
+        <a 
+          href="{{ block.settings.instagram_url }}" 
+          class="ai-instagram-link-{{ ai_gen_id }}"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit our Instagram profile"
+        >
+      {% endif %}
+        
+        {% if image %}
+          <img
+            src="{{ image | image_url: width: 400 }}"
+            alt="{{ image.alt | escape }}"
+            class="ai-instagram-image-{{ ai_gen_id }}"
+            loading="lazy"
+            width="400"
+            height="400"
+          >
+        {% else %}
+          <div class="ai-instagram-placeholder-{{ ai_gen_id }}">
+            {{ 'image' | placeholder_svg_tag }}<div class="ai-instagram-empty-state-{{ ai_gen_id }}">
+              Add image {{ i }}
+            </div>
+          </div>
+        {% endif %}{% if block.settings.instagram_url != blank %}
+        </a>
+      {% endif %}
+    </div>
+  {% endfor %}
+</div>
+
+{% schema %}
+{
+  "name": "Instagram grid",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Instagram link"
+    },
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram profile URL"
+    },
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Image 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_4",
+      "label": "Image 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_5",
+      "label": "Image 5"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_6",
+      "label": "Image 6"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "gap_desktop",
+      "min": 5,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Gap on desktop",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "gap_tablet",
+      "min": 5,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "label": "Gap on tablet",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "gap_mobile",
+      "min": 5,
+      "max": 30,
+      "step": 5,
+      "unit": "px",
+      "label": "Gap on mobile",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Image border radius",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_vertical",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Vertical padding",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Horizontal padding",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_vertical_mobile",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Vertical padding on mobile",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal_mobile",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Horizontal padding on mobile",
+      "default": 15
+    }
+  ],
+  "presets": [
+    {
+      "name": "Instagram grid"
+    }
+  ],
+  "tag": null
+}
+{% endschema %}

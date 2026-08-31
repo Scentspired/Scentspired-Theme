@@ -1,0 +1,31 @@
+# Dependencies & build
+node_modules/
+dist/
+build/
+package/
+*.zip
+
+# Shopify CLI internal
+.shopify/
+
+# Dotfiles without standard Prettier parsers
+.editorconfig
+.shopifyignore
+.env*
+
+# Third party app generated files
+assets/pagefly*.css
+assets/ecom*.css
+snippets/pagefly*.liquid
+snippets/ecom*.liquid
+layout/theme.pagefly.liquid
+layout/ecom.liquid
+
+# Locales & Minified
+locales/*.schema.json
+assets/*.min.js
+assets/*.min.css
+
+# Git
+.git/
+package-lock.json

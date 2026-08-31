@@ -1,0 +1,74 @@
+
+<style>
+  .shopify-hardcoded-text-section-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+    background-color: #ffffff;
+    padding: 16px 16px 95px 16px;
+  }
+
+  .shopify-hardcoded-text-section-content {
+    font-family: 'PPMori Regular';
+    font-weight: 200 !important;
+    font-style: normal;
+    font-size: 20px;
+    line-height: 1.6;
+    letter-spacing: 0.02em;
+    color: #000000;
+    max-width: 80%;
+    text-align: left;
+    margin: 0 auto;
+  }
+
+  .shopify-hardcoded-text-section-content p {
+    margin: 0 0 28px;
+  }
+  .shopify-hardcoded-text-section-content a {
+    color: #000;
+  }
+
+  .shopify-hardcoded-text-section-content strong,
+  .shopify-hardcoded-text-section-content b {
+    font-weight: 700;
+    color: #000;
+  }
+
+  @media (min-width: 768px) {
+    .shopify-hardcoded-text-section-content {
+      font-size: 78px;
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    .shopify-hardcoded-text-section-content {
+      max-width: 100%;
+    }
+  }
+</style>
+
+<div class="shopify-hardcoded-text-section-wrapper">
+  <div class="shopify-hardcoded-text-section-content">
+    {{ section.settings.text_content }}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Blog Text Liquid",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "text_content",
+      "label": "Text Content",
+      "default": "<p>There is a glass cabinet in quite a lot of British homes.</p><p><strong>So we built one.</strong></p>"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Blog Text Liquid"
+    }
+  ]
+}
+{% endschema %}

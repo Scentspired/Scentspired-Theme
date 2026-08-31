@@ -1,0 +1,307 @@
+{% doc %}
+  @prompt
+    Create a Shopify custom section (Liquid + CSS + schema) for an Instagram feed identical to the SERVA reference.
+    
+    Fixes & Requirements:
+    
+    Full Width with Padding
+    
+    Section should be full width on desktop.
+    
+    Keep left and right padding (gap) so the images don’t touch screen edges.
+    
+    Images from Theme Editor
+    
+    Admin uploads images using image_picker.
+    
+    Images must render correctly using Shopify’s Liquid ({{ block.settings.image | image_url }}).
+    
+    Up to 6 images total.
+    
+    Bounce Animation
+    
+    Each image should bounce one by one in sequence.
+    
+    After the 6th image bounces, loop back to the 1st.
+    
+    Animation should loop infinitely.
+    
+    Bounce speed slightly faster than default. (E.g., reduce duration by ~20%).
+    
+    Responsive Layout
+    
+    6 images per row on desktop.
+    
+    3 images per row on tablet.
+    
+    2 images per row on mobile.
+    
+    Fully optimized for all screens (desktop, tablet, mobile, MacBook).
+    
+    Theme Editor Customization
+    
+    Admin can set one Instagram profile link (url setting).
+    
+    Clicking any image opens this link in a new tab.
+    
+    Code Output
+    
+    Provide complete Shopify section code (.liquid file).
+    
+    Must include:
+    
+    Liquid markup for images and link
+    
+    Responsive CSS grid
+    
+    Bounce animation with sequential delay for 6 items
+    
+    JSON schema, it is not showing image which i am uploading, still imaegs is not showing
+
+{% enddoc %}
+{% assign ai_gen_id = section.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-instagram-feed-{{ ai_gen_id }} {
+    width: 100%;
+    padding: 0 20px;
+    margin: 0 auto;
+    max-width: 1200px;
+  }
+
+  .ai-instagram-grid-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 16px;
+    width: 100%;
+  }
+
+  .ai-instagram-item-{{ ai_gen_id }} {
+    position: relative;
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: 8px;
+    animation: ai-instagram-bounce-{{ ai_gen_id }} 2s ease-in-out infinite;
+  }
+
+  .ai-instagram-item-{{ ai_gen_id }}:nth-child(1) {
+    animation-delay: 0s;
+  }
+
+  .ai-instagram-item-{{ ai_gen_id }}:nth-child(2) {
+    animation-delay: 0.16s;
+  }
+
+  .ai-instagram-item-{{ ai_gen_id }}:nth-child(3) {
+    animation-delay: 0.32s;
+  }
+
+  .ai-instagram-item-{{ ai_gen_id }}:nth-child(4) {
+    animation-delay: 0.48s;
+  }
+
+  .ai-instagram-item-{{ ai_gen_id }}:nth-child(5) {
+    animation-delay: 0.64s;
+  }
+
+  .ai-instagram-item-{{ ai_gen_id }}:nth-child(6) {
+    animation-delay: 0.8s;
+  }
+
+  .ai-instagram-link-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+  }
+
+  .ai-instagram-image-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .ai-instagram-link-{{ ai_gen_id }}:hover .ai-instagram-image-{{ ai_gen_id }} {
+    transform: scale(1.05);
+  }
+
+  .ai-instagram-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .ai-instagram-placeholder-{{ ai_gen_id }} svg {
+    width: 60%;
+    height: 60%;
+    opacity: 0.3;
+  }
+
+  .ai-instagram-empty-state-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 10px;
+    color: #666;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  @keyframes ai-instagram-bounce-{{ ai_gen_id }} {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-8px);
+    }
+    60% {
+      transform: translateY(-4px);
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    .ai-instagram-grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-instagram-feed-{{ ai_gen_id }} {
+      padding: 0 16px;
+    }
+
+    .ai-instagram-grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .ai-instagram-feed-{{ ai_gen_id }} {
+      padding: 0 12px;
+    }
+
+    .ai-instagram-grid-{{ ai_gen_id }} {
+      gap: 8px;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-instagram-feed-{{ ai_gen_id }}" {{ section.shopify_attributes }}>
+  <div class="ai-instagram-grid-{{ ai_gen_id }}">
+    {% for i in (1..6) %}
+      <div class="ai-instagram-item-{{ ai_gen_id }}">
+        {% case i %}
+          {% when 1 %}
+            {% assign current_image = section.settings.image_1 %}
+          {% when 2 %}
+            {% assign current_image = section.settings.image_2 %}
+          {% when 3 %}
+            {% assign current_image = section.settings.image_3 %}
+          {% when 4 %}
+            {% assign current_image = section.settings.image_4 %}
+          {% when 5 %}
+            {% assign current_image = section.settings.image_5 %}
+          {% when 6 %}
+            {% assign current_image = section.settings.image_6 %}
+        {% endcase %}
+        
+        {% if section.settings.instagram_url != blank %}
+          <a 
+            href="{{ section.settings.instagram_url }}" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="ai-instagram-link-{{ ai_gen_id }}"
+            aria-label="View Instagram profile"
+          >
+        {% endif %}
+        
+        {% if current_image != blank %}
+          <img
+            src="{{ current_image | image_url: width: 400 }}"
+            alt="{{ current_image.alt | default: 'Instagram image' | escape }}"
+            class="ai-instagram-image-{{ ai_gen_id }}"
+            loading="lazy"
+            width="400"
+            height="400"
+          >
+        {% else %}
+          <div class="ai-instagram-placeholder-{{ ai_gen_id }}">
+            {{ 'image' | placeholder_svg_tag }}
+            <div class="ai-instagram-empty-state-{{ ai_gen_id }}">
+              Add image {{ i }}
+            </div>
+          </div>
+        {% endif %}
+        
+        {% if section.settings.instagram_url != blank %}
+          </a>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Instagram feed",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Instagram profile"
+    },
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram profile link"
+    },
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Image 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_4",
+      "label": "Image 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_5",
+      "label": "Image 5"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_6",
+      "label": "Image 6"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Instagram feed"
+    }
+  ]
+}
+{% endschema %}

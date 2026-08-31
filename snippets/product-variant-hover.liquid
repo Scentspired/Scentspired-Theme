@@ -1,0 +1,116 @@
+<div class="hover-variant-wrapper" data-product-id="{{ product.id }}">
+  
+  <!-- Variant Buttons -->
+  <div class="hover-variant-options">
+    {% for variant in product.variants %}
+      <button 
+        class="hover-variant-btn {% if forloop.first %}active{% endif %}"
+        data-variant-id="{{ variant.id }}"
+        data-variant-price="{{ variant.price | money_without_trailing_zeros }}"
+      >
+        {{ variant.title }}
+      </button>
+    {% endfor %}
+  </div>
+
+  <!-- Hidden Input for Selected Variant -->
+  <input type="hidden" 
+         class="hover-selected-variant" 
+         value="{{ product.variants.first.id }}" />
+
+</div>
+
+<style>
+    @font-face {
+  font-family: 'PPMori Regular';
+  src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPMori-Regular.otf?v=1751621372') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+/* ================================
+   HIDE VARIANTS UNTIL HOVER
+================================ */
+.hover-variant-wrapper {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+  transition: all 0.25s ease;
+}
+
+.product-card:hover .hover-variant-wrapper,
+.grid__item:hover .hover-variant-wrapper {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0px);
+}
+
+/* ================================
+   VARIANT WRAPPER
+================================ */
+.hover-variant-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+  justify-content: center;
+}
+
+/* ================================
+   BUTTON BASE STYLE
+================================ */
+.hover-variant-btn {
+ padding: 6px 12px;
+  background: #f0f0f0;
+  border: 2px solid #f0f0f0;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 12px;
+  font-family: 'PPMori Regular', sans-serif;
+  transition: all 0.3s ease;
+}
+
+.hover-variant-btn:hover {
+  border-color: #000;
+}
+
+/* ================================
+   SELECTED STYLE
+================================ */
+.hover-variant-btn.active {
+  background: #f4ff41;
+  border-color: #000;
+  font-weight: 600;
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".hover-variant-wrapper").forEach(function (wrapper) {
+    
+    const variantButtons = wrapper.querySelectorAll(".hover-variant-btn");
+    const hiddenInput = wrapper.querySelector(".hover-selected-variant");
+
+    variantButtons.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+
+        // Remove active state from others
+        variantButtons.forEach(btn2 => btn2.classList.remove("active"));
+
+        // Activate clicked one
+        btn.classList.add("active");
+
+        // Update hidden variant ID
+        const selectedVariant = btn.getAttribute("data-variant-id");
+        hiddenInput.value = selectedVariant;
+
+        // Update displayed price if needed
+        const newPrice = btn.getAttribute("data-variant-price");
+        const priceElement = wrapper.closest(".product-card, .grid__item")?.querySelector("[data-product-price]");
+        if (priceElement && newPrice) {
+          priceElement.innerHTML = newPrice;
+        }
+      });
+    });
+  });
+});
+</script>

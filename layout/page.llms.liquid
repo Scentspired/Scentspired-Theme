@@ -1,0 +1,5 @@
+{% layout none %}
+{{ content_for_header }}
+{{ content_for_layout }}
+
+{{ 'llms.txt' | asset_url | split: '\n' | join: '\n' }}

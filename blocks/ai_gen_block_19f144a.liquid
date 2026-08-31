@@ -1,0 +1,386 @@
+
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-staggered-typography-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    background-color: {{ block.settings.background_color }};
+    padding: {{ block.settings.section_padding_top }}px 20px {{ block.settings.section_padding_bottom }}px;
+    overflow-x: hidden;
+  }
+
+  .ai-staggered-typography-container-{{ ai_gen_id }} {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .ai-staggered-typography-header-{{ ai_gen_id }} {
+    margin-bottom: {{ block.settings.header_spacing }}px;
+    line-height: 0.85;
+  }
+
+  .ai-staggered-typography-line-1-{{ ai_gen_id }} {
+    font-family: 'PPEditorialNew Italic', Georgia, serif;
+    font-style: italic;
+    font-size: {{ block.settings.line_1_size }}px;
+    text-align: {{ block.settings.line_1_alignment }};
+    margin: 0;
+    padding: 0;
+    color: {{ block.settings.text_color }};
+    transform: translateX({{ block.settings.line_1_offset }}px);
+    margin: 0 0 -65px 0;
+  }
+
+  .ai-staggered-typography-line-2-{{ ai_gen_id }} {
+    font-family: 'PP Editorial New', Georgia, serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: {{ block.settings.line_2_size }}px;
+    text-align: {{ block.settings.line_2_alignment }};
+    margin: {{ block.settings.line_2_margin_top }}px 0 0 0;
+    padding: 0;
+    color: {{ block.settings.text_color }};
+    transform: translateX({{ block.settings.line_2_offset }}px);
+  }
+
+  .ai-staggered-typography-line-3-{{ ai_gen_id }} {
+    font-family: 'PPEditorialNew Italic', Georgia, serif;
+    font-style: italic;
+    font-size: {{ block.settings.line_3_size }}px;
+    text-align: {{ block.settings.line_3_alignment }};
+    margin: {{ block.settings.line_3_margin_top }}px 0 0 0;
+    padding: 0;
+    color: {{ block.settings.text_color }};
+    transform: translateX({{ block.settings.line_3_offset }}px);
+  }
+
+  .ai-staggered-typography-body-{{ ai_gen_id }} {
+    font-family: 'PPMori Regular', Arial, sans-serif;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1.6;
+    text-align: center;
+    max-width: {{ block.settings.body_max_width }}px;
+    margin: 0 auto;
+    color: {{ block.settings.text_color }};
+  }
+
+  .ai-staggered-typography-body-{{ ai_gen_id }} a {
+    color: #000;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-staggered-typography-{{ ai_gen_id }} {
+      padding: {{ block.settings.section_padding_top | times: 0.6 }}px 16px {{ block.settings.section_padding_bottom | times: 0.6 }}px;
+    }
+
+    .ai-staggered-typography-line-1-{{ ai_gen_id }} {
+      font-size: {{ block.settings.line_1_size | times: 0.5 }}px;
+      transform: translateX(15px);
+      margin: 0 0 -30px 0;
+    }
+
+    .ai-staggered-typography-line-2-{{ ai_gen_id }} {
+      font-size: {{ block.settings.line_2_size | times: 0.5 }}px;
+      margin-top: {{ block.settings.line_2_margin_top | times: 0.5 }}px;
+      transform: translateX({{ block.settings.line_2_offset | times: 0.5 }}px);
+    }
+
+    .ai-staggered-typography-line-3-{{ ai_gen_id }} {
+      font-size: {{ block.settings.line_3_size | times: 0.5 }}px;
+      margin-top: {{ block.settings.line_3_margin_top | times: 0.5 }}px;
+      transform: translateX(-20px);
+    }
+
+    .ai-staggered-typography-body-{{ ai_gen_id }} {
+      font-size: {{ block.settings.body_size | times: 0.9 }}px;
+      max-width: 100%;
+    }
+
+    .ai-staggered-typography-header-{{ ai_gen_id }} {
+      margin-bottom: {{ block.settings.header_spacing | times: 0.6 }}px;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-staggered-typography-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-staggered-typography-container-{{ ai_gen_id }}">
+    <div class="ai-staggered-typography-header-{{ ai_gen_id }}">
+      {% if block.settings.line_1_text != blank %}
+        <h2 class="ai-staggered-typography-line-1-{{ ai_gen_id }}">{{ block.settings.line_1_text }}</h2>
+      {% endif %}
+      {% if block.settings.line_2_text != blank %}
+        <h2 class="ai-staggered-typography-line-2-{{ ai_gen_id }}">{{ block.settings.line_2_text }}</h2>
+      {% endif %}
+      {% if block.settings.line_3_text != blank %}
+        <h2 class="ai-staggered-typography-line-3-{{ ai_gen_id }}">{{ block.settings.line_3_text }}</h2>
+      {% endif %}
+    </div>
+    {% if block.settings.body_text != blank %}
+      <div class="ai-staggered-typography-body-{{ ai_gen_id }}">
+        {{ block.settings.body_text }}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Staggered typography",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Header lines"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "line_1_text",
+      "label": "Line 1 text",
+      "default": "Why We Say"
+    },
+    {
+      "type": "select",
+      "id": "line_1_alignment",
+      "label": "Line 1 alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "line_1_offset",
+      "label": "Line 1 horizontal offset",
+      "min": -200,
+      "max": 300,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "inline_richtext",
+      "id": "line_2_text",
+      "label": "Line 2 text",
+      "default": "Inspired"
+    },
+    {
+      "type": "select",
+      "id": "line_2_alignment",
+      "label": "Line 2 alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "line_2_offset",
+      "label": "Line 2 horizontal offset",
+      "min": -200,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "inline_richtext",
+      "id": "line_3_text",
+      "label": "Line 3 text",
+      "default": "and not the other word"
+    },
+    {
+      "type": "select",
+      "id": "line_3_alignment",
+      "label": "Line 3 alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "right"
+    },
+    {
+      "type": "range",
+      "id": "line_3_offset",
+      "label": "Line 3 horizontal offset",
+      "min": -300,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Body text"
+    },
+    {
+      "type": "richtext",
+      "id": "body_text",
+      "label": "Body paragraph",
+      "default": "<p>This is the body text that appears below the staggered header. It is center-aligned and uses a sans-serif font for readability.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Typography sizes"
+    },
+    {
+      "type": "range",
+      "id": "line_1_size",
+      "label": "Line 1 font size",
+      "min": 20,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "line_2_size",
+      "label": "Line 2 font size",
+      "min": 40,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "line_3_size",
+      "label": "Line 3 font size",
+      "min": 20,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "body_size",
+      "label": "Body font size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "line_2_margin_top",
+      "label": "Line 2 top spacing",
+      "min": -40,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": -20
+    },
+    {
+      "type": "range",
+      "id": "line_3_margin_top",
+      "label": "Line 3 top spacing",
+      "min": -40,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": -20
+    },
+    {
+      "type": "range",
+      "id": "header_spacing",
+      "label": "Space below header",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "body_max_width",
+      "label": "Body max width",
+      "min": 400,
+      "max": 1000,
+      "step": 50,
+      "unit": "px",
+      "default": 600
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "label": "Section padding top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "label": "Section padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#121212"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Staggered typography"
+    }
+  ],
+  "tag": null
+}
+{% endschema %}

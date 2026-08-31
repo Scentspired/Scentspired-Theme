@@ -1,0 +1,577 @@
+<section class="scent-carousel">
+  <!-- Header -->
+  <div class="scent-header">
+    <h2 class="scent-title">A sneak peek</h2>
+    <p class="scent-subtitle">@thescentspired</p>
+  </div>
+  
+  <!-- Carousel Container -->
+  <div class="carousel-container">
+    <!-- Background Text Layer - Behind images -->
+    <div class="background-text-layer">
+      <div class="text-item" data-index="0">#Scent Inspired</div>
+      <div class="text-item" data-index="1">#Scent Inspired</div>
+      <div class="text-item" data-index="2">#Scent Inspired</div>
+      <div class="text-item" data-index="3">#Scent Inspired</div>
+      <div class="text-item" data-index="4">#Scent Inspired</div>
+      <div class="text-item" data-index="5">#Scent Inspired</div>
+      <div class="text-item" data-index="6">#Scent Inspired</div>
+      <div class="text-item" data-index="7">#Scent Inspired</div>
+      <div class="text-item" data-index="8">#Scent Inspired</div>
+    </div>
+    
+    <!-- Images Layer -->
+    <div class="carousel-track" id="carouselTrack">
+      <div class="slide-image-container" data-index="0">
+        <img src="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Screenshot_2025-07-14_192937.png?v=1752503440" alt="Orange perfume bottle" class="slide-image" />
+      </div>
+      <div class="slide-image-container" data-index="1">
+        <img src="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Screenshot_2025-07-14_192915.png?v=1752503440" alt="Model with perfume" class="slide-image" />
+      </div>
+      <div class="slide-image-container" data-index="2">
+        <img src="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Screenshot_2025-07-14_192859.png?v=1752503440" alt="Golden perfume bottles" class="slide-image" />
+      </div>
+      <div class="slide-image-container" data-index="3">
+        <img src="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Screenshot_2025-07-14_192845.png?v=1752503440" alt="Luxury perfume bottle" class="slide-image" />
+      </div>
+      <div class="slide-image-container" data-index="4">
+        <img src="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Screenshot_2025-07-14_193000.png?v=1752503440" alt="Elegant fragrance" class="slide-image" />
+      </div>
+      <div class="slide-image-container" data-index="5">
+        <img src="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Screenshot_2025-07-14_204317.png?v=1752507902" alt="Premium scent bottle" class="slide-image" />
+      </div>
+      <div class="slide-image-container" data-index="6">
+        <img src="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Screenshot_2025-07-14_204408.png?v=1752507902" alt="Designer perfume" class="slide-image" />
+      </div>
+      <div class="slide-image-container" data-index="7">
+        <img src="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Screenshot_2025-07-14_204444.png?v=1752507902" alt="Artisan fragrance" class="slide-image" />
+      </div>
+      <div class="slide-image-container" data-index="8">
+        <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?w=300&h=425&fit=crop" alt="Signature scent" class="slide-image" />
+      </div>
+    </div>
+  </div>
+  
+  <!-- Bottom Spacing -->
+  <div class="carousel-spacing"></div>
+</section>
+
+<style>
+  .scent-carousel {
+    width: 100%;
+    background: white;
+    overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  .scent-header {
+    text-align: center;
+    padding: 4rem 1rem;
+    margin-top: 100px;
+  }
+
+  .scent-title {
+    font-size: 48px;
+    font-weight: 100;
+    color: #666;
+    letter-spacing: 0.05em;
+    text-align: center;
+    margin: 0 auto;
+    font-family: 'PPMori Extralight', sans-serif;
+    display: block;
+  }
+
+  .scent-subtitle {
+    font-size: 48px;
+    font-weight: 900;
+    color: black;
+    font-style: italic;
+    letter-spacing: 0.05em;
+    margin-top: -10px !important;
+    font-family: 'PPEditorialNew Italic', serif;
+  }
+
+  .carousel-container {
+    position: relative;
+    height: 500px;
+    overflow: hidden;
+  }
+
+  @media (min-width: 768px) {
+    .carousel-container {
+      height: 600px;
+    }
+  }
+
+  .background-text-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .text-item {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: clamp(2rem, 4vw, 4rem);
+    font-weight: 600;
+    color: black;
+    white-space: nowrap;
+    transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    font-family: 'PPMori SemiBold', sans-serif;
+    opacity: 0;
+  }
+
+  .carousel-track {
+    position: relative;
+    height: 100%;
+    z-index: 10;
+  }
+
+  .slide-image-container {
+    position: absolute;
+    width: 300px;
+    height: 425px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all 1s ease-in-out;
+    z-index: 15;
+    opacity: 0;
+  }
+
+  .slide-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0px;
+    position: relative;
+    z-index: 20;
+  }
+
+  .carousel-spacing {
+    height: 4rem;
+  }
+
+  @media (min-width: 768px) {
+    .carousel-spacing {
+      height: 5rem;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .scent-title {
+      font-size: 32px;
+      font-weight: 100;
+      color: #666;
+      letter-spacing: 0.05em;
+      margin-left: 0px !important;
+    }
+
+    .scent-subtitle {
+      font-size: 32px;
+      font-weight: 900;
+      color: black;
+      font-style: italic;
+      letter-spacing: 0.05em;
+      margin-top: 0px !important;
+    }
+
+    .carousel-container {
+      height: auto;
+      min-height: 450px;
+      padding-bottom: 4rem;
+    }
+
+    .slide-image-container {
+      width: 180px;
+      height: 255px;
+      margin: 0 auto 1rem auto;
+      position: relative;
+      top: auto;
+      transform: none;
+      opacity: 0;
+      display: none;
+    }
+
+    .slide-image-container.active {
+      opacity: 1;
+      display: block;
+    }
+
+    .background-text-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .text-item {
+      width: 100%;
+      height: auto;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: clamp(1.5rem, 6vw, 3rem);
+      opacity: 0.1;
+      display: none;
+    }
+
+    .text-item.active {
+      display: block;
+    }
+  }
+</style>
+
+<script>
+// Enhanced carousel script with improved reliability and immediate startup
+(function() {
+  'use strict';
+  
+  // Configuration
+  const CONFIG = {
+    totalImages: 9,
+    slideInterval: 4000,
+    transitionDuration: 1200,
+    maxRetries: 50,
+    retryDelay: 100
+  };
+  
+  // State management
+  let state = {
+    currentSlide: 0,
+    images: null,
+    textItems: null,
+    autoSlideInterval: null,
+    isInitialized: false,
+    retryCount: 0,
+    isVisible: true
+  };
+  
+  // Image positions
+  const imagePositions = {
+    left: { left: '2rem', transform: 'translateY(-50%)', opacity: '1' },
+    center: { left: '50%', transform: 'translate(-50%, -50%)', opacity: '1' },
+    right: { left: 'calc(100% - 300px - 2rem)', transform: 'translateY(-50%)', opacity: '1' },
+    offScreenLeft: { left: '-350px', transform: 'translateY(-50%)', opacity: '1' },
+    offScreenRight: { left: 'calc(100% + 50px)', transform: 'translateY(-50%)', opacity: '1' },
+    hiddenFarLeft: { left: '-9999px', transform: 'translateY(-50%)', opacity: '0' },
+    hiddenFarRight: { left: '9999px', transform: 'translateY(-50%)', opacity: '0' }
+  };
+  
+  // Text positions
+  const textPositions = {
+    behindLeftImage: { left: '5%', transform: 'translateY(-50%)', opacity: '1' },
+    behindCenterImage: { left: '45%', transform: 'translateY(-50%)', opacity: '1' },
+    behindRightImage: { left: '75%', transform: 'translateY(-50%)', opacity: '1' },
+    enteringFromLeft: { left: '-200%', transform: 'translateY(-50%)', opacity: '0' },
+    exitingToRight: { left: '200%', transform: 'translateY(-50%)', opacity: '0' },
+    hidden: { left: '-9999px', transform: 'translateY(-50%)', opacity: '0' }
+  };
+  
+  // Utility functions
+  function log(message, type = 'info') {
+    if (window.console && window.console[type]) {
+      console[type]('[ScentCarousel]', message);
+    }
+  }
+  
+  function applyStyles(element, styles, smoothTransition = true) {
+    if (!element) {
+      log('Element not found for styling', 'warn');
+      return;
+    }
+    
+    try {
+      element.style.transition = smoothTransition ? 
+        'all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)' : 'none';
+      
+      Object.keys(styles).forEach(prop => {
+        element.style[prop] = styles[prop];
+      });
+    } catch (error) {
+      log('Error applying styles: ' + error.message, 'error');
+    }
+  }
+  
+  function getElements() {
+    const images = document.querySelectorAll('.slide-image-container');
+    const textItems = document.querySelectorAll('.text-item');
+    
+    if (images.length !== CONFIG.totalImages || textItems.length !== CONFIG.totalImages) {
+      return null;
+    }
+    
+    return { images: Array.from(images), textItems: Array.from(textItems) };
+  }
+  
+  function updateSlide(smoothTransition = true) {
+    if (!state.isInitialized || !state.images || !state.textItems) {
+      log('Cannot update slide - not initialized', 'warn');
+      return;
+    }
+    
+    try {
+      if (window.innerWidth >= 768) {
+        updateDesktopSlide(smoothTransition);
+      } else {
+        updateMobileSlide();
+      }
+    } catch (error) {
+      log('Error updating slide: ' + error.message, 'error');
+    }
+  }
+  
+  function updateDesktopSlide(smoothTransition) {
+    const { currentSlide } = state;
+    const { totalImages } = CONFIG;
+    
+    // Calculate indices
+    const idxLeaving = (currentSlide - 1 + totalImages) % totalImages;
+    const idxLeft = currentSlide;
+    const idxCenter = (currentSlide + 1) % totalImages;
+    const idxRight = (currentSlide + 2) % totalImages;
+    const idxEntering = (currentSlide + 3) % totalImages;
+    
+    const activeImageIndices = new Set([idxLeaving, idxLeft, idxCenter, idxRight, idxEntering]);
+    
+    // Text indices
+    const textBehindLeft = (currentSlide + 2) % totalImages;
+    const textBehindCenter = (currentSlide + 1) % totalImages;
+    const textBehindRight = currentSlide;
+    const textExiting = (currentSlide - 1 + totalImages) % totalImages;
+    const textEntering = (currentSlide + 3) % totalImages;
+    
+    // Hide inactive elements
+    state.images.forEach((img, i) => {
+      if (!activeImageIndices.has(i)) {
+        applyStyles(img, imagePositions.hiddenFarRight, false);
+      }
+    });
+    
+    state.textItems.forEach((text, i) => {
+      if (![textBehindLeft, textBehindCenter, textBehindRight, textExiting, textEntering].includes(i)) {
+        applyStyles(text, textPositions.hidden, false);
+      }
+    });
+    
+    // Apply active positions
+    applyStyles(state.images[idxLeaving], imagePositions.offScreenLeft, smoothTransition);
+    applyStyles(state.images[idxLeft], imagePositions.left, smoothTransition);
+    applyStyles(state.images[idxCenter], imagePositions.center, smoothTransition);
+    applyStyles(state.images[idxRight], imagePositions.right, smoothTransition);
+    applyStyles(state.images[idxEntering], imagePositions.offScreenRight, smoothTransition);
+    
+    applyStyles(state.textItems[textBehindLeft], textPositions.behindLeftImage, smoothTransition);
+    applyStyles(state.textItems[textBehindCenter], textPositions.behindCenterImage, smoothTransition);
+    applyStyles(state.textItems[textBehindRight], textPositions.behindRightImage, smoothTransition);
+    applyStyles(state.textItems[textExiting], textPositions.exitingToRight, smoothTransition);
+    applyStyles(state.textItems[textEntering], textPositions.enteringFromLeft, smoothTransition);
+  }
+  
+  function updateMobileSlide() {
+    state.images.forEach((img, index) => {
+      const isActive = index === state.currentSlide;
+      img.classList.toggle('active', isActive);
+      img.style.opacity = isActive ? '1' : '0';
+    });
+    
+    state.textItems.forEach((text, index) => {
+      const isActive = index === state.currentSlide;
+      text.classList.toggle('active', isActive);
+      text.style.opacity = isActive ? '0.1' : '0';
+    });
+  }
+  
+  function nextSlide() {
+    if (!state.isInitialized) {
+      log('Cannot advance slide - not initialized', 'warn');
+      return;
+    }
+    
+    try {
+      const imageToReposition = state.images[state.currentSlide];
+      const textToReposition = state.textItems[(state.currentSlide - 1 + CONFIG.totalImages) % CONFIG.totalImages];
+      
+      state.currentSlide = (state.currentSlide + 1) % CONFIG.totalImages;
+      updateSlide(true);
+      
+      // Clean up after transition
+      setTimeout(() => {
+        if (imageToReposition) applyStyles(imageToReposition, imagePositions.hiddenFarRight, false);
+        if (textToReposition) applyStyles(textToReposition, textPositions.hidden, false);
+      }, CONFIG.transitionDuration);
+      
+    } catch (error) {
+      log('Error in nextSlide: ' + error.message, 'error');
+    }
+  }
+  
+  function startAutoSlide() {
+    stopAutoSlide();
+    
+    if (state.isInitialized && state.isVisible) {
+      state.autoSlideInterval = setInterval(nextSlide, CONFIG.slideInterval);
+      log('Auto-slide started');
+    }
+  }
+  
+  function stopAutoSlide() {
+    if (state.autoSlideInterval) {
+      clearInterval(state.autoSlideInterval);
+      state.autoSlideInterval = null;
+      log('Auto-slide stopped');
+    }
+  }
+  
+  function setupEventListeners() {
+    const carousel = document.querySelector('.scent-carousel');
+    
+    if (carousel) {
+      carousel.addEventListener('mouseenter', stopAutoSlide);
+      carousel.addEventListener('mouseleave', startAutoSlide);
+    }
+    
+    // Visibility change handling
+    document.addEventListener('visibilitychange', function() {
+      state.isVisible = !document.hidden;
+      if (state.isVisible && state.isInitialized) {
+        startAutoSlide();
+      } else {
+        stopAutoSlide();
+      }
+    });
+    
+    // Window focus/blur
+    window.addEventListener('focus', function() {
+      state.isVisible = true;
+      if (state.isInitialized) startAutoSlide();
+    });
+    
+    window.addEventListener('blur', function() {
+      state.isVisible = false;
+      stopAutoSlide();
+    });
+    
+    // Resize handling
+    let resizeTimeout;
+    window.addEventListener('resize', function() {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        if (state.isInitialized) updateSlide();
+      }, 250);
+    });
+    
+    // Page unload cleanup
+    window.addEventListener('beforeunload', function() {
+      stopAutoSlide();
+    });
+  }
+  
+  function initializeCarousel() {
+    log('Attempting to initialize carousel (attempt ' + (state.retryCount + 1) + ')');
+    
+    const elements = getElements();
+    
+    if (!elements) {
+      state.retryCount++;
+      
+      if (state.retryCount < CONFIG.maxRetries) {
+        setTimeout(initializeCarousel, CONFIG.retryDelay);
+        return;
+      } else {
+        log('Failed to initialize after ' + CONFIG.maxRetries + ' attempts', 'error');
+        return;
+      }
+    }
+    
+    // Success - initialize
+    state.images = elements.images;
+    state.textItems = elements.textItems;
+    state.isInitialized = true;
+    state.retryCount = 0;
+    
+    log('Carousel initialized successfully');
+    
+    // Setup and start
+    setupEventListeners();
+    updateSlide(false);
+    
+    // Start immediately
+    setTimeout(() => {
+      if (state.isInitialized && state.isVisible) {
+        startAutoSlide();
+      }
+    }, 100);
+  }
+  
+  // Multiple initialization strategies
+  function startInitialization() {
+    // Strategy 1: Immediate
+    if (document.readyState === 'complete') {
+      initializeCarousel();
+    }
+    // Strategy 2: DOM ready
+    else if (document.readyState === 'interactive') {
+      setTimeout(initializeCarousel, 50);
+    }
+    // Strategy 3: Wait for load
+    else {
+      document.addEventListener('DOMContentLoaded', initializeCarousel);
+      window.addEventListener('load', function() {
+        if (!state.isInitialized) {
+          setTimeout(initializeCarousel, 100);
+        }
+      });
+    }
+    
+    // Strategy 4: Fallback timer
+    setTimeout(function() {
+      if (!state.isInitialized) {
+        log('Using fallback initialization');
+        initializeCarousel();
+      }
+    }, 1000);
+    
+    // Strategy 5: Intersection Observer for when section comes into view
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting && state.isInitialized && !state.autoSlideInterval) {
+            startAutoSlide();
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      setTimeout(function() {
+        const carousel = document.querySelector('.scent-carousel');
+        if (carousel) {
+          observer.observe(carousel);
+        }
+      }, 100);
+    }
+  }
+  
+  // Start the initialization process
+  startInitialization();
+  
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Scent Carousel",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Scent Carousel"
+    }
+  ]
+}
+{% endschema %}

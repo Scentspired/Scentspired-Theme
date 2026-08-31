@@ -1,0 +1,578 @@
+{% comment %}
+  The `contact-section` is a customizable section for displaying contact information, policies, or FAQ content.
+  It includes a sidebar for navigation and dynamic content blocks.
+{% endcomment %}
+<style>
+/* Custom Fonts */
+@font-face {
+  font-family: 'PPMori Regular';
+  src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPMori-Regular.otf?v=1751621372') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'PPEditorialNew Italic';
+  src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPEditorialNew-Italic-BF644b214fb0c0a.otf?v=1751620955') format('opentype');
+  font-weight: 900;
+  font-style: italic;
+}
+/* Base Styles */
+.faq-section {
+  font-family: 'PPMori Regular', sans-serif;
+  background-color: #fff;
+  padding: 40px 0;
+  margin-top: 100px;
+  margin-bottom: 0px;
+}
+.contact-main-heading {
+  font-family: 'PPEditorialNew Italic', serif;
+  font-size: 42px;
+  font-weight: 400;
+  margin-bottom: 30px;
+  color: #000;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.contact-description {
+  font-family: 'PPMori Regular', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 40px;
+  max-width: 1100px;
+}
+.faq-main::after {
+        left: 298px !important;
+    }
+.contact-description p {
+  margin-bottom: 1.5em;
+}
+.contact-form-wrapper {
+  max-width: 1100px;
+}
+.contact-form-field {
+  margin-bottom: 25px;
+}
+.contact-form-field label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: #333;
+}
+.contact-form-field input,
+.contact-form-field textarea {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  background-color: #f4f4f4;
+  font-family: 'PPMori Regular', sans-serif;
+  font-size: 14px;
+  color: #333;
+  border-radius: 0;
+}
+.contact-form-field textarea {
+  min-height: 200px;
+  resize: vertical;
+}
+.contact-form-field input::placeholder,
+.contact-form-field textarea::placeholder {
+  color: #bfbec0;
+}
+.contact-submit-btn {
+  background-color: #f4ff41; 
+  color: #000;
+  font-family: 'PPMORI REGULAR';
+  border: none;
+  padding: 12px 150px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: opacity 0.3s ease;
+  border-radius: 20px;
+}
+.contact-submit-btn:hover {
+  opacity: 0.9;
+}
+.faq-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+.faq-header {
+  margin-bottom: 40px;
+  border-top: 1px solid #bfbec0;
+  padding-top: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.faq-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: -30px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #333;
+  font-family: 'PPEditorialNew Italic', serif;
+  flex-shrink: 0;
+}
+.faq-title-line {
+  flex-grow: 1;
+  height: 1px;
+  background-color: #bfbec0;
+  display: none;
+}
+.faq-content {
+    display: grid;
+    grid-template-columns: 239px 1fr 115px;
+    gap: 0;
+    position: relative;
+    border-top: 1px solid #bfbec0;
+    overflow: hidden;
+}
+.faq-sidebar {
+  padding-right: 0;
+  position: sticky;
+  top: 20px;
+  height: fit-content;
+}
+.faq-sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.faq-sidebar li {
+  margin-bottom: 15px;
+}
+.faq-sidebar a {
+  color: #666;
+  text-decoration: none;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  display: block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-family: 'PPMori Regular', sans-serif;
+}
+.faq-sidebar a:hover {
+  color: #000;
+  background-color: #EFFF31;
+}
+.faq-sidebar a.active {
+  color: #000;
+  background-color: #EFFF31;
+}
+.faq-main {
+  padding-left: 40px;
+}
+.faq-category {
+  margin-bottom: 40px;
+}
+.faq-category:last-child {
+  margin-bottom: 0;
+}
+.faq-category-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #333;
+  font-family: 'PPMori Regular', sans-serif;
+}
+.privacy-policy-content {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #000;
+  font-family: 'PPMori Regular', sans-serif;
+}
+.privacy-policy-content p {
+  margin-bottom: 1em;
+}
+.privacy-policy-content ul {
+  list-style: disc;
+  margin-left: 20px;
+  margin-bottom: 1em;
+}
+.privacy-policy-content li {
+  margin-bottom: 0.5em;
+}
+.privacy-policy-content h3 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  color: #333;
+}
+.privacy-policy-content strong {
+  font-weight: 600;
+  font-size: 16px;
+  text-decoration: underline;
+  text-decoration-color: #FADB95;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 2px;
+}
+.faq-image-column {
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding-left: 20px;
+}
+.faq-image-column img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .faq-content {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .faq-sidebar {
+    position: static;
+    order: 1;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    padding-top: 20px;
+  }
+  .faq-sidebar ul {
+    display: flex;
+    gap: 20px;
+    white-space: nowrap;
+    padding-bottom: 10px;
+  }
+  .faq-sidebar li {
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+  .faq-main {
+    padding-left: 0;
+    order: 2;
+    padding-right: 0;
+  }
+  .faq-title {
+    font-size: 20px;
+  }
+  .faq-category-title {
+    font-size: 14px;
+  }
+  .privacy-policy-content {
+    font-size: 12px;
+  }
+  .faq-image-column {
+    display: block;
+    order: 3;
+    width: 100%;
+    padding: 0 !important;
+  }
+  .faq-image-column img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+}
+
+.faq-sidebar::-webkit-scrollbar {
+  height: 3px;
+}
+.faq-sidebar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+.faq-sidebar::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
+}
+.faq-sidebar::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+
+@media screen and (min-width: 1441px) {
+  .faq-container {
+    max-width: 1900px;
+    margin: 0 auto;
+    padding: 0 5px;
+  }
+  .faq-main {
+    padding-left: 240px !important;
+  }
+}
+@media screen and (min-width: 1024px) and (max-width: 1440px) {
+  .faq-main {
+    padding-left: 100px !important;
+  }
+  .faq-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 10px;
+  }
+}
+</style>
+
+<div class="faq-section">
+  <div class="faq-container">
+    <div class="faq-header">
+      <div class="faq-title-line"></div>
+      <h1 class="faq-title">{{ section.settings.page_title | default: 'CONTACT' }}</h1>
+      <div class="faq-title-line"></div>
+    </div>
+    <div class="faq-content">
+      <aside class="faq-sidebar">
+        <ul>
+          {% if section.settings.link_1_text != blank %}
+            <li><a href="{{ section.settings.link_1_url }}">{{ section.settings.link_1_text }}</a></li>
+          {% endif %}
+          {% if section.settings.link_2_text != blank %}
+            <li><a href="{{ section.settings.link_2_url }}">{{ section.settings.link_2_text }}</a></li>
+          {% endif %}
+          {% if section.settings.link_3_text != blank %}
+            <li><a href="{{ section.settings.link_3_url }}">{{ section.settings.link_3_text }}</a></li>
+          {% endif %}
+          {% if section.settings.link_4_text != blank %}
+            <li><a href="{{ section.settings.link_4_url }}">{{ section.settings.link_4_text }}</a></li>
+          {% endif %}
+          {% if section.settings.link_5_text != blank %}
+            <li><a href="{{ section.settings.link_5_url }}">{{ section.settings.link_5_text }}</a></li>
+          {% endif %}
+          {% if section.settings.link_6_text != blank %}
+            <li><a href="{{ section.settings.link_6_url }}">{{ section.settings.link_6_text }}</a></li>
+          {% endif %}
+          {% if section.settings.link_7_text != blank %}
+            <li><a href="{{ section.settings.link_7_url }}">{{ section.settings.link_7_text }}</a></li>
+          {% endif %}
+          {% if section.settings.link_8_text != blank %}
+            <li><a href="{{ section.settings.link_8_url }}">{{ section.settings.link_8_text }}</a></li>
+          {% endif %}
+        </ul>
+      </aside>
+      <main class="faq-main">
+        <div class="contact-form-wrapper">
+          <h1 class="contact-main-heading">{{ section.settings.main_heading | default: '' }}</h1>
+          <div class="contact-description">
+            {{ section.settings.main_description }}
+          </div>
+
+          {%- form 'contact', id: 'ContactForm', class: 'contact-form' -%}
+            {%- if form.posted_successfully? -%}
+              <p class="form-status form-status-list form__message" tabindex="-1" autofocus>
+                {{ 'templates.contact.form.post_success' | t }}
+              </p>
+            {%- elsif form.errors -%}
+              <div class="form__message">
+                <h2 class="form-status caption-large text-body" role="alert" tabindex="-1" autofocus>
+                  {{ 'templates.contact.form.error_heading' | t }}
+                </h2>
+              </div>
+            {%- endif -%}
+
+            <div class="contact-form-field">
+              <label for="ContactForm-name">First name</label>
+              <input
+                type="text"
+                id="ContactForm-name"
+                name="contact[name]"
+                value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
+                placeholder="First name"
+              >
+            </div>
+
+            <div class="contact-form-field">
+              <label for="ContactForm-email">Email</label>
+              <input
+                autocomplete="email"
+                type="email"
+                id="ContactForm-email"
+                name="contact[email]"
+                spellcheck="false"
+                autocapitalize="off"
+                value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                aria-required="true"
+                {% if form.errors contains 'email' %}
+                  aria-invalid="true"
+                  aria-describedby="ContactForm-email-error"
+                {% endif %}
+                placeholder="Email"
+                required
+              >
+            </div>
+
+            <div class="contact-form-field">
+              <label for="ContactForm-phone">Phone number</label>
+              <input
+                type="tel"
+                id="ContactForm-phone"
+                autocomplete="tel"
+                name="contact[phone]"
+                pattern="[0-9\-]*"
+                value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}"
+                placeholder="Your phone number (optional)"
+              >
+            </div>
+
+            <div class="contact-form-field">
+              <label for="ContactForm-body">Message</label>
+              <textarea
+                rows="10"
+                id="ContactForm-body"
+                name="contact[body]"
+                placeholder="Enter your message"
+              >
+                {{- form.body -}}
+              </textarea>
+            </div>
+
+            <div class="contact-form-submit">
+              <button type="submit" class="contact-submit-btn">
+                SEND
+              </button>
+            </div>
+          {%- endform -%}
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const sidebarLinks = document.querySelectorAll('.faq-sidebar a');
+    const currentPath = window.location.pathname;
+    const normalizedCurrentPath = currentPath === '/' ? '/' : currentPath.replace(/\/$/, '');
+    let foundActive = false;
+    sidebarLinks.forEach(link => {
+      if (foundActive) return;
+      const linkPath = new URL(link.href).pathname;
+      const normalizedLinkPath = linkPath === '/' ? '/' : linkPath.replace(/\/$/, '');
+      if (normalizedLinkPath === normalizedCurrentPath) {
+        link.classList.add('active');
+        foundActive = true;
+      }
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Contact Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "page_title",
+      "label": "Page Title",
+      "default": "CONTACT"
+    },
+    {
+      "type": "text",
+      "id": "main_heading",
+      "label": "Main Content Heading",
+      "default": "Contact Us"
+    },
+    {
+      "type": "richtext",
+      "id": "main_description",
+      "label": "Main Content Description",
+      "default": "<p>If, for any reason, you have any issues or simply just have some questions for us, please do not think twice about contacting our support team at;</p><p>help@theessencevault.co.uk</p><p>We aim to respond to all questions within 24 hours.</p><p>Speak soon!</p>"
+    },
+    {
+      "type": "text",
+      "id": "link_1_text",
+      "label": "Link 1 Text",
+      "default": "[ CONTACT US ]"
+    },
+    {
+      "type": "url",
+      "id": "link_1_url",
+      "label": "Link 1 URL"
+    },
+    {
+      "type": "text",
+      "id": "link_2_text",
+      "label": "Link 2 Text",
+      "default": "FAQS"
+    },
+    {
+      "type": "url",
+      "id": "link_2_url",
+      "label": "Link 2 URL"
+    },
+    {
+      "type": "text",
+      "id": "link_3_text",
+      "label": "Link 3 Text",
+      "default": "STOCKISTS"
+    },
+    {
+      "type": "url",
+      "id": "link_3_url",
+      "label": "Link 3 URL"
+    },
+    {
+      "type": "text",
+      "id": "link_4_text",
+      "label": "Link 4 Text",
+      "default": "PRIVACY POLICY"
+    },
+    {
+      "type": "url",
+      "id": "link_4_url",
+      "label": "Link 4 URL"
+    },
+    {
+      "type": "text",
+      "id": "link_5_text",
+      "label": "Link 5 Text",
+      "default": "TERMS AND CONDITIONS"
+    },
+    {
+      "type": "url",
+      "id": "link_5_url",
+      "label": "Link 5 URL"
+    },
+    {
+      "type": "text",
+      "id": "link_6_text",
+      "label": "Link 6 Text",
+      "default": "REFUND POLICY"
+    },
+    {
+      "type": "url",
+      "id": "link_6_url",
+      "label": "Link 6 URL"
+    },
+    {
+      "type": "text",
+      "id": "link_7_text",
+      "label": "Link 7 Text"
+    },
+    {
+      "type": "url",
+      "id": "link_7_url",
+      "label": "Link 7 URL"
+    },
+    {
+      "type": "text",
+      "id": "link_8_text",
+      "label": "Link 8 Text"
+    },
+    {
+      "type": "url",
+      "id": "link_8_url",
+      "label": "Link 8 URL"
+    }
+  ],
+  "blocks": [],
+  "presets": [
+    {
+      "name": "Contact Section",
+      "blocks": []
+    }
+  ]
+}
+{% endschema %}

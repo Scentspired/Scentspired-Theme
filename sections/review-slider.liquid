@@ -1,0 +1,226 @@
+{% schema %}
+{
+  "name": "Custom Review Slider",
+  "settings": [
+    {
+      "type": "text",
+      "id": "review_heading",
+      "label": "Heading",
+      "default": "Reviews 5.0 (25)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Reviewer Name"
+        },
+        {
+          "type": "text",
+          "id": "date",
+          "label": "Date"
+        },
+        {
+          "type": "select",
+          "id": "stars",
+          "label": "Stars",
+          "default": "5",
+          "options": [
+            { "value": "1", "label": "1 Star" },
+            { "value": "2", "label": "2 Stars" },
+            { "value": "3", "label": "3 Stars" },
+            { "value": "4", "label": "4 Stars" },
+            { "value": "5", "label": "5 Stars" }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "headline",
+          "label": "Headline"
+        },
+        {
+          "type": "textarea",
+          "id": "content",
+          "label": "Content"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Review Slider"
+    }
+  ]
+}
+{% endschema %}
+
+<section class="review-slider-section">
+  <div class="review-header">
+    <h2>{{ section.settings.review_heading }}</h2>
+  </div>
+
+  <div class="review-slider-wrapper">
+    <div class="review-slider">
+      {% for block in section.blocks %}
+        <div class="review-card">
+          <div class="review-meta">
+            <strong>{{ block.settings.name }}</strong>
+            <span class="verified">Verified Shopper</span>
+          </div>
+          <div class="review-date">{{ block.settings.date }}</div>
+          <div class="stars">
+            {% assign star_count = block.settings.stars | plus: 0 %}
+            {% for i in (1..star_count) %}
+              ★
+            {% endfor %}
+          </div>
+          {% if block.settings.headline != blank %}
+            <p class="headline"><em>{{ block.settings.headline }}</em></p>
+          {% endif %}
+          <p class="content">{{ block.settings.content }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="review-arrows">
+    <button class="arrow left" aria-label="Previous">
+      <img src="{{ 'arrow-left.png' | asset_url }}" alt="Previous">
+    </button>
+    <button class="arrow right" aria-label="Next">
+      <img src="{{ 'arrow-right.png' | asset_url }}" alt="Next">
+    </button>
+  </div>
+</section>
+
+<style>
+.review-slider-section {
+  background: #e2eb2f; /* Your exact background color */
+  padding: 40px 0;
+  font-family: Georgia, serif;
+  overflow: hidden;
+  padding-left: 5rem;
+  padding-right: 5rem;
+}
+
+.review-header {
+  margin-bottom: 20px;
+}
+
+.review-slider-wrapper {
+  overflow: hidden;
+}
+
+.review-slider {
+  display: flex;
+  gap: 20px;
+  overflow-x: hidden; /* Hide scroll bar */
+  scroll-behavior: smooth;
+}
+
+.review-card {
+  flex: 0 0 350px; /* Fixed width */
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.review-meta {
+  font-size: 14px;
+}
+
+.review-meta strong {
+  font-weight: bold;
+}
+
+.review-meta .verified {
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+.review-date {
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+.stars {
+  color: black;
+  margin: 5px 0;
+}
+
+.headline {
+  margin: 5px 0;
+}
+
+.content {
+  font-size: 14px;
+}
+
+.review-arrows {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.review-arrows .arrow {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.review-arrows img {
+  width: 30px;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .review-card {
+    flex: 0 0 270px; /* Same as desktop to keep size */
+  }
+  .review-slider {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;              /* ✅ allow horizontal scroll */
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch; /* ✅ smooth iOS touch scroll */
+  scrollbar-width: none;         /* Firefox hide scrollbar */
+}
+
+.review-slider::-webkit-scrollbar {
+  display: none;                 /* Chrome/Safari hide scrollbar */
+}
+
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const slider = document.querySelector('.review-slider');
+  const leftArrow = document.querySelector('.arrow.left');
+  const rightArrow = document.querySelector('.arrow.right');
+
+  if (!slider) return;
+
+  function getCardWidth() {
+    const card = slider.querySelector('.review-card');
+    return (card ? card.offsetWidth : 300) + 20; // Include gap
+  }
+
+  if (leftArrow) {
+    leftArrow.addEventListener('click', () => {
+      slider.scrollBy({ left: -getCardWidth(), behavior: 'smooth' });
+    });
+  }
+
+  if (rightArrow) {
+    rightArrow.addEventListener('click', () => {
+      slider.scrollBy({ left: getCardWidth(), behavior: 'smooth' });
+    });
+  }
+});
+</script>

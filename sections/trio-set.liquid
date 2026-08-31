@@ -1,0 +1,1126 @@
+{% comment %}
+  Discovery Box Builder
+  - 5 slots with dynamic progress timeline
+  - Desktop: Auto-open first slot, sequential product filling, auto-advance to next slot
+  - Mobile: Original flexible behavior (no auto-select, manual slot selection)
+  - Direct to checkout redirect
+  - Selection flow: Brand -> Product
+  - Requires exactly 5 items to checkout
+{% endcomment %}
+
+<style>
+  :root {
+    --perfume-gold: #b39152;
+    --perfume-dark: #000;
+    --perfume-gray: #f2f2f2;
+    --sidebar-bg: #f5f0e6;
+    --border-dashed: #a8a095;
+    --font-primary: 'Montserrat', sans-serif;
+  }
+
+  .perfume-bundle-section {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    background: #fff;
+    font-family: var(--font-primary);
+  }
+
+  .builder-layout {
+    display: flex;
+    gap: 40px;
+    position: relative;
+    align-items: flex-start;
+  }
+
+  /* SIDEBAR: YOUR PRODUCT BUNDLE */
+  .bundle-sidebar {
+    flex: 0 0 420px;
+    background: #f3f3f3;
+    border: 1px solid #000;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .sidebar-header {
+    padding: 25px 20px;
+    border-bottom: 1px solid #000;
+    background: #f3f3f3;
+  }
+
+  .sidebar-header h2 {
+    font-size: 22px;
+    margin: 0 0 10px;
+    color: #000;
+    font-weight: 600;
+  }
+
+  .sidebar-header p {
+    font-size: 14px;
+    color: #000;
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  .slots-wrapper {
+    padding: 30px 20px;
+    position: relative;
+    display: flex;
+    gap: 20px;
+  }
+
+  /* Progress Line Sidebar */
+  .progress-timeline {
+    position: relative;
+    width: 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .progress-line {
+    position: absolute;
+    top: 5px;
+    bottom: 5px;
+    width: 2px;
+    background: #000;
+  }
+
+  .progress-marker {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    border: 2px solid #000;
+    border-radius: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .progress-marker.active {
+    background: #f4ff41;
+    border-color: #f4ff41;
+    width: 14px;
+    height: 14px;
+  }
+
+  .progress-label {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff;
+    border: 1px solid #000;
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+  }
+
+  .progress-label.active {
+    border-color: #f4ff41;
+    background: #f4ff41;
+  }
+
+  .slot-list {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .slot-item {
+    background: #fff;
+    border: 1px solid #000;
+    border-radius: 4px;
+    padding: 12px;
+    min-height: 100px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+    transition: 0.2s;
+  }
+
+  .slot-item.empty {
+    border: 1px dashed var(--border-dashed);
+    background: transparent;
+  }
+
+  .slot-item.active {
+    border-color: #000;
+    box-shadow: 0 0 0 1px #000;
+  }
+
+  .slot-placeholder-icon {
+    width: 50px;
+    height: 60px;
+    border: 1px dashed var(--border-dashed);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ccc;
+    font-size: 20px;
+  }
+
+  .slot-placeholder-text {
+    flex: 1;
+  }
+
+  .slot-placeholder-text .primary {
+    display: block;
+    font-size: 14px;
+    color: #888;
+  }
+
+  .slot-placeholder-text .unlock {
+    display: block;
+    font-size: 16px;
+    color: #000;
+    font-weight: 600;
+    margin-top: 4px;
+  }
+
+  .slot-filled-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+  }
+
+  .slot-img {
+    width: 65px;
+    height: 65px;
+    background: #f9f9f9;
+    padding: 5px;
+    border-radius: 4px;
+  }
+
+  .slot-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .slot-info {
+    flex: 1;
+  }
+
+  .slot-info h4 {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+  }
+
+  .slot-info p {
+    margin: 3px 0 0;
+    font-size: 13px;
+    color: #888;
+    font-style: italic;
+  }
+
+  .slot-price {
+    font-size: 15px;
+    font-weight: 600;
+    margin-top: 5px;
+  }
+
+  .remove-item {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: #f0f0f0;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* SIDEBAR FOOTER */
+  .sidebar-footer {
+    padding: 0;
+    background: #fff;
+    border-top: 1px solid #000;
+  }
+
+  .add-to-cart-btn {
+    width: 100%;
+    background: #f4ff41;
+    color: #000;
+    padding: 20px;
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    border-radius: 40px;
+  }
+
+  .add-to-cart-btn:disabled {
+     background-color: #f4ff41;
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  /* RIGHT SIDE: DRAWER */
+  .selection-drawer {
+    flex: 1;
+    background: #f9f9f9;
+    border-radius: 12px;
+    padding: 40px;
+    max-height: 800px;
+    overflow-y: auto;
+    display: none;
+    position: sticky;
+    top: 40px;
+  }
+
+  .selection-drawer.visible {
+    display: block;
+  }
+
+    .drawer-title {
+    font-size: 20px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .drawer-title-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+  }
+
+  .drawer-title-text {
+    flex: 1;
+  }
+.back-arrow-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: #000;
+    padding: 0;
+    display: none;
+    transition: 0.2s;
+    line-height: 1;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .back-arrow-btn:hover {
+    opacity: 0.6;
+  }
+
+  .back-arrow-btn.visible {
+    display: flex;
+  }
+  /* List Styles */
+  .option-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .option-item {
+    background: #fff;
+    padding: 15px 20px;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: 0.2s;
+  }
+
+  .option-item:hover {
+    border-color: #f4ff41;
+    background: #fff;
+  }
+
+  .item-thumb {
+    width: 50px;
+    height: 50px;
+    background: #f2f2f2;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .item-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* SEARCH BAR STYLES */
+  .search-bar-wrapper {
+    width: 100%;
+    margin-bottom: 25px;
+    display: flex;
+    gap: 0;
+  }
+
+  .search-input-container {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 25px;
+    padding: 0 20px;
+    transition: all 0.3s ease;
+  }
+
+  .search-input-container input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 12px 0;
+    font-size: 15px;
+    font-family: var(--font-primary);
+    background: transparent;
+    color: #333;
+    box-shadow: none;
+  }
+
+  .search-input-container input::placeholder {
+    color: #999;
+  }
+
+  .search-icon {
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    font-size: 16px;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .search-icon:hover {
+    color: #e0e635;
+    transform: scale(1.1);
+  }
+
+  .no-results-message {
+    text-align: center;
+    padding: 40px 20px;
+    color: #666;
+    font-size: 15px;
+  }
+
+  /* MOBILE POPUP */
+  @media (max-width: 1024px) {
+    .builder-layout {
+      flex-direction: column;
+    }
+    .bundle-sidebar {
+      flex: 1 0 auto;
+      width: 100%;
+    }
+    .selection-drawer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1000;
+      border-radius: 0;
+      padding: 20px;
+      overflow-y: auto;
+    }
+    .selection-drawer:not(.visible) {
+      display: none;
+    }
+    .add-to-cart-btn {
+    font-size: 11px;
+  }
+  .sidebar-header h2 {
+    font-size: 19px;
+    margin: 0 0 10px;
+    color: #000;
+    font-weight: 600;
+}
+}
+  .cart{
+      padding: 15px 20px;
+      background: #f3f3f3;
+      border-bottom: 1px solid black;
+    }
+     .savings-row {
+    padding: 15px;
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+    background: #f3f3f3;
+  }
+  .save-row {
+    padding: 0px;
+    text-align: center;
+    font-size: 14px;
+    color: #000;
+    background: #f3f3f3;
+        margin-top: -20px;
+  }
+ .saving {
+  font-weight: 600;
+  text-decoration: line-through;
+  color: #000;
+}
+
+</style>
+
+<div class="perfume-bundle-section">
+  <div class="builder-layout">
+    
+    <!-- LEFT SIDEBAR: BUNDLE STATUS -->
+    <div class="bundle-sidebar">
+      <div class="sidebar-header">
+        <h2>Build Your Own Signature Trio Set</h2>
+        <p id="BundleStatusText">Add 3 items to complete your Signature Trio Set</p>
+      </div>
+
+      <div class="slots-wrapper">
+        <div class="progress-timeline">
+          <div class="progress-line"></div>
+          <div class="progress-marker" style="top: 0%" id="Marker-0"></div>
+          <div class="progress-label" style="top: 0%" id="Label-1"></div>
+          <div class="progress-marker" style="top: 46%" id="Marker-1"></div>
+          <div class="progress-label" style="top: 46%" id="Label-2"></div>
+          <div class="progress-marker" style="top: 98%" id="Marker-4"></div>
+          <div class="progress-label" style="top: 98%;" id="Label-3"></div>
+        </div>
+
+        <div class="slot-list" id="BundleSlots">
+          {% for i in (1..3) %}
+            <div class="slot-item empty" data-index="{{ forloop.index0 }}" onclick="openSelector({{ forloop.index0 }})">
+              <div class="slot-placeholder-icon">+</div>
+              <div class="slot-placeholder-text">
+                <span class="primary">Select a product</span>
+                <span class="unlock"> {{ 3 | minus: forloop.index | plus: 1 }} Selections Remaining</span>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+      <div class="cart">
+<button class="add-to-cart-btn" id="MainActionBtn" disabled onclick="handleCheckout()">
+          <span>Add to Cart</span>
+          <span id="TotalDisplay">$ 0</span>
+        </button>
+      </div>
+      <div class="savings-row">
+         Standard Price: <span class="saving">$0</span>
+      </div>
+      <div class="save-row">
+        Total Saving <span>$0</span>
+      </div>
+      </div>
+    </div>
+
+    <!-- RIGHT CONTENT: SELECTION DRAWER -->
+    <div class="selection-drawer" id="SelectionDrawer">
+      <div class="drawer-title">
+        <div class="drawer-title-content">
+        <button onclick="goBackToStep()" class="back-arrow-btn" id="BackArrowBtn" title="Go back">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+        <span class="drawer-title-text" id="DrawerHeadline">Select Brand</span>
+        </div>
+        <button onclick="closeSelector()" style="background: none; border: none; cursor: pointer; font-size: 25px;">×</button>
+       </div>
+
+       <div id="Step-Size" class="step-container">
+        <div class="option-list">
+          <div class="option-item" onclick="selectSize('50ml')">
+            <span>50ml</span>
+          </div>
+          <div class="option-item" onclick="selectSize('100ml')">
+            <span>100ml</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="Step-Brand" class="step-container">
+        <div class="option-list" id="BrandGrid">
+          <!-- Brands injected here -->
+        </div>
+      </div>
+
+      <div id="Step-Product" class="step-container" style="display: none;">
+        <div class="search-bar-wrapper">
+          <div class="search-input-container">
+            <input type="text" id="ProductSearch" placeholder="Search" />
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="option-list" id="ProductGrid">
+          <!-- Products injected here -->
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  let activeSize = null;
+let currentStep = 'Step-Size';        // Tracks which step is open
+let hasAddedFirstProduct = false;     // Becomes true after first product is added
+
+
+const PRICING = {
+  "50ml": {
+    total: 39.99,
+    standard: 59.97,
+    saving: 19.98
+  },
+  "100ml": {
+    total: 59.99,
+    standard: 89.97,
+    saving: 29.98
+  }
+};
+
+  // Load all products from the 'shop' collection
+  const PRODUCTS_BY_SIZE = {
+  "50ml": [
+    {% paginate collections['bundle-50ml'].products by 100 %}
+      {% for product in collections['bundle-50ml'].products %}
+        {
+          id: {{ product.id }},
+          title: {{ product.title | json }},
+          vendor: {{ product.vendor | json }},
+          image: {{ product.featured_image | img_url: '300x300' | json }},
+          tags: {{ product.tags | json }},
+          variants: [
+  {% for variant in product.variants %}
+    {
+      id: {{ variant.id }},
+      title: {{ variant.title | json }},
+      price: {{ variant.price }},
+      sku: {{ variant.sku | json }},
+      available: {{ variant.available | json }}
+    }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+]
+        }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    {% endpaginate %}
+  ],
+
+  "100ml": [
+    {% paginate collections['bundle-100ml'].products by 100 %}
+      {% for product in collections['bundle-100ml'].products %}
+        {
+          id: {{ product.id }},
+          title: {{ product.title | json }},
+          vendor: {{ product.vendor | json }},
+          image: {{ product.featured_image | img_url: '300x300' | json }},
+          tags: {{ product.tags | json }},
+          variants: [
+  {% for variant in product.variants %}
+    {
+      id: {{ variant.id }},
+      title: {{ variant.title | json }},
+      price: {{ variant.price }},
+       sku: {{ variant.sku | json }},
+      available: {{ variant.available | json }}
+    }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+]
+        }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    {% endpaginate %}
+  ]
+};
+
+
+ 
+  const brands = [
+    { tag: "tomford", name: "Tom Ford" },
+    { tag: "chanel", name: "Chanel" },
+    { tag: "lv", name: "Louis Vuitton" },
+    { tag: "bykillian", name: "By Killian" },
+    { tag: "byredo", name: "Byredo" },
+    { tag: "dior", name: "Dior" },
+    { tag: "maisoncrivelli", name: "Maison Crivelli" },
+    { tag: "creed", name: "Creed" },
+    { tag: "lelabo", name: "Le Labo" },
+    { tag: "ysl", name: "YSL" },
+    { tag: "burberry", name: "Burberry" },
+    { tag: "exnihilos", name: "Ex Nihilo's" },
+    { tag: "parfums", name: "Parfums" },
+    { tag: "bvlgari", name: "Bvlgari" },
+    { tag: "carolinaherrera", name: "Carolina Herrera" },
+    { tag: "diptyque", name: "Diptyque" },
+    { tag: "giorgioarmani", name: "Giorgio Armani" },
+    { tag: "gucci", name: "Gucci" },
+    { tag: "herm", name: "Hermès" },
+    { tag: "initio", name: "Initio" },
+    { tag: "lancôme", name: "Lancôme" },
+    { tag: "mfk", name: "MFK" },
+    { tag: "narciso", name: "Narciso" },
+    { tag: "nasomattos", name: "Nasomatto's" },
+    { tag: "nishane", name: "Nishane" },
+    { tag: "pacorabanne", name: "Paco Rabanne" }
+  ];
+
+  let bundle = [null, null, null];
+  let currentSlot = null;
+  let activeBrand = null;
+
+// ---- FIRST PRODUCT CHECK (RUNS ONLY ONCE) ----
+// ---- FIRST PRODUCT CHECK (RUNS ONLY ONCE) ----
+
+
+  function isDesktop() {
+    return window.innerWidth > 1024;
+  }
+
+  window.addEventListener('DOMContentLoaded', function() {
+    if (isDesktop()) {
+      openSelector(0);
+    }
+  });
+
+  function openSelector(index) {
+    currentSlot = index;
+    const drawer = document.getElementById('SelectionDrawer');
+    if (drawer) drawer.classList.add('visible');
+
+    document.querySelectorAll('.slot-item').forEach(s => s.classList.remove('active'));
+    const activeSlot = document.querySelector(`.slot-item[data-index="${index}"]`);
+    if (activeSlot) activeSlot.classList.add('active');
+
+    if (activeSize) {
+      showStep('Step-Product');
+    } else {
+      showStep('Step-Size');
+    }
+  }
+
+  function closeSelector() {
+    const drawer = document.getElementById('SelectionDrawer');
+    if (drawer) {
+      drawer.classList.remove('visible');
+    }
+    document.querySelectorAll('.slot-item').forEach(s => s.classList.remove('active'));
+  }
+
+  function showStep(id) {
+    document.querySelectorAll('.step-container').forEach(c => c.style.display = 'none');
+    const stepEl = document.getElementById(id);
+    if (stepEl) stepEl.style.display = 'block';
+
+    currentStep = id;
+
+    const backArrowBtn = document.getElementById('BackArrowBtn');
+    const drawerHeadline = document.getElementById('DrawerHeadline');
+
+    if (id === 'Step-Size') {
+      if (drawerHeadline) drawerHeadline.innerText = 'Select Size';
+      if (backArrowBtn) backArrowBtn.style.display = 'none';
+    }
+
+    if (id === 'Step-Product') {
+      if (drawerHeadline) drawerHeadline.innerText = 'Select Product';
+      if (backArrowBtn) backArrowBtn.style.display = hasAddedFirstProduct ? 'none' : 'flex';
+      renderProducts();
+      initSearchListener();
+    }
+  }
+
+  function goBackToStep() {
+    if (currentStep === 'Step-Product' && !hasAddedFirstProduct) {
+      showStep('Step-Size');
+    }
+  }
+
+  function selectSize(size) {
+    activeSize = size;
+    showStep('Step-Product');
+  }
+
+  // Render brands in the drawer
+  function renderBrands() {
+    const grid = document.getElementById('BrandGrid');
+    if (!grid) return;
+    grid.innerHTML = brands.map(b => `
+      <div class="option-item" data-tag="${b.tag}" onclick="selectBrand(this.dataset.tag)">
+        <span>${b.name}</span>
+      </div>
+    `).join('');
+  }
+
+  function selectBrand(tag) {
+    activeBrand = tag;
+    showStep('Step-Product');
+  }
+
+  // Store filtered products for search
+  let allFilteredProducts = [];
+
+  function renderProducts(searchQuery = '') {
+    const grid = document.getElementById('ProductGrid');
+    if (!grid || !activeSize) return;
+
+    const products = PRODUCTS_BY_SIZE[activeSize] || [];
+
+    const filtered = products.filter(p =>
+      Array.isArray(p.variants) &&
+      p.variants.some(v => v.available === true)
+    );
+
+    allFilteredProducts = filtered;
+
+    let displayProducts = filtered;
+
+    // Apply search filter if query exists
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase();
+      displayProducts = filtered.filter(p => {
+        const matchesTitle = p.title.toLowerCase().includes(query);
+        const matchesVendor = p.vendor.toLowerCase().includes(query);
+        const matchesTags = p.tags && p.tags.some(tag => tag.toLowerCase().includes(query));
+        
+        return matchesTitle || matchesVendor || matchesTags;
+      });
+    }
+
+    if (displayProducts.length === 0) {
+      grid.innerHTML = '<div class="no-results-message">No products found matching your search.</div>';
+      return;
+    }
+
+    grid.innerHTML = displayProducts.map(p => {
+      const variant = (p.variants && p.variants.find(v => v.title.toLowerCase().includes(activeSize.toLowerCase()))) || (p.variants && p.variants[0]);
+      const isAvailable = variant && variant.available !== false;
+      if (!isAvailable) {
+        return `
+          <div class="option-item is-sold-out" style="opacity: 0.5; cursor: not-allowed; filter: grayscale(0.8);" onclick="alert('Sorry, &quot;${p.title}&quot; (${activeSize}) is currently out of stock. Please select another fragrance.')">
+            <div class="item-thumb"><img src="${p.image}" alt=""></div>
+            <span>${p.title} (${p.vendor}) <small style="display:inline-block; background:#d32f2f; color:#fff; font-size:9px; padding:2px 5px; border-radius:3px; font-weight:700; margin-left:4px;">SOLD OUT</small></span>
+          </div>
+        `;
+      }
+      return `
+        <div class="option-item" onclick="addProductToBundle(${p.id}, '${activeSize}')">
+          <div class="item-thumb"><img src="${p.image}" alt=""></div>
+          <span>${p.title} (${p.vendor})</span>
+        </div>
+      `;
+    }).join('');
+  }
+
+  // Handle search input
+  function handleSearch(event) {
+    if (!event || !event.target) return;
+    const searchQuery = event.target.value || '';
+    renderProducts(searchQuery);
+  }
+
+  // Initialize search listener when Step-Product is shown
+  function initSearchListener() {
+    const searchInput = document.getElementById('ProductSearch');
+    if (searchInput) {
+      searchInput.value = '';
+      searchInput.addEventListener('input', handleSearch);
+    }
+  }
+
+  // Add product to bundle
+  function addProductToBundle(id, size) {
+    if (!PRODUCTS_BY_SIZE[size]) return alert('Size not configured');
+    const product = PRODUCTS_BY_SIZE[size].find(p => p.id === id);
+    if (!product) return alert('Product not found');
+
+    const variant = product.variants.find(v => v.title.toLowerCase().includes(size.toLowerCase())) || product.variants[0];
+    if (!variant || variant.available === false) {
+      alert(`Sorry, "${product.title}" (${size}) is currently out of stock. Please choose an in-stock fragrance.`);
+      return;
+    }
+
+    const isDesktopView = typeof isDesktop === 'function' ? isDesktop() : window.innerWidth >= 768;
+
+    // Add to current slot
+    bundle[currentSlot] = {
+      variantId: variant.id,
+      title: product.title,
+      sku: variant.sku,
+      image: product.image,
+      price: variant.price,
+      available: variant.available
+    };
+    if (!hasAddedFirstProduct) {
+      hasAddedFirstProduct = true;
+    }
+
+    updateUI();
+
+    // Check for next empty slot
+    const nextEmptyIndex = bundle.findIndex(item => item === null);
+
+    if (nextEmptyIndex !== -1) {
+      if (isDesktopView) {
+        currentSlot = nextEmptyIndex;
+        setTimeout(() => openSelector(nextEmptyIndex), 100);
+      } else {
+        closeSelector();
+      }
+    } else {
+      bundleCompleted = true;
+      setTimeout(() => closeSelector(), 100);
+    }
+  }
+
+  function removeItem(index) {
+    bundle[index] = null;
+    updateUI();
+  }
+
+  function updateUI() {
+    const count = bundle.filter(x => x).length;
+
+    // Update slots
+    bundle.forEach((item, i) => {
+      const el = document.querySelector(`.slot-item[data-index="${i}"]`);
+      if (!el) return;
+      if (item) {
+        el.classList.remove('empty');
+        el.innerHTML = `
+          <div class="slot-filled-content">
+            <div class="slot-img"><img src="${item.image}" alt=""></div>
+            <div class="slot-info">
+              <h4>${item.title}</h4>
+            </div>
+            <button class="remove-item" onclick="event.stopPropagation(); removeItem(${i})">×</button>
+          </div>
+        `;
+      } else {
+        el.classList.add('empty');
+        el.innerHTML = `
+          <div class="slot-placeholder-icon">+</div>
+          <div class="slot-placeholder-text">
+            <span class="primary">Select a product</span>
+            <span class="unlock"> ${3 - i} Selections Remaining</span>
+          </div>
+        `;
+      }
+    });
+
+    const totalDisplay = document.getElementById('TotalDisplay');
+    const mainBtn = document.getElementById('MainActionBtn');
+
+    if (mainBtn) {
+      mainBtn.disabled = count !== 3;
+    }
+
+    if (count === 3 && activeSize) {
+      const pricing = PRICING[activeSize];
+      if (pricing && totalDisplay) {
+        totalDisplay.innerText = `$ ${pricing.total}`;
+        totalDisplay.style.visibility = 'visible';
+      }
+      const savingEl = document.querySelector('.savings-row .saving');
+      if (savingEl && pricing) savingEl.innerText = `$ ${pricing.standard}`;
+      const saveSpan = document.querySelector('.save-row span');
+      if (saveSpan && pricing) saveSpan.innerText = `$ ${pricing.saving}`;
+    } else if (totalDisplay) {
+      totalDisplay.innerText = '';
+      totalDisplay.style.visibility = 'hidden';
+    }
+
+    const statusText = count < 3 ? `Add ${3 - count} more items to complete your signature trio set` : `Your signature trio set is complete!`;
+    const bundleStatusText = document.getElementById('BundleStatusText');
+    if (bundleStatusText) bundleStatusText.innerText = statusText;
+
+    // Update progress markers
+    document.querySelectorAll('.progress-marker, .progress-label').forEach(el => el.classList.remove('active'));
+    for (let i = 0; i < count; i++) {
+      const marker = document.getElementById(`Marker-${i}`);
+      if (marker) marker.classList.add('active');
+    }
+    const label1 = document.getElementById('Label-1');
+    if (label1) {
+      if (count >= 1) label1.classList.add('active');
+    }
+    const label2 = document.getElementById('Label-2');
+    if (label2) {
+      if (count >= 2) label2.classList.add('active');
+    }
+    const label3 = document.getElementById('Label-3');
+    if (label3) {
+      if (count >= 3) label3.classList.add('active');
+    }
+  }
+
+  const TRIO_SET_VARIANT = {
+    "50ml": 57083186086233,
+    "100ml": 57083186119001
+  };
+
+  async function handleCheckout() {
+    const btn = document.getElementById('MainActionBtn');
+    if (!btn) return;
+    const priceSpan = btn.querySelector('span:nth-child(2)');
+
+    if (window.isProcessingCartAction) {
+      console.warn('Cart action already in progress');
+      return;
+    }
+
+    if (!activeSize) {
+      alert('Please select a size first.');
+      return;
+    }
+
+    const variantId = TRIO_SET_VARIANT && TRIO_SET_VARIANT[activeSize] ? TRIO_SET_VARIANT[activeSize] : null;
+
+    window.isProcessingCartAction = true;
+    btn.disabled = true;
+    if (priceSpan) priceSpan.innerText = "Adding...";
+
+    const properties = {};
+    bundle.forEach((item, index) => {
+      if (!item) return;
+      properties[`Product ${index + 1}`] = item.title;
+      if (item.sku) properties[`SKU ${index + 1}`] = item.sku;
+      properties[`Variant ID ${index + 1}`] = item.variantId;
+    });
+
+    const itemsToAdd = bundle.filter(x => x).map((item, index) => ({
+      id: item.variantId,
+      quantity: 1,
+      properties: {
+        '_bundle': 'Trio Set',
+        'Size': activeSize,
+        'Bundle Slot': `Selection ${index + 1} of 3`
+      }
+    }));
+
+    try {
+      let response = null;
+      if (variantId) {
+        try {
+          response = await fetch('/cart/add.js', {
+            method: 'POST',
+            headers: { 
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+              id: variantId,
+              quantity: 1,
+              properties: properties
+            })
+          });
+        } catch (e) {
+          response = null;
+        }
+      }
+
+      if (!response || !response.ok) {
+        response = await fetch('/cart/add.js', {
+          method: 'POST',
+          headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            items: itemsToAdd
+          })
+        });
+      }
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.description || errorData.message || 'Add to cart failed');
+      }
+
+      console.log('Trio set added successfully');
+
+      bundle = bundle.map(() => null);
+      activeSize = null;
+      activeBrand = null;
+
+      if (typeof updateUI === 'function') updateUI();
+
+      openSelector(0);
+
+      btn.disabled = false;
+      if (priceSpan) priceSpan.innerText = "ADDED!";
+
+      const cartResponse = await fetch('/cart.js');
+      if (cartResponse.ok) {
+        const cart = await cartResponse.json();
+        if (typeof updateDossierCartUI === 'function') updateDossierCartUI(cart);
+        if (typeof openDossierCart === 'function') openDossierCart();
+      }
+
+      setTimeout(() => {
+        if (priceSpan) priceSpan.innerText = '$44.99';
+        window.isProcessingCartAction = false;
+      }, 2000);
+
+    } catch (err) {
+      console.error('Add to cart error:', err);
+      alert(err.message || 'Error adding Trio set to cart. Please try again.');
+      btn.disabled = false;
+      if (priceSpan) priceSpan.innerText = activeSize === '50ml' ? '$44.99' : '$79.99';
+      window.isProcessingCartAction = false;
+    }
+  }
+
+
+
+</script>
+
+{% schema %}
+{
+  "name": "Trio",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Trio"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,548 @@
+{% doc %}
+  @prompt
+    create coming soon section
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-coming-soon-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    padding: 60px 20px;
+    background-color: {{ block.settings.background_color }};
+    text-align: center;
+  }
+
+  .ai-coming-soon-container-{{ ai_gen_id }} {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .ai-coming-soon-heading-{{ ai_gen_id }} {
+    font-size: {{ block.settings.heading_size }}px;
+    color: {{ block.settings.text_color }};
+    margin: 0 0 16px;
+    font-weight: 600;
+  }
+
+  .ai-coming-soon-subheading-{{ ai_gen_id }} {
+    font-size: {{ block.settings.subheading_size }}px;
+    color: {{ block.settings.text_color }};
+    margin: 0 0 40px;
+    opacity: 0.8;
+  }
+
+  .ai-coming-soon-countdown-{{ ai_gen_id }} {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+
+  .ai-coming-soon-countdown-item-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 80px;
+  }
+
+  .ai-coming-soon-countdown-number-{{ ai_gen_id }} {
+    font-size: {{ block.settings.countdown_number_size }}px;
+    font-weight: 700;
+    color: {{ block.settings.countdown_color }};
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .ai-coming-soon-countdown-label-{{ ai_gen_id }} {
+    font-size: {{ block.settings.countdown_label_size }}px;
+    color: {{ block.settings.text_color }};
+    opacity: 0.7;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .ai-coming-soon-form-wrapper-{{ ai_gen_id }} {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .ai-coming-soon-form-heading-{{ ai_gen_id }} {
+    font-size: {{ block.settings.form_heading_size }}px;
+    color: {{ block.settings.text_color }};
+    margin: 0 0 16px;
+    font-weight: 500;
+  }
+
+  .ai-coming-soon-form-field-{{ ai_gen_id }} {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .ai-coming-soon-input-{{ ai_gen_id }} {
+    flex: 1;
+    padding: 14px 16px;
+    border: 1px solid {{ block.settings.input_border_color }};
+    border-radius: {{ block.settings.input_border_radius }}px;
+    font-size: 16px;
+    background-color: {{ block.settings.input_background_color }};
+    color: {{ block.settings.text_color }};
+  }
+
+  .ai-coming-soon-input-{{ ai_gen_id }}::placeholder {
+    color: {{ block.settings.text_color }};
+    opacity: 0.5;
+  }
+
+  .ai-coming-soon-button-{{ ai_gen_id }} {
+    padding: 14px 32px;
+    background-color: {{ block.settings.button_color }};
+    color: {{ block.settings.button_text_color }};
+    border: none;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .ai-coming-soon-button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_color }};
+  }
+
+  .ai-coming-soon-message-{{ ai_gen_id }} {
+    margin-top: 12px;
+    font-size: 14px;
+  }
+
+  .ai-coming-soon-success-{{ ai_gen_id }} {
+    color: {{ block.settings.success_color }};
+  }
+
+  .ai-coming-soon-error-{{ ai_gen_id }} {
+    color: {{ block.settings.error_color }};
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-coming-soon-{{ ai_gen_id }} {
+      padding: 40px 16px;
+    }
+
+    .ai-coming-soon-heading-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.heading_size }}px * 0.7);
+    }
+
+    .ai-coming-soon-subheading-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.subheading_size }}px * 0.85);
+    }
+
+    .ai-coming-soon-countdown-{{ ai_gen_id }} {
+      gap: 16px;
+    }
+
+    .ai-coming-soon-countdown-item-{{ ai_gen_id }} {
+      min-width: 60px;
+    }
+
+    .ai-coming-soon-countdown-number-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.countdown_number_size }}px * 0.7);
+    }
+
+    .ai-coming-soon-form-field-{{ ai_gen_id }} {
+      flex-direction: column;
+    }
+
+    .ai-coming-soon-button-{{ ai_gen_id }} {
+      width: 100%;
+    }
+  }
+{% endstyle %}
+
+<coming-soon-{{ ai_gen_id }} class="ai-coming-soon-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-coming-soon-container-{{ ai_gen_id }}">
+    {% if block.settings.heading != blank %}
+      <h2 class="ai-coming-soon-heading-{{ ai_gen_id }}">{{ block.settings.heading }}</h2>
+    {% endif %}
+
+    {% if block.settings.subheading != blank %}
+      <p class="ai-coming-soon-subheading-{{ ai_gen_id }}">{{ block.settings.subheading }}</p>
+    {% endif %}
+
+    {% if block.settings.show_countdown %}
+      <div class="ai-coming-soon-countdown-{{ ai_gen_id }}" data-countdown-target="{{ block.settings.launch_date }}">
+        <div class="ai-coming-soon-countdown-item-{{ ai_gen_id }}">
+          <div class="ai-coming-soon-countdown-number-{{ ai_gen_id }}" data-days>0</div>
+          <div class="ai-coming-soon-countdown-label-{{ ai_gen_id }}">Days</div>
+        </div>
+        <div class="ai-coming-soon-countdown-item-{{ ai_gen_id }}">
+          <div class="ai-coming-soon-countdown-number-{{ ai_gen_id }}" data-hours>0</div>
+          <div class="ai-coming-soon-countdown-label-{{ ai_gen_id }}">Hours</div>
+        </div>
+        <div class="ai-coming-soon-countdown-item-{{ ai_gen_id }}">
+          <div class="ai-coming-soon-countdown-number-{{ ai_gen_id }}" data-minutes>0</div>
+          <div class="ai-coming-soon-countdown-label-{{ ai_gen_id }}">Minutes</div>
+        </div>
+        <div class="ai-coming-soon-countdown-item-{{ ai_gen_id }}">
+          <div class="ai-coming-soon-countdown-number-{{ ai_gen_id }}" data-seconds>0</div>
+          <div class="ai-coming-soon-countdown-label-{{ ai_gen_id }}">Seconds</div>
+        </div>
+      </div>
+    {% endif %}
+
+    {% if block.settings.show_email_signup %}
+      <div class="ai-coming-soon-form-wrapper-{{ ai_gen_id }}">
+        {% if block.settings.form_heading != blank %}
+          <h3 class="ai-coming-soon-form-heading-{{ ai_gen_id }}">{{ block.settings.form_heading }}</h3>
+        {% endif %}
+
+        {%- form 'contact' -%}
+          <input type="hidden" name="contact[tags]" value="coming-soon-signup">
+          
+          <div class="ai-coming-soon-form-field-{{ ai_gen_id }}">
+            <input
+              type="email"
+              name="contact[email]"
+              class="ai-coming-soon-input-{{ ai_gen_id }}"
+              value="{{ form.email }}"
+              aria-required="true"
+              autocorrect="off"
+              autocapitalize="off"
+              autocomplete="email"
+              {% if form.errors %}
+                aria-invalid="true"
+                aria-describedby="ai-coming-soon-error-{{ ai_gen_id }}"
+              {% endif %}
+              {% if form.posted_successfully? %}
+                aria-describedby="ai-coming-soon-success-{{ ai_gen_id }}"
+              {% endif %}
+              placeholder="{{ block.settings.email_placeholder }}"
+              required
+            >
+            <button type="submit" class="ai-coming-soon-button-{{ ai_gen_id }}">
+              {{ block.settings.button_text }}
+            </button>
+          </div>
+
+          <div class="ai-coming-soon-message-{{ ai_gen_id }}">
+            {%- if form.errors -%}
+              <div id="ai-coming-soon-error-{{ ai_gen_id }}" class="ai-coming-soon-error-{{ ai_gen_id }}">
+                {{ form.errors.messages.email }}
+              </div>
+            {%- endif -%}
+            
+            {%- if form.posted_successfully? -%}
+              <div id="ai-coming-soon-success-{{ ai_gen_id }}" class="ai-coming-soon-success-{{ ai_gen_id }}">
+                {{ block.settings.success_message }}
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endform -%}
+      </div>
+    {% endif %}
+  </div>
+</coming-soon-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class ComingSoon{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.countdownElement = this.querySelector('[data-countdown-target]');
+        this.targetDate = null;
+        this.interval = null;
+      }
+
+      connectedCallback() {
+        if (this.countdownElement) {
+          const targetDateString = this.countdownElement.getAttribute('data-countdown-target');
+          if (targetDateString) {
+            this.targetDate = new Date(targetDateString).getTime();
+            this.startCountdown();
+          }
+        }
+      }
+
+      disconnectedCallback() {
+        if (this.interval) {
+          clearInterval(this.interval);
+        }
+      }
+
+      startCountdown() {
+        this.updateCountdown();
+        this.interval = setInterval(() => {
+          this.updateCountdown();
+        }, 1000);
+      }
+
+      updateCountdown() {
+        const now = new Date().getTime();
+        const distance = this.targetDate - now;
+
+        if (distance < 0) {
+          if (this.interval) {
+            clearInterval(this.interval);
+          }
+          this.setCountdownValues(0, 0, 0, 0);
+          return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        this.setCountdownValues(days, hours, minutes, seconds);
+      }
+
+      setCountdownValues(days, hours, minutes, seconds) {
+        const daysElement = this.querySelector('[data-days]');
+        const hoursElement = this.querySelector('[data-hours]');
+        const minutesElement = this.querySelector('[data-minutes]');
+        const secondsElement = this.querySelector('[data-seconds]');
+
+        if (daysElement) daysElement.textContent = days;
+        if (hoursElement) hoursElement.textContent = hours;
+        if (minutesElement) minutesElement.textContent = minutes;
+        if (secondsElement) secondsElement.textContent = seconds;
+      }
+    }
+
+    customElements.define('coming-soon-{{ ai_gen_id }}', ComingSoon{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Coming soon",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Coming Soon"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Something amazing is on the way"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "header",
+      "content": "Countdown timer"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_countdown",
+      "label": "Show countdown",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "launch_date",
+      "label": "Launch date and time",
+      "info": "Format: YYYY-MM-DD HH:MM (24-hour format, e.g., 2026-02-15 14:30)"
+    },
+    {
+      "type": "color",
+      "id": "countdown_color",
+      "label": "Countdown color",
+      "default": "#121212"
+    },
+    {
+      "type": "range",
+      "id": "countdown_number_size",
+      "label": "Number size",
+      "min": 24,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "countdown_label_size",
+      "label": "Label size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Email signup"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_email_signup",
+      "label": "Show email signup",
+      "default": true
+    },
+    {
+      "type": "inline_richtext",
+      "id": "form_heading",
+      "label": "Form heading",
+      "default": "Get notified when we launch"
+    },
+    {
+      "type": "text",
+      "id": "email_placeholder",
+      "label": "Email placeholder",
+      "default": "Enter your email"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Notify me"
+    },
+    {
+      "type": "text",
+      "id": "success_message",
+      "label": "Success message",
+      "default": "Thanks! We'll notify you when we launch."
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button background",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_color",
+      "label": "Button hover background",
+      "default": "#242833"
+    },
+    {
+      "type": "color",
+      "id": "input_background_color",
+      "label": "Input background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "input_border_color",
+      "label": "Input border",
+      "default": "#cccccc"
+    },
+    {
+      "type": "color",
+      "id": "success_color",
+      "label": "Success message",
+      "default": "#008060"
+    },
+    {
+      "type": "color",
+      "id": "error_color",
+      "label": "Error message",
+      "default": "#D82C0D"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 24,
+      "max": 72,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "subheading_size",
+      "label": "Subheading size",
+      "min": 14,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "form_heading_size",
+      "label": "Form heading size",
+      "min": 16,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "range",
+      "id": "input_border_radius",
+      "label": "Input border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Button border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Coming soon"
+    }
+  ]
+}
+{% endschema %}
