@@ -582,7 +582,7 @@
       </div>
     </div>
   </div>
-{% assign discovery_parent = all_products['discovery-set'] | default: all_products['discovery-set-5ml'] %}
+{% assign discovery_parent = section.settings.bundle_product | default: all_products['discovery-set'] | default: all_products['discovery-set-5ml'] %}
 {% assign disc_variant_id = 57083186217305 %}
 {% if cart.currency.iso_code == 'USD' or shop.currency == 'USD' %}
   {% assign disc_variant_id = 45733851955383 %}
@@ -1018,7 +1018,14 @@
 {% schema %}
 {
   "name": "Discovery",
-  "settings": [],
+  "settings": [
+    {
+      "type": "product",
+      "id": "bundle_product",
+      "label": "Bundle Parent Product (Optional Override)",
+      "info": "Leave empty to automatically resolve by product handle ('discovery-set') and currency."
+    }
+  ],
   "presets": [
     {
       "name": "Discovery"

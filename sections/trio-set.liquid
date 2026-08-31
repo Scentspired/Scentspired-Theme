@@ -610,7 +610,7 @@
   </div>
 </div>
 
-{% assign trio_parent = all_products['the-signature-trio'] %}
+{% assign trio_parent = section.settings.bundle_product | default: all_products['the-signature-trio'] %}
 {% assign trio_50 = 57083186086233 %}
 {% assign trio_100 = 57083186119001 %}
 {% assign trio_price_50 = 39.99 %}
@@ -1138,7 +1138,14 @@ const PRICING = {
 {% schema %}
 {
   "name": "Trio",
-  "settings": [],
+  "settings": [
+    {
+      "type": "product",
+      "id": "bundle_product",
+      "label": "Bundle Parent Product (Optional Override)",
+      "info": "Leave empty to automatically resolve by product handle ('the-signature-trio') and currency."
+    }
+  ],
   "presets": [
     {
       "name": "Trio"

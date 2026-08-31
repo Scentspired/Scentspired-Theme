@@ -620,7 +620,7 @@
   </div>
 </div>
 
-{% assign fb_parent = all_products['the-five-favourites'] %}
+{% assign fb_parent = section.settings.bundle_product | default: all_products['the-five-favourites'] %}
 {% assign fb_50 = 57083185922393 %}
 {% assign fb_100 = 57083185955161 %}
 {% assign fb_price_50 = 64.99 %}
@@ -1139,7 +1139,14 @@ variants: [
 {% schema %}
 {
   "name": "Five Box",
-  "settings": [],
+  "settings": [
+    {
+      "type": "product",
+      "id": "bundle_product",
+      "label": "Bundle Parent Product (Optional Override)",
+      "info": "Leave empty to automatically resolve by product handle ('the-five-favourites') and currency."
+    }
+  ],
   "presets": [
     {
       "name": "Five Box"
