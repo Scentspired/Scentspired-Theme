@@ -88,6 +88,8 @@
       <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
 
+    {% render "scentspired-telemetry" %}
+
     {{ content_for_header }}
 
     {%- liquid

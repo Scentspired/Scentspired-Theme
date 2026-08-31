@@ -1,3 +1,18 @@
+<!-- iOS WebKit Native Bridge Shield (Prevents window.webkit.messageHandlers runtime exceptions) -->
+<script>
+  (function () {
+    try {
+      if (typeof window !== 'undefined') {
+        if (!window.webkit) {
+          window.webkit = { messageHandlers: {} };
+        } else if (!window.webkit.messageHandlers) {
+          window.webkit.messageHandlers = {};
+        }
+      }
+    } catch (_) {}
+  })();
+</script>
+
 <!-- Sentry.io Enterprise Observability Loader -->
 <script src="https://js.sentry-cdn.com/314455254b3e53ad0250625ccba3fd29.min.js" crossorigin="anonymous"></script>
 

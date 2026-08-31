@@ -101,18 +101,71 @@
     }
   }
 
-  // Helper: Dispatch telemetry beacon to remote endpoint & analytics
-  function dispatchTelemetry(payload) {
-    persistLog(payload);
+  // iOS WebKit MessageHandler Native Bridge Guard (Shields iOS Safari & WKWebView wrappers)
+  try {
+    if (typeof window !== "undefined") {
+      if (!window.webkit) {
+        window.webkit = { messageHandlers: {} };
+      } else if (!window.webkit.messageHandlers) {
+        window.webkit.messageHandlers = {};
+      }
+    }
+  } catch (_) {}
 
-    // 1. Forward to Microsoft Clarity Custom Event & Tags
+  // Helper: Print full, unredacted diagnostic report in browser console
+  function logRichDiagnostic(payload, rawError) {
+    if (typeof console !== "undefined" && console.group) {
+      console.group(
+        `%c🚨 [SCENTSPIRED CRASH SENTINEL] ${payload.type}: ${payload.message}`,
+        "background: #8b0000; color: #ffffff; font-weight: bold; font-size: 12px; padding: 4px 8px; border-radius: 4px;"
+      );
+      console.log("%c📍 Incident URL:", "font-weight: bold; color: #ff5555;", payload.url);
+      if (payload.source) {
+        console.log(
+          "%c📄 Source Location:",
+          "font-weight: bold; color: #ffaa00;",
+          `${payload.source}:${payload.lineno || 0}:${payload.colno || 0}`
+        );
+      }
+      if (payload.stack) {
+        console.log(
+          "%c🥞 Full Stack Trace:\n",
+          "font-weight: bold; color: #55aaff;",
+          payload.stack
+        );
+      }
+      if (rawError) {
+        console.log("%c🔍 Raw Error Object:", "font-weight: bold; color: #bb88ff;", rawError);
+      }
+      console.log("%c🛒 Store Context:", "font-weight: bold; color: #55ff55;", payload.shopContext);
+      console.log(
+        "%c👣 Customer Breadcrumbs (Last 10 Actions):",
+        "font-weight: bold; color: #ffcc00;",
+        payload.breadcrumbs ? payload.breadcrumbs.slice(-10) : []
+      );
+      console.groupEnd();
+    }
+  }
+
+  // Helper: Dispatch telemetry beacon to remote endpoint & analytics
+  function dispatchTelemetry(payload, rawError) {
+    persistLog(payload);
+    logRichDiagnostic(payload, rawError);
+
+    // 1. Forward to Microsoft Clarity Custom Event & Full Diagnostic Tag
     if (typeof window.clarity === "function") {
       try {
         window.clarity("set", "last_error_type", payload.type);
         window.clarity("set", "last_error_msg", (payload.message || "").substring(0, 255));
+        window.clarity(
+          "set",
+          "last_error_stack",
+          (payload.stack || payload.source || "").substring(0, 255)
+        );
         window.clarity("event", "scentspired_crash", {
           type: payload.type,
           message: (payload.message || "").substring(0, 100),
+          source: (payload.source || "").substring(0, 100),
         });
       } catch (e) {}
     }
@@ -121,26 +174,34 @@
     if (typeof window.gtag === "function") {
       try {
         window.gtag("event", "exception", {
-          description: payload.message,
+          description: `${payload.type}: ${payload.message} (${payload.source || ""})`,
           fatal: payload.type === "UNHANDLED_EXCEPTION",
         });
       } catch (e) {}
     }
 
-    // 3. Forward to Sentry.io Enterprise Cloud
-    if (typeof window.Sentry !== "undefined" && window.Sentry.captureMessage) {
+    // 3. Forward to Sentry.io Enterprise Cloud (Full Stack & Scoped Context)
+    if (typeof window.Sentry !== "undefined") {
       try {
         window.Sentry.withScope(scope => {
           scope.setTag("crash_type", payload.type);
+          scope.setTag("incident_url", payload.url);
           scope.setExtra("breadcrumbs", payload.breadcrumbs);
           scope.setExtra("shopContext", payload.shopContext);
           scope.setExtra("sessionId", payload.sessionId);
-          window.Sentry.captureMessage(`[Guardian] ${payload.type}: ${payload.message}`);
+          scope.setExtra("stackTrace", payload.stack);
+          scope.setExtra("sourceLocation", `${payload.source}:${payload.lineno}:${payload.colno}`);
+
+          if (rawError && (rawError instanceof Error || rawError.stack)) {
+            window.Sentry.captureException(rawError);
+          } else {
+            window.Sentry.captureMessage(`[Guardian] ${payload.type}: ${payload.message}`);
+          }
         });
       } catch (e) {}
     }
 
-    // 3. Remote Webhook / Logger Dispatch (if endpoint configured)
+    // 4. Remote Webhook / Logger Dispatch (if endpoint configured)
     if (CONFIG.endpoint) {
       try {
         const body = JSON.stringify(payload);
@@ -157,25 +218,12 @@
       } catch (e) {}
     }
 
-    /*
-    // Optional: WhatsApp Alert Dispatch (Commented out)
-    if (window.__SCENTSPIRED_WHATSAPP_CONFIG__ && window.__SCENTSPIRED_WHATSAPP_CONFIG__.apikey && (window.__SCENTSPIRED_WHATSAPP_CONFIG__.phone || window.__SCENTSPIRED_WHATSAPP_CONFIG__.group)) {
-      try {
-        const apikey = window.__SCENTSPIRED_WHATSAPP_CONFIG__.apikey;
-        const msg = `🚨 *SCENTSPIRED STORE ALERT*%0A• *Type:* ${payload.type}%0A• *Error:* ${encodeURIComponent((payload.message || '').substring(0, 120))}%0A• *Page:* ${encodeURIComponent(payload.pathname || '/')}%0A• *Cart:* $${((payload.shopContext && payload.shopContext.cartItemCount) || 0)} items%0A• *Device:* ${encodeURIComponent(navigator.userAgent.substring(0, 50))}`;
-        let waUrl = window.__SCENTSPIRED_WHATSAPP_CONFIG__.group ? `https://api.callmebot.com/whatsapp.php?group=${encodeURIComponent(window.__SCENTSPIRED_WHATSAPP_CONFIG__.group)}&text=${msg}&apikey=${apikey}` : `https://api.callmebot.com/whatsapp.php?phone=${window.__SCENTSPIRED_WHATSAPP_CONFIG__.phone}&text=${msg}&apikey=${apikey}`;
-        const img = new Image();
-        img.src = waUrl;
-      } catch (e) {}
-    }
-    */
-
-    // ── Primary Remote Dispatch: GitHub Issues Auto-Filer ──────────────────
+    // 5. Primary Remote Dispatch: GitHub Issues Auto-Filer
     if (window.__SCENTSPIRED_GITHUB_CONFIG__ && window.__SCENTSPIRED_GITHUB_CONFIG__.endpoint) {
       try {
         const ghPayload = {
           title: `🚨 [Live Telemetry] ${payload.type}: ${(payload.message || "").substring(0, 80)}`,
-          body: `### Real-Time Live Session Crash Report\n\n| Attribute | Value |\n| :--- | :--- |\n| **Session ID** | \`${payload.sessionId}\` |\n| **Type** | \`${payload.type}\` |\n| **URL** | \`${payload.url}\` |\n| **Cart Items** | ${payload.shopContext ? payload.shopContext.cartItemCount : 0} |\n| **User Agent** | \`${payload.userAgent}\` |\n\n#### Error Details\n\`\`\`\n${payload.message}\n${payload.stack || ""}\n\`\`\`\n\n#### Customer Breadcrumbs (Last 10 Actions)\n\`\`\`json\n${JSON.stringify((payload.breadcrumbs || []).slice(-10), null, 2)}\n\`\`\``,
+          body: `### Real-Time Live Session Crash Report\n\n| Attribute | Value |\n| :--- | :--- |\n| **Session ID** | \`${payload.sessionId}\` |\n| **Type** | \`${payload.type}\` |\n| **URL** | \`${payload.url}\` |\n| **Source** | \`${payload.source}:${payload.lineno || 0}:${payload.colno || 0}\` |\n| **Cart Items** | ${payload.shopContext ? payload.shopContext.cartItemCount : 0} |\n| **User Agent** | \`${payload.userAgent}\` |\n\n#### Full Stack Trace\n\`\`\`\n${payload.stack || payload.message || "No stack trace available"}\n\`\`\`\n\n#### Customer Breadcrumbs (Last 10 Actions)\n\`\`\`json\n${JSON.stringify((payload.breadcrumbs || []).slice(-10), null, 2)}\n\`\`\``,
           labels: ["bug", "live-telemetry", "priority-high"],
         };
         fetch(window.__SCENTSPIRED_GITHUB_CONFIG__.endpoint, {
@@ -194,7 +242,7 @@
   // Helper: Check if error originates from noisy third-party tracking/app scripts or OS WebView bridges
   function isThirdPartyAppNoise(msg, filename) {
     const text = String(msg || "") + " " + String(filename || "");
-    return /fwcdn3|firework|facebook\.net|doubleclick|clarity\.ms|google-analytics|googletagmanager|azurefd|linktr\.ee|monorail|shop_events_listener|ResizeObserver|Script error\.|Importing a module script failed|Failed to fetch|java object is gone|postmessage|_autofillCallbackHandler|autofillcallbackhandler/i.test(
+    return /fwcdn3|firework|facebook\.net|doubleclick|clarity\.ms|google-analytics|googletagmanager|azurefd|linktr\.ee|monorail|shop_events_listener|ResizeObserver|Script error\.|Importing a module script failed|Failed to fetch|java object is gone|postmessage|_autofillCallbackHandler|autofillcallbackhandler|messageHandlers/i.test(
       text
     );
   }
@@ -211,8 +259,7 @@
       colno: event.colno,
       stack: event.error ? event.error.stack : null,
     });
-    console.error("[Scentspired Guardian Telemetry] Trapped Error:", payload);
-    dispatchTelemetry(payload);
+    dispatchTelemetry(payload, event.error);
   });
 
   // ── 2. Unhandled Promise Rejection Handler ──────────────────────────────────
@@ -226,8 +273,7 @@
       message: msg,
       stack: reason && reason.stack ? reason.stack : null,
     });
-    console.error("[Scentspired Guardian Telemetry] Trapped Promise Rejection:", payload);
-    dispatchTelemetry(payload);
+    dispatchTelemetry(payload, reason);
   });
 
   // ── 3. Shopify Network Fetch Interception ───────────────────────────────────
@@ -309,12 +355,15 @@
             .text()
             .then(bodyText => {
               const payload = buildErrorPayload("COMMERCE_NETWORK_ERROR", {
-                message: `HTTP ${response.status} on ${url}: ${bodyText.substring(0, 300)}`,
+                message: `Shopify HTTP ${response.status} on ${url}: ${bodyText}`,
                 source: url,
                 status: response.status,
                 durationMs: duration,
               });
-              dispatchTelemetry(payload);
+              dispatchTelemetry(
+                payload,
+                new Error(`Shopify HTTP ${response.status} on ${url}: ${bodyText}`)
+              );
             })
             .catch(() => {});
         } else if (duration > 3500 && isShopifyCartRoute) {
@@ -332,7 +381,7 @@
             source: url,
             durationMs: duration,
           });
-          dispatchTelemetry(payload);
+          dispatchTelemetry(payload, networkError);
         }
         throw networkError;
       }
