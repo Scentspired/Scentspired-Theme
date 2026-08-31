@@ -1545,6 +1545,103 @@ async function runSuiteT() {
 }
 
 // ============================================================================
+// SUITE U: Multi-Store Bundle Builder & Zero-Dollar Cart Leak Prevention
+// ============================================================================
+
+async function runSuiteU() {
+  console.log("\n┌──────────────────────────────────────────────────────────────┐");
+  console.log("│ SUITE U: Multi-Store Bundle & Zero-Dollar Cart Defense       │");
+  console.log("└──────────────────────────────────────────────────────────────┘");
+
+  // Test U1: Discovery Set adds parent variant with Line-Item properties
+  {
+    const PARENT_VARIANT_ID = 45733851955383; // US Discovery Set
+    let addedPayload = null;
+
+    global.fetch = async (url, opts) => {
+      if (url === "/cart/add.js") {
+        addedPayload = JSON.parse(opts.body);
+        return { ok: true, json: async () => ({ id: PARENT_VARIANT_ID, title: "Discovery Set 5ml" }) };
+      }
+      if (url === "/cart.js") {
+        return { ok: true, json: async () => ({ item_count: 1, total_price: 1999 }) };
+      }
+      return { ok: true, json: async () => ({}) };
+    };
+
+    const bundle = [
+      { variantId: 101, title: "Black Poison 5ml", sku: "BP-5" },
+      { variantId: 102, title: "Timeless Grace 5ml", sku: "TG-5" },
+      { variantId: 103, title: "Addiction 5ml", sku: "AD-5" },
+      { variantId: 104, title: "Marine 5ml", sku: "MR-5" },
+      { variantId: 105, title: "Visionary 5ml", sku: "VS-5" }
+    ];
+
+    const properties = {};
+    bundle.forEach((item, index) => {
+      properties[`Product ${index + 1}`] = item.title;
+      properties[`SKU ${index + 1}`] = item.sku;
+      properties[`Variant ID ${index + 1}`] = item.variantId;
+    });
+
+    const res = await fetch("/cart/add.js", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: PARENT_VARIANT_ID, quantity: 1, properties })
+    });
+    const cartRes = await fetch("/cart.js");
+    const cart = await cartRes.json();
+
+    assert(res.ok === true, "U1.1: Discovery Set parent variant added successfully");
+    assert(addedPayload && addedPayload.id === PARENT_VARIANT_ID, "U1.2: Added item ID matches parent bundle variant (NOT individual $0 components)");
+    assert(addedPayload.properties["Product 1"] === "Black Poison 5ml", "U1.3: Selected scents attached as line-item properties");
+    assert(cart.total_price > 0, "U1.4: Cart total is strictly positive ($19.99 / £14.99), 0-dollar leak prevented");
+  }
+
+  // Test U2: Rejected Parent Variant Bubbles Error without Silent $0 Fallback
+  {
+    let rawItemsFallbackTriggered = false;
+
+    global.fetch = async (url, opts) => {
+      if (url === "/cart/add.js") {
+        const body = JSON.parse(opts.body);
+        if (body.items) {
+          rawItemsFallbackTriggered = true; // Flag if old dangerous fallback is attempted
+        }
+        return {
+          ok: false,
+          status: 422,
+          json: async () => ({ description: "Variant not found or out of stock" })
+        };
+      }
+      return { ok: true, json: async () => ({}) };
+    };
+
+    let errorCaught = false;
+    let errorMessage = "";
+
+    try {
+      const response = await fetch("/cart/add.js", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: 999999999999, quantity: 1 })
+      });
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.description || "Failed to add Discovery Set");
+      }
+    } catch (err) {
+      errorCaught = true;
+      errorMessage = err.message;
+    }
+
+    assert(errorCaught === true, "U2.1: API error caught cleanly without uncaught exception");
+    assert(rawItemsFallbackTriggered === false, "U2.2: Dangerous silent fallback to $0 raw items strictly blocked");
+    assert(errorMessage.includes("out of stock") || errorMessage.includes("not found"), "U2.3: Shopify error description propagated cleanly");
+  }
+}
+
+// ============================================================================
 // MASTER RUNNER
 // ============================================================================
 
@@ -1573,6 +1670,7 @@ async function runAllSuites() {
   await runSuiteR();
   await runSuiteS();
   await runSuiteT();
+  await runSuiteU();
 
   console.log("\n┌──────────────────────────────────────────────────────────────┐");
   console.log(

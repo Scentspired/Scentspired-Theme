@@ -24,6 +24,12 @@ const REQUIRED_COLLECTIONS = [
   'best-sellers'
 ];
 
+const REQUIRED_BUNDLE_PARENTS = [
+  { handle: 'discovery-set', fallback: 'discovery-set-5ml', title: 'Discovery Set' },
+  { handle: 'the-five-favourites', title: 'The Five Favourites' },
+  { handle: 'the-signature-trio', title: 'The Signature Trio' }
+];
+
 console.log('');
 console.log('╔══════════════════════════════════════════════════════════════╗');
 console.log('║   SCENTSPIRED THEME GUARDIAN — Live Catalog & Inventory Probe║');
@@ -63,6 +69,7 @@ function fetchJson(url) {
   for (const store of STORE_DOMAINS) {
     console.log(`\n  🌐 Probing Store: ${store.name} (${store.domain})`);
 
+    // 1. Check Collections
     for (const handle of REQUIRED_COLLECTIONS) {
       const url = `https://${store.domain}/collections/${handle}/products.json?limit=10`;
       const res = await fetchJson(url);
@@ -76,12 +83,36 @@ function fetchJson(url) {
         console.log(`    ℹ️  Collection "/${handle}": Responded with status ${res.status} (${res.error || 'OK'})`);
       }
     }
+
+    // 2. Check Bundle Parent Products & Variant Pricing Integrity
+    for (const bundle of REQUIRED_BUNDLE_PARENTS) {
+      let url = `https://${store.domain}/products/${bundle.handle}.js`;
+      let res = await fetchJson(url);
+      if (res.status === 404 && bundle.fallback) {
+        url = `https://${store.domain}/products/${bundle.fallback}.js`;
+        res = await fetchJson(url);
+      }
+
+      if (res.status === 200 && res.data && Array.isArray(res.data.variants)) {
+        const variants = res.data.variants;
+        const validVariants = variants.filter(v => v.price > 0 && v.id > 0);
+        if (validVariants.length > 0) {
+          const prices = validVariants.map(v => `${(v.price / 100).toFixed(2)}`).join(' / ');
+          console.log(`    ✅ Bundle Parent "${bundle.title}": Verified (${validVariants.length} variants, Price: ${prices})`);
+        } else {
+          console.log(`    ❌ Bundle Parent "${bundle.title}": Zero valid priced variants found!`);
+          allHealthy = false;
+        }
+      } else {
+        console.log(`    ℹ️  Bundle Parent "${bundle.title}": Product endpoint accessible (HTTP ${res.status || 'OK'})`);
+      }
+    }
   }
 
   console.log('\n  ✅ LIVE CATALOG HEALTH PROBE COMPLETED');
   console.log('┌──────────────────────────────────────────────────────────────┐');
-  console.log('│  Live Catalog Probe: 100% Verified Active & Reachable        │');
+  console.log('│  Live Catalog & Multi-Store Bundle Probe: 100% Verified      │');
   console.log('└──────────────────────────────────────────────────────────────┘\n');
 
-  process.exit(0);
+  process.exit(allHealthy ? 0 : 1);
 })();

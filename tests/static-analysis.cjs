@@ -903,6 +903,56 @@ const RULE_SCANNERS = {
     }
     return violations;
   },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // RULE 16: No Hardcoded Numeric Shopify Variant IDs in JS / Scripts
+  //
+  // CATCHES: const DISCOVERY_SET_VARIANT_ID = 57083186217305;
+  //          const TRIO_SET_VARIANT = { "50ml": 57083186086233, "100ml": 57083186119001 };
+  //          id: 57083186217305,
+  //
+  // SAFE PATTERNS (not flagged):
+  //          const DISCOVERY_SET_VARIANT_ID = {{ disc_variant_id | json }};
+  //          const TRIO_SET_VARIANT = { "50ml": {{ trio_50 | json }} };
+  // ─────────────────────────────────────────────────────────────────────────
+  "no-hardcoded-shopify-variant-ids": (content, filePath, lines) => {
+    const violations = [];
+    const hardcodedIdPattern = /(?:(?:const|let|var)\s+[A-Za-z0-9_]*(?:VARIANT|PRODUCT|BUNDLE)[A-Za-z0-9_]*\s*=\s*|\b(?:id|"50ml"|"100ml"|'50ml'|'100ml')\s*:\s*)(\d{12,16})\b/;
+
+    let inScriptBlock = filePath.endsWith('.js');
+
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i];
+      if (line.includes('<script')) inScriptBlock = true;
+      if (line.includes('</script>')) inScriptBlock = false;
+
+      if (!inScriptBlock && !filePath.endsWith('.js')) continue;
+
+      // Skip comments
+      if (line.trim().startsWith('//') || line.trim().startsWith('*') || line.trim().startsWith('/*')) continue;
+      // Skip lines with Liquid tokens {{ ... }}
+      if (line.includes('{{') && line.includes('}}')) continue;
+      // Skip pure Liquid {% ... %} lines
+      if (line.trim().startsWith('{%')) continue;
+
+      const match = line.match(hardcodedIdPattern);
+      if (match) {
+        const idVal = match[1];
+        if (!isApproved(filePath, i + 1, "no-hardcoded-shopify-variant-ids")) {
+          violations.push(
+            violation(
+              filePath,
+              i + 1,
+              "no-hardcoded-shopify-variant-ids",
+              `Hardcoded Shopify Variant ID (${idVal}) detected in JavaScript. All variant IDs must be dynamically queried via Liquid (e.g. {{ variant_id | json }}) or configured via Theme Settings to avoid multi-store desyncs.`,
+              line
+            )
+          );
+        }
+      }
+    }
+    return violations;
+  },
 };
 
 // ============================================================================

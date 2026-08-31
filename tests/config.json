@@ -77,6 +77,11 @@
       "enabled": true,
       "severity": "error",
       "description": "Cart error catch blocks must propagate dynamic err.message from Shopify and not swallow with generic alerts"
+    },
+    "no-hardcoded-shopify-variant-ids": {
+      "enabled": true,
+      "severity": "error",
+      "description": "Hardcoding numeric Shopify Variant IDs (e.g. 5708... / 4573...) in JS/Liquid is prohibited. All variant IDs must be dynamically queried or configured via Theme Settings."
     }
   },
   "approvedExceptions": [
