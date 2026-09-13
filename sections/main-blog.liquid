@@ -1,5 +1,5 @@
+{{ "section-blog-typography.css" | asset_url | stylesheet_tag }}
 {{ "component-article-card.css" | asset_url | stylesheet_tag }}
-{{ "component-card.css" | asset_url | stylesheet_tag }}
 {{ "section-main-blog.css" | asset_url | stylesheet_tag }}
 
 {%- style -%}
@@ -16,29 +16,84 @@
   }
 {%- endstyle -%}
 
-{%- paginate blog.articles by 6 -%}
-  <div class="main-blog page-width section-{{ section.id }}-padding">
-    <h1 class="title--primary{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
-      {{ blog.title | escape }}
-    </h1>
+{%- assign articles_per_page = section.settings.articles_per_page | default: 9 -%}
 
-    <div class="blog-articles {% if section.settings.layout == 'collage' %}blog-articles--collage{% endif %}">
+{%- paginate blog.articles by articles_per_page -%}
+  <div class="main-blog page-width section-{{ section.id }}-padding">
+
+    {%- comment -%} Blog Header ─────────────────────────────── {%- endcomment -%}
+    <div class="main-blog__header{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+      <h1 class="main-blog__title">{{ blog.title | escape }}</h1>
+      {%- if section.settings.show_description and blog.metafields.custom.description != blank -%}
+        <p class="main-blog__description">{{ blog.metafields.custom.description }}</p>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} Category Filter Bar ────────────────────── {%- endcomment -%}
+    {%- if section.settings.show_categories -%}
+      <nav class="main-blog__categories{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}" aria-label="Blog categories">
+        <a
+          href="{{ blog.url }}"
+          class="main-blog__category-pill{% unless current_tags %} main-blog__category-pill--active{% endunless %}"
+          aria-current="{% unless current_tags %}page{% endunless %}">
+          All
+        </a>
+        {%- assign all_tags = "" -%}
+        {%- for article in blog.articles -%}
+          {%- for tag in article.tags -%}
+            {%- unless all_tags contains tag -%}
+              {%- assign all_tags = all_tags | append: tag | append: "," -%}
+            {%- endunless -%}
+          {%- endfor -%}
+        {%- endfor -%}
+        {%- assign unique_tags = all_tags | split: "," | sort -%}
+        {%- for tag in unique_tags -%}
+          {%- if tag != blank -%}
+            <a
+              href="{{ blog.url }}/tagged/{{ tag | handle }}"
+              class="main-blog__category-pill{% if current_tags contains tag %} main-blog__category-pill--active{% endif %}"
+              aria-current="{% if current_tags contains tag %}page{% endif %}">
+              {{ tag }}
+            </a>
+          {%- endif -%}
+        {%- endfor -%}
+      </nav>
+    {%- endif -%}
+
+    {%- comment -%} Article Grid ───────────────────────────── {%- endcomment -%}
+    <div class="main-blog__grid">
       {%- for article in blog.articles -%}
         <div
-          class="blog-articles__article article{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+          class="main-blog__article{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
           {% if settings.animations_reveal_on_scroll %}
             data-cascade
             style="--animation-order: {{ forloop.index }};"
           {% endif %}>
-          {%- render "article-card",
-            article: article,
-            media_height: section.settings.image_height,
-            media_aspect_ratio: article.image.aspect_ratio,
-            show_image: section.settings.show_image,
-            show_date: section.settings.show_date,
-            show_author: section.settings.show_author,
-            show_excerpt: true
-          -%}
+          {%- if forloop.first and section.settings.show_featured_hero and paginate.current_page == 1 -%}
+            {%- render "article-card",
+              article: article,
+              media_height: section.settings.image_height,
+              media_aspect_ratio: article.image.aspect_ratio,
+              show_image: section.settings.show_image,
+              show_date: section.settings.show_date,
+              show_author: section.settings.show_author,
+              show_excerpt: true,
+              show_category: section.settings.show_categories,
+              featured: true,
+              lazy_load: false
+            -%}
+          {%- else -%}
+            {%- render "article-card",
+              article: article,
+              media_height: section.settings.image_height,
+              media_aspect_ratio: article.image.aspect_ratio,
+              show_image: section.settings.show_image,
+              show_date: section.settings.show_date,
+              show_author: section.settings.show_author,
+              show_excerpt: true,
+              show_category: section.settings.show_categories
+            -%}
+          {%- endif -%}
         </div>
       {%- endfor -%}
     </div>
@@ -56,20 +111,39 @@
   "class": "section",
   "settings": [
     {
-      "type": "select",
-      "id": "layout",
-      "options": [
-        {
-          "value": "grid",
-          "label": "t:sections.main-blog.settings.layout.options__1.label"
-        },
-        {
-          "value": "collage",
-          "label": "t:sections.main-blog.settings.layout.options__2.label"
-        }
-      ],
-      "default": "collage",
-      "label": "t:sections.main-blog.settings.layout.label"
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_featured_hero",
+      "default": true,
+      "label": "Show first post as featured hero"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_categories",
+      "default": true,
+      "label": "Show category filter bar"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "default": false,
+      "label": "Show blog description (from metafield)"
+    },
+    {
+      "type": "range",
+      "id": "articles_per_page",
+      "min": 6,
+      "max": 12,
+      "step": 3,
+      "label": "Articles per page",
+      "default": 9
+    },
+    {
+      "type": "header",
+      "content": "Card Settings"
     },
     {
       "type": "checkbox",
@@ -110,7 +184,7 @@
     {
       "type": "checkbox",
       "id": "show_author",
-      "default": false,
+      "default": true,
       "label": "t:sections.main-blog.settings.show_author.label"
     },
     {

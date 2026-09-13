@@ -1,15 +1,15 @@
 {
-  "timestamp": "2026-09-13 14:25:00",
+  "timestamp": "2026-09-13 14:59:44",
   "staticData": {
-    "filesScanned": 214,
-    "linesScanned": 71313,
+    "filesScanned": 211,
+    "linesScanned": 70927,
     "totalViolations": 0,
     "errors": 0,
     "warnings": 0,
     "violations": []
   },
   "flowSimulator": {
-    "passed": 0,
+    "passed": 99,
     "failed": 0
   }
 }

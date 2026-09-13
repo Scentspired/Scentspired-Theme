@@ -57,7 +57,7 @@ let flowPassed = 0;
 let flowFailed = 0;
 let flowOutput = "";
 try {
-  flowOutput = execSync("node " + path.join(__dirname, "critical-flow-simulator.cjs"), {
+  flowOutput = execSync("node " + path.join(__dirname, "../dynamic/critical-flow-simulator.cjs"), {
     encoding: "utf8",
     cwd: ROOT,
     stdio: ["pipe", "pipe", "pipe"],
