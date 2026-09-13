@@ -1,45 +1,5 @@
 {
   "sections": {
-    "main": {
-      "type": "main-article",
-      "blocks": {
-        "featured_image": {
-          "type": "featured_image",
-          "disabled": true,
-          "settings": {
-            "image_height": "adapt"
-          }
-        },
-        "title": {
-          "type": "title",
-          "disabled": true,
-          "settings": {
-            "blog_show_date": true,
-            "blog_show_author": false
-          }
-        },
-        "share": {
-          "type": "share",
-          "disabled": true,
-          "settings": {
-            "share_label": "Share"
-          }
-        },
-        "content": {
-          "type": "content",
-          "disabled": true,
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "featured_image",
-        "title",
-        "share",
-        "content"
-      ],
-      "disabled": true,
-      "settings": {}
-    },
     "177868548039dc52a1": {
       "type": "_blocks",
       "blocks": {
@@ -48,14 +8,14 @@
           "settings": {
             "heading": "<p>TOP NOTES, HEART NOTES, BASE NOTES:</p>",
             "heading_size": 48,
-            "mobile_heading_size": 22,
+            "mobile_heading_size": 24,
             "heading_line_height": 1.1,
             "heading_color": "#1a1a1a",
-            "paragraph": "<p>The only fragrance guide you need before your next perfume haul</p>",
-            "paragraph_size": 20,
+            "paragraph": "<p>how to decode the fragrance pyramid and understand what you are actually buying</p>",
+            "paragraph_size": 18,
             "mobile_paragraph_size": 16,
-            "paragraph_line_height": 1,
-            "paragraph_color": "#000000",
+            "paragraph_line_height": 1.4,
+            "paragraph_color": "#332F2B",
             "desktop_image": "shopify://shop_images/TOP_NOTES_HEART_NOTES_BASE_NOTES.jpg_1.jpg",
             "image_aspect_ratio": "16/9",
             "horizontal_alignment": "flex-start",
@@ -69,8 +29,8 @@
             "mobile_content_padding": 25,
             "content_max_width": 1400,
             "outer_spacing": 0,
-            "mobile_outer_spacing": 15,
-            "background_color": "#f5f3f0"
+            "mobile_outer_spacing": 0,
+            "background_color": "#FAF8F5"
           },
           "blocks": {}
         }
@@ -83,13 +43,10 @@
     },
     "blogtextliquid_LBJgtB": {
       "type": "blogtextliquid",
-      "custom_css": [
-        ".shopify-hardcoded-text-section-content {font-size: 16px; margin-left: 0px; text-align: left;}",
-        "@media screen and (max-width: 1024px) {.shopify-hardcoded-text-section-wrapper {min-height: 200px; padding: 16px !important; }}"
-      ],
+      "custom_css": [],
       "name": "Blog Text Liquid",
       "settings": {
-        "text_content": "<p>Picture this: you're browsing an online perfume shop at 10pm (as one does), you've found something that sounds absolutely incredible, and the description reads: opens with bergamot and pink pepper, a heart of jasmine and cedarwood, drying down to musk and amber. Gorgeous. But also: what does any of that actually mean? And more to the point, is this going to smell the way you're imagining, or are you about to spend real money on a vibe that ghosts you by noon? It happens with <a href=\"https://scentspired.com/\" title=\"https://scentspired.com/\">luxury-inspired perfumes </a>and niche fragrances alike. Knowing the notes is the fix.</p><p>Or maybe this one's more familiar: you tested something at a perfume shop, fell completely in love on the spot, bought it, got home, spritzed it on later, and found yourself wondering by evening what happened to the fragrance you were so certain about six hours ago. Nothing went wrong. You just met top notes, and then you didn't.</p><p>Fragrance descriptions can feel like a language nobody taught you. But once you understand how the three-note structure works, the whole thing clicks into place, and you'll buy fragrance online with so much more confidence and less buyer's remorse.</p>"
+        "text_content": "<p>Picture this: you're browsing an online perfume shop at 10pm. You click on a fragrance that sounds intriguing. The product description lists bergamot, pink pepper, saffron, Turkish rose, oud, and ambergris. It sounds magnificent, but what does that actually mean for what you will smell like when you put your jacket on tomorrow morning?</p><p>A fine fragrance is not a single, static scent. It is a living, evolving composition that unfolds over hours in three distinct movements. In perfumery, this structure is known as the Olfactory Pyramid.</p>"
       }
     },
     "177868816090d620d4": {
@@ -99,19 +56,19 @@
           "type": "ai_gen_block_a1afcd9",
           "settings": {
             "background_image": "shopify://shop_images/What_Fragrance_Notes_Actually_Are.png",
-            "outer_border_color": "#ffffff",
+            "outer_border_color": "#FAF8F5",
             "outer_border_px": 0,
             "aspect_ratio": 56,
             "font_family_regular": "'PP Editorial New', 'Cormorant Garamond', Georgia, serif",
             "font_family_italic": "'PPEditorialNew Ultralight Italic', 'Cormorant Garamond', Georgia, serif",
-            "text_color": "#000000",
+            "text_color": "#ffffff",
             "text_line_1": "",
             "line1_top": 66,
             "line1_left": 19,
             "brand_name_regular": "",
-            "brand_name_italic": "What fragrance notes actually are",
-            "brand_top": 2,
-            "brand_left": 27,
+            "brand_name_italic": "THE SHORT VERSION",
+            "brand_top": 6,
+            "brand_left": 50,
             "text_line_2": "",
             "line3_top": 87,
             "line3_left": 63
@@ -126,13 +83,10 @@
     },
     "blogtextliquid_ra7Awx": {
       "type": "blogtextliquid",
-      "custom_css": [
-        ".shopify-hardcoded-text-section-content {font-size: 16px; margin-left: 0px; text-align: left;}",
-        "@media screen and (max-width: 1024px) {.shopify-hardcoded-text-section-wrapper {min-height: 200px; padding: 16px !important; }}"
-      ],
+      "custom_css": [],
       "name": "Blog Text Liquid",
       "settings": {
-        "text_content": "<p>A fragrance isn't a single, fixed smell. It's a living composition that unfolds over time, with different ingredients emerging at different points throughout the day. Perfumers organize this into three layers: top notes, heart notes, and base notes. Each one plays a completely different role in what you experience from first spray to last.</p><p>Think of it like your favorite album. The opening track grabs you immediately. The middle of the record is what you keep coming back to. And there are always those closing songs that stay with you for days. Fragrance works exactly the same way.</p>"
+        "text_content": "<p>The fragrance pyramid is dictated by the physical molecular weight of the ingredients. Lighter molecules evaporate into the air almost instantly, while heavy resinous molecules cling to skin for half a day.</p><p>Understanding how top, heart, and base notes interact is the single best tool you can have as a fragrance shopper. It prevents you from being misled by a 2-minute opening spray and guarantees you choose scents that evolve beautifully on your skin.</p>"
       }
     },
     "blocks_ji7beH": {
@@ -141,25 +95,25 @@
         "ai_gen_block_614820f_zNd6WG": {
           "type": "ai_gen_block_614820f",
           "settings": {
-            "heading": "Top notes: the opening act (and why they're not the whole story)",
-            "heading_size": 56,
-            "heading_size_mobile": 32,
-            "heading_line_height": 1,
-            "heading_color": "#121212",
-            "heading_margin_bottom": 50,
-            "heading_margin_bottom_mobile": 30,
-            "column_1_text": "<p>Top notes are what hit you the moment you first spray. Bright, crisp and instantly appealing, they're designed to make a great first impression. Citrus notes like bergamot, lemon, and grapefruit are classic top notes. So are light fruits, fresh herbs, and anything with that clean, just-stepped-outside vibe.</p><p>Here's the thing though: top notes don't last. They're highly volatile, which means they evaporate fast, usually within 15 to 30 minutes. That fragrance you tested at the perfume shop that smelled absolutely perfect in the moment? You were smelling the top notes. By the time you got home and wore it again, they'd disappeared faster than tickets to Coachella.</p>",
-            "column_2_text": "<p>This confuses many people who <a href=\"https://scentspired.com/\" title=\"https://scentspired.com/\">buy fragrance online</a> based on reviews that focus entirely on the opening spray. The top notes are the introduction. They're not the whole story, and they're definitely not what you'll be wearing all day.</p>",
-            "body_size": 22,
-            "body_size_mobile": 14,
-            "body_line_height": 1.6,
-            "body_color": "#000000",
+            "heading": "Top Notes: The 15-Minute Hook vs Heart Notes: The True Identity",
+            "heading_size": 42,
+            "heading_size_mobile": 28,
+            "heading_line_height": 1.1,
+            "heading_color": "#1A1816",
+            "heading_margin_bottom": 30,
+            "heading_margin_bottom_mobile": 25,
+            "column_1_text": "<p>Top notes are the first impression. Made of light, volatile molecules like citrus (bergamot, lemon, grapefruit), fresh herbs, and light fruits, they hit your nose the instant you spray.</p><p>Their purpose is to captivate you immediately. However, they evaporate within 15 to 30 minutes. Never buy a perfume based purely on the opening spray—it is only the trailer, not the whole movie.</p>",
+            "column_2_text": "<p>Heart notes (also called middle notes) emerge as the top notes fade. Composed of richer florals (jasmine, rose, lavender), spices (cardamom, cinnamon), and aromatics, heart notes represent the core personality of the fragrance.</p><p>They last anywhere from 2 to 5 hours, creating the radiant scent trail that people around you notice throughout the day.</p>",
+            "body_size": 17,
+            "body_size_mobile": 15,
+            "body_line_height": 1.9,
+            "body_color": "#2D2A26",
             "paragraph_spacing": 20,
-            "column_gap": 60,
+            "column_gap": 55,
             "column_gap_mobile": 30,
-            "max_width": 1000,
+            "max_width": 1100,
             "desktop_width_percent": 100,
-            "background_color": "#f9f6f1",
+            "background_color": "#FAF8F5",
             "padding_top": 60,
             "padding_bottom": 60,
             "padding_horizontal": 40,
@@ -183,32 +137,32 @@
           "type": "ai_gen_block_fb81b45",
           "settings": {
             "desktop_width_percent": 100,
-            "max_width": 1200,
-            "section_padding": 20,
-            "background_color": "#f9f6f1",
-            "heading": "<p>Heart notes: what you're actually wearing all day</p>",
-            "heading_size": 60,
-            "heading_color": "#000000",
-            "heading_spacing": 10,
-            "box_color": "#8b1d22",
-            "box_radius": 25,
-            "box_padding": 40,
-            "box_spacing": 10,
-            "box_paragraph_1": "<p>Once the top notes fade, the heart notes come forward. These are the soul of the fragrance, the part you'll be wearing for most of the day. Heart notes tend to be richer and more complex: lush florals like rose, jasmine, and peony; warm spices like cardamom and cinnamon; soft woods, herbs, and creamy musks.</p><p>When someone stops you and asks what you're wearing with that look that's equal parts compliment and envy? That's your heart notes doing their job. This is the part you'll be living in for most of the day, and it's where the best perfume for women earns every compliment and where the best cologne for men makes a real impression.</p>",
+            "max_width": 1100,
+            "section_padding": 60,
+            "background_color": "#FAF8F5",
+            "heading": "<p>Base notes: what you are actually wearing all day</p>",
+            "heading_size": 42,
+            "heading_color": "#1A1816",
+            "heading_spacing": 25,
+            "box_color": "#1C1917",
+            "box_radius": 15,
+            "box_padding": 45,
+            "box_spacing": 35,
+            "box_paragraph_1": "<p>Base notes are the heavy anchors of perfumery: sandalwood, cedarwood, patchouli, amber, vanilla, and musks. These molecules are large and dense, evaporating very slowly over 6 to 12+ hours.</p><p>The base notes provide the fixative foundation for the entire composition. When you catch a wonderful whiff of your own sweater or collar eight hours later, you are experiencing the base notes at work.</p><p>In masterfully blended perfumes like <strong>Addiction</strong> and <strong>Fierce</strong>, the transition from floral spice into warm amberwood is completely seamless.</p>",
             "box_paragraph_2": "",
             "box_paragraph_3": "",
-            "box_text_color": "#ffffff",
-            "box_text_size": 22,
-            "box_text_line_height": 1.6,
-            "paragraph_spacing": 25,
-            "subheading": "<p>Base notes: the one that stays with you</p>",
-            "subheading_size": 60,
-            "subheading_color": "#000000",
+            "box_text_color": "#F5EFE6",
+            "box_text_size": 17,
+            "box_text_line_height": 1.9,
+            "paragraph_spacing": 20,
+            "subheading": "<p>Why this changes how you shop online</p>",
+            "subheading_size": 42,
+            "subheading_color": "#1A1816",
             "subheading_spacing": 40,
-            "bottom_text": "<p>Base notes are the foundation, and they deserve the most attention when you're shopping. They emerge slowly as the fragrance settles into your skin and linger for hours, sometimes well into the next day if you're wearing something rich and deep. Musk, sandalwood, amber, vanilla, vetiver, oud. Warm, grounding, and built to last. This is what separates a long-lasting perfume from one that disappears before your second meeting of the day.</p><p>Base notes are also what create sillage (pronounced see-yazh), and if you've never heard that word before, you've definitely experienced it. It's that moment when someone walks into a room right after you've left and catches your scent still hanging in the air. That's not an accident. That's base notes doing exactly what they were made to do.</p>",
-            "bottom_text_size": 22,
-            "bottom_text_color": "#000000",
-            "bottom_text_line_height": 1.6
+            "bottom_text": "<p>When reading perfume note listings online, always scan down to the base notes first. If you dislike vanilla, patchouli, or heavy incense, a perfume with sweet or resinous base notes will eventually disappoint you, no matter how much you loved the fresh citrus opening.</p><p>Shop with the full 8-hour lifecycle in mind!</p>",
+            "bottom_text_size": 17,
+            "bottom_text_color": "#2D2A26",
+            "bottom_text_line_height": 1.9
           },
           "blocks": {}
         }
@@ -218,43 +172,47 @@
       ],
       "settings": {}
     },
-    "blocks_jgTJWD": {
+    "1780925695be0a3de2": {
       "type": "_blocks",
       "blocks": {
-        "ai_gen_block_19f144a_kVmwE7": {
-          "type": "ai_gen_block_19f144a",
-          "disabled": true,
+        "ai_gen_block_e9499a3_nQznTw": {
+          "type": "ai_gen_block_e9499a3",
           "settings": {
-            "line_1_text": "Timeless Grace",
-            "line_1_alignment": "left",
-            "line_1_offset": 300,
-            "line_2_text": "vs",
-            "line_2_alignment": "center",
-            "line_2_offset": 0,
-            "line_3_text": "Coco Mademoiselle by Chanel:",
-            "line_3_alignment": "right",
-            "line_3_offset": -40,
-            "body_text": "<p>Coco Mademoiselle is the benchmark for a certain kind of feminine fragrance. Clean, grown-up, and immediately recognisable. It has been the top-selling women's perfume in the UK and US for years. The EDP retails at around $160 for 100ml and it earns that position consistently.</p><p><strong>Timeless Grace</strong> opens with the same fresh orange and bergamot, develops through jasmine and rose, and settles into a warm patchouli base that wears throughout the day. The comparison test here produced the closest result of the three: on dry-down, both fragrances sat in the same warm, clean territory. The original has a very slight additional depth in the base that reflects the higher concentration of raw materials, but it is a difference you would only notice if you were specifically looking for it.<br/><br/>At around $20 versus $160, Timeless Grace makes a compelling case for anyone who loves the Coco Mademoiselle profile but wants to wear it every day without the creeping sense that they should be saving it for something more significant.</p>",
-            "line_1_size": 44,
-            "line_2_size": 85,
-            "line_3_size": 44,
-            "body_size": 22,
-            "line_2_margin_top": 30,
-            "line_3_margin_top": 4,
-            "header_spacing": 40,
-            "body_max_width": 1000,
-            "section_padding_top": 60,
-            "section_padding_bottom": 60,
-            "background_color": "#ffffff",
-            "text_color": "#121212"
+            "header_1": "Pyramid Tier",
+            "header_2": "Active Duration",
+            "header_3": "Common Fragrance Notes",
+            "row_1_label": "Top Notes",
+            "row_1_col_1": "0 to 30 minutes",
+            "row_1_col_2": "Bergamot, Lemon, Mandarin, Mint, Pink Pepper",
+            "row_1_col_3": "Instant fresh hook; rapid evaporation",
+            "row_2_label": "Heart Notes",
+            "row_2_col_1": "30 minutes to 4 hours",
+            "row_2_col_2": "Rose, Jasmine, Lavender, Cardamom, Nutmeg",
+            "row_2_col_3": "The signature personality and heart of the scent",
+            "row_3_label": "Base Notes",
+            "row_3_col_1": "4 to 12+ hours",
+            "row_3_col_2": "Cedarwood, Sandalwood, Vanilla, Ambroxan, Musk",
+            "row_3_col_3": "Deep anchors that create the lingering drydown",
+            "row_4_label": "Fixative Accords",
+            "row_4_col_1": "Entire wear cycle",
+            "row_4_col_2": "Iso E Super, Hedione, Ambergris accords",
+            "row_4_col_3": "Binds volatile notes to skin for extended projection",
+            "side_padding": 20,
+            "cell_padding": 18,
+            "label_font_weight": "bold",
+            "header_bg_color": "#1A1816",
+            "header_text_color": "#F8F5F0",
+            "row_bg_color": "#FAF8F5",
+            "body_text_color": "#383430",
+            "border_color": "rgba(0,0,0,0.06)",
+            "table_bg_color": "#FAF8F5"
           },
           "blocks": {}
         }
       },
       "block_order": [
-        "ai_gen_block_19f144a_kVmwE7"
+        "ai_gen_block_e9499a3_nQznTw"
       ],
-      "name": "Staggered typography",
       "settings": {}
     },
     "17786893180b60ea14": {
@@ -262,38 +220,37 @@
       "blocks": {
         "ai_gen_block_c88e324_m8PFU4": {
           "type": "ai_gen_block_c88e324",
-          "disabled": true,
           "settings": {
-            "container_width": 1200,
-            "left_column_width": 40,
-            "right_column_width": 60,
-            "column_gap": 40,
+            "container_width": 1100,
+            "left_column_width": 45,
+            "right_column_width": 55,
+            "column_gap": 50,
             "desktop_width_percent": 100,
-            "heading": "Where The Differences actually Show Up",
+            "heading": "What this means when you are shopping",
             "heading_font": "serif",
-            "heading_size": 56,
-            "mobile_heading_size": 40,
-            "heading_color": "#000000",
-            "heading_indent": 10,
-            "mobile_heading_indent": 40,
+            "heading_size": 42,
+            "mobile_heading_size": 28,
+            "heading_color": "#1A1816",
+            "heading_indent": 0,
+            "mobile_heading_indent": 0,
             "image": "shopify://shop_images/magnific_luxury-perfume-comparison_74h5S6MJAL_jpg.jpg",
-            "image_max_width": 600,
-            "heading_image_gap": 4,
-            "mobile_heading_image_gap": 25,
-            "body_text": "<p>Across all our tests, the differences between inspired fragrances and originals came down to three things.<br/><br/><strong>Concentration of raw materials</strong>. Designer houses use extremely high concentrations of expensive ingredients. The originals have a certain richness in the base that reflects this. A well-made inspired fragrance gets close, but the very finest nuances of a $300 bottle are sometimes in those base notes, and it is worth knowing that going in.<br/><br/><strong>Projection in the opening</strong>. Top notes on the originals tend to radiate a little further, particularly in the first half an hour after applying. This matters if you are spraying in an elevator and want to make an immediate impression. It matters less if you are wearing something all day for yourself.<br/><br/><strong>Longevity on dry skin</strong>. Both perform significantly better on moisturised skin. On dry skin, the originals do have a slight edge in staying power. The fix is twelve seconds of moisturiser before you spray. After that, the gap closes considerably.</p>",
+            "image_max_width": 500,
+            "heading_image_gap": 16,
+            "mobile_heading_image_gap": 20,
+            "body_text": "<p>When you receive a new Scentspired fragrance, give it a proper wear test. Spray it on clean skin in the morning and intentionally pay attention at three distinct times: 10 minutes in, 2 hours in, and 6 hours later.</p><p>Observing how the scent evolves through each tier of the olfactory pyramid will give you a whole new appreciation for the artistry inside the bottle.</p>",
             "body_font": "system_ui_n4",
-            "body_size": 24,
-            "mobile_body_size": 16,
-            "body_color": "#000000",
-            "paragraph_spacing": 30,
+            "body_size": 17,
+            "mobile_body_size": 15,
+            "body_color": "#2D2A26",
+            "paragraph_spacing": 20,
             "mobile_paragraph_spacing": 15,
-            "text_vertical_offset": 10,
-            "background_color": "#ffffff",
-            "padding_top": 100,
-            "padding_bottom": 100,
-            "horizontal_padding": 40,
-            "mobile_padding_top": 60,
-            "mobile_padding_bottom": 60,
+            "text_vertical_offset": 0,
+            "background_color": "#FAF8F5",
+            "padding_top": 60,
+            "padding_bottom": 60,
+            "horizontal_padding": 30,
+            "mobile_padding_top": 40,
+            "mobile_padding_bottom": 40,
             "mobile_horizontal_padding": 20,
             "mobile_gap": 30
           },
@@ -305,163 +262,36 @@
       ],
       "settings": {}
     },
-    "blocks_NgyNz4": {
-      "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_fb81b45_qVFqqX": {
-          "type": "ai_gen_block_fb81b45",
-          "settings": {
-            "desktop_width_percent": 100,
-            "max_width": 1200,
-            "section_padding": 20,
-            "background_color": "#f9f6f1",
-            "heading": "<p><strong>Why this changes everything about how you shop for fragrance online</strong></p>",
-            "heading_size": 60,
-            "heading_color": "#000000",
-            "heading_spacing": 10,
-            "box_color": "#8b1d22",
-            "box_radius": 25,
-            "box_padding": 40,
-            "box_spacing": 10,
-            "box_paragraph_1": "<p>When you can't test before you buy fragrance, reading by note layer is the smartest approach you've got. Instead of taking a description as one big blur, break it apart.</p><p>The opening, the top notes, is exciting but the least reliable indicator of how something wears. The heart is where the real character lives. That's the fragrance you'll actually be wearing all day. And the base is where longevity lives. Pay close attention there. That's what you'll still be smelling at 9pm, and what might still be on your wrist the next morning.</p><p><strong>Love warm, cozy fragrances? </strong>Prioritize base notes like vanilla, amber, and musk, and look for heart notes with soft woods or warm spices. If you're shopping luxury women's perfumes or top perfumes for men, this is the note profile to target. That combination is going to feel like a cashmere blanket.</p><p><strong>More of a fresh, clean scent person? </strong>Look for heart notes with light florals and airy woods, and base notes that lean into white musk rather than heavy resins. This is where the best unisex perfume tends to live, and where an affordable inspired option can really deliver. You'll get brightness that actually lasts.</p><p><strong>After something bold and unforgettable? </strong>Oud, vetiver, and cedarwood in the base will give you the depth and longevity you're looking for. These notes are what define the best men fragrances and the boldest luxury unisex perfumes in any inspired collection. These are the fragrances people remember.</p>",
-            "box_paragraph_2": "<p>For most of the fragrances in our collection, the answer to that question is yes. The Scentspired perfume collection is available to browse and buy perfume online, with every fragrance listing its notes and its inspiration so you know exactly what you are getting before you hit that checkout button.</p>",
-            "box_paragraph_3": "",
-            "box_text_color": "#ffffff",
-            "box_text_size": 22,
-            "box_text_line_height": 1.6,
-            "paragraph_spacing": 25,
-            "subheading": "",
-            "subheading_size": 60,
-            "subheading_color": "#000000",
-            "subheading_spacing": 40,
-            "bottom_text": "",
-            "bottom_text_size": 22,
-            "bottom_text_color": "#000000",
-            "bottom_text_line_height": 1.6
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_fb81b45_qVFqqX"
-      ],
-      "settings": {}
-    },
-    "178125601117c0d1d4": {
-      "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_313b73e_nPM9ar": {
-          "type": "ai_gen_block_313b73e",
-          "settings": {
-            "header_col_1": "Note Type",
-            "header_col_2": "Duration",
-            "header_col_3": "Common Examples",
-            "header_bg_color": "#000000",
-            "header_text_color": "#ffffff",
-            "header_font_size": 16,
-            "row_1_col_1": "Top Notes",
-            "row_1_col_2": "15-30 mins",
-            "row_1_col_3": "Citrus, light fruits, fresh herbs, green notes",
-            "row_2_col_1": "Heart Notes",
-            "row_2_col_2": "2-4 hours",
-            "row_2_col_3": "Florals, warm spices, soft woods, herbs",
-            "row_3_col_1": "Base Notes",
-            "row_3_col_2": "4-8+ hours",
-            "row_3_col_3": "Musk, amber, sandalwood, vanilla, oud, vetiver",
-            "row_bg_color": "#ffffff",
-            "row_alt_bg_color": "#f3f3f3",
-            "row_text_color": "#121212",
-            "body_font_size": 16,
-            "column_1_width": 30,
-            "column_2_width": 30,
-            "text_alignment": "left",
-            "cell_padding": 16,
-            "table_border_thickness": 1,
-            "cell_border_thickness": 1,
-            "table_border_color": "#121212",
-            "cell_border_color": "#e0e0e0",
-            "desktop_width_percent": 100
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_313b73e_nPM9ar"
-      ],
-      "settings": {}
-    },
-    "blocks_LdziD8": {
-      "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_e9ac98b_PRWMMm": {
-          "type": "ai_gen_block_e9ac98b",
-          "settings": {
-            "container_width": 1200,
-            "horizontal_padding": 20,
-            "padding_top": 80,
-            "padding_bottom": 80,
-            "column_gap": 20,
-            "mobile_gap": 30,
-            "mobile_scale": 0.6,
-            "background_color": "#ffffff",
-            "prefix_text": "",
-            "prefix_font_size": 50,
-            "brand_scent_text": "",
-            "brand_spired_text": "",
-            "brand_font_size": 50,
-            "start_text": "",
-            "start_font_size": 18,
-            "bestsellers_text": "",
-            "bestsellers_font_size": 52,
-            "heading_line_spacing": 4,
-            "heading_line_height": 1,
-            "heading_color": "#000000",
-            "body_text": "Once you start reading fragrance this way, you can't go back. You'll know what you're buying before you hit checkout, you'll understand why the same fragrance smells completely different on your best friend, and you'll have so much more fun exploring. Fragrance is so much more interesting when you know what's going on underneath, and now you do.",
-            "body_font_size": 25,
-            "body_line_height": 1.3,
-            "body_color": "#121212"
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_e9ac98b_PRWMMm"
-      ],
-      "custom_css": [
-        ".ai-split-editorial-right-anxdtuyt1avl2mep1maigenblocke9ac98bprwmmm {max-width: 100%;}"
-      ],
-      "settings": {}
-    },
     "1778692264fe7b6973": {
       "type": "_blocks",
       "blocks": {
         "ai_gen_block_e9ac98b_QF8teC": {
           "type": "ai_gen_block_e9ac98b",
           "settings": {
-            "container_width": 1200,
-            "horizontal_padding": 20,
-            "padding_top": 80,
-            "padding_bottom": 80,
-            "column_gap": 40,
-            "mobile_gap": 30,
-            "mobile_scale": 0.6,
-            "background_color": "#ffffff",
-            "prefix_text": "Where To",
-            "prefix_font_size": 50,
+            "container_width": 1100,
+            "horizontal_padding": 30,
+            "padding_top": 60,
+            "padding_bottom": 60,
+            "column_gap": 50,
+            "mobile_gap": 25,
+            "mobile_scale": 0.7,
+            "background_color": "#FAF8F5",
+            "prefix_text": "ONE MORE",
+            "prefix_font_size": 38,
             "brand_scent_text": "",
             "brand_spired_text": "",
-            "brand_font_size": 50,
+            "brand_font_size": 38,
             "start_text": "",
-            "start_font_size": 50,
-            "bestsellers_text": "Start",
-            "bestsellers_font_size": 50,
+            "start_font_size": 38,
+            "bestsellers_text": "THING",
+            "bestsellers_font_size": 38,
             "heading_line_spacing": 4,
-            "heading_line_height": 1,
-            "heading_color": "#000000",
-            "body_text": "Browse the full Scentspired perfume collection, covering luxury inspired perfumes for women, men, and unisex, and put everything you just learned to work. Every fragrance lists its notes so you can find your perfect match and buy perfume online with confidence.",
-            "body_font_size": 25,
-            "body_line_height": 1.3,
-            "body_color": "#121212"
+            "heading_line_height": 1.1,
+            "heading_color": "#1A1816",
+            "body_text": "Explore sophisticated scent pyramids crafted with French master oils in our <a href=\"/collections/shop\">Scentspired perfume collection</a>.",
+            "body_font_size": 17,
+            "body_line_height": 1.8,
+            "body_color": "#2D2A26"
           },
           "blocks": {}
         }
@@ -469,9 +299,7 @@
       "block_order": [
         "ai_gen_block_e9ac98b_QF8teC"
       ],
-      "custom_css": [
-        "@media screen and (min-width: 1024px) {.ai-split-editorial-right-auuyyd3rwymllyjdksaigenblocke9ac98bqf8tec {max-width: 50%; }}"
-      ],
+      "custom_css": [],
       "settings": {}
     },
     "1778701783b132082f": {
@@ -489,54 +317,6 @@
         "ai_gen_block_29a8932_icikjA"
       ],
       "settings": {}
-    },
-    "177870354789d2efcb": {
-      "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_f4b496d_dDGK7Q": {
-          "type": "ai_gen_block_f4b496d",
-          "disabled": true,
-          "settings": {
-            "desktop_image": "shopify://shop_images/wmremove-transformed_1.png",
-            "mobile_image": "shopify://shop_images/wmremove-transformed_1.png",
-            "text_horizontal_position": 10,
-            "text_max_width": 700,
-            "text_size": 32,
-            "line_height": 1
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_f4b496d_dDGK7Q"
-      ],
-      "disabled": true,
-      "settings": {}
-    },
-    "1779206966fe81762b": {
-      "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_36376d7_3UnFbY": {
-          "type": "ai_gen_block_36376d7",
-          "settings": {
-            "desktop_image": "shopify://shop_images/wmremove-transformed_1.png",
-            "mobile_image": "shopify://shop_images/wmremove-transformed_1.png",
-            "heading_line_1_part_1": "Try The Inspired Version",
-            "heading_line_1_part_2": "",
-            "heading_line_2": "See And Smell For Yourself",
-            "text_horizontal_position": 10,
-            "text_max_width": 700,
-            "text_size": 42,
-            "line_height": 1
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_36376d7_3UnFbY"
-      ],
-      "disabled": true,
-      "settings": {}
     }
   },
   "order": [
@@ -546,9 +326,8 @@
     "blogtextliquid_ra7Awx",
     "blocks_ji7beH",
     "1778690749e24fd023",
-    "blocks_NgyNz4",
-    "178125601117c0d1d4",
-    "blocks_LdziD8",
+    "1780925695be0a3de2",
+    "17786893180b60ea14",
     "1778692264fe7b6973",
     "1778701783b132082f"
   ]
