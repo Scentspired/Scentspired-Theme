@@ -1,7 +1,7 @@
 {{ "section-blog-typography.css" | asset_url | stylesheet_tag }}
 {{ "section-blog-post.css" | asset_url | stylesheet_tag }}
 
-<article class="article-template" itemscope itemtype="http://schema.org/BlogPosting">
+<article class="article-template" itemscope itemtype="https://schema.org/BlogPosting">
   {%- for block in section.blocks -%}
     {%- case block.type -%}
 
@@ -11,88 +11,46 @@
         </div>
 
       {%- when "breadcrumb" -%}
-        <nav class="page-width page-width--narrow blog-breadcrumb" aria-label="Breadcrumb" {{ block.shopify_attributes }}>
-          {%- if block.settings.show_home -%}
-            <a href="/">Home</a>
-            <span class="blog-breadcrumb__separator" aria-hidden="true">›</span>
-          {%- endif -%}
-          {%- if block.settings.show_blog -%}
-            <a href="{{ blog.url }}">{{ blog.title | escape }}</a>
-            <span class="blog-breadcrumb__separator" aria-hidden="true">›</span>
-          {%- endif -%}
-          {%- if block.settings.show_category and article.tags.size > 0 -%}
-            {%- assign first_tag = article.tags | first -%}
-            <a href="{{ blog.url }}/tagged/{{ first_tag | handle }}">{{ first_tag }}</a>
-            <span class="blog-breadcrumb__separator" aria-hidden="true">›</span>
-          {%- endif -%}
-          <span class="blog-breadcrumb__current" aria-current="page">{{ article.title | truncate: 50 | escape }}</span>
-        </nav>
+        <div {{ block.shopify_attributes }}>
+          {%- render "article-breadcrumb",
+            article: article,
+            blog: blog,
+            show_home: block.settings.show_home,
+            show_blog: block.settings.show_blog,
+            show_category: block.settings.show_category
+          -%}
+        </div>
 
       {%- when "category_badge" -%}
-        {%- if article.tags.size > 0 -%}
-          <div class="page-width page-width--narrow" {{ block.shopify_attributes }}>
-            {%- assign first_tag = article.tags | first -%}
-            <a href="{{ blog.url }}/tagged/{{ first_tag | handle }}" class="blog-article-header__category">
-              {{ first_tag }}
-            </a>
-          </div>
-        {%- endif -%}
+        <div {{ block.shopify_attributes }}>
+          {%- render "article-header",
+            article: article,
+            show_category: true,
+            show_author: false,
+            show_date: false,
+            show_reading_time: false
+          -%}
+        </div>
 
       {%- when "title" -%}
-        <header
-          class="page-width page-width--narrow blog-article-header{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
-          {{ block.shopify_attributes }}>
-          <h1 class="blog-article-header__title" itemprop="headline">
-            {{ article.title | escape }}
-          </h1>
-          <div class="blog-article-header__byline">
-            {%- if block.settings.blog_show_author -%}
-              <span class="blog-article-header__byline-author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-                <span itemprop="name">{{ article.author }}</span>
-              </span>
-            {%- endif -%}
-            {%- if block.settings.blog_show_author and block.settings.blog_show_date -%}
-              <span class="blog-article-header__byline-separator" aria-hidden="true">·</span>
-            {%- endif -%}
-            {%- if block.settings.blog_show_date -%}
-              <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}" itemprop="datePublished">
-                {{ article.published_at | time_tag: format: "date" }}
-              </time>
-            {%- endif -%}
-            {%- if block.settings.blog_show_reading_time -%}
-              <span class="blog-article-header__byline-separator" aria-hidden="true">·</span>
-              {%- assign words = article.content | strip_html | split: ' ' | size -%}
-              {%- assign reading_time = words | divided_by: 200 -%}
-              {%- if reading_time < 1 -%}{%- assign reading_time = 1 -%}{%- endif -%}
-              <span class="blog-article-header__reading-time">{{ reading_time }} min read</span>
-            {%- endif -%}
-          </div>
-        </header>
+        <div {{ block.shopify_attributes }}>
+          {%- render "article-header",
+            article: article,
+            show_category: false,
+            show_author: block.settings.blog_show_author,
+            show_date: block.settings.blog_show_date,
+            show_reading_time: block.settings.blog_show_reading_time
+          -%}
+        </div>
 
       {%- when "featured_image" -%}
-        {%- if article.image -%}
-          <div
-            class="blog-featured-image{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
-            {{ block.shopify_attributes }}>
-            <img
-              srcset="
-                {% if article.image.width >= 350 %}{{ article.image | image_url: width: 350 }} 350w,{% endif %}
-                {% if article.image.width >= 750 %}{{ article.image | image_url: width: 750 }} 750w,{% endif %}
-                {% if article.image.width >= 1100 %}{{ article.image | image_url: width: 1100 }} 1100w,{% endif %}
-                {% if article.image.width >= 1500 %}{{ article.image | image_url: width: 1500 }} 1500w,{% endif %}
-                {% if article.image.width >= 2200 %}{{ article.image | image_url: width: 2200 }} 2200w,{% endif %}
-                {{ article.image | image_url }} {{ article.image.width }}w
-              "
-              sizes="(min-width: 900px) 900px, 100vw"
-              src="{{ article.image | image_url: width: 1100 }}"
-              loading="eager"
-              fetchpriority="high"
-              width="{{ article.image.width }}"
-              height="{{ article.image.height }}"
-              alt="{{ article.image.alt | default: article.title | escape }}"
-              itemprop="image">
-          </div>
-        {%- endif -%}
+        <div {{ block.shopify_attributes }}>
+          {%- render "article-featured-image",
+            image: article.image,
+            title: article.title,
+            image_height: block.settings.image_height
+          -%}
+        </div>
 
       {%- when "content" -%}
         <div
@@ -103,211 +61,62 @@
         </div>
 
       {%- when "tags" -%}
-        {%- if article.tags.size > 0 -%}
-          <div class="page-width page-width--narrow blog-tags{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}" {{ block.shopify_attributes }}>
-            <span class="blog-tags__label">{{ block.settings.label | default: "Tags" }}</span>
-            {%- for tag in article.tags -%}
-              <a href="{{ blog.url }}/tagged/{{ tag | handle }}" class="blog-tags__tag">{{ tag }}</a>
-            {%- endfor -%}
-          </div>
-        {%- endif -%}
+        <div {{ block.shopify_attributes }}>
+          {%- render "article-tags",
+            article: article,
+            blog: blog,
+            label: block.settings.label
+          -%}
+        </div>
 
       {%- when "share" -%}
-        <div
-          class="page-width page-width--narrow blog-share{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-          {{ block.shopify_attributes }}>
-          <span class="blog-share__label">{{ block.settings.share_label | default: "Share" }}</span>
-          <div class="blog-share__buttons">
-            {%- assign share_url = request.origin | append: article.url -%}
-            {%- assign share_title = article.title | url_encode -%}
-            {%- assign share_url_encoded = share_url | url_encode -%}
-            <!-- Twitter/X -->
-            <a href="https://twitter.com/intent/tweet?url={{ share_url_encoded }}&text={{ share_title }}" target="_blank" rel="noopener noreferrer" class="blog-share__btn" aria-label="Share on Twitter">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-            </a>
-            <!-- Facebook -->
-            <a href="https://www.facebook.com/sharer/sharer.php?u={{ share_url_encoded }}" target="_blank" rel="noopener noreferrer" class="blog-share__btn" aria-label="Share on Facebook">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-            </a>
-            <!-- Pinterest -->
-            <a href="https://pinterest.com/pin/create/button/?url={{ share_url_encoded }}&description={{ share_title }}{% if article.image %}&media={{ article.image | image_url: width: 1200 | url_encode }}{% endif %}" target="_blank" rel="noopener noreferrer" class="blog-share__btn" aria-label="Share on Pinterest">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12.017 24c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641 0 12.017 0z"/></svg>
-            </a>
-            <!-- Copy Link -->
-            <button class="blog-share__btn blog-share__copy" aria-label="Copy link" data-url="{{ share_url }}" onclick="navigator.clipboard.writeText(this.dataset.url).then(()=>{this.classList.add('is-copied');setTimeout(()=>this.classList.remove('is-copied'),2000)})">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13.723 4.277a3.75 3.75 0 010 5.303l-1.06 1.06a.75.75 0 01-1.061-1.06l1.06-1.061a2.25 2.25 0 00-3.182-3.182l-2.829 2.83a2.25 2.25 0 000 3.182.75.75 0 01-1.06 1.06 3.75 3.75 0 010-5.303l2.828-2.829a3.75 3.75 0 015.304 0zm-3.446 7.446a.75.75 0 011.06 0 3.75 3.75 0 010 5.304l-2.828 2.828a3.75 3.75 0 01-5.304-5.303l1.06-1.06a.75.75 0 111.061 1.06l-1.06 1.06a2.25 2.25 0 003.182 3.183l2.828-2.83a2.25 2.25 0 000-3.181.75.75 0 010-1.061z"/></svg>
-            </button>
-          </div>
+        <div {{ block.shopify_attributes }}>
+          {%- render "article-share",
+            article: article,
+            share_label: block.settings.share_label
+          -%}
         </div>
 
       {%- when "author_bio" -%}
-        <div class="page-width page-width--narrow blog-author-bio{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}" {{ block.shopify_attributes }}>
-          {%- if block.settings.show_avatar and block.settings.avatar != blank -%}
-            <img
-              src="{{ block.settings.avatar | image_url: width: 144 }}"
-              alt="{{ article.author | escape }}"
-              class="blog-author-bio__avatar"
-              width="72"
-              height="72"
-              loading="lazy">
-          {%- endif -%}
-          <div class="blog-author-bio__info">
-            <div class="blog-author-bio__name">{{ article.author }}</div>
-            {%- if block.settings.bio_text != blank -%}
-              <div class="blog-author-bio__text">{{ block.settings.bio_text }}</div>
-            {%- endif -%}
-          </div>
+        <div {{ block.shopify_attributes }}>
+          {%- render "article-author-bio",
+            article: article,
+            show_avatar: block.settings.show_avatar,
+            avatar: block.settings.avatar,
+            bio_text: block.settings.bio_text
+          -%}
         </div>
 
       {%- when "related_posts" -%}
-        {%- if blog.articles_count > 1 -%}
-          <div class="blog-related{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}" {{ block.shopify_attributes }}>
-            <h2 class="blog-related__heading">{{ block.settings.heading | default: "You might also enjoy" }}</h2>
-            <div class="blog-related__grid">
-              {%- assign posts_shown = 0 -%}
-              {%- assign max_posts = block.settings.posts_to_show | default: 3 -%}
-
-              {%- comment -%} First pass: articles sharing the same tag {%- endcomment -%}
-              {%- if article.tags.size > 0 -%}
-                {%- assign primary_tag = article.tags | first -%}
-                {%- for related_article in blog.articles -%}
-                  {%- if related_article.id != article.id and posts_shown < max_posts -%}
-                    {%- if related_article.tags contains primary_tag -%}
-                      {%- render "article-card",
-                        article: related_article,
-                        media_height: "medium",
-                        media_aspect_ratio: related_article.image.aspect_ratio,
-                        show_image: true,
-                        show_date: true,
-                        show_author: true,
-                        show_excerpt: true
-                      -%}
-                      {%- assign posts_shown = posts_shown | plus: 1 -%}
-                    {%- endif -%}
-                  {%- endif -%}
-                {%- endfor -%}
-              {%- endif -%}
-
-              {%- comment -%} Second pass: fill remaining slots from same blog {%- endcomment -%}
-              {%- for related_article in blog.articles -%}
-                {%- if related_article.id != article.id and posts_shown < max_posts -%}
-                  {%- assign already_shown = false -%}
-                  {%- if article.tags.size > 0 -%}
-                    {%- assign primary_tag = article.tags | first -%}
-                    {%- if related_article.tags contains primary_tag -%}
-                      {%- assign already_shown = true -%}
-                    {%- endif -%}
-                  {%- endif -%}
-                  {%- unless already_shown -%}
-                    {%- render "article-card",
-                      article: related_article,
-                      media_height: "medium",
-                      media_aspect_ratio: related_article.image.aspect_ratio,
-                      show_image: true,
-                      show_date: true,
-                      show_author: true,
-                      show_excerpt: true
-                    -%}
-                    {%- assign posts_shown = posts_shown | plus: 1 -%}
-                  {%- endunless -%}
-                {%- endif -%}
-              {%- endfor -%}
-            </div>
-          </div>
-        {%- endif -%}
+        <div {{ block.shopify_attributes }}>
+          {%- render "article-related-posts",
+            article: article,
+            blog: blog,
+            heading: block.settings.heading,
+            posts_to_show: block.settings.posts_to_show
+          -%}
+        </div>
 
       {%- when "related_products" -%}
-        {%- if block.settings.collection != blank -%}
-          <div class="blog-related{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}" {{ block.shopify_attributes }}>
-            <h2 class="blog-related__heading">{{ block.settings.heading | default: "Shop the scents" }}</h2>
-            <div class="blog-related__grid">
-              {%- assign max_products = block.settings.products_to_show | default: 4 -%}
-              {%- for product in block.settings.collection.products limit: max_products -%}
-                {%- render "card-product",
-                  card_product: product,
-                  media_aspect_ratio: "adapt",
-                  image_shape: "default",
-                  show_secondary_image: true,
-                  show_vendor: false,
-                  show_rating: false
-                -%}
-              {%- endfor -%}
-            </div>
-          </div>
-        {%- elsif block.settings.auto_related -%}
-          {%- comment -%}
-            Auto-related: Match products by article tags.
-            Searches all collections for products whose tags overlap with article tags.
-          {%- endcomment -%}
-          {%- assign matching_products = "" -%}
-          {%- assign products_shown = 0 -%}
-          {%- assign max_products = block.settings.products_to_show | default: 4 -%}
-          {%- for collection in collections -%}
-            {%- for product in collection.products -%}
-              {%- if products_shown >= max_products -%}{%- break -%}{%- endif -%}
-              {%- for ptag in product.tags -%}
-                {%- if article.tags contains ptag and products_shown < max_products -%}
-                  {%- unless matching_products contains product.handle -%}
-                    {%- if products_shown == 0 -%}
-                      <div class="blog-related{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}" {{ block.shopify_attributes }}>
-                        <h2 class="blog-related__heading">{{ block.settings.heading | default: "Shop the scents" }}</h2>
-                        <div class="blog-related__grid">
-                    {%- endif -%}
-                    {%- render "card-product",
-                      card_product: product,
-                      media_aspect_ratio: "adapt",
-                      image_shape: "default",
-                      show_secondary_image: true,
-                      show_vendor: false,
-                      show_rating: false
-                    -%}
-                    {%- assign products_shown = products_shown | plus: 1 -%}
-                    {%- assign matching_products = matching_products | append: product.handle | append: "," -%}
-                  {%- endunless -%}
-                  {%- break -%}
-                {%- endif -%}
-              {%- endfor -%}
-            {%- endfor -%}
-          {%- endfor -%}
-          {%- if products_shown > 0 -%}
-                </div>
-              </div>
-          {%- endif -%}
-        {%- endif -%}
+        <div {{ block.shopify_attributes }}>
+          {%- render "article-related-products",
+            article: article,
+            collection: block.settings.collection,
+            auto_related: block.settings.auto_related,
+            heading: block.settings.heading,
+            products_to_show: block.settings.products_to_show
+          -%}
+        </div>
 
       {%- when "newsletter" -%}
-        <div class="page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}" {{ block.shopify_attributes }}>
-          <div class="blog-newsletter">
-            <h2 class="blog-newsletter__heading">{{ block.settings.heading | default: "Stay in the know" }}</h2>
-            {%- if block.settings.subtext != blank -%}
-              <p class="blog-newsletter__subtext">{{ block.settings.subtext }}</p>
-            {%- endif -%}
-            {% form 'customer', id: 'BlogNewsletterForm' %}
-              {%- if form.posted_successfully? -%}
-                <p class="blog-newsletter__success is-visible">{{ block.settings.success_message | default: "Thanks for subscribing!" }}</p>
-              {%- else -%}
-                <div class="blog-newsletter__form">
-                  <input type="hidden" name="contact[tags]" value="newsletter,blog-subscriber">
-                  <input
-                    type="email"
-                    name="contact[email]"
-                    class="blog-newsletter__input"
-                    placeholder="{{ block.settings.placeholder | default: 'Enter your email' }}"
-                    aria-label="Email address"
-                    required
-                    autocomplete="email">
-                  <button type="submit" class="blog-newsletter__submit">
-                    {{ block.settings.button_text | default: "Subscribe" }}
-                  </button>
-                </div>
-                {%- if form.errors -%}
-                  <p class="blog-newsletter__error" style="color: #ff6b6b; margin-top: 0.75em; font-size: 14px;">
-                    {{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}
-                  </p>
-                {%- endif -%}
-              {%- endif -%}
-            {% endform %}
-          </div>
+        <div {{ block.shopify_attributes }}>
+          {%- render "article-newsletter-cta",
+            heading: block.settings.heading,
+            subtext: block.settings.subtext,
+            placeholder: block.settings.placeholder,
+            button_text: block.settings.button_text,
+            success_message: block.settings.success_message
+          -%}
         </div>
 
     {%- endcase -%}
