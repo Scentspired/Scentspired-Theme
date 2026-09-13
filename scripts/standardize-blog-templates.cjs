@@ -1,50 +1,64 @@
 const fs = require('fs');
 const path = require('path');
 const { createTemplate, ORDER } = require('./template-builder.cjs');
-const { blogDefinitions } = require('./blog-definitions.cjs');
+const { blogDefinitions: usaBlogDefinitions } = require('./blog-definitions-usa.cjs');
+const { ukBlogDefinitions } = require('./blog-definitions-uk.cjs');
 
-// Directories to write standardized templates to
-const TARGET_DIRS = [
+console.log('🚀 Compiling Programmatic Standardized Blog Templates across regions...\n');
+
+// 1. Compile USA regional templates
+const USA_DIRS = [
   path.resolve(__dirname, '../templates'),
   path.resolve(__dirname, '../regions/usa/templates'),
-  path.resolve(__dirname, '../regions/uk/templates'),
-  path.resolve(__dirname, '../../Scentspired-USA/templates'),
-  path.resolve(__dirname, '../../Scentspired-UK/templates')
+  path.resolve(__dirname, '../../Scentspired-USA/templates')
 ];
 
-// Load master blog-7
-const blog7Path = path.resolve(__dirname, '../templates/article.blog-7.json');
-const blog7Data = JSON.parse(fs.readFileSync(blog7Path, 'utf8'));
-
-console.log('🚀 Starting Universal Blog Template Standardization across 16 templates...\n');
-
-let totalWritten = 0;
-
+let usaWritten = 0;
 for (let i = 1; i <= 16; i++) {
-  let templateObj;
-  if (i === 7) {
-    templateObj = blog7Data;
-  } else {
-    const def = blogDefinitions[i];
-    if (!def) {
-      console.error(`❌ Missing definition for Blog ${i}`);
-      process.exit(1);
-    }
-    templateObj = createTemplate(def);
+  const def = usaBlogDefinitions[i];
+  if (!def) {
+    console.error(`❌ Missing USA definition for Blog ${i}`);
+    process.exit(1);
   }
-
+  const templateObj = createTemplate(def);
   const jsonString = JSON.stringify(templateObj, null, 2) + '\n';
   const fileName = `article.blog-${i}.json`;
 
-  TARGET_DIRS.forEach(dir => {
+  USA_DIRS.forEach(dir => {
     if (fs.existsSync(dir)) {
-      const filePath = path.join(dir, fileName);
-      fs.writeFileSync(filePath, jsonString, 'utf8');
-      totalWritten++;
+      fs.writeFileSync(path.join(dir, fileName), jsonString, 'utf8');
+      usaWritten++;
     }
   });
-
-  console.log(`✅ Blog ${i}: Standardized 10-section canonical template generated (${fileName})`);
+  console.log(`✅ [USA] Blog ${i}: Standardized 10-section JSON generated (${fileName})`);
 }
 
-console.log(`\n🎉 Completed! Successfully written ${totalWritten} template files across target repositories.`);
+// 2. Compile UK regional templates
+const UK_DIRS = [
+  path.resolve(__dirname, '../regions/uk/templates'),
+  path.resolve(__dirname, '../../Scentspired-UK/templates')
+];
+
+let ukWritten = 0;
+for (let i = 1; i <= 16; i++) {
+  const def = ukBlogDefinitions[i];
+  if (!def) {
+    console.error(`❌ Missing UK definition for Blog ${i}`);
+    process.exit(1);
+  }
+  const templateObj = createTemplate(def);
+  const jsonString = JSON.stringify(templateObj, null, 2) + '\n';
+  const fileName = `article.blog-${i}.json`;
+
+  UK_DIRS.forEach(dir => {
+    if (fs.existsSync(dir)) {
+      fs.writeFileSync(path.join(dir, fileName), jsonString, 'utf8');
+      ukWritten++;
+    }
+  });
+  console.log(`✅ [UK]  Blog ${i}: Standardized 10-section JSON generated (${fileName})`);
+}
+
+console.log(`\n🎉 Programmatic Compilation Complete!`);
+console.log(`   - USA Templates: ${usaWritten} files updated across core & USA repos`);
+console.log(`   - UK Templates:  ${ukWritten} files updated across regional & UK repos`);

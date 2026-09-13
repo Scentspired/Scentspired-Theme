@@ -6,17 +6,17 @@
         "ai_gen_block_0232e4c_37U8Va": {
           "type": "ai_gen_block_0232e4c",
           "settings": {
-            "heading": "<p>WE PUT OUR LUXURY INSPIRED PERFUMES UP AGAINST THE ORIGINALS:</p>",
+            "heading": "<p>WE TESTED OUR LUXURY INSPIRED PERFUME AGAINST THE £250 ORIGINAL:</p>",
             "heading_size": 48,
             "mobile_heading_size": 24,
             "heading_line_height": 1.1,
             "heading_color": "#1a1a1a",
-            "paragraph": "<p>blind wear tests, longevity benchmarks, and what happens when the designer labels come off</p>",
+            "paragraph": "<p>an honest verdict for anyone who has ever winced at a department store price tag</p>",
             "paragraph_size": 18,
             "mobile_paragraph_size": 16,
             "paragraph_line_height": 1.4,
             "paragraph_color": "#332F2B",
-            "desktop_image": "shopify://shop_images/Best_cologne_for_men_and_luxury_perfumes_for_women.png",
+            "desktop_image": "shopify://shop_images/Fragrance_guide_you_needed_before_your_last_very_expensive_mistake.png",
             "image_aspect_ratio": "16/9",
             "horizontal_alignment": "flex-start",
             "vertical_alignment": "center",
@@ -46,7 +46,7 @@
       "custom_css": [],
       "name": "Blog Text Liquid",
       "settings": {
-        "text_content": "<p>There is a question that comes up constantly when people are discovering Scentspired for the first time: does an inspired perfume actually match the designer original? It is a fair question. The internet is flooded with cheap dupes that smell synthetic, screechy, or vanish thirty minutes after spraying.</p><p>To answer it once and for all, we conducted a rigorous double-blind wear test. We put our bestsellers side by side against the iconic $200-$400 designer bottles they are inspired by, testing opening accuracy, drydown nuance, projection, and longevity on real skin.</p>"
+        "text_content": "<p>There is a particular kind of pain that happens in the perfume section of a department store. You are standing at the counter, you have found something that smells incredible, and the sales assistant tells you with a completely straight face that it is £270. You do the mental maths, think about your train fare and your energy bill, and buy it anyway. Or you walk away feeling annoyed.</p><p>We tested our bestsellers side by side against the designer originals they are inspired by. Same skin, same ambient conditions, evaluated at the 15-minute mark, the 3-hour mark, and the 8-hour mark on real people across the UK.</p>"
       }
     },
     "177868816090d620d4": {
@@ -55,7 +55,7 @@
         "ai_gen_block_a1afcd9_GyikqF": {
           "type": "ai_gen_block_a1afcd9",
           "settings": {
-            "background_image": "shopify://shop_images/magnific_ultra-luxury-perfume-prod_3014436914.png",
+            "background_image": "shopify://shop_images/magnific__closeup-shot-of-elegant-male-hands-in-a-light-blue__14589.png",
             "outer_border_color": "#FAF8F5",
             "outer_border_px": 0,
             "aspect_ratio": 56,
@@ -66,7 +66,7 @@
             "line1_top": 66,
             "line1_left": 19,
             "brand_name_regular": "",
-            "brand_name_italic": "THE SHORT VERSION",
+            "brand_name_italic": "HOW WE TESTED",
             "brand_top": 6,
             "brand_left": 50,
             "text_line_2": "",
@@ -86,7 +86,7 @@
       "custom_css": [],
       "name": "Blog Text Liquid",
       "settings": {
-        "text_content": "<p>We tested our bestsellers side by side against the designer originals they are inspired by. Same skin, same ambient conditions, evaluated at the 15-minute mark, the 3-hour mark, and the 8-hour mark. The results surprised even seasoned fragrance collectors.</p><p>The biggest revelation: the difference between luxury originals and premium inspired perfumes is almost never the scent profile—it is the marketing budget and retail markups.</p>"
+        "text_content": "<p>Baccarat Rouge 540 by Maison Francis Kurkdjian is, at this point, a cultural phenomenon. It retails at around £270 for 70ml from Harrods or Liberty. Sauvage Parfum by Dior retails around £130. And Coco Mademoiselle sits at £120 in every Boots and John Lewis in the country.</p><p>Here is what happened when we stripped off the designer packaging and tested the scents purely on skin performance, sillage, and longevity.</p>"
       }
     },
     "blocks_ji7beH": {
@@ -95,15 +95,15 @@
         "ai_gen_block_614820f_zNd6WG": {
           "type": "ai_gen_block_614820f",
           "settings": {
-            "heading": "Addiction vs Baccarat Rouge 540: The One Everyone Asks About",
+            "heading": "Addiction vs Baccarat Rouge 540: The One Everyone Argues About",
             "heading_size": 42,
             "heading_size_mobile": 28,
             "heading_line_height": 1.1,
             "heading_color": "#1A1816",
             "heading_margin_bottom": 30,
             "heading_margin_bottom_mobile": 25,
-            "column_1_text": "<p>Baccarat Rouge 540 by Maison Francis Kurkdjian is the cultural phenomenon that defined modern niche perfumery. It retails for over $325 for 70ml. The opening is instantly recognizable: burnt sugar sweetness balanced by airy saffron and bitter almond.</p><p>In blind testing, participants noted the signature crystalline radiance that makes BR540 so addictive, hovering on skin without feeling heavy.</p>",
-            "column_2_text": "<p>Addiction, our version inspired by Baccarat Rouge 540, opens in that exact same territory. The saffron and jasmine top notes burst forth cleanly, transitioning into cedarwood and ambergris within twenty minutes.</p><p>At the 4-hour mark, 94% of our blind testers could not distinguish which wrist had the $325 original and which had the $45 Scentspired bottle. Longevity on both surpassed 10 hours.</p>",
+            "column_1_text": "<p>Baccarat Rouge 540 smells like nothing else: jasmine, saffron, ambergris, and cedar with a quality that is warm and faintly metallic in the best possible way. It became the most talked-about fragrance of the last decade because it smells like nothing that came before it.</p><p>There is a reason every perfume lover in the country has a strong opinion about it, but £270 is more than most weekly Tesco food shops for a family of four.</p>",
+            "column_2_text": "<p><strong>Addiction</strong>, our version inspired by Baccarat Rouge 540, opens in the same territory. The saffron and jasmine are immediately there, and the amber and cedar base develops in a way that tracks closely with the original throughout the day.</p><p>The drydown is where differences most often show up, and here the gap is narrow. The warmth is there, lasting a full 10 hours on moisturised skin for around a couple of tenners.</p>",
             "body_size": 17,
             "body_size_mobile": 15,
             "body_line_height": 1.9,
@@ -148,7 +148,7 @@
             "box_radius": 15,
             "box_padding": 45,
             "box_spacing": 35,
-            "box_paragraph_1": "<p>Sauvage Parfum by Dior is one of the most celebrated men's fragrances in modern history. The opening explodes with calabrian bergamot and spicy sichuan pepper, backed by a monumental dose of ambroxan and warm vanilla absolute.</p><p>Fierce, inspired by Sauvage Parfum, carries that identical ambroxan signature. The peppery opening provides that crisp, confident punch, while the sandalwood and tonka base delivers relentless projection that carries you through an entire workday and evening out.</p><p>Testers consistently rated Fierce as having slightly richer warmth in the 6-hour drydown due to our 25% oil concentration.</p>",
+            "box_paragraph_1": "<p>Sauvage Parfum by Dior needs very little introduction. It has been one of the most celebrated men's fragrances in the UK for years. The Parfum concentration is the most intense version: ambroxan and pink pepper over a rich, woody base with genuine projection.</p><p><strong>Fierce</strong>, inspired by Sauvage Parfum, carries the same ambroxan signature. The pepper opening, the warm woody base, the projection that earns a comment before you have had a chance to sit down.</p><p>We wore both on opposite wrists and asked a range of people which was the designer version. Most could not reliably tell them apart.</p>",
             "box_paragraph_2": "",
             "box_paragraph_3": "",
             "box_text_color": "#F5EFE6",
@@ -159,7 +159,7 @@
             "subheading_size": 42,
             "subheading_color": "#1A1816",
             "subheading_spacing": 40,
-            "bottom_text": "<p>Across all our comparative testing, differences came down to two factors: the first 90 seconds and the bottle itself. During the first minute, the original designer fragrance alcohol evaporates a hair faster due to bespoke volatile solvents.</p><p>Once both settle onto skin at the 10-minute mark, the olfactory profiles align completely. The question becomes whether having a designer brand etched into a glass cap is worth an extra $280 every time you restock.</p>",
+            "bottom_text": "<p>Across all three tests, differences came down to two things: top note radiation in the first thirty minutes (the designer alcohol flashes slightly faster) and the packaging itself.</p><p>If you are heading somewhere and want to make an immediate impression stepping off the train at Waterloo Station, the original has a slight opening edge. But if you are wearing something all day for your own pleasure, the difference is negligible.</p>",
             "bottom_text_size": 17,
             "bottom_text_color": "#2D2A26",
             "bottom_text_line_height": 1.9
@@ -182,20 +182,20 @@
             "header_2": "Scentspired Match",
             "header_3": "Blind Test Outcome",
             "row_1_label": "Baccarat Rouge 540",
-            "row_1_col_1": "$325 / 70ml",
-            "row_1_col_2": "Addiction ($45 / 50ml)",
+            "row_1_col_1": "£270 / 70ml (Harrods / Liberty)",
+            "row_1_col_2": "Addiction (£15.99 - £29.99)",
             "row_1_col_3": "94% match rate at 4-hour drydown",
             "row_2_label": "Sauvage Parfum by Dior",
-            "row_2_col_1": "$185 / 60ml",
-            "row_2_col_2": "Fierce ($45 / 50ml)",
+            "row_2_col_1": "£130 / 100ml (Boots / John Lewis)",
+            "row_2_col_2": "Fierce (£15.99 - £29.99)",
             "row_2_col_3": "96% match rate; equal 10hr longevity",
             "row_3_label": "Coco Mademoiselle",
-            "row_3_col_1": "$165 / 50ml",
-            "row_3_col_2": "Timeless Grace ($45 / 50ml)",
+            "row_3_col_1": "£120 / 100ml",
+            "row_3_col_2": "Timeless Grace (£15.99 - £29.99)",
             "row_3_col_3": "Identical patchouli-rose heart",
             "row_4_label": "Aventus by Creed",
-            "row_4_col_1": "$495 / 100ml",
-            "row_4_col_2": "Invictor ($45 / 50ml)",
+            "row_4_col_1": "£295 / 100ml",
+            "row_4_col_2": "Invictor (£15.99 - £29.99)",
             "row_4_col_3": "92% match rate with richer smoke note",
             "side_padding": 20,
             "cell_padding": 18,
@@ -233,11 +233,11 @@
             "heading_color": "#1A1816",
             "heading_indent": 0,
             "mobile_heading_indent": 0,
-            "image": "shopify://shop_images/magnific_luxury-perfume-comparison_74h5S6MJAL.jpg_1.jpg",
+            "image": "shopify://shop_images/magnific_luxury-perfume-comparison_74h5S6MJAL_jpg.jpg",
             "image_max_width": 500,
             "heading_image_gap": 16,
             "mobile_heading_image_gap": 20,
-            "body_text": "<p>When evaluating an inspired fragrance against an original, resist the urge to smell your wrist the exact second you spray. All fine fragrances need 2 to 3 minutes for the alcohol carrier to disperse.</p><p>Judge the fragrance at the 15-minute mark, the 2-hour mark, and the end of the day. Notice the trail of scent (the sillage) you leave when walking through a room. That is where high-quality formulation truly shines.</p>",
+            "body_text": "<p>If you have been spending £150 or more on a bottle of fragrance and wearing it sparingly because it feels too precious for an ordinary day, a quality inspired alternative is worth trying properly. Not as a consolation prize. As a genuine everyday option.</p><p>Apply twelve seconds of unscented moisturiser before spraying to close the longevity gap completely.</p>",
             "body_font": "system_ui_n4",
             "body_size": 17,
             "mobile_body_size": 15,
@@ -288,7 +288,7 @@
             "heading_line_spacing": 4,
             "heading_line_height": 1.1,
             "heading_color": "#1A1816",
-            "body_text": "The full bestsellers range is the best place to start. Pick a scent you already love in its original form, compare it side-by-side, and see why thousands of customers will never pay designer retail again.",
+            "body_text": "The bestsellers page is the right place to start. Pick one you already know you love in its original form and experience luxury without the designer tax.",
             "body_font_size": 17,
             "body_line_height": 1.8,
             "body_color": "#2D2A26"

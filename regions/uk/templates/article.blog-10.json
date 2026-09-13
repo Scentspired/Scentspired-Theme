@@ -16,7 +16,7 @@
             "mobile_paragraph_size": 16,
             "paragraph_line_height": 1.4,
             "paragraph_color": "#332F2B",
-            "desktop_image": "shopify://shop_images/WhatsApp_Image_2026-07-08_at_9.30.22_AM.jpg",
+            "desktop_image": "shopify://shop_images/WhatsApp_Image_2026-07-03_at_9.01.11_AM.jpg",
             "image_aspect_ratio": "16/9",
             "horizontal_alignment": "flex-start",
             "vertical_alignment": "center",
@@ -46,7 +46,7 @@
       "custom_css": [],
       "name": "Blog Text Liquid",
       "settings": {
-        "text_content": "<p>Walk through any department store fragrance section right now and you will notice an unmistakable shift: sweetness is everywhere. But this is not the cloying, cotton-candy sugar rush of early-2000s mall body sprays that gave everyone in homeroom a headache.</p><p>Sweetness has undergone an intellectual renaissance in modern perfumery. Today's gourmand fragrances are complex, dark, smoky, and deeply unisex, balancing edible indulgence with sophisticated woods and bitter aromatics.</p>"
+        "text_content": "<p>Walk through any department store fragrance hall right now and you will notice an unmistakable shift: sweetness is everywhere. But this is not the cloying, cotton-candy sugar rush of early-2000s body sprays that gave everyone in the room a headache.</p><p>Sweetness has undergone an intellectual renaissance in modern perfumery. Today's gourmand fragrances are complex, dark, smoky, and deeply unisex, balancing edible indulgence with sophisticated woods and bitter aromatics.</p>"
       }
     },
     "177868816090d620d4": {
@@ -55,7 +55,7 @@
         "ai_gen_block_a1afcd9_GyikqF": {
           "type": "ai_gen_block_a1afcd9",
           "settings": {
-            "background_image": "shopify://shop_images/WhatsApp_Image_2026-07-08_at_9.30.34_AM.jpg",
+            "background_image": "shopify://shop_images/WhatsApp_Image_2026-07-03_at_9.01.11_AM_1.jpg",
             "outer_border_color": "#FAF8F5",
             "outer_border_px": 0,
             "aspect_ratio": 56,
@@ -95,7 +95,7 @@
         "ai_gen_block_614820f_zNd6WG": {
           "type": "ai_gen_block_614820f",
           "settings": {
-            "heading": "Mall-Era Sugar Bombs vs Elevated Modern Gourmands",
+            "heading": "Sugary High-Street Sprays vs Elevated Modern Gourmands",
             "heading_size": 42,
             "heading_size_mobile": 28,
             "heading_line_height": 1.1,
@@ -159,7 +159,7 @@
             "subheading_size": 42,
             "subheading_color": "#1A1816",
             "subheading_spacing": 40,
-            "bottom_text": "<p>Because gourmand molecules are dense and long-lasting, a little goes a very long way. Two sprays on pulse points under your clothing are enough to create a warm, inviting scent bubble.</p><p>They shine brightest in cooler temperatures—autumn breezes, winter evenings, and air-conditioned dinner settings bring out their creamy decadence without cloying.</p>",
+            "bottom_text": "<p>Because gourmand molecules are dense and long-lasting, a little goes a very long way. Two sprays on pulse points under your clothing are enough to create a warm, inviting scent bubble.</p><p>They shine brightest in cooler British temperatures—autumn breezes, winter evenings, and cozy pub settings bring out their creamy decadence without cloying.</p>",
             "bottom_text_size": 17,
             "bottom_text_color": "#2D2A26",
             "bottom_text_line_height": 1.9
@@ -187,9 +187,9 @@
             "row_1_col_3": "Ideal for cold winter evenings",
             "row_2_label": "Roasted Coffee Bean",
             "row_2_col_1": "White Jasmine & Bitter Almond",
-            "row_2_col_2": "Energizing, cozy, contemporary chic",
+            "row_2_col_2": "Energising, cozy, contemporary chic",
             "row_2_col_3": "Feminine Fancy (Good Girl inspired)",
-            "row_3_label": "Caramelized Violet",
+            "row_3_label": "Caramelised Violet",
             "row_3_col_1": "Dark Agarwood (Oud) & Amber",
             "row_3_col_2": "Opulent, royal, velvet-smooth texture",
             "row_3_col_3": "Silk Odyssey (Oud Satin Mood inspired)",
@@ -288,7 +288,7 @@
             "heading_line_spacing": 4,
             "heading_line_height": 1.1,
             "heading_color": "#1A1816",
-            "body_text": "Discover how sophisticated sweetness can be. Explore our elevated gourmand perfumes in the <a href=\"/collections/shop\">Scentspired perfume collection</a>.",
+            "body_text": "Discover how sophisticated sweetness can be. Explore our elevated gourmand perfumes in the <a href=\"/collections/shop\">Scentspired UK collection</a>.",
             "body_font_size": 17,
             "body_line_height": 1.8,
             "body_color": "#2D2A26"

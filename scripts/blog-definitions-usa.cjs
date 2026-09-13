@@ -344,6 +344,63 @@ const blogDefinitions = {
     }
   },
 
+  7: {
+  "hero": {
+    "heading": "EDT, EDP, OR PARFUM:",
+    "paragraph": "the label that determines whether your fragrance lasts all day or ghosts you by noon",
+    "image": "shopify://shop_images/EDT_EDP_OR_PARFUM.jpg_3.jpg"
+  },
+  "intro": {
+    "text": "<p>You are standing in Sephora. You have found something that smells incredible. You are ready to buy it. And then you notice there are three versions of the same fragrance: an EDT, an EDP, and a Parfum. The prices are different. The bottles look almost identical. Nobody on the floor has explained what any of it means. You pick the one in the middle and hope for the best.</p><p>This happens constantly, and the cost is high. In dollars and cents. And in style.<br/>The concentration label on a perfume bottle is one of the most important pieces of information about how a fragrance is going to perform, and it is almost never explained at the point of purchase. Here is what it actually means, what the differences feel like in real life, and how to stop buying the wrong one.</p>"
+  },
+  "takeaway": {
+    "image": "shopify://shop_images/The_Short_Version.png",
+    "title": "THE SHORT VERSION"
+  },
+  "bridge": {
+    "text": "<p>EDT, EDP, and Parfum refer to the percentage of fragrance oil in the bottle. More oil means longer wear and a different kind of projection. Less oil means the scent radiates more freely but fades faster. That is the whole thing. Everything else is detail.</p><p>Eau de Toilette (EDT) sits at roughly 5 to 15 percent oil. Eau de Parfum (EDP) sits at 15 to 20 percent. Parfum, sometimes called Extrait de Parfum, sits at 20 to 30 percent and is the most concentrated of the three. Higher concentration does not mean a better or stronger fragrance. It means a different performance profile, and knowing which one you want changes every purchase you make going forward. </p>"
+  },
+  "comparison": {
+    "heading": "EDT: Great Opening, Short Story",
+    "col1": "<p>An Eau de Toilette is the lightest concentration. The lower oil percentage means more alcohol in the formula, which creates that immediate burst of freshness you get on the first spray. It diffuses quickly, radiates well, and smells incredible for the first hour or two.</p><p>The trade-off is longevity. Most EDTs last two to four hours on bare skin, which means if you are spraying first thing in the morning and expecting to still smell good when you’re reaching for your afternoon coffee pick-me-up, you are going to be disappointed. This is not a flaw in the fragrance. It is just what EDT concentration does.</p>",
+    "col2": "<p>EDTs work best for fresh, citrus-heavy fragrances where the light, airy quality is the whole point. They also work well in heat. On a summer afternoon in a park, a good EDT radiates with perfection. For all-day wear, you need something with more staying power.</p>"
+  },
+  "deepDive": {
+    "heading": "EDP: the one that actually goes the distance",
+    "boxText": "<p>Eau de Parfum is the sweet spot for most people who want a fragrance that lasts through a full day without constant reapplication. At 15 to 20 percent oil concentration, a good EDP on moisturized skin will last six to eight hours, and on some skin types considerably longer.</p><p>The projection is steadier and more balanced than an EDT. Rather than the immediate burst and fade, an EDP develops more slowly through its notes and maintains a consistent presence throughout the day. This is why most of the <a href=\"/collections/women\" title=\"Women\">top perfumes for women</a> and the best colognes for men that get serious wear time tend to sit at EDP concentration.</p><p><strong>Timeless Grace</strong> (inspired by Coco Mademoiselle by Chanel) and <strong>Fate</strong> (inspired by Chance EDP by Chanel) are both EDPs in the Scentspired range. So is <strong>Fierce</strong> (inspired by Sauvage Parfum by Dior). These are all-day fragrances at a price point that means you can actually spray them every morning without doing mental arithmetic about whether the occasion justifies it. <strong>Visionary </strong>(inspired by Imagination by Paco Rabanne) is another EDP worth knowing about if you want something a little more unexpected.</p>",
+    "subheading": "Parfum: the one that stays with you",
+    "bottomText": "<p>Parfum, or Extrait de Parfum, is the most concentrated and the most misunderstood of the three. At 20 to 30 percent oil, it has the least alcohol in the formula, which means it does not project outward the way an EDT does. It stays close to the skin, develops slowly over several hours, and lasts longer than anything else, often eight to twelve hours, sometimes well into the next morning on pulse points.</p><p>Here is where people get tripped up: a Parfum does not fill a room. It does not announce itself when you walk in. If you are shopping for something with projection and reach, an EDP is almost always the better call. If you want something intimate, something that is entirely for you and the person standing close to you, Parfum is in a different category entirely.</p><p><strong>Addictive</strong> (inspired by Baccarat Rouge 540) at Parfum concentration is the kind of fragrance you catch on your own wrist hours later and feel pretty good about. It is not performing for the room. It is just there, warm and present, doing its thing.</p>"
+  },
+  "table": {
+    "h1": "EDT",
+    "h2": "EDP",
+    "h3": "Parfum",
+    "r1Label": "Oil concentration",
+    "r1c1": "5-15%",
+    "r1c2": "15-20%",
+    "r1c3": "20-30%",
+    "r2Label": "Longevity",
+    "r2c1": "2-4 hours",
+    "r2c2": "4-8 hours",
+    "r2c3": "8-12 hours",
+    "r3Label": "Projection",
+    "r3c1": "Light, radiates well",
+    "r3c2": "Balanced, steady",
+    "r3c3": "Close to skin",
+    "r4Label": "Best for",
+    "r4c1": "Daytime, warm weather",
+    "r4c2": "All-day wear, evenings",
+    "r4c3": "Special occasions, cold weather"
+  },
+  "advice": {
+    "image": "shopify://shop_images/What_this_means_1.png",
+    "text": "<p>If your fragrance keeps disappearing before lunch, you are almost certainly wearing an EDT on dry skin. The fix is to move to an EDP version of the same fragrance, to moisturise before you spray, or both. Twelve seconds of unscented lotion before application makes a bigger difference to longevity than most people expect.</p><p>If your fragrance feels overwhelming in warm weather or small spaces, you are probably wearing an EDP or Parfum concentration when an EDT would suit the moment better. The goal is not the most concentrated option. The goal is the right one for how and when you wear it.</p>"
+  },
+  "outro": {
+    "text": "Every fragrance in the <a href=\"https://scentspired.com/collections/shop\">Scentspired perfume collection</a> lists its concentration clearly. Browse the full range, find the profile that fits your day, and buy perfume online knowing exactly what you are getting. No more noon ghosting."
+  }
+},
+
   8: {
     hero: {
       heading: "SIX PERFUME MYTHS IT IS TIME TO LEAVE BEHIND:",

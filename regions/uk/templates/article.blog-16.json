@@ -11,12 +11,12 @@
             "mobile_heading_size": 24,
             "heading_line_height": 1.1,
             "heading_color": "#1a1a1a",
-            "paragraph": "<p>a gift guide for the guy who likes to be a little different and refuses to smell like everyone else</p>",
+            "paragraph": "<p>the friend who likes to be a little different and refuses to smell like everyone else</p>",
             "paragraph_size": 18,
             "mobile_paragraph_size": 16,
             "paragraph_line_height": 1.4,
             "paragraph_color": "#332F2B",
-            "desktop_image": "shopify://shop_images/Last_Blog_Cover_jpg.jpg",
+            "desktop_image": "shopify://shop_images/ChatGPT_Image_Jul_13_2026_05_48_11_PM.png",
             "image_aspect_ratio": "16/9",
             "horizontal_alignment": "flex-start",
             "vertical_alignment": "center",
@@ -55,7 +55,7 @@
         "ai_gen_block_a1afcd9_GyikqF": {
           "type": "ai_gen_block_a1afcd9",
           "settings": {
-            "background_image": "shopify://shop_images/Usa_Last_Blog_Second_Image_jpg.jpg",
+            "background_image": "shopify://shop_images/ChatGPT_Image_Jul_13_2026_05_47_55_PM.png",
             "outer_border_color": "#FAF8F5",
             "outer_border_px": 0,
             "aspect_ratio": 56,
@@ -86,7 +86,7 @@
       "custom_css": [],
       "name": "Blog Text Liquid",
       "settings": {
-        "text_content": "<p>Some guys wear the same three colognes as everyone else and never question it. But for the guy who has strong opinions, values craftsmanship, and likes to stand apart, you need a scent with character.</p><p>A great men's fragrance should feel tailored, unexpected, and intriguing. It should make people lean in and ask, 'What are you wearing?' instead of recognizing it immediately from a billboard. Here is how to pick the right bottle for his unique persona.</p>"
+        "text_content": "<p>Some guys wear the same three colognes as everyone else in the room and never question it. This one doesn't. For the guy who has strong opinions, values craftsmanship, and likes to stand apart, you need a scent with character.</p><p>A great men's fragrance should feel tailored, unexpected, and intriguing. It should make people lean in and ask, 'What are you wearing?' instead of recognising it immediately from a billboard. Here is how to pick the right bottle for his unique persona.</p>"
       }
     },
     "blocks_ji7beH": {
@@ -102,7 +102,7 @@
             "heading_color": "#1A1816",
             "heading_margin_bottom": 30,
             "heading_margin_bottom_mobile": 25,
-            "column_1_text": "<p>Standard department store colognes rely heavily on the 'blue' fragrance template: aquatic citrus, synthetic lavender, and fresh shower-gel ambroxan. They are safe, clean, and completely ubiquitous.</p><p>While there is nothing wrong with smelling clean, it leaves zero lasting impression. It says, 'I bought whatever was on the front display table.'</p>",
+            "column_1_text": "<p>Standard high-street colognes rely heavily on the 'blue' fragrance template: aquatic citrus, synthetic lavender, and fresh shower-gel ambroxan. They are safe, clean, and completely ubiquitous.</p><p>While there is nothing wrong with smelling clean, it leaves zero lasting impression. It says, 'I bought whatever was on the front display table.'</p>",
             "column_2_text": "<p>A niche-inspired statement fragrance introduces texture and tension: smoky pineapple, dry oakmoss, rich patchouli, or powdery iris and leather.</p><p>These scents signal intentionality and refined taste. They project an aura of confidence, creative sophistication, and mature masculine authority.</p>",
             "body_size": 17,
             "body_size_mobile": 15,
@@ -288,7 +288,7 @@
             "heading_line_spacing": 4,
             "heading_line_height": 1.1,
             "heading_color": "#1A1816",
-            "body_text": "Upgrade his signature scent with our most distinctive men's fragrances in the <a href=\"/collections/shop\">Scentspired bestsellers collection</a>.",
+            "body_text": "Upgrade his signature scent with our most distinctive men's fragrances in the <a href=\"/collections/shop\">Scentspired UK collection</a>.",
             "body_font_size": 17,
             "body_line_height": 1.8,
             "body_color": "#2D2A26"
