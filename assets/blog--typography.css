@@ -705,3 +705,107 @@
   height: 14px;
   transform: rotate(180deg);
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   CENTRALIZED EDITORIAL ARTICLE UNIFICATION
+   Enforces identical layout geometry, luxury font hierarchy,
+   and responsive column constraints across all article templates.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Universal Hero Banner Layout Normalization */
+[class*="ai-luxury-banner-outer"] {
+  padding: 0 !important;
+  background-color: transparent !important;
+  margin: 1.5rem auto 2.5rem !important;
+  max-width: 1200px !important;
+}
+
+[class*="ai-luxury-banner-container"] {
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  position: relative !important;
+}
+
+[class*="ai-luxury-banner-content-overlay"] {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  padding: clamp(24px, 4vw, 48px) !important;
+}
+
+[class*="ai-luxury-banner-content"] {
+  max-width: 680px !important;
+  text-align: left !important;
+}
+
+[class*="ai-luxury-banner-heading"] {
+  font-family: 'PPEditorialNew Italic', Georgia, serif !important;
+  font-size: clamp(26px, 3.8vw, 42px) !important;
+  line-height: 1.15 !important;
+  letter-spacing: -0.02em !important;
+  margin-bottom: 0.5rem !important;
+  font-weight: 400 !important;
+}
+
+[class*="ai-luxury-banner-paragraph"] {
+  font-family: 'PPMori Regular', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: clamp(15px, 2vw, 20px) !important;
+  line-height: 1.4 !important;
+  color: #1a1a1a !important;
+}
+
+/* Universal Hardcoded Statement Section Normalization (blogtextliquid) */
+.shopify-hardcoded-text-section-wrapper {
+  min-height: auto !important;
+  padding: clamp(2rem, 3.5vw, 3.5rem) 1.5rem !important;
+  background-color: transparent !important;
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.shopify-hardcoded-text-section-content {
+  max-width: 900px !important;
+  width: 100% !important;
+  font-family: 'PPMori Regular', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-weight: 300 !important;
+  font-size: clamp(1.35rem, 2.6vw, 2.25rem) !important;
+  line-height: 1.45 !important;
+  letter-spacing: -0.01em !important;
+  color: #121212 !important;
+  text-align: left !important;
+  margin: 0 auto !important;
+}
+
+.shopify-hardcoded-text-section-content p {
+  margin-bottom: 1.5rem !important;
+}
+
+.shopify-hardcoded-text-section-content p:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* Universal Editorial Content Normalization */
+[class*="ai-editorial-section"],
+[class*="lux-wrap-"] {
+  max-width: 900px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding: 1.5rem !important;
+  box-sizing: border-box !important;
+}
+
+/* Table Block Normalization */
+.table-container-responsive,
+[class*="ai-gen-block-79f8247"] {
+  max-width: 900px !important;
+  margin: 2rem auto !important;
+  box-sizing: border-box !important;
+}
+
+/* Prune Empty Sections from rendering */
+.shopify-section:empty {
+  display: none !important;
+}
+
