@@ -964,7 +964,24 @@ div[id*="shopify-section"]:empty {
 .shopify-section:has([class*="ai-luxury-banner-outer"]) + .shopify-section,
 .shopify-section:has([class*="lux-wrap-"]) + .shopify-section,
 .shopify-section:has(.shopify-hardcoded-text-section-wrapper) + .shopify-section:has(.shopify-hardcoded-text-section-wrapper),
-.shopify-section:has(.shopify-hardcoded-text-section-wrapper) + .shopify-section:has([class*="lux-wrap-"]),
-.shopify-section:has(.shopify-hardcoded-text-section-wrapper) + .shopify-section:has([class*="ai-editorial"]) {
+.shopify-section:has(.shopify-hardcoded-text-section-wrapper) + .shopify-section:has([class*="lux-wrap-"]) {
   margin-top: 0;
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   10. Section Separation & Breathing Room
+   Ensures dedicated whitespace (margins) between stacked sections
+   so page background separates them cleanly without color bleeding.
+   ═══════════════════════════════════════════════════════════════ */
+
+div[id*="17786893180b60ea14"],
+.shopify-section:has([class*="ai-editorial-section"]) {
+  margin-bottom: clamp(48px, 6vw, 84px) !important;
+}
+
+div[id*="1778692264fe7b6973"],
+.shopify-section:has([class*="ai-split-editorial"]) {
+  margin-top: clamp(48px, 6vw, 84px) !important;
+  margin-bottom: clamp(48px, 6vw, 84px) !important;
+}
+

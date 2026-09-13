@@ -114,11 +114,7 @@
         "question_link_RFe4EW",
         "additional_link_tUGf9H"
       ],
-      "custom_css": [
-        ".footer-background-text {position: absolute; bottom: -370px; left: 55%; transform: translateX(-50%); font-weight: 900; color: rgba(0, 0, 0, 0.1); white-space: nowrap; pointer-events: none; z-index: 1;}",
-        ".custom-footer {padding: 30px 0 320px; position: relative; overflow: hidden;}",
-        "@media only screen and (max-width: 900px) {.custom-footer {padding: 0px 0 650px; position: relative; overflow: hidden; } .footer-background-text {position: absolute; bottom: -650px; left: 40%; z-index: 1; }}"
-      ],
+      "custom_css": [],
       "settings": {
         "footer_bg_color": "#121212",
         "footer_text_color": "#ffffff",
