@@ -27,6 +27,7 @@ const { spawnSync } = require("child_process");
 // Parse CLI Arguments
 const args = process.argv.slice(2);
 let targetDir = process.env.THEME_TARGET_DIR || null;
+let scope = null;
 
 for (const arg of args) {
   if (arg.startsWith("--target=")) {
@@ -35,6 +36,8 @@ for (const arg of args) {
     targetDir = arg.split("=")[1];
   } else if (arg === "--target" && args[args.indexOf(arg) + 1]) {
     targetDir = args[args.indexOf(arg) + 1];
+  } else if (arg.startsWith("--scope=")) {
+    scope = arg.split("=")[1].toLowerCase();
   }
 }
 
@@ -44,6 +47,17 @@ if (!targetDir) {
 }
 
 const resolvedTarget = path.resolve(targetDir);
+
+// Auto-detect scope if not explicitly passed
+if (!scope) {
+  if (resolvedTarget.toLowerCase().includes("usa")) {
+    scope = "usa";
+  } else if (resolvedTarget.toLowerCase().includes("uk")) {
+    scope = "uk";
+  } else {
+    scope = "core";
+  }
+}
 
 if (!fs.existsSync(resolvedTarget)) {
   console.error(`\n[FATAL] Specified theme target directory does not exist: ${resolvedTarget}\n`);
@@ -75,10 +89,25 @@ console.log("║   SCENTSPIRED THEME GUARDIAN — MASTER QUALITY GATE           
 console.log("╚══════════════════════════════════════════════════════════════╝");
 console.log(`  Target Theme : ${resolvedTarget}`);
 console.log(`  Engine Root  : ${GUARDIAN_ROOT}`);
+console.log(`  Scope        : ${scope.toUpperCase()}`);
 console.log(`  Timestamp    : ${new Date().toISOString()}`);
 console.log("────────────────────────────────────────────────────────────────");
 
-const LAYERS = [
+// Regional Scope Fast-Path
+if (scope === "usa") {
+  const usaSuite = path.join(TESTS_DIR, "regions", "usa", "regional-test-suite.cjs");
+  const res = spawnSync("node", [usaSuite], { stdio: "inherit", cwd: GUARDIAN_ROOT });
+  process.exit(res.status);
+}
+
+if (scope === "uk") {
+  const ukSuite = path.join(TESTS_DIR, "regions", "uk", "regional-test-suite.cjs");
+  const res = spawnSync("node", [ukSuite], { stdio: "inherit", cwd: GUARDIAN_ROOT });
+  process.exit(res.status);
+}
+
+// Core Engine Layers
+const CORE_LAYERS = [
   {
     name: "Layer 1: Prettier & Liquid Formatting Gate",
     cmd: "npx",
@@ -135,20 +164,13 @@ const LAYERS = [
     failMsg: "Localization translation key check failed",
   },
   {
-    name: "Layer 10: Dynamic Live Catalog & Inventory Probe",
-    cmd: "node",
-    args: [path.join(TESTS_DIR, "live", "live-catalog-probe.cjs")],
-    optional: true,
-    failMsg: "Live catalog endpoint probing failed",
-  },
-  {
-    name: "Layer 11: Asset & Snippet Physical Integrity Linter",
+    name: "Layer 10: Asset & Snippet Physical Integrity Linter",
     cmd: "node",
     args: [path.join(TESTS_DIR, "static", "asset-snippet-integrity.cjs")],
     failMsg: "Referenced asset or snippet missing from disk",
   },
   {
-    name: "Layer 12: Asset Performance & Size Budget Guard",
+    name: "Layer 11: Asset Performance & Size Budget Guard",
     cmd: "node",
     args: [path.join(TESTS_DIR, "static", "asset-size-budget-guard.cjs")],
     failMsg: "Asset file size exceeded performance budget",
@@ -159,9 +181,9 @@ let totalPassed = 0;
 let totalFailed = 0;
 const startTime = Date.now();
 
-for (let i = 0; i < LAYERS.length; i++) {
-  const layer = LAYERS[i];
-  console.log(`\n>>> RUNNING [${i + 1}/${LAYERS.length}]: ${layer.name}...`);
+for (let i = 0; i < CORE_LAYERS.length; i++) {
+  const layer = CORE_LAYERS[i];
+  console.log(`\n>>> RUNNING [${i + 1}/${CORE_LAYERS.length}]: ${layer.name}...`);
 
   const result = spawnSync(layer.cmd, layer.args, {
     stdio: "inherit",
@@ -182,11 +204,31 @@ for (let i = 0; i < LAYERS.length; i++) {
   }
 }
 
+// If scope is ALL, also run USA and UK suites
+if (totalFailed === 0 && scope === "all") {
+  console.log("\n==================================================================");
+  console.log("   🌐 RUNNING REGIONAL TEST SUITES (USA & UK)");
+  console.log("==================================================================");
+
+  const usaSuite = path.join(TESTS_DIR, "regions", "usa", "regional-test-suite.cjs");
+  const ukSuite = path.join(TESTS_DIR, "regions", "uk", "regional-test-suite.cjs");
+
+  const usaRes = spawnSync("node", [usaSuite], { stdio: "inherit", cwd: GUARDIAN_ROOT });
+  if (usaRes.status !== 0) {
+    totalFailed++;
+  }
+
+  const ukRes = spawnSync("node", [ukSuite], { stdio: "inherit", cwd: GUARDIAN_ROOT });
+  if (ukRes.status !== 0) {
+    totalFailed++;
+  }
+}
+
 const duration = ((Date.now() - startTime) / 1000).toFixed(2);
 
 if (totalFailed === 0) {
   console.log("\n==================================================================");
-  console.log(`   ✅ ALL ${LAYERS.length} QUALITY GATES PASSED (100% CLEAN & SECURE) — ${duration}s`);
+  console.log(`   ✅ ALL QUALITY GATES PASSED (100% CLEAN & SECURE) — ${duration}s`);
   console.log("   🚀 APPROVED FOR LIVE PRODUCTION DEPLOYMENT");
   console.log("==================================================================\n");
   process.exit(0);

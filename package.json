@@ -5,7 +5,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node runner.cjs --target=.",
+    "test": "node runner.cjs --scope=core",
+    "test:core": "node runner.cjs --scope=core",
+    "test:usa": "node runner.cjs --scope=usa --target=../Scentspired-USA",
+    "test:uk": "node runner.cjs --scope=uk --target=../Scentspired-UK",
+    "test:all": "node runner.cjs --scope=all",
     "test:scanner": "node tests/static/static-analysis.cjs",
     "test:syntax": "node tests/static/syntax-validator.cjs",
     "test:flows": "node tests/dynamic/critical-flow-simulator.cjs",

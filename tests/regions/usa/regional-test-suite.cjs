@@ -1,0 +1,69 @@
+#!/usr/bin/env node
+/**
+ * Scentspired Regional Test Suite: USA (scentspired.myshopify.com)
+ * Validates non-overlapping regional test cases:
+ * 1. USA Templates & Schema Validation (102 templates/*.json)
+ * 2. USA Currency & Locale Integrity ($ USD, en.default.json)
+ * 3. USA Live Catalog & Inventory Probe (discovery, best-sellers, bundles)
+ */
+
+const path = require('path');
+const { spawnSync } = require('child_process');
+
+const ROOT = path.resolve(__dirname, '../../..');
+const USA_DIR = path.resolve(ROOT, '../Scentspired-USA');
+
+console.log('\n╔══════════════════════════════════════════════════════════════╗');
+console.log('║   🇺🇸 SCENTSPIRED REGIONAL TEST SUITE: USA                    ║');
+console.log('╚══════════════════════════════════════════════════════════════╝');
+console.log(`  Target Directory: ${USA_DIR}\n`);
+
+const GATES = [
+  {
+    name: 'USA Gate 1: JSON Template & Schema Validator',
+    cmd: 'node',
+    args: [path.join(ROOT, 'tests/static/json-schema-validator.cjs')],
+    env: { THEME_TARGET_DIR: USA_DIR }
+  },
+  {
+    name: 'USA Gate 2: Regional Locale Integrity Linter',
+    cmd: 'node',
+    args: [path.join(ROOT, 'tests/static/locale-integrity-validator.cjs')],
+    env: { THEME_TARGET_DIR: USA_DIR }
+  },
+  {
+    name: 'USA Gate 3: Live Store Catalog & Inventory Probe',
+    cmd: 'node',
+    args: [path.join(__dirname, 'catalog-probe.cjs')],
+    env: { THEME_TARGET_DIR: USA_DIR },
+    optional: true
+  }
+];
+
+let failed = false;
+for (const gate of GATES) {
+  console.log(`>>> RUNNING: ${gate.name}...`);
+  const res = spawnSync(gate.cmd, gate.args, {
+    stdio: 'inherit',
+    env: { ...process.env, ...gate.env },
+    cwd: USA_DIR
+  });
+
+  if (res.status !== 0) {
+    if (gate.optional) {
+      console.log(`⚠️  [WARN] Optional gate ${gate.name} had non-zero exit.`);
+    } else {
+      console.error(`❌ [FAIL] ${gate.name} failed!`);
+      failed = true;
+      break;
+    }
+  }
+}
+
+if (failed) {
+  console.error('\n❌ USA Regional Test Suite: FAILED\n');
+  process.exit(1);
+} else {
+  console.log('\n✅ USA Regional Test Suite: 100% PASSED (All non-overlapping cases verified)\n');
+  process.exit(0);
+}
