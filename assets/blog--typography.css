@@ -41,6 +41,10 @@
   --blog-accent-hover: #333;
   --blog-border-color: rgba(0, 0, 0, 0.08);
   --blog-bg-muted: #f9f6f1;
+
+  /* Editorial section spacing — single source of truth */
+  --blog-section-gap: clamp(48px, 6vw, 72px);
+  --blog-section-gap-tight: clamp(32px, 4vw, 48px);
 }
 
 /* ── Mobile overrides ─────────────────────────────────────── */
@@ -53,6 +57,8 @@
     --blog-h4-size: 18px;
     --blog-meta-size: 13px;
     --blog-column-max-width: 100%;
+    --blog-section-gap: 40px;
+    --blog-section-gap-tight: 28px;
   }
 }
 
@@ -901,13 +907,15 @@ div[id*="shopify-section"] [class*="ai-comparison-table"],
 div[id*="shopify-section"] [class*="ai-gen-block-79f8247"],
 div[id*="shopify-section"] [class*="ai-gen-block-313b73e"],
 div[id*="shopify-section"] [class*="ai-gen-block-42e8eee"],
+div[id*="shopify-section"] [class*="ai-gen-block-e9499a3"],
 .table-container-responsive,
 [class*="ai-comparison-table"],
 [class*="ai-gen-block-79f8247"],
 [class*="ai-gen-block-313b73e"],
-[class*="ai-gen-block-42e8eee"] {
-  max-width: 900px !important;
-  margin: 2.5rem auto !important;
+[class*="ai-gen-block-42e8eee"],
+[class*="ai-gen-block-e9499a3"] {
+  max-width: 1080px !important;
+  margin: 0 auto !important;
   padding: 0 1.5rem !important;
   box-sizing: border-box !important;
   width: 100% !important;
@@ -926,9 +934,8 @@ div[id*="shopify-section"] [class*="ai-split-editorial"],
 div[id*="shopify-section"] [class*="ai-staggered-typography"],
 [class*="ai-split-editorial"],
 [class*="ai-staggered-typography"] {
-  max-width: 1000px !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
+  max-width: 1080px !important;
+  margin: 0 auto !important;
   padding: 2.5rem 1.5rem !important;
   box-sizing: border-box !important;
 }
@@ -939,7 +946,7 @@ div[id*="shopify-section"] [class*="ai-product-grid"],
 [class*="ai-products-container"],
 [class*="ai-product-grid"] {
   max-width: 1200px !important;
-  margin: 3rem auto !important;
+  margin: 0 auto !important;
   padding: 0 1.5rem !important;
   box-sizing: border-box !important;
 }
@@ -955,33 +962,49 @@ div[id*="shopify-section"]:empty {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   9. Full-Bleed Editorial Overrides
+   9. Full-Bleed Editorial Overrides & Banner Seams
    When a block sets explicit 100vw width via inline {% style %},
-   these rules ensure the normalization defaults above don't fight it.
+   these rules ensure the normalization defaults don't fight it.
    ═══════════════════════════════════════════════════════════════ */
 
-/* Seamless editorial section flow — no gaps between stacked sections */
+/* Seamless banner connections — no gaps between full-bleed banners and intro/outro text */
+.shopify-section:has([class*="ai-luxury-banner-outer"]),
+.shopify-section:has([class*="lux-wrap-"]) {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
 .shopify-section:has([class*="ai-luxury-banner-outer"]) + .shopify-section,
 .shopify-section:has([class*="lux-wrap-"]) + .shopify-section,
-.shopify-section:has(.shopify-hardcoded-text-section-wrapper) + .shopify-section:has(.shopify-hardcoded-text-section-wrapper),
 .shopify-section:has(.shopify-hardcoded-text-section-wrapper) + .shopify-section:has([class*="lux-wrap-"]) {
-  margin-top: 0;
+  margin-top: 0 !important;
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   10. Section Separation & Breathing Room
-   Ensures dedicated whitespace (margins) between stacked sections
-   so page background separates them cleanly without color bleeding.
+   10. Universal Editorial Content Section Spacing
+   Single source of truth: every editorial content section receives
+   identical vertical margin-bottom via --blog-section-gap.
    ═══════════════════════════════════════════════════════════════ */
 
-div[id*="17786893180b60ea14"],
-.shopify-section:has([class*="ai-editorial-section"]) {
-  margin-bottom: clamp(48px, 6vw, 84px) !important;
-}
-
-div[id*="1778692264fe7b6973"],
-.shopify-section:has([class*="ai-split-editorial"]) {
-  margin-top: clamp(48px, 6vw, 84px) !important;
-  margin-bottom: clamp(48px, 6vw, 84px) !important;
+.shopify-section:has([class*="ai-editorial-section"]),
+.shopify-section:has([class*="ai-comparison-table"]),
+.shopify-section:has([class*="ai-split-editorial"]),
+.shopify-section:has([class*="ai-staggered-typography"]),
+.shopify-section:has([class*="ai-products-container"]),
+.shopify-section:has([class*="ai-product-grid"]),
+.shopify-section:has(.table-container-responsive),
+.shopify-section:has([class*="ai-gen-block-e9499a3"]),
+.shopify-section:has([class*="ai-gen-block-79f8247"]),
+.shopify-section:has([class*="ai-gen-block-313b73e"]),
+.shopify-section:has([class*="ai-gen-block-42e8eee"]),
+.shopify-section:has([class*="ai-gen-block-29a8932"]),
+.shopify-section:has([class*="ai-gen-block-fb81b45"]),
+.shopify-section:has([class*="ai-gen-block-c88e324"]),
+.shopify-section:has([class*="ai-gen-block-e9ac98b"]),
+.shopify-section:has([class*="ai-gen-block-614820f"]),
+.shopify-section:has([class*="ai-gen-block-f4b496d"]),
+.shopify-section:has(.shopify-hardcoded-text-section-wrapper):not(:has(+ .shopify-section:has([class*="lux-wrap-"]))) {
+  margin-top: 0 !important;
+  margin-bottom: var(--blog-section-gap) !important;
 }
 
