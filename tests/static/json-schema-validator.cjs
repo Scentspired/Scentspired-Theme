@@ -82,15 +82,19 @@ function parseJsonc(content) {
   return JSON.parse(output);
 }
 
-// Discover all existing section names
-const sectionsDir = path.join(ROOT, 'sections');
+// Discover all existing section names (checks target and falls back to Core Theme sections)
+const coreSectionsDir = path.resolve(__dirname, '../../sections');
+const targetSectionsDir = path.join(ROOT, 'sections');
+const sectionsDirs = [targetSectionsDir, coreSectionsDir];
 const availableSections = new Set();
 
-if (fs.existsSync(sectionsDir)) {
-  const sectionFiles = fs.readdirSync(sectionsDir);
-  for (const f of sectionFiles) {
-    if (f.endsWith('.liquid') || f.endsWith('.json')) {
-      availableSections.add(f.replace(/\.(liquid|json)$/, ''));
+for (const sDir of sectionsDirs) {
+  if (fs.existsSync(sDir)) {
+    const sectionFiles = fs.readdirSync(sDir);
+    for (const f of sectionFiles) {
+      if (f.endsWith('.liquid') || f.endsWith('.json')) {
+        availableSections.add(f.replace(/\.(liquid|json)$/, ''));
+      }
     }
   }
 }

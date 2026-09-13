@@ -1,0 +1,506 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-article",
+      "blocks": {
+        "featured_image": {
+          "type": "featured_image",
+          "settings": {
+            "image_height": "adapt"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "blog_show_date": true,
+            "blog_show_author": false
+          }
+        },
+        "share": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
+        },
+        "content": {
+          "type": "content",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "featured_image",
+        "title",
+        "share",
+        "content"
+      ],
+      "disabled": true,
+      "settings": {}
+    },
+    "177883883994f3af2c": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_5c54be2_9Wtw4b": {
+          "type": "ai_gen_block_5c54be2",
+          "settings": {
+            "heading": "<p>SIX PERFUME MYTHS</p>",
+            "heading_size": 48,
+            "mobile_heading_size": 22,
+            "heading_line_height": 1.1,
+            "heading_color": "#000000",
+            "paragraph": "<p>That are completely wrong, including the wrist-rubbing thing you have been confidently doing for years</p>",
+            "paragraph_size": 20,
+            "mobile_paragraph_size": 16,
+            "paragraph_line_height": 1,
+            "paragraph_color": "#000000",
+            "desktop_image": "shopify://shop_images/Six_perfume_myths_jpg.jpg",
+            "image_aspect_ratio": "16/9",
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "text_alignment": "left",
+            "content_padding": 40,
+            "content_max_width_inner": 680,
+            "mobile_horizontal_alignment": "flex-start",
+            "mobile_vertical_alignment": "center",
+            "mobile_text_alignment": "left",
+            "mobile_content_padding": 25,
+            "content_max_width": 1400,
+            "outer_spacing": 20,
+            "mobile_outer_spacing": 15,
+            "background_color": "#f5f3f0"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_5c54be2_9Wtw4b"
+      ],
+      "custom_css": [],
+      "settings": {}
+    },
+    "blog_text_7BWxfp": {
+      "type": "blog-text",
+      "custom_css": [
+        ".shopify-hardcoded-text-section-content {font-size: 16px; margin-left: 0px; text-align: left;}",
+        "@media screen and (max-width: 1024px) {.shopify-hardcoded-text-section-wrapper {min-height: 200px; padding: 16px !important; }}",
+        "a {color: #000;}"
+      ],
+      "name": "Blog Text Section",
+      "settings": {
+        "text_content": "<p>Fragrance has a misinformation problem. Not the interesting kind, where experts disagree and reasonable people can see both sides. The boring kind, where things that are simply not true have been repeated so many times in Selfridges, Harper’s, and the beauty corner of the internet that they have calcified into received wisdom. Nobody questions them. They get passed on. They keep being wrong</p>"
+      }
+    },
+    "1778840570728901cb": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_0a32e98_rXapP6": {
+          "type": "ai_gen_block_0a32e98",
+          "settings": {
+            "background_image": "shopify://shop_images/Wrist_Rubbing_Image_jpg.jpg",
+            "outer_border_color": "#ffffff",
+            "outer_border_px": 16,
+            "aspect_ratio": 56,
+            "font_family_regular": "'PP Editorial New', 'Cormorant Garamond', Georgia, serif",
+            "font_family_italic": "'PPEditorialNew Ultralight Italic', 'Cormorant Garamond', Georgia, serif",
+            "text_color": "#000000",
+            "text_line_1": "",
+            "line1_top": 61,
+            "line1_left": 23,
+            "brand_name_regular": "",
+            "brand_name_italic": "Myth 1: rubbing your wrists together makes the fragrance last longer",
+            "brand_top": 2,
+            "brand_left": 6,
+            "text_line_2": "",
+            "line3_top": 85,
+            "line3_left": 61
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_0a32e98_rXapP6"
+      ],
+      "custom_css": [
+        "@media screen and (max-width: 768px) {.lux-line2-aoddyqjdvbujtnwgxyaigenblock0a32e98rxapp6 {position: absolute; top: 2%; left: 15%; }}"
+      ],
+      "settings": {}
+    },
+    "blog_text_mELacU": {
+      "type": "blog-text",
+      "custom_css": [
+        ".shopify-hardcoded-text-section-content {font-size: 16px; margin-left: 0px; text-align: left;}",
+        "@media screen and (max-width: 1024px) {.shopify-hardcoded-text-section-wrapper {min-height: 200px; padding: 16px !important; }}"
+      ],
+      "name": "Blog Text Section",
+      "settings": {
+        "text_content": "<p>This is the big one. The wrist rub is so universal that not pointing it out feels almost rude. You have probably done it. Your mum definitely does it. So does your nan.</p><p>Here is what actually happens. Rubbing your wrists together generates friction and heat, which causes the top notes to evaporate faster than they otherwise would. You are not locking the scent in. You are speeding up the first phase of its development and losing the opening you just paid for. The fragrance does not last longer as a result. It lasts the same or, at the margins, slightly less.</p><p>Spray it. Leave it. That is the whole instruction.</p>"
+      }
+    },
+    "1778849786d4cbe62f": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_6894d32_KAA87y": {
+          "type": "ai_gen_block_6894d32",
+          "settings": {
+            "heading": "Myth 2: expensive perfumes last longer",
+            "heading_size": 56,
+            "heading_size_mobile": 32,
+            "heading_line_height": 1,
+            "heading_color": "#000000",
+            "heading_margin_bottom": 50,
+            "heading_margin_bottom_mobile": 30,
+            "column_1_text": "<p>The relationship between price and longevity is not what most people assume. Longevity depends on concentration, formulation, and the quality of the base notes. A well-made EDP at twenty quid will outlast a designer EDT at £120 every single time, because concentration is doing the work, not the price tag.</p><p><br/></p><p>What you are paying for with a designer fragrance is the raw materials, the bottle, the packaging, the global campaign, and the margins across every retailer the product touches between the factory and your bathroom shelf. Some of that investment goes into the liquid. A lot of it really does not.</p>",
+            "column_2_text": "<p>A quality inspired fragrance like <strong>Addiction</strong> (inspired by Baccarat Rouge 540) at EDP concentration will outlast a lower-concentration designer alternative at three times the price. The number on the label tells you about the brand's overheads. It does not tell you if you’ll still smell of it at 7pm after a full day at college, uni or work.</p>",
+            "body_size": 24,
+            "body_size_mobile": 14,
+            "body_line_height": 1.6,
+            "body_color": "#000000",
+            "paragraph_spacing": 10,
+            "column_gap": 70,
+            "column_gap_mobile": 30,
+            "max_width": 1400,
+            "desktop_width_percent": 100,
+            "background_color": "#f9f6f1",
+            "padding_top": 60,
+            "padding_bottom": 60,
+            "padding_horizontal": 40,
+            "padding_top_mobile": 40,
+            "padding_bottom_mobile": 40,
+            "padding_horizontal_mobile": 20
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_6894d32_KAA87y"
+      ],
+      "custom_css": [
+        ".ai-editorial-heading-aq1zua2fxdjneutvhmaigenblock6894d32kaa87y {max-width: 625px;}"
+      ],
+      "settings": {}
+    },
+    "1778843746bf825332": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_3a2b0a1_cTWXeG": {
+          "type": "ai_gen_block_3a2b0a1",
+          "settings": {
+            "desktop_width_percent": 100,
+            "max_width": 1200,
+            "section_padding": 20,
+            "background_color": "#f9f6f1",
+            "heading": "<p>Myth 3: you should only spray perfume on pulse points</p>",
+            "heading_size": 50,
+            "heading_color": "#121212",
+            "heading_spacing": 10,
+            "box_color": "#8b1d22",
+            "box_radius": 25,
+            "box_padding": 40,
+            "box_spacing": 10,
+            "box_paragraph_1": "<p>Pulse points are genuinely useful. Wrists, neck, inside of the elbow: these areas emit heat throughout the day, which activates the fragrance and keeps it diffusing. That part is true and worth knowing.</p><p>What is not true is that pulse points are the only option, or that spraying anywhere else is wrong. Hair holds fragrance for hours longer than skin in most cases, because it has no oils to absorb and break down the scent. The back of the neck is a particularly good spot if you want something that lingers in the air when you move. Clothing, used carefully on fabrics that will not stain, gives you a different quality of wear entirely.</p><p>Pulse points are a starting point. They are not a rule.</p>",
+            "box_paragraph_2": "",
+            "box_paragraph_3": "",
+            "box_text_color": "#ffffff",
+            "box_text_size": 24,
+            "box_text_line_height": 1.6,
+            "paragraph_spacing": 25,
+            "subheading": "<p>Myth 4: you cannot smell your own perfume because it has worn off</p>",
+            "subheading_size": 60,
+            "subheading_color": "#000000",
+            "subheading_spacing": 10,
+            "bottom_text": "<p>This one catches people out regularly. You spray your fragrance in the morning, everything is fine, and then by mid-morning you cannot smell it at all. The conclusion most people reach is that it has gone. It usually has not.</p><p>What has happened is olfactory adaptation, which is your nose's way of filtering out constant background stimuli so you can focus on new information. You stop noticing your own scent because your brain has decided it is not new or interesting enough to keep flagging. Other people can still smell it. Your nose has just stopped reporting on it.</p><p>The test is to ask someone else, not to reach for the bottle. Reapplying on top of a fragrance that is still present is how you end up clearing a lift.</p>",
+            "bottom_text_size": 23,
+            "bottom_text_color": "#000000",
+            "bottom_text_line_height": 1.6
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_3a2b0a1_cTWXeG"
+      ],
+      "custom_css": [
+        "a {color: #000;}"
+      ],
+      "settings": {}
+    },
+    "1779107504f82a420f": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_e17473f_Pmbp9t": {
+          "type": "ai_gen_block_e17473f",
+          "disabled": true,
+          "settings": {
+            "line_1_text": "Timeless Grace",
+            "line_1_alignment": "left",
+            "line_1_offset": 300,
+            "line_2_text": "vs",
+            "line_2_alignment": "center",
+            "line_2_offset": 0,
+            "line_3_text": "Coco Mademoiselle by Chanel",
+            "line_3_alignment": "right",
+            "line_3_offset": -40,
+            "body_text": "<p><strong>Coco Mademoiselle</strong> is the benchmark for a certain kind of feminine fragrance. Clean, grown-up, and instantly recognisable. It has been the top-selling women's perfume in the UK for years, which is a remarkable achievement in a market this competitive. The EDP retails at around £120 for 100ml, and you will find it in every Boots or John Lewis and every pharmacy or department store in between for a reason.<br/><br/><strong>Timeless Grace</strong> opens with the same fresh orange and bergamot, develops through jasmine and rose, and settles into a warm patchouli base that wears beautifully throughout the day. The comparison here produced the closest result of the three: on dry-down, both fragrances sat in the same warm, clean territory. The original has a very slight additional depth in the base that reflects a higher concentration of raw materials, but it is a difference you would only notice if you were specifically looking for it, tester strip in hand, in the fragrance hall at Fortnum and Mason with nothing else to do.</p><p>At around twenty quid versus £120, Timeless Grace makes a compelling case for anyone who loves the Coco Mademoiselle profile but would rather wear it every single day without eking it out like the last of the Nutella in the jar you have to make last until payday.</p>",
+            "line_1_size": 44,
+            "line_2_size": 85,
+            "line_3_size": 44,
+            "body_size": 22,
+            "line_2_margin_top": -20,
+            "line_3_margin_top": 0,
+            "header_spacing": 40,
+            "body_max_width": 1000,
+            "section_padding_top": 60,
+            "section_padding_bottom": 60,
+            "background_color": "#ffffff",
+            "text_color": "#121212"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_e17473f_Pmbp9t"
+      ],
+      "settings": {}
+    },
+    "blocks_daydAE": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_87b20c9_a3xwjd": {
+          "type": "ai_gen_block_87b20c9",
+          "settings": {
+            "container_width": 1200,
+            "left_column_width": 40,
+            "right_column_width": 60,
+            "column_gap": 80,
+            "desktop_width_percent": 100,
+            "heading": "Myth 5: natural perfumes do not last",
+            "heading_font": "serif",
+            "heading_size": 56,
+            "mobile_heading_size": 40,
+            "heading_color": "#000000",
+            "heading_indent": 15,
+            "mobile_heading_indent": 15,
+            "image": "shopify://shop_images/natural_fragrances_do_not_last.png",
+            "image_max_width": 600,
+            "heading_image_gap": 4,
+            "mobile_heading_image_gap": 25,
+            "body_text": "<p>Natural fragrances have a reputation for fading quickly, and it is partly deserved. Some do. The ones that use volatile plant extracts without fixatives and carrier systems to anchor them will disappear relatively fast. But the idea that natural automatically means short-lived is a significant oversimplification.</p><p>A well-composed natural fragrance with good base notes, resins, woods, and musks, can last just as long as a synthetic one. The longevity difference comes from composition and quality, not from the natural versus synthetic distinction. There are synthetic fragrances that last three hours. There are natural ones that last twelve. The category tells you nothing on its own.</p>",
+            "body_font": "system_ui_n4",
+            "body_size": 24,
+            "mobile_body_size": 16,
+            "body_color": "#111111",
+            "paragraph_spacing": 30,
+            "mobile_paragraph_spacing": 15,
+            "text_vertical_offset": 100,
+            "background_color": "#f5f3ee",
+            "padding_top": 40,
+            "padding_bottom": 40,
+            "horizontal_padding": 40,
+            "mobile_padding_top": 60,
+            "mobile_padding_bottom": 60,
+            "mobile_horizontal_padding": 20,
+            "mobile_gap": 40
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_87b20c9_a3xwjd"
+      ],
+      "name": "Editorial section",
+      "settings": {}
+    },
+    "blocks_UXR9hM": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_3a2b0a1_D4QJ4w": {
+          "type": "ai_gen_block_3a2b0a1",
+          "settings": {
+            "desktop_width_percent": 100,
+            "max_width": 1200,
+            "section_padding": 20,
+            "background_color": "#f9f6f1",
+            "heading": "<p>Myth 6: a strong scent means a better perfume</p>",
+            "heading_size": 50,
+            "heading_color": "#121212",
+            "heading_spacing": 10,
+            "box_color": "#8b1d22",
+            "box_radius": 25,
+            "box_padding": 40,
+            "box_spacing": 10,
+            "box_paragraph_1": "<p>Projection and quality are completely separate things. And confusing them leads to some questionable decisions at the fragrance counter. As questionable as your food takeaway decisions after a night on the town. Deep fried kebab, really? We’ve all been there. The most celebrated fragrances in niche perfumery tend to stay close to the skin. A Parfum concentration is quiet by design. Some of the most technically complex and expensive fragrances in the world are the ones you have to lean in to fully appreciate.</p><p>A fragrance that fills a room is not better than one that does not. It is just louder. <strong>Wanderer</strong> (inspired by Ombre Nomade by Louis Vuitton) is an oud-heavy fragrance that stays close and develops slowly over hours. So is <a href=\"/products/supreme-power\" title=\"Supreme Power\"><strong>Supreme Power</strong></a> (inspired by Oud for Greatness by Initio), rich and unhurried in the same way. Neither is trying to announce itself. That restraint is part of what makes them interesting.</p>",
+            "box_paragraph_2": "",
+            "box_paragraph_3": "",
+            "box_text_color": "#ffffff",
+            "box_text_size": 24,
+            "box_text_line_height": 1.6,
+            "paragraph_spacing": 25,
+            "subheading": "",
+            "subheading_size": 60,
+            "subheading_color": "#000000",
+            "subheading_spacing": 10,
+            "bottom_text": "<p>The goal is a fragrance that suits you, your skin, and the occasion. Volume is one variable among many, and not the most important one.</p>",
+            "bottom_text_size": 24,
+            "bottom_text_color": "#000000",
+            "bottom_text_line_height": 1.6
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_3a2b0a1_D4QJ4w"
+      ],
+      "settings": {}
+    },
+    "1778843499df5a6469": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_d9dab0a_d6LjbG": {
+          "type": "ai_gen_block_d9dab0a",
+          "disabled": true,
+          "settings": {
+            "container_width": 1200,
+            "left_column_width": 40,
+            "right_column_width": 60,
+            "column_gap": 40,
+            "desktop_width_percent": 100,
+            "heading": "What makes us different from the other lot",
+            "heading_font": "serif",
+            "heading_size": 56,
+            "mobile_heading_size": 40,
+            "heading_color": "#121212",
+            "heading_indent": 25,
+            "mobile_heading_indent": 40,
+            "image_max_width": 600,
+            "heading_image_gap": 4,
+            "mobile_heading_image_gap": 25,
+            "body_text": "<p>Scentspired creates luxury inspired perfumes. Each one is developed to capture the essence of a designer fragrance you already know, using high-quality fragrance oils that perform at the level you expect. Not something that smells roughly similar on the first spray and then disappears by lunch. Something you reach for because it works, lasts, and costs about £15.99. The idea being that you can actually wear it. Every day. Without keeping a tally.</p><p>We also believe that incredible scent should not be a privilege. It should be accessible to anyone who wants to feel something when they walk into a room, whatever their budget happens to be. That is the whole point of what we do.</p>",
+            "body_font": "system_ui_n4",
+            "body_size": 32,
+            "mobile_body_size": 16,
+            "body_color": "#111111",
+            "paragraph_spacing": 30,
+            "mobile_paragraph_spacing": 15,
+            "text_vertical_offset": 10,
+            "background_color": "#ffffff",
+            "padding_top": 100,
+            "padding_bottom": 100,
+            "horizontal_padding": 40,
+            "mobile_padding_top": 60,
+            "mobile_padding_bottom": 60,
+            "mobile_horizontal_padding": 20,
+            "mobile_gap": 30
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_d9dab0a_d6LjbG"
+      ],
+      "disabled": true,
+      "settings": {}
+    },
+    "177884398431108114": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_8091a19_49mDF7": {
+          "type": "ai_gen_block_8091a19",
+          "settings": {
+            "container_width": 1100,
+            "horizontal_padding": 20,
+            "padding_top": 80,
+            "padding_bottom": 80,
+            "column_gap": 40,
+            "mobile_gap": 20,
+            "mobile_scale": 0.6,
+            "background_color": "#ffffff",
+            "prefix_text": "Where to",
+            "prefix_font_size": 50,
+            "brand_scent_text": "",
+            "brand_spired_text": "",
+            "brand_font_size": 50,
+            "start_text": "",
+            "start_font_size": 50,
+            "bestsellers_text": "Start",
+            "bestsellers_font_size": 50,
+            "heading_line_spacing": 4,
+            "heading_line_height": 1,
+            "heading_color": "#000000",
+            "body_text": "Browse the full Scentspired range, with notes, concentrations, and inspirations listed for every fragrance, for perfume online shopping whenever you are ready. Now that you know what you are actually looking for.",
+            "body_font_size": 25,
+            "body_line_height": 1.3,
+            "body_color": "#121212"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_8091a19_49mDF7"
+      ],
+      "settings": {}
+    },
+    "17788441780b9287af": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_af322f3_bnrhkr": {
+          "type": "ai_gen_block_af322f3",
+          "settings": {
+            "collection": "bestsellers"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_af322f3_bnrhkr"
+      ],
+      "settings": {}
+    },
+    "1778844323c8772560": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_7c627d8_BUM397": {
+          "type": "ai_gen_block_7c627d8",
+          "settings": {
+            "desktop_image": "shopify://shop_images/wmremove-transformed_1.png",
+            "mobile_image": "shopify://shop_images/wmremove-transformed_1.png",
+            "text_horizontal_position": 10,
+            "text_max_width": 800,
+            "text_size": 38,
+            "line_height": 1
+          },
+          "blocks": {}
+        },
+        "ai_gen_block_708f5b7_bWFdAC": {
+          "type": "ai_gen_block_708f5b7",
+          "disabled": true,
+          "settings": {
+            "desktop_image": "shopify://shop_images/wmremove-transformed_1.png",
+            "mobile_image": "shopify://shop_images/wmremove-transformed_1.png",
+            "text_horizontal_position": 10,
+            "text_max_width": 650,
+            "text_size": 32,
+            "line_height": 1
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_7c627d8_BUM397",
+        "ai_gen_block_708f5b7_bWFdAC"
+      ],
+      "disabled": true,
+      "settings": {}
+    }
+  },
+  "order": [
+    "177883883994f3af2c",
+    "blog_text_7BWxfp",
+    "1778840570728901cb",
+    "blog_text_mELacU",
+    "1778849786d4cbe62f",
+    "1778843746bf825332",
+    "blocks_daydAE",
+    "blocks_UXR9hM",
+    "177884398431108114",
+    "17788441780b9287af"
+  ]
+}

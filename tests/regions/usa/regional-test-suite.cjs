@@ -10,8 +10,11 @@
 const path = require('path');
 const { spawnSync } = require('child_process');
 
+const fs = require('fs');
 const ROOT = path.resolve(__dirname, '../../..');
-const USA_DIR = path.resolve(ROOT, '../Scentspired-USA');
+const localUsaDir = path.resolve(ROOT, 'regions/usa');
+const externalUsaDir = path.resolve(ROOT, '../Scentspired-USA');
+const USA_DIR = fs.existsSync(localUsaDir) ? localUsaDir : externalUsaDir;
 
 console.log('\n╔══════════════════════════════════════════════════════════════╗');
 console.log('║   🇺🇸 SCENTSPIRED REGIONAL TEST SUITE: USA                    ║');

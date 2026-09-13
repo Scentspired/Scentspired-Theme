@@ -1,0 +1,460 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-article",
+      "blocks": {
+        "featured_image": {
+          "type": "featured_image",
+          "settings": {
+            "image_height": "adapt"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "blog_show_date": true,
+            "blog_show_author": false
+          }
+        },
+        "share": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
+        },
+        "content": {
+          "type": "content",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "featured_image",
+        "title",
+        "share",
+        "content"
+      ],
+      "disabled": true,
+      "settings": {}
+    },
+    "177883883994f3af2c": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_5c54be2_9Wtw4b": {
+          "type": "ai_gen_block_5c54be2",
+          "settings": {
+            "heading": "<p>The Best Perfume Gift Guide:</p>",
+            "heading_size": 48,
+            "mobile_heading_size": 22,
+            "heading_line_height": 1.1,
+            "heading_color": "#ffffff",
+            "paragraph": "<p>luxury inspired perfumes UK sorted by personality not price, for everyone from your mum to your mate</p>",
+            "paragraph_size": 20,
+            "mobile_paragraph_size": 16,
+            "paragraph_line_height": 1,
+            "paragraph_color": "#ffffff",
+            "desktop_image": "shopify://shop_images/First_date_fragrance_guide.png",
+            "image_aspect_ratio": "16/9",
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "text_alignment": "left",
+            "content_padding": 40,
+            "content_max_width_inner": 680,
+            "mobile_horizontal_alignment": "flex-start",
+            "mobile_vertical_alignment": "center",
+            "mobile_text_alignment": "left",
+            "mobile_content_padding": 25,
+            "content_max_width": 1400,
+            "outer_spacing": 20,
+            "mobile_outer_spacing": 15,
+            "background_color": "#f5f3f0"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_5c54be2_9Wtw4b"
+      ],
+      "custom_css": [],
+      "settings": {}
+    },
+    "blog_text_7BWxfp": {
+      "type": "blog-text",
+      "custom_css": [
+        ".shopify-hardcoded-text-section-content {font-size: 16px; margin-left: 0px; text-align: left;}",
+        "@media screen and (max-width: 1024px) {.shopify-hardcoded-text-section-wrapper {min-height: 200px; padding: 16px !important; }}"
+      ],
+      "name": "Blog Text Section",
+      "settings": {
+        "text_content": "<p>Buying perfume for someone else is, if we are being honest about it, a minor act of bravery. You are making a call about how someone smells, which is one of the more personal things a person can have an opinion about. Get it right and you are a genius. Get it wrong and they will smile politely while quietly adding it to the back of the bathroom cabinet, next to the candle they will never burn and a half-used bottle of something gifted by their nan at Christmas three years ago.</p><p>The good news is that it is not actually that hard to get right. The secret is to stop trying to guess what fragrance they would choose for themselves (you cannot know, and frankly they might not either) and start thinking about who they are. Fragrance follows personality far more reliably than it follows occasion. Here is a guide through the bestsellers by the person you are buying for, so you can stop guessing and start actually shopping.</p>"
+      }
+    },
+    "1778849786d4cbe62f": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_6894d32_KAA87y": {
+          "type": "ai_gen_block_6894d32",
+          "settings": {
+            "heading": "For Your Mum",
+            "heading_size": 56,
+            "heading_size_mobile": 32,
+            "heading_line_height": 1,
+            "heading_color": "#000000",
+            "heading_margin_bottom": 50,
+            "heading_margin_bottom_mobile": 30,
+            "column_1_text": "<p>Mums occupy a specific category in the gifting world. They will always say they do not need anything. They will mean it. They will also be properly touched by a bottle of something lovely, particularly if you have put more than thirty seconds of thought into it. So forget that limp bunch of sad carnations with the gaudy pink bow from the garage. She deserves better.</p><p><a href=\"https://scentspired.co.uk/products/timeless-grace\" title=\"https://scentspired.co.uk/products/timeless-grace\"><strong>Timeless Grace</strong></a> (inspired by Coco Mademoiselle by Chanel) is almost always the right answer here. It is the kind of fragrance women's perfumes UK buyers describe as 'classic without being boring': orange, jasmine, and rose settling into a soft patchouli base that wears beautifully and lasts a proper amount of time. It is not flashy. It is quietly elegant, which is the harder thing to pull off.</p>",
+            "column_2_text": "<p>If she is a bit more adventurous with her tastes, Pink Whisper (inspired by Delina by Parfums de Marly) is the sort of bottle that ends up staying out on the dressing table rather than being filed away for special occasions. Rose, lychee, and a soft musk base. One of the most complimented fragrances in niche perfumery for a reason.</p>",
+            "body_size": 24,
+            "body_size_mobile": 14,
+            "body_line_height": 1.6,
+            "body_color": "#000000",
+            "paragraph_spacing": 10,
+            "column_gap": 70,
+            "column_gap_mobile": 30,
+            "max_width": 1400,
+            "desktop_width_percent": 100,
+            "background_color": "#f9f6f1",
+            "padding_top": 60,
+            "padding_bottom": 60,
+            "padding_horizontal": 40,
+            "padding_top_mobile": 40,
+            "padding_bottom_mobile": 40,
+            "padding_horizontal_mobile": 20
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_6894d32_KAA87y"
+      ],
+      "custom_css": [
+        ".ai-editorial-heading-aq1zua2fxdjneutvhmaigenblock6894d32kaa87y {max-width: 625px;}",
+        "a {color: #000;}"
+      ],
+      "settings": {}
+    },
+    "1778840570728901cb": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_0a32e98_rXapP6": {
+          "type": "ai_gen_block_0a32e98",
+          "settings": {
+            "background_image": "shopify://shop_images/magnific_ultraluxury-perfume-adver_3002986016.png",
+            "outer_border_color": "#ffffff",
+            "outer_border_px": 16,
+            "aspect_ratio": 56,
+            "font_family_regular": "'PP Editorial New', 'Cormorant Garamond', Georgia, serif",
+            "font_family_italic": "'PPEditorialNew Ultralight Italic', 'Cormorant Garamond', Georgia, serif",
+            "text_color": "#ffffff",
+            "text_line_1": "",
+            "line1_top": 61,
+            "line1_left": 24,
+            "brand_name_regular": "",
+            "brand_name_italic": "For Your Best Mate",
+            "brand_top": 2,
+            "brand_left": 40,
+            "text_line_2": "",
+            "line3_top": 85,
+            "line3_left": 61
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_0a32e98_rXapP6"
+      ],
+      "custom_css": [
+        "@media screen and (max-width: 768px) {.lux-line2-aoddyqjdvbujtnwgxyaigenblock0a32e98rxapp6 {position: absolute; top: 2%; left: 15%; }}"
+      ],
+      "settings": {}
+    },
+    "blog_text_mELacU": {
+      "type": "blog-text",
+      "custom_css": [
+        ".shopify-hardcoded-text-section-content {font-size: 16px; margin-left: 0px; text-align: left;}",
+        "@media screen and (max-width: 1024px) {.shopify-hardcoded-text-section-wrapper {min-height: 200px; padding: 16px !important; }}",
+        "a {color: #000;}"
+      ],
+      "name": "Blog Text Section",
+      "settings": {
+        "text_content": "<p>The difficulty with buying perfume for a best friend is that you know them well enough to have an opinion, which paradoxically makes it harder. You are going to second-guess yourself at least three times before landing on something.<br/><br/>If she is the person who always smells incredible and you are never entirely sure what she is wearing, the answer is <a href=\"https://scentspired.co.uk/products/addiction\" title=\"https://scentspired.co.uk/products/addiction\"><strong>Addiction</strong></a><strong> </strong>(inspired by Baccarat Rouge 540). Jasmine, saffron, amber, and cedar with that particular quality that made the original the most talked-about fragrance of the last decade. Warm, complex, and the kind of luxury inspired perfume UK buyers keep coming back to because it performs every single time. </p><p><br/>If she is more of a fresh, upbeat personality, <a href=\"https://scentspired.co.uk/products/fate\" title=\"https://scentspired.co.uk/products/fate\"><strong>Fate </strong></a>(inspired by Chance EDP by Chanel) is the one. Pink pepper, jasmine, vetiver. Bright and optimistic without being simple. The sort of fragrance you put on and immediately feel like the day has already started well. The sun’s out, you made your train, it wasn’t delayed, you actually got a seat, you managed to grab a takeaway coffee from the attractive barista (with a cheeky wink and some flirty chat) and your boss has messaged to say they’re taking the day off.</p>"
+      }
+    },
+    "blocks_daydAE": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_87b20c9_a3xwjd": {
+          "type": "ai_gen_block_87b20c9",
+          "settings": {
+            "container_width": 1200,
+            "left_column_width": 40,
+            "right_column_width": 60,
+            "column_gap": 80,
+            "desktop_width_percent": 100,
+            "heading": "For Your Sister",
+            "heading_font": "serif",
+            "heading_size": 56,
+            "mobile_heading_size": 40,
+            "heading_color": "#000000",
+            "heading_indent": 15,
+            "mobile_heading_indent": 15,
+            "image": "shopify://shop_images/magnific_luxury-perfume-editorial-_3003014546.png",
+            "image_max_width": 600,
+            "heading_image_gap": 4,
+            "mobile_heading_image_gap": 25,
+            "body_text": "<p>Sisters are either the easiest or the hardest people to buy for, depending entirely on whether you are close or just obligated to each other by biology. Either way, the following options cover most personality types without requiring you to have a feelings-based conversation about it.<br/><br/>For the sister who has strong opinions about everything from Labour party politics to why Liverpool really is a city to watch, including fragrance: Liberty (inspired by Libre by YSL). Lavender and citrus opening into white florals over a warm musk base. It is a confident scent with staying power, which is appropriate. It also smells considerably more expensive than it is, which is the whole point of what we do here.<br/><br/>For the one who always looks put-together without appearing to try (that effortless chic that you never quite manage yourself) Luminous Wonder (inspired by J'Adore by Dior). Bright, feminine, and unmistakably luxurious. The sort of thing that gets worn on actual occasions rather than just on any random day, which means she will appreciate having a bottle she can actually afford to use properly.</p>",
+            "body_font": "system_ui_n4",
+            "body_size": 22,
+            "mobile_body_size": 16,
+            "body_color": "#111111",
+            "paragraph_spacing": 30,
+            "mobile_paragraph_spacing": 15,
+            "text_vertical_offset": 10,
+            "background_color": "#f5f3ee",
+            "padding_top": 40,
+            "padding_bottom": 40,
+            "horizontal_padding": 40,
+            "mobile_padding_top": 60,
+            "mobile_padding_bottom": 60,
+            "mobile_horizontal_padding": 20,
+            "mobile_gap": 40
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_87b20c9_a3xwjd"
+      ],
+      "name": "Editorial section",
+      "settings": {}
+    },
+    "1778843746bf825332": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_3a2b0a1_cTWXeG": {
+          "type": "ai_gen_block_3a2b0a1",
+          "settings": {
+            "desktop_width_percent": 100,
+            "max_width": 1200,
+            "section_padding": 20,
+            "background_color": "#f9f6f1",
+            "heading": "<p>For him: the boyfriend, husband, or the bloke who is impossible to buy for</p>",
+            "heading_size": 42,
+            "heading_color": "#121212",
+            "heading_spacing": 10,
+            "box_color": "#8b1d22",
+            "box_radius": 25,
+            "box_padding": 40,
+            "box_spacing": 10,
+            "box_paragraph_1": "<p>Men's fragrance gifting sits in its own category of stress. Men who care about their scent already have a system. Men who do not care are going to spray whatever you give them twice and then forget it exists. The goal is to find the crossover: something good enough that the first category will appreciate it, and something appealing enough that the second category will actually reach for it.</p><p><strong>Marine </strong>(inspired by Bleu de Chanel) is the reliable answer. Clean citrus, ginger,<br/>warm sandalwood. It is one of the best-selling men's fragrances in the world for a reason and men's fragrance UK buyers consistently rate it as the thing they would actually wear every day. No learning curve. No strong opinions required. It justworks.</p><p>For the man with slightly more specific taste, the one who already has a favourite and does not deviate from it, Invictor (inspired by Aventus by Creed) is worth knowing about. Pineapple and birch into a smoky, mossy dry-down. Confident without announcing itself. One of the best colognes for men who have figured out what suits them and want more of it.<br/></p>",
+            "box_paragraph_2": "",
+            "box_paragraph_3": "",
+            "box_text_color": "#ffffff",
+            "box_text_size": 24,
+            "box_text_line_height": 1.6,
+            "paragraph_spacing": 25,
+            "subheading": "<p>For the person who has everything</p>",
+            "subheading_size": 60,
+            "subheading_color": "#000000",
+            "subheading_spacing": 10,
+            "bottom_text": "<p>The person who has everything is usually the person who is very particular about<br/>things and has therefore already acquired whatever they need. Standard gifts feel<br/>insulting. Extravagant gifts feel performative. The answer is something thoughtful and slightly unexpected.</p><p><strong>Wanderer</strong> (inspired by Ombre Nomade by Louis Vuitton) is the pick for this person. Oud-heavy, rich, and complex in a way that most people have never encountered before. One of the niche unisex fragrances UK buyers tend to discover and then immediately want to tell people about. It is the kind of gift that makes someone feel like you really know what you are doing, even if the honest answer is that you just read this article.</p><p><strong>Eternal Verde</strong> (inspired by Hacivat by Nishane) is the other option: bergamot,<br/>grapefruit, and a complex woody base that is difficult to place but impossible not to notice. Niche without being difficult. The sort of fragrance that earns a proper conversation.</p>",
+            "bottom_text_size": 24,
+            "bottom_text_color": "#000000",
+            "bottom_text_line_height": 1.6
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_3a2b0a1_cTWXeG"
+      ],
+      "settings": {}
+    },
+    "1778843499df5a6469": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_d9dab0a_d6LjbG": {
+          "type": "ai_gen_block_d9dab0a",
+          "settings": {
+            "container_width": 1200,
+            "left_column_width": 40,
+            "right_column_width": 60,
+            "column_gap": 40,
+            "desktop_width_percent": 100,
+            "heading": "What makes us different from the other lot",
+            "heading_font": "serif",
+            "heading_size": 56,
+            "mobile_heading_size": 40,
+            "heading_color": "#121212",
+            "heading_indent": 25,
+            "mobile_heading_indent": 40,
+            "image_max_width": 600,
+            "heading_image_gap": 4,
+            "mobile_heading_image_gap": 25,
+            "body_text": "<p>Scentspired creates luxury inspired perfumes. Each one is developed to capture the essence of a designer fragrance you already know, using high-quality fragrance oils that perform at the level you expect. Not something that smells roughly similar on the first spray and then disappears by lunch. Something you reach for because it works, lasts, and costs about £15.99. The idea being that you can actually wear it. Every day. Without keeping a tally.</p><p>We also believe that incredible scent should not be a privilege. It should be accessible to anyone who wants to feel something when they walk into a room, whatever their budget happens to be. That is the whole point of what we do.</p>",
+            "body_font": "system_ui_n4",
+            "body_size": 32,
+            "mobile_body_size": 16,
+            "body_color": "#111111",
+            "paragraph_spacing": 30,
+            "mobile_paragraph_spacing": 15,
+            "text_vertical_offset": 10,
+            "background_color": "#ffffff",
+            "padding_top": 100,
+            "padding_bottom": 100,
+            "horizontal_padding": 40,
+            "mobile_padding_top": 60,
+            "mobile_padding_bottom": 60,
+            "mobile_horizontal_padding": 20,
+            "mobile_gap": 30
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_d9dab0a_d6LjbG"
+      ],
+      "disabled": true,
+      "settings": {}
+    },
+    "1779107504f82a420f": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_e17473f_Pmbp9t": {
+          "type": "ai_gen_block_e17473f",
+          "settings": {
+            "line_1_text": "For the person",
+            "line_1_alignment": "left",
+            "line_1_offset": 70,
+            "line_2_text": "you are definitely",
+            "line_2_alignment": "center",
+            "line_2_offset": 10,
+            "line_3_text": "Overthinking",
+            "line_3_alignment": "right",
+            "line_3_offset": -80,
+            "body_text": "<p>There is always one. You have been staring at this list for 10 minutes with a cuppa and you still can’t decide. The perfume online shopping doom scroll a thing and it’s not helping.<br/><br/>The solution is to stop optimising and pick something from the bestsellers page. These are the fragrances that converted people who were previously quite sceptical. They work on a wide range of people. They smell far more expensive than they cost, which means the person receiving them is going to feel like you spent properly without you actually having to.</p>",
+            "line_1_size": 40,
+            "line_2_size": 70,
+            "line_3_size": 36,
+            "body_size": 22,
+            "line_2_margin_top": -20,
+            "line_3_margin_top": -20,
+            "header_spacing": 40,
+            "body_max_width": 1000,
+            "section_padding_top": 60,
+            "section_padding_bottom": 60,
+            "background_color": "#ffffff",
+            "text_color": "#121212"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_e17473f_Pmbp9t"
+      ],
+      "settings": {}
+    },
+    "177884398431108114": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_8091a19_49mDF7": {
+          "type": "ai_gen_block_8091a19",
+          "disabled": true,
+          "settings": {
+            "container_width": 1100,
+            "horizontal_padding": 20,
+            "padding_top": 80,
+            "padding_bottom": 80,
+            "column_gap": 40,
+            "mobile_gap": 20,
+            "mobile_scale": 0.6,
+            "background_color": "#ffffff",
+            "prefix_text": "Where to",
+            "prefix_font_size": 50,
+            "brand_scent_text": "",
+            "brand_spired_text": "",
+            "brand_font_size": 50,
+            "start_text": "",
+            "start_font_size": 50,
+            "bestsellers_text": "Start",
+            "bestsellers_font_size": 50,
+            "heading_line_spacing": 4,
+            "heading_line_height": 1,
+            "heading_color": "#000000",
+            "body_text": "If you are new here, the bestsellers page is the most sensible place to begin. It is where the fragrances that converted people who were previously quite sceptical tend to live.",
+            "body_font_size": 25,
+            "body_line_height": 1.3,
+            "body_color": "#121212"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_8091a19_49mDF7"
+      ],
+      "settings": {}
+    },
+    "17788441780b9287af": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_af322f3_bnrhkr": {
+          "type": "ai_gen_block_af322f3",
+          "settings": {
+            "collection": "bestsellers"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_af322f3_bnrhkr"
+      ],
+      "settings": {}
+    },
+    "1778844323c8772560": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_7c627d8_BUM397": {
+          "type": "ai_gen_block_7c627d8",
+          "settings": {
+            "desktop_image": "shopify://shop_images/ScentSpired_-_FindYourScent_02_1_04abb516-7e79-450d-8cc8-c57981d65876.png",
+            "mobile_image": "shopify://shop_images/ScentSpired_-_FindYourScent_02_1_529400dd-9325-4c75-9ad7-ef7384dbfefa.png",
+            "text_horizontal_position": 10,
+            "text_max_width": 800,
+            "text_size": 38,
+            "line_height": 1
+          },
+          "blocks": {}
+        },
+        "ai_gen_block_708f5b7_bWFdAC": {
+          "type": "ai_gen_block_708f5b7",
+          "disabled": true,
+          "settings": {
+            "desktop_image": "shopify://shop_images/wmremove-transformed_1.png",
+            "mobile_image": "shopify://shop_images/wmremove-transformed_1.png",
+            "text_horizontal_position": 10,
+            "text_max_width": 650,
+            "text_size": 32,
+            "line_height": 1
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_7c627d8_BUM397",
+        "ai_gen_block_708f5b7_bWFdAC"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "177883883994f3af2c",
+    "blog_text_7BWxfp",
+    "1778849786d4cbe62f",
+    "1778840570728901cb",
+    "blog_text_mELacU",
+    "blocks_daydAE",
+    "1778843746bf825332",
+    "1779107504f82a420f",
+    "17788441780b9287af",
+    "1778844323c8772560"
+  ]
+}

@@ -1,0 +1,647 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-article",
+      "blocks": {
+        "featured_image": {
+          "type": "featured_image",
+          "settings": {
+            "image_height": "adapt"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "blog_show_date": true,
+            "blog_show_author": false
+          }
+        },
+        "share": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
+        },
+        "content": {
+          "type": "content",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "featured_image",
+        "title",
+        "share",
+        "content"
+      ],
+      "disabled": true,
+      "settings": {}
+    },
+    "blocks_dny6PV": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_5c54be2_6qQNkw": {
+          "type": "ai_gen_block_5c54be2",
+          "settings": {
+            "heading": "<p>Forget the scented the fragrance gift guide sorted by personality, not price</p>",
+            "heading_size": 48,
+            "mobile_heading_size": 22,
+            "heading_line_height": 1.1,
+            "heading_color": "#000000",
+            "paragraph": "",
+            "paragraph_size": 20,
+            "mobile_paragraph_size": 16,
+            "paragraph_line_height": 1,
+            "paragraph_color": "#000000",
+            "desktop_image": "shopify://shop_images/Forget_the_Scented_Candle_jpg.jpg",
+            "image_aspect_ratio": "16/9",
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "text_alignment": "left",
+            "content_padding": 40,
+            "content_max_width_inner": 680,
+            "mobile_horizontal_alignment": "flex-start",
+            "mobile_vertical_alignment": "center",
+            "mobile_text_alignment": "left",
+            "mobile_content_padding": 25,
+            "content_max_width": 1400,
+            "outer_spacing": 20,
+            "mobile_outer_spacing": 15,
+            "background_color": "#f5f3f0"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_5c54be2_6qQNkw"
+      ],
+      "custom_css": [],
+      "settings": {}
+    },
+    "blog_text_7BWxfp": {
+      "type": "blog-text",
+      "custom_css": [
+        ".shopify-hardcoded-text-section-content {font-size: 16px; margin-left: 0px; text-align: left;}",
+        "@media screen and (max-width: 1024px) {.shopify-hardcoded-text-section-wrapper {min-height: 200px; padding: 16px !important; }}",
+        "a {color: #000;}"
+      ],
+      "name": "Blog Text Section",
+      "settings": {
+        "text_content": "<p>On far too many special occasions to count, someone unwraps a scented candle, says ahhhh lovely, and quietly adds it to the back of cupboard that already houses four other scented candles nobody has burned. This is not a personal failing. It is simply what happens when gift buying becomes about filling a category rather than knowing a person. Socks, biscuits, candles: all perfectly nice, all instantly forgettable, all bought under time pressure in the last aisle of a Sainsbury’s shop that was not the plan.</p><p><br/>Fragrance solves this problem properly, but only if you stop shopping by budget and start shopping by character. A 15 quid bottle chosen because it is unmistakably them will outperform a 60 quid gift set chosen because it was sitting next to the till at Boots. Here is how to get it right, sorted by the person rather than the price tag.</p>"
+      }
+    },
+    "1778840570728901cb": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_0a32e98_rXapP6": {
+          "type": "ai_gen_block_0a32e98",
+          "settings": {
+            "background_image": "shopify://shop_images/WhatsApp_Image_2026-07-10_at_8.26.21_AM.jpg",
+            "outer_border_color": "#ffffff",
+            "outer_border_px": 16,
+            "aspect_ratio": 49.5,
+            "font_family_regular": "'PP Editorial New', 'Cormorant Garamond', Georgia, serif",
+            "font_family_italic": "'PPEditorialNew Ultralight Italic', 'Cormorant Garamond', Georgia, serif",
+            "text_color": "#ffffff",
+            "text_line_1": "",
+            "line1_top": 61,
+            "line1_left": 21,
+            "brand_name_regular": "",
+            "brand_name_italic": "Bigger spend does not mean bigger thought",
+            "brand_top": 2,
+            "brand_left": 23,
+            "text_line_2": "",
+            "line3_top": 85,
+            "line3_left": 61
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_0a32e98_rXapP6"
+      ],
+      "custom_css": [
+        "@media screen and (max-width: 768px) {.lux-line2-aoddyqjdvbujtnwgxyaigenblock0a32e98rxapp6 {position: absolute; top: 2%; left: 15%; }}"
+      ],
+      "settings": {}
+    },
+    "blog_text_mELacU": {
+      "type": "blog-text",
+      "custom_css": [
+        ".shopify-hardcoded-text-section-content {font-size: 16px; margin-left: 0px; text-align: left;}",
+        "@media screen and (max-width: 1024px) {.shopify-hardcoded-text-section-wrapper {min-height: 200px; padding: 16px !important; }}"
+      ],
+      "name": "Blog Text Section",
+      "settings": {
+        "text_content": "<p>The mistake most people make is assuming a bigger spend automatically reads as more thoughtful. It does not. A designer gift set bought in a rush at the airport says very little about the person receiving it. A specific fragrance, chosen because it matches something true about who they are, says considerably more, regardless of what it cost. This is the entire logic behind sorting by personality rather than price, and once you start thinking this way, gift buying gets noticeably easier. The best gift you can give this year is proof that you were listening at some point in the last year, not proof that you spent a lot of money on the day itself.</p>"
+      }
+    },
+    "blog_text_fgfNXN": {
+      "type": "blog-text",
+      "disabled": true,
+      "custom_css": [
+        ".shopify-hardcoded-text-section-content {font-size: 16px; margin-left: 0px; text-align: left;}",
+        "@media screen and (max-width: 1024px) {.shopify-hardcoded-text-section-wrapper {min-height: 200px; padding: 16px !important; }}"
+      ],
+      "name": "Blog Text Section",
+      "settings": {
+        "text_content": "<p>Retail is usually the last part of any industry to notice a shift, and fragrance has been no exception. The actual change started in the search bar. Typing best unisex perfume or gender-neutral fragrance UK into Google costs nothing and commits you to nothing, which makes it a far more honest indicator of what people want than what they feel obliged to ask for out loud at a counter with an assistant hovering. Search<br/>interest in unisex and gender-neutral fragrance has climbed steadily for years, well before most shop floors caught up with it. Nobody has to explain themselves to a<br/>search engine, which turns out to be exactly the point.</p>"
+      }
+    },
+    "1778849786d4cbe62f": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_6894d32_KAA87y": {
+          "type": "ai_gen_block_6894d32",
+          "settings": {
+            "heading": "Top notes: the opening act (and why they do not hang around)",
+            "heading_size": 56,
+            "heading_size_mobile": 32,
+            "heading_line_height": 1,
+            "heading_color": "#000000",
+            "heading_margin_bottom": 50,
+            "heading_margin_bottom_mobile": 30,
+            "column_1_text": "<p>Top notes are what hit you the moment you first spray. Bright, crisp, and instantly appealing, they are designed to make a strong first impression. Citrus notes like bergamot, lemon, and grapefruit are classic top notes. So are light fruits, fresh herbs, and anything with that clean, just-stepped-outside feeling.</p><p></p><p>Here is the thing though: top notes do not last. They are highly volatile, which means they evaporate fast, usually within 15 to 30 minutes. That scent perfume you tested at the luxury perfume store that smelled absolutely perfect in the moment? You were smelling the top notes. By the time you got home and wore it again, they had gone, disappeared faster than a decent bank holiday weather forecast.</p>",
+            "column_2_text": "<p>This catches out a lot of people who buy perfume online based on reviews that focus entirely on the opening spray. Top notes are the introduction. They are not the whole story, and they are absolutely not what you will be wearing all day.<br/><br/></p>",
+            "body_size": 24,
+            "body_size_mobile": 14,
+            "body_line_height": 1.6,
+            "body_color": "#000000",
+            "paragraph_spacing": 10,
+            "column_gap": 70,
+            "column_gap_mobile": 30,
+            "max_width": 1400,
+            "desktop_width_percent": 100,
+            "background_color": "#f9f6f1",
+            "padding_top": 60,
+            "padding_bottom": 60,
+            "padding_horizontal": 40,
+            "padding_top_mobile": 40,
+            "padding_bottom_mobile": 40,
+            "padding_horizontal_mobile": 20
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_6894d32_KAA87y"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".ai-editorial-heading-aq1zua2fxdjneutvhmaigenblock6894d32kaa87y {max-width: 625px;}"
+      ],
+      "settings": {}
+    },
+    "1778843746bf825332": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_3a2b0a1_cTWXeG": {
+          "type": "ai_gen_block_3a2b0a1",
+          "settings": {
+            "desktop_width_percent": 100,
+            "max_width": 1200,
+            "section_padding": 20,
+            "background_color": "#f9f6f1",
+            "heading": "<p>The minimalist who owns four good things and refuses a fifth</p>",
+            "heading_size": 50,
+            "heading_color": "#121212",
+            "heading_spacing": 10,
+            "box_color": "#8b1d22",
+            "box_radius": 25,
+            "box_padding": 40,
+            "box_spacing": 10,
+            "box_paragraph_1": "<p>This is the person whose flat looks like a Wallpaper editorial feature and whose<br/>entire wardrobe fits in one small case. They do not want a fragrance with 12 notes and a backstory. They want one that does its job quietly and well. Iconic Desire, inspired by Santal 33, is built on sandalwood and cedar with barely anything else getting in the way. It reads as effortless rather than try-hard, which is exactly the effect this person spends a worrying amount of time trying to achieve on purpose. Wrap it plainly. They will notice and they will approve.</p>",
+            "box_paragraph_2": "",
+            "box_paragraph_3": "",
+            "box_text_color": "#ffffff",
+            "box_text_size": 24,
+            "box_text_line_height": 1.6,
+            "paragraph_spacing": 25,
+            "subheading": "<p>The one who has already booked next year's holiday</p>",
+            "subheading_size": 50,
+            "subheading_color": "#000000",
+            "subheading_spacing": 10,
+            "bottom_text": "<p>This is the person with a favourites folder full of flights they are not booking yet, purely so they can keep looking. <a href=\"/products/mirage\" title=\"Mirage\"><strong>Mirage</strong></a>, inspired by Oud Maracujá, pairs tropical passionfruit with a proper oud base, and it smells like somewhere considerably warmer than wherever you are currently standing. Bold enough to notice, unusual enough that they will not have smelled it before, which is precisely the point of a good gift rather than a safe one. This is not the fragrance you give someone who wants to blend in.</p>",
+            "bottom_text_size": 24,
+            "bottom_text_color": "#000000",
+            "bottom_text_line_height": 1.6
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_3a2b0a1_cTWXeG"
+      ],
+      "custom_css": [
+        "a {color: #000;}"
+      ],
+      "settings": {}
+    },
+    "1779107504f82a420f": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_e17473f_Pmbp9t": {
+          "type": "ai_gen_block_e17473f",
+          "settings": {
+            "line_1_text": "Timeless Grace",
+            "line_1_alignment": "left",
+            "line_1_offset": 300,
+            "line_2_text": "vs",
+            "line_2_alignment": "center",
+            "line_2_offset": 0,
+            "line_3_text": "Coco Mademoiselle by Chanel",
+            "line_3_alignment": "right",
+            "line_3_offset": -40,
+            "body_text": "<p><strong>Coco Mademoiselle</strong> is the benchmark for a certain kind of feminine fragrance. Clean, grown-up, and instantly recognisable. It has been the top-selling women's perfume in the UK for years, which is a remarkable achievement in a market this competitive. The EDP retails at around £120 for 100ml, and you will find it in every Boots or John Lewis and every pharmacy or department store in between for a reason.<br/><br/><strong>Timeless Grace</strong> opens with the same fresh orange and bergamot, develops through jasmine and rose, and settles into a warm patchouli base that wears beautifully throughout the day. The comparison here produced the closest result of the three: on dry-down, both fragrances sat in the same warm, clean territory. The original has a very slight additional depth in the base that reflects a higher concentration of raw materials, but it is a difference you would only notice if you were specifically looking for it, tester strip in hand, in the fragrance hall at Fortnum and Mason with nothing else to do.</p><p>At around twenty quid versus £120, Timeless Grace makes a compelling case for anyone who loves the Coco Mademoiselle profile but would rather wear it every single day without eking it out like the last of the Nutella in the jar you have to make last until payday.</p>",
+            "line_1_size": 44,
+            "line_2_size": 85,
+            "line_3_size": 44,
+            "body_size": 22,
+            "line_2_margin_top": -20,
+            "line_3_margin_top": 0,
+            "header_spacing": 40,
+            "body_max_width": 1000,
+            "section_padding_top": 60,
+            "section_padding_bottom": 60,
+            "background_color": "#ffffff",
+            "text_color": "#121212"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_e17473f_Pmbp9t"
+      ],
+      "disabled": true,
+      "settings": {}
+    },
+    "blocks_daydAE": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_87b20c9_a3xwjd": {
+          "type": "ai_gen_block_87b20c9",
+          "settings": {
+            "container_width": 1200,
+            "left_column_width": 40,
+            "right_column_width": 60,
+            "column_gap": 80,
+            "desktop_width_percent": 100,
+            "heading": "Where the differences actually show up",
+            "heading_font": "serif",
+            "heading_size": 56,
+            "mobile_heading_size": 40,
+            "heading_color": "#000000",
+            "heading_indent": 15,
+            "mobile_heading_indent": 15,
+            "image": "shopify://shop_images/magnific_luxury-perfume-comparison_74h5S6MJAL_jpg.jpg",
+            "image_max_width": 600,
+            "heading_image_gap": 4,
+            "mobile_heading_image_gap": 25,
+            "body_text": "<p>Across all three tests, the differences between inspired fragrances and originals came down to the same three things.</p><p><strong>Concentration of raw materials.</strong> Designer houses use extremely high concentrations of expensive ingredients. The originals have a richness in the base that reflects this. A well-made inspired fragrance gets close, but the very finest nuances of a £250 bottle sometimes live in those base notes, and it is worth knowing that going in rather than expecting an identical experience.</p><p><strong>Projection in the opening.</strong> Top notes on the originals tend to radiate a little further in the first thirty minutes. If you are heading somewhere and want to make an immediate impression stepping off the train at Waterloo Station and weaving through the throngs of humanity, the original does have a slight edge there. If you are wearing something all day for your own pleasure, the difference matters considerably less.</p><p><strong>Longevity on dry skin.</strong> Both perform significantly better on moisturised skin. On bare, dry skin the originals hold on a touch longer. Twelve seconds of unscented moisturiser before you spray closes that gap considerably on both sides.</p>",
+            "body_font": "system_ui_n4",
+            "body_size": 22,
+            "mobile_body_size": 16,
+            "body_color": "#111111",
+            "paragraph_spacing": 30,
+            "mobile_paragraph_spacing": 15,
+            "text_vertical_offset": 10,
+            "background_color": "#f5f3ee",
+            "padding_top": 40,
+            "padding_bottom": 40,
+            "horizontal_padding": 40,
+            "mobile_padding_top": 60,
+            "mobile_padding_bottom": 60,
+            "mobile_horizontal_padding": 20,
+            "mobile_gap": 40
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_87b20c9_a3xwjd"
+      ],
+      "disabled": true,
+      "name": "Editorial section",
+      "settings": {}
+    },
+    "blocks_UXR9hM": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_3a2b0a1_D4QJ4w": {
+          "type": "ai_gen_block_3a2b0a1",
+          "settings": {
+            "desktop_width_percent": 100,
+            "max_width": 1200,
+            "section_padding": 20,
+            "background_color": "#f9f6f1",
+            "heading": "<p>The one who orders the wine and always gets it right</p>",
+            "heading_size": 50,
+            "heading_color": "#121212",
+            "heading_spacing": 10,
+            "box_color": "#8b1d22",
+            "box_radius": 25,
+            "box_padding": 40,
+            "box_spacing": 10,
+            "box_paragraph_1": "<p>There is one person at every dinner who gets quietly asked to choose the wine, and<br/>they never get it wrong. <a href=\"/products/silk-odyssey\" title=\"Silk Odyssey\"><strong>Silk Odyssey</strong></a>, inspired by Oud Satin Mood, has the same<br/>energy: rose and a touch of strawberry up top, settling into oud, vanilla and caramel.<br/>It smells expensive because the original is, retailing well into three figures, and this<br/>version gets you the same impression at a fraction of the cost. Give this to the<br/>person who will know what it is meant to smell like.</p>",
+            "box_paragraph_2": "",
+            "box_paragraph_3": "",
+            "box_text_color": "#ffffff",
+            "box_text_size": 24,
+            "box_text_line_height": 1.6,
+            "paragraph_spacing": 25,
+            "subheading": "",
+            "subheading_size": 60,
+            "subheading_color": "#000000",
+            "subheading_spacing": 10,
+            "bottom_text": "",
+            "bottom_text_size": 24,
+            "bottom_text_color": "#000000",
+            "bottom_text_line_height": 1.6
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_3a2b0a1_D4QJ4w"
+      ],
+      "custom_css": [
+        "a {color: #fff;}"
+      ],
+      "settings": {}
+    },
+    "178125733149f92c38": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_42e8eee_xEGjr4": {
+          "type": "ai_gen_block_42e8eee",
+          "settings": {
+            "header_col_1": "Feature",
+            "header_col_2": "Option A",
+            "header_col_3": "Option B",
+            "header_bg_color": "#000000",
+            "header_text_color": "#ffffff",
+            "header_font_size": 16,
+            "row_1_col_1": "Price",
+            "row_1_col_2": "$29",
+            "row_1_col_3": "$39",
+            "row_2_col_1": "Quality",
+            "row_2_col_2": "Premium",
+            "row_2_col_3": "Luxury",
+            "row_3_col_1": "Shipping",
+            "row_3_col_2": "Free",
+            "row_3_col_3": "Free",
+            "row_bg_color": "#ffffff",
+            "row_alt_bg_color": "#f3f3f3",
+            "row_text_color": "#121212",
+            "body_font_size": 14,
+            "column_1_width": 25,
+            "column_2_width": 25,
+            "text_alignment": "center",
+            "cell_padding": 16,
+            "table_border_thickness": 1,
+            "cell_border_thickness": 1,
+            "table_border_color": "#121212",
+            "cell_border_color": "#e0e0e0",
+            "desktop_width_percent": 100
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_42e8eee_xEGjr4"
+      ],
+      "disabled": true,
+      "settings": {}
+    },
+    "1778843499df5a6469": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_d9dab0a_d6LjbG": {
+          "type": "ai_gen_block_d9dab0a",
+          "settings": {
+            "container_width": 1200,
+            "left_column_width": 40,
+            "right_column_width": 60,
+            "column_gap": 40,
+            "desktop_width_percent": 100,
+            "heading": "The one who is properly impossible to buy for",
+            "heading_font": "serif",
+            "heading_size": 50,
+            "mobile_heading_size": 40,
+            "heading_color": "#121212",
+            "heading_indent": 25,
+            "mobile_heading_indent": 40,
+            "image": "shopify://shop_images/ChatGPT_Image_Jul_10_2026_08_31_15_PM_27af2aaa-ed48-4a84-b86b-cb892267c85d.png",
+            "image_max_width": 600,
+            "heading_image_gap": 4,
+            "mobile_heading_image_gap": 25,
+            "body_text": "<p>Every friendship group has one person who is properly impossible to buy for. They already own everything they want, favour quality over quantity, and return anything that misses. A unisex fragrance solves this better than almost any other gift category, because it is not trying to guess a gender preference on top of everything else it has to get right. Something like Cool Alpine, inspired by Silver Mountain Water by Creed, is clean and universally flattering enough that it rarely misses, whoever ends up unwrapping it, which makes it the closest thing to a safe bet that still feels like a proper gift rather than a cop out.</p>",
+            "body_font": "system_ui_n4",
+            "body_size": 28,
+            "mobile_body_size": 16,
+            "body_color": "#111111",
+            "paragraph_spacing": 30,
+            "mobile_paragraph_spacing": 15,
+            "text_vertical_offset": 100,
+            "background_color": "#ffffff",
+            "padding_top": 100,
+            "padding_bottom": 100,
+            "horizontal_padding": 40,
+            "mobile_padding_top": 60,
+            "mobile_padding_bottom": 60,
+            "mobile_horizontal_padding": 20,
+            "mobile_gap": 30
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_d9dab0a_d6LjbG"
+      ],
+      "settings": {}
+    },
+    "blocks_YHwgUg": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_e17473f_hTcnHH": {
+          "type": "ai_gen_block_e17473f",
+          "settings": {
+            "line_1_text": "The",
+            "line_1_alignment": "center",
+            "line_1_offset": -200,
+            "line_2_text": "Practical",
+            "line_2_alignment": "center",
+            "line_2_offset": -60,
+            "line_3_text": "Bit",
+            "line_3_alignment": "center",
+            "line_3_offset": 120,
+            "body_text": "<p>Concentration matters more than packaging when it comes to how thoughtful a gift feels. An EDP that lasts properly reads as far more thoughtful than a boxed set with three products nobody asked for, and it costs considerably less to get right. Skip the ribbon-heavy presentation box. Spend the difference on getting the actual fragrance correct and check the concentration before you check how nice the box looks on a shelf.</p><p><br/>The bit that truly lands, more than the fragrance itself sometimes, is telling them why you picked it. A note that says this reminded me of you does more work than an expensive box ever will, because it proves you were paying attention rather than shopping under pressure. That is really the whole point of sorting by personality in the first place.</p>",
+            "line_1_size": 48,
+            "line_2_size": 75,
+            "line_3_size": 48,
+            "body_size": 23,
+            "line_2_margin_top": -20,
+            "line_3_margin_top": -4,
+            "header_spacing": 40,
+            "body_max_width": 1000,
+            "section_padding_top": 60,
+            "section_padding_bottom": 60,
+            "background_color": "#ffffff",
+            "text_color": "#121212"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_e17473f_hTcnHH"
+      ],
+      "name": "Staggered typography",
+      "settings": {}
+    },
+    "177884398431108114": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_8091a19_49mDF7": {
+          "type": "ai_gen_block_8091a19",
+          "settings": {
+            "container_width": 1100,
+            "horizontal_padding": 20,
+            "padding_top": 80,
+            "padding_bottom": 80,
+            "column_gap": 40,
+            "mobile_gap": 20,
+            "mobile_scale": 0.6,
+            "background_color": "#ffffff",
+            "prefix_text": "",
+            "prefix_font_size": 50,
+            "brand_scent_text": "",
+            "brand_spired_text": "",
+            "brand_font_size": 50,
+            "start_text": "",
+            "start_font_size": 50,
+            "bestsellers_text": "",
+            "bestsellers_font_size": 50,
+            "heading_line_spacing": 4,
+            "heading_line_height": 1,
+            "heading_color": "#000000",
+            "body_text": "Once you start reading fragrance this way, there is no going back. You will know what you are buying before you hand over anything, you will understand why the same scent smells completely different on your colleague, and you will have rather more fun with the whole business. The notes have been there all along. Now you know what they mean.",
+            "body_font_size": 25,
+            "body_line_height": 1.3,
+            "body_color": "#121212"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_8091a19_49mDF7"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".ai-split-editorial-right-aqwq3qnv6qwnloem3aaigenblock8091a1949mdf7 {max-width: 100%;}"
+      ],
+      "settings": {}
+    },
+    "blocks_HnBAMt": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_8091a19_CjpxyG": {
+          "type": "ai_gen_block_8091a19",
+          "settings": {
+            "container_width": 1100,
+            "horizontal_padding": 20,
+            "padding_top": 80,
+            "padding_bottom": 80,
+            "column_gap": 40,
+            "mobile_gap": 20,
+            "mobile_scale": 0.6,
+            "background_color": "#ffffff",
+            "prefix_text": "Where To",
+            "prefix_font_size": 50,
+            "brand_scent_text": "",
+            "brand_spired_text": "",
+            "brand_font_size": 50,
+            "start_text": "",
+            "start_font_size": 36,
+            "bestsellers_text": "Start",
+            "bestsellers_font_size": 40,
+            "heading_line_spacing": 4,
+            "heading_line_height": 1,
+            "heading_color": "#000000",
+            "body_text": "The full Scentspired range lists the notes and concentration for every fragrance, which makes matching a personality considerably easier than guessing. Browse the bestsellers and buy like you actually know them this year, rather than like you were running out of time on the high street, or worse, the supermarket.",
+            "body_font_size": 22,
+            "body_line_height": 1.2,
+            "body_color": "#000000"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_8091a19_CjpxyG"
+      ],
+      "settings": {}
+    },
+    "17788441780b9287af": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_af322f3_bnrhkr": {
+          "type": "ai_gen_block_af322f3",
+          "settings": {
+            "collection": "bestsellers"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_af322f3_bnrhkr"
+      ],
+      "settings": {}
+    },
+    "1778844323c8772560": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_7c627d8_BUM397": {
+          "type": "ai_gen_block_7c627d8",
+          "settings": {
+            "desktop_image": "shopify://shop_images/wmremove-transformed_1.png",
+            "mobile_image": "shopify://shop_images/wmremove-transformed_1.png",
+            "text_horizontal_position": 10,
+            "text_max_width": 800,
+            "text_size": 38,
+            "line_height": 1
+          },
+          "blocks": {}
+        },
+        "ai_gen_block_708f5b7_bWFdAC": {
+          "type": "ai_gen_block_708f5b7",
+          "disabled": true,
+          "settings": {
+            "desktop_image": "shopify://shop_images/wmremove-transformed_1.png",
+            "mobile_image": "shopify://shop_images/wmremove-transformed_1.png",
+            "text_horizontal_position": 10,
+            "text_max_width": 650,
+            "text_size": 32,
+            "line_height": 1
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_7c627d8_BUM397",
+        "ai_gen_block_708f5b7_bWFdAC"
+      ],
+      "disabled": true,
+      "settings": {}
+    }
+  },
+  "order": [
+    "blocks_dny6PV",
+    "blog_text_7BWxfp",
+    "1778840570728901cb",
+    "blog_text_mELacU",
+    "1778843746bf825332",
+    "blocks_UXR9hM",
+    "1778843499df5a6469",
+    "blocks_YHwgUg",
+    "blocks_HnBAMt",
+    "17788441780b9287af"
+  ]
+}

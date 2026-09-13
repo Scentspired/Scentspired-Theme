@@ -1,0 +1,425 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "product-custom",
+      "custom_css": [
+        ".ps-price {font-size: 24px; font-weight: 600;}",
+        "@media only screen and (max-width: 1023px) {.ps-vendor {font-size: 12px; font-weight: 500; } .ps-price {font-size: 20px; margin-top: -40px; }}",
+        ".ps-description {padding-top: 20px; padding-bottom: 20px;}"
+      ],
+      "settings": {}
+    },
+    "related-products": {
+      "type": "related-products",
+      "disabled": true,
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    },
+    "product_info_tab_g9n4Qx": {
+      "type": "product-info-tab",
+      "blocks": {
+        "faq_wCTUC3": {
+          "type": "faq",
+          "settings": {
+            "question": "How long does this fragrance last?",
+            "answer": "Our perfumes are crafted using high-quality fragrance oils with a higher oil concentration, designed for long-lasting wear. Longevity can vary based on skin type and environment, but most customers experience at least 10 hours of noticeable scent with proper application."
+          }
+        },
+        "faq_FC4YEU": {
+          "type": "faq",
+          "settings": {
+            "question": "Are Scentspired perfumes original, and are they similar to designer fragrances?",
+            "answer": "All Scentspired perfumes are original formulations, independently crafted by our perfumers. They are inspired by iconic luxury fragrance profiles, capturing the essence and character of well-known scents while remaining distinct creations. We are not affiliated with any designer brands."
+          }
+        },
+        "faq_REjGjU": {
+          "type": "faq",
+          "settings": {
+            "question": "What concentration are your perfumes?",
+            "answer": "Our perfumes are formulated at a high concentration of up to 35% fragrance oils, placing them in the Eau de Parfum to Extrait-level range. This higher concentration delivers a richer scent profile, stronger projection, and longer wear compared to standard formulations."
+          }
+        },
+        "faq_qVb9eT": {
+          "type": "faq",
+          "settings": {
+            "question": "How should I apply the perfume for best results?",
+            "answer": "We recommend applying your perfume to pulse points such as the neck, wrists, and behind the ears, where body heat helps the scent develop naturally. Avoid rubbing after application, as this can alter the fragrance structure.\nFor a lighter, all-over effect, you can also spritz the fragrance into the air and walk through it, allowing the scent to gently envelop you. Applying on moisturized skin can further enhance longevity.\nFor more application tips and techniques, you can explore our Blog section."
+          }
+        },
+        "faq_zNXtpk": {
+          "type": "faq",
+          "settings": {
+            "question": "Are Scentspired perfumes suitable for everyday wear?",
+            "answer": "Yes. Our collection features a wide range of scent profiles from fresh and clean to warm, bold, and sensual—making them suitable for daily wear, evenings, and special occasions."
+          }
+        },
+        "faq_PCtLim": {
+          "type": "faq",
+          "disabled": true,
+          "settings": {
+            "question": "How many times should i use this?",
+            "answer": ""
+          }
+        },
+        "ingredient_hWgBDf": {
+          "type": "ingredient",
+          "settings": {
+            "ingredient_name": "AQUA (1)",
+            "safety_rating": "1",
+            "concentration": "35-55%"
+          }
+        },
+        "ingredient_G6N9Di": {
+          "type": "ingredient",
+          "settings": {
+            "ingredient_name": "Aqua (and) Sodium Lauroyl Methyl Isethionate (and) Cocamidopropyl Betaine (and) Sodium Methyl Oleoyl Taurate (and) Lauryl Glucoside (and) Coco–Glucoside",
+            "safety_rating": "1, 1, 1, 1, 5, 1",
+            "concentration": "20% – 40%"
+          }
+        },
+        "ingredient_66ht8z": {
+          "type": "ingredient",
+          "settings": {
+            "ingredient_name": "Cocamidopropyl Betaine",
+            "safety_rating": "1 – 5",
+            "concentration": "5% – 15%"
+          }
+        },
+        "ingredient_YdRfAz": {
+          "type": "ingredient",
+          "settings": {
+            "ingredient_name": "Extracts – Centella asiatica, Glycyrrhiza glabra, Curcuma longa",
+            "safety_rating": "1, 4, 1",
+            "concentration": "35% – 55%"
+          }
+        },
+        "ingredient_GX7WAA": {
+          "type": "ingredient",
+          "settings": {
+            "ingredient_name": "Glycerin",
+            "safety_rating": "1",
+            "concentration": "35% – 55%"
+          }
+        },
+        "ingredient_4YXmBA": {
+          "type": "ingredient",
+          "settings": {
+            "ingredient_name": "Aqua, Sodium hydroxide",
+            "safety_rating": "1, 1 – 4",
+            "concentration": "2/5% – 3%"
+          }
+        },
+        "ingredient_mrhXqk": {
+          "type": "ingredient",
+          "settings": {
+            "ingredient_name": "Aqua, Sodium hydroxide",
+            "safety_rating": "1, 1 – 4",
+            "concentration": "2/5% – 3%"
+          }
+        },
+        "ingredient_GkDr3Y": {
+          "type": "ingredient",
+          "settings": {
+            "ingredient_name": "Aqua, Sodium hydroxide",
+            "safety_rating": "1, 1 – 4",
+            "concentration": "2/5% – 3%"
+          }
+        }
+      },
+      "block_order": [
+        "faq_wCTUC3",
+        "faq_FC4YEU",
+        "faq_REjGjU",
+        "faq_qVb9eT",
+        "faq_zNXtpk",
+        "faq_PCtLim",
+        "ingredient_hWgBDf",
+        "ingredient_G6N9Di",
+        "ingredient_66ht8z",
+        "ingredient_YdRfAz",
+        "ingredient_GX7WAA",
+        "ingredient_4YXmBA",
+        "ingredient_mrhXqk",
+        "ingredient_GkDr3Y"
+      ],
+      "custom_css": [
+        "@media screen and (min-width: 1024px) {.product-tabs-wrapper {margin-top: 70px !important; } .content-side p {width: 500px; }}",
+        "@media screen and (min-width: 1441px) {.tab-nav {max-width: 94% !important; width: 94% !important; } .tab-nav button {min-width: 350px !important; text-align: center !important; padding: 12px 170px !important; }}",
+        "h5,.h5 {font-size: calc(var(--font-heading-scale) * 1.3rem); color: #000; font-weight: 700;}",
+        "h3,.h3 {font-size: 20px; color: #000; text-align: center; font-weight: 600;}"
+      ],
+      "name": "Product Info Tabs",
+      "settings": {
+        "about_image": "shopify://shop_images/158.jpg",
+        "ingredients_image": "shopify://shop_images/Screenshot_2025-07-23_124305.png",
+        "faq_image": "shopify://shop_images/Website_-_Product_About_01_70b08b11-c0b7-431c-a4e2-78f6b2dd1742.png",
+        "icon_1": "shopify://shop_images/Cruelty_Free.png",
+        "icon_1_text": "Cruelty Free",
+        "icon_2": "shopify://shop_images/Paraben_and_Phthalate_free.png",
+        "icon_2_text": "Paraben and Phthalate-free",
+        "icon_3": "shopify://shop_images/Vegan.webp",
+        "icon_3_text": "Vegan",
+        "icon_4": "shopify://shop_images/Colorant_and_UV_Filter_Free.png",
+        "icon_4_text": "Colorant and UV Filter Free",
+        "icon_5": "shopify://shop_images/Long_lasting_Extrait_Formula.png",
+        "icon_5_text": "Long lasting Extrait Formula"
+      }
+    },
+    "scent_stories_collection_rG6xTg": {
+      "type": "scent-stories-collection",
+      "custom_css": [
+        "@media only screen and (min-width: 1024px) and (max-width: 1439px) {.fragrance-layout {grid-template-columns: repeat(3, 1fr); gap: 20px; } .fragrance-item {height: 500px; width: 330px; } .fragrance-name {margin-left: 30px !important; width: 80%; } .fragrance-cost {top: 20px; } .fragrance-layout {display: grid; grid-template-columns: repeat(3, 1fr) !important; gap: 30px; margin-top: 40px; }}"
+      ],
+      "name": "Scent Stories Section",
+      "settings": {}
+    },
+    "review_slider_mDAzfY": {
+      "type": "review-slider",
+      "blocks": {
+        "review_tkNeEA": {
+          "type": "review",
+          "settings": {
+            "name": "Carly S.",
+            "date": "5 Months Ago",
+            "stars": "5",
+            "headline": "",
+            "content": ""
+          }
+        },
+        "review_Weg7FP": {
+          "type": "review",
+          "settings": {
+            "name": "John D",
+            "date": "5 Months Ago",
+            "stars": "4",
+            "headline": "Great product!",
+            "content": "These drops are so good. I love using them in the day cream!\nVerified Shopper"
+          }
+        },
+        "review_y8BdfB": {
+          "type": "review",
+          "settings": {
+            "name": "Erin M.",
+            "date": "5 Months Ago",
+            "stars": "5",
+            "headline": "",
+            "content": ""
+          }
+        },
+        "review_HRnFTM": {
+          "type": "review",
+          "settings": {
+            "name": "Anne C.",
+            "date": "5 Months Ago",
+            "stars": "5",
+            "headline": "",
+            "content": ""
+          }
+        },
+        "review_eLiLxN": {
+          "type": "review",
+          "settings": {
+            "name": "Stacy",
+            "date": "5 Months Ago",
+            "stars": "5",
+            "headline": "",
+            "content": ""
+          }
+        },
+        "review_GVky3h": {
+          "type": "review",
+          "settings": {
+            "name": "John",
+            "date": "5 Months Ago",
+            "stars": "5",
+            "headline": "",
+            "content": ""
+          }
+        },
+        "review_RhXfpP": {
+          "type": "review",
+          "settings": {
+            "name": "Erin",
+            "date": "5 Months Ago",
+            "stars": "5",
+            "headline": "",
+            "content": ""
+          }
+        }
+      },
+      "block_order": [
+        "review_tkNeEA",
+        "review_Weg7FP",
+        "review_y8BdfB",
+        "review_HRnFTM",
+        "review_eLiLxN",
+        "review_GVky3h",
+        "review_RhXfpP"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".review-meta .verified {font-weight: bold; margin-left: 76px !important; font-size: 9px;}",
+        "@media only screen and (max-width: 1023px) {.review-meta .verified {font-weight: bold; margin-left: 32px; }}"
+      ],
+      "name": "Review Slider",
+      "settings": {
+        "review_heading": "OUR CUSTOMER HAS TO SAY"
+      }
+    },
+    "apps_9d7qjx": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_featured_carousel_9XqQPL": {
+          "type": "shopify://apps/judge-me-reviews/blocks/featured_carousel/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "maxwidth": 1400
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_featured_carousel_9XqQPL"
+      ],
+      "disabled": true,
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "apps_8GiyRb": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_b93EnB": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "real_data",
+            "max_width": 1200,
+            "show_shop_reviews": true,
+            "empty_state": "empty_widget"
+          }
+        },
+        "judge_me_reviews_cards_carousel_hycPLM": {
+          "type": "shopify://apps/judge-me-reviews/blocks/cards_carousel/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
+          "settings": {
+            "show_sample_reviews": false,
+            "reviews_selection": "all",
+            "products": [],
+            "filter_pinned": false,
+            "filter_featured": false,
+            "filter_custom_tags": "",
+            "star_rating": "all",
+            "show_review_media": true,
+            "display_order": "media_first",
+            "no_image_fallback": "product_image",
+            "max_reviews": 30,
+            "review_length": "medium",
+            "text_size": "medium",
+            "image_ratio": "1",
+            "reviews_shown": 4,
+            "show_reviewer_name": true,
+            "show_product_name": true,
+            "hide_arrows_mobile": true,
+            "arrows_position": "sides",
+            "max_width": 1100,
+            "corner_styling": "soft",
+            "header_text_color": "#000000",
+            "text_color": "#000000",
+            "card_color": "#f9f9f9",
+            "stars_color": "",
+            "arrows_color": "#000000",
+            "transition_speed": 5,
+            "header_text": "Customers are saying",
+            "show_average_rating": true,
+            "rating_display": "default"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_b93EnB",
+        "judge_me_reviews_cards_carousel_hycPLM"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "featuredscent_jJNzkg": {
+      "type": "featuredscent",
+      "custom_css": [
+        ".fragrance-item:hover .fragrance-info {transform: none; color: black;}",
+        ".product-badge {color: #fff !important;}",
+        ".mobile-only {display: flex !important;}",
+        ".fragrance-rating {margin-left: -3px;}",
+        ".fragrance-name {margin-top: 0px;}",
+        ".variant-option-btn {padding: 6px 16px !important; background-color: #fff; border: 1px solid #ddd; border-radius: 20px; font-size: 11px !important; cursor: pointer; font-family: \"PPMori Regular\", sans-serif; transition: all 0.2s ease; color: #000; font-weight: 400;}"
+      ],
+      "name": "Scent Collection",
+      "settings": {
+        "heading": "Explore What's Next",
+        "subheading": "More Scents Worth Discovering",
+        "collection": "featured-collection",
+        "view_all_link": "shopify://collections/shop"
+      }
+    },
+    "newsletter_banner_BxBq7B": {
+      "type": "newsletter-banner",
+      "custom_css": [
+        "@media only screen and (min-width: 1024px) and (max-width: 1439px) {.newsletter-banner .newsletter-content {margin-right: 0px !important; }}",
+        "@media (max-width: 1023px) {.newsletter-banner button {width: 240px; height: 48px; margin-left: -323px; margin-top: 90px; } .newsletter-banner small {display: block; margin-top: 150px; font-size: 12px; color: #000; text-align: center; font-family: \"PPMori Regular\", sans-serif; line-height: 120%; } .newsletter-banner {height: 790px; } .newsletter-banner .newsletter-content {margin-bottom: 175px !important; }}"
+      ],
+      "name": "Newsletter Banner",
+      "settings": {
+        "background_image": "shopify://shop_images/ScentSpired_-_Homepage_06_-_Image_01.png",
+        "heading": "Join the",
+        "subheading": "inner circle.",
+        "description": "New launches, exclusive edits, and first access, straight to your inbox."
+      }
+    },
+    "newsletter_banner_aeW7Xg": {
+      "type": "newsletter-banner",
+      "disabled": true,
+      "custom_css": [
+        "@media only screen and (min-width: 1024px) and (max-width: 1439px) {.newsletter-banner .newsletter-content {margin-right: 0px !important; }}",
+        "@media (max-width: 768px) {.newsletter-banner button {width: 240px; height: 48px; margin-left: -320px; margin-top: 90px; } .newsletter-banner small {display: block; margin-top: 150px; font-size: 12px; color: #000; text-align: center; font-family: \"PPMori Regular\", sans-serif; line-height: 120%; } .newsletter-banner {height: 790px; } .newsletter-banner .newsletter-content {margin-bottom: 50px !important; }}"
+      ],
+      "name": "Newsletter Banner",
+      "settings": {
+        "heading": "Hear More",
+        "subheading": "From Us",
+        "description": "Get the latest news about skincare tips and new products."
+      }
+    }
+  },
+  "order": [
+    "main",
+    "related-products",
+    "product_info_tab_g9n4Qx",
+    "scent_stories_collection_rG6xTg",
+    "review_slider_mDAzfY",
+    "apps_9d7qjx",
+    "apps_8GiyRb",
+    "featuredscent_jJNzkg",
+    "newsletter_banner_BxBq7B",
+    "newsletter_banner_aeW7Xg"
+  ]
+}

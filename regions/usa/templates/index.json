@@ -1,0 +1,533 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "image_banner_kFQUD7": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_6TaHJX": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "heading": "Choose What Moves You",
+            "heading_size": "h1"
+          }
+        },
+        "text_PAW48K": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "Explore fragrances designed to be worn by mood, moment, and instinct—nothing else.",
+            "text_style": "subtitle"
+          }
+        }
+      },
+      "block_order": [
+        "heading_6TaHJX",
+        "text_PAW48K"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".banner__heading {margin-bottom: 0; margin-left: -80px; color: #fff; font-family: \"PPEditorialNew Ultralight Italic\", serif; font-weight: 500; font-style: italic;}",
+        ".banner__text {margin-bottom: 0; margin-left: -80px; color: #fff; font-family: \"PPMori\", serif; font-weight: 500; max-width: 400px; font-size: 20px;}",
+        "@media screen and (min-width: 750px) {.page-width {margin: unset; padding: 1.5rem; }}",
+        "@media screen and (min-width: 750px) {.banner--desktop-transparent .banner__box {padding: 3rem 150px; }}",
+        "@media (max-width: 768px) {.banner {display: none; }}"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/banner_3.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "banner_link": "shopify://collections/shop",
+        "banner_link_label": "",
+        "open_in_new_tab": false,
+        "desktop_content_position": "middle-left",
+        "desktop_content_alignment": "left",
+        "show_text_box": false,
+        "color_scheme": "",
+        "stack_images_on_mobile": false,
+        "mobile_content_alignment": "center",
+        "show_text_below": false
+      }
+    },
+    "image_banner_d68XJW": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_HrUaq9": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "heading": "Choose What Moves You",
+            "heading_size": "h1"
+          }
+        },
+        "text_3TPFFg": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "Explore fragrances designed to be worn by mood, moment, and instinct—nothing else.",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_HrUaq9",
+        "text_3TPFFg"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".banner__heading {margin-bottom: 0; margin-left: 15px !important; color: #fff !important; font-family: \"PPEditorialNew Ultralight Italic\", serif; font-weight: 500; font-style: italic; margin-top: 290px !important; font-size: 26px;}",
+        ".banner__text {margin-bottom: 0; margin-left: 15px; color: #fff; font-family: \"PPMori\", serif; font-weight: 500; max-width: 400px;}",
+        "@media (min-width: 768px) {.banner {display: none; }}",
+        ".banner__content {padding-top: 40px;}",
+        ".banner__media {height: auto;}",
+        ".banner__text {line-height: 23px;}"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/Banner_mobile_banner_Scentspired_US.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "banner_link": "shopify://collections/shop",
+        "banner_link_label": "",
+        "open_in_new_tab": false,
+        "desktop_content_position": "top-left",
+        "desktop_content_alignment": "center",
+        "show_text_box": false,
+        "color_scheme": "",
+        "stack_images_on_mobile": false,
+        "mobile_content_alignment": "left",
+        "show_text_below": false
+      }
+    },
+    "video_banner_UijrkX": {
+      "type": "video-banner",
+      "custom_css": [
+        ".video-container {margin-top: 0px; padding-bottom: 50px;}",
+        "@media screen and (min-width: 1024px) and (max-width: 1439px) {.curved-line {position: absolute; top: 58%; left: 72%; transform: translateY(-50%); z-index: 1; } .video-button-rounded {margin-top: 20px; }}",
+        ".side-text {font-family: \"PP Mori\", sans-serif !important;}",
+        ".subtitle-line {margin-left: -18px;}",
+        ".video-button-rounded {margin-left: -18px;}",
+        ".curved-line {display: none;}"
+      ],
+      "name": "Video Banner",
+      "settings": {
+        "main_title_part1": "A",
+        "main_title_part2": "Quiet",
+        "subtitle_part1": "",
+        "subtitle_part2": "Reinvention",
+        "side_text": "",
+        "button_text": "EXPLORE ALL PRODUCTS",
+        "button_link": "shopify://collections/shop"
+      }
+    },
+    "running_text_X9j7b7": {
+      "type": "running-text",
+      "custom_css": [
+        "@media only screen and (min-width: 768px) and (max-width: 1439px) {.running-text-content {display: flex; align-items: center; white-space: nowrap; font-style: italic; font-weight: 400 !important; font-size: 40px; color: #000; }}",
+        ".running-text-content {font-weight: 400 !important;}",
+        ".running-text-wrapper {overflow: hidden; width: 100%; background-color: transparent; padding: 10px 0; margin-bottom: 0px !important;}"
+      ],
+      "name": "Running Text",
+      "settings": {
+        "text_left": "Long Lasting",
+        "text_center": "Extrait De Parfum",
+        "icon_image": "shopify://shop_images/Vector_4.png",
+        "text_right": "Up to 35% Concentration"
+      }
+    },
+    "featured_collections_bQ8wqc": {
+      "type": "featured-collections",
+      "blocks": {
+        "collection_block_xAzKH9": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "women",
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/c605d4dc6fe04f8aa3f2a5584207af28.mp4",
+            "title": "Women",
+            "button_text": "Shop women",
+            "button_link": "shopify://collections/women"
+          }
+        },
+        "collection_block_BH7b3G": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "men",
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/efb55496eff0461a9c9aaa2632110d25.mp4",
+            "title": "Men",
+            "button_text": "Shop men",
+            "button_link": "shopify://collections/men"
+          }
+        },
+        "collection_block_TwzPze": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "unisex",
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/bd60dd4aa48c4125b414c543ba461da8.mp4",
+            "title": "Unisex",
+            "button_text": "Shop Unisex",
+            "button_link": "shopify://collections/unisex"
+          }
+        }
+      },
+      "block_order": [
+        "collection_block_xAzKH9",
+        "collection_block_BH7b3G",
+        "collection_block_TwzPze"
+      ],
+      "custom_css": [
+        "@media only screen and (max-width: 1023px) {.featured-collections-section {padding: 4px 20px; background: #fff; position: relative; overflow: hidden; }}",
+        ".collection-video {width: 100%; height: auto; object-fit: cover; display: block; border-radius: 15px;}"
+      ],
+      "name": "Featured Collections",
+      "settings": {}
+    },
+    "scent_stories_collection_dXw6Vf": {
+      "type": "scent-stories-collection",
+      "disabled": true,
+      "custom_css": [],
+      "name": "Scent Stories Section",
+      "settings": {
+        "title": "",
+        "heading_size": "h1"
+      }
+    },
+    "featuredscent_8M3b4w": {
+      "type": "featuredscent",
+      "custom_css": [
+        ".fragrance-item:hover .fragrance-info {transform: none; color: black;}",
+        ".product-badge {color: #fff !important;}",
+        ".mobile-only {display: flex !important;}",
+        ".fragrance-rating {margin-left: -3px;}",
+        "@media (min-width: 800px) and (max-width: 1024px) {.fragrance-item {width: 100% !important; }}"
+      ],
+      "name": "Scent Collection",
+      "settings": {
+        "heading": "Luxury You Can Afford",
+        "subheading": "Signature Inspirations",
+        "collection": "featured-collection",
+        "view_all_link": "shopify://collections/shop"
+      }
+    },
+    "running_text_YJKmUL": {
+      "type": "running-text",
+      "custom_css": [
+        "@media only screen and (min-width: 1024px) and (max-width: 1439px) {.running-text-content {display: flex; align-items: center; white-space: nowrap; font-style: italic; font-weight: 400; font-size: 60px; color: #000; }}",
+        ".running-text-content {font-weight: 400 !important;}",
+        ".running-text-wrapper {display: none;}"
+      ],
+      "name": "Running Text",
+      "settings": {
+        "text_left": "Swiss Precision",
+        "text_center": "Reimagined Signatures",
+        "icon_image": "shopify://shop_images/Vector_4.png",
+        "text_right": "Premium Packaging"
+      }
+    },
+    "video_banner1_QerXbX": {
+      "type": "Video-banner1",
+      "custom_css": [
+        "@media only screen and (min-width: 1024px) and (max-width: 1439px) {.scent-right {margin-right: 0px; } .product-nav {top: 40%; width: calc(100% + 138px); left: -86px; } .scent-left {margin-left: 0px; margin-bottom: -125px; } .product-nav {width: calc(100% + 138px); left: -86px; } .scent-heading {font-size: 68px !important; }}",
+        ".fragrance-image-wrap:hover .product-hover-image {opacity: 1;}",
+        ".fragrance-image-wrap:hover .product-main-image {opacity: 0;}",
+        ".fragrance-item:hover .fragrance-info {transform: none;}",
+        ".product-badge {color: #fff !important;}"
+      ],
+      "name": "Video Banner",
+      "settings": {
+        "brand_heading_1": "Ysl",
+        "brand_collection_1": "ysl-1",
+        "brand_button_url_1": "shopify://collections/ysl-1",
+        "brand_heading_2": "Dior",
+        "brand_collection_2": "dior-1",
+        "brand_button_url_2": "shopify://collections/dior-1",
+        "brand_heading_3": "Chanel",
+        "brand_collection_3": "chanel",
+        "brand_button_url_3": "shopify://collections/chanel",
+        "brand_heading_4": "Tom Ford",
+        "brand_collection_4": "tom-ford",
+        "brand_button_url_4": "shopify://collections/tom-ford",
+        "brand_heading_5": "Louis Vuitton",
+        "brand_collection_5": "lv",
+        "brand_button_url_5": "shopify://collections/lv",
+        "brand_heading_6": "Maison Crivelli",
+        "brand_collection_6": "maison-crivelli",
+        "brand_button_url_6": "shopify://collections/maison-crivelli",
+        "notes_heading_1": "Flowery",
+        "notes_collection_1": "flowery",
+        "notes_button_url_1": "shopify://collections/flowery",
+        "notes_heading_2": "Fresh",
+        "notes_collection_2": "fresh",
+        "notes_button_url_2": "shopify://collections/fresh",
+        "notes_heading_3": "Earthy",
+        "notes_collection_3": "earthy",
+        "notes_button_url_3": "shopify://collections/earthy",
+        "notes_heading_4": "Herbal",
+        "notes_collection_4": "herbal",
+        "notes_button_url_4": "shopify://collections/herbal",
+        "notes_heading_5": "Warm",
+        "notes_collection_5": "warm",
+        "notes_button_url_5": "shopify://collections/warm",
+        "notes_heading_6": "Gourmand",
+        "notes_collection_6": "gourmand",
+        "notes_button_url_6": "shopify://collections/gourmand"
+      }
+    },
+    "mobile_video_banner_3Bc3Wj": {
+      "type": "mobile-video-banner",
+      "custom_css": [
+        "@media screen and (min-width: 1024px) {.mvps-section {display: none; }}",
+        ".fragrance-item:hover .fragrance-info {transform: none;}",
+        ".mobile-only {display: flex !important;}",
+        ".fragrance-rating {display: none;}",
+        ".product-badge {background-color: #ffffff; color: #fff !important;}"
+      ],
+      "name": "Scent Families Video + Collections (Chevron Dropdown)",
+      "settings": {
+        "heading_1": "Chanel",
+        "collection_1": "chanel",
+        "heading_2": "Dior",
+        "collection_2": "dior-1",
+        "heading_3": "Tom Ford",
+        "collection_3": "tom-ford",
+        "heading_4": "Louis Vuitton",
+        "collection_4": "lv",
+        "heading_5": "Ysl",
+        "collection_5": "ysl-1",
+        "heading_6": "Maison Crivelli",
+        "collection_6": "maison-crivelli",
+        "heading_notes_1": "Flowery",
+        "collection_notes_1": "flowery",
+        "heading_notes_2": "Fresh",
+        "collection_notes_2": "fresh",
+        "heading_notes_3": "Earthy",
+        "collection_notes_3": "earthy",
+        "heading_notes_4": "Herbal",
+        "collection_notes_4": "herbal",
+        "heading_notes_5": "Warm",
+        "collection_notes_5": "warm",
+        "heading_notes_6": "Gourmand",
+        "collection_notes_6": "gourmand"
+      }
+    },
+    "best_sellers_DQtBQy": {
+      "type": "best-sellers",
+      "custom_css": [
+        "@media only screen and (min-width: 1024px) {.bs-featured-image {height: 900px !important; }}",
+        ".bs-image-side {height: auto; padding-top: 0px;}",
+        ".bs-featured-image {border-radius: 0px;}",
+        ".fragrance-item:hover .fragrance-info {transform: none;}",
+        ".product-badge {color: #fff !important;}",
+        ".bs-subheading {display: none;}",
+        "@media screen and (max-width: 990px) {.cart-button {font-size: 12px; padding: 10px 12px; }}",
+        "@media only screen and (max-width: 1024px) {.fragrance-item {width: 100% !important; }}",
+        ".bs-title {}"
+      ],
+      "name": "Best Sellers Section",
+      "settings": {
+        "section_title": "Best Sellers",
+        "collection": "bestsellers",
+        "subheading": "",
+        "featured_image": "shopify://shop_images/Website_-_Home.jpg",
+        "view_all_link": "shopify://collections/bestsellers"
+      }
+    },
+    "bundle_heading_wRwayJ": {
+      "type": "bundle-heading",
+      "custom_css": [
+        ".carousel-container {display: none;}",
+        ".scent-header {margin-bottom: -50px;}",
+        ".scent-header {text-align: center; padding: 0rem 7rem; margin-top: 0px;}",
+        ".scent-sub {text-decoration: underline !important; text-decoration-color: #fadb95 !important; text-decoration-thickness: 2px !important; text-underline-offset: 2px !important;}"
+      ],
+      "name": "Bundle Heading",
+      "settings": {}
+    },
+    "bundle_collection_dNJFpE": {
+      "type": "bundle-collection",
+      "blocks": {
+        "collection_block_7VGMEN": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "bundle-50ml",
+            "video_url": "",
+            "mobile_image": "shopify://shop_images/4_5_1.jpg",
+            "title": "The Signature Trio",
+            "button_text": "Shop Now",
+            "button_link": "shopify://pages/trio"
+          }
+        },
+        "collection_block_WXd7en": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "fifer",
+            "video_url": "",
+            "mobile_image": "shopify://shop_images/3_3_1.jpg",
+            "title": "The Five Favourites",
+            "button_text": "Shop Now",
+            "button_link": "shopify://pages/five-favourites"
+          }
+        },
+        "collection_block_AQiG3b": {
+          "type": "collection_block",
+          "disabled": true,
+          "settings": {
+            "collection": "customize-bundle",
+            "video_url": "",
+            "mobile_image": "shopify://shop_images/2_7_1.jpg",
+            "title": "Your Custom Collection",
+            "button_text": "Shop Now",
+            "button_link": "shopify://pages/bundle-1"
+          }
+        },
+        "collection_block_TftEmL": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "discovery-1",
+            "video_url": "",
+            "mobile_image": "shopify://shop_images/1_6_7da887c1-c1c3-4c53-ada3-cfa836b6fa84_1.jpg",
+            "title": "Discovery Box",
+            "button_text": "Shop Now",
+            "button_link": "shopify://pages/discovery-set"
+          }
+        }
+      },
+      "block_order": [
+        "collection_block_7VGMEN",
+        "collection_block_WXd7en",
+        "collection_block_AQiG3b",
+        "collection_block_TftEmL"
+      ],
+      "custom_css": [
+        "@media only screen and (min-width: 1023px) {.collection-button {position: absolute; bottom: 20px; left: -20px; } .collection-content {font-size: 28px; }}",
+        ".scent-subtitle {text-decoration: underline; text-decoration-color: #fadb95; text-decoration-thickness: 2px; text-underline-offset: 2px;}"
+      ],
+      "name": "Bundle Collections",
+      "settings": {}
+    },
+    "instagram_heading_J7WmJ7": {
+      "type": "instagram-heading",
+      "custom_css": [
+        ".carousel-container {display: none;}",
+        ".scent-header {margin-bottom: -50px;}",
+        ".scent-header {text-align: center; padding: 0rem 7rem; margin-top: 0px;}",
+        ".scent-sub {text-decoration: underline !important; text-decoration-color: #fadb95 !important; text-decoration-thickness: 2px !important; text-underline-offset: 2px !important;}"
+      ],
+      "name": "Instagram Videos",
+      "settings": {}
+    },
+    "177088923078fc317e": {
+      "type": "apps",
+      "blocks": {
+        "firework_shoppable_video_ugc_firework_embed_EhTVwD": {
+          "type": "shopify://apps/firework-shoppable-video-ugc/blocks/firework-embed/347a2e4c-f5cb-410d-8354-490d1e80558c",
+          "settings": {
+            "channel": "scentspired",
+            "playlist": "",
+            "layout": "storyblock",
+            "embedtitle": "",
+            "titlealignment": "center",
+            "embedtitlesize": 20,
+            "size": "large",
+            "player_placement": "bottom-right",
+            "hashtag": "",
+            "pip": true,
+            "enable_seo": true
+          }
+        }
+      },
+      "block_order": [
+        "firework_shoppable_video_ugc_firework_embed_EhTVwD"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "instagram_feed_6XcCWT": {
+      "type": "instagram-feed",
+      "custom_css": [
+        ".carousel-container {display: none;}",
+        ".scent-header {margin-bottom: -120px;}",
+        ".scent-header {text-align: center; padding: 4rem 1rem; margin-top: 0px;}",
+        ".scent-subtitle {text-decoration: underline !important; text-decoration-color: #fadb95 !important; text-decoration-thickness: 2px !important; text-underline-offset: 2px !important;}"
+      ],
+      "name": "Instagram Feed Section",
+      "settings": {}
+    },
+    "1756981498fec8c3c0": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_6068b75_kqp7mT": {
+          "type": "ai_gen_block_6068b75",
+          "settings": {
+            "instagram_url": "https://www.instagram.com/thescentspired/",
+            "image_1": "shopify://shop_images/imgi_1_669677066_17914666242357350_2487952813188035984_n.jpg",
+            "image_2": "shopify://shop_images/imgi_1_653065007_17910131769357350_3400065105340633507_n.jpg",
+            "image_3": "shopify://shop_images/image_1.png",
+            "image_4": "shopify://shop_images/image_4.png",
+            "image_5": "shopify://shop_images/imgi_1_671161054_17915003391357350_8066704312270788470_n.jpg",
+            "image_6": "shopify://shop_images/imgi_10_669055390_17914225821357350_2880828186054914834_n.jpg",
+            "gap_desktop": 10,
+            "gap_tablet": 10,
+            "gap_mobile": 10,
+            "border_radius": 8,
+            "padding_vertical": 40,
+            "padding_horizontal": 20,
+            "padding_vertical_mobile": 30,
+            "padding_horizontal_mobile": 15
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_6068b75_kqp7mT"
+      ],
+      "custom_css": [],
+      "settings": {}
+    },
+    "newsletter_banner_AMNnyi": {
+      "type": "newsletter-banner",
+      "custom_css": [
+        "@media only screen and (min-width: 1024px) and (max-width: 1439px) {.newsletter-banner .newsletter-content {margin-right: 0px !important; }}",
+        "@media (max-width: 1023px) {.newsletter-banner button {width: 240px; height: 48px; margin-left: -323px; margin-top: 90px; } .newsletter-banner small {display: block; margin-top: 150px; font-size: 12px; color: #000; text-align: center; font-family: \"PPMori Regular\", sans-serif; line-height: 120%; } .newsletter-banner {height: 790px; } .newsletter-banner .newsletter-content {margin-bottom: 175px !important; }}"
+      ],
+      "name": "Newsletter Banner",
+      "settings": {
+        "background_image": "shopify://shop_images/ScentSpired_-_Homepage_06_-_Image_01_2.jpg",
+        "heading": "Join the",
+        "subheading": "inner circle",
+        "description": "New launches, exclusive edits, and first access, straight to your inbox."
+      }
+    }
+  },
+  "order": [
+    "image_banner_kFQUD7",
+    "image_banner_d68XJW",
+    "video_banner_UijrkX",
+    "running_text_X9j7b7",
+    "featured_collections_bQ8wqc",
+    "scent_stories_collection_dXw6Vf",
+    "featuredscent_8M3b4w",
+    "running_text_YJKmUL",
+    "video_banner1_QerXbX",
+    "mobile_video_banner_3Bc3Wj",
+    "best_sellers_DQtBQy",
+    "bundle_heading_wRwayJ",
+    "bundle_collection_dNJFpE",
+    "instagram_heading_J7WmJ7",
+    "177088923078fc317e",
+    "instagram_feed_6XcCWT",
+    "1756981498fec8c3c0",
+    "newsletter_banner_AMNnyi"
+  ]
+}

@@ -1,0 +1,179 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "bundlescomingsoon_kfRGGN": {
+      "type": "bundlescomingsoon",
+      "disabled": true,
+      "name": "Bundle Coming Soon",
+      "settings": {
+        "enable_overlay": true,
+        "heading": "COMING SOON",
+        "launch_date": "2026-02-17 00:00:00"
+      }
+    },
+    "image_banner_C98nQy": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_jYiTan": {
+          "type": "heading",
+          "settings": {
+            "heading": "The Five Favourites",
+            "heading_size": "h0"
+          }
+        },
+        "text_dNiQ4X": {
+          "type": "text",
+          "settings": {
+            "text": "Five best-loved scents, one added advantage",
+            "text_style": "body"
+          }
+        },
+        "buttons_PNGKgp": {
+          "type": "buttons",
+          "disabled": true,
+          "settings": {
+            "button_label_1": "Button label",
+            "button_link_1": "",
+            "button_style_secondary_1": false,
+            "button_label_2": "Button label",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_jYiTan",
+        "text_dNiQ4X",
+        "buttons_PNGKgp"
+      ],
+      "custom_css": [
+        ".banner__heading {margin-bottom: 0; margin-left: -80px; color: #fff; font-family: \"PPEditorialNew Ultralight Italic\", serif; font-weight: 500; font-style: italic;}",
+        ".banner__text {margin-bottom: 0; margin-left: -80px; color: #fff; font-family: \"PPMori\", serif; font-weight: 500; max-width: 400px; font-size: 20px;}",
+        "@media screen and (min-width: 750px) {.page-width {margin: unset; padding: 1.5rem; }}",
+        "@media screen and (min-width: 750px) {.banner--desktop-transparent .banner__box {padding: 3rem 150px; }}",
+        "@media (max-width: 768px) {.banner {display: none; }}"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/1920_X_700.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-left",
+        "desktop_content_alignment": "left",
+        "show_text_box": false,
+        "color_scheme": "",
+        "stack_images_on_mobile": false,
+        "mobile_content_alignment": "center",
+        "show_text_below": false
+      }
+    },
+    "image_banner_8mPhHe": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_mdN63E": {
+          "type": "heading",
+          "settings": {
+            "heading": "The Five Favourites",
+            "heading_size": "h2"
+          }
+        },
+        "text_Ty7WaL": {
+          "type": "text",
+          "settings": {
+            "text": "Five best-loved scents, one added advantage",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_mdN63E",
+        "text_Ty7WaL"
+      ],
+      "custom_css": [
+        ".banner__heading {margin-bottom: 0; margin-left: 15px !important; color: #fff !important; font-family: \"PPEditorialNew Ultralight Italic\", serif !important; font-weight: 500 !important; font-style: italic !important; margin-top: 300px !important;}",
+        ".banner__text {margin-bottom: 0; margin-left: 15px; color: #fff; font-family: \"PPMori\", serif !important; font-weight: 500; max-width: 400px;}",
+        "@media (min-width: 768px) {.banner {display: none; }}",
+        ".banner__content {padding-top: 40px;}",
+        ".banner__media {height: auto;}",
+        ".banner__text {line-height: 23px;}"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/2_1ae5ba53-2d4a-4517-8adc-50a5facd4758.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-left",
+        "desktop_content_alignment": "left",
+        "show_text_box": false,
+        "color_scheme": "",
+        "stack_images_on_mobile": false,
+        "mobile_content_alignment": "left",
+        "show_text_below": false
+      }
+    },
+    "five_box_yEAUmF": {
+      "type": "five-box",
+      "custom_css": [
+        ".savings-row {padding: 4px 0 20px 0px; text-align: center; font-size: 14px; color: #666; background: #f3f3f3;}"
+      ],
+      "name": "Five Box",
+      "settings": {}
+    },
+    "newsletter_banner_Y3AUjn": {
+      "type": "newsletter-banner",
+      "custom_css": [
+        "@media only screen and (min-width: 1024px) and (max-width: 1439px) {.newsletter-banner .newsletter-content {margin-right: 0px !important; }}",
+        "@media (max-width: 1023px) {.newsletter-banner button {width: 240px; height: 48px; margin-left: -323px; margin-top: 90px; } .newsletter-banner small {display: block; margin-top: 150px; font-size: 12px; color: #000; text-align: center; font-family: \"PPMori Regular\", sans-serif; line-height: 120%; } .newsletter-banner {height: 790px; } .newsletter-banner .newsletter-content {margin-bottom: 175px !important; }}"
+      ],
+      "name": "Newsletter Banner",
+      "settings": {
+        "background_image": "shopify://shop_images/ScentSpired_-_Scent_Notes_06_-_Banner.png",
+        "heading": "Join the",
+        "subheading": "inner circle",
+        "description": "New launches, exclusive edits, and first access, straight to your inbox."
+      }
+    },
+    "newsletter_banner_LYexwa": {
+      "type": "newsletter-banner",
+      "disabled": true,
+      "custom_css": [
+        "@media only screen and (min-width: 1024px) and (max-width: 1439px) {.newsletter-banner .newsletter-content {margin-right: 0px !important; }}",
+        "@media (max-width: 768px) {.newsletter-banner button {width: 240px; height: 48px; margin-left: -323px; margin-top: 90px; } .newsletter-banner small {display: block; margin-top: 150px; font-size: 12px; color: #000; text-align: center; font-family: \"PPMori Regular\", sans-serif; line-height: 120%; } .newsletter-banner {height: 790px; } .newsletter-banner .newsletter-content {margin-bottom: 175px !important; }}"
+      ],
+      "name": "Newsletter Banner",
+      "settings": {
+        "background_image": "shopify://shop_images/ScentSpired_-_Scent_Notes_06_-_Banner_d12edcd9-7761-4580-8abf-be16f210716a.png",
+        "heading": "Hear More",
+        "subheading": "From Us",
+        "description": "Get the latest news about skincare tips and new products."
+      }
+    }
+  },
+  "order": [
+    "main",
+    "bundlescomingsoon_kfRGGN",
+    "image_banner_C98nQy",
+    "image_banner_8mPhHe",
+    "five_box_yEAUmF",
+    "newsletter_banner_Y3AUjn",
+    "newsletter_banner_LYexwa"
+  ]
+}

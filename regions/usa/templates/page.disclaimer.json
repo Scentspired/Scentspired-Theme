@@ -1,0 +1,81 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "privacy_policy_XkjK4b": {
+      "type": "privacy-policy",
+      "blocks": {
+        "privacy_policy_block_6NUdgX": {
+          "type": "privacy_policy_block",
+          "settings": {
+            "section_title": "",
+            "section_content": "<p></p><p>Scentspired is an independent fragrance brand. All products sold by Scentspired are <strong>original creations</strong>, developed and manufactured independently.</p><p>Any references on this website to fragrance styles, scent profiles, or well-known perfume houses are made <strong>solely for descriptive and comparative purposes</strong>. Such references are intended to help customers understand the character of a fragrance and <strong>should never be interpreted as implying identity, equivalence, endorsement, sponsorship, or affiliation</strong> with any designer, luxury, niche, or high-street brand.</p><p>Scentspired fragrances are <strong>inspired interpretations</strong> only. They are <strong>not replicas, copies, or clones</strong>, and are <strong>not to be confused with original fragrances</strong> produced by other brands.</p><p>All product names, brand names, trademarks, trade dress, and copyrights mentioned or implied on this website are the <strong>property of their respective owners</strong>. The use of any such names or marks does <strong>not indicate any relationship, partnership, or approval</strong> between Scentspired and the trademark owner.</p><p>Scentspired is <strong>not affiliated with, endorsed by, authorised by, licensed by, or connected in any way</strong> with any designer brand, perfume house, or manufacturer whose trademarks may be referenced. Trademark owners do not sponsor, authorise, promote, or represent Scentspired or its products.</p><p>All references are made in good faith and in accordance with applicable laws governing <strong>comparative and descriptive advertising</strong>, including fair-use principles. Customers should not expect Scentspired products to be identical to any other fragrance.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "privacy_policy_block_6NUdgX"
+      ],
+      "custom_css": [
+        "@media screen and (min-width: 1441px) {.faq-sidebar a:hover {color: #000; background-color: #efff31; width: 433px; } .faq-sidebar a.active {color: #000; background-color: #efff31; width: 433px !important; }}",
+        "@media screen and (min-width: 1024px) and (max-width: 1440px) {.faq-sidebar a:hover {color: #000; background-color: #efff31; width: 299px; } .faq-sidebar a.active {color: #000; background-color: #efff31; width: 299px; }}",
+        "@media screen and (max-width: 1024px) {.faq-container {margin-top: -100px; }}",
+        ".faq-category {margin-left: 20px;}"
+      ],
+      "name": "Privacy Policy Section",
+      "settings": {
+        "page_title": "DISCLAIMER",
+        "link_1_text": "Contact Us",
+        "link_1_url": "shopify://pages/contact",
+        "link_2_text": "FAQS",
+        "link_2_url": "shopify://pages/faqs",
+        "link_3_text": "PRIVACY POLICY",
+        "link_3_url": "shopify://pages/privacy-policy",
+        "link_4_text": "RETURNS",
+        "link_4_url": "shopify://pages/returns",
+        "link_5_text": "TERMS AND CONDITIONS",
+        "link_5_url": "shopify://pages/terms-and-conditions",
+        "link_6_text": "Disclaimer",
+        "link_6_url": "shopify://pages/disclaimer",
+        "link_7_text": "",
+        "link_7_url": "",
+        "link_8_text": "",
+        "link_8_url": ""
+      }
+    },
+    "newsletter_banner_zqpmxP": {
+      "type": "newsletter-banner",
+      "custom_css": [
+        "@media only screen and (min-width: 1024px) and (max-width: 1439px) {.newsletter-banner .newsletter-content {margin-right: 0px !important; }}",
+        "@media (max-width: 1023px) {.newsletter-banner button {width: 240px; height: 48px; margin-left: -323px; margin-top: 90px; } .newsletter-banner small {display: block; margin-top: 150px; font-size: 12px; color: #000; text-align: center; font-family: \"PPMori Regular\", sans-serif; line-height: 120%; } .newsletter-banner {height: 790px; } .newsletter-banner .newsletter-content {margin-bottom: 175px !important; }}"
+      ],
+      "name": "Newsletter Banner",
+      "settings": {
+        "background_image": "shopify://shop_images/ScentSpired_-_Homepage_06_-_Image_01_1.png",
+        "heading": "Join the",
+        "subheading": "inner circle",
+        "description": "New launches, exclusive edits, and first access, straight to your inbox."
+      }
+    }
+  },
+  "order": [
+    "main",
+    "privacy_policy_XkjK4b",
+    "newsletter_banner_zqpmxP"
+  ]
+}

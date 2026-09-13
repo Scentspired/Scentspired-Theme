@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 /**
  * Scentspired SSOT Theme Synchronization Engine
- * Projects core theme assets, snippets, sections, blocks, and layouts from
- * Scentspired-Theme (Single Source of Truth) down to regional stores (USA, UK).
- * Strictly preserves regional templates (*.json), settings_data.json, and locales.
+ * Projects core theme engine code and regional packages from
+ * Scentspired-Theme (Single Source of Truth) down to regional stores (USA, UK),
+ * or pulls live regional changes back into SSOT.
  */
 
 const fs = require('fs');
@@ -17,6 +17,7 @@ const CONFIG_PATH = path.join(SCRIPT_DIR, 'sync-config.json');
 // Parse CLI arguments
 const args = process.argv.slice(2);
 const isDryRun = args.includes('--dry-run');
+const isPull = args.includes('--pull');
 const skipPush = args.includes('--skip-push');
 const skipTests = args.includes('--skip-tests');
 const targetArg = args.find(a => a.startsWith('--target='));
@@ -81,7 +82,118 @@ function isProtected(relPath, protectedPatterns) {
   return false;
 }
 
-// Main execution
+// Helper: Sync single file
+function syncFile(srcFile, destFile, dryRun = false) {
+  let changed = false;
+  let isNew = false;
+  if (!fs.existsSync(destFile)) {
+    isNew = true;
+    changed = true;
+  } else {
+    const srcBuf = fs.readFileSync(srcFile);
+    const destBuf = fs.readFileSync(destFile);
+    if (!srcBuf.equals(destBuf)) {
+      changed = true;
+    }
+  }
+  if (changed && !dryRun) {
+    fs.mkdirSync(path.dirname(destFile), { recursive: true });
+    fs.copyFileSync(srcFile, destFile);
+  }
+  return { changed, isNew };
+}
+
+// Helper: Sync directory tree
+function syncDirectory(srcDir, destDir, dryRun = false) {
+  let added = 0, updated = 0;
+  if (!fs.existsSync(srcDir)) return { added, updated };
+  if (!fs.existsSync(destDir) && !dryRun) {
+    fs.mkdirSync(destDir, { recursive: true });
+  }
+
+  const srcFiles = getAllFiles(srcDir);
+  for (const relFile of srcFiles) {
+    const srcFile = path.join(srcDir, relFile);
+    const destFile = path.join(destDir, relFile);
+    const res = syncFile(srcFile, destFile, dryRun);
+    if (res.isNew) added++;
+    else if (res.changed) updated++;
+  }
+
+  return { added, updated };
+}
+
+// Filter targets
+const targets = config.downstreamTargets.filter(t => {
+  if (!targetRegion) return true;
+  return t.id === targetRegion || t.name.toLowerCase().includes(targetRegion);
+});
+
+if (targets.length === 0) {
+  console.error(`❌ No downstream target found matching: ${targetRegion}`);
+  process.exit(1);
+}
+
+// ==================================================================
+// MODE 1: PULL MODE (Downstream Live Store -> SSOT regions/)
+// ==================================================================
+if (isPull) {
+  console.log('\n==================================================================');
+  console.log('   📥 SCENTSPIRED REGIONAL THEME PULL (Downstream -> SSOT)');
+  console.log('==================================================================');
+  console.log(`  Mode:        ${isDryRun ? '🔍 DRY RUN (Simulating)' : '⚡ LIVE PULL'}`);
+  console.log(`  Destination: ${path.join(THEME_ROOT, 'regions')}`);
+  console.log(`  Target:      ${targetRegion ? targetRegion.toUpperCase() : 'ALL REGIONS'}`);
+  console.log('------------------------------------------------------------------\n');
+
+  const pullSummary = [];
+
+  for (const target of targets) {
+    const targetPath = path.resolve(THEME_ROOT, target.path);
+    const localRegionDir = path.join(THEME_ROOT, 'regions', target.id);
+    console.log(`>>> Pulling regional package from ${target.name} into regions/${target.id}...`);
+
+    if (!fs.existsSync(targetPath)) {
+      console.error(`⚠️  Target directory not found: ${targetPath}. Skipping.`);
+      continue;
+    }
+
+    let pulledTemplates = syncDirectory(path.join(targetPath, 'templates'), path.join(localRegionDir, 'templates'), isDryRun);
+    let pulledLocales = syncDirectory(path.join(targetPath, 'locales'), path.join(localRegionDir, 'locales'), isDryRun);
+
+    let pulledSettings = 0;
+    for (const confFile of ['settings_data.json', 'markets.json']) {
+      const srcSettings = path.join(targetPath, 'config', confFile);
+      const destSettings = path.join(localRegionDir, 'config', confFile);
+      if (fs.existsSync(srcSettings)) {
+        const res = syncFile(srcSettings, destSettings, isDryRun);
+        if (res.changed) pulledSettings++;
+      }
+    }
+
+    console.log(`  Templates: ${pulledTemplates.added} added, ${pulledTemplates.updated} updated`);
+    console.log(`  Locales:   ${pulledLocales.added} added, ${pulledLocales.updated} updated`);
+    console.log(`  Config:    ${pulledSettings} updated\n`);
+
+    pullSummary.push({
+      region: target.id.toUpperCase(),
+      templatesChanged: pulledTemplates.added + pulledTemplates.updated,
+      localesChanged: pulledLocales.added + pulledLocales.updated,
+      settingsUpdated: pulledSettings > 0
+    });
+  }
+
+  console.log('==================================================================');
+  console.log('   🎉 REGIONAL PULL COMPLETE');
+  console.log('==================================================================');
+  console.table(pullSummary);
+  console.log('==================================================================\n');
+  process.exit(0);
+}
+
+// ==================================================================
+// MODE 2: PUSH MODE (SSOT Core & Regional -> Downstream Targets)
+// ==================================================================
 console.log('\n==================================================================');
 console.log('   🚀 SCENTSPIRED SSOT THEME SYNCHRONIZATION ENGINE');
 console.log('==================================================================');
@@ -100,7 +212,7 @@ console.log(`📌 Upstream State: Branch '${upstreamBranch}' @ ${upstreamCommit}
 if (!skipTests && !isDryRun) {
   console.log('>>> [1/4] Running Quality Gates on Scentspired-Theme (SSOT)...');
   try {
-    run('node runner.cjs --target=.', THEME_ROOT);
+    run('node runner.cjs --scope=core', THEME_ROOT);
     console.log('✅ Core Theme Quality Gates passed.\n');
   } catch (e) {
     console.error('❌ Core Theme Quality Gates failed. Synchronization aborted.');
@@ -108,17 +220,6 @@ if (!skipTests && !isDryRun) {
   }
 } else {
   console.log('⏭️  Skipping Theme Guardian pre-checks (--skip-tests or --dry-run).\n');
-}
-
-// Filter targets
-const targets = config.downstreamTargets.filter(t => {
-  if (!targetRegion) return true;
-  return t.id === targetRegion || t.name.toLowerCase().includes(targetRegion);
-});
-
-if (targets.length === 0) {
-  console.error(`❌ No downstream target found matching: ${targetRegion}`);
-  process.exit(1);
 }
 
 const summary = [];
@@ -139,6 +240,7 @@ for (const target of targets) {
   let addedCount = 0;
   let prunedCount = 0;
 
+  // A. Synchronize Core Directories
   for (const syncDir of config.coreSyncDirs) {
     const srcDir = path.join(THEME_ROOT, syncDir);
     const destDir = path.join(targetPath, syncDir);
@@ -199,6 +301,29 @@ for (const target of targets) {
           fs.unlinkSync(destFile);
         }
         console.log(`  - [PRUNE] ${fullRelPath}`);
+      }
+    }
+  }
+
+  // B. Synchronize Regional Package from SSOT regions/<id>/
+  const localRegionDir = path.join(THEME_ROOT, 'regions', target.id);
+  if (fs.existsSync(localRegionDir)) {
+    const regionalDirs = ['templates', 'locales'];
+    for (const rDir of regionalDirs) {
+      const srcDir = path.join(localRegionDir, rDir);
+      const destDir = path.join(targetPath, rDir);
+      const stats = syncDirectory(srcDir, destDir, isDryRun);
+      addedCount += stats.added;
+      updatedCount += stats.updated;
+    }
+
+    for (const confFile of ['settings_data.json', 'markets.json']) {
+      const srcSettings = path.join(localRegionDir, 'config', confFile);
+      const destSettings = path.join(targetPath, 'config', confFile);
+      if (fs.existsSync(srcSettings)) {
+        const res = syncFile(srcSettings, destSettings, isDryRun);
+        if (res.isNew) addedCount++;
+        else if (res.changed) updatedCount++;
       }
     }
   }

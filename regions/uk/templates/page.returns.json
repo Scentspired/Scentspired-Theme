@@ -1,0 +1,96 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "privacy_policy_D4aKbB": {
+      "type": "privacy-policy",
+      "blocks": {
+        "privacy_policy_block_DwKwQd": {
+          "type": "privacy_policy_block",
+          "settings": {
+            "section_title": "",
+            "section_content": "<p>At Scentspired, we take pride in crafting high-quality, inspired fragrances that delight the senses. However, if for any reason you're not fully satisfied with your purchase, we’re here to make the return or exchange process simple and transparent.<br/><br/><strong>Eligibility for Returns:</strong><br/>We accept returns for full-size perfume bottles under the following conditions:<br/><br/>The product is unused, unopened, and in its original packaging<br/><br/>Return is initiated within 30 days of delivery<br/><br/>Proof of purchase is provided (order confirmation or receipt)<br/><br/>Perfume Minis, samples, discovery sets, and gift cards are final sale and non-refundable due to hygiene and testing purposes.</p><p>For hygiene and quality reasons, we kindly ask that the complimentary 5 ml sample remains unopened. Returns can be processed only if both the full-size bottle and the sample are unused<br/><br/> <strong>Exchanges</strong><br/>We offer exchanges for full-size items that arrive:<br/><br/>Damaged or defective<br/><br/>Incorrect due to a packing error<br/><br/>If you'd like to exchange a product for another fragrance, please note:<br/><br/>The product must be unopened and unused<br/><br/>Exchanges must be requested within 30 days of delivery<br/><br/>You will be responsible for return shipping (unless the product was faulty or incorrect)<br/><br/><strong>Refunds</strong><br/>Once your return is received and inspected, we will notify you by email. If approved, your refund will be processed within 5–7 business days to your original payment method.<br/><br/>Please note:<br/><br/>Shipping costs are non-refundable<br/><br/>If your return is late or not in original condition, a partial refund or store credit may be issued at our discretion based on the condition of the returned item.<br/><br/> <strong>Return Shipping</strong><br/>To initiate a return or exchange, please contact us at:<br/>returns@scentspired.co.uk<br/><br/>We will provide return instructions and the return shipping address. You will be responsible for return shipping unless the item was defective, damaged, or incorrect.<br/><br/><strong> Important Notes</strong><br/>We recommend using a trackable shipping service for all returns<br/><br/>Scentspired is not responsible for lost or delayed return shipments<br/><br/>We reserve the right to refuse returns that do not meet our policy terms</p><p>Scentspired fragrances are inspired interpretations. Returns will not be accepted based on expectations of identity with any other fragrance or brand.<br/><br/><br/><strong>Need Help?</strong><br/>Our team is here to help with any concerns or product questions.<br/>Email us at returns@scentspired.co.uk for quick support.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "privacy_policy_block_DwKwQd"
+      ],
+      "custom_css": [
+        "@media screen and (min-width: 1441px) {.faq-sidebar a:hover {color: #000; background-color: #efff31; width: 433px; } .faq-sidebar a.active {color: #000; background-color: #efff31; width: 433px !important; }}",
+        "@media screen and (min-width: 1024px) and (max-width: 1440px) {.faq-sidebar a:hover {color: #000; background-color: #efff31; width: 299px; } .faq-sidebar a.active {color: #000; background-color: #efff31; width: 299px; }}",
+        "@media screen and (max-width: 1024px) {.faq-container {margin-top: -100px; }}",
+        ".faq-category {margin-left: 20px;}"
+      ],
+      "name": "Privacy Policy Section",
+      "settings": {
+        "page_title": "RETURNS",
+        "link_1_text": "Contact Us",
+        "link_1_url": "shopify://pages/contact",
+        "link_2_text": "FAQs",
+        "link_2_url": "shopify://pages/faqs",
+        "link_3_text": "PRIVACY POLICY",
+        "link_3_url": "shopify://pages/privacy-policy",
+        "link_4_text": "RETURNS",
+        "link_4_url": "shopify://pages/returns",
+        "link_5_text": "TERMS AND CONDITIONS",
+        "link_5_url": "shopify://pages/terms-and-condition",
+        "link_6_text": "Disclaimer",
+        "link_6_url": "shopify://pages/disclaimer",
+        "link_7_text": "",
+        "link_7_url": "",
+        "link_8_text": "",
+        "link_8_url": ""
+      }
+    },
+    "newsletter_banner_HHafr7": {
+      "type": "newsletter-banner",
+      "custom_css": [
+        "@media only screen and (min-width: 1024px) and (max-width: 1439px) {.newsletter-banner .newsletter-content {margin-right: 0px !important; }}",
+        "@media (max-width: 1023px) {.newsletter-banner button {width: 240px; height: 48px; margin-left: -323px; margin-top: 90px; } .newsletter-banner small {display: block; margin-top: 150px; font-size: 12px; color: #000; text-align: center; font-family: \"PPMori Regular\", sans-serif; line-height: 120%; } .newsletter-banner {height: 790px; } .newsletter-banner .newsletter-content {margin-bottom: 175px !important; }}"
+      ],
+      "name": "Newsletter Banner",
+      "settings": {
+        "background_image": "shopify://shop_images/ScentSpired_-_Scent_Notes_06_-_Banner.png",
+        "heading": "Join the",
+        "subheading": "inner circle",
+        "description": "New launches, exclusive edits, and first access, straight to your inbox."
+      }
+    },
+    "newsletter_banner_93aMFM": {
+      "type": "newsletter-banner",
+      "disabled": true,
+      "custom_css": [
+        "@media only screen and (min-width: 1024px) and (max-width: 1439px) {.newsletter-banner .newsletter-content {margin-right: 0px !important; }}",
+        "@media (max-width: 768px) {.newsletter-banner button {width: 240px; height: 48px; margin-left: -323px; margin-top: 90px; } .newsletter-banner small {display: block; margin-top: 150px; font-size: 12px; color: #000; text-align: center; font-family: \"PPMori Regular\", sans-serif; line-height: 120%; } .newsletter-banner {height: 790px; } .newsletter-banner .newsletter-content {margin-bottom: 175px !important; }}"
+      ],
+      "name": "Newsletter Banner",
+      "settings": {
+        "heading": "Hear More",
+        "subheading": "From Us",
+        "description": "Get the latest news about skincare tips and new products."
+      }
+    }
+  },
+  "order": [
+    "main",
+    "privacy_policy_D4aKbB",
+    "newsletter_banner_HHafr7",
+    "newsletter_banner_93aMFM"
+  ]
+}
