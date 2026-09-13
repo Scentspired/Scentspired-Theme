@@ -1,0 +1,58 @@
+# ==============================================================================
+# Scentspired Theme Check Configuration (.theme-check.yml)
+# Official Shopify Theme Check rules for Scentspired Global Stores
+# ==============================================================================
+
+extends: theme-check:recommended
+
+# Ignore vendor bundles, regional packages, tests, and third-party app blocks
+ignore:
+  - 'node_modules/**'
+  - 'regions/**'
+  - 'tests/**'
+  - 'assets/*.min.js'
+  - 'assets/*.min.css'
+
+# Critical Quality Gates (Strict Errors)
+ValidSchemaTranslations:
+  enabled: true
+  severity: error
+
+LiquidHTMLSyntaxError:
+  enabled: true
+  severity: error
+
+ParserBlockingScript:
+  enabled: true
+  severity: error
+
+MissingAsset:
+  enabled: true
+  severity: error
+
+UnknownFilter:
+  enabled: true
+  severity: error
+
+ImgWidthAndHeight:
+  enabled: true
+  severity: warning
+
+# Configurable Rules for Custom Stores
+MatchingTranslations:
+  enabled: false # English is primary; international stores translate dynamically
+
+RemoteAsset:
+  enabled: true
+  severity: suggestion # Google Fonts & Sentry Observability allowed
+
+UndefinedObject:
+  enabled: false # Third-party builder & app bridge globals (EComposer, Loox, Ryviu)
+
+UnusedAssign:
+  enabled: true
+  severity: warning
+
+VariableName:
+  enabled: true
+  severity: warning

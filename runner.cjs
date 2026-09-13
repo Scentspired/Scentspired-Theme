@@ -175,6 +175,16 @@ const CORE_LAYERS = [
     args: [path.join(TESTS_DIR, "static", "asset-size-budget-guard.cjs")],
     failMsg: "Asset file size exceeded performance budget",
   },
+  {
+    name: "Layer 12: Shopify Theme Check Strict Error Gate",
+    cmd: fs.existsSync(path.join(GUARDIAN_ROOT, "node_modules", ".bin", "shopify"))
+      ? path.join(GUARDIAN_ROOT, "node_modules", ".bin", "shopify")
+      : "npx",
+    args: fs.existsSync(path.join(GUARDIAN_ROOT, "node_modules", ".bin", "shopify"))
+      ? ["theme", "check", `--path=${resolvedTarget}`, "--fail-level=error"]
+      : ["--yes", "shopify", "theme", "check", `--path=${resolvedTarget}`, "--fail-level=error"],
+    failMsg: "Shopify Theme Check detected critical syntax or schema errors",
+  },
 ];
 
 let totalPassed = 0;

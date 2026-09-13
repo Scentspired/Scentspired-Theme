@@ -47,22 +47,22 @@
 /></noscript>
 <script
   type="text/javascript"
-  asyc="async"
+  async="async"
   id="ecom-vendors-slider_js"
   src="https://cdn.ecomposer.app/vendors/js/ecom-swiper@11.0.5.js"></script>
 <script
   type="text/javascript"
-  asyc="async"
+  async="async"
   id="ecom-vendors-modal_js"
   src="https://cdn.ecomposer.app/vendors/js/ecom_modal.js"></script>
 <script
   type="text/javascript"
-  asyc="async"
+  async="async"
   id="ecom-vendors-zoom_js"
   src="https://cdn.ecomposer.app/vendors/js/ecom_zoom.js"></script>
 <script
   type="text/javascript"
-  asyc="async"
+  async="async"
   id="ecom-vendors-shopify_option_selection_js"
   src="https://cdn.ecomposer.app/vendors/js/ecomposer_option_selection.js"></script>
 {% capture section_id %}ecom-default-template{% endcapture -%}
@@ -179,8 +179,8 @@
                                             -%}
 
                                             {% assign img_padding = 1 | times: 1 %}
-                                            {% assign img_padding__tablet = 1 | times: 1 %}
-                                            {% assign img_padding__mobile = 1 | times: 1 %}
+                                            {% assign img_padding_tablet = 1 | times: 1 %}
+                                            {% assign img_padding_mobile = 1 | times: 1 %}
                                             <div class="ecom-swiper-wrapper ecom-product-single__media--images ecom-swiper-wrapper ecom-product-single__media--images-layout__slider">
                                               {% for image in product.images %}
                                                 {% assign fetchpriority = "low" %}
@@ -196,10 +196,9 @@
                                                   class="ecom-product-single__media--image ecom-swiper-slide ecom-flex ecom-image-align- ecom-image-align---tablet ecom-image-align---mobile ecom-product-single__media--image"
                                                   data-index="{{forloop.index0}}"
                                                   data-variant_id="{{ image.variants | map:'id' | join: ',' }}"
-                                                  style="--img_padding: {{ img_ration | divided_by: img_padding }}%;--img_padding__tablet: {{ img_ration | divided_by: img_padding__tablet }}%;--img_padding__mobile: {{ img_ration | divided_by: img_padding__mobile }}%;"
+                                                  style="--img_padding: {{ img_ration | divided_by: img_padding }}%;--img_padding__tablet: {{ img_ration | divided_by: img_padding_tablet }}%;--img_padding__mobile: {{ img_ration | divided_by: img_padding_mobile }}%;"
                                                   data-half-width="{% assign img_ration_half = 1 | divided_by: image.aspect_ratio | times: 50 %}{{img_ration_half}}"
                                                   data-full-width="{% assign img_ration_full = 1 | divided_by: image.aspect_ratio | times: 100 %}{{img_ration_full}}">
-                                                  {%- assign img_master = image | img_url: "master" -%}
                                                   {{
                                                     image
                                                     | image_url: width: 1946
@@ -333,7 +332,7 @@
                                                     data-variant_id="{{ image.variants | map:'id' | join:',' }}">
                                                     <img
                                                       class="ecom-product-thumbnail"
-                                                      src="{{ image | img_url: '350x350' , crop: 'center' }}"
+                                                      src="{{ image | image_url: width: 350, height: 350, crop: 'center' }}"
                                                       alt="{{ image.alt }}"
                                                       ,
                                                       fetchpriority="{{ fetchpriority }}"
@@ -350,7 +349,7 @@
                                                         {% endif %}
                                                       </div>
                                                       <img
-                                                        src="{{ media.preview_image | img_url: '350x350' , crop: 'center' }}"
+                                                        src="{{ media.preview_image | image_url: width: 350, height: 350, crop: 'center' }}"
                                                         alt="{{ media.alt }}"
                                                         loading="lazy" />
                                                     </div>
@@ -510,6 +509,7 @@
                                                             data-ecom-placeholder="The rating element will display when published to Online store"></div>
                                                         </div>
                                                       </div>
+                                                    </div>
                                                   {%- else -%}
                                                     <div class="review-widget">
                                                       <ryviu-widget-total
@@ -760,8 +760,8 @@
                                             {%- assign swatch_option_temp = swatch_option_temp | split: "," -%}
                                             {% assign swatch_option = "" %}
                                             {% for item in swatch_option_temp %}
-                                              {% assign normalizedItem = item | strip %}
-                                              {% assign swatch_option = swatch_option | append: normalizedItem %}
+                                              {% assign normalized_item = item | strip %}
+                                              {% assign swatch_option = swatch_option | append: normalized_item %}
                                               {% unless forloop.last %}
                                                 {% assign swatch_option = swatch_option | append: "," %}
                                               {% endunless %}
@@ -985,6 +985,8 @@
                                                               fetchpriority="low"
                                                               src="https://cdn.shopify.com/s/files/1/0726/1221/7115/files/trus.svg?v=1678270241"
                                                               alt="trus"
+                                                              width="100"
+                                                              height="40"
                                                               style=""
                                                           ></picture>
                                                         </div>

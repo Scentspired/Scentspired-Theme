@@ -38,7 +38,7 @@
           {%- endif -%}
 
           <div class="announcement-bar__message h5">
-            {{ section.blocks.first.settings.text | rich_text }}
+            {{ section.blocks.first.settings.text }}
             {%- if section.blocks.first.settings.link != blank -%}
               {{ "icon-arrow.svg" | inline_asset_content }}
             {%- endif -%}
@@ -94,7 +94,7 @@
                         class="announcement-bar__link link link--text focus-inset animate-arrow">
                     {%- endif -%}
                     <div class="announcement-bar__message h5">
-                      {{ block.settings.text | rich_text }}
+                      {{ block.settings.text }}
                     </div>
 
                     {%- if block.settings.link != blank -%}

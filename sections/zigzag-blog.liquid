@@ -456,7 +456,7 @@
           <div class="prf-item__media">
             {% if block.settings.image != blank %}
               <img
-                src="{{ block.settings.image | img_url: '900x720', crop: 'center' }}"
+                src="{{ block.settings.image | image_url: width: 900, height: 720, crop: 'center' }}"
                 alt="{{ block.settings.title | escape }}"
                 loading="lazy" width="900" height="720"
               >
