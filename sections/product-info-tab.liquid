@@ -832,13 +832,16 @@
         Use metafield for about image with fallback to section settings
       {%- endcomment -%}
       {% if product.metafields.custom.about_image %}
-        <img src="{{ product.metafields.custom.about_image | image_url }}" alt="About Image">
+        <img src="{{ product.metafields.custom.about_image | image_url }}" alt="About Image" width="600" height="600" loading="lazy">
       {% elsif section.settings.about_image %}
-        <img src="{{ section.settings.about_image | image_url }}" alt="About Image">
+        <img src="{{ section.settings.about_image | image_url }}" alt="About Image" width="600" height="600" loading="lazy">
       {% else %}
         <img
           src="https://cdn.shopify.com/s/files/1/0680/4150/7113/files/perfume.jpg?v=1666767765"
-          alt="Default About Image">
+          alt="Default About Image"
+          width="600"
+          height="600"
+          loading="lazy">
       {% endif %}
     </div>
     <div class="content-side">
@@ -914,9 +917,9 @@
       <div class="icon-row">
         <div class="icon-item">
           {% if product.metafields.custom.icon_1_image %}
-            <img src="{{ product.metafields.custom.icon_1_image | image_url }}" alt="Icon 1">
+            <img src="{{ product.metafields.custom.icon_1_image | image_url }}" alt="Icon 1" width="48" height="48" loading="lazy">
           {% elsif section.settings.icon_1 %}
-            <img src="{{ section.settings.icon_1 | image_url }}" alt="Icon 1">
+            <img src="{{ section.settings.icon_1 | image_url }}" alt="Icon 1" width="48" height="48" loading="lazy">
           {% endif %}
           <span>
             {% if product.metafields.custom.icon_1_text %}
@@ -928,9 +931,9 @@
         </div>
         <div class="icon-item">
           {% if product.metafields.custom.icon_2_image %}
-            <img src="{{ product.metafields.custom.icon_2_image | image_url }}" alt="Icon 2">
+            <img src="{{ product.metafields.custom.icon_2_image | image_url }}" alt="Icon 2" width="48" height="48" loading="lazy">
           {% elsif section.settings.icon_2 %}
-            <img src="{{ section.settings.icon_2 | image_url }}" alt="Icon 2">
+            <img src="{{ section.settings.icon_2 | image_url }}" alt="Icon 2" width="48" height="48" loading="lazy">
           {% endif %}
           <span>
             {% if product.metafields.custom.icon_2_text %}
@@ -942,9 +945,9 @@
         </div>
         <div class="icon-item">
           {% if product.metafields.custom.icon_3_image %}
-            <img src="{{ product.metafields.custom.icon_3_image | image_url }}" alt="Icon 3">
+            <img src="{{ product.metafields.custom.icon_3_image | image_url }}" alt="Icon 3" width="48" height="48" loading="lazy">
           {% elsif section.settings.icon_3 %}
-            <img src="{{ section.settings.icon_3 | image_url }}" alt="Icon 3">
+            <img src="{{ section.settings.icon_3 | image_url }}" alt="Icon 3" width="48" height="48" loading="lazy">
           {% endif %}
           <span>
             {% if product.metafields.custom.icon_3_text %}
@@ -956,9 +959,9 @@
         </div>
         <div class="icon-item">
           {% if product.metafields.custom.icon_4_image %}
-            <img src="{{ product.metafields.custom.icon_4_image | image_url }}" alt="Icon 4">
+            <img src="{{ product.metafields.custom.icon_4_image | image_url }}" alt="Icon 4" width="48" height="48" loading="lazy">
           {% elsif section.settings.icon_4 %}
-            <img src="{{ section.settings.icon_4 | image_url }}" alt="Icon 4">
+            <img src="{{ section.settings.icon_4 | image_url }}" alt="Icon 4" width="48" height="48" loading="lazy">
           {% endif %}
           <span>
             {% if product.metafields.custom.icon_4_text %}
@@ -970,9 +973,9 @@
         </div>
         <div class="icon-item">
           {% if product.metafields.custom.icon_5_image %}
-            <img src="{{ product.metafields.custom.icon_5_image | image_url }}" alt="Icon 4">
+            <img src="{{ product.metafields.custom.icon_5_image | image_url }}" alt="Icon 5" width="48" height="48" loading="lazy">
           {% elsif section.settings.icon_5 %}
-            <img src="{{ section.settings.icon_5 | image_url }}" alt="Icon 5">
+            <img src="{{ section.settings.icon_5 | image_url }}" alt="Icon 5" width="48" height="48" loading="lazy">
           {% endif %}
           <span>
             {% if product.metafields.custom.icon_5_text %}
@@ -992,13 +995,16 @@
         Use metafield for ingredients image with fallback to section settings
       {%- endcomment -%}
       {% if product.metafields.custom.ingredients_image %}
-        <img src="{{ product.metafields.custom.ingredients_image | image_url }}" alt="Ingredients Image">
+        <img src="{{ product.metafields.custom.ingredients_image | image_url }}" alt="Ingredients Image" width="600" height="600" loading="lazy">
       {% elsif section.settings.ingredients_image %}
-        <img src="{{ section.settings.ingredients_image | image_url }}" alt="Ingredients Image">
+        <img src="{{ section.settings.ingredients_image | image_url }}" alt="Ingredients Image" width="600" height="600" loading="lazy">
       {% else %}
         <img
           src="https://cdn.shopify.com/s/files/1/0680/4150/7113/files/oil.jpg?v=1666767775"
-          alt="Default Ingredients Image">
+          alt="Default Ingredients Image"
+          width="600"
+          height="600"
+          loading="lazy">
       {% endif %}
     </div>
     <div class="content-side">
@@ -1045,13 +1051,16 @@
       Use metafield for usage image with fallback to section settings
     {%- endcomment -%}
     {% if product.metafields.custom.usage_image %}
-      <img src="{{ product.metafields.custom.usage_image | image_url }}" alt="Usage Image">
+      <img src="{{ product.metafields.custom.usage_image | image_url }}" alt="Usage Image" width="600" height="600" loading="lazy">
     {% elsif section.settings.usage_image %}
-      <img src="{{ section.settings.usage_image | image_url }}" alt="Usage Image">
+      <img src="{{ section.settings.usage_image | image_url }}" alt="Usage Image" width="600" height="600" loading="lazy">
     {% else %}
       <img
         src="https://cdn.shopify.com/s/files/1/0680/4150/7113/files/serum.jpg?v=1666767779"
-        alt="Default Usage Image">
+        alt="Default Usage Image"
+        width="600"
+        height="600"
+        loading="lazy">
     {% endif %}
   </div>
 
@@ -1109,7 +1118,7 @@
           {%- comment -%} Show only metafield icons {%- endcomment -%}
           {% if product.metafields.custom.nicon_1_image %}
             <div class="icon-item">
-              <img src="{{ product.metafields.custom.nicon_1_image | image_url }}" alt="Icon 1">
+              <img src="{{ product.metafields.custom.nicon_1_image | image_url }}" alt="Icon 1" width="48" height="48" loading="lazy">
               {% if product.metafields.custom.nicon_1_text %}
                 <span>{{ product.metafields.custom.nicon_1_text }}</span>
               {% endif %}
@@ -1118,7 +1127,7 @@
 
           {% if product.metafields.custom.nicon_2_image %}
             <div class="icon-item">
-              <img src="{{ product.metafields.custom.nicon_2_image | image_url }}" alt="Icon 2">
+              <img src="{{ product.metafields.custom.nicon_2_image | image_url }}" alt="Icon 2" width="48" height="48" loading="lazy">
               {% if product.metafields.custom.nicon_2_text %}
                 <span>{{ product.metafields.custom.nicon_2_text }}</span>
               {% endif %}
@@ -1127,7 +1136,7 @@
 
           {% if product.metafields.custom.nicon_3_image %}
             <div class="icon-item">
-              <img src="{{ product.metafields.custom.nicon_3_image | image_url }}" alt="Icon 3">
+              <img src="{{ product.metafields.custom.nicon_3_image | image_url }}" alt="Icon 3" width="48" height="48" loading="lazy">
               {% if product.metafields.custom.nicon_3_text %}
                 <span>{{ product.metafields.custom.nicon_3_text }}</span>
               {% endif %}
@@ -1136,7 +1145,7 @@
 
           {% if product.metafields.custom.nicon_4_image %}
             <div class="icon-item">
-              <img src="{{ product.metafields.custom.nicon_4_image | image_url }}" alt="Icon 4">
+              <img src="{{ product.metafields.custom.nicon_4_image | image_url }}" alt="Icon 4" width="48" height="48" loading="lazy">
               {% if product.metafields.custom.nicon_4_text %}
                 <span>{{ product.metafields.custom.nicon_4_text }}</span>
               {% endif %}
@@ -1144,7 +1153,7 @@
           {% endif %}
           {% if product.metafields.custom.nicon_5_image %}
             <div class="icon-item">
-              <img src="{{ product.metafields.custom.nicon_5_image | image_url }}" alt="Icon 4">
+              <img src="{{ product.metafields.custom.nicon_5_image | image_url }}" alt="Icon 5" width="48" height="48" loading="lazy">
               {% if product.metafields.custom.nicon_5_text %}
                 <span>{{ product.metafields.custom.nicon_5_text }}</span>
               {% endif %}
@@ -1152,7 +1161,7 @@
           {% endif %}
           {% if product.metafields.custom.nicon_6_image %}
             <div class="icon-item">
-              <img src="{{ product.metafields.custom.nicon_6_image | image_url }}" alt="Icon 4">
+              <img src="{{ product.metafields.custom.nicon_6_image | image_url }}" alt="Icon 6" width="48" height="48" loading="lazy">
               {% if product.metafields.custom.nicon_6_text %}
                 <span>{{ product.metafields.custom.nicon_6_text }}</span>
               {% endif %}
@@ -1163,7 +1172,7 @@
           {%- comment -%} Fallback: Show theme icons from section settings {%- endcomment -%}
           {% if section.settings.icon_1 %}
             <div class="icon-item">
-              <img src="{{ section.settings.icon_1 | image_url }}" alt="Icon 1">
+              <img src="{{ section.settings.icon_1 | image_url }}" alt="Icon 1" width="48" height="48" loading="lazy">
               {% if section.settings.icon_1_text %}
                 <span>{{ section.settings.icon_1_text }}</span>
               {% endif %}
@@ -1172,7 +1181,7 @@
 
           {% if section.settings.icon_2 %}
             <div class="icon-item">
-              <img src="{{ section.settings.icon_2 | image_url }}" alt="Icon 2">
+              <img src="{{ section.settings.icon_2 | image_url }}" alt="Icon 2" width="48" height="48" loading="lazy">
               {% if section.settings.icon_2_text %}
                 <span>{{ section.settings.icon_2_text }}</span>
               {% endif %}
@@ -1181,7 +1190,7 @@
 
           {% if section.settings.icon_3 %}
             <div class="icon-item">
-              <img src="{{ section.settings.icon_3 | image_url }}" alt="Icon 3">
+              <img src="{{ section.settings.icon_3 | image_url }}" alt="Icon 3" width="48" height="48" loading="lazy">
               {% if section.settings.icon_3_text %}
                 <span>{{ section.settings.icon_3_text }}</span>
               {% endif %}
@@ -1190,7 +1199,7 @@
 
           {% if section.settings.icon_4 %}
             <div class="icon-item">
-              <img src="{{ section.settings.icon_4 | image_url }}" alt="Icon 4">
+              <img src="{{ section.settings.icon_4 | image_url }}" alt="Icon 4" width="48" height="48" loading="lazy">
               {% if section.settings.icon_4_text %}
                 <span>{{ section.settings.icon_4_text }}</span>
               {% endif %}
@@ -1208,13 +1217,16 @@
       Use product metafield for FAQ image with fallback to section setting or default
     {% endcomment %}
     {% if product.metafields.custom.faq_image %}
-      <img src="{{ product.metafields.custom.faq_image | image_url }}" alt="FAQ Image">
+      <img src="{{ product.metafields.custom.faq_image | image_url }}" alt="FAQ Image" width="600" height="600" loading="lazy">
     {% elsif section.settings.faq_image %}
-      <img src="{{ section.settings.faq_image | image_url }}" alt="FAQ Image">
+      <img src="{{ section.settings.faq_image | image_url }}" alt="FAQ Image" width="600" height="600" loading="lazy">
     {% else %}
       <img
         src="https://cdn.shopify.com/s/files/1/0680/4150/7113/files/perfume.jpg?v=1666767765"
-        alt="Default FAQ Image">
+        alt="Default FAQ Image"
+        width="600"
+        height="600"
+        loading="lazy">
     {% endif %}
   </div>
   <div class="content-side">
