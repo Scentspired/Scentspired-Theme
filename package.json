@@ -31,7 +31,11 @@
     "theme:package": "shopify theme package --path=.",
     "theme:list": "shopify theme list",
     "theme:open": "shopify theme open",
-    "theme:info": "shopify theme info"
+    "theme:info": "shopify theme info",
+    "sync:regions": "node engine/sync-regions.cjs",
+    "sync:regions:dry": "node engine/sync-regions.cjs --dry-run",
+    "sync:usa": "node engine/sync-regions.cjs --target=usa",
+    "sync:uk": "node engine/sync-regions.cjs --target=uk"
   },
   "devDependencies": {
     "@shopify/cli": "^3.94.0",

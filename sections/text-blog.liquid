@@ -1,0 +1,86 @@
+{% comment %}
+  Shopify Section: Hardcoded Text Section with Specific Font Styling
+
+  This section displays a fixed text block with custom font styles
+  for both mobile and desktop views, as specified by the user.
+  The text content is hardcoded within this file and cannot be changed
+  via the Shopify Theme Customizer.
+
+  To use the 'PP Editorial New' font:
+  1. Upload your font files (e.g., .woff2, .ttf) to your Shopify theme's Assets folder.
+     (Shopify Admin -> Online Store -> Themes -> Actions -> Edit code -> Assets)
+  2. Add an @font-face rule in your theme's main CSS file (e.g., theme.scss.liquid or base.css).
+     Example @font-face rule (adjust filename and format as per your uploaded font):
+     @font-face {
+       font-family: 'PP Editorial New';
+       src: url({{ 'PPEditorialNew-Ultralight.woff2' | asset_url }}) format('woff2');
+       font-weight: 200; /* Corresponds to 'Ultralight' */
+       font-style: normal;
+       font-display: swap; /* Ensures text is visible while font loads */
+     }
+{% endcomment %}
+
+<style>
+  /*
+    CSS for the text section.
+    This is embedded directly in the Liquid file for simplicity,
+    but in a larger theme, you might put this in a separate CSS file
+    and link it.
+  */
+  .shopify-hardcoded-text-section-wrapper {
+    display: flex;
+    justify-content: center; /* Centers the content horizontally */
+    align-items: center;     /* Centers the content vertically */
+    min-height: 400px;       /* Minimum height for the section, adjust as needed */
+    background-color: #ffffff; /* White background as per the image */
+    padding: 16px 16px 95px 16px;          /* Default padding for mobile */
+  }
+
+  .shopify-hardcoded-text-section-content {
+    font-family: 'PPMori Regular'; /* Your custom font, with a generic serif fallback */
+    font-weight: 200 !important; /* 'Ultralight' weight */
+    font-style: normal; /* Ensures it's not italic, as 'Ultralight' is a weight */
+    font-size: 20px; /* Font size for mobile devices */
+    line-height: 1.6; /* 100% line-height */
+    letter-spacing: 0.02em; /* 2% letter-spacing */
+    color: #000000; /* Black text color */
+        max-width: 80%;
+    text-align: left; /* Aligns text to the left, as seen in your image */
+    margin: 0 auto; /* Centers the text block itself within its wrapper */
+  }
+
+  /* Media query for desktop styles (applies for screens 768px wide and above) */
+  @media (min-width: 768px) {
+    
+    .shopify-hardcoded-text-section-content {
+      font-size: 78px; /* Larger font size for desktop view */
+    }
+  }
+  @media screen and (max-width: 1024px) {
+   .shopify-hardcoded-text-section-content {
+        max-width: 100%;
+  }
+}
+  strong {
+  font-weight: 700;
+  color: #000;
+}
+</style>
+
+<div class="shopify-hardcoded-text-section-wrapper">
+  <div class="shopify-hardcoded-text-section-content">
+    Here is something that happens more than it should. Someone picks up an amazing bottle of perfume, or gets one as a gift, and it ends up sitting on the bathroom shelf, used sparingly, saved for special occasions, rationed like it is the last of something. Meanwhile, every regular morning they reach for whatever is cheapest or most familiar. Because the good stuff feels too precious to use up.
+    <br><br> That is not what fragrance is for. It is made to be worn. To be part of how you move through the world, how you feel walking into a room, how someone remembers you. And that should not depend on whether you can afford to spend <strong>between $150 to $400</strong> on a single bottle.
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Blog Text Section",
+  "presets": [
+    {
+      "name": "Blog Text Section"
+    }
+  ]
+}
+{% endschema %}

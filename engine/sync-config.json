@@ -1,0 +1,37 @@
+{
+  "upstreamName": "Scentspired-Theme",
+  "coreSyncDirs": [
+    "assets",
+    "blocks",
+    "layout",
+    "sections",
+    "snippets"
+  ],
+  "protectedRegionalPatterns": [
+    "templates/**",
+    "config/settings_data.json",
+    "locales/**",
+    ".git/**",
+    ".github/**",
+    "tests/reporting/**",
+    ".upstream-sync-metadata.json"
+  ],
+  "downstreamTargets": [
+    {
+      "name": "Scentspired-USA",
+      "id": "usa",
+      "path": "../Scentspired-USA",
+      "branch": "develop",
+      "mainBranch": "main",
+      "remote": "origin"
+    },
+    {
+      "name": "Scentspired-UK",
+      "id": "uk",
+      "path": "../Scentspired-UK",
+      "branch": "develop",
+      "mainBranch": "main",
+      "remote": "origin"
+    }
+  ]
+}

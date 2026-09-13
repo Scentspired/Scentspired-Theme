@@ -1,0 +1,279 @@
+#!/usr/bin/env node
+/**
+ * Scentspired SSOT Theme Synchronization Engine
+ * Projects core theme assets, snippets, sections, blocks, and layouts from
+ * Scentspired-Theme (Single Source of Truth) down to regional stores (USA, UK).
+ * Strictly preserves regional templates (*.json), settings_data.json, and locales.
+ */
+
+const fs = require('fs');
+const path = require('path');
+const { execSync } = require('child_process');
+
+const SCRIPT_DIR = __dirname;
+const THEME_ROOT = path.resolve(SCRIPT_DIR, '..');
+const CONFIG_PATH = path.join(SCRIPT_DIR, 'sync-config.json');
+
+// Parse CLI arguments
+const args = process.argv.slice(2);
+const isDryRun = args.includes('--dry-run');
+const skipPush = args.includes('--skip-push');
+const skipTests = args.includes('--skip-tests');
+const targetArg = args.find(a => a.startsWith('--target='));
+const targetRegion = targetArg ? targetArg.split('=')[1].toLowerCase() : null;
+
+// Read config
+if (!fs.existsSync(CONFIG_PATH)) {
+  console.error(`❌ Configuration file not found: ${CONFIG_PATH}`);
+  process.exit(1);
+}
+const config = JSON.parse(fs.readFileSync(CONFIG_PATH, 'utf8'));
+
+// Helper: Run shell command
+function run(cmd, cwd = THEME_ROOT, silent = false) {
+  try {
+    return execSync(cmd, { cwd, stdio: silent ? 'pipe' : 'inherit', encoding: 'utf8' });
+  } catch (err) {
+    if (!silent) {
+      console.error(`❌ Command failed: ${cmd} in ${cwd}`);
+    }
+    throw err;
+  }
+}
+
+function runSilent(cmd, cwd = THEME_ROOT) {
+  try {
+    return execSync(cmd, { cwd, stdio: 'pipe', encoding: 'utf8' }).trim();
+  } catch {
+    return '';
+  }
+}
+
+// Helper: Recursively get all files
+function getAllFiles(dir, baseDir = dir) {
+  if (!fs.existsSync(dir)) return [];
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
+  let files = [];
+  for (const entry of entries) {
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      files = files.concat(getAllFiles(fullPath, baseDir));
+    } else {
+      files.push(path.relative(baseDir, fullPath));
+    }
+  }
+  return files;
+}
+
+// Helper: Check if relative path is protected
+function isProtected(relPath, protectedPatterns) {
+  for (const pattern of protectedPatterns) {
+    if (pattern.endsWith('/**')) {
+      const prefix = pattern.slice(0, -3);
+      if (relPath.startsWith(prefix)) return true;
+    } else if (pattern.startsWith('*.')) {
+      const ext = pattern.slice(1);
+      if (relPath.endsWith(ext)) return true;
+    } else if (relPath === pattern) {
+      return true;
+    }
+  }
+  return false;
+}
+
+// Main execution
+console.log('\n==================================================================');
+console.log('   🚀 SCENTSPIRED SSOT THEME SYNCHRONIZATION ENGINE');
+console.log('==================================================================');
+console.log(`  Mode:        ${isDryRun ? '🔍 DRY RUN (Simulating, no disk writes)' : '⚡ LIVE SYNCHRONIZATION'}`);
+console.log(`  Source SSOT: ${THEME_ROOT}`);
+console.log(`  Skip Push:   ${skipPush}`);
+console.log(`  Target:      ${targetRegion ? targetRegion.toUpperCase() : 'ALL REGIONS'}`);
+console.log('------------------------------------------------------------------\n');
+
+// 1. Get Upstream Commit Hash
+const upstreamCommit = runSilent('git rev-parse --short HEAD', THEME_ROOT) || 'unknown';
+const upstreamBranch = runSilent('git rev-parse --abbrev-ref HEAD', THEME_ROOT) || 'develop';
+console.log(`📌 Upstream State: Branch '${upstreamBranch}' @ ${upstreamCommit}\n`);
+
+// 2. Run Quality Gates on Core Theme (if not skipped)
+if (!skipTests && !isDryRun) {
+  console.log('>>> [1/4] Running Quality Gates on Scentspired-Theme (SSOT)...');
+  try {
+    run('node runner.cjs --target=.', THEME_ROOT);
+    console.log('✅ Core Theme Quality Gates passed.\n');
+  } catch (e) {
+    console.error('❌ Core Theme Quality Gates failed. Synchronization aborted.');
+    process.exit(1);
+  }
+} else {
+  console.log('⏭️  Skipping Theme Guardian pre-checks (--skip-tests or --dry-run).\n');
+}
+
+// Filter targets
+const targets = config.downstreamTargets.filter(t => {
+  if (!targetRegion) return true;
+  return t.id === targetRegion || t.name.toLowerCase().includes(targetRegion);
+});
+
+if (targets.length === 0) {
+  console.error(`❌ No downstream target found matching: ${targetRegion}`);
+  process.exit(1);
+}
+
+const summary = [];
+
+// 3. Process each downstream target
+for (const target of targets) {
+  const targetPath = path.resolve(THEME_ROOT, target.path);
+  console.log(`==================================================================`);
+  console.log(`  📦 Synchronizing target: ${target.name} (${targetPath})`);
+  console.log(`==================================================================`);
+
+  if (!fs.existsSync(targetPath)) {
+    console.error(`⚠️  Target directory not found: ${targetPath}. Skipping.`);
+    continue;
+  }
+
+  let updatedCount = 0;
+  let addedCount = 0;
+  let prunedCount = 0;
+
+  for (const syncDir of config.coreSyncDirs) {
+    const srcDir = path.join(THEME_ROOT, syncDir);
+    const destDir = path.join(targetPath, syncDir);
+
+    if (!fs.existsSync(srcDir)) continue;
+    if (!fs.existsSync(destDir)) {
+      if (!isDryRun) fs.mkdirSync(destDir, { recursive: true });
+    }
+
+    const srcFiles = getAllFiles(srcDir);
+    const destFiles = getAllFiles(destDir);
+
+    // Copy / update files from source to dest
+    for (const relFile of srcFiles) {
+      const fullRelPath = path.join(syncDir, relFile);
+      if (isProtected(fullRelPath, config.protectedRegionalPatterns)) {
+        continue;
+      }
+
+      const srcFile = path.join(srcDir, relFile);
+      const destFile = path.join(destDir, relFile);
+
+      let needsCopy = false;
+      if (!fs.existsSync(destFile)) {
+        needsCopy = true;
+        addedCount++;
+      } else {
+        const srcBuf = fs.readFileSync(srcFile);
+        const destBuf = fs.readFileSync(destFile);
+        if (!srcBuf.equals(destBuf)) {
+          needsCopy = true;
+          updatedCount++;
+        }
+      }
+
+      if (needsCopy) {
+        if (!isDryRun) {
+          fs.mkdirSync(path.dirname(destFile), { recursive: true });
+          fs.copyFileSync(srcFile, destFile);
+        }
+        console.log(`  + [${needsCopy ? 'SYNC' : 'KEEP'}] ${fullRelPath}`);
+      }
+    }
+
+    // Prune files in destination that no longer exist in source
+    for (const relFile of destFiles) {
+      const fullRelPath = path.join(syncDir, relFile);
+      if (isProtected(fullRelPath, config.protectedRegionalPatterns)) {
+        continue;
+      }
+
+      const srcFile = path.join(srcDir, relFile);
+      const destFile = path.join(destDir, relFile);
+
+      if (!fs.existsSync(srcFile)) {
+        prunedCount++;
+        if (!isDryRun) {
+          fs.unlinkSync(destFile);
+        }
+        console.log(`  - [PRUNE] ${fullRelPath}`);
+      }
+    }
+  }
+
+  // 4. Update sync metadata in target repo
+  if (!isDryRun) {
+    const metaPath = path.join(targetPath, '.upstream-sync-metadata.json');
+    const metadata = {
+      upstreamSource: config.upstreamName,
+      upstreamCommit,
+      syncedAt: new Date().toISOString(),
+      stats: {
+        added: addedCount,
+        updated: updatedCount,
+        pruned: prunedCount
+      }
+    };
+    fs.writeFileSync(metaPath, JSON.stringify(metadata, null, 2) + '\n');
+  }
+
+  console.log(`\n  Target ${target.name} Diff Summary:`);
+  console.log(`    New Files:     ${addedCount}`);
+  console.log(`    Updated Files: ${updatedCount}`);
+  console.log(`    Pruned Files:  ${prunedCount}\n`);
+
+  // 5. Downstream schema validation
+  console.log(`>>> Validating regional JSON templates in ${target.name}...`);
+  const validatorScript = path.join(THEME_ROOT, 'tests/static/json-schema-validator.cjs');
+  try {
+    run(`node "${validatorScript}"`, targetPath, true);
+    console.log(`✅ ${target.name} regional schemas 100% valid.`);
+  } catch (err) {
+    console.error(`❌ Validation failed in ${target.name}:`, err.message);
+    process.exit(1);
+  }
+
+  // 6. Git lifecycle for downstream repo
+  let commitHash = 'no-changes';
+  if (!isDryRun) {
+    const gitStatus = runSilent('git status --porcelain', targetPath);
+    if (gitStatus.length > 0) {
+      console.log(`\n>>> Staging & committing changes in ${target.name}...`);
+      run('git add .', targetPath);
+      const commitMsg = `chore(core): sync upstream theme engine from Scentspired-Theme@${upstreamCommit}`;
+      run(`git commit -m "${commitMsg}"`, targetPath);
+      commitHash = runSilent('git rev-parse --short HEAD', targetPath);
+      console.log(`✅ Committed to '${target.branch}' @ ${commitHash}`);
+
+      if (!skipPush) {
+        console.log(`>>> Fast-forwarding '${target.mainBranch}' and pushing to remote...`);
+        run(`git checkout ${target.mainBranch}`, targetPath, true);
+        run(`git merge ${target.branch} --ff-only`, targetPath, true);
+        run(`git push ${target.remote} ${target.branch}`, targetPath);
+        run(`git push ${target.remote} ${target.mainBranch}`, targetPath);
+        run(`git checkout ${target.branch}`, targetPath, true);
+        console.log(`🚀 Successfully pushed ${target.name} (develop + main) to GitHub!`);
+      }
+    } else {
+      console.log(`ℹ️  ${target.name} is already 100% up to date with upstream.`);
+      commitHash = runSilent('git rev-parse --short HEAD', targetPath);
+    }
+  }
+
+  summary.push({
+    target: target.name,
+    added: addedCount,
+    updated: updatedCount,
+    pruned: prunedCount,
+    commit: commitHash
+  });
+}
+
+// Print Executive Summary Table
+console.log('\n==================================================================');
+console.log('   🎉 SYNCHRONIZATION EXECUTION REPORT');
+console.log('==================================================================');
+console.table(summary);
+console.log('==================================================================\n');
