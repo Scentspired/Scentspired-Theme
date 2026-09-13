@@ -815,15 +815,62 @@ div[id*="shopify-section"] [class*="ai-editorial-banner"],
 }
 
 /* 4. Universal Editorial Body Content Normalization */
+/* Outer Section: Full width 100% to allow background colors (#f9f6f1) to bleed edge-to-edge naturally */
 div[id*="shopify-section"] [class*="ai-editorial-section"],
-div[id*="shopify-section"] [class*="ai-editorial-container"],
 [class*="ai-editorial-section"],
-[class*="ai-editorial-container"] {
+editorial-section {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* Inner Container: Restrict reading width cleanly without creating sideways gutters on backgrounds */
+div[id*="shopify-section"] [class*="ai-editorial-container"],
+div[id*="shopify-section"] [class*="ai-editorial-section__container"],
+[class*="ai-editorial-container"],
+[class*="ai-editorial-section__container"] {
+  max-width: 1000px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: clamp(16px, 3vw, 40px) !important;
+  padding-right: clamp(16px, 3vw, 40px) !important;
+  box-sizing: border-box !important;
+}
+
+/* Eliminate horizontal seams between consecutive beige editorial blocks */
+div[id*="shopify-section"]:has([class*="ai-editorial-section"], editorial-section) + div[id*="shopify-section"] [class*="ai-editorial-section"],
+div[id*="shopify-section"]:has([class*="ai-editorial-section"], editorial-section) + div[id*="shopify-section"] editorial-section,
+div[id*="shopify-section"] [class*="ai-editorial-section"] + [class*="ai-editorial-section"],
+div[id*="shopify-section"] [class*="ai-editorial-section"] + editorial-section,
+div[id*="shopify-section"] editorial-section + editorial-section,
+div[id*="shopify-section"] editorial-section + [class*="ai-editorial-section"],
+[class*="ai-editorial-section"] + [class*="ai-editorial-section"] {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+  border-top: none !important;
+}
+
+/* Seamless integration of stacked editorial blocks within the same section */
+div[id*="shopify-section"] [class*="ai-editorial-section"] > [class*="ai-editorial-section"],
+div[id*="shopify-section"] .shopify-section [class*="ai-editorial-section"]:not(:first-child) {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* Callout Box Normalization (Red Box) */
+div[id*="shopify-section"] [class*="ai-editorial-section__red-box"],
+[class*="ai-editorial-section__red-box"] {
   max-width: 900px !important;
   margin-left: auto !important;
   margin-right: auto !important;
-  padding: 2rem 1.5rem !important;
   box-sizing: border-box !important;
+  padding: clamp(24px, 4vw, 44px) clamp(20px, 5vw, 60px) !important;
+  border-radius: 20px !important;
 }
 
 div[id*="shopify-section"] [class*="ai-editorial-heading"],
@@ -904,4 +951,5 @@ div[id*="shopify-section"]:empty {
   height: 0 !important;
   min-height: 0 !important;
 }
+
 
