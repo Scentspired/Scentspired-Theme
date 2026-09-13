@@ -1,0 +1,36 @@
+{% comment %}
+  Renders author bio card for an article.
+  Blast Radius: Strictly this file for author credentials, avatar presentation, and E-E-A-T bio text.
+
+  Accepts:
+  - article: {Object} Article object (required)
+  - show_avatar: {Boolean} Show author avatar image (default: true)
+  - avatar: {Object} Image object for avatar (optional)
+  - bio_text: {String} Biographical summary (optional)
+
+  Usage:
+  {% render 'article-author-bio', article: article, show_avatar: true, avatar: block.settings.avatar, bio_text: block.settings.bio_text %}
+{% endcomment %}
+
+{%- assign show_av = show_avatar | default: true -%}
+{%- assign author_name = article.author | default: "Scentspired Editorial" -%}
+
+<div class="page-width page-width--narrow blog-author-bio{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}" itemscope itemtype="https://schema.org/Person">
+  {%- if show_av and avatar != blank -%}
+    <img
+      src="{{ avatar | image_url: width: 144 }}"
+      alt="{{ author_name | escape }}"
+      class="blog-author-bio__avatar"
+      width="72"
+      height="72"
+      loading="lazy"
+      itemprop="image">
+  {%- endif -%}
+
+  <div class="blog-author-bio__info">
+    <div class="blog-author-bio__name" itemprop="name">{{ author_name | escape }}</div>
+    {%- if bio_text != blank -%}
+      <div class="blog-author-bio__text" itemprop="description">{{ bio_text | escape }}</div>
+    {%- endif -%}
+  </div>
+</div>

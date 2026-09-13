@@ -1,0 +1,62 @@
+{% comment %}
+  Renders breadcrumb navigation for a blog article.
+  Blast Radius: Strictly this file for breadcrumb structure & styling hooks.
+
+  Accepts:
+  - article: {Object} Article object (required)
+  - blog: {Object} Blog object (required)
+  - show_home: {Boolean} Show link to home (default: true)
+  - show_blog: {Boolean} Show link to blog (default: true)
+  - show_category: {Boolean} Show category pill/link from first tag (default: true)
+
+  Usage:
+  {% render 'article-breadcrumb', article: article, blog: blog, show_home: true, show_blog: true, show_category: true %}
+{% endcomment %}
+
+{%- assign show_home_link = show_home | default: true -%}
+{%- assign show_blog_link = show_blog | default: true -%}
+{%- assign show_cat_link = show_category | default: true -%}
+
+<nav class="page-width page-width--narrow blog-breadcrumb" aria-label="Breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+  {%- assign position = 1 -%}
+
+  {%- if show_home_link -%}
+    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <a href="{{ routes.root_url | default: '/' }}" itemprop="item">
+        <span itemprop="name">Home</span>
+      </a>
+      <meta itemprop="position" content="{{ position }}">
+    </span>
+    <span class="blog-breadcrumb__separator" aria-hidden="true">›</span>
+    {%- assign position = position | plus: 1 -%}
+  {%- endif -%}
+
+  {%- if show_blog_link and blog -%}
+    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <a href="{{ blog.url }}" itemprop="item">
+        <span itemprop="name">{{ blog.title | escape }}</span>
+      </a>
+      <meta itemprop="position" content="{{ position }}">
+    </span>
+    <span class="blog-breadcrumb__separator" aria-hidden="true">›</span>
+    {%- assign position = position | plus: 1 -%}
+  {%- endif -%}
+
+  {%- if show_cat_link and article.tags.size > 0 -%}
+    {%- assign first_tag = article.tags | first -%}
+    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <a href="{{ blog.url }}/tagged/{{ first_tag | handle }}" itemprop="item">
+        <span itemprop="name">{{ first_tag | escape }}</span>
+      </a>
+      <meta itemprop="position" content="{{ position }}">
+    </span>
+    <span class="blog-breadcrumb__separator" aria-hidden="true">›</span>
+    {%- assign position = position | plus: 1 -%}
+  {%- endif -%}
+
+  <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+    <span class="blog-breadcrumb__current" aria-current="page" itemprop="name">{{ article.title | truncate: 50 | escape }}</span>
+    <meta itemprop="item" content="{{ canonical_url | default: request.origin | append: article.url }}">
+    <meta itemprop="position" content="{{ position }}">
+  </span>
+</nav>

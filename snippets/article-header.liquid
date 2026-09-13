@@ -1,62 +1,11 @@
 {% comment %}
-  Renders article header (category badge, H1 title, author, publish date, reading time).
-  Blast Radius: Strictly this file for headline layout, bylines, and E-E-A-T metadata.
-
-  Accepts:
-  - article: {Object} Article object (required)
-  - show_category: {Boolean} Show first tag as category badge (default: true)
-  - show_author: {Boolean} Show author byline (default: true)
-  - show_date: {Boolean} Show publish date (default: true)
-  - show_reading_time: {Boolean} Show calculated reading time (default: true)
-
-  Usage:
-  {% render 'article-header', article: article, show_author: true, show_date: true, show_reading_time: true %}
+  SVPA Backward-Compatibility Forwarding Shim
+  Target: snippets/blog--article--header.liquid
 {% endcomment %}
-
-{%- assign show_cat = show_category | default: true -%}
-{%- assign show_auth = show_author | default: true -%}
-{%- assign show_dt = show_date | default: true -%}
-{%- assign show_read = show_reading_time | default: true -%}
-
-{%- if show_cat and article.tags.size > 0 -%}
-  {%- assign first_tag = article.tags | first -%}
-  <div class="page-width page-width--narrow blog-article-header__category-wrapper">
-    <a href="{{ blog.url }}/tagged/{{ first_tag | handle }}" class="blog-article-header__category">
-      {{ first_tag | escape }}
-    </a>
-  </div>
-{%- endif -%}
-
-<header class="page-width page-width--narrow blog-article-header{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
-  <h1 class="blog-article-header__title" itemprop="headline">
-    {{ article.title | escape }}
-  </h1>
-
-  <div class="blog-article-header__byline">
-    {%- if show_auth and article.author != blank -%}
-      <span class="blog-article-header__byline-author" itemprop="author" itemscope itemtype="https://schema.org/Person">
-        <span itemprop="name">{{ article.author | escape }}</span>
-      </span>
-    {%- endif -%}
-
-    {%- if show_auth and show_dt and article.author != blank and article.published_at -%}
-      <span class="blog-article-header__byline-separator" aria-hidden="true">·</span>
-    {%- endif -%}
-
-    {%- if show_dt and article.published_at -%}
-      <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}" itemprop="datePublished">
-        {{ article.published_at | time_tag: format: "date" }}
-      </time>
-    {%- endif -%}
-
-    {%- if show_read and article.content != blank -%}
-      {%- if show_auth or show_dt -%}
-        <span class="blog-article-header__byline-separator" aria-hidden="true">·</span>
-      {%- endif -%}
-      {%- assign words = article.content | strip_html | split: ' ' | size -%}
-      {%- assign reading_time = words | divided_by: 200 -%}
-      {%- if reading_time < 1 -%}{%- assign reading_time = 1 -%}{%- endif -%}
-      <span class="blog-article-header__reading-time">{{ reading_time }} min read</span>
-    {%- endif -%}
-  </div>
-</header>
+{%- render 'blog--article--header',
+  article: article,
+  show_category: show_category,
+  show_author: show_author,
+  show_date: show_date,
+  show_reading_time: show_reading_time
+-%}

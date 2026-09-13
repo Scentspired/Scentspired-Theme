@@ -1,41 +1,8 @@
 {% comment %}
-  Renders category filter pill bar for blog listing.
-  Blast Radius: Strictly this file for blog taxonomy filters, pill active states, and mobile horizontal scroll.
-
-  Accepts:
-  - blog: {Object} Blog object (required)
-  - current_tags: {Array} Current active tags from request (optional)
-
-  Usage:
-  {% render 'blog-category-filter', blog: blog, current_tags: current_tags %}
+  SVPA Backward-Compatibility Forwarding Shim
+  Target: snippets/blog--listing--category-filter.liquid
 {% endcomment %}
-
-{%- if blog.all_tags.size > 0 -%}
-  <nav class="main-blog__categories{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}" aria-label="Blog categories">
-    <!-- "All" Pill -->
-    <a
-      href="{{ blog.url }}"
-      class="main-blog__category-pill{% if current_tags == blank %} main-blog__category-pill--active{% endif %}"
-      aria-current="{% if current_tags == blank %}page{% endif %}">
-      All
-    </a>
-
-    <!-- Category Tag Pills -->
-    {%- for tag in blog.all_tags -%}
-      {%- if current_tags contains tag -%}
-        <a
-          href="{{ blog.url }}"
-          class="main-blog__category-pill main-blog__category-pill--active"
-          aria-current="page">
-          {{ tag | escape }}
-        </a>
-      {%- else -%}
-        <a
-          href="{{ blog.url }}/tagged/{{ tag | handle }}"
-          class="main-blog__category-pill">
-          {{ tag | escape }}
-        </a>
-      {%- endif -%}
-    {%- endfor -%}
-  </nav>
-{%- endif -%}
+{%- render 'blog--listing--category-filter',
+  blog: blog,
+  current_tags: current_tags
+-%}

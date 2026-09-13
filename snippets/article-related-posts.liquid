@@ -1,72 +1,10 @@
 {% comment %}
-  Renders related articles module for a blog post.
-  Blast Radius: Strictly this file for related articles algorithm and grid presentation.
-
-  Accepts:
-  - article: {Object} Current article object to exclude (required)
-  - blog: {Object} Blog object containing articles (required)
-  - heading: {String} Section heading (default: "You might also enjoy")
-  - posts_to_show: {Number} Max posts to show (default: 3)
-
-  Usage:
-  {% render 'article-related-posts', article: article, blog: blog, heading: "Related Reads", posts_to_show: 3 %}
+  SVPA Backward-Compatibility Forwarding Shim
+  Target: snippets/blog--article--related-posts.liquid
 {% endcomment %}
-
-{%- if blog.articles_count > 1 -%}
-  {%- assign max_posts = posts_to_show | default: 3 -%}
-  {%- assign heading_text = heading | default: "You might also enjoy" -%}
-  {%- assign posts_shown = 0 -%}
-
-  <div class="blog-related{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-    <h2 class="blog-related__heading">{{ heading_text | escape }}</h2>
-    <div class="blog-related__grid">
-      {%- comment -%} Pass 1: Articles sharing the primary tag {%- endcomment -%}
-      {%- if article.tags.size > 0 -%}
-        {%- assign primary_tag = article.tags | first -%}
-        {%- for related_article in blog.articles -%}
-          {%- if related_article.id != article.id and posts_shown < max_posts -%}
-            {%- if related_article.tags contains primary_tag -%}
-              {%- render "article-card",
-                article: related_article,
-                media_height: "medium",
-                media_aspect_ratio: related_article.image.aspect_ratio,
-                show_image: true,
-                show_date: true,
-                show_author: true,
-                show_excerpt: true
-              -%}
-              {%- assign posts_shown = posts_shown | plus: 1 -%}
-            {%- endif -%}
-          {%- endif -%}
-        {%- endfor -%}
-      {%- endif -%}
-
-      {%- comment -%} Pass 2: Backfill from blog if fewer than max_posts found {%- endcomment -%}
-      {%- if posts_shown < max_posts -%}
-        {%- for related_article in blog.articles -%}
-          {%- if related_article.id != article.id and posts_shown < max_posts -%}
-            {%- assign already_shown = false -%}
-            {%- if article.tags.size > 0 -%}
-              {%- assign primary_tag = article.tags | first -%}
-              {%- if related_article.tags contains primary_tag -%}
-                {%- assign already_shown = true -%}
-              {%- endif -%}
-            {%- endif -%}
-            {%- unless already_shown -%}
-              {%- render "article-card",
-                article: related_article,
-                media_height: "medium",
-                media_aspect_ratio: related_article.image.aspect_ratio,
-                show_image: true,
-                show_date: true,
-                show_author: true,
-                show_excerpt: true
-              -%}
-              {%- assign posts_shown = posts_shown | plus: 1 -%}
-            {%- endunless -%}
-          {%- endif -%}
-        {%- endfor -%}
-      {%- endif -%}
-    </div>
-  </div>
-{%- endif -%}
+{%- render 'blog--article--related-posts',
+  article: article,
+  blog: blog,
+  heading: heading,
+  posts_to_show: posts_to_show
+-%}

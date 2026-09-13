@@ -1,0 +1,131 @@
+/* ═══════════════════════════════════════════════════════════════
+   SCENTSPIRED — BLOG LISTING PAGE
+   Modern card grid layout with category filter bar,
+   featured hero post, and responsive breakpoints.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Blog Header ──────────────────────────────────────────── */
+.main-blog__header {
+  text-align: center;
+  margin-bottom: 2.5em;
+}
+
+.main-blog__title {
+  font-family: var(--blog-h1-font, Georgia, serif);
+  font-size: var(--blog-h1-size, 42px);
+  font-weight: 700;
+  color: #000;
+  margin: 0 0 0.3em;
+  letter-spacing: -0.02em;
+}
+
+.main-blog__description {
+  font-family: var(--blog-body-font, sans-serif);
+  font-size: var(--blog-body-size, 18px);
+  color: var(--blog-meta-color, rgba(0, 0, 0, 0.6));
+  max-width: var(--blog-column-max-width, 680px);
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ── Category Filter Bar ──────────────────────────────────── */
+.main-blog__categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  justify-content: center;
+  margin-bottom: 3em;
+  padding: 0 1em;
+}
+
+.main-blog__category-pill {
+  display: inline-block;
+  font-family: var(--blog-meta-font, sans-serif);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--blog-body-color, #1a1a1a);
+  background: transparent;
+  border: 1.5px solid var(--blog-border-color, rgba(0, 0, 0, 0.12));
+  padding: 8px 20px;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  white-space: nowrap;
+}
+
+.main-blog__category-pill:hover {
+  background: var(--blog-bg-muted, #f9f6f1);
+  border-color: rgba(0, 0, 0, 0.2);
+  color: #000;
+}
+
+.main-blog__category-pill--active {
+  background: var(--blog-accent-color, #121212);
+  color: #fff;
+  border-color: var(--blog-accent-color, #121212);
+}
+
+.main-blog__category-pill--active:hover {
+  background: var(--blog-accent-hover, #333);
+  border-color: var(--blog-accent-hover, #333);
+  color: #fff;
+}
+
+/* ── Article Grid ─────────────────────────────────────────── */
+.main-blog__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2em;
+}
+
+.main-blog__article {
+  display: flex;
+}
+
+/* Featured hero post spans full width */
+.main-blog__article:first-child:has(.article-card-wrapper--featured) {
+  grid-column: 1 / -1;
+}
+
+@media screen and (max-width: 989px) {
+  .main-blog__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5em;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .main-blog__grid {
+    grid-template-columns: 1fr;
+    gap: 1.5em;
+  }
+
+  .main-blog__header {
+    margin-bottom: 1.5em;
+  }
+
+  .main-blog__title {
+    font-size: 32px;
+  }
+
+  .main-blog__categories {
+    justify-content: flex-start;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 0.5em;
+    margin-bottom: 2em;
+  }
+
+  .main-blog__categories::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ── Pagination Spacing ───────────────────────────────────── */
+.main-blog .pagination-wrapper {
+  margin-top: 4em;
+}

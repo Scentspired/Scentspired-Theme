@@ -1,6 +1,6 @@
-{{ "section-blog-typography.css" | asset_url | stylesheet_tag }}
-{{ "component-article-card.css" | asset_url | stylesheet_tag }}
-{{ "section-main-blog.css" | asset_url | stylesheet_tag }}
+{{ "blog--typography.css" | asset_url | stylesheet_tag }}
+{{ "blog--card.css" | asset_url | stylesheet_tag }}
+{{ "blog--listing.css" | asset_url | stylesheet_tag }}
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -31,7 +31,7 @@
 
     {%- comment -%} Category Filter Bar ────────────────────── {%- endcomment -%}
     {%- if section.settings.show_categories -%}
-      {%- render "blog-category-filter", blog: blog, current_tags: current_tags -%}
+      {%- render "blog--listing--category-filter", blog: blog, current_tags: current_tags -%}
     {%- endif -%}
 
     {%- comment -%} Article Grid ───────────────────────────── {%- endcomment -%}
@@ -44,7 +44,7 @@
             style="--animation-order: {{ forloop.index }};"
           {% endif %}>
           {%- if forloop.first and section.settings.show_featured_hero and paginate.current_page == 1 -%}
-            {%- render "article-card",
+            {%- render "blog--listing--card",
               article: article,
               media_height: section.settings.image_height,
               media_aspect_ratio: article.image.aspect_ratio,
@@ -57,7 +57,7 @@
               lazy_load: false
             -%}
           {%- else -%}
-            {%- render "article-card",
+            {%- render "blog--listing--card",
               article: article,
               media_height: section.settings.image_height,
               media_aspect_ratio: article.image.aspect_ratio,

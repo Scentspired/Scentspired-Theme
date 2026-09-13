@@ -1,0 +1,77 @@
+{% comment %}
+  Renders isolated newsletter subscription call-to-action for blog articles.
+  Blast Radius: Strictly this file for blog email capture markup, inputs, and feedback messages.
+
+  Accepts:
+  - heading: {String} Call to action headline (default: "Stay in the know")
+  - subtext: {String} Supporting descriptive copy (optional)
+  - placeholder: {String} Input field placeholder (default: "Enter your email")
+  - button_text: {String} Submit button text (default: "Subscribe")
+  - success_message: {String} Post-submission feedback (default: "Thanks for subscribing!")
+
+  Usage:
+  {% render 'article-newsletter-cta', heading: "Join Scentspired", subtext: "Exclusive offers & insights" %}
+{% endcomment %}
+
+{%- assign cta_heading = heading | default: "Stay in the know" -%}
+{%- assign cta_subtext = subtext | default: "Join the Scentspired community for fragrance insights, new arrivals, and exclusive offers." -%}
+{%- assign cta_placeholder = placeholder | default: "Enter your email" -%}
+{%- assign cta_button = button_text | default: "Subscribe" -%}
+{%- assign cta_success = success_message | default: "Thanks for subscribing!" -%}
+
+<div class="blog-newsletter page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+  <div class="blog-newsletter__inner">
+    {%- if cta_heading != blank -%}
+      <h3 class="blog-newsletter__heading">{{ cta_heading | escape }}</h3>
+    {%- endif -%}
+    {%- if cta_subtext != blank -%}
+      <p class="blog-newsletter__subtext">{{ cta_subtext | escape }}</p>
+    {%- endif -%}
+
+    {% form 'customer', class: 'blog-newsletter__form' %}
+      <input type="hidden" name="contact[tags]" value="newsletter,blog-subscriber">
+
+      <div class="blog-newsletter__field-wrapper">
+        <input
+          id="BlogNewsletterEmail-{{ section.id | default: 'cta' }}"
+          type="email"
+          name="contact[email]"
+          class="blog-newsletter__input"
+          value="{{ form.email }}"
+          aria-required="true"
+          autocorrect="off"
+          autocapitalize="off"
+          autocomplete="email"
+          {% if form.errors %}
+            autofocus
+            aria-invalid="true"
+            aria-describedby="BlogNewsletter-error-{{ section.id | default: 'cta' }}"
+          {% elsif form.posted_successfully? %}
+            aria-describedby="BlogNewsletter-success-{{ section.id | default: 'cta' }}"
+          {% endif %}
+          placeholder="{{ cta_placeholder | escape }}"
+          required>
+        <button
+          type="submit"
+          class="blog-newsletter__button button"
+          name="commit"
+          id="BlogNewsletterSubmit-{{ section.id | default: 'cta' }}">
+          {{ cta_button | escape }}
+        </button>
+      </div>
+
+      {%- if form.errors -%}
+        <small class="blog-newsletter__message blog-newsletter__message--error" id="BlogNewsletter-error-{{ section.id | default: 'cta' }}">
+          {{ form.errors.translated_fields.email | capitalize }}
+          {{ form.errors.messages.email }}
+        </small>
+      {%- endif -%}
+
+      {%- if form.posted_successfully? -%}
+        <p class="blog-newsletter__message blog-newsletter__message--success" id="BlogNewsletter-success-{{ section.id | default: 'cta' }}" tabindex="-1" autofocus>
+          {{ cta_success | escape }}
+        </p>
+      {%- endif -%}
+    {% endform %}
+  </div>
+</div>

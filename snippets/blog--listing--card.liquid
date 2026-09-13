@@ -1,0 +1,94 @@
+{% comment %}
+  Renders an article card for blog listing pages.
+  Scentspired Blog System — Premium article card with category pill,
+  hover effects, line-clamp excerpts, and always-visible meta.
+
+  Accepts:
+  - article: {Object} Article object (required)
+  - media_height: {String} Image height mode: adapt | small | medium | large
+  - media_aspect_ratio: {Float} Aspect ratio of the article image
+  - show_image: {Boolean} Whether to show the article image (default: true)
+  - show_date: {Boolean} Whether to show publish date (default: true)
+  - show_author: {Boolean} Whether to show article author (default: true)
+  - show_excerpt: {Boolean} Whether to show article excerpt (default: true)
+  - show_category: {Boolean} Whether to show category pill (default: true)
+  - lazy_load: {Boolean} Image should be lazy loaded. Default: true
+  - featured: {Boolean} Whether this is the featured/hero card (default: false)
+
+  Usage:
+  {% render 'article-card', article: article, show_image: true, show_date: true, show_author: true %}
+{% endcomment %}
+
+{%- if article and article != empty -%}
+  <div class="article-card-wrapper{% if featured %} article-card-wrapper--featured{% endif %}">
+    <a href="{{ article.url }}" class="article-card" aria-label="{{ article.title | escape }}">
+      {%- if show_image != false and article.image -%}
+        <div class="article-card__image-wrapper">
+          <div class="article-card__image">
+            {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
+            <img
+              srcset="
+                {%- if article.image.width >= 360 -%}{{ article.image | image_url: width: 360 }} 360w,{%- endif -%}
+                {%- if article.image.width >= 533 -%}{{ article.image | image_url: width: 533 }} 533w,{%- endif -%}
+                {%- if article.image.width >= 720 -%}{{ article.image | image_url: width: 720 }} 720w,{%- endif -%}
+                {%- if article.image.width >= 1000 -%}{{ article.image | image_url: width: 1000 }} 1000w,{%- endif -%}
+                {%- if article.image.width >= 1500 -%}{{ article.image | image_url: width: 1500 }} 1500w,{%- endif -%}
+                {{ article.image | image_url }} {{ article.image.width }}w
+              "
+              src="{{ article.image | image_url: width: 720 }}"
+              sizes="{% if featured %}(min-width: 1200px) 1140px, (min-width: 750px) calc(100vw - 60px), calc(100vw - 40px){% else %}(min-width: 1200px) 360px, (min-width: 990px) calc((100vw - 100px) / 3), (min-width: 750px) calc((100vw - 80px) / 2), calc(100vw - 40px){% endif %}"
+              alt="{{ article.image.alt | default: article.title | escape }}"
+              {% unless lazy_load == false %}
+                loading="lazy"
+              {% endunless %}
+              width="{{ article.image.width }}"
+              height="{{ article.image.height }}">
+            {% comment %}theme-check-enable ImgLazyLoading{% endcomment %}
+          </div>
+        </div>
+      {%- endif -%}
+
+      <div class="article-card__content">
+        {%- if show_category != false and article.tags.size > 0 -%}
+          {%- assign first_tag = article.tags | first -%}
+          <span class="article-card__category">{{ first_tag }}</span>
+        {%- endif -%}
+
+        <h3 class="article-card__title">
+          {{ article.title | truncate: 80 | escape }}
+        </h3>
+
+        {%- if show_excerpt != false -%}
+          {%- if article.excerpt.size > 0 or article.content.size > 0 -%}
+            <p class="article-card__excerpt">
+              {%- if article.excerpt.size > 0 -%}
+                {{ article.excerpt | strip_html | truncatewords: 25 }}
+              {%- else -%}
+                {{ article.content | strip_html | truncatewords: 25 }}
+              {%- endif -%}
+            </p>
+          {%- endif -%}
+        {%- endif -%}
+
+        <div class="article-card__meta">
+          {%- if show_author != false -%}
+            <span class="article-card__author">{{ article.author }}</span>
+          {%- endif -%}
+          {%- if show_author != false and show_date != false -%}
+            <span class="article-card__meta-sep" aria-hidden="true">·</span>
+          {%- endif -%}
+          {%- if show_date != false -%}
+            <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
+              {{ article.published_at | time_tag: format: "date" }}
+            </time>
+          {%- endif -%}
+        </div>
+
+        <span class="article-card__read-more">
+          Read more
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </span>
+      </div>
+    </a>
+  </div>
+{%- endif -%}
