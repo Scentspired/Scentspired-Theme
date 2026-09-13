@@ -707,12 +707,13 @@
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   CENTRALIZED EDITORIAL ARTICLE UNIFICATION
-   Enforces identical layout geometry, luxury font hierarchy,
-   and responsive column constraints across all article templates.
+   CENTRALIZED LUXURY EDITORIAL BLOG NORMALIZATION (OPTION A)
+   Guarantees 100% layout parity, typography hierarchy,
+   spacing geometry, and responsive behavior across all blog templates.
    ═══════════════════════════════════════════════════════════════ */
 
-/* Universal Hero Banner Layout Normalization */
+/* 1. Universal Hero Banner Normalization */
+div[id*="shopify-section"] [class*="ai-luxury-banner-outer"],
 [class*="ai-luxury-banner-outer"] {
   padding: 0 !important;
   background-color: transparent !important;
@@ -720,6 +721,7 @@
   max-width: 1200px !important;
 }
 
+div[id*="shopify-section"] [class*="ai-luxury-banner-container"],
 [class*="ai-luxury-banner-container"] {
   max-width: 1200px !important;
   margin: 0 auto !important;
@@ -728,6 +730,7 @@
   position: relative !important;
 }
 
+div[id*="shopify-section"] [class*="ai-luxury-banner-content-overlay"],
 [class*="ai-luxury-banner-content-overlay"] {
   display: flex !important;
   align-items: center !important;
@@ -735,77 +738,170 @@
   padding: clamp(24px, 4vw, 48px) !important;
 }
 
+div[id*="shopify-section"] [class*="ai-luxury-banner-content"],
 [class*="ai-luxury-banner-content"] {
   max-width: 680px !important;
   text-align: left !important;
 }
 
+div[id*="shopify-section"] [class*="ai-luxury-banner-heading"],
 [class*="ai-luxury-banner-heading"] {
   font-family: 'PPEditorialNew Italic', Georgia, serif !important;
-  font-size: clamp(26px, 3.8vw, 42px) !important;
+  font-size: clamp(26px, 3.8vw, 44px) !important;
   line-height: 1.15 !important;
   letter-spacing: -0.02em !important;
-  margin-bottom: 0.5rem !important;
+  margin-bottom: 0.75rem !important;
   font-weight: 400 !important;
 }
 
+div[id*="shopify-section"] [class*="ai-luxury-banner-paragraph"],
 [class*="ai-luxury-banner-paragraph"] {
   font-family: 'PPMori Regular', -apple-system, BlinkMacSystemFont, sans-serif !important;
   font-size: clamp(15px, 2vw, 20px) !important;
-  line-height: 1.4 !important;
+  line-height: 1.45 !important;
   color: #1a1a1a !important;
+  margin-top: 0 !important;
 }
 
-/* Universal Hardcoded Statement Section Normalization (blogtextliquid) */
-.shopify-hardcoded-text-section-wrapper {
+/* 2. Universal Statement & Rich Text Normalization (blogtextliquid & blog-text) */
+div[id*="shopify-section"] .shopify-hardcoded-text-section-wrapper,
+div[id*="shopify-section"] .blog-richtext-wrapper,
+.shopify-hardcoded-text-section-wrapper,
+.blog-richtext-wrapper {
   min-height: auto !important;
   padding: clamp(2rem, 3.5vw, 3.5rem) 1.5rem !important;
   background-color: transparent !important;
   display: flex !important;
   justify-content: center !important;
+  margin-bottom: 0 !important;
 }
 
-.shopify-hardcoded-text-section-content {
+div[id*="shopify-section"] .shopify-hardcoded-text-section-content,
+div[id*="shopify-section"] .blog-richtext-content,
+.shopify-hardcoded-text-section-content,
+.blog-richtext-content {
   max-width: 900px !important;
   width: 100% !important;
   font-family: 'PPMori Regular', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
   font-weight: 300 !important;
-  font-size: clamp(1.35rem, 2.6vw, 2.25rem) !important;
-  line-height: 1.45 !important;
+  font-size: clamp(1.25rem, 2.4vw, 2rem) !important;
+  line-height: 1.55 !important;
   letter-spacing: -0.01em !important;
   color: #121212 !important;
   text-align: left !important;
   margin: 0 auto !important;
 }
 
-.shopify-hardcoded-text-section-content p {
+.shopify-hardcoded-text-section-content p,
+.blog-richtext-content p {
   margin-bottom: 1.5rem !important;
 }
 
-.shopify-hardcoded-text-section-content p:last-child {
+.shopify-hardcoded-text-section-content p:last-child,
+.blog-richtext-content p:last-child {
   margin-bottom: 0 !important;
 }
 
-/* Universal Editorial Content Normalization */
+/* 3. Universal Sub-Banner Normalization */
+div[id*="shopify-section"] [class*="lux-wrap-"],
+div[id*="shopify-section"] [class*="ai-editorial-banner"],
+[class*="lux-wrap-"],
+[class*="ai-editorial-banner"] {
+  max-width: 1200px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding: 1rem 1.5rem !important;
+  box-sizing: border-box !important;
+}
+
+/* 4. Universal Editorial Body Content Normalization */
+div[id*="shopify-section"] [class*="ai-editorial-section"],
+div[id*="shopify-section"] [class*="ai-editorial-container"],
 [class*="ai-editorial-section"],
-[class*="lux-wrap-"] {
+[class*="ai-editorial-container"] {
   max-width: 900px !important;
   margin-left: auto !important;
   margin-right: auto !important;
-  padding: 1.5rem !important;
+  padding: 2rem 1.5rem !important;
   box-sizing: border-box !important;
 }
 
-/* Table Block Normalization */
+div[id*="shopify-section"] [class*="ai-editorial-heading"],
+[class*="ai-editorial-heading"] {
+  font-family: 'PP Editorial New', Georgia, serif !important;
+  font-size: clamp(24px, 3.2vw, 38px) !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.01em !important;
+  margin-bottom: 1.25rem !important;
+  color: #121212 !important;
+}
+
+div[id*="shopify-section"] [class*="ai-editorial-text"],
+div[id*="shopify-section"] [class*="ai-editorial-columns"],
+[class*="ai-editorial-text"],
+[class*="ai-editorial-columns"] {
+  font-family: 'PPMori Regular', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: clamp(16px, 1.2vw, 19px) !important;
+  line-height: 1.65 !important;
+  color: #222222 !important;
+}
+
+/* 5. Universal Tables Normalization */
+div[id*="shopify-section"] .table-container-responsive,
+div[id*="shopify-section"] [class*="ai-comparison-table"],
+div[id*="shopify-section"] [class*="ai-gen-block-79f8247"],
+div[id*="shopify-section"] [class*="ai-gen-block-313b73e"],
+div[id*="shopify-section"] [class*="ai-gen-block-42e8eee"],
 .table-container-responsive,
-[class*="ai-gen-block-79f8247"] {
+[class*="ai-comparison-table"],
+[class*="ai-gen-block-79f8247"],
+[class*="ai-gen-block-313b73e"],
+[class*="ai-gen-block-42e8eee"] {
   max-width: 900px !important;
-  margin: 2rem auto !important;
+  margin: 2.5rem auto !important;
+  padding: 0 1.5rem !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+}
+
+div[id*="shopify-section"] table,
+.table-container-responsive table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+}
+
+/* 6. Universal Split Highlights & CTA Normalization */
+div[id*="shopify-section"] [class*="ai-split-editorial"],
+div[id*="shopify-section"] [class*="ai-staggered-typography"],
+[class*="ai-split-editorial"],
+[class*="ai-staggered-typography"] {
+  max-width: 1000px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding: 2.5rem 1.5rem !important;
   box-sizing: border-box !important;
 }
 
-/* Prune Empty Sections from rendering */
-.shopify-section:empty {
+/* 7. Universal Product Recommendations Grid Normalization */
+div[id*="shopify-section"] [class*="ai-products-container"],
+div[id*="shopify-section"] [class*="ai-product-grid"],
+[class*="ai-products-container"],
+[class*="ai-product-grid"] {
+  max-width: 1200px !important;
+  margin: 3rem auto !important;
+  padding: 0 1.5rem !important;
+  box-sizing: border-box !important;
+}
+
+/* 8. Prune Ghost / Empty Sections */
+.shopify-section:empty,
+div[id*="shopify-section"]:empty {
   display: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 0 !important;
+  min-height: 0 !important;
 }
 
