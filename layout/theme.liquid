@@ -123,7 +123,7 @@
       <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
 
-    {% render "scentspired-telemetry" %}
+    {% render 'scentspired-telemetry' %}
 
     {{ content_for_header }}
 
@@ -426,7 +426,7 @@
       })();
     </script>
 
-    {% include "pagefly-app-header" %}
+    {% render 'pagefly-app-header' %}
 
     <script>
       (async function () {
@@ -472,7 +472,7 @@
           "name": "{{ product.title | escape }}",
           "image": [
             {% for image in product.images %}
-              "{{ image | img_url: 'master' | prepend: 'https:' }}"{% unless forloop.last %},{% endunless %}
+              "{{ image | image_url | prepend: 'https:' }}"{% unless forloop.last %},{% endunless %}
             {% endfor %}
           ],
           "description": "{{ product.description | strip_html | escape }}",

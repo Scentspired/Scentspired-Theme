@@ -43,8 +43,10 @@ MatchingTranslations:
   enabled: false # English is primary; international stores translate dynamically
 
 RemoteAsset:
-  enabled: true
-  severity: suggestion # Google Fonts & Sentry Observability allowed
+  enabled: false # SEO hreflang alternate links, Google Tag Manager, and external analytics are remote by design
+
+OrphanedSnippet:
+  enabled: false # Telemetry, app embeds, and conditional snippets managed across layouts
 
 UndefinedObject:
   enabled: false # Third-party builder & app bridge globals (EComposer, Loox, Ryviu)
