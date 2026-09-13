@@ -904,16 +904,8 @@ div[id*="shopify-section"] [class*="ai-editorial-columns"],
 /* 5. Universal Tables Normalization */
 div[id*="shopify-section"] .table-container-responsive,
 div[id*="shopify-section"] [class*="ai-comparison-table"],
-div[id*="shopify-section"] [class*="ai-gen-block-79f8247"],
-div[id*="shopify-section"] [class*="ai-gen-block-313b73e"],
-div[id*="shopify-section"] [class*="ai-gen-block-42e8eee"],
-div[id*="shopify-section"] [class*="ai-gen-block-e9499a3"],
 .table-container-responsive,
-[class*="ai-comparison-table"],
-[class*="ai-gen-block-79f8247"],
-[class*="ai-gen-block-313b73e"],
-[class*="ai-gen-block-42e8eee"],
-[class*="ai-gen-block-e9499a3"] {
+[class*="ai-comparison-table"] {
   max-width: 1080px !important;
   margin: 0 auto !important;
   padding: 0 1.5rem !important;
@@ -982,29 +974,24 @@ div[id*="shopify-section"]:empty {
 
 /* ═══════════════════════════════════════════════════════════════
    10. Universal Editorial Content Section Spacing
-   Single source of truth: every editorial content section receives
-   identical vertical margin-bottom via --blog-section-gap.
+   Single source of truth: all editorial content sections inherit
+   their vertical margin directly from the --blog-section-gap CSS variable.
+   Zero manual enumeration of block classes or section IDs.
    ═══════════════════════════════════════════════════════════════ */
 
-.shopify-section:has([class*="ai-editorial-section"]),
-.shopify-section:has([class*="ai-comparison-table"]),
-.shopify-section:has([class*="ai-split-editorial"]),
-.shopify-section:has([class*="ai-staggered-typography"]),
-.shopify-section:has([class*="ai-products-container"]),
-.shopify-section:has([class*="ai-product-grid"]),
-.shopify-section:has(.table-container-responsive),
-.shopify-section:has([class*="ai-gen-block-e9499a3"]),
-.shopify-section:has([class*="ai-gen-block-79f8247"]),
-.shopify-section:has([class*="ai-gen-block-313b73e"]),
-.shopify-section:has([class*="ai-gen-block-42e8eee"]),
-.shopify-section:has([class*="ai-gen-block-29a8932"]),
-.shopify-section:has([class*="ai-gen-block-fb81b45"]),
-.shopify-section:has([class*="ai-gen-block-c88e324"]),
-.shopify-section:has([class*="ai-gen-block-e9ac98b"]),
-.shopify-section:has([class*="ai-gen-block-614820f"]),
-.shopify-section:has([class*="ai-gen-block-f4b496d"]),
-.shopify-section:has(.shopify-hardcoded-text-section-wrapper):not(:has(+ .shopify-section:has([class*="lux-wrap-"]))) {
+#MainContent > .shopify-section,
+div[id^="shopify-section-template-"] {
   margin-top: 0 !important;
   margin-bottom: var(--blog-section-gap) !important;
+}
+
+/* Full-bleed edge-to-edge banners (Hero & Arch) sit flush */
+#MainContent > .shopify-section:has([class*="ai-luxury-banner-outer"]),
+#MainContent > .shopify-section:has([class*="lux-wrap-"]),
+#MainContent > .shopify-section:has(.shopify-hardcoded-text-section-wrapper):has(+ .shopify-section:has([class*="lux-wrap-"])),
+div[id^="shopify-section-template-"]:has([class*="ai-luxury-banner-outer"]),
+div[id^="shopify-section-template-"]:has([class*="lux-wrap-"]),
+div[id^="shopify-section-template-"]:has(.shopify-hardcoded-text-section-wrapper):has(+ div[id^="shopify-section-template-"]:has([class*="lux-wrap-"])) {
+  margin-bottom: 0 !important;
 }
 
