@@ -109,18 +109,20 @@
     display: block;
     width: 100%;
     background-color: {{ block.settings.background_color }};
-    padding: 60px 0 58px;
+    padding: clamp(56px, 7vw, 84px) 0;
   }
 
   .ai-editorial-container-{{ ai_gen_id }} {
-    padding: 0px 70px;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 4vw, 40px);
   }
 
   .ai-editorial-grid-{{ ai_gen_id }} {
     display: grid;
-    grid-template-columns: {{ block.settings.left_column_width }}% {{ block.settings.right_column_width }}%;
+    grid-template-columns: minmax(0, 44fr) minmax(0, 56fr);
     gap: {{ block.settings.column_gap }}px;
-    align-items: start;
+    align-items: center;
   }
 
   .ai-editorial-left-{{ ai_gen_id }} {
@@ -130,15 +132,20 @@
   }
 
   .ai-editorial-heading-{{ ai_gen_id }} {
-    font-family: 'PPEditorialNew Ultralight Italic';
-    font-weight: {{ block.settings.heading_font.weight }};
-    font-style: {{ block.settings.heading_font.style }};
-    font-size: {{ block.settings.heading_size }}px;
+    font-family: 'PPEditorialNew Italic', 'PP Editorial New', Georgia, serif;
+    font-style: italic;
+    font-size: clamp(28px, 3.2vw, {{ block.settings.heading_size }}px);
     color: {{ block.settings.heading_color }};
     letter-spacing: -0.02em;
-    line-height: 1.1;
-    margin: 0;
+    line-height: 1.15;
+    margin: 0 0 20px 0;
     padding-left: {{ block.settings.heading_indent }}px;
+  }
+
+  .ai-editorial-heading-{{ ai_gen_id }} p {
+    margin: 0;
+    font-size: inherit;
+    line-height: inherit;
   }
 
   .ai-editorial-image-wrapper-{{ ai_gen_id }} {
@@ -151,6 +158,8 @@
     height: auto;
     display: block;
     object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
   }
 
   .ai-editorial-image-placeholder-{{ ai_gen_id }} {
@@ -161,6 +170,7 @@
     align-items: center;
     justify-content: center;
     position: relative;
+    border-radius: 12px;
   }
 
   .ai-editorial-image-placeholder-{{ ai_gen_id }} svg {
@@ -187,16 +197,24 @@
   }
 
   .ai-editorial-text-{{ ai_gen_id }} {
-    font-family: 'PPMori Regular';
-    font-weight: 500;
-    font-size: 24px;
+    font-family: 'PPMori Regular', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 350;
+    font-size: {{ block.settings.body_size }}px;
     color: {{ block.settings.body_color }};
-    line-height: 1.6;
-    max-width: 920px;
+    line-height: 1.85;
+    max-width: 580px;
+    letter-spacing: -0.005em;
   }
-  .ai-editorial-text-{{ ai_gen_id }} a{
-    color: #000;
 
+  .ai-editorial-text-{{ ai_gen_id }} a {
+    color: #8C6D46;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.2s ease;
+  }
+
+  .ai-editorial-text-{{ ai_gen_id }} a:hover {
+    color: #121212;
   }
 
   .ai-editorial-text-{{ ai_gen_id }} p {

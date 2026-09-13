@@ -63,7 +63,7 @@
             "mobile_text_alignment": "left",
             "mobile_content_padding": 25,
             "content_max_width": 1400,
-            "outer_spacing": 20,
+            "outer_spacing": 0,
             "mobile_outer_spacing": 15,
             "background_color": "#f5f3f0"
           },

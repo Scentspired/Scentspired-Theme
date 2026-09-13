@@ -9,10 +9,12 @@
     /* ─── Outer white border wrapper ─── */
     .lux-wrap-{{ ai_gen_id }} {
       display: block;
-      width: 100%;
+      width: 100vw !important;
+      max-width: 100vw !important;
       background: {{ block.settings.outer_border_color }};
-      padding: {{ block.settings.outer_border_px }}px;
+      padding: {{ block.settings.outer_border_px }}px !important;
       box-sizing: border-box;
+      margin: 0 !important;
     }
 
     /* ─── Inner banner: key trick — padding-top % creates height relative to WIDTH ─── */
@@ -84,23 +86,9 @@
       position: absolute;
       inset: 0;
       z-index: 3;
-      /*
-        CORE FIX:
-        We use a coordinate system where the banner is treated as if it were always
-        the "design width" (1440px in this case). By expressing left/top as percentages
-        they move proportionally with the banner's width AND height (since height is
-        locked by padding-top % to the same aspect ratio). This means the text always
-        sits at the same relative position in the image, regardless of screen width.
-      */
     }
 
     /* ─── Line 1: "That is where" ─── */
-    /*
-      In the 1440px reference:
-        - Visually starts around x=270px  → 270/1440 = 18.75%
-        - Visually at y≈475px in a ~750px tall banner → 475/750 = 63.3%
-      Using left + no transform so it anchors from its own left edge.
-    */
     .lux-line1-{{ ai_gen_id }} {
       position: absolute;
       top: {{ block.settings.line1_top }}%;
@@ -108,10 +96,6 @@
       font-family: 'PP Editorial New', serif;
       font-style: italic;
       font-weight: 300;
-      /*
-        Font size scales with banner WIDTH via vw — but clamped so it doesn't get
-        too large or too small. At 1440px wide we want ~52px → 52/1440 = 3.6vw
-      */
       font-size: clamp(22px, 3.9vw, 68px);
       color: {{ block.settings.text_color }};
       letter-spacing: 0.03em;
@@ -122,23 +106,19 @@
     }
 
     /* ─── Line 2: "Scentspired" hero text ─── */
-    /*
-      In the 1440px reference:
-        - Center of text around x=700px → left ~42%
-        - y ≈ 520px → 520/750 = 69.3%
-      Font: ~110px at 1440px → 110/1440 = 7.64vw
-    */
     .lux-line2-{{ ai_gen_id }} {
       position: absolute;
       top: {{ block.settings.brand_top }}%;
       left: {{ block.settings.brand_left }}%;
-      font-size: clamp(42px, 3.6vw, 145px);
-      letter-spacing: -0.02em;
-      line-height: 0.9;
+      transform: translateX(-50%);
+      font-size: clamp(20px, 2.6vw, 42px);
+      letter-spacing: 0.1em;
+      line-height: 1;
       color: {{ block.settings.text_color }};
-      text-shadow: 0 4px 30px rgba(0,0,0,0.6);
+      text-shadow: 0 4px 24px rgba(0,0,0,0.85);
       white-space: nowrap;
       pointer-events: none;
+      text-align: center;
     }
     .lux-line2-regular-{{ ai_gen_id }} {
       font-family: {{ block.settings.font_family_regular }};
@@ -153,12 +133,6 @@
     }
 
     /* ─── Line 3: "comes in." ─── */
-    /*
-      In the 1440px reference:
-        - Starts around x=880px → 880/1440 = 61%
-        - y ≈ 620px → 620/750 = 82.7%
-      Font: ~48px at 1440px → 48/1440 = 3.33vw
-    */
     .lux-line3-{{ ai_gen_id }} {
       position: absolute;
       top: {{ block.settings.line3_top }}%;
@@ -175,33 +149,32 @@
       pointer-events: none;
     }
 
-    /* ─── Mobile: below 480px keep things readable ─── */
+    /* ─── Mobile adjustments ─── */
     @media (max-width: 480px) {
       .lux-spot-{{ ai_gen_id }}::before,
       .lux-spot-{{ ai_gen_id }}::after {
         filter: blur(60px);
       }
-      @media (max-width: 768px) {
+    }
+
+    @media (max-width: 768px) {
       .lux-line1-{{ ai_gen_id }} {
-      font-size: clamp(15px, 3.4vw, 68px);
-  }
-  .lux-line2-{{ ai_gen_id }} {
-      font-size: clamp(13px, 0.6vw, 145px);
-  }
-  .lux-line2-{{ ai_gen_id }} {
-      position: absolute;
-      top: 2%;
-      left: 4%;
-  }
-  .lux-line3-{{ ai_gen_id }} {
-      font-size: clamp(18px, 4.3vw, 73px);
-  }
+        font-size: clamp(14px, 3.4vw, 28px);
+      }
+      .lux-line2-{{ ai_gen_id }} {
+        font-size: clamp(15px, 4vw, 24px);
+        position: absolute;
+        top: 6%;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .lux-line2-regular-{{ ai_gen_id }} {
+        margin-right: 3px;
+      }
+      .lux-line3-{{ ai_gen_id }} {
+        font-size: clamp(14px, 3.8vw, 28px);
+      }
     }
-  @media (max-width: 768px) {
-    .lux-line2-regular-{{ ai_gen_id }} {
-      margin-right: 3px;
-    }
-  }
 {% endstyle %}
 
 <div class="lux-wrap-{{ ai_gen_id }}" {{ block.shopify_attributes }}>

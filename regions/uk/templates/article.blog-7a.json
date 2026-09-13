@@ -64,7 +64,7 @@
             "mobile_text_alignment": "left",
             "mobile_content_padding": 25,
             "content_max_width": 1400,
-            "outer_spacing": 20,
+            "outer_spacing": 0,
             "mobile_outer_spacing": 15,
             "background_color": "#f5f3f0"
           },
@@ -97,7 +97,7 @@
           "settings": {
             "background_image": "shopify://shop_images/What_Letters_Actually_Stands_For.png",
             "outer_border_color": "#ffffff",
-            "outer_border_px": 16,
+            "outer_border_px": 0,
             "aspect_ratio": 56,
             "font_family_regular": "'PP Editorial New', 'Cormorant Garamond', Georgia, serif",
             "font_family_italic": "'PPEditorialNew Ultralight Italic', 'Cormorant Garamond', Georgia, serif",

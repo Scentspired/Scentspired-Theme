@@ -713,19 +713,20 @@
    ═══════════════════════════════════════════════════════════════ */
 
 /* 1. Universal Hero Banner Normalization */
+/* Width/margin are soft defaults — block inline {% style %} can override */
 div[id*="shopify-section"] [class*="ai-luxury-banner-outer"],
 [class*="ai-luxury-banner-outer"] {
-  padding: 0 !important;
-  background-color: transparent !important;
-  margin: 1.5rem auto 2.5rem !important;
-  max-width: 1200px !important;
+  padding: 0;
+  background-color: transparent;
+  margin: 1.5rem auto 2.5rem;
+  max-width: 1200px;
 }
 
 div[id*="shopify-section"] [class*="ai-luxury-banner-container"],
 [class*="ai-luxury-banner-container"] {
-  max-width: 1200px !important;
-  margin: 0 auto !important;
-  border-radius: 16px !important;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 16px;
   overflow: hidden !important;
   position: relative !important;
 }
@@ -803,14 +804,15 @@ div[id*="shopify-section"] .blog-richtext-content,
 }
 
 /* 3. Universal Sub-Banner Normalization */
+/* Width/margin are soft defaults — block inline {% style %} can override */
 div[id*="shopify-section"] [class*="lux-wrap-"],
 div[id*="shopify-section"] [class*="ai-editorial-banner"],
 [class*="lux-wrap-"],
 [class*="ai-editorial-banner"] {
-  max-width: 1200px !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  padding: 1rem 1.5rem !important;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1rem 1.5rem;
   box-sizing: border-box !important;
 }
 
@@ -952,4 +954,17 @@ div[id*="shopify-section"]:empty {
   min-height: 0 !important;
 }
 
+/* ═══════════════════════════════════════════════════════════════
+   9. Full-Bleed Editorial Overrides
+   When a block sets explicit 100vw width via inline {% style %},
+   these rules ensure the normalization defaults above don't fight it.
+   ═══════════════════════════════════════════════════════════════ */
 
+/* Seamless editorial section flow — no gaps between stacked sections */
+.shopify-section:has([class*="ai-luxury-banner-outer"]) + .shopify-section,
+.shopify-section:has([class*="lux-wrap-"]) + .shopify-section,
+.shopify-section:has(.shopify-hardcoded-text-section-wrapper) + .shopify-section:has(.shopify-hardcoded-text-section-wrapper),
+.shopify-section:has(.shopify-hardcoded-text-section-wrapper) + .shopify-section:has([class*="lux-wrap-"]),
+.shopify-section:has(.shopify-hardcoded-text-section-wrapper) + .shopify-section:has([class*="ai-editorial"]) {
+  margin-top: 0;
+}
