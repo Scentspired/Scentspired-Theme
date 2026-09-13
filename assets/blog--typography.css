@@ -858,16 +858,13 @@ div[id*="shopify-section"] [class*="ai-editorial-section"] + editorial-section,
 div[id*="shopify-section"] editorial-section + editorial-section,
 div[id*="shopify-section"] editorial-section + [class*="ai-editorial-section"],
 [class*="ai-editorial-section"] + [class*="ai-editorial-section"] {
-  padding-top: 0 !important;
-  margin-top: 0 !important;
   border-top: none !important;
 }
 
 /* Seamless integration of stacked editorial blocks within the same section */
 div[id*="shopify-section"] [class*="ai-editorial-section"] > [class*="ai-editorial-section"],
 div[id*="shopify-section"] .shopify-section [class*="ai-editorial-section"]:not(:first-child) {
-  padding-top: 0 !important;
-  margin-top: 0 !important;
+  border-top: none !important;
 }
 
 /* Callout Box Normalization (Red Box) */
@@ -882,11 +879,14 @@ div[id*="shopify-section"] [class*="ai-editorial-section__red-box"],
 }
 
 div[id*="shopify-section"] [class*="ai-editorial-heading"],
-[class*="ai-editorial-heading"] {
+div[id*="shopify-section"] [class*="ai-editorial-section__heading"],
+[class*="ai-editorial-heading"],
+[class*="ai-editorial-section__heading"] {
   font-family: 'PP Editorial New', Georgia, serif !important;
   font-size: clamp(24px, 3.2vw, 38px) !important;
   line-height: 1.2 !important;
   letter-spacing: -0.01em !important;
+  margin-top: clamp(28px, 4vw, 48px) !important;
   margin-bottom: 1.25rem !important;
   color: #121212 !important;
 }
