@@ -46,7 +46,19 @@
     },
     "search": {
       "search": "Search",
-      "reset": "Clear search term"
+      "reset": "Clear search term",
+      "heading": {
+        "one": "1 result found for \"{{ terms }}\"",
+        "other": "{{ count }} results found for \"{{ terms }}\""
+      },
+      "results_with_count": {
+        "one": "1 result",
+        "other": "{{ count }} results"
+      }
+    },
+    "meta": {
+      "tags": "Tagged \"{{ tags }}\"",
+      "page": "Page {{ page }}"
     },
     "cart": {
       "view": "View cart ({{ count }})",
