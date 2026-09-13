@@ -64,16 +64,51 @@
       <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
     {%- endunless -%}
 
+    {%- liquid
+      assign store_domain = shop.domain
+      if store_domain contains 'scentspired.co.uk' or shop.currency == 'GBP' or cart.currency.iso_code == 'GBP'
+        assign store_region = 'UK'
+        assign store_currency_symbol = '£'
+        assign store_free_shipping_threshold = 3500
+        assign store_shipping_cost = 499
+        assign homepage_seo_title = 'Inspired Designer Perfumes for Men & Women | Scentspired UK'
+        assign homepage_seo_description = 'Shop long-lasting inspired perfumes for men, women & unisex. Premium extrait de parfum oils, luxury quality, honest prices. Free delivery on orders over £35.'
+      else
+        assign store_region = 'US'
+        assign store_currency_symbol = '$'
+        assign store_free_shipping_threshold = 7000
+        assign store_shipping_cost = 799
+        assign homepage_seo_title = 'Inspired Designer Perfumes for Men & Women | Scentspired'
+        assign homepage_seo_description = 'Shop long-lasting inspired perfumes for men, women & unisex. Premium extrait de parfum oils, luxury quality, honest prices. Free shipping over $70.'
+      endif
+    -%}
+
     <title>
-      {{ page_title }}
-      {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ", " }}"{% endif -%}
-      {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
-      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+      {%- if request.page_type == 'index' -%}
+        {{ homepage_seo_title }}
+      {%- else -%}
+        {{ page_title }}
+        {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ", " }}"{% endif -%}
+        {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+        {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+      {%- endif -%}
     </title>
 
-    {% if page_description %}
+    {% if request.page_type == 'index' %}
+      <meta name="description" content="{{ homepage_seo_description | escape }}">
+    {% elsif page_description %}
       <meta name="description" content="{{ page_description | escape }}">
     {% endif %}
+
+    <script>
+      window.__STORE_CONFIG = {
+        region: {{ store_region | json }},
+        currencySymbol: {{ store_currency_symbol | json }},
+        currencyCode: {{ cart.currency.iso_code | default: shop.currency | json }},
+        freeShippingThreshold: {{ store_free_shipping_threshold | json }},
+        shippingCost: {{ store_shipping_cost | json }}
+      };
+    </script>
 
     {% render "meta-tags" %}
 

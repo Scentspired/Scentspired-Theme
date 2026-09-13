@@ -2774,11 +2774,11 @@
         <div style="padding-left: 10px; margin-top: 6px;">
           <label>
             <input type="checkbox" class="filter-range" data-min="0" data-max="50" data-variant-index="0">
-            0 – 25$ </label
+            0 – 25{{ cart.currency.symbol | default: '$' }} </label
           ><br>
           <label>
             <input type="checkbox" class="filter-size" value="100ml" data-variant-index="1">
-            25 – 50$
+            25 – 50{{ cart.currency.symbol | default: '$' }}
           </label>
         </div>
       </details>
@@ -3270,6 +3270,7 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
+    const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '{{ cart.currency.symbol }}' || '$';
     let cartQuantities = {};
     let cartFetchInProgress = false;
 
@@ -3333,7 +3334,7 @@
           buttons.forEach(b => b.classList.remove('active'));
           firstAvailable.classList.add('active');
           if (input) input.value = firstAvailable.dataset.variantId;
-          if (priceEl) priceEl.textContent = '$' + (firstAvailable.dataset.variantPrice / 100).toFixed(2);
+          if (priceEl) priceEl.textContent = currSym + (firstAvailable.dataset.variantPrice / 100).toFixed(2);
 
           // Update compare_at_price
           const compareAtPrice = firstAvailable.dataset.variantCompareAtPrice;
@@ -3341,7 +3342,7 @@
 
           if (compareAtPrice && parseInt(compareAtPrice) > currentPrice) {
             if (compareAtPriceEl) {
-              compareAtPriceEl.textContent = '$' + (parseInt(compareAtPrice) / 100).toFixed(2);
+              compareAtPriceEl.textContent = currSym + (parseInt(compareAtPrice) / 100).toFixed(2);
               compareAtPriceEl.style.display = 'inline';
             }
             if (priceBadgeEl) {
@@ -3397,7 +3398,7 @@
       const input = card.querySelector('.variant-id-input');
 
       if (input) input.value = btn.dataset.variantId;
-      if (priceEl) priceEl.textContent = '$' + (btn.dataset.variantPrice / 100).toFixed(2);
+      if (priceEl) priceEl.textContent = currSym + (btn.dataset.variantPrice / 100).toFixed(2);
 
       // Update compare_at_price
       const compareAtPrice = btn.dataset.variantCompareAtPrice;
@@ -3405,7 +3406,7 @@
 
       if (compareAtPrice && parseInt(compareAtPrice) > currentPrice) {
         if (compareAtPriceEl) {
-          compareAtPriceEl.textContent = '$' + (parseInt(compareAtPrice) / 100).toFixed(2);
+          compareAtPriceEl.textContent = currSym + (parseInt(compareAtPrice) / 100).toFixed(2);
           compareAtPriceEl.style.display = 'inline';
         }
         if (priceBadgeEl) {
@@ -3477,6 +3478,7 @@
 <script>
   // This script handles the interactive elements of the collection page, including sidebar toggling, search functionality, and filtering.
   document.addEventListener('DOMContentLoaded', () => {
+    const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '{{ cart.currency.symbol }}' || '$';
     {% comment %} DOM Element References {% endcomment %}
     const filterToggleButton = document.getElementById('filterToggleButton');
     const filterToggleDesktop = document.getElementById('filterToggleDesktop');
@@ -3740,7 +3742,7 @@
       }
       
       productsToRender.forEach(product => {
-        const priceFormatted = `$ ${product.price.toLocaleString()}`;
+        const priceFormatted = `${currSym} ${product.price.toLocaleString()}`;
         const imageUrl = product.image || '/placeholder.svg?height=600&width=600';
         const productUrl = product.url;
         
@@ -3993,7 +3995,7 @@
               targetBtn.classList.add('active');
               const priceElement = card.querySelector('[data-price-display]');
               if (priceElement) {
-                priceElement.textContent = targetBtn.dataset.variantPrice ? '$' + (parseInt(targetBtn.dataset.variantPrice) / 100).toFixed(2) : priceElement.textContent;
+                priceElement.textContent = targetBtn.dataset.variantPrice ? currSym + (parseInt(targetBtn.dataset.variantPrice) / 100).toFixed(2) : priceElement.textContent;
               }
             }
           } else if (ranges.length > 0) {
@@ -4014,7 +4016,7 @@
               targetBtn.classList.add('active');
               const priceElement = card.querySelector('[data-price-display]');
               if (priceElement) {
-                priceElement.textContent = targetBtn.dataset.variantPrice ? '$' + (parseInt(targetBtn.dataset.variantPrice) / 100).toFixed(2) : priceElement.textContent;
+                priceElement.textContent = targetBtn.dataset.variantPrice ? currSym + (parseInt(targetBtn.dataset.variantPrice) / 100).toFixed(2) : priceElement.textContent;
               }
             }
           } else if (genders.length === 0 && types.length === 0 && ingredients.length === 0 && sizes.length === 0) {
@@ -4024,7 +4026,7 @@
                 variantBtns[0].classList.add('active');
                 const priceElement = card.querySelector('[data-price-display]');
                 if (priceElement && variantBtns[0].dataset.variantPrice) {
-                  priceElement.textContent = '$' + (parseInt(variantBtns[0].dataset.variantPrice) / 100).toFixed(2);
+                  priceElement.textContent = currSym + (parseInt(variantBtns[0].dataset.variantPrice) / 100).toFixed(2);
                 }
               }
           } else {
@@ -4035,7 +4037,7 @@
                 variantBtns[0].classList.add('active');
                 const priceElement = card.querySelector('[data-price-display]');
                 if (priceElement && variantBtns[0].dataset.variantPrice) {
-                  priceElement.textContent = '$' + (parseInt(variantBtns[0].dataset.variantPrice) / 100).toFixed(2);
+                  priceElement.textContent = currSym + (parseInt(variantBtns[0].dataset.variantPrice) / 100).toFixed(2);
                 }
               }
           }

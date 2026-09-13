@@ -375,7 +375,8 @@ function getPerPage() {
 
 // Format price to currency
 function formatPrice(priceInCents) {
-  return '$' + (priceInCents / 100).toFixed(2);
+  const sym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '{{ cart.currency.symbol }}' || '$';
+  return sym + (priceInCents / 100).toFixed(2);
 }
 
 document.addEventListener('DOMContentLoaded', function () {

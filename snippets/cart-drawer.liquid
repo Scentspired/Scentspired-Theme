@@ -1,3 +1,17 @@
+{%- liquid
+  assign curr_sym = cart.currency.symbol | default: '$'
+  if cart.currency.iso_code == 'GBP' or shop.currency == 'GBP' or shop.domain contains 'scentspired.co.uk'
+    assign shipping_threshold_amount = '35'
+    assign shipping_cost_amount = '3.95'
+    assign shipping_threshold_cents = 3500
+    assign shipping_cost_cents = 395
+  else
+    assign shipping_threshold_amount = '70'
+    assign shipping_cost_amount = '7.99'
+    assign shipping_threshold_cents = 7000
+    assign shipping_cost_cents = 799
+  endif
+-%}
 <style>
   .sp-bundle-container {
     background-color: #f3f3f3;
@@ -1509,7 +1523,7 @@
         </a>
 
         <!-- Free Shipping Text -->
-        <p class="sp-free-shipping-text">Free Shipping over 70$</p>
+        <p class="sp-free-shipping-text">Free Shipping over {{ curr_sym }}{{ shipping_threshold_amount }}</p>
       </div>
     </div>
 
@@ -1539,11 +1553,11 @@
           <!-- Updated bundle tiers from 3 to 5 tiers with new discount and shipping structure -->
           <div class="sp-bundle-tiers">
             <div class="sp-tier" data-items="1">
-              <div class="sp-tier-items">Below $70</div>
-              <div class="sp-tier-discount">$7.99 Shipping</div>
+              <div class="sp-tier-items">Below {{ curr_sym }}{{ shipping_threshold_amount }}</div>
+              <div class="sp-tier-discount">{{ curr_sym }}{{ shipping_cost_amount }} Shipping</div>
             </div>
             <div class="sp-tier" data-items="2">
-              <div class="sp-tier-items">$70+</div>
+              <div class="sp-tier-items">{{ curr_sym }}{{ shipping_threshold_amount }}+</div>
               <div class="sp-tier-discount">Free Shipping</div>
             </div>
           </div>
@@ -1555,7 +1569,7 @@
                 <circle cx="8" cy="8" r="3" fill="#666"/>
               </svg>
             </div>
-            <span><strong>FREE</strong> shipping on orders over $70 | $7.99 shipping under $70</span>
+            <span><strong>FREE</strong> shipping on orders over {{ curr_sym }}{{ shipping_threshold_amount }} | {{ curr_sym }}{{ shipping_cost_amount }} shipping under {{ curr_sym }}{{ shipping_threshold_amount }}</span>
           </div>
         </div>
       </div>
@@ -1616,7 +1630,7 @@
                       {% assign total_discounted_line_price = original_price_per_item | times: item.quantity %}
 
                       <span class="sp-discounted-price">
-                        $<span
+                        {{ curr_sym }}<span
                           class="price-value"
                           data-single-price="{{ original_price_per_item | money_without_currency }}"
                           data-original-single="{{ original_price_per_item | money_without_currency }}"
@@ -1684,17 +1698,17 @@
           <div class="sp-summary-details">
             <div class="sp-summary-line">
               <span class="sp-summary-label"> Cart Subtotal </span>
-              <span class="sp-summary-price" id="summary-initial-price">$0.00</span>
+              <span class="sp-summary-price" id="summary-initial-price">{{ curr_sym }}0.00</span>
             </div>
 
             <div class="sp-summary-line">
               <span class="sp-summary-label">Shipping</span>
-              <span class="sp-summary-price" id="sp-shipping-cost">$3.95</span>
+              <span class="sp-summary-price" id="sp-shipping-cost">{{ curr_sym }}{{ shipping_cost_amount }}</span>
             </div>
 
             <div class="sp-summary-line sp-member-discount-line" id="member-discount-line" style="display: none;">
               <span>d<sup>+</sup> Discount: 10% OFF</span>
-              <span id="summary-member-discount">-$0.00</span>
+              <span id="summary-member-discount">-{{ curr_sym }}0.00</span>
             </div>
 
             <div class="sp-tax-note" style="display: none;">
@@ -1750,7 +1764,7 @@
                     {% if product.metafields.custom.inspired_by %}
                       <p class="sp-rec-inspired">Inspired by {{ product.metafields.custom.inspired_by }}</p>
                     {% endif %}
-                    <div class="sp-rec-price">${{ product.price | money_without_currency }}</div>
+                    <div class="sp-rec-price">{{ curr_sym }}{{ product.price | money_without_currency }}</div>
                   </div>
                 </a>
                 <button
@@ -1775,7 +1789,7 @@
               <div class="sp-rec-details">
                 <h4>DISCOVERY SET</h4>
                 <p class="sp-rec-vendor">Dossier Perfumes</p>
-                <div class="sp-rec-price">$99</div>
+                <div class="sp-rec-price">{{ curr_sym }}99</div>
                 <button class="sp-add-to-cart-btn" onclick="addDossierRecommended('discovery-set')">ADD TO CART</button>
               </div>
             </div>
@@ -1790,7 +1804,7 @@
                 <h4>WOODY SAGE</h4>
                 <p class="sp-rec-vendor">Inspired by</p>
                 <p class="sp-rec-inspired">Jo Malone's Wood Sage & Sea Salt</p>
-                <div class="sp-rec-price">$29</div>
+                <div class="sp-rec-price">{{ curr_sym }}29</div>
                 <button class="sp-add-to-cart-btn" onclick="addDossierRecommended('woody-sage')">ADD TO CART</button>
               </div>
             </div>
@@ -1805,7 +1819,7 @@
                 <h4>FLORA LAVENDER</h4>
                 <p class="sp-rec-vendor">Inspired by</p>
                 <p class="sp-rec-inspired">YSL's Libre</p>
-                <div class="sp-rec-price">$29</div>
+                <div class="sp-rec-price">{{ curr_sym }}29</div>
                 <button class="sp-add-to-cart-btn" onclick="addDossierRecommended('flora-lavender')">
                   ADD TO CART
                 </button>
@@ -1819,7 +1833,7 @@
       <div class="sp-checkout-section">
         <button class="sp-checkout-btn" onclick="proceedToDossierCheckout()">
           GO TO CHECKOUT
-          <span class="sp-checkout-total" id="checkout-total">$0.00</span>
+          <span class="sp-checkout-total" id="checkout-total">{{ curr_sym }}0.00</span>
         </button>
       </div>
     </div>
@@ -1831,6 +1845,9 @@
 let isUserLoggedIn = false;
 let currentShopMethod = 'guest';
 let isProcessingCartAction = false; // Added flag to prevent duplicate submissions
+const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || {{ curr_sym | json }} || '$';
+const freeShippingThreshold = (window.__STORE_CONFIG && window.__STORE_CONFIG.freeShippingThreshold) || {{ shipping_threshold_cents | json }} || 7000;
+const defaultShippingCost = (window.__STORE_CONFIG && window.__STORE_CONFIG.shippingCost) || {{ shipping_cost_cents | json }} || 799;
 
 // Helper function to generate HTML for a single cart item
 function generateCartItemHtml(item) {
@@ -1869,7 +1886,7 @@ function generateCartItemHtml(item) {
   </h3>
   <div class="sp-product-pricing">
     <span class="sp-discounted-price">
-      $<span class="price-value"
+      ${currSym}<span class="price-value"
         data-single-price="${(originalPricePerItem / 100).toFixed(2)}"
         data-original-single="${(originalPricePerItem / 100).toFixed(2)}"
         data-discount="0">${(totalDiscountedLinePrice / 100).toFixed(2)}
@@ -2272,18 +2289,18 @@ function updateAllDossierDynamicElements(cart) {
   const tiers = document.querySelectorAll('.sp-tier');
   tiers.forEach(tier => tier.classList.remove('sp-tier-active'));
 
-  if (subtotal >= 7000) { // $70 or more
+  if (subtotal >= freeShippingThreshold) {
     const tier2 = document.querySelector('[data-items="2"]');
     if (tier2) tier2.classList.add('sp-tier-active');
-  } else { // Less than $70
+  } else {
     const tier1 = document.querySelector('[data-items="1"]');
     if (tier1) tier1.classList.add('sp-tier-active');
   }
 
   // 3. Update Pricing Display
   let shipping = 0;
-  if (subtotal > 0 && subtotal < 7000) {
-    shipping = 799; // $7.99
+  if (subtotal > 0 && subtotal < freeShippingThreshold) {
+    shipping = defaultShippingCost;
   } else {
     shipping = 0; // FREE
   }
@@ -2291,7 +2308,7 @@ function updateAllDossierDynamicElements(cart) {
   const finalTotal = subtotal > 0 ? (subtotal + shipping) : 0;
   const checkoutTotal = document.getElementById('checkout-total');
   if (checkoutTotal) {
-    checkoutTotal.textContent = `$${(finalTotal / 100).toFixed(2)}`;
+    checkoutTotal.textContent = `${currSym}${(finalTotal / 100).toFixed(2)}`;
   }
 
   // Update Checkout Button State (Lock if cart is empty or subtotal <= 0)
@@ -2317,7 +2334,7 @@ function updateOrderSummary(subtotal, shipping) {
   // Show initial price (no discounts)
   const initialPrice = document.getElementById('summary-initial-price');
   if (initialPrice) {
-    initialPrice.textContent = `$${(subtotal / 100).toFixed(2)}`;
+    initialPrice.textContent = `${currSym}${(subtotal / 100).toFixed(2)}`;
   }
 
   // Update shipping UI
@@ -2325,7 +2342,7 @@ function updateOrderSummary(subtotal, shipping) {
   if (shippingCost) {
     shippingCost.textContent = shipping === 0
       ? 'FREE'
-      : `$${(shipping / 100).toFixed(2)}`;
+      : `${currSym}${(shipping / 100).toFixed(2)}`;
   }
 
   // Hide discount lines since there are no discounts
@@ -2539,7 +2556,7 @@ function proceedToDossierCheckout() {
       }
 
       if (zeroItems.length > 0) {
-        alert('Your cart contains zero-priced items ($0.00) that cannot be purchased individually. Please configure a valid bundle set.');
+        alert(`Your cart contains zero-priced items (${currSym}0.00) that cannot be purchased individually. Please configure a valid bundle set.`);
         updateAllDossierDynamicElements(cart);
         if (checkoutBtn) {
           checkoutBtn.disabled = false;
@@ -2549,7 +2566,7 @@ function proceedToDossierCheckout() {
       }
 
       if (cart.total_price <= 0) {
-        alert('Order subtotal cannot be $0.00. Please add a valid product to proceed.');
+        alert(`Order subtotal cannot be ${currSym}0.00. Please add a valid product to proceed.`);
         if (checkoutBtn) {
           checkoutBtn.disabled = false;
           checkoutBtn.style.opacity = '1';

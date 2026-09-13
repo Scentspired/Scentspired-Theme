@@ -543,6 +543,8 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
+    const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '{{ cart.currency.symbol }}' || '$';
+
     function updateVariantAvailability() {
       // Update all product cards
       document.querySelectorAll('.fragrance-container .fragrance-item').forEach(card => {
@@ -623,7 +625,7 @@
           const comparePrice = parseInt(btn.dataset.variantCompare, 10);
 
           if (priceDisplay && variantPrice) {
-            priceDisplay.textContent = '$' + (variantPrice / 100).toFixed(2);
+            priceDisplay.textContent = currSym + (variantPrice / 100).toFixed(2);
           }
 
           let compareEl = card.querySelector('[data-compare-price]');
@@ -637,7 +639,7 @@
               priceDisplay.after(compareEl);
             }
 
-            compareEl.textContent = '$' + (comparePrice / 100).toFixed(2);
+            compareEl.textContent = currSym + (comparePrice / 100).toFixed(2);
 
             if (!badgeEl) {
               badgeEl = document.createElement('span');
@@ -663,7 +665,7 @@
           const price = parseInt(firstAvailableBtn.dataset.variantPrice, 10);
           const compare = parseInt(firstAvailableBtn.dataset.variantCompare, 10);
 
-          priceDisplay.textContent = '$' + (price / 100).toFixed(2);
+          priceDisplay.textContent = currSym + (price / 100).toFixed(2);
 
           // Trigger compare-at logic
           firstAvailableBtn.click();

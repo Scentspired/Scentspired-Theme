@@ -69,12 +69,12 @@
         <div class="ps-price-container">
           {% assign variant = product.selected_or_first_available_variant %}
           <span class="ps-price" id="psPriceDisplay" data-price>
-            ${{ variant.price | divided_by: 100.0 | round: 2 }}
+            {{ cart.currency.symbol | default: '$' }}{{ variant.price | divided_by: 100.0 | round: 2 }}
           </span>
 
           {% if variant.compare_at_price and variant.compare_at_price > variant.price %}
             <span class="ps-original-price" data-compare-price>
-              ${{ variant.compare_at_price | divided_by: 100.0 | round: 2 }}
+              {{ cart.currency.symbol | default: '$' }}{{ variant.compare_at_price | divided_by: 100.0 | round: 2 }}
             </span>
             <span class="ps-price-badge" data-sale-badge>Sale</span>
           {% endif %}
@@ -775,6 +775,7 @@
 <!-- JAVASCRIPT -->
 <script>
   document.addEventListener('DOMContentLoaded', function () {
+    const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '{{ cart.currency.symbol }}' || '$';
     const variantButtons = document.querySelectorAll('.ps-variant-btn');
     const variantIdInput = document.querySelector('.ps-variant-id-input');
     const priceContainer = document.querySelector('.ps-price-container');
@@ -784,7 +785,7 @@
 
     // Price update function
     function updatePriceUI(price, compare) {
-      priceEl.textContent = '$' + (price / 100).toFixed(2);
+      priceEl.textContent = currSym + (price / 100).toFixed(2);
 
       let compareEl = priceContainer.querySelector('[data-compare-price]');
       let badgeEl = priceContainer.querySelector('[data-sale-badge]');
@@ -796,7 +797,7 @@
           compareEl.setAttribute('data-compare-price', '');
           priceEl.parentNode.insertBefore(compareEl, priceEl.nextSibling);
         }
-        compareEl.textContent = '$' + (compare / 100).toFixed(2);
+        compareEl.textContent = currSym + (compare / 100).toFixed(2);
         compareEl.style.display = 'inline';
 
         if (!badgeEl) {

@@ -773,6 +773,8 @@
       const section = document.getElementById('mvps-{{ section.id }}');
       if (!section) return;
 
+      const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '{{ cart.currency.symbol }}' || '$';
+
       // --- Fetch current cart ---
       async function getCart() {
         try {
@@ -958,7 +960,7 @@
                 const price = parseInt(btn.dataset.variantPrice, 10);
                 const compare = parseInt(btn.dataset.variantCompare, 10) || null;
 
-                priceDisplay.textContent = '$' + (price / 100).toFixed(2);
+                priceDisplay.textContent = currSym + (price / 100).toFixed(2);
 
                 let compareEl = card.querySelector('[data-compare-price]');
                 let badgeEl = card.querySelector('[data-sale-badge]');
@@ -971,7 +973,7 @@
                     priceDisplay.after(compareEl);
                   }
 
-                  compareEl.textContent = '$' + (compare / 100).toFixed(2);
+                  compareEl.textContent = currSym + (compare / 100).toFixed(2);
 
                   if (!badgeEl) {
                     badgeEl = document.createElement('span');
@@ -995,7 +997,7 @@
             firstAvailable.classList.add('active');
             if (variantIdInput) variantIdInput.value = firstAvailable.dataset.variantId;
             if (priceDisplay)
-              priceDisplay.textContent = '$' + (parseInt(firstAvailable.dataset.variantPrice) / 100).toFixed(2);
+              priceDisplay.textContent = currSym + (parseInt(firstAvailable.dataset.variantPrice) / 100).toFixed(2);
           }
 
           // Disable Add to Cart + Sold Out text handling

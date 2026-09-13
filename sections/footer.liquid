@@ -1,3 +1,10 @@
+{%- liquid
+  if cart.currency.iso_code == 'GBP' or shop.currency == 'GBP' or shop.domain contains 'scentspired.co.uk'
+    assign footer_home_url = 'https://scentspired.co.uk'
+  else
+    assign footer_home_url = 'https://scentspired.com'
+  endif
+-%}
 <footer class="custom-footer">
   <div class="footer-container">
     <div class="footer-content">
@@ -5,6 +12,7 @@
       <div class="footer-column footer-brand">
         <p class="brand-description">{{ section.settings.brand_description }}</p>
         <h3 class="brand-tagline">{{ section.settings.brand_tagline }}</h3>
+        <div id="trustpilot-desktop-slot"></div>
       </div>
 
       <!-- Social Media Column -->
@@ -136,7 +144,7 @@
     <!-- Background Text / Image -->
     <div class="footer-background-text">
       {% if section.settings.footer_bg_image != blank %}
-        <a href="https://scentspired.com" class="footer-background-link" aria-label="Scentspired home">
+        <a href="{{ footer_home_url }}" class="footer-background-link" aria-label="Scentspired home">
           <img
             src="{{ section.settings.footer_bg_image | image_url: width: 1200 }}"
             alt=""
@@ -149,8 +157,44 @@
         </span>
       {% endif %}
     </div>
+
+    <!-- Mobile slot for Trustpilot widget, centered below the logo -->
+    <div id="trustpilot-mobile-slot"></div>
   </div>
 </footer>
+
+<script>
+(function() {
+  function moveTrustpilotWidget() {
+    var widget = document.getElementById('trustpilot-widget-trustbox-0-wrapper');
+    if (!widget) return;
+
+    var isDesktop = window.matchMedia('(min-width: 1025px)').matches;
+    var targetSlot = document.getElementById(isDesktop ? 'trustpilot-desktop-slot' : 'trustpilot-mobile-slot');
+
+    if (targetSlot && widget.parentElement !== targetSlot) {
+      targetSlot.appendChild(widget);
+    }
+  }
+
+  // Trustpilot injects its widget asynchronously, so poll briefly until it appears
+  var attempts = 0;
+  var poll = setInterval(function() {
+    attempts++;
+    if (document.getElementById('trustpilot-widget-trustbox-0-wrapper')) {
+      moveTrustpilotWidget();
+      clearInterval(poll);
+    }
+    if (attempts > 40) clearInterval(poll); // give up after ~10s
+  }, 250);
+
+  var resizeTimer;
+  window.addEventListener('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(moveTrustpilotWidget, 200);
+  });
+})();
+</script>
 
 <style>
   .custom-footer {
@@ -417,6 +461,62 @@
 
   .footer-background-image {
     pointer-events: auto;
+  }
+
+  /* Trustpilot widget repositioning */
+  #trustpilot-mobile-slot {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    position: relative;
+    z-index: 3;
+  }
+
+  #trustpilot-desktop-slot {
+    margin-top: 15px;
+  }
+
+  #trustpilot-desktop-slot #trustpilot-widget-trustbox-0-wrapper,
+  #trustpilot-mobile-slot #trustpilot-widget-trustbox-0-wrapper {
+    margin: 0 !important; /* Trustpilot injects -34px side margins by default */
+  }
+
+  #trustpilot-mobile-slot .trustpilot-widget,
+  #trustpilot-mobile-slot iframe {
+    width: 90% !important;
+    max-width: 320px;
+  }
+  @media (max-width: 1024px) {
+    #trustpilot-mobile-slot #trustpilot-widget-trustbox-0-wrapper,
+    #trustpilot-mobile-slot .trustpilot-widget,
+    #trustpilot-mobile-slot iframe {
+      width: 240px !important;
+      max-width: 240px !important;
+    }
+    #trustpilot-mobile-slot {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      margin-top: 20px;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 5;
+    }
+  }
+
+  @media (min-width: 1025px) {
+    #trustpilot-desktop-slot {
+      display: flex;
+      justify-content: flex-start;
+      margin-left: -60px;
+    }
+
+    #trustpilot-desktop-slot #trustpilot-widget-trustbox-0-wrapper {
+      max-width: fit-content !important;
+      width: auto !important;
+      margin: 0 !important;
+      margin-left: -97px;
+    }
   }
 </style>
 

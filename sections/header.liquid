@@ -3588,22 +3588,34 @@
         let productsFound = false;
         const queryLower = query.toLowerCase();
 
+        // Method 0 (primary): search the FULL product catalog on our own (via Shopify's public
+        // /products.json endpoint) instead of relying on the theme's /search results page. This checks
+        // every product's title, vendor, tags, type and description - case-insensitively, tolerating small
+        // spelling mistakes - and never caps results at 10, since it isn't limited by the search page's
+        // pagination/display settings.
+        try {
+          const catalogResults = await this.searchFullCatalog(query);
+          if (catalogResults.length > 0) {
+            console.log('[v0] Found products via full catalog search:', catalogResults.length);
+            this.allSearchResults = catalogResults;
+            productsFound = true;
+          }
+        } catch (e) {
+          console.log('[v0] Full catalog search failed:', e);
+        }
+
         const isGenderSearch = ['men', 'women', 'unisex'].includes(queryLower);
 
-        if (isGenderSearch) {
+        if (!productsFound && isGenderSearch) {
           try {
             const tagSearchUrl = `/search?q=tag:"${encodeURIComponent(query.toLowerCase())}"&type=product`;
-            console.log('[v0] Searching by gender tag:', tagSearchUrl);
-            const tagResponse = await fetch(tagSearchUrl);
-            if (tagResponse.ok) {
-              const tagHtml = await tagResponse.text();
-              const products = this.parseProductsFromHtml(tagHtml);
-              console.log('[v0] Tag search returned products:', products.length, 'First product:', products[0]);
-              if (products.length > 0) {
-                console.log('[v0] Found products via tag search:', products.length);
-                this.allSearchResults = products;
-                productsFound = true;
-              }
+            console.log('[v0] Searching by gender tag (all pages, no limit):', tagSearchUrl);
+            const products = await this.fetchAllProductsFromSearch(tagSearchUrl);
+            console.log('[v0] Tag search returned products:', products.length, 'First product:', products[0]);
+            if (products.length > 0) {
+              console.log('[v0] Found products via tag search:', products.length);
+              this.allSearchResults = products;
+              productsFound = true;
             }
           } catch (e) {
             console.log('[v0] Tag search failed:', e);
@@ -3611,10 +3623,43 @@
         }
 
         if (!productsFound) {
-          // Method 1: Try Shopify's predictive search API (most reliable for structured data)
+          // Method 1 (fallback): Shopify's native storefront search - checks product name, vendor, tags and type.
+          // For multi-word queries (like a full brand/product name), Shopify's own relevance ranking can
+          // sometimes drop a product that matches PART of the phrase. We search the full phrase AND each significant keyword,
+          // fetch EVERY page for each, merge everything together, then rank by relevance.
+          try {
+            const keywordQueries = this.getSearchQueryVariants(query);
+            console.log('[v0] Searching full phrase + keywords across all pages:', keywordQueries);
+
+            const resultsPerQuery = await Promise.all(
+              keywordQueries.map(q => this.fetchAllProductsFromSearch(`/search?q=${encodeURIComponent(q)}&type=product`))
+            );
+
+            const merged = [];
+            const seenHandles = new Set();
+            resultsPerQuery.flat().forEach(product => {
+              if (product && product.handle && !seenHandles.has(product.handle)) {
+                seenHandles.add(product.handle);
+                merged.push(product);
+              }
+            });
+
+            if (merged.length > 0) {
+              const ranked = this.rankProductsByRelevance(merged, query);
+              console.log('[v0] Found products via full search + keyword expansion:', ranked.length);
+              this.allSearchResults = ranked;
+              productsFound = true;
+            }
+          } catch (e) {
+            console.log('[v0] Full search failed:', e);
+          }
+        }
+
+        if (!productsFound) {
+          // Method 2: Last-resort fallback only - Shopify's predictive search API is capped at 10 results per type
           try {
             const predictiveUrl = `/search/suggest.json?q=${encodeURIComponent(query)}&resources[type]=product&resources[limit]=20`;
-            console.log('[v0] Trying predictive search:', predictiveUrl);
+            console.log('[v0] Trying predictive search (fallback):', predictiveUrl);
             const predictiveResponse = await fetch(predictiveUrl);
             if (predictiveResponse.ok) {
               const predictiveData = await predictiveResponse.json();
@@ -3630,7 +3675,6 @@
                   predictiveData.resources.results.products.length
                 );
                 this.allSearchResults = predictiveData.resources.results.products.map(p => {
-                  // Handle different data structures from Shopify API
                   const price = p.price
                     ? typeof p.price === 'string'
                       ? parseFloat(p.price.replace(/[^0-9.]/g, '')) * 100
@@ -3648,6 +3692,7 @@
                         : p.compare_at_price
                       : 0,
                     vendor: (p.vendor && p.vendor.trim()) || (p.brand && p.brand.trim()) || 'Brand Name',
+                    description: p.body || p.description || '',
                     featured_image: image,
                     images: p.images || (image ? [image] : []),
                     variants: p.variants || [{ id: p.id, price: price }],
@@ -3662,26 +3707,6 @@
           }
         }
 
-        if (!productsFound) {
-          // Method 2: Fallback to standard search page and parse HTML
-          try {
-            const searchUrl = `/search?q=${encodeURIComponent(query)}&type=product`;
-            console.log('Trying standard search HTML parsing:', searchUrl);
-            const searchResponse = await fetch(searchUrl);
-            if (searchResponse.ok) {
-              const searchHtml = await searchResponse.text();
-              const products = this.parseProductsFromHtml(searchHtml);
-              if (products.length > 0) {
-                console.log('Found products via standard search HTML parsing:', products.length);
-                this.allSearchResults = products;
-                productsFound = true;
-              }
-            }
-          } catch (e) {
-            console.log('Standard search HTML parsing failed:', e);
-          }
-        }
-
         if (productsFound) {
           this.processSearchResults(query);
         } else {
@@ -3692,6 +3717,257 @@
         console.error('Search error:', error);
         this.showNoResults();
       }
+    }
+
+    // Fetches EVERY page of Shopify's native /search results for a given search URL and merges/dedupes them
+    async fetchAllProductsFromSearch(baseUrl) {
+      let allProducts = [];
+      let seenHandles = new Set();
+      let page = 1;
+      const maxPages = 25; // safety cap so this can never loop forever
+      const separator = baseUrl.includes('?') ? '&' : '?';
+
+      while (page <= maxPages) {
+        const pageUrl = `${baseUrl}${separator}page=${page}`;
+        console.log('[v0] Fetching search results page', page, pageUrl);
+
+        let response;
+        try {
+          response = await fetch(pageUrl);
+        } catch (e) {
+          console.log('[v0] Page fetch failed:', page, e);
+          break;
+        }
+        if (!response || !response.ok) break;
+
+        const html = await response.text();
+        const pageProducts = this.parseProductsFromHtml(html);
+
+        if (!pageProducts || pageProducts.length === 0) {
+          break; // no more results on this page - we've reached the end
+        }
+
+        let newCount = 0;
+        pageProducts.forEach(product => {
+          if (product && product.handle && !seenHandles.has(product.handle)) {
+            seenHandles.add(product.handle);
+            allProducts.push(product);
+            newCount++;
+          }
+        });
+
+        // If a page adds nothing new, stop here
+        if (newCount === 0) break;
+
+        page++;
+      }
+
+      console.log('[v0] Total unique products found across all pages:', allProducts.length);
+      return allProducts;
+    }
+
+    async getFullProductCatalog() {
+      if (this.productCatalogCache) return this.productCatalogCache;
+      if (this.productCatalogPromise) return this.productCatalogPromise;
+
+      this.productCatalogPromise = (async () => {
+        let all = [];
+        let page = 1;
+        const maxPages = 40; // safety cap (40 x 250 = 10,000 products)
+
+        while (page <= maxPages) {
+          const url = `/products.json?limit=250&page=${page}`;
+          let response;
+          try {
+            response = await fetch(url);
+          } catch (e) {
+            console.log('[v0] Catalog fetch failed on page', page, e);
+            break;
+          }
+          if (!response || !response.ok) break;
+
+          let data;
+          try {
+            data = await response.json();
+          } catch (e) {
+            break;
+          }
+
+          const products = data && Array.isArray(data.products) ? data.products : [];
+          if (products.length === 0) break;
+
+          all = all.concat(products);
+          if (products.length < 250) break; // last page reached
+          page++;
+        }
+
+        console.log('[v0] Full product catalog loaded:', all.length, 'products');
+        this.productCatalogCache = all;
+        return all;
+      })();
+
+      return this.productCatalogPromise;
+    }
+
+    normalizeSearchText(text) {
+      return (text || '').toString().toLowerCase().replace(/\s+/g, ' ').trim();
+    }
+
+    levenshteinDistance(a, b) {
+      const m = a.length, n = b.length;
+      if (m === 0) return n;
+      if (n === 0) return m;
+      const dp = Array.from({ length: m + 1 }, () => new Array(n + 1).fill(0));
+      for (let i = 0; i <= m; i++) dp[i][0] = i;
+      for (let j = 0; j <= n; j++) dp[0][j] = j;
+      for (let i = 1; i <= m; i++) {
+        for (let j = 1; j <= n; j++) {
+          dp[i][j] = a[i - 1] === b[j - 1]
+            ? dp[i - 1][j - 1]
+            : 1 + Math.min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]);
+        }
+      }
+      return dp[m][n];
+    }
+
+    isCloseMatch(word, haystack) {
+      if (!word || !haystack) return false;
+      if (haystack.includes(word)) return true;
+      if (word.length < 4) return false;
+
+      const maxDistance = word.length > 6 ? 2 : 1;
+      const tokens = haystack.split(/[^a-z0-9]+/i).filter(Boolean);
+      for (const token of tokens) {
+        if (Math.abs(token.length - word.length) > maxDistance) continue;
+        if (this.levenshteinDistance(word, token) <= maxDistance) return true;
+      }
+      return false;
+    }
+
+    mapCatalogProductToSearchResult(p) {
+      const firstVariant = (p.variants && p.variants[0]) || {};
+      const price = firstVariant.price ? Math.round(parseFloat(firstVariant.price) * 100) : 0;
+      const comparePrice = firstVariant.compare_at_price ? Math.round(parseFloat(firstVariant.compare_at_price) * 100) : 0;
+      const images = Array.isArray(p.images) ? p.images.map(img => this.normalizeImageUrl(img.src)).filter(Boolean) : [];
+      const description = (p.body_html || '').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+      const tags = Array.isArray(p.tags) ? p.tags : (typeof p.tags === 'string' && p.tags ? p.tags.split(',').map(t => t.trim()) : []);
+
+      return {
+        id: p.id,
+        title: p.title,
+        handle: p.handle,
+        price_min: price,
+        compare_at_price_min: comparePrice,
+        vendor: p.vendor || 'Brand Name',
+        product_type: p.product_type || '',
+        tags: tags,
+        description: description,
+        featured_image: images[0] || null,
+        images: images,
+        variants: (p.variants || []).map(v => ({
+          id: v.id,
+          price: v.price ? Math.round(parseFloat(v.price) * 100) : 0,
+          compare_at_price: v.compare_at_price ? Math.round(parseFloat(v.compare_at_price) * 100) : 0,
+        }))
+      };
+    }
+
+    async searchFullCatalog(query) {
+      const catalog = await this.getFullProductCatalog();
+      if (!catalog || catalog.length === 0) return [];
+
+      const queryNorm = this.normalizeSearchText(query);
+      const stopWords = new Set(['de', 'by', 'the', 'of', 'and', 'for', 'a', 'an', 'in', 'on', 'to', 'with']);
+      const queryWords = queryNorm.split(' ').filter(w => w.length > 1 && !stopWords.has(w));
+      if (queryWords.length === 0 && queryNorm) queryWords.push(queryNorm);
+
+      const minWordsRequired = queryWords.length <= 1 ? 1 : Math.max(2, Math.ceil(queryWords.length * 0.6));
+      const matches = [];
+
+      catalog.forEach(rawProduct => {
+        const title = this.normalizeSearchText(rawProduct.title);
+        const vendor = this.normalizeSearchText(rawProduct.vendor);
+        const type = this.normalizeSearchText(rawProduct.product_type);
+        const tagsArray = Array.isArray(rawProduct.tags) ? rawProduct.tags : (typeof rawProduct.tags === 'string' && rawProduct.tags ? rawProduct.tags.split(',') : []);
+        const tagsText = this.normalizeSearchText(tagsArray.join(' '));
+        const bodyText = this.normalizeSearchText((rawProduct.body_html || '').replace(/<[^>]*>/g, ' '));
+
+        const haystack = [title, vendor, type, tagsText, bodyText].filter(Boolean).join(' ');
+        if (!haystack) return;
+
+        const exactPhraseMatch = !!(queryNorm && haystack.includes(queryNorm));
+
+        let score = 0;
+        let matchedWordCount = 0;
+
+        if (exactPhraseMatch) {
+          score += 100;
+        }
+        if (queryNorm && title.includes(queryNorm)) {
+          score += 50;
+        }
+
+        queryWords.forEach(word => {
+          if (haystack.includes(word)) {
+            matchedWordCount++;
+            score += 10;
+            if (title.includes(word)) score += 5;
+          } else if (this.isCloseMatch(word, haystack)) {
+            matchedWordCount++;
+            score += 6;
+          }
+        });
+
+        const isMatch = exactPhraseMatch || matchedWordCount >= minWordsRequired;
+
+        if (isMatch) {
+          matches.push({ product: this.mapCatalogProductToSearchResult(rawProduct), score });
+        }
+      });
+
+      matches.sort((a, b) => b.score - a.score);
+      return matches.map(m => m.product);
+    }
+
+    getSearchQueryVariants(query) {
+      const stopWords = new Set(['de', 'by', 'the', 'of', 'and', 'for', 'a', 'an', 'in', 'on', 'to', 'with']);
+      const words = query
+        .toLowerCase()
+        .split(/\s+/)
+        .map(w => w.trim())
+        .filter(w => w.length > 1 && !stopWords.has(w));
+
+      const variants = new Set();
+      variants.add(query);
+      words.forEach(w => variants.add(w));
+
+      return Array.from(variants);
+    }
+
+    rankProductsByRelevance(products, query) {
+      const queryLower = query.toLowerCase().trim();
+      const stopWords = new Set(['de', 'by', 'the', 'of', 'and', 'for', 'a', 'an', 'in', 'on', 'to', 'with']);
+      const queryWords = queryLower.split(/\s+/).filter(w => w.length > 1 && !stopWords.has(w));
+
+      const scored = products.map((product, index) => {
+        const haystack = [product.title, product.vendor, product.description]
+          .filter(Boolean)
+          .join(' ')
+          .toLowerCase();
+
+        let score = 0;
+        if (haystack.includes(queryLower)) score += 100;
+        if (product.title && product.title.toLowerCase().includes(queryLower)) score += 50;
+        queryWords.forEach(word => {
+          if (haystack.includes(word)) score += 10;
+          if (product.title && product.title.toLowerCase().includes(word)) score += 5;
+        });
+
+        return { product, score, index };
+      });
+
+      scored.sort((a, b) => (b.score - a.score) || (a.index - b.index));
+      return scored.map(s => s.product);
     }
 
     processSearchResults(query) {
@@ -4109,6 +4385,10 @@
           if (vendorElement && vendorElement.textContent) {
             vendor = vendorElement.textContent.trim();
           }
+          const descElement = element.querySelector(
+            '.card__information p, .card-information p, .product-card__info p, .product-card__text, .card__caption, .caption, .rte, p'
+          );
+          const description = descElement && descElement.textContent ? descElement.textContent.trim() : '';
           const price = priceElement ? this.extractPriceFromText(priceElement.textContent) : 0;
           const comparePrice = comparePriceElement ? this.extractPriceFromText(comparePriceElement.textContent) : 0;
 
@@ -4152,6 +4432,7 @@
             price_min: price,
             compare_at_price_min: comparePrice,
             vendor: vendor || 'Brand Name',
+            description: description,
             featured_image: images[0] || null,
             images: images,
             variants: variants,

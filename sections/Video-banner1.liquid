@@ -204,10 +204,22 @@
 }
 {% endschema %}
 
+{%- liquid
+  if cart.currency.iso_code == 'GBP' or shop.currency == 'GBP' or shop.domain contains 'scentspired.co.uk'
+    assign default_video_url = 'https://cdn.shopify.com/videos/c/o/v/2fe67c6edaa646b18805a79903b1059c.mp4'
+    assign default_cat1 = 'VIBES'
+    assign default_cat2 = 'OCCASIONS'
+  else
+    assign default_video_url = 'https://cdn.shopify.com/videos/c/o/v/fbfe40c4c4c744f5b13cfbe4d843fe31.mp4'
+    assign default_cat1 = 'ICONS'
+    assign default_cat2 = 'VIBES'
+  endif
+-%}
+
 <div class="scent-video-banner" id="scent-video-banner">
   <div class="video-container">
     <video id="main-video" autoplay muted loop playsinline style="filter: brightness(40%);">
-      <source src="https://cdn.shopify.com/videos/c/o/v/2fe67c6edaa646b18805a79903b1059c.mp4" type="video/mp4">
+      <source src="{{ section.settings.video_url | default: default_video_url }}" type="video/mp4">
     </video>
 
     <div class="scent-content">
@@ -216,8 +228,8 @@
 
         <!-- Added main category headings (Brands and Notes) -->
         <div class="main-headings-container">
-          <p class="main-heading active-main" data-category="brands">VIBES</p>
-          <p class="main-heading" data-category="notes">OCCASIONS</p>
+          <p class="main-heading active-main" data-category="brands">{{ section.settings.category_label_1 | default: default_cat1 }}</p>
+          <p class="main-heading" data-category="notes">{{ section.settings.category_label_2 | default: default_cat2 }}</p>
         </div>
 
         <!-- Brands inner headings -->
@@ -398,6 +410,50 @@
     const shopButtonText = document.getElementById('shopButtonText');
 
     if (!scentSection) return;
+
+    const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '{{ cart.currency.symbol }}' || '$';
+
+    function selectVariantOnCard(productCard, btn) {
+      if (!productCard || !btn) return;
+      const form = productCard.querySelector('.item-form');
+      if (!form) return;
+
+      const idInput = form.querySelector('.variant-id-input');
+      const priceDisplay = productCard.querySelector('[data-price-display]');
+      const compareAtPriceEl = productCard.querySelector('[data-compare-at-price-display]');
+      const priceBadgeEl = productCard.querySelector('[data-price-badge]');
+
+      form.querySelectorAll('.variant-option-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const variantId = btn.getAttribute('data-variant-id');
+      if (idInput) idInput.value = variantId;
+
+      const variantPrice = btn.getAttribute('data-variant-price');
+      const compareAtPrice = btn.getAttribute('data-variant-compare-at-price');
+      const variantPriceRaw = parseInt(btn.getAttribute('data-variant-price-raw'), 10);
+
+      if (priceDisplay && variantPrice) {
+        priceDisplay.textContent = variantPrice;
+      }
+
+      if (compareAtPrice && parseInt(compareAtPrice, 10) > variantPriceRaw) {
+        if (compareAtPriceEl) {
+          compareAtPriceEl.textContent = currSym + (parseInt(compareAtPrice, 10) / 100).toFixed(2);
+          compareAtPriceEl.style.display = 'inline';
+        }
+        if (priceBadgeEl) {
+          priceBadgeEl.style.display = 'inline';
+        }
+      } else {
+        if (compareAtPriceEl) {
+          compareAtPriceEl.style.display = 'none';
+        }
+        if (priceBadgeEl) {
+          priceBadgeEl.style.display = 'none';
+        }
+      }
+    }
 
     let isInView = false;
     let sectionTop = 0;
@@ -580,6 +636,13 @@
               cartBtn.innerText = 'ADD TO CART';
               cartBtn.disabled = false;
               cartBtn.style.pointerEvents = 'auto';
+
+              const activeBtn = productCard.querySelector('.variant-option-btn.active');
+              if (!activeBtn) {
+                selectVariantOnCard(productCard, availableVariants[0]);
+              } else if (activeBtn && activeBtn.classList && activeBtn.classList.contains('disabled')) {
+                selectVariantOnCard(productCard, availableVariants[0]);
+              }
             }
           });
         })
@@ -728,13 +791,7 @@
           cartBtn.style.pointerEvents = 'auto';
 
           if (firstAvailableBtn) {
-            variantBtns.forEach(b => b.classList.remove('active'));
-            firstAvailableBtn.classList.add('active');
-
-            if (idInput) idInput.value = firstAvailableBtn.dataset.variantId;
-            if (priceDisplay && firstAvailableBtn.dataset.variantPrice) {
-              priceDisplay.textContent = firstAvailableBtn.dataset.variantPrice;
-            }
+            selectVariantOnCard(card, firstAvailableBtn);
           }
         }
       });
@@ -767,45 +824,8 @@
             return;
           }
 
-          const form = btn.closest('.item-form');
           const productCard = btn.closest('.product-card');
-
-          const priceDisplay = productCard.querySelector('[data-price-display]');
-          const compareAtPriceEl = productCard.querySelector('[data-compare-at-price-display]');
-          const priceBadgeEl = productCard.querySelector('[data-price-badge]');
-          const idInput = form.querySelector('.variant-id-input');
-
-          form.querySelectorAll('.variant-option-btn').forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-
-          const variantId = btn.getAttribute('data-variant-id');
-          if (idInput) idInput.value = variantId;
-
-          const variantPrice = btn.getAttribute('data-variant-price');
-          const compareAtPrice = btn.getAttribute('data-variant-compare-at-price');
-          const variantPriceRaw = parseInt(btn.getAttribute('data-variant-price-raw'));
-
-          if (priceDisplay && variantPrice) {
-            priceDisplay.textContent = variantPrice;
-          }
-
-          // Update compare_at_price
-          if (compareAtPrice && parseInt(compareAtPrice) > variantPriceRaw) {
-            if (compareAtPriceEl) {
-              compareAtPriceEl.textContent = '$' + (parseInt(compareAtPrice) / 100).toFixed(2);
-              compareAtPriceEl.style.display = 'inline';
-            }
-            if (priceBadgeEl) {
-              priceBadgeEl.style.display = 'inline';
-            }
-          } else {
-            if (compareAtPriceEl) {
-              compareAtPriceEl.style.display = 'none';
-            }
-            if (priceBadgeEl) {
-              priceBadgeEl.style.display = 'none';
-            }
-          }
+          selectVariantOnCard(productCard, btn);
         }
       },
       true
