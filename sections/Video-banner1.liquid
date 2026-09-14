@@ -218,7 +218,7 @@
 
 <div class="scent-video-banner" id="scent-video-banner">
   <div class="video-container">
-    <video id="main-video" autoplay muted loop playsinline style="filter: brightness(40%);">
+    <video id="main-video" preload="metadata" autoplay muted loop playsinline style="filter: brightness(40%);">
       <source src="{{ section.settings.video_url | default: default_video_url }}" type="video/mp4">
     </video>
 
@@ -289,7 +289,94 @@
             <button class="nav-btn next-btn" id="nextBtn">›</button>
           </div>
 
-          <div class="products-display" id="productsDisplay"></div>
+          <div class="products-display" id="productsDisplay">
+            {%- liquid
+              assign initial_col_key = section.settings.brand_collection_3
+              if initial_col_key == blank
+                assign initial_col_key = section.settings.brand_collection_1
+              endif
+              assign initial_col = collections[initial_col_key]
+            -%}
+            {%- if initial_col != blank and initial_col.products.size > 0 -%}
+              {%- for product in initial_col.products limit: 2 -%}
+                {%- liquid
+                  assign gender_tag = 'Unisex'
+                  for tag in product.tags
+                    assign t_down = tag | downcase
+                    if t_down == 'men' or t_down == 'women' or t_down == 'unisex'
+                      assign gender_tag = tag
+                      break
+                    endif
+                  endfor
+                  assign first_var = product.selected_or_first_available_variant | default: product.variants.first
+                  assign has_discount = false
+                  if first_var.compare_at_price > first_var.price
+                    assign has_discount = true
+                  endif
+                -%}
+                <div class="fragrance-item product-card" data-product-id="{{ product.id }}" data-product-index="{{ forloop.index0 }}">
+                  <a href="{{ product.url }}" class="fragrance-image-wrap">
+                    <img
+                      src="{{ product.featured_image | image_url: width: 600 }}"
+                      alt="{{ product.title | escape }}"
+                      class="product-main-image"
+                      width="600"
+                      height="600"
+                      {% if forloop.first %}fetchpriority="high" loading="eager"{% else %}loading="lazy"{% endif %}
+                    >
+                    {%- if product.images.size > 1 -%}
+                      <img
+                        class="product-hover-image"
+                        src="{{ product.images[1] | image_url: width: 600 }}"
+                        alt="{{ product.title | escape }}"
+                        width="600"
+                        height="600"
+                        loading="lazy"
+                      >
+                    {%- endif -%}
+                    <div class="product-badges">
+                      <span class="product-badge badge-{{ gender_tag | downcase }}">{{ gender_tag }}</span>
+                    </div>
+                  </a>
+                  <div class="fragrance-info">
+                    <a href="{{ product.url }}" style="text-decoration: none;">
+                      <h3 class="fragrance-name">{{ product.title }}</h3>
+                    </a>
+                    <p class="fragrance-brand">{{ product.vendor }}</p>
+                    <div class="price-section">
+                      <span class="product-price-display" data-price-display>{{ first_var.price | money }}</span>
+                      <span class="original-price" data-compare-at-price-display style="{% if has_discount %}display: inline;{% else %}display: none;{% endif %}">
+                        {%- if has_discount %}{{ first_var.compare_at_price | money }}{% endif -%}
+                      </span>
+                      <span class="price-badge" data-price-badge style="{% if has_discount %}display: inline;{% else %}display: none;{% endif %}">Sale</span>
+                    </div>
+                    <form class="item-form" method="post" action="/cart/add">
+                      {%- if product.variants.size > 1 -%}
+                        <div class="variant-options">
+                          {%- for variant in product.variants -%}
+                            <button
+                              type="button"
+                              class="variant-option-btn{% if variant.inventory_quantity == 0 %} disabled{% endif %}{% if variant.id == first_var.id %} active{% endif %}"
+                              data-variant-id="{{ variant.id }}"
+                              data-variant-price="{{ variant.price | money }}"
+                              data-variant-price-raw="{{ variant.price }}"
+                              data-variant-compare-at-price="{{ variant.compare_at_price | default: 0 }}"
+                              data-available="{{ variant.available }}"
+                              data-inventory="{{ variant.inventory_quantity }}">
+                              {{ variant.title }}
+                            </button>
+                          {%- endfor -%}
+                        </div>
+                      {%- endif -%}
+                      <input type="hidden" name="id" class="variant-id-input" value="{{ first_var.id }}">
+                      <input type="hidden" name="quantity" value="1">
+                      <button type="submit" class="cart-button" data-product-title="{{ product.title | escape }}">ADD TO CART</button>
+                    </form>
+                  </div>
+                </div>
+              {%- endfor -%}
+            {%- endif -%}
+          </div>
 
           <div class="pagination-dots" id="paginationDots"></div>
 
@@ -809,7 +896,13 @@
       updateVariantAvailability();
     }
 
-    setInterval(updateVariantAvailability, 2000);
+    // Event-driven variant availability updates (replaces aggressive 2s polling)
+    document.addEventListener('cart:updated', updateVariantAvailability);
+    document.addEventListener('visibilitychange', function() {
+      if (document.visibilityState === 'visible') {
+        updateVariantAvailability();
+      }
+    });
 
     // EVENT DELEGATION - Set up once at the document level
     document.addEventListener(

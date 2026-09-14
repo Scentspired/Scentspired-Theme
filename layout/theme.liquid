@@ -61,6 +61,9 @@
     {%- endif -%}
 
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.shopify.com">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://analytics.ahrefs.com">
     <link rel="preload" href="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPEditorialNew-UltralightItalic-BF644b214ff1e9b.woff2?v=1772015053" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPMori-Regular_1.woff2?v=1772014282" as="font" type="font/woff2" crossorigin>
 
@@ -449,25 +452,41 @@
     {% render 'pagefly-app-header' %}
 
     <script>
-      (async function () {
-        // Skip redirect for search engine crawlers so they can index scentspired.co.uk
+      (function () {
+        // Skip immediately on US storefront - already on correct domain
+        if (location.hostname.includes('scentspired.com')) return;
+
+        // Skip redirect for search engine crawlers and audit tools so they can index scentspired.co.uk
         var ua = navigator.userAgent.toLowerCase();
         var isBot =
-          /bot|googlebot|crawler|spider|crawling|bingbot|yandex|baiduspider|duckduckbot|slurp|facebookexternalhit/.test(
+          /bot|googlebot|crawler|spider|crawling|bingbot|yandex|baiduspider|duckduckbot|slurp|facebookexternalhit|lighthouse|chrome-lighthouse/.test(
             ua
           );
         if (isBot) return;
 
-        try {
-          const res = await fetch('https://ipapi.co/json/');
-          const data = await res.json();
+        function runGeoCheck() {
+          fetch('https://ipapi.co/json/')
+            .then(function (res) { return res.json(); })
+            .then(function (data) {
+              if (data && data.country === 'US') {
+                if (!location.hostname.includes('scentspired.com')) {
+                  location.replace('https://scentspired.com' + location.pathname);
+                }
+              }
+            })
+            .catch(function () {});
+        }
 
-          if (data.country === 'US') {
-            if (!location.hostname.includes('scentspired.com')) {
-              location.replace('https://scentspired.com' + location.pathname);
-            }
-          }
-        } catch (e) {}
+        // Run on browser idle after page load so it never impacts FCP, LCP, or TBT
+        if ('requestIdleCallback' in window) {
+          window.addEventListener('load', function () {
+            requestIdleCallback(runGeoCheck, { timeout: 4000 });
+          });
+        } else {
+          window.addEventListener('load', function () {
+            setTimeout(runGeoCheck, 2500);
+          });
+        }
       })();
     </script>
 
@@ -647,36 +666,9 @@
     </script>
     <script>
       (function () {
-        let lastScroll = 0;
-        const header = document.querySelector('.header');
-
-        if (!header) return;
-
-        window.addEventListener('scroll', () => {
-          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-          if (window.innerWidth <= 768) return;
-
-          if (scrollTop > lastScroll && scrollTop > 50) {
-            header.classList.add('scroll-hidden');
-          } else if (scrollTop < lastScroll) {
-            header.classList.remove('scroll-hidden');
-          }
-
-          if (scrollTop <= 0) {
-            header.classList.remove('scroll-hidden');
-          }
-
-          lastScroll = scrollTop;
-        });
-      })();
-    </script>
-    <script>
-      (function () {
         // Wait for DOM ready
         document.addEventListener('DOMContentLoaded', function () {
           // 1) Find header candidates and decide which is main desktop header
-          // Try to find .section-header .header first (common in Dawn-like themes)
           var candidate =
             document.querySelector('.section-header .header') ||
             document.querySelector('.section-header') ||
@@ -684,7 +676,6 @@
           if (!candidate) return;
 
           // Ensure a stable "main-desktop-header" class exists
-          // If candidate is nested (like .section-header .header), we want the topmost header element.
           var mainHeader = candidate.closest('.section-header') || candidate;
           mainHeader.classList.add('main-desktop-header');
 
@@ -695,10 +686,8 @@
           // If mobile nav exists and is inside the header, move it to body so it doesn't get hidden with header
           if (mobileNav) {
             if (mainHeader.contains(mobileNav)) {
-              // move node to body end
               document.body.appendChild(mobileNav);
             }
-            // ensure the mobile nav has the class
             mobileNav.classList.add('mobile-bottom-nav');
           }
 
@@ -712,7 +701,6 @@
           // Debounced rAF-driven scroll handler for smoothness
           function onScroll() {
             if (window.innerWidth <= 768) {
-              // On mobile we don't hide the header — ensure visible
               header.classList.remove('scroll-hidden');
               lastScroll = window.pageYOffset || document.documentElement.scrollTop || 0;
               return;
@@ -721,14 +709,11 @@
             var scrollTop = window.pageYOffset || document.documentElement.scrollTop || 0;
 
             if (scrollTop > lastScroll && scrollTop > 60) {
-              // scrolling down -> hide
               header.classList.add('scroll-hidden');
             } else if (scrollTop < lastScroll) {
-              // scrolling up -> show
               header.classList.remove('scroll-hidden');
             }
 
-            // always show at very top
             if (scrollTop <= 0) {
               header.classList.remove('scroll-hidden');
             }
@@ -748,30 +733,26 @@
             { passive: true }
           );
 
-          // Extra safety: if the header is re-rendered by theme scripts later,
-          // re-apply class and re-append mobile nav (in case DOM was replaced)
-          var observer = new MutationObserver(function (mutations) {
-            mutations.forEach(function (m) {
-              // if header lost the class, re-add it
-              if (!document.querySelector('.main-desktop-header')) {
-                var newCandidate =
-                  document.querySelector('.section-header .header') ||
-                  document.querySelector('.section-header') ||
-                  document.querySelector('.header');
-                if (newCandidate) {
-                  var newMain = newCandidate.closest('.section-header') || newCandidate;
-                  newMain.classList.add('main-desktop-header');
-                  header = document.querySelector('.main-desktop-header');
-                }
+          // Targeted observer on header wrapper only (avoids observing full document subtree)
+          var headerParent = mainHeader.parentElement || document.querySelector('#shopify-section-header') || document.body;
+          var observer = new MutationObserver(function () {
+            if (!document.querySelector('.main-desktop-header')) {
+              var newCandidate =
+                document.querySelector('.section-header .header') ||
+                document.querySelector('.section-header') ||
+                document.querySelector('.header');
+              if (newCandidate) {
+                var newMain = newCandidate.closest('.section-header') || newCandidate;
+                newMain.classList.add('main-desktop-header');
+                header = document.querySelector('.main-desktop-header');
               }
-              if (mobileNav && !document.body.contains(mobileNav)) {
-                // re-append if removed
-                document.body.appendChild(mobileNav);
-              }
-            });
+            }
+            if (mobileNav && !document.body.contains(mobileNav)) {
+              document.body.appendChild(mobileNav);
+            }
           });
 
-          observer.observe(document.body, { childList: true, subtree: true });
+          observer.observe(headerParent, { childList: true, subtree: false });
         }); // DOMContentLoaded
       })();
     </script>

@@ -28,12 +28,12 @@
     storeUrl: {{ shop.permanent_domain | json }}
   };
 
-  // Initialize Sentry SDK on load
+  // Initialize Sentry SDK on load (traces disabled for maximum main-thread speed)
   if (window.Sentry && window.Sentry.onLoad) {
     window.Sentry.onLoad(function() {
       window.Sentry.init({
         dsn: "https://314455254b3e53ad0250625ccba3fd29@o4511982699806720.ingest.us.sentry.io/4511982711275520",
-        tracesSampleRate: 1.0,
+        tracesSampleRate: 0,
         ignoreErrors: [
           'Failed to fetch dynamically imported module',
           'Importing a module script failed',
@@ -79,6 +79,23 @@
         cartItemCount: {{ cart.item_count | default: 0 }},
         currency: {{ cart.currency.iso_code | default: 'USD' | json }}
       });
+    });
+
+    // Lazy load Sentry on browser idle so it never impacts FCP, LCP or TBT
+    window.addEventListener('load', function() {
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(function() {
+          if (window.Sentry && typeof window.Sentry.forceLoad === 'function') {
+            window.Sentry.forceLoad();
+          }
+        }, { timeout: 4000 });
+      } else {
+        setTimeout(function() {
+          if (window.Sentry && typeof window.Sentry.forceLoad === 'function') {
+            window.Sentry.forceLoad();
+          }
+        }, 3000);
+      }
     });
   }
 
