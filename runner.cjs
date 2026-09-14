@@ -193,6 +193,12 @@ const CORE_LAYERS = [
     optional: true,
     failMsg: "Shopify Theme Check detected critical syntax or schema errors",
   },
+  {
+    name: "Layer 13: CSS AST & Syntax Integrity Linter",
+    cmd: "node",
+    args: [path.join(TESTS_DIR, "static", "css-syntax-validator.cjs")],
+    failMsg: "CSS syntax, brace balance, or illegal comment errors detected",
+  },
 ];
 
 let totalPassed = 0;
