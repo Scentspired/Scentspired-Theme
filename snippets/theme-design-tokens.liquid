@@ -1,0 +1,83 @@
+{% comment %}
+  ============================================================================
+  SCENTSPIRED THEME — MASTER DESIGN TOKEN SYSTEM (SINGLE SOURCE OF TRUTH)
+  ============================================================================
+  Authoritative, production-grade design tokens for Scentspired Global Stores.
+  Eliminates hardcoded style fragmentation across sections and snippets.
+  ZERO VISUAL CHANGE • ZERO FUNCTIONAL REGRESSION
+  ============================================================================
+{% endcomment %}
+<style id="scentspired-design-tokens">
+  :root {
+    /* ── 1. TYPOGRAPHY: SOURCE OF TRUTH ──────────────────────────────────── */
+    --font-family-primary: 'PPMori Regular', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-family-primary-semibold: 'PP Mori', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-family-primary-light: 'PPMori Extralight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-family-heading: 'PPEditorialNew Italic', Georgia, serif;
+    --font-family-heading-light: 'PPEditorialNew Ultralight Italic', Georgia, serif;
+
+    --font-weight-light: 200;
+    --font-weight-regular: 400;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --font-weight-heading: 900;
+
+    /* ── 2. COLORS: BRAND ACCENTS & PALETTE ──────────────────────────────── */
+    --color-brand-primary: #f4ff41;
+    --color-brand-primary-hover: #cbdd00;
+    --color-brand-primary-alt: #efff31;
+    --color-brand-gold: #b39152;
+
+    /* Text & Neutral Tones */
+    --color-text-primary: #000000;
+    --color-text-dark: #111111;
+    --color-text-secondary: #333333;
+    --color-text-muted: #666666;
+    --color-text-subdued: #999999;
+    --color-text-white: #ffffff;
+
+    /* Surfaces & Backgrounds */
+    --color-bg-white: #ffffff;
+    --color-bg-light: #f8f9fa;
+    --color-bg-neutral: #f3f3f3;
+    --color-bg-cream: #f9f6f1;
+    --color-bg-dark: #000000;
+
+    /* Borders & Dividers */
+    --color-border-light: #e0e0e0;
+    --color-border-subdued: #dddddd;
+    --color-border-dark: #000000;
+
+    /* Badges & Feedback */
+    --color-badge-sale: #e67e5b;
+
+    /* ── 3. LAYOUT & CONTAINERS ─────────────────────────────────────────── */
+    --container-page-width: 1200px;
+    --container-wide: 1400px;
+    --container-editorial: 680px;
+
+    /* ── 4. BORDER RADII HIERARCHY ──────────────────────────────────────── */
+    --radius-circle: 50%;
+    --radius-pill: 999px;
+    --radius-card: 12px;
+    --radius-card-sm: 8px;
+    --radius-control: 4px;
+    --radius-badge: 2px;
+
+    /* ── 5. TRANSITIONS & TIMING ────────────────────────────────────────── */
+    --transition-fast: 0.2s ease;
+    --transition-base: 0.3s ease;
+    --transition-slow: 0.4s ease;
+
+    /* ── 6. Z-INDEX STACKING ARCHITECTURE ───────────────────────────────── */
+    --z-base: 1;
+    --z-elevated: 2;
+    --z-badge: 10;
+    --z-header: 100;
+    --z-header-sticky: 101;
+    --z-overlay: 999;
+    --z-drawer: 1000;
+    --z-modal: 9999;
+    --z-toast: 10000;
+  }
+</style>

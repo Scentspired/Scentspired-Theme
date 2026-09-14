@@ -3,17 +3,12 @@
 {% endcomment %}
 
 <style>
-    @font-face {
-      font-family: 'PP Mori';
-      src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPMori-Regular.otf?v=1751621372') format('opentype');
-      font-weight: 400;
-      font-style: normal;
-    }
+    /* Typography inherited from theme design tokens (layout/theme.liquid) */
 
     .dual-slider-wrapper {
       max-width: 2100px;
       width: 100%;
-      margin: 0 auto:
+      margin: 0 auto;
       padding: 40px 0px;
       box-sizing: border-box;
       text-align: center;
@@ -41,7 +36,7 @@
     }
 
     .slider-caption {
-      font-family: 'PP Mori', sans-serif;
+      font-family: var(--font-family-primary);
       font-weight: 400;
       font-size: 17px;
       max-width: 900px;

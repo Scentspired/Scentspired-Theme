@@ -19,13 +19,7 @@
 </div>
 
 <style>
-  @font-face {
-    font-family: 'PPMori Regular';
-    src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPMori-Regular.otf?v=1751621372')
-      format('opentype');
-    font-weight: 400;
-    font-style: normal;
-  }
+  /* Typography inherited from theme design tokens (layout/theme.liquid) */
   /* ================================
    HIDE VARIANTS UNTIL HOVER
 ================================ */
@@ -64,7 +58,7 @@
     border-radius: 20px;
     cursor: pointer;
     font-size: 12px;
-    font-family: 'PPMori Regular', sans-serif;
+    font-family: var(--font-family-primary);
     transition: all 0.3s ease;
   }
 

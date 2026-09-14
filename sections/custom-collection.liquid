@@ -3,21 +3,7 @@
 {% endcomment %}
 
 <style>
-  @font-face {
-    font-family: 'PPEditorialNew Italic';
-    src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPEditorialNew-Italic-BF644b214fb0c0a.otf?v=1751620955')
-      format('opentype');
-    font-weight: 900;
-    font-style: italic;
-  }
-
-  @font-face {
-    font-family: 'PPMori Regular';
-    src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPMori-Regular.otf?v=1751621372')
-      format('opentype');
-    font-weight: 400;
-    font-style: normal;
-  }
+  /* Typography inherited from theme design tokens (layout/theme.liquid) */
 
   .collection-browse-section {
     width: 100vw;
@@ -26,7 +12,7 @@
   }
 
   .section-heading {
-    font-family: 'PPEditorialNew Italic', serif;
+    font-family: var(--font-family-heading);
     font-weight: 900;
     font-style: italic;
     font-size: 37px !important;
@@ -90,7 +76,7 @@
   }
 
   .collection-title {
-    font-family: 'PPEditorialNew Italic', serif;
+    font-family: var(--font-family-heading);
     font-weight: 900;
     font-style: italic;
     font-size: 32px;
@@ -109,7 +95,7 @@
   }
 
   .collection-description {
-    font-family: 'PPMori Regular', sans-serif;
+    font-family: var(--font-family-primary);
     font-weight: 500;
     font-size: 16px;
     color: #000;
@@ -122,7 +108,7 @@
     color: #000;
     border: none;
     padding: 18px 40px;
-    font-family: 'PPMori Regular', sans-serif;
+    font-family: var(--font-family-primary);
     font-weight: 400;
     font-size: 14px;
     text-transform: uppercase;

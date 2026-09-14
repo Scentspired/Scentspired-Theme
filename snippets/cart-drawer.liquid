@@ -87,10 +87,10 @@
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
-    z-index: 9999;
+    z-index: var(--z-modal, 9999);
     display: none;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity var(--transition-base, 0.3s ease);
   }
 
   .sp-cart-overlay.sp-active {
@@ -106,11 +106,11 @@
     max-width: 400px;
     height: 100%;
     background: white;
-    z-index: 10000;
+    z-index: var(--z-toast, 10000);
     transform: translateX(100%);
-    transition: transform 0.3s ease;
+    transition: transform var(--transition-base, 0.3s ease);
     overflow-y: auto;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: var(--font-family-primary);
     display: none;
   }
 

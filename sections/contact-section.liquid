@@ -3,31 +3,17 @@
   It includes a sidebar for navigation and dynamic content blocks.
 {% endcomment %}
 <style>
-  /* Custom Fonts */
-  @font-face {
-    font-family: 'PPMori Regular';
-    src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPMori-Regular.otf?v=1751621372')
-      format('opentype');
-    font-weight: 400;
-    font-style: normal;
-  }
-  @font-face {
-    font-family: 'PPEditorialNew Italic';
-    src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPEditorialNew-Italic-BF644b214fb0c0a.otf?v=1751620955')
-      format('opentype');
-    font-weight: 900;
-    font-style: italic;
-  }
+  /* Typography inherited from theme design tokens (layout/theme.liquid) */
   /* Base Styles */
   .faq-section {
-    font-family: 'PPMori Regular', sans-serif;
+    font-family: var(--font-family-primary);
     background-color: #fff;
     padding: 40px 0;
     margin-top: 100px;
     margin-bottom: 0px;
   }
   .contact-main-heading {
-    font-family: 'PPEditorialNew Italic', serif;
+    font-family: var(--font-family-heading);
     font-size: 42px;
     font-weight: 400;
     margin-bottom: 30px;
@@ -36,7 +22,7 @@
     letter-spacing: 0;
   }
   .contact-description {
-    font-family: 'PPMori Regular', sans-serif;
+    font-family: var(--font-family-primary);
     font-size: 16px;
     line-height: 1.6;
     color: #333;
@@ -67,7 +53,7 @@
     padding: 15px;
     border: none;
     background-color: #f4f4f4;
-    font-family: 'PPMori Regular', sans-serif;
+    font-family: var(--font-family-primary);
     font-size: 14px;
     color: #333;
     border-radius: 0;
@@ -83,7 +69,7 @@
   .contact-submit-btn {
     background-color: #f4ff41;
     color: #000;
-    font-family: 'PPMORI REGULAR';
+    font-family: var(--font-family-primary);
     border: none;
     padding: 12px 150px;
     font-size: 14px;
@@ -118,7 +104,7 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     color: #333;
-    font-family: 'PPEditorialNew Italic', serif;
+    font-family: var(--font-family-heading);
     flex-shrink: 0;
   }
   .faq-title-line {
@@ -161,7 +147,7 @@
     display: block;
     padding: 4px 8px;
     border-radius: 4px;
-    font-family: 'PPMori Regular', sans-serif;
+    font-family: var(--font-family-primary);
   }
   .faq-sidebar a:hover {
     color: #000;
@@ -187,13 +173,13 @@
     text-transform: uppercase;
     letter-spacing: 0.5px;
     color: #333;
-    font-family: 'PPMori Regular', sans-serif;
+    font-family: var(--font-family-primary);
   }
   .privacy-policy-content {
     font-size: 14px;
     line-height: 1.5;
     color: #000;
-    font-family: 'PPMori Regular', sans-serif;
+    font-family: var(--font-family-primary);
   }
   .privacy-policy-content p {
     margin-bottom: 1em;

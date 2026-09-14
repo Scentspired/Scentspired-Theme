@@ -3,13 +3,7 @@
   --alpha-button-border: 1;
   --alpha-link: 0.85;
   --alpha-badge-border: 0.1;
-  --focused-base-outline: 0.2rem solid rgba<a href= "/cart" class=
-    "header__icon header__icon--cart link focus-inset" id= "cart-icon-bubble" > <span class=
-    "svg-wrapper" ><svg xmlns= "http://www.w3.org/2000/svg" fill= "none" class=
-    "icon icon-cart-empty" viewBox= "0 0 40 40" ><path fill= "currentColor" fill-rule= "evenodd" d=
-    "M15.75 11.8h-3.16l-.77 11.6a5 5 0 0 0 4.99 5.34h7.38a5 5 0 0 0 4.99-5.33L28.4 11.8zm0 1h-2.22l-.71 10.67a4 4 0 0 0 3.99 4.27h7.38a4 4 0 0 0 4-4.27l-.72-10.67h-2.22v.63a4.75 4.75 0 1 1-9.5 0zm8.5 0h-7.5v.63a3.75 3.75 0 1 0 7.5 0z"
-    ></path></svg> </span> <span class= "visually-hidden"
-    >Cart</span></a>(var(--color-foreground), 0.5);
+  --focused-base-outline: 0.2rem solid rgba(var(--color-foreground), 0.5);
   --focused-base-outline-offset: 0.3rem;
   --focused-base-box-shadow:
     0 0 0 0.3rem rgb(var(--color-background)), 0 0 0.5rem 0.4rem rgba(var(--color-foreground), 0.3);

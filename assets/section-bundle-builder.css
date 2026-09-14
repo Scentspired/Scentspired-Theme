@@ -10,12 +10,12 @@
  */
 
 :root {
-  --perfume-gold: #b39152;
-  --perfume-dark: #000;
+  --perfume-gold: var(--color-brand-gold, #b39152);
+  --perfume-dark: var(--color-text-primary, #000000);
   --perfume-gray: #f2f2f2;
   --sidebar-bg: #f5f0e6;
   --border-dashed: #a8a095;
-  --font-primary: "Montserrat", sans-serif;
+  --font-primary: var(--font-family-primary);
 }
 
 .perfume-bundle-section {

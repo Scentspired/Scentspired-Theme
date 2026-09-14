@@ -359,6 +359,8 @@
       }
     {% endstyle %}
 
+    {% render 'theme-design-tokens' %}
+
     {{ "base.css" | asset_url | stylesheet_tag }}
     {%- if template contains 'article' or template contains 'blog' -%}
       {{ "blog--typography.css" | asset_url | stylesheet_tag }}

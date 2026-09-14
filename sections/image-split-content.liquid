@@ -48,20 +48,7 @@
 </section>
 
 <style>
-  /* Custom Font Faces */
-  @font-face {
-    font-family: 'PPMori Regular';
-    src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPMori-Regular.otf?v=1751621372') format('opentype');
-    font-weight: 400;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: 'PPEditorialNew Italic';
-    src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPEditorialNew-Italic-BF644b214fb0c0a.otf?v=1751620955') format('opentype');
-    font-weight: 900;
-    font-style: italic;
-  }
+  /* Typography inherited from theme design tokens (layout/theme.liquid) */
 
   .image-content-split {
     width: 99vw;
@@ -112,7 +99,7 @@
     justify-content: center;
     color: #999;
     font-size: 18px;
-    font-family: 'PPMori Regular', Arial, sans-serif;
+    font-family: var(--font-family-primary);
   }
 
   .content-section {
@@ -144,7 +131,7 @@
   }
 
   .eyebrow-text {
-    font-family: 'PPMori Regular', Arial, sans-serif;
+    font-family: var(--font-family-primary);
     font-size: 12px;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -154,7 +141,7 @@
   }
 
   .main-heading {
-    font-family: 'PPEditorialNew Italic', Georgia, serif;
+    font-family: var(--font-family-heading);
     font-size: 48px;
     font-weight: 900;
     font-style: italic;
@@ -168,7 +155,7 @@
     text-underline-offset: 2px;
   }
   .description {
-    font-family: 'PPMori Regular', Arial, sans-serif;
+    font-family: var(--font-family-primary);
     font-size: 16px;
     line-height: 1.6;
     color: {{ section.settings.text_color | default: '#666' }};
@@ -185,7 +172,7 @@
   }
 
   .cta-button {
-    font-family: 'PPMori Regular', Arial, sans-serif;
+    font-family: var(--font-family-primary);
     display: inline-block;
     padding: 15px 35px;
     border: none;
