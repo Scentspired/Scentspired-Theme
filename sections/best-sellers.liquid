@@ -352,8 +352,11 @@
           <div class="bs-featured-image">
             <img
               src="{{ section.settings.featured_image | image_url: width: 1200 }}"
-              alt="{{ section.settings.featured_image.alt }}"
-              loading="lazy">
+              alt="{{ section.settings.featured_image.alt | default: 'Best Sellers' | escape }}"
+              loading="lazy"
+              decoding="async"
+              width="1200"
+              height="{{ 1200 | divided_by: section.settings.featured_image.aspect_ratio | default: 900 | round }}">
           </div>
         {% endif %}
       </div>

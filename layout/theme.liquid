@@ -60,6 +60,10 @@
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
     {%- endif -%}
 
+    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+    <link rel="preload" href="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPEditorialNew-UltralightItalic-BF644b214ff1e9b.woff2?v=1772015053" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPMori-Regular_1.woff2?v=1772014282" as="font" type="font/woff2" crossorigin>
+
     {%- unless settings.type_header_font.system? and settings.type_body_font.system? -%}
       <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
     {%- endunless -%}

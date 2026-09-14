@@ -32,7 +32,11 @@
                 <img
                   class="ps-gallery-media"
                   src="{{ media | image_url: width: 1000 }}"
-                  alt="{{ media.alt }}"
+                  alt="{{ media.alt | default: product.title | escape }}"
+                  loading="eager"
+                  fetchpriority="high"
+                  width="1000"
+                  height="{{ 1000 | divided_by: media.aspect_ratio | default: 1000 | round }}"
                   data-full="{{ media | image_url: width: 2000 }}">
               {% endif %}
             </div>
@@ -46,7 +50,11 @@
                 <img
                   class="ps-gallery-media"
                   src="{{ media | image_url: width: 500 }}"
-                  alt="{{ media.alt }}"
+                  alt="{{ media.alt | default: product.title | escape }}"
+                  loading="lazy"
+                  decoding="async"
+                  width="500"
+                  height="{{ 500 | divided_by: media.aspect_ratio | default: 500 | round }}"
                   data-full="{{ media | image_url: width: 2000 }}">
               {% endif %}
             </div>

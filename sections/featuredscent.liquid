@@ -430,12 +430,22 @@
           <!-- Image with secondary image on hover -->
           <a href="{{ product.url }}" style="text-decoration: none; color: inherit;">
             <div class="fragrance-image-wrap">
-              <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title }}">
+              <img
+                src="{{ product.featured_image | image_url: width: 600 }}"
+                alt="{{ product.title }}"
+                loading="lazy"
+                decoding="async"
+                width="600"
+                height="{{ 600 | divided_by: product.featured_image.aspect_ratio | default: 600 | round }}">
               {% if product.images.size > 1 %}
                 <img
                   class="secondary-image"
                   src="{{ product.images[1] | image_url: width: 600 }}"
-                  alt="{{ product.title }}">
+                  alt="{{ product.title }}"
+                  loading="lazy"
+                  decoding="async"
+                  width="600"
+                  height="{{ 600 | divided_by: product.images[1].aspect_ratio | default: 600 | round }}">
               {% endif %}
               <div class="product-badges">
                 {% for tag in product.tags %}
