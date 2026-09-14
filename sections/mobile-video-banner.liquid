@@ -765,6 +765,27 @@
     .mvps-dot:hover {
       background: rgba(255, 255, 255, 0.6);
     }
+
+    .price-badge {
+      background-color: #d90429;
+      color: #ffffff !important;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-left: 8px;
+      font-family: var(--font-family-primary);
+      text-transform: uppercase;
+      display: inline-block;
+    }
+
+    .variant-option-btn.disabled {
+      opacity: 0.7 !important;
+      color: #444444 !important;
+      background: #eeeeee !important;
+      border-color: #cccccc !important;
+      cursor: not-allowed !important;
+    }
   </style>
 
   <script>
@@ -1019,7 +1040,7 @@
       }
 
       // --- Lazy-load and play background video on scroll ---
-      const mvpsVideo = sectionEl ? sectionEl.querySelector('.mvps-video') : null;
+      const mvpsVideo = section ? section.querySelector('.mvps-video') : null;
       if (mvpsVideo) {
         const loadAndPlayMvps = () => {
           const srcEl = mvpsVideo.querySelector('source');

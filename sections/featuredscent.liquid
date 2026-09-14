@@ -592,8 +592,8 @@
     }
 
     updateVariantAvailability();
-
-    setInterval(updateVariantAvailability, 1000);
+    document.addEventListener('cart:updated', updateVariantAvailability);
+    document.addEventListener('cart:change', updateVariantAvailability);
 
     // Handle variant selection - using Shopify backend inventory only
     document.querySelectorAll('.fragrance-container .fragrance-item').forEach(card => {

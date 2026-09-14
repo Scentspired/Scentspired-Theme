@@ -2653,8 +2653,8 @@
     <!-- Mobile Menu Drawer - HARDCODED MENU STRUCTURE -->
     <div class="mobile-menu-drawer" id="mobileMenuDrawer">
       <div class="mobile-menu-header">
-        <h3 style="margin: 0; font-family: var(--font-family-primary);">Menu</h3>
-        <button class="mobile-menu-close" id="mobileMenuClose">
+        <h2 class="mobile-menu-title" style="margin: 0; font-family: var(--font-family-primary); font-size: 1.8rem;">Menu</h2>
+        <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close menu">
           <svg viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor">
             <line x1="18" y1="6" x2="6" y2="18"></line>
             <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -2666,7 +2666,7 @@
         <div class="mobile-menu-item-wrapper">
           <div class="mobile-menu-item-header">
             <a href="/collections/shop" class="mobile-menu-item">SHOP</a>
-            <button class="mobile-menu-toggle" onclick="toggleMobileSubmenu(this)">
+            <button class="mobile-menu-toggle" onclick="toggleMobileSubmenu(this)" aria-label="Toggle submenu">
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
@@ -2801,7 +2801,7 @@
         <div class="mobile-menu-item-wrapper">
           <div class="mobile-menu-item-header">
             <a href="#" class="mobile-menu-item">BUNDLES</a>
-            <button class="mobile-menu-toggle" onclick="toggleMobileSubmenu(this)">
+            <button class="mobile-menu-toggle" onclick="toggleMobileSubmenu(this)" aria-label="Toggle submenu">
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
@@ -5356,7 +5356,6 @@
 
   overrideAllSearchTriggers();
   document.addEventListener('DOMContentLoaded', overrideAllSearchTriggers);
-  setInterval(overrideAllSearchTriggers, 1000);
 
   window.toggleMobileSubmenu = function (button) {
     if (!button) return false;

@@ -61,8 +61,10 @@
     }
 
     .running-text-content img {
-      width: 20px;
+      width: auto;
       height: 20px;
+      aspect-ratio: auto;
+      object-fit: contain;
       margin: 0 20px;
     }
   }
@@ -70,6 +72,8 @@
 
 <div class="running-text-wrapper">
   <div class="running-text-track">
+    {%- assign icon_w = section.settings.icon_image.width | default: 52 -%}
+    {%- assign icon_h = section.settings.icon_image.height | default: 54 -%}
     {% for i in (1..2) %}
       <div class="running-text-content">
         <span class="marquee-spacer"></span>
@@ -77,31 +81,37 @@
         {% if section.settings.icon_image != blank %}
           <img
             src="{{ section.settings.icon_image | image_url: width: 60 }}"
-            alt="icon"
+            alt=""
+            aria-hidden="true"
             loading="lazy"
             decoding="async"
-            width="60"
-            height="60" />
+            width="{{ icon_w }}"
+            height="{{ icon_h }}"
+            style="aspect-ratio: {{ icon_w }} / {{ icon_h }}; object-fit: contain;" />
         {% endif %}
         <span>{{ section.settings.text_center }}</span>
         {% if section.settings.icon_image != blank %}
           <img
             src="{{ section.settings.icon_image | image_url: width: 60 }}"
-            alt="icon"
+            alt=""
+            aria-hidden="true"
             loading="lazy"
             decoding="async"
-            width="60"
-            height="60" />
+            width="{{ icon_w }}"
+            height="{{ icon_h }}"
+            style="aspect-ratio: {{ icon_w }} / {{ icon_h }}; object-fit: contain;" />
         {% endif %}
         <span>{{ section.settings.text_right }}</span>
         {% if section.settings.icon_image != blank %}
           <img
             src="{{ section.settings.icon_image | image_url: width: 60 }}"
-            alt="icon"
+            alt=""
+            aria-hidden="true"
             loading="lazy"
             decoding="async"
-            width="60"
-            height="60" />
+            width="{{ icon_w }}"
+            height="{{ icon_h }}"
+            style="aspect-ratio: {{ icon_w }} / {{ icon_h }}; object-fit: contain;" />
         {% endif %}
       </div>
     {% endfor %}

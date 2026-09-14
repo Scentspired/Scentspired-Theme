@@ -67,9 +67,7 @@
     <link rel="preload" href="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPEditorialNew-UltralightItalic-BF644b214ff1e9b.woff2?v=1772015053" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPMori-Regular_1.woff2?v=1772014282" as="font" type="font/woff2" crossorigin>
 
-    {%- unless settings.type_header_font.system? and settings.type_body_font.system? -%}
-      <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
-    {%- endunless -%}
+
 
     {%- liquid
       assign store_domain = shop.domain
@@ -371,11 +369,18 @@
     <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
 
     {%- if settings.cart_type == "drawer" -%}
-      {{ "component-cart-drawer.css" | asset_url | stylesheet_tag }}
-      {{ "component-cart.css" | asset_url | stylesheet_tag }}
-      {{ "component-totals.css" | asset_url | stylesheet_tag }}
-      {{ "component-price.css" | asset_url | stylesheet_tag }}
-      {{ "component-discounts.css" | asset_url | stylesheet_tag }}
+      <link rel="stylesheet" href="{{ 'component-cart-drawer.css' | asset_url }}" media="print" onload="this.media='all'">
+      <link rel="stylesheet" href="{{ 'component-cart.css' | asset_url }}" media="print" onload="this.media='all'">
+      <link rel="stylesheet" href="{{ 'component-totals.css' | asset_url }}" media="print" onload="this.media='all'">
+      <link rel="stylesheet" href="{{ 'component-price.css' | asset_url }}" media="print" onload="this.media='all'">
+      <link rel="stylesheet" href="{{ 'component-discounts.css' | asset_url }}" media="print" onload="this.media='all'">
+      <noscript>
+        {{ "component-cart-drawer.css" | asset_url | stylesheet_tag }}
+        {{ "component-cart.css" | asset_url | stylesheet_tag }}
+        {{ "component-totals.css" | asset_url | stylesheet_tag }}
+        {{ "component-price.css" | asset_url | stylesheet_tag }}
+        {{ "component-discounts.css" | asset_url | stylesheet_tag }}
+      </noscript>
     {%- endif -%}
 
     {%- unless settings.type_body_font.system? -%}
@@ -495,7 +500,6 @@
     <meta name="google-site-verification" content="google2d3d4ccd9457489c.html" />
 
     <!-- Google Analytics GA4 UK -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7G717SKL2C"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
@@ -503,6 +507,33 @@
       }
       gtag('js', new Date());
       gtag('config', 'G-7G717SKL2C');
+
+      (function() {
+        var gtmLoaded = false;
+        function loadGtm() {
+          if (gtmLoaded) return;
+          gtmLoaded = true;
+          ['scroll', 'touchstart', 'click', 'keydown'].forEach(function(e) {
+            window.removeEventListener(e, loadGtm);
+          });
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=G-7G717SKL2C';
+          document.head.appendChild(s);
+        }
+        if ('requestIdleCallback' in window) {
+          window.addEventListener('load', function() {
+            requestIdleCallback(loadGtm, { timeout: 4000 });
+          });
+        } else {
+          window.addEventListener('load', function() {
+            setTimeout(loadGtm, 2500);
+          });
+        }
+        ['scroll', 'touchstart', 'click'].forEach(function(e) {
+          window.addEventListener(e, loadGtm, { once: true, passive: true });
+        });
+      })();
     </script>
     {% render 'schema--orchestrator' %}
 
@@ -539,7 +570,29 @@
       </script>
     {% endif %}
 
-    <script src="https://analytics.ahrefs.com/analytics.js" data-key="VwQqpLi0JY7J65Y0OLlFfw" async></script>
+    <script>
+      (function() {
+        var ahrefsLoaded = false;
+        function loadAhrefs() {
+          if (ahrefsLoaded) return;
+          ahrefsLoaded = true;
+          var s = document.createElement('script');
+          s.src = 'https://analytics.ahrefs.com/analytics.js';
+          s.setAttribute('data-key', 'VwQqpLi0JY7J65Y0OLlFfw');
+          s.async = true;
+          document.head.appendChild(s);
+        }
+        if ('requestIdleCallback' in window) {
+          window.addEventListener('load', function() {
+            requestIdleCallback(loadAhrefs, { timeout: 5000 });
+          });
+        } else {
+          window.addEventListener('load', function() {
+            setTimeout(loadAhrefs, 3000);
+          });
+        }
+      })();
+    </script>
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %} {% if request.page_type == 'index' %}homepage{% else %}innerpage{% endif %}">

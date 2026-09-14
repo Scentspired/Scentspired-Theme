@@ -340,8 +340,9 @@
             <a
               href="{{ section.settings.view_all_link }}"
               class="view-all-button"
+              aria-label="View all bestsellers"
               style="display: inline-block; padding: 16px 80px; background: #f4ff41; border-radius: 999px; text-decoration: none; color: #000; font-family: var(--font-family-primary); font-weight: 500; text-transform: uppercase;">
-              View All Products
+              View All Bestsellers
             </a>
           </div>
         {% endif %}
@@ -418,7 +419,8 @@ document.addEventListener('DOMContentLoaded', function () {
   if (totalPagesEl) totalPagesEl.textContent = totalPages;
 
   updateVariantAvailability();
-  setInterval(updateVariantAvailability, 2000);
+  document.addEventListener('cart:updated', updateVariantAvailability);
+  document.addEventListener('cart:change', updateVariantAvailability);
 
   // Handle window resize for mobile / desktop
   window.addEventListener('resize', function () {
