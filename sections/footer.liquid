@@ -1,7 +1,9 @@
 {%- liquid
   if cart.currency.iso_code == 'GBP' or shop.currency == 'GBP' or shop.domain contains 'scentspired.co.uk'
+    assign is_uk = true
     assign footer_home_url = 'https://scentspired.co.uk'
   else
+    assign is_uk = false
     assign footer_home_url = 'https://scentspired.com'
   endif
 -%}
@@ -12,7 +14,9 @@
       <div class="footer-column footer-brand">
         <p class="brand-description">{{ section.settings.brand_description }}</p>
         <h3 class="brand-tagline">{{ section.settings.brand_tagline }}</h3>
-        <div id="trustpilot-desktop-slot"></div>
+        {%- unless is_uk -%}
+          <div id="trustpilot-desktop-slot"></div>
+        {%- endunless -%}
       </div>
 
       <!-- Social Media Column -->
@@ -158,11 +162,14 @@
       {% endif %}
     </div>
 
-    <!-- Mobile slot for Trustpilot widget, centered below the logo -->
-    <div id="trustpilot-mobile-slot"></div>
+    {%- unless is_uk -%}
+      <!-- Mobile slot for Trustpilot widget, centered below the logo -->
+      <div id="trustpilot-mobile-slot"></div>
+    {%- endunless -%}
   </div>
 </footer>
 
+{%- unless is_uk -%}
 <script>
 (function() {
   function moveTrustpilotWidget() {
@@ -195,6 +202,7 @@
   });
 })();
 </script>
+{%- endunless -%}
 
 <style>
   .custom-footer {
@@ -417,6 +425,22 @@
       margin-left: -97px;
     }
   }
+
+  {%- if is_uk -%}
+    /* Completely remove Trustpilot widget and iframes on UK */
+    #trustpilot-desktop-slot,
+    #trustpilot-mobile-slot,
+    #trustpilot-widget-trustbox-0-wrapper,
+    .trustpilot-widget,
+    .trustpilot-widget-head,
+    iframe[src*="trustpilot"] {
+      display: none !important;
+      visibility: hidden !important;
+      height: 0 !important;
+      width: 0 !important;
+      pointer-events: none !important;
+    }
+  {%- endif -%}
 </style>
 
 {% schema %}

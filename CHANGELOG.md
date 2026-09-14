@@ -326,6 +326,7 @@ The following table documents every CSS diagnostic detected, citing the **exact 
 | **5** | `sections/radical.liquid` | **Line 261** | `@media screen and (min-width: 1500px) and (max-width: 1520px)` block was missing a closing brace `}` before `</style>`. | **Line 263** | Added missing closing brace `}` to properly encapsulate media query. | **0% (Identical)** |
 | **6** | `tests/static/css-syntax-validator.cjs` | **[NEW]** | Absence of an automated CSS AST and syntax validator in Theme Guardian engine. | **Lines 1–180** | Created dedicated CSS AST validator checking brace balance, single-line comment violations, unclosed strings, and uncompiled at-rules across all 282 theme files. | **N/A (Test Engine)** |
 | **7** | `runner.cjs` | **Lines 196–202** | Master test runner lacked a CSS verification layer. | **Lines 196–202** | Integrated `Layer 13: CSS AST & Syntax Integrity Linter` as a mandatory blocking quality gate in the CLI runner. | **N/A (Test Engine)** |
+| **8** | `sections/footer.liquid` | **Lines 15, 161, 166–197, 420** | Trustpilot widget, mobile/desktop DOM slots, and asynchronous relocation JavaScript polling were active on the UK storefront (`scentspired.co.uk` / GBP currency). | **Lines 2–7, 17, 165, 172, 429** | Wrapped desktop slot, mobile slot, and JavaScript polling script in `{%- unless is_uk -%}` guards; added hard UK CSS suppression (`display: none !important`) for all Trustpilot widgets/iframes. | **Removed on UK (Retained for USA)** |
 
 ---
 
@@ -338,7 +339,7 @@ With **Layer 13: CSS AST & Syntax Integrity Linter** now wired into `runner.cjs`
 
 ---
 
-*Changelog timestamped and verified by Scentspired Theme Guardian Engine at `2026-09-14 14:00:00 PKT`.*
+*Changelog timestamped and verified by Scentspired Theme Guardian Engine at `2026-09-14 14:05:00 PKT`.*
 
 
 
