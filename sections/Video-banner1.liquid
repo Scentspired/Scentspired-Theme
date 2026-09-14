@@ -218,8 +218,8 @@
 
 <div class="scent-video-banner" id="scent-video-banner">
   <div class="video-container">
-    <video id="main-video" preload="metadata" autoplay muted loop playsinline style="filter: brightness(40%);">
-      <source src="{{ section.settings.video_url | default: default_video_url }}" type="video/mp4">
+    <video id="main-video" preload="none" muted loop playsinline style="filter: brightness(40%);">
+      <source data-src="{{ section.settings.video_url | default: default_video_url }}" type="video/mp4">
     </video>
 
     <div class="scent-content">
@@ -317,20 +317,20 @@
                 <div class="fragrance-item product-card" data-product-id="{{ product.id }}" data-product-index="{{ forloop.index0 }}">
                   <a href="{{ product.url }}" class="fragrance-image-wrap">
                     <img
-                      src="{{ product.featured_image | image_url: width: 600 }}"
+                      src="{{ product.featured_image | image_url: width: 400 }}"
                       alt="{{ product.title | escape }}"
                       class="product-main-image"
-                      width="600"
-                      height="600"
+                      width="400"
+                      height="400"
                       {% if forloop.first %}fetchpriority="high" loading="eager"{% else %}loading="lazy"{% endif %}
                     >
                     {%- if product.images.size > 1 -%}
                       <img
                         class="product-hover-image"
-                        src="{{ product.images[1] | image_url: width: 600 }}"
+                        src="{{ product.images[1] | image_url: width: 400 }}"
                         alt="{{ product.title | escape }}"
-                        width="600"
-                        height="600"
+                        width="400"
+                        height="400"
                         loading="lazy"
                       >
                     {%- endif -%}
@@ -484,7 +484,28 @@
     const video = document.getElementById('main-video');
     if (video) {
       video.muted = true;
-      video.play().catch(e => console.warn('Autoplay issue:', e));
+      const loadAndPlayVideo = () => {
+        const source = video.querySelector('source');
+        if (source && source.dataset.src && !source.src) {
+          source.src = source.dataset.src;
+          video.load();
+        }
+        video.play().catch(e => console.warn('Autoplay issue:', e));
+      };
+
+      if ('IntersectionObserver' in window) {
+        const obs = new IntersectionObserver((entries, o) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              loadAndPlayVideo();
+              o.unobserve(entry.target);
+            }
+          });
+        }, { rootMargin: '300px 0px' });
+        obs.observe(video);
+      } else {
+        loadAndPlayVideo();
+      }
     }
 
     const scentSection = document.getElementById('scent-video-banner');

@@ -23,13 +23,12 @@
   <div class="mvps-video-wrap" aria-hidden="true">
     <video
       class="mvps-video mvps-desktop mvps-mobile"
-      autoplay
       muted
       loop
       playsinline
-      preload="metadata"
+      preload="none"
       style="filter: brightness(70%);">
-      <source src="https://cdn.shopify.com/videos/c/o/v/2fe67c6edaa646b18805a79903b1059c.mp4" type="video/mp4">
+      <source data-src="https://cdn.shopify.com/videos/c/o/v/2fe67c6edaa646b18805a79903b1059c.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
   </div>
@@ -1017,6 +1016,33 @@
             }
           }
         });
+      }
+
+      // --- Lazy-load and play background video on scroll ---
+      const mvpsVideo = sectionEl ? sectionEl.querySelector('.mvps-video') : null;
+      if (mvpsVideo) {
+        const loadAndPlayMvps = () => {
+          const srcEl = mvpsVideo.querySelector('source');
+          if (srcEl && srcEl.dataset.src && !srcEl.src) {
+            srcEl.src = srcEl.dataset.src;
+            mvpsVideo.load();
+          }
+          mvpsVideo.play().catch(() => {});
+        };
+
+        if ('IntersectionObserver' in window) {
+          const vObs = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                loadAndPlayMvps();
+                obs.unobserve(entry.target);
+              }
+            });
+          }, { rootMargin: '300px 0px' });
+          vObs.observe(sectionEl);
+        } else {
+          loadAndPlayMvps();
+        }
       }
 
       // --- Initialize first layout & dropdown text ---

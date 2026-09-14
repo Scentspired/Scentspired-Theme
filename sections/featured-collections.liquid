@@ -196,13 +196,12 @@
             style="text-decoration: none; color: inherit;">
             {% if block.settings.video_url != blank %}
               <video
-                class="collection-video"
-                src="{{ block.settings.video_url }}"
-                autoplay
+                class="collection-video lazy-video"
+                data-src="{{ block.settings.video_url }}"
                 muted
                 loop
                 playsinline
-                preload="metadata"
+                preload="none"
                 {% if collection.image != blank %}poster="{{ collection.image | image_url: width: 800 }}"{% endif %}></video>
             {% else %}
               <!-- Fallback image if video not added -->
@@ -246,26 +245,61 @@
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const leftBtn = document.getElementById('arrow-left');
-    const rightBtn = document.getElementById('arrow-right');
-    const slider = document.getElementById('collectionSlider');
+  (function () {
+    function initFeaturedCollections() {
+      const leftBtn = document.getElementById('arrow-left');
+      const rightBtn = document.getElementById('arrow-right');
+      const slider = document.getElementById('collectionSlider');
 
-    if (!slider || !leftBtn || !rightBtn) return;
+      if (slider && leftBtn && rightBtn && window.innerWidth >= 768) {
+        const scrollAmount = () => slider.offsetWidth * 0.9;
+        leftBtn.addEventListener('click', () => {
+          slider.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
+        });
+        rightBtn.addEventListener('click', () => {
+          slider.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
+        });
+      }
 
-    // Only enable slider functionality on desktop
-    if (window.innerWidth >= 768) {
-      const scrollAmount = () => slider.offsetWidth * 0.9;
+      // Lazy-load below-the-fold videos
+      const lazyVideos = document.querySelectorAll('.featured-collections-section .lazy-video');
+      if (!lazyVideos.length) return;
 
-      leftBtn.addEventListener('click', () => {
-        slider.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
-      });
+      if ('IntersectionObserver' in window) {
+        const videoObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const video = entry.target;
+              if (video.dataset.src) {
+                video.src = video.dataset.src;
+                video.removeAttribute('data-src');
+                video.load();
+                video.play().catch(() => {});
+              }
+              observer.unobserve(video);
+            }
+          });
+        }, { rootMargin: '300px 0px' });
 
-      rightBtn.addEventListener('click', () => {
-        slider.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
-      });
+        lazyVideos.forEach(v => videoObserver.observe(v));
+      } else {
+        lazyVideos.forEach(v => {
+          if (v.dataset.src) {
+            v.src = v.dataset.src;
+            v.removeAttribute('data-src');
+            video.load();
+            v.play().catch(() => {});
+          }
+        });
+      }
     }
-  });
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initFeaturedCollections);
+    } else {
+      initFeaturedCollections();
+    }
+  })();
 </script>
 
 {% schema %}

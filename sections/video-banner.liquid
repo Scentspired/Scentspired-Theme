@@ -81,7 +81,7 @@
         playsinline
         preload="none"
         class="video-element">
-        <source src="https://cdn.shopify.com/videos/c/o/v/01ece0dcb8c947ec83bd05667497d987.mp4" type="video/mp4">
+        <source data-src="https://cdn.shopify.com/videos/c/o/v/01ece0dcb8c947ec83bd05667497d987.mp4" type="video/mp4">
       </video>
     </div>
   </div>
@@ -107,7 +107,7 @@
         playsinline
         preload="none"
         class="video-element">
-        <source src="https://cdn.shopify.com/videos/c/o/v/01ece0dcb8c947ec83bd05667497d987.mp4" type="video/mp4">
+        <source data-src="https://cdn.shopify.com/videos/c/o/v/01ece0dcb8c947ec83bd05667497d987.mp4" type="video/mp4">
       </video>
     </div>
   </div>
@@ -132,6 +132,8 @@
       <img
         src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Vector%202-C6ze3HVovCJ3KMe0mS0Mr7hUlPTkYh.png"
         alt="Curved Line"
+        loading="lazy"
+        decoding="async"
         class="curve-image">
     </div>
 
@@ -161,51 +163,37 @@
   function initializeVideoBanners() {
     const isMobile = window.innerWidth < 768;
     const videoId = isMobile ? 'main-video-mobile' : 'main-video-desktop';
-    const posterId = isMobile ? 'poster-mobile' : 'poster-desktop';
     const video = document.getElementById(videoId);
-    const poster = document.getElementById(posterId);
 
     if (!video) return;
+
+    // Set source dynamically ONLY for the active viewport video
+    const source = video.querySelector('source');
+    if (source && source.dataset.src && !source.src) {
+      source.src = source.dataset.src;
+      video.load();
+    }
 
     video.muted = true;
 
     // Desktop: Autoplay immediately
     if (!isMobile) {
-      video.preload = 'auto';
-      // Slight delay to ensure poster is visible first
-      setTimeout(() => {
-        video.play().catch(e => {
-          console.warn('[v0] Desktop autoplay skipped');
-        });
-      }, 100);
+      video.play().catch(e => {
+        console.warn('[v0] Desktop autoplay skipped');
+      });
     }
-    // Mobile: Load on first interaction to save bandwidth
+    // Mobile: Load and play on first interaction or scroll
     else {
-      video.preload = 'none';
-
       const playVideoOnInteraction = () => {
-        // Add loading state
-        video.style.opacity = '0';
-        video.preload = 'auto';
-        video.load();
-
-        video.addEventListener(
-          'canplay',
-          () => {
-            video.style.opacity = '1';
-            video.play().catch(e => {
-              console.warn('[v0] Mobile play failed');
-            });
-          },
-          { once: true }
-        );
-
+        video.play().catch(e => {
+          console.warn('[v0] Mobile play failed');
+        });
         document.removeEventListener('click', playVideoOnInteraction);
         document.removeEventListener('touchstart', playVideoOnInteraction);
       };
 
-      document.addEventListener('click', playVideoOnInteraction, { once: true });
-      document.addEventListener('touchstart', playVideoOnInteraction, { once: true });
+      document.addEventListener('click', playVideoOnInteraction, { once: true, passive: true });
+      document.addEventListener('touchstart', playVideoOnInteraction, { once: true, passive: true });
     }
   }
 
@@ -219,7 +207,7 @@
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(initializeVideoBanners, 300);
-  });
+  }, { passive: true });
 </script>
 
 <style>
