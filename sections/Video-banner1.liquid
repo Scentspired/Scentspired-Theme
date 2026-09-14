@@ -205,7 +205,7 @@
 {% endschema %}
 
 {%- liquid
-  if cart.currency.iso_code == 'GBP' or shop.currency == 'GBP' or shop.domain contains 'scentspired.co.uk'
+  if cart.currency.iso_code == 'GBP' or shop.currency == 'GBP' or shop.domain contains 'scentspired.co.uk' or shop.permanent_domain contains 'scentspireduk' or shop.domain contains 'scentspireduk'
     assign default_video_url = 'https://cdn.shopify.com/videos/c/o/v/2fe67c6edaa646b18805a79903b1059c.mp4'
     assign default_cat1 = 'VIBES'
     assign default_cat2 = 'OCCASIONS'

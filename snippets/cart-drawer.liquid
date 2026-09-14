@@ -1,6 +1,6 @@
 {%- liquid
   assign curr_sym = cart.currency.symbol | default: '$'
-  if cart.currency.iso_code == 'GBP' or shop.currency == 'GBP' or shop.domain contains 'scentspired.co.uk'
+  if cart.currency.iso_code == 'GBP' or shop.currency == 'GBP' or shop.domain contains 'scentspired.co.uk' or shop.permanent_domain contains 'scentspireduk' or shop.domain contains 'scentspireduk'
     assign shipping_threshold_amount = '35'
     assign shipping_cost_amount = '3.95'
     assign shipping_threshold_cents = 3500

@@ -1,5 +1,5 @@
 {%- liquid
-  if cart.currency.iso_code == 'GBP' or shop.currency == 'GBP' or shop.domain contains 'scentspired.co.uk'
+  if cart.currency.iso_code == 'GBP' or shop.currency == 'GBP' or shop.domain contains 'scentspired.co.uk' or shop.permanent_domain contains 'scentspireduk' or shop.domain contains 'scentspireduk'
     assign is_uk = true
     assign footer_home_url = 'https://scentspired.co.uk'
   else
