@@ -23,8 +23,10 @@
     "report:scan": "node tests/reporting/generate-report.cjs",
     "report:all": "node tests/reporting/generate-report.cjs && node tests/reporting/generate-master-catalog.cjs",
     "dev": "shopify theme dev",
-    "dev:store": "shopify theme dev --store=$npm_config_store",
-    "check": "shopify theme check --fail-level error",
+    "check": "node tests/static/theme-check-runner.cjs",
+    "check:theme": "node tests/static/theme-check-runner.cjs",
+    "lint:css": "node tests/static/stylelint-runner.cjs",
+    "lint": "npm run check:theme && npm run lint:css",
     "format": "prettier --write \"**/*.{liquid,json,js,css,md}\"",
     "prepare": "node scripts/install-git-hooks.cjs",
     "format:check": "prettier --check .",
@@ -47,7 +49,10 @@
   "devDependencies": {
     "@shopify/cli": "^3.94.0",
     "@shopify/prettier-plugin-liquid": "^1.11.0",
-    "prettier": "^3.5.0"
+    "@shopify/theme-check-node": "^3.29.0",
+    "prettier": "^3.5.0",
+    "stylelint": "^16.26.1",
+    "stylelint-config-standard": "^39.0.1"
   },
   "engines": {
     "node": ">=18.0.0"

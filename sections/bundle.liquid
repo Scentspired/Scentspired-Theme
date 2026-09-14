@@ -12,10 +12,12 @@
 
 <div class="perfume-bundle-section">
   <div class="builder-layout">
+    {%- assign bundle_heading = section.settings.heading | default: 'Build Your Own Five Favourites' -%}
+    {%- assign bundle_subheading = section.settings.subheading | default: 'Add 5 items to complete your five favourites' -%}
     {%
       render 'bundle-sidebar',
-      title: section.settings.heading | default: 'Build Your Own Five Favourites',
-      subtitle: section.settings.subheading | default: 'Add 5 items to complete your five favourites',
+      title: bundle_heading,
+      subtitle: bundle_subheading,
       capacity: 5,
       show_savings: true
     %}

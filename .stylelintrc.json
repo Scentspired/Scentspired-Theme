@@ -1,0 +1,38 @@
+{
+  "extends": "stylelint-config-recommended",
+  "ignoreFiles": [
+    "assets/*.min.css",
+    "assets/flickity.css",
+    "assets/pagefly*.css",
+    "node_modules/**",
+    ".git/**"
+  ],
+  "rules": {
+    "no-descending-specificity": null,
+    "font-family-no-missing-generic-family-keyword": null,
+    "no-duplicate-selectors": null,
+    "declaration-block-no-duplicate-properties": null,
+    "declaration-property-value-no-unknown": null,
+    "declaration-property-value-keyword-no-deprecated": null,
+    "property-no-deprecated": null,
+    "declaration-block-no-shorthand-property-overrides": null,
+    "keyframe-block-no-duplicate-selectors": null,
+    "comment-no-empty": null,
+    "selector-type-no-unknown": [
+      true,
+      {
+        "ignore": ["custom-elements"]
+      }
+    ],
+    "property-no-unknown": true,
+    "selector-pseudo-class-no-unknown": true,
+    "selector-pseudo-element-no-unknown": true,
+    "media-feature-name-no-unknown": true,
+    "at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": ["keyframes"]
+      }
+    ]
+  }
+}

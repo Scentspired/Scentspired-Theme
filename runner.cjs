@@ -184,20 +184,24 @@ const CORE_LAYERS = [
     failMsg: "Asset file size exceeded performance budget",
   },
   {
-    name: "Layer 12: Shopify Theme Check Strict Error Gate",
-    cmd: [
-      path.join(GUARDIAN_ROOT, "node_modules", ".bin", "shopify.cmd"),
-      path.join(GUARDIAN_ROOT, "node_modules", ".bin", "shopify"),
-    ].find(p => fs.existsSync(p)) || null,
-    args: ["theme", "check", `--path=${resolvedTarget}`, "--config=.theme-check.yml", "--fail-level=error"],
-    optional: true,
-    failMsg: "Shopify Theme Check detected critical syntax or schema errors",
+    name: "Layer 12: Official Shopify Theme Check Strict Error Gate",
+    cmd: "node",
+    args: [
+      path.join(TESTS_DIR, "static", "theme-check-runner.cjs"),
+      `--path=${resolvedTarget}`,
+      `--config=${path.join(GUARDIAN_ROOT, ".theme-check.yml")}`,
+      "--fail-level=error",
+    ],
+    failMsg: "Official Shopify Theme Check detected critical Liquid or Theme errors",
   },
   {
-    name: "Layer 13: CSS AST & Syntax Integrity Linter",
+    name: "Layer 13: Stylelint CSS AST & Syntax Integrity Gate",
     cmd: "node",
-    args: [path.join(TESTS_DIR, "static", "css-syntax-validator.cjs")],
-    failMsg: "CSS syntax, brace balance, or illegal comment errors detected",
+    args: [
+      path.join(TESTS_DIR, "static", "stylelint-runner.cjs"),
+      `--target=${resolvedTarget}`,
+    ],
+    failMsg: "Stylelint detected CSS syntax errors or AST violations",
   },
 ];
 

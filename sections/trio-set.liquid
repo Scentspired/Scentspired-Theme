@@ -12,10 +12,12 @@
 
 <div class="perfume-bundle-section">
   <div class="builder-layout">
+    {%- assign trioset_heading = section.settings.heading | default: 'Build Your Own Signature Trio Set' -%}
+    {%- assign trioset_subheading = section.settings.subheading | default: 'Add 3 items to complete your Signature Trio Set' -%}
     {%
       render 'bundle-sidebar',
-      title: section.settings.heading | default: 'Build Your Own Signature Trio Set',
-      subtitle: section.settings.subheading | default: 'Add 3 items to complete your Signature Trio Set',
+      title: trioset_heading,
+      subtitle: trioset_subheading,
       capacity: 3,
       show_savings: true
     %}
