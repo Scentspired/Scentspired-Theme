@@ -11,7 +11,9 @@ class CartRemoveButton extends HTMLElement {
   }
 }
 
-customElements.define("cart-remove-button", CartRemoveButton);
+if (!customElements.get("cart-remove-button")) {
+  customElements.define("cart-remove-button", CartRemoveButton);
+}
 
 class CartItems extends HTMLElement {
   constructor() {
@@ -60,21 +62,13 @@ class CartItems extends HTMLElement {
     if (!event || !event.target) return;
     const inputValue = parseInt(event.target.value);
     const index = event.target.dataset.index;
-    let message = "";
-
-    if (inputValue < event.target.dataset.min) {
-      message = (window.quickOrderListStrings?.min_error || "").replace(
-        "[min]",
-        event.target.dataset.min
-      );
-    } else if (inputValue > parseInt(event.target.max)) {
-      message = (window.quickOrderListStrings?.max_error || "").replace("[max]", event.target.max);
-    } else if (inputValue % parseInt(event.target.step || 1) !== 0) {
-      message = (window.quickOrderListStrings?.step_error || "").replace(
-        "[step]",
-        event.target.step
-      );
-    }
+    const message = validateQuantityInput(
+      inputValue,
+      event.target.dataset.min,
+      event.target.max,
+      event.target.step,
+      window.quickOrderListStrings
+    );
 
     if (message) {
       this.setValidity(event, index, message);
@@ -304,13 +298,7 @@ class CartItems extends HTMLElement {
   }
 
   getSectionInnerHTML(html, selector) {
-    try {
-      const parsed = new DOMParser().parseFromString(html, "text/html");
-      const target = parsed ? parsed.querySelector(selector) : null;
-      return target ? target.innerHTML : "";
-    } catch (e) {
-      return "";
-    }
+    return HTMLUpdateUtility.getSectionInnerHTML(html, selector);
   }
 
   enableLoading(line) {
@@ -346,7 +334,9 @@ class CartItems extends HTMLElement {
   }
 }
 
-customElements.define("cart-items", CartItems);
+if (!customElements.get("cart-items")) {
+  customElements.define("cart-items", CartItems);
+}
 
 if (!customElements.get("cart-note")) {
   customElements.define(

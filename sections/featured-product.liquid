@@ -40,9 +40,9 @@
     }
   {%- endstyle -%}
 
-  <script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
-  <script src="{{ 'show-more.js' | asset_url }}" defer="defer"></script>
-  <script src="{{ 'price-per-item.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'product--info.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'ui--show-more.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'product--price-per-item.js' | asset_url }}" defer="defer"></script>
 
   {% comment %} TODO: assign `product.selected_or_first_available_variant` to variable and replace usage to reduce verbosity {% endcomment %}
 
@@ -443,19 +443,19 @@
     </div>
   </section>
 
-  <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'product--form.js' | asset_url }}" defer="defer"></script>
   {%- if section.settings.image_zoom == "hover" -%}
-    <script id="EnableZoomOnHover-featured" src="{{ 'magnify.js' | asset_url }}" defer="defer"></script>
+    <script id="EnableZoomOnHover-featured" src="{{ 'product--magnify.js' | asset_url }}" defer="defer"></script>
   {%- endif %}
   {%- if request.design_mode -%}
-    <script src="{{ 'theme-editor.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'editor--theme.js' | asset_url }}" defer="defer"></script>
   {%- endif -%}
 
   {%- if first_3d_model -%}
     <script type="application/json" id="ProductJSON-{{ product.id }}">
       {{ product.media | where: 'media_type', 'model' | json }}
     </script>
-    <script src="{{ 'product-model.js' | asset_url }}" defer></script>
+    <script src="{{ 'product--model.js' | asset_url }}" defer></script>
   {%- endif -%}
 
 
@@ -464,8 +464,8 @@
   </script>
 
   {% if product.media.size > 0 %}
-    <script src="{{ 'product-modal.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'media-gallery.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'product--modal.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'product--media-gallery.js' | asset_url }}" defer="defer"></script>
   {% endif %}
 </product-info>
 

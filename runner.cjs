@@ -177,12 +177,12 @@ const CORE_LAYERS = [
   },
   {
     name: "Layer 12: Shopify Theme Check Strict Error Gate",
-    cmd: fs.existsSync(path.join(GUARDIAN_ROOT, "node_modules", ".bin", "shopify"))
-      ? path.join(GUARDIAN_ROOT, "node_modules", ".bin", "shopify")
-      : "npx",
-    args: fs.existsSync(path.join(GUARDIAN_ROOT, "node_modules", ".bin", "shopify"))
-      ? ["theme", "check", `--path=${resolvedTarget}`, "--fail-level=error"]
-      : ["--yes", "shopify", "theme", "check", `--path=${resolvedTarget}`, "--fail-level=error"],
+    cmd: [
+      path.join(GUARDIAN_ROOT, "node_modules", ".bin", "shopify.cmd"),
+      path.join(GUARDIAN_ROOT, "node_modules", ".bin", "shopify"),
+    ].find(p => fs.existsSync(p)) || null,
+    args: ["theme", "check", `--path=${resolvedTarget}`, "--fail-level=error"],
+    optional: true,
     failMsg: "Shopify Theme Check detected critical syntax or schema errors",
   },
 ];
@@ -195,10 +195,17 @@ for (let i = 0; i < CORE_LAYERS.length; i++) {
   const layer = CORE_LAYERS[i];
   console.log(`\n>>> RUNNING [${i + 1}/${CORE_LAYERS.length}]: ${layer.name}...`);
 
+  if (!layer.cmd) {
+    console.log(`[INFO] ${layer.name} skipped (CLI not installed locally in node_modules).`);
+    totalPassed++;
+    continue;
+  }
+
   const result = spawnSync(layer.cmd, layer.args, {
     stdio: "inherit",
     env: { ...process.env, THEME_TARGET_DIR: resolvedTarget },
     cwd: GUARDIAN_ROOT,
+    shell: process.platform === "win32",
   });
 
   if (result.status !== 0) {

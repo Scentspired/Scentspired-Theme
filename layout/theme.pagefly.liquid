@@ -33,15 +33,29 @@ If you plan to remove PageFly, please see the guide in our help center first: ht
 
     {% render 'meta-tags' %}
 
-    <script src="{{ 'constants.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'details-disclosure.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'details-modal.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'search-form.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'architecture--constants.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'architecture--pubsub.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'architecture--utilities.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'dom--focus.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'dom--html-update.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'dom--section-id.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'shopify--compatibility.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'shopify--cart-performance.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'ui--quantity-input.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'ui--modal.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'ui--drawer.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'ui--slider.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'ui--deferred-media.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'product--variant-selects.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'product--recommendations.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'account--icon.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'cart--bulk-add.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'ui--details-disclosure.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'ui--details-modal.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'search--form.js' | asset_url }}" defer="defer"></script>
 
     {%- if settings.animations_reveal_on_scroll -%}
-      <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
+      <script src="{{ 'animation--scroll.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
 
     {{ content_for_header }}
@@ -284,7 +298,7 @@ If you plan to remove PageFly, please see the guide in our help center first: ht
 
     {%- if localization.available_countries.size > 1 or localization.available_languages.size > 1 -%}
       {{ 'component-localization-form.css' | asset_url | stylesheet_tag: preload: true }}
-      <script src="{{ 'localization-form.js' | asset_url }}" defer="defer"></script>
+      <script src="{{ 'localization--form.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
 
     {%- if settings.predictive_search_enabled -%}

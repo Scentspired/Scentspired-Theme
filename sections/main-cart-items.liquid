@@ -25,10 +25,10 @@
 {%- endstyle -%}
 
 {%- unless settings.cart_type == "drawer" -%}
-  <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'cart--items.js' | asset_url }}" defer="defer"></script>
 {%- endunless -%}
 
-<script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'ui--quantity-popover.js' | asset_url }}" defer="defer"></script>
 
 <script>
   class CartManager {

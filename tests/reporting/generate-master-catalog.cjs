@@ -231,8 +231,13 @@ const totalWarnings = violations.filter(v => v.severity === "warning").length;
 
 const purchaseFiles = [
   "product-form.js",
+  "product--form.js",
   "quick-add.js",
+  "cart--quick-add.js",
+  "quick-add-bulk.js",
+  "cart--quick-add-bulk.js",
   "cart.js",
+  "cart--items.js",
   "cart-drawer.liquid",
   "cart-drawer.js",
   "header.liquid",
@@ -245,6 +250,7 @@ const purchaseFiles = [
   "main-cart-items.liquid",
   "main-cart-footer.liquid",
   "predictive-search.js",
+  "search--predictive.js",
   "theme.liquid",
   "Video-banner1.liquid",
   "mobile-video-banner.liquid",
@@ -391,6 +397,7 @@ To guarantee zero regression and verify fixes before staging to production, ever
 *Certified & Maintained by Theme Guardian Quality Gate — Scentspired Engineering.*
 `;
 
+fs.mkdirSync(path.dirname(OUTPUT_DOC), { recursive: true });
 fs.writeFileSync(OUTPUT_DOC, md, "utf8");
 
 console.log(`\n🎉 Comprehensive Master Defect & Impact Catalog Generated Successfully!`);
