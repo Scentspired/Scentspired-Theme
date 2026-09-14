@@ -15,7 +15,27 @@
         <p class="brand-description">{{ section.settings.brand_description }}</p>
         <h3 class="brand-tagline">{{ section.settings.brand_tagline }}</h3>
         {%- unless is_uk -%}
-          <div id="trustpilot-desktop-slot"></div>
+          <div id="trustpilot-desktop-slot">
+            <div id="trustpilot-widget-trustbox-0-wrapper">
+              <!-- BEGIN Trustpilot Review Collector Widget (USA Storefront) -->
+              <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
+              <div
+                class="trustpilot-widget"
+                data-locale="en-US"
+                data-template-id="56278e9abfbbba0bdcd568bc"
+                data-businessunit-id="6a840d286ae341cac54023b6"
+                data-integration="shopify"
+                data-style-height="52px"
+                data-style-width="100%"
+                data-font-family="Helvetica Neue"
+                data-text-color="#191919"
+                data-border-color="#00b67a"
+              >
+                <a href="https://www.trustpilot.com/review/scentspired.com" target="_blank" rel="noopener">Trustpilot</a>
+              </div>
+              <!-- END Trustpilot Review Collector Widget -->
+            </div>
+          </div>
         {%- endunless -%}
       </div>
 
@@ -203,6 +223,34 @@
 })();
 </script>
 {%- endunless -%}
+
+{%- if is_uk -%}
+<script>
+(function() {
+  function purgeTrustpilot() {
+    var tpElements = document.querySelectorAll(
+      '#trustpilot-desktop-slot, #trustpilot-mobile-slot, #trustpilot-widget-trustbox-0-wrapper, .trustpilot-widget, iframe[src*="trustpilot"], [id*="trustpilot"], [class*="trustpilot"]'
+    );
+    tpElements.forEach(function(el) {
+      if (el && el.parentNode) {
+        el.parentNode.removeChild(el);
+      }
+    });
+  }
+  purgeTrustpilot();
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', purgeTrustpilot);
+  }
+  window.addEventListener('load', purgeTrustpilot);
+  if (typeof MutationObserver !== 'undefined') {
+    var observer = new MutationObserver(function() {
+      purgeTrustpilot();
+    });
+    observer.observe(document.documentElement || document.body, { childList: true, subtree: true });
+  }
+})();
+</script>
+{%- endif -%}
 
 <style>
   .custom-footer {
@@ -427,18 +475,27 @@
   }
 
   {%- if is_uk -%}
-    /* Completely remove Trustpilot widget and iframes on UK */
+    /* Completely remove and eradicate Trustpilot widget, app blocks, and iframes on UK */
     #trustpilot-desktop-slot,
     #trustpilot-mobile-slot,
     #trustpilot-widget-trustbox-0-wrapper,
     .trustpilot-widget,
     .trustpilot-widget-head,
-    iframe[src*="trustpilot"] {
+    [id*="trustpilot"],
+    [class*="trustpilot"],
+    iframe[src*="trustpilot"],
+    div[class*="trustpilot"] {
       display: none !important;
       visibility: hidden !important;
       height: 0 !important;
       width: 0 !important;
+      max-height: 0 !important;
+      max-width: 0 !important;
+      overflow: hidden !important;
       pointer-events: none !important;
+      opacity: 0 !important;
+      position: absolute !important;
+      clip: rect(0, 0, 0, 0) !important;
     }
   {%- endif -%}
 </style>
