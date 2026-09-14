@@ -68,14 +68,15 @@ function getAllFiles(dir, baseDir = dir) {
 
 // Helper: Check if relative path is protected
 function isProtected(relPath, protectedPatterns) {
+  const norm = relPath.replace(/\\/g, '/');
   for (const pattern of protectedPatterns) {
     if (pattern.endsWith('/**')) {
       const prefix = pattern.slice(0, -3);
-      if (relPath.startsWith(prefix)) return true;
+      if (norm.startsWith(prefix)) return true;
     } else if (pattern.startsWith('*.')) {
       const ext = pattern.slice(1);
-      if (relPath.endsWith(ext)) return true;
-    } else if (relPath === pattern) {
+      if (norm.endsWith(ext)) return true;
+    } else if (norm === pattern) {
       return true;
     }
   }
