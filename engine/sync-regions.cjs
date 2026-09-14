@@ -376,8 +376,7 @@ for (const target of targets) {
         console.log(`>>> Fast-forwarding '${target.mainBranch}' and pushing to remote...`);
         run(`git checkout ${target.mainBranch}`, targetPath, true);
         run(`git merge ${target.branch} --ff-only`, targetPath, true);
-        run(`git push ${target.remote} ${target.branch}`, targetPath);
-        run(`git push ${target.remote} ${target.mainBranch}`, targetPath);
+        run(`git push ${target.remote} ${target.branch} ${target.mainBranch}`, targetPath);
         run(`git checkout ${target.branch}`, targetPath, true);
         console.log(`🚀 Successfully pushed ${target.name} (develop + main) to GitHub!`);
       }

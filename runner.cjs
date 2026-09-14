@@ -110,8 +110,16 @@ if (scope === "uk") {
 const CORE_LAYERS = [
   {
     name: "Layer 1: Prettier & Liquid Formatting Gate",
-    cmd: "npx",
-    args: ["--yes", "prettier", "--check", `${resolvedTarget}/**/*.{liquid,json,js,css}`],
+    cmd: [
+      path.join(GUARDIAN_ROOT, "node_modules", ".bin", "prettier.cmd"),
+      path.join(GUARDIAN_ROOT, "node_modules", ".bin", "prettier"),
+    ].find(p => fs.existsSync(p)) || "npx",
+    args: [
+      path.join(GUARDIAN_ROOT, "node_modules", ".bin", "prettier.cmd"),
+      path.join(GUARDIAN_ROOT, "node_modules", ".bin", "prettier"),
+    ].some(p => fs.existsSync(p))
+      ? ["--check", `${resolvedTarget}/**/*.{liquid,json,js,css}`]
+      : ["--yes", "prettier", "--check", `${resolvedTarget}/**/*.{liquid,json,js,css}`],
     optional: true,
     failMsg: "Liquid formatting inconsistencies detected",
   },
@@ -181,7 +189,7 @@ const CORE_LAYERS = [
       path.join(GUARDIAN_ROOT, "node_modules", ".bin", "shopify.cmd"),
       path.join(GUARDIAN_ROOT, "node_modules", ".bin", "shopify"),
     ].find(p => fs.existsSync(p)) || null,
-    args: ["theme", "check", `--path=${resolvedTarget}`, "--fail-level=error"],
+    args: ["theme", "check", `--path=${resolvedTarget}`, "--config=.theme-check.yml", "--fail-level=error"],
     optional: true,
     failMsg: "Shopify Theme Check detected critical syntax or schema errors",
   },
