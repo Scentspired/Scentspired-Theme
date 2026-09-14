@@ -211,10 +211,10 @@ console.log(`📌 Upstream State: Branch '${upstreamBranch}' @ ${upstreamCommit}
 
 // 2. Run Quality Gates on Core Theme (if not skipped)
 if (!skipTests && !isDryRun) {
-  console.log('>>> [1/4] Running Quality Gates on Scentspired-Theme (SSOT)...');
+  console.log('>>> [1/4] Running Comprehensive Quality Gates on All Scopes (Core, USA, UK)...');
   try {
-    run('node runner.cjs --scope=core', THEME_ROOT);
-    console.log('✅ Core Theme Quality Gates passed.\n');
+    run('node runner.cjs --scope=all', THEME_ROOT);
+    console.log('✅ All Core & Regional Quality Gates passed.\n');
   } catch (e) {
     console.error('❌ Core Theme Quality Gates failed. Synchronization aborted.');
     process.exit(1);
