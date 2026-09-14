@@ -132,11 +132,12 @@
       {%- for block in section.blocks -%}
         {%- case block.type -%}
           {%- when "heading" -%}
-            <h2
+            {%- assign banner_heading_tag = block.settings.heading_tag | default: "h2" -%}
+            <{{ banner_heading_tag }}
               class="banner__heading inline-richtext {{ block.settings.heading_size }}"
               {{ block.shopify_attributes }}>
               {{ block.settings.heading }}
-            </h2>
+            </{{ banner_heading_tag }}>
           {%- when "text" -%}
             <div class="banner__text rte {{ block.settings.text_style }}" {{ block.shopify_attributes }}>
               <p>{{ block.settings.text }}</p>
@@ -463,6 +464,22 @@
           ],
           "default": "h1",
           "label": "t:sections.all.heading_size.label"
+        },
+        {
+          "type": "select",
+          "id": "heading_tag",
+          "options": [
+            {
+              "value": "h1",
+              "label": "H1"
+            },
+            {
+              "value": "h2",
+              "label": "H2"
+            }
+          ],
+          "default": "h2",
+          "label": "Heading tag"
         }
       ]
     },
