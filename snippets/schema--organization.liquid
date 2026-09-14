@@ -1,0 +1,41 @@
+{%- comment -%}
+  Structured Data: Organization
+  Central organizational identity with stable entity URI (@id: #organization).
+  Blast radius: SEO metadata only. Non-blocking.
+{%- endcomment -%}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "{{ shop.url }}/#organization",
+  "name": {{ shop.name | json }},
+  "url": {{ shop.url | json }},
+  {%- if settings.logo != blank -%}
+  "logo": {
+    "@type": "ImageObject",
+    "@id": "{{ shop.url }}/#logo",
+    "url": {{ settings.logo | image_url: width: 500 | prepend: 'https:' | json }},
+    "contentUrl": {{ settings.logo | image_url: width: 500 | prepend: 'https:' | json }},
+    "caption": {{ shop.name | json }}
+  },
+  "image": {
+    "@id": "{{ shop.url }}/#logo"
+  },
+  {%- endif -%}
+  {%- if shop.email != blank -%}
+  "email": {{ shop.email | json }},
+  {%- endif -%}
+  "sameAs": [
+    "https://www.facebook.com/profile.php?id=61568107508172&sk=about",
+    "https://www.instagram.com/thescentspired/",
+    "https://www.tiktok.com/@thescentspireduk?"
+    {%- if settings.social_facebook_link != blank and settings.social_facebook_link != "" and settings.social_facebook_link != "https://www.facebook.com/profile.php?id=61568107508172&sk=about" -%},{{ settings.social_facebook_link | json }}{%- endif -%}
+    {%- if settings.social_instagram_link != blank and settings.social_instagram_link != "" and settings.social_instagram_link != "https://www.instagram.com/thescentspired/" -%},{{ settings.social_instagram_link | json }}{%- endif -%}
+    {%- if settings.social_tiktok_link != blank and settings.social_tiktok_link != "" and settings.social_tiktok_link != "https://www.tiktok.com/@thescentspireduk?" -%},{{ settings.social_tiktok_link | json }}{%- endif -%}
+    {%- if settings.social_twitter_link != blank and settings.social_twitter_link != "" -%},{{ settings.social_twitter_link | json }}{%- endif -%}
+    {%- if settings.social_youtube_link != blank and settings.social_youtube_link != "" -%},{{ settings.social_youtube_link | json }}{%- endif -%}
+    {%- if settings.social_pinterest_link != blank and settings.social_pinterest_link != "" -%},{{ settings.social_pinterest_link | json }}{%- endif -%}
+  ]
+}
+</script>
