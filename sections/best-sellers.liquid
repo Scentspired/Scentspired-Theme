@@ -163,8 +163,8 @@
   }
 
   .sale-badge {
-      background-color: #fa0000ff;
-      color: #fff;
+      background-color: #d90429;
+      color: #ffffff;
       font-size: 12px;
       font-weight: 600;
       padding: 2px 8px;
@@ -198,6 +198,15 @@
       border-color: #000;
   }
 
+  .variant-option-btn.disabled {
+      color: #4a4a4a !important;
+      background-color: #f0f0f0;
+      border-color: #c4c4c4;
+      cursor: not-allowed;
+      pointer-events: none;
+      text-decoration: line-through;
+  }
+
   .cart-button {
       margin-top: 8px;
       background: #f4ff41;
@@ -216,8 +225,8 @@
   .cart-button:hover { background: #e0ea36; }
 
   .cart-button.sold-out {
-      background: #f4ff41;
-      opacity: 0.5;
+      background: #e0e0e0 !important;
+      color: #333333 !important;
       cursor: not-allowed;
       pointer-events: none;
   }
@@ -489,12 +498,8 @@ function updateVariantAvailability() {
 
         if (inventory <= 0 || inventory <= cartQty) {
           btn.classList.add('disabled');
-          btn.style.opacity = '0.5';
-          btn.style.cursor = 'not-allowed';
         } else {
           btn.classList.remove('disabled');
-          btn.style.opacity = '1';
-          btn.style.cursor = 'pointer';
         }
       });
 

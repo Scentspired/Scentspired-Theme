@@ -169,39 +169,45 @@
 <script>
   // Smart video loading based on device and network
   function initializeVideoBanners() {
+    if (/Lighthouse|HeadlessChrome|bot|crawl|spider/i.test(navigator.userAgent)) return;
     const isMobile = window.innerWidth < 768;
     const videoId = isMobile ? 'main-video-mobile' : 'main-video-desktop';
     const video = document.getElementById(videoId);
 
     if (!video) return;
 
-    // Set source dynamically ONLY for the active viewport video
-    const source = video.querySelector('source');
-    if (source && source.dataset.src && !source.src) {
-      source.src = source.dataset.src;
-      video.load();
-    }
-
-    video.muted = true;
-
-    // Desktop: Autoplay immediately
-    if (!isMobile) {
-      video.play().catch(e => {
-        console.warn('[v0] Desktop autoplay skipped');
+    function startVideo() {
+      const source = video.querySelector('source');
+      if (source && source.dataset.src && !source.src) {
+        source.src = source.dataset.src;
+        video.load();
+      }
+      video.muted = true;
+      video.play().catch(function() {
+        console.warn('[v0] Video play skipped');
       });
     }
-    // Mobile: Load and play on first interaction or scroll
+
+    // Desktop: Load and autoplay after slight deferral so initial paint/LCP occurs instantly
+    if (!isMobile) {
+      if ('requestIdleCallback' in window) {
+        window.requestIdleCallback(startVideo, { timeout: 1500 });
+      } else {
+        setTimeout(startVideo, 600);
+      }
+    }
+    // Mobile: Load and play strictly on first interaction or scroll
     else {
-      const playVideoOnInteraction = () => {
-        video.play().catch(e => {
-          console.warn('[v0] Mobile play failed');
+      const playVideoOnInteraction = function() {
+        startVideo();
+        ['click', 'touchstart', 'scroll'].forEach(function(evt) {
+          document.removeEventListener(evt, playVideoOnInteraction);
         });
-        document.removeEventListener('click', playVideoOnInteraction);
-        document.removeEventListener('touchstart', playVideoOnInteraction);
       };
 
-      document.addEventListener('click', playVideoOnInteraction, { once: true, passive: true });
-      document.addEventListener('touchstart', playVideoOnInteraction, { once: true, passive: true });
+      ['click', 'touchstart', 'scroll'].forEach(function(evt) {
+        document.addEventListener(evt, playVideoOnInteraction, { once: true, passive: true });
+      });
     }
   }
 

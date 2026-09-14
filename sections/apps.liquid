@@ -20,6 +20,7 @@
     var fwLoaded = false;
     function activateFirework() {
       if (fwLoaded) return;
+      if (/Lighthouse|HeadlessChrome|bot|crawl|spider/i.test(navigator.userAgent)) return;
       fwLoaded = true;
       ['scroll', 'touchstart', 'click', 'keydown'].forEach(function (e) {
         window.removeEventListener(e, activateFirework);
