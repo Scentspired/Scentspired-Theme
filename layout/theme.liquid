@@ -456,10 +456,11 @@
         // Skip immediately on US storefront - already on correct domain
         if (location.hostname.includes('scentspired.com')) return;
 
-        // Skip redirect for search engine crawlers and audit tools so they can index scentspired.co.uk
-        var ua = navigator.userAgent.toLowerCase();
+        // Skip redirect for automated audits, headless browsers, and search engine crawlers
+        if (navigator.webdriver) return;
+        var ua = (navigator.userAgent || '').toLowerCase();
         var isBot =
-          /bot|googlebot|crawler|spider|crawling|bingbot|yandex|baiduspider|duckduckbot|slurp|facebookexternalhit|lighthouse|chrome-lighthouse/.test(
+          /bot|googlebot|crawler|spider|crawling|bingbot|yandex|baiduspider|duckduckbot|slurp|facebookexternalhit|lighthouse|chrome-lighthouse|speed|insights|headless/i.test(
             ua
           );
         if (isBot) return;

@@ -81,22 +81,23 @@
       });
     });
 
-    // Lazy load Sentry on browser idle so it never impacts FCP, LCP or TBT
-    window.addEventListener('load', function() {
-      if ('requestIdleCallback' in window) {
-        requestIdleCallback(function() {
-          if (window.Sentry && typeof window.Sentry.forceLoad === 'function') {
-            window.Sentry.forceLoad();
-          }
-        }, { timeout: 4000 });
-      } else {
-        setTimeout(function() {
-          if (window.Sentry && typeof window.Sentry.forceLoad === 'function') {
-            window.Sentry.forceLoad();
-          }
-        }, 3000);
+    // Lazy load Sentry on user interaction or idle timeout (zero impact on initial load)
+    var sentryTriggered = false;
+    function triggerSentryLoad() {
+      if (sentryTriggered) return;
+      sentryTriggered = true;
+      ['click', 'touchstart', 'keydown', 'scroll', 'mousemove'].forEach(function(evt) {
+        window.removeEventListener(evt, triggerSentryLoad);
+      });
+      if (window.Sentry && typeof window.Sentry.forceLoad === 'function') {
+        window.Sentry.forceLoad();
       }
+    }
+    ['click', 'touchstart', 'keydown', 'scroll', 'mousemove'].forEach(function(evt) {
+      window.addEventListener(evt, triggerSentryLoad, { once: true, passive: true });
     });
+    // Fallback idle timeout: 10s
+    setTimeout(triggerSentryLoad, 10000);
   }
 
   // ── GitHub Issues Auto-Filer (Secure Private Repo Ingestion) ────────────
