@@ -37,6 +37,11 @@ if (fs.existsSync(PKG_PATH)) {
       storeDomain = "scentspired.myshopify.com";
       repoUrl = "https://github.com/Scentspired/Scentspired-USA.git";
       currencySymbol = "$";
+    } else if (pkg.name && pkg.name.includes("theme")) {
+      storeName = "Scentspired Global Core Theme Engine";
+      storeDomain = "theme.scentspired.com";
+      repoUrl = "https://github.com/Scentspired/Scentspired-Theme.git";
+      currencySymbol = "$ / £";
     }
   } catch (e) {}
 }

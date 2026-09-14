@@ -1,11 +1,11 @@
-# 🛡️ Scentspired UK — Comprehensive Master Defect & Revenue Impact Catalog
+# 🛡️ Scentspired Global Core Theme Engine — Comprehensive Master Defect & Revenue Impact Catalog
 
 > **Document Classification:** Official Engineering Audit & Complete Technical Evidence Record  
-> **Audited Target:** `Scentspired UK`  
-> **Store Domain:** `scentspireduk.myshopify.com`  
-> **Repository:** `https://github.com/Scentspired/Scentspired-UK.git`  
+> **Audited Target:** `Scentspired Global Core Theme Engine`  
+> **Store Domain:** `theme.scentspired.com`  
+> **Repository:** `https://github.com/Scentspired/Scentspired-Theme.git`  
 > **Generated Date:** August 30, 2026  
-> **Total Files Scanned:** 249 files (72,250 lines)  
+> **Total Files Scanned:** 257 files (72,690 lines)  
 > **Total Indexed Defects:** **0 Defects** (0 Blocker Errors, 0 Warnings across 0 files)  
 > **Purchase Funnel Impact:** **0 Defects directly compromise Add-to-Cart, Bundle Builders, Cart Drawer, and Checkout**
 
@@ -13,7 +13,7 @@
 
 ## 1. Executive Summary & Revenue Threat Matrix
 
-This master catalog documents **every single defect present in the live Scentspired UK theme**. Each entry includes the exact file path, line number, detection rule, embedded code context snippet, technical root cause rationale, and direct customer/revenue impact analysis.
+This master catalog documents **every single defect present in the live Scentspired Global Core Theme Engine theme**. Each entry includes the exact file path, line number, detection rule, embedded code context snippet, technical root cause rationale, and direct customer/revenue impact analysis.
 
 ```
 ┌────────────────────────────────────────────────────────────────────────────────────────┐
@@ -40,10 +40,10 @@ This master catalog documents **every single defect present in the live Scentspi
 * **Shopper Experience:** The button stays permanently greyed out and spinning. The customer is unable to click again, retry, or proceed to checkout.
 * **Financial Impact:** 100% loss of the active purchase session. Shoppers assume the website is broken and abandon their carts.
 
-### 📦 Failure Mode 2: High-AOV Bundle & Box Set Crashes (£77 – £130 Orders)
+### 📦 Failure Mode 2: High-AOV Bundle & Box Set Crashes ($ / £77 – $ / £130 Orders)
 * **Technical Root Cause:** In `bundle.liquid`, `trio-set.liquid`, and `five-box.liquid`, brand selection pills use dynamic template strings inside inline click handlers: `onclick="selectBrand('${brand}')"`. For perfume houses containing apostrophes (*Penhaligon's*, *L'Artisan Parfumeur*, *Kilian's*), the single quote prematurely terminates the JavaScript string literal.
 * **Shopper Experience:** The browser throws an immediate `SyntaxError: Unexpected identifier`. The step-navigation machine freezes completely on Step 2.
-* **Financial Impact:** Direct destruction of Scentspired's highest-margin multi-bottle bundles (£77.00 trio sets, £130.00 5-box sets).
+* **Financial Impact:** Direct destruction of Scentspired's highest-margin multi-bottle bundles ($ / £77.00 trio sets, $ / £130.00 5-box sets).
 
 ### 🛍️ Failure Mode 3: Silent Add-to-Cart Failures on Inventory Limits
 * **Technical Root Cause:** Add-to-cart fetch handlers in `best-sellers.liquid` and `bundlediscovery.liquid` pipe directly from `fetch('/cart/add.js')` into `response.json()` without validating `if (!response.ok)`.
