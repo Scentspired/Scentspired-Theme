@@ -22,7 +22,7 @@
     "report:catalog": "node tests/reporting/generate-master-catalog.cjs",
     "report:scan": "node tests/reporting/generate-report.cjs",
     "report:all": "node tests/reporting/generate-report.cjs && node tests/reporting/generate-master-catalog.cjs",
-    "dev": "shopify theme dev",
+    "dev": "node scripts/runner-dev.cjs",
     "dev:uk": "npx shopify theme dev --store=scentspireduk.myshopify.com --path=../Scentspired-UK --open",
     "dev:usa": "npx shopify theme dev --store=scentspired.myshopify.com --path=../Scentspired-USA --open",
     "check": "node tests/static/theme-check-runner.cjs",
