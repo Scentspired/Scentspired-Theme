@@ -52,16 +52,23 @@
     </div>
   </div>
 
+{%- liquid
+  if cart.currency.iso_code == 'GBP' or shop.currency == 'GBP' or shop.domain contains 'scentspired.co.uk' or shop.permanent_domain contains 'scentspireduk' or shop.permanent_domain contains 'scentspired-uk' or shop.domain contains 'scentspireduk' or shop.domain contains 'scentspired-uk'
+    assign bundle_curr_sym = '£'
+  else
+    assign bundle_curr_sym = cart.currency.symbol | default: '$'
+  endif
+-%}
   <div class="sidebar-footer">
     <div class="cart">
       <button class="add-to-cart-btn" id="MainActionBtn" disabled onclick="handleCheckout()">
-        <span>Add to cart</span>
-        <span id="TotalDisplay">$ 0</span>
+        <span>Add to Cart</span>
+        <span id="TotalDisplay">{{ bundle_curr_sym }} 0</span>
       </button>
     </div>
     {%- if show_savings -%}
-      <div class="savings-row">Standard Price: <span class="saving">$0</span></div>
-      <div class="save-row">Total Saving <span>$0</span></div>
+      <div class="savings-row">Standard Price: <span class="saving">{{ bundle_curr_sym }}0</span></div>
+      <div class="save-row">Total Saving <span>{{ bundle_curr_sym }}0</span></div>
     {%- endif -%}
   </div>
 </div>

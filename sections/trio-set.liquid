@@ -420,13 +420,13 @@ const PRICING = {
     if (count === 3 && activeSize) {
       const pricing = PRICING[activeSize];
       if (pricing && totalDisplay) {
-        totalDisplay.innerText = `${CURRENCY_SYMBOL}${pricing.total}`;
+        totalDisplay.innerText = `${CURRENCY_SYMBOL} ${pricing.total}`;
         totalDisplay.style.visibility = 'visible';
       }
       const savingEl = document.querySelector('.savings-row .saving');
-      if (savingEl && pricing) savingEl.innerText = `${CURRENCY_SYMBOL}${pricing.standard}`;
+      if (savingEl && pricing) savingEl.innerText = `${CURRENCY_SYMBOL} ${pricing.standard}`;
       const saveSpan = document.querySelector('.save-row span');
-      if (saveSpan && pricing) saveSpan.innerText = `${CURRENCY_SYMBOL}${pricing.saving}`;
+      if (saveSpan && pricing) saveSpan.innerText = `${CURRENCY_SYMBOL} ${pricing.saving}`;
     } else if (totalDisplay) {
       totalDisplay.innerText = '';
       totalDisplay.style.visibility = 'hidden';
