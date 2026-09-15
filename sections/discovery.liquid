@@ -31,7 +31,7 @@
   | default: all_products["discovery-set-5ml"]
 %}
 {% assign disc_variant_id = 57083186217305 %}
-{% if cart.currency.iso_code == "USD" or shop.currency == "USD" %}
+{% if cart.currency.iso_code == "USD" or shop.currency == "USD" or shop.permanent_domain contains "scentspired-usa" or shop.domain contains "scentspired.com" %}
   {% assign disc_variant_id = 45733851955383 %}
 {% endif %}
 {% if discovery_parent and discovery_parent.variants.size > 0 %}
@@ -42,7 +42,7 @@
 
 {% if discovery_parent and discovery_parent.price > 0 %}
   {% assign disc_price_display = discovery_parent.price | money %}
-{% elsif cart.currency.iso_code == "USD" or shop.currency == "USD" %}
+{% elsif cart.currency.iso_code == "USD" or shop.currency == "USD" or shop.permanent_domain contains "scentspired-usa" or shop.domain contains "scentspired.com" %}
   {% assign disc_price_display = "$19.99" %}
 {% else %}
   {% assign disc_price_display = "£14.99" %}

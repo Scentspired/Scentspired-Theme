@@ -37,7 +37,7 @@
 {% assign trio_saving_100 = 29.98 %}
 {% assign trio_curr_sym = "£" %}
 
-{% if cart.currency.iso_code == "USD" or shop.currency == "USD" %}
+{% if cart.currency.iso_code == "USD" or shop.currency == "USD" or shop.permanent_domain contains "scentspired-usa" or shop.domain contains "scentspired.com" %}
   {% assign trio_50 = 45733933154487 %}
   {% assign trio_100 = 45733933187255 %}
   {% assign trio_price_50 = 79.99 %}

@@ -118,7 +118,7 @@
 
     {%- liquid
       assign store_domain = shop.domain
-      if store_domain contains 'scentspired.co.uk' or store_domain contains 'scentspireduk' or shop.permanent_domain contains 'scentspireduk' or shop.currency == 'GBP' or cart.currency.iso_code == 'GBP'
+      if store_domain contains 'scentspired.co.uk' or store_domain contains 'scentspireduk' or store_domain contains 'scentspired-uk' or shop.permanent_domain contains 'scentspireduk' or shop.permanent_domain contains 'scentspired-uk' or shop.currency == 'GBP' or cart.currency.iso_code == 'GBP'
         assign store_region = 'UK'
         assign store_currency_symbol = '£'
         assign store_free_shipping_threshold = 3500

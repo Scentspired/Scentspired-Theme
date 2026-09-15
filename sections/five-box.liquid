@@ -37,7 +37,7 @@
 {% assign fb_saving_100 = 49.96 %}
 {% assign fb_curr_sym = "£" %}
 
-{% if cart.currency.iso_code == "USD" or shop.currency == "USD" %}
+{% if cart.currency.iso_code == "USD" or shop.currency == "USD" or shop.permanent_domain contains "scentspired-usa" or shop.domain contains "scentspired.com" %}
   {% assign fb_50 = 45733941936311 %}
   {% assign fb_100 = 45733941969079 %}
   {% assign fb_price_50 = 129.99 %}
