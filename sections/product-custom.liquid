@@ -13,6 +13,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Monument+Extended&display=swap" rel="stylesheet">
 
+{%- liquid
+  if cart.currency.iso_code == 'GBP' or shop.currency == 'GBP' or shop.domain contains 'scentspired.co.uk' or shop.permanent_domain contains 'scentspireduk' or shop.permanent_domain contains 'scentspired-uk' or shop.domain contains 'scentspireduk' or shop.domain contains 'scentspired-uk'
+    assign ps_curr_sym = '£'
+  else
+    assign ps_curr_sym = cart.currency.symbol | default: '$'
+  endif
+-%}
+
 <!-- HTML MARKUP -->
 <div class="ps-wrapper">
   <div class="ps-container">
@@ -77,12 +85,12 @@
         <div class="ps-price-container">
           {% assign variant = product.selected_or_first_available_variant %}
           <span class="ps-price" id="psPriceDisplay" data-price>
-            {{ cart.currency.symbol | default: '$' }}{{ variant.price | divided_by: 100.0 | round: 2 }}
+            {{ ps_curr_sym }}{{ variant.price | divided_by: 100.0 | round: 2 }}
           </span>
 
           {% if variant.compare_at_price and variant.compare_at_price > variant.price %}
             <span class="ps-original-price" data-compare-price>
-              {{ cart.currency.symbol | default: '$' }}{{ variant.compare_at_price | divided_by: 100.0 | round: 2 }}
+              {{ ps_curr_sym }}{{ variant.compare_at_price | divided_by: 100.0 | round: 2 }}
             </span>
             <span class="ps-price-badge" data-sale-badge>Sale</span>
           {% endif %}
@@ -765,7 +773,7 @@
 <!-- JAVASCRIPT -->
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '{{ cart.currency.symbol }}' || '$';
+    const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || {{ ps_curr_sym | json }};
     const variantButtons = document.querySelectorAll('.ps-variant-btn');
     const variantIdInput = document.querySelector('.ps-variant-id-input');
     const priceContainer = document.querySelector('.ps-price-container');
@@ -773,9 +781,17 @@
 
     if (!variantButtons.length || !priceContainer || !priceEl) return;
 
+    function formatMoney(cents) {
+      const num = (cents / 100).toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+      return currSym + num;
+    }
+
     // Price update function
     function updatePriceUI(price, compare) {
-      priceEl.textContent = currSym + (price / 100).toFixed(2);
+      priceEl.textContent = formatMoney(price);
 
       let compareEl = priceContainer.querySelector('[data-compare-price]');
       let badgeEl = priceContainer.querySelector('[data-sale-badge]');
@@ -787,7 +803,7 @@
           compareEl.setAttribute('data-compare-price', '');
           priceEl.parentNode.insertBefore(compareEl, priceEl.nextSibling);
         }
-        compareEl.textContent = currSym + (compare / 100).toFixed(2);
+        compareEl.textContent = formatMoney(compare);
         compareEl.style.display = 'inline';
 
         if (!badgeEl) {
@@ -1019,41 +1035,8 @@
       }
     }, 1000); // every second, adjust inventory
 
-    async function getCartQtyForVariant(variantId) {
-      try {
-        const res = await fetch('/cart.js');
-        if (!res.ok) return 0;
-        const cart = await res.json();
-        const item = (cart.items || []).find(i => i.variant_id == variantId);
-        return item ? item.quantity : 0;
-      } catch (e) {
-        console.warn('Error fetching cart qty:', e);
-        return 0;
-      }
-    }
-
-    async function updateInventoryState(variantId) {
-      const btn = document.querySelector(`.ps-variant-btn[data-variant-id="${variantId}"]`);
-      if (!btn) return;
-
-      const inventory = parseInt(btn.dataset.inventory);
-      const policy = btn.dataset.inventoryPolicy;
-      const inCartQty = await getCartQtyForVariant(variantId);
-      const remainingQty = Math.max(0, inventory - inCartQty);
-
-      if (policy !== 'continue' && remainingQty <= 0) {
-        addBtn.disabled = true;
-        addBtn.classList.add('disabled');
-        addBtn.innerText = 'Sold Out';
-      } else {
-        addBtn.disabled = false;
-        addBtn.classList.remove('disabled');
-        addBtn.innerText = 'Add to Cart';
-      }
-    }
-
     // --- Auto-select first variant on load ---
-    const activeVariant = document.querySelector('.ps-variant-btn.active');
+    const activeVariant = document.querySelector('.ps-variant-btn.active') || document.querySelector('.ps-variant-btn');
     if (activeVariant) await updateInventoryState(activeVariant.dataset.variantId);
   });
 </script>

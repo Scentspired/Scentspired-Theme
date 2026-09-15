@@ -1,3 +1,10 @@
+{%- liquid
+  if cart.currency.iso_code == 'GBP' or shop.currency == 'GBP' or shop.domain contains 'scentspired.co.uk' or shop.permanent_domain contains 'scentspireduk' or shop.permanent_domain contains 'scentspired-uk' or shop.domain contains 'scentspireduk' or shop.domain contains 'scentspired-uk'
+    assign mvb_curr_sym = '£'
+  else
+    assign mvb_curr_sym = cart.currency.symbol | default: '$'
+  endif
+-%}
 <section id="mvps-{{ section.id }}" class="mvps-section" aria-label="Video product selector">
   {% assign desktop_src = "" %}
   {% assign mobile_src = "" %}
@@ -793,7 +800,15 @@
       const section = document.getElementById('mvps-{{ section.id }}');
       if (!section) return;
 
-      const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '{{ cart.currency.symbol }}' || '$';
+      const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || {{ mvb_curr_sym | json }};
+
+      function formatMoney(cents) {
+        const num = (cents / 100).toLocaleString('en-US', {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        });
+        return currSym + num;
+      }
 
       // --- Fetch current cart ---
       async function getCart() {
@@ -980,7 +995,7 @@
                 const price = parseInt(btn.dataset.variantPrice, 10);
                 const compare = parseInt(btn.dataset.variantCompare, 10) || null;
 
-                priceDisplay.textContent = currSym + (price / 100).toFixed(2);
+                priceDisplay.textContent = formatMoney(price);
 
                 let compareEl = card.querySelector('[data-compare-price]');
                 let badgeEl = card.querySelector('[data-sale-badge]');
@@ -993,7 +1008,7 @@
                     priceDisplay.after(compareEl);
                   }
 
-                  compareEl.textContent = currSym + (compare / 100).toFixed(2);
+                  compareEl.textContent = formatMoney(compare);
 
                   if (!badgeEl) {
                     badgeEl = document.createElement('span');
@@ -1017,7 +1032,7 @@
             firstAvailable.classList.add('active');
             if (variantIdInput) variantIdInput.value = firstAvailable.dataset.variantId;
             if (priceDisplay)
-              priceDisplay.textContent = currSym + (parseInt(firstAvailable.dataset.variantPrice) / 100).toFixed(2);
+              priceDisplay.textContent = formatMoney(parseInt(firstAvailable.dataset.variantPrice, 10));
           }
 
           // Disable Add to Cart + Sold Out text handling

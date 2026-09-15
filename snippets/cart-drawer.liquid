@@ -1846,9 +1846,9 @@
 let isUserLoggedIn = false;
 let currentShopMethod = 'guest';
 let isProcessingCartAction = false; // Added flag to prevent duplicate submissions
-const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || {{ curr_sym | json }} || '$';
-const freeShippingThreshold = (window.__STORE_CONFIG && window.__STORE_CONFIG.freeShippingThreshold) || {{ shipping_threshold_cents | json }} || 7000;
-const defaultShippingCost = (window.__STORE_CONFIG && window.__STORE_CONFIG.shippingCost) || {{ shipping_cost_cents | json }} || 799;
+const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || {{ curr_sym | json }};
+const freeShippingThreshold = (window.__STORE_CONFIG && window.__STORE_CONFIG.freeShippingThreshold) || {{ shipping_threshold_cents | json }};
+const defaultShippingCost = (window.__STORE_CONFIG && window.__STORE_CONFIG.shippingCost) || {{ shipping_cost_cents | json }};
 
 // Helper function to generate HTML for a single cart item
 function generateCartItemHtml(item) {

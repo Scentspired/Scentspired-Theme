@@ -1,3 +1,10 @@
+{%- liquid
+  if cart.currency.iso_code == 'GBP' or shop.currency == 'GBP' or shop.domain contains 'scentspired.co.uk' or shop.permanent_domain contains 'scentspireduk' or shop.permanent_domain contains 'scentspired-uk' or shop.domain contains 'scentspireduk' or shop.domain contains 'scentspired-uk'
+    assign fs_curr_sym = '£'
+  else
+    assign fs_curr_sym = cart.currency.symbol | default: '$'
+  endif
+-%}
 <style>
   /* Container */
   .fragrance-container {
@@ -549,7 +556,15 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '{{ cart.currency.symbol }}' || '$';
+    const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || {{ fs_curr_sym | json }};
+
+    function formatMoney(cents) {
+      const num = (cents / 100).toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+      return currSym + num;
+    }
 
     function updateVariantAvailability() {
       // Update all product cards
@@ -631,7 +646,7 @@
           const comparePrice = parseInt(btn.dataset.variantCompare, 10);
 
           if (priceDisplay && variantPrice) {
-            priceDisplay.textContent = currSym + (variantPrice / 100).toFixed(2);
+            priceDisplay.textContent = formatMoney(variantPrice);
           }
 
           let compareEl = card.querySelector('[data-compare-price]');
@@ -645,7 +660,7 @@
               priceDisplay.after(compareEl);
             }
 
-            compareEl.textContent = currSym + (comparePrice / 100).toFixed(2);
+            compareEl.textContent = formatMoney(comparePrice);
 
             if (!badgeEl) {
               badgeEl = document.createElement('span');
@@ -671,7 +686,7 @@
           const price = parseInt(firstAvailableBtn.dataset.variantPrice, 10);
           const compare = parseInt(firstAvailableBtn.dataset.variantCompare, 10);
 
-          priceDisplay.textContent = currSym + (price / 100).toFixed(2);
+          priceDisplay.textContent = formatMoney(price);
 
           // Trigger compare-at logic
           firstAvailableBtn.click();

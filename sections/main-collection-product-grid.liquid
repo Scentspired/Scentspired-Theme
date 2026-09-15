@@ -1,3 +1,10 @@
+{%- liquid
+  if cart.currency.iso_code == 'GBP' or shop.currency == 'GBP' or shop.domain contains 'scentspired.co.uk' or shop.permanent_domain contains 'scentspireduk' or shop.permanent_domain contains 'scentspired-uk' or shop.domain contains 'scentspireduk' or shop.domain contains 'scentspired-uk'
+    assign grid_curr_sym = '£'
+  else
+    assign grid_curr_sym = cart.currency.symbol | default: '$'
+  endif
+-%}
 <style>
     {% comment %} Font Imports {% endcomment %}
     @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700&display=swap');
@@ -3251,7 +3258,16 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '{{ cart.currency.symbol }}' || '$';
+    const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || {{ grid_curr_sym | json }};
+
+    function formatMoney(cents) {
+      const num = (cents / 100).toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+      return currSym + num;
+    }
+
     let cartQuantities = {};
     let cartFetchInProgress = false;
 
@@ -3315,7 +3331,7 @@
           buttons.forEach(b => b.classList.remove('active'));
           firstAvailable.classList.add('active');
           if (input) input.value = firstAvailable.dataset.variantId;
-          if (priceEl) priceEl.textContent = currSym + (firstAvailable.dataset.variantPrice / 100).toFixed(2);
+          if (priceEl) priceEl.textContent = formatMoney(firstAvailable.dataset.variantPrice);
 
           // Update compare_at_price
           const compareAtPrice = firstAvailable.dataset.variantCompareAtPrice;
@@ -3323,7 +3339,7 @@
 
           if (compareAtPrice && parseInt(compareAtPrice) > currentPrice) {
             if (compareAtPriceEl) {
-              compareAtPriceEl.textContent = currSym + (parseInt(compareAtPrice) / 100).toFixed(2);
+              compareAtPriceEl.textContent = formatMoney(parseInt(compareAtPrice));
               compareAtPriceEl.style.display = 'inline';
             }
             if (priceBadgeEl) {
@@ -3379,7 +3395,7 @@
       const input = card.querySelector('.variant-id-input');
 
       if (input) input.value = btn.dataset.variantId;
-      if (priceEl) priceEl.textContent = currSym + (btn.dataset.variantPrice / 100).toFixed(2);
+      if (priceEl) priceEl.textContent = formatMoney(btn.dataset.variantPrice);
 
       // Update compare_at_price
       const compareAtPrice = btn.dataset.variantCompareAtPrice;
@@ -3387,7 +3403,7 @@
 
       if (compareAtPrice && parseInt(compareAtPrice) > currentPrice) {
         if (compareAtPriceEl) {
-          compareAtPriceEl.textContent = currSym + (parseInt(compareAtPrice) / 100).toFixed(2);
+          compareAtPriceEl.textContent = formatMoney(parseInt(compareAtPrice));
           compareAtPriceEl.style.display = 'inline';
         }
         if (priceBadgeEl) {
@@ -3459,7 +3475,15 @@
 <script>
   // This script handles the interactive elements of the collection page, including sidebar toggling, search functionality, and filtering.
   document.addEventListener('DOMContentLoaded', () => {
-    const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '{{ cart.currency.symbol }}' || '$';
+    const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || {{ grid_curr_sym | json }};
+
+    function formatMoney(cents) {
+      const num = (cents / 100).toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+      return currSym + num;
+    }
     {% comment %} DOM Element References {% endcomment %}
     const filterToggleButton = document.getElementById('filterToggleButton');
     const filterToggleDesktop = document.getElementById('filterToggleDesktop');
@@ -3976,7 +4000,7 @@
               targetBtn.classList.add('active');
               const priceElement = card.querySelector('[data-price-display]');
               if (priceElement) {
-                priceElement.textContent = targetBtn.dataset.variantPrice ? currSym + (parseInt(targetBtn.dataset.variantPrice) / 100).toFixed(2) : priceElement.textContent;
+                priceElement.textContent = targetBtn.dataset.variantPrice ? formatMoney(parseInt(targetBtn.dataset.variantPrice)) : priceElement.textContent;
               }
             }
           } else if (ranges.length > 0) {
@@ -3997,7 +4021,7 @@
               targetBtn.classList.add('active');
               const priceElement = card.querySelector('[data-price-display]');
               if (priceElement) {
-                priceElement.textContent = targetBtn.dataset.variantPrice ? currSym + (parseInt(targetBtn.dataset.variantPrice) / 100).toFixed(2) : priceElement.textContent;
+                priceElement.textContent = targetBtn.dataset.variantPrice ? formatMoney(parseInt(targetBtn.dataset.variantPrice)) : priceElement.textContent;
               }
             }
           } else if (genders.length === 0 && types.length === 0 && ingredients.length === 0 && sizes.length === 0) {
@@ -4007,7 +4031,7 @@
                 variantBtns[0].classList.add('active');
                 const priceElement = card.querySelector('[data-price-display]');
                 if (priceElement && variantBtns[0].dataset.variantPrice) {
-                  priceElement.textContent = currSym + (parseInt(variantBtns[0].dataset.variantPrice) / 100).toFixed(2);
+                  priceElement.textContent = formatMoney(parseInt(variantBtns[0].dataset.variantPrice));
                 }
               }
           } else {
@@ -4018,7 +4042,7 @@
                 variantBtns[0].classList.add('active');
                 const priceElement = card.querySelector('[data-price-display]');
                 if (priceElement && variantBtns[0].dataset.variantPrice) {
-                  priceElement.textContent = currSym + (parseInt(variantBtns[0].dataset.variantPrice) / 100).toFixed(2);
+                  priceElement.textContent = formatMoney(parseInt(variantBtns[0].dataset.variantPrice));
                 }
               }
           }
