@@ -24,6 +24,7 @@
     "report:all": "node tests/reporting/generate-report.cjs && node tests/reporting/generate-master-catalog.cjs",
     "dev": "shopify theme dev",
     "dev:uk": "npx shopify theme dev --store=scentspireduk.myshopify.com --path=../Scentspired-UK --open",
+    "dev:usa": "npx shopify theme dev --store=scentspired.myshopify.com --path=../Scentspired-USA --open",
     "check": "node tests/static/theme-check-runner.cjs",
     "check:theme": "node tests/static/theme-check-runner.cjs",
     "lint:css": "node tests/static/stylelint-runner.cjs",
