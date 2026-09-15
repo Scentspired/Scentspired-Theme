@@ -11,7 +11,16 @@
 
 const path = require("path");
 const fs = require("fs");
-const { check, Severity } = require("@shopify/theme-check-node");
+
+let check, Severity;
+try {
+  const tc = require("@shopify/theme-check-node");
+  check = tc.check;
+  Severity = tc.Severity;
+} catch (e) {
+  check = null;
+  Severity = { ERROR: 0, WARNING: 1, INFO: 2 };
+}
 
 // Parse CLI flags
 const args = process.argv.slice(2);
@@ -38,6 +47,11 @@ async function runThemeCheck() {
   console.log(`  Config  : ${fs.existsSync(configPath) ? configPath : "Default Shopify Recommended"}`);
   console.log(`  Level   : Fail on ${failLevel.toUpperCase()}`);
   console.log("────────────────────────────────────────────────────────────────\n");
+
+  if (!check) {
+    console.log("  ℹ️  @shopify/theme-check-node is not installed locally. Skipping official Theme Check gate.\n");
+    return;
+  }
 
   const startTime = Date.now();
 

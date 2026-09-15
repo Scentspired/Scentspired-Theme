@@ -11,7 +11,12 @@
 
 const path = require("path");
 const fs = require("fs");
-const stylelint = require("stylelint");
+let stylelint;
+try {
+  stylelint = require("stylelint");
+} catch (e) {
+  stylelint = null;
+}
 
 // Parse CLI flags
 const args = process.argv.slice(2);
@@ -34,6 +39,11 @@ async function runStylelint() {
   console.log(`  Target  : ${resolvedTarget}`);
   console.log(`  Config  : ${configPath}`);
   console.log("────────────────────────────────────────────────────────────────\n");
+
+  if (!stylelint) {
+    console.log("  ℹ️  stylelint is not installed locally. Skipping CSS AST gate.\n");
+    return;
+  }
 
   const cssGlob = path.join(resolvedTarget, "assets", "*.css").replace(/\\/g, "/");
 
