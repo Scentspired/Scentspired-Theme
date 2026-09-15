@@ -132,7 +132,11 @@
       <div class="product-icons">
         <div class="icon-item">
           <div class="icon-wrapper">
-            <img src="{{ 'icon-return.svg' | asset_url }}" alt="30 Days Return" width="40" height="40">
+            {% if shop.permanent_domain contains 'scentspired-uk' %}
+              <img src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Screenshot_2025-06-30_161707.webp?v=1789409350" alt="30 Days Return" width="40" height="40">
+            {% else %}
+              <img src="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Screenshot_2025-06-30_161707.webp?v=1788428287" alt="30 Days Return" width="40" height="40">
+            {% endif %}
           </div>
           <p>30 Days Return</p>
         </div>
