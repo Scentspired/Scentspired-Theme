@@ -11,6 +11,7 @@
   ],
   "protectedRegionalPatterns": [
     "templates/**",
+    "sections/*.json",
     "config/settings_data.json",
     "config/markets.json",
     ".git/**",

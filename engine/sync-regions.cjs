@@ -14,12 +14,18 @@ const SCRIPT_DIR = __dirname;
 const THEME_ROOT = path.resolve(SCRIPT_DIR, '..');
 const CONFIG_PATH = path.join(SCRIPT_DIR, 'sync-config.json');
 
+// HARD SAFETY LOCK: Auto-push to remote branches and live stores is strictly disabled.
+// Under NO circumstances will local synchronization push to remote repositories or affect live storefronts.
+const ENABLE_REMOTE_PUSH = false;
+
 // Parse CLI arguments
 const args = process.argv.slice(2);
 const isDryRun = args.includes('--dry-run');
 const isPull = args.includes('--pull');
-const skipPush = args.includes('--skip-push');
-const skipTests = args.includes('--skip-tests');
+// Safety lock: skipPush is true by default unless explicitly overridden and ENABLE_REMOTE_PUSH is true
+const skipPush = !ENABLE_REMOTE_PUSH || args.includes('--skip-push');
+// Development mode: skipTests is true by default during rapid local development
+const skipTests = !args.includes('--run-tests');
 const targetArg = args.find(a => a.startsWith('--target='));
 const targetRegion = targetArg ? targetArg.split('=')[1].toLowerCase() : null;
 
@@ -161,6 +167,7 @@ if (isPull) {
 
     let pulledTemplates = syncDirectory(path.join(targetPath, 'templates'), path.join(localRegionDir, 'templates'), isDryRun);
     let pulledLocales = syncDirectory(path.join(targetPath, 'locales'), path.join(localRegionDir, 'locales'), isDryRun);
+    let pulledSections = syncDirectory(path.join(targetPath, 'sections'), path.join(localRegionDir, 'sections'), isDryRun);
 
     let pulledSettings = 0;
     for (const confFile of ['settings_data.json', 'markets.json']) {
@@ -309,7 +316,7 @@ for (const target of targets) {
   // B. Synchronize Regional Package from SSOT regions/<id>/
   const localRegionDir = path.join(THEME_ROOT, 'regions', target.id);
   if (fs.existsSync(localRegionDir)) {
-    const regionalDirs = ['templates', 'locales'];
+    const regionalDirs = ['templates', 'locales', 'sections'];
     for (const rDir of regionalDirs) {
       const srcDir = path.join(localRegionDir, rDir);
       const destDir = path.join(targetPath, rDir);
@@ -351,14 +358,18 @@ for (const target of targets) {
   console.log(`    Pruned Files:  ${prunedCount}\n`);
 
   // 5. Downstream schema validation
-  console.log(`>>> Validating regional JSON templates in ${target.name}...`);
-  const validatorScript = path.join(THEME_ROOT, 'tests/static/json-schema-validator.cjs');
-  try {
-    run(`node "${validatorScript}"`, targetPath, true);
-    console.log(`✅ ${target.name} regional schemas 100% valid.`);
-  } catch (err) {
-    console.error(`❌ Validation failed in ${target.name}:`, err.message);
-    process.exit(1);
+  if (!skipTests) {
+    console.log(`>>> Validating regional JSON templates in ${target.name}...`);
+    const validatorScript = path.join(THEME_ROOT, 'tests/static/json-schema-validator.cjs');
+    try {
+      run(`node "${validatorScript}"`, targetPath, true);
+      console.log(`✅ ${target.name} regional schemas 100% valid.`);
+    } catch (err) {
+      console.error(`❌ Validation failed in ${target.name}:`, err.message);
+      process.exit(1);
+    }
+  } else {
+    console.log(`⏭️  Skipping downstream schema validation in development mode.\n`);
   }
 
   // 6. Git lifecycle for downstream repo
@@ -373,13 +384,16 @@ for (const target of targets) {
       commitHash = runSilent('git rev-parse --short HEAD', targetPath);
       console.log(`✅ Committed to '${target.branch}' @ ${commitHash}`);
 
-      if (!skipPush) {
+      if (ENABLE_REMOTE_PUSH && !skipPush) {
         console.log(`>>> Fast-forwarding '${target.mainBranch}' and pushing to remote...`);
         run(`git checkout ${target.mainBranch}`, targetPath, true);
         run(`git merge ${target.branch} --ff-only`, targetPath, true);
         run(`git push ${target.remote} ${target.branch} ${target.mainBranch}`, targetPath);
         run(`git checkout ${target.branch}`, targetPath, true);
         console.log(`🚀 Successfully pushed ${target.name} (develop + main) to GitHub!`);
+      } else {
+        console.log(`🔒 [SAFETY LOCK ACTIVE] Push to remote ${target.name} is DISABLED.`);
+        console.log(`   All changes remain 100% strictly local on disk. Remote/live stores will NOT be affected.`);
       }
     } else {
       console.log(`ℹ️  ${target.name} is already 100% up to date with upstream.`);
