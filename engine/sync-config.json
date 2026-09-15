@@ -26,7 +26,8 @@
       "path": "../Scentspired-USA",
       "branch": "develop",
       "mainBranch": "main",
-      "remote": "origin"
+      "remote": "origin",
+      "storeDomain": "scentspired.myshopify.com"
     },
     {
       "name": "Scentspired-UK",
@@ -34,7 +35,8 @@
       "path": "../Scentspired-UK",
       "branch": "develop",
       "mainBranch": "main",
-      "remote": "origin"
+      "remote": "origin",
+      "storeDomain": "scentspireduk.myshopify.com"
     }
   ]
 }
