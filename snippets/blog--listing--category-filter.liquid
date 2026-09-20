@@ -7,7 +7,7 @@
   - current_tags: {Array} Current active tags from request (optional)
 
   Usage:
-  {% render 'blog-category-filter', blog: blog, current_tags: current_tags %}
+  {% render 'blog--listing--category-filter', blog: blog, current_tags: current_tags %}
 {% endcomment %}
 
 {%- if blog.all_tags.size > 0 -%}

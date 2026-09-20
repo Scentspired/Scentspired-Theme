@@ -1,0 +1,30 @@
+{% comment %}
+  -----------------------------------------------------------------------------
+  BRAND SUB-COMPONENT: Scentspired Two-Font Brand Identity
+  -----------------------------------------------------------------------------
+  Renders "Scentspired" composed of its two signature fonts:
+    - "Scent": IvyOra Display Medium (upright roman serif)
+    - "spired": IvyOra Display Light Italic (signature italic serif)
+
+  Parameters:
+    - class: Optional additional CSS class string
+    - as_link: Boolean (default: false)
+    - url: Link destination if as_link is true (default: routes.root_url)
+    - tag: Optional wrapping tag (default: 'span')
+  -----------------------------------------------------------------------------
+{% endcomment %}
+
+{%- liquid
+  assign brand_url = url | default: routes.root_url | default: '/'
+  assign wrap_tag = tag | default: 'span'
+-%}
+
+{%- if as_link -%}
+  <a href="{{ brand_url }}" class="scentspired-brand-text brand-name-two-fonts {{ class }}" aria-label="Scentspired">
+    <span class="brand-name__scent brand-scent">Scent</span><span class="brand-name__spired brand-spired">spired</span>
+  </a>
+{%- else -%}
+  <{{ wrap_tag }} class="scentspired-brand-text brand-name-two-fonts {{ class }}">
+    <span class="brand-name__scent brand-scent">Scent</span><span class="brand-name__spired brand-spired">spired</span>
+  </{{ wrap_tag }}>
+{%- endif -%}

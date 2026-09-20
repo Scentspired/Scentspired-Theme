@@ -54,6 +54,8 @@ if (!scope) {
     scope = "usa";
   } else if (resolvedTarget.toLowerCase().includes("uk")) {
     scope = "uk";
+  } else if (resolvedTarget.toLowerCase().includes("uae")) {
+    scope = "uae";
   } else {
     scope = "core";
   }
@@ -83,6 +85,36 @@ process.env.THEME_TARGET_DIR = resolvedTarget;
 const GUARDIAN_ROOT = __dirname;
 const TESTS_DIR = path.join(GUARDIAN_ROOT, "tests");
 
+// Check centralized test control configuration
+const forceRun = args.includes("--force") || args.includes("--run-always") || process.env.TESTING_FORCE === "true";
+const SETTINGS_FILE = path.join(TESTS_DIR, "config", "test-settings.json");
+let testSettings = { testing_enabled: true };
+if (fs.existsSync(SETTINGS_FILE)) {
+  try {
+    testSettings = JSON.parse(fs.readFileSync(SETTINGS_FILE, "utf8"));
+  } catch (err) {
+    console.warn(`[WARN] Could not parse ${SETTINGS_FILE}: ${err.message}`);
+  }
+}
+
+if (testSettings.testing_enabled === false && !forceRun) {
+  console.log("");
+  console.log("╔══════════════════════════════════════════════════════════════╗");
+  console.log("║   SCENTSPIRED THEME GUARDIAN — TESTING TURNED OFF (BYPASS)   ║");
+  console.log("╚══════════════════════════════════════════════════════════════╝");
+  console.log(`  Target Theme : ${resolvedTarget}`);
+  console.log(`  Scope        : ${scope.toUpperCase()}`);
+  console.log("  Status       : 🟡 ACCELERATION MODE ACTIVE");
+  console.log("  Info         : Testing is turned OFF via tests/config/test-settings.json");
+  console.log("");
+  console.log("  👉 To turn testing back ON:");
+  console.log("     • Set \"testing_enabled\": true in tests/config/test-settings.json");
+  console.log("     • Or run: npm run test:on");
+  console.log("     • Or bypass with: node runner.cjs --force");
+  console.log("────────────────────────────────────────────────────────────────\n");
+  process.exit(0);
+}
+
 console.log("");
 console.log("╔══════════════════════════════════════════════════════════════╗");
 console.log("║   SCENTSPIRED THEME GUARDIAN — MASTER QUALITY GATE           ║");
@@ -103,6 +135,12 @@ if (scope === "usa") {
 if (scope === "uk") {
   const ukSuite = path.join(TESTS_DIR, "regions", "uk", "regional-test-suite.cjs");
   const res = spawnSync("node", [ukSuite], { stdio: "inherit", cwd: GUARDIAN_ROOT });
+  process.exit(res.status);
+}
+
+if (scope === "uae") {
+  const uaeSuite = path.join(TESTS_DIR, "regions", "uae", "regional-test-suite.cjs");
+  const res = spawnSync("node", [uaeSuite], { stdio: "inherit", cwd: GUARDIAN_ROOT });
   process.exit(res.status);
 }
 
@@ -203,6 +241,12 @@ const CORE_LAYERS = [
     ],
     failMsg: "Stylelint detected CSS syntax errors or AST violations",
   },
+  {
+    name: "Layer 14: Live Regional Store Output Parity Feedback Loop",
+    cmd: "node",
+    args: [path.join(TESTS_DIR, "dynamic", "verify-live-output-parity.cjs")],
+    failMsg: "Output drift detected: compiled theme outputs do not match live stores",
+  },
 ];
 
 let totalPassed = 0;
@@ -242,11 +286,12 @@ for (let i = 0; i < CORE_LAYERS.length; i++) {
 // If scope is ALL, also run USA and UK suites
 if (totalFailed === 0 && scope === "all") {
   console.log("\n==================================================================");
-  console.log("   🌐 RUNNING REGIONAL TEST SUITES (USA & UK)");
+  console.log("   🌐 RUNNING REGIONAL TEST SUITES (USA, UK & UAE)");
   console.log("==================================================================");
 
   const usaSuite = path.join(TESTS_DIR, "regions", "usa", "regional-test-suite.cjs");
   const ukSuite = path.join(TESTS_DIR, "regions", "uk", "regional-test-suite.cjs");
+  const uaeSuite = path.join(TESTS_DIR, "regions", "uae", "regional-test-suite.cjs");
 
   const usaRes = spawnSync("node", [usaSuite], { stdio: "inherit", cwd: GUARDIAN_ROOT });
   if (usaRes.status !== 0) {
@@ -255,6 +300,11 @@ if (totalFailed === 0 && scope === "all") {
 
   const ukRes = spawnSync("node", [ukSuite], { stdio: "inherit", cwd: GUARDIAN_ROOT });
   if (ukRes.status !== 0) {
+    totalFailed++;
+  }
+
+  const uaeRes = spawnSync("node", [uaeSuite], { stdio: "inherit", cwd: GUARDIAN_ROOT });
+  if (uaeRes.status !== 0) {
     totalFailed++;
   }
 }

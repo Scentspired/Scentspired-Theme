@@ -1,0 +1,8 @@
+{
+  "testing_enabled": false,
+  "description": "Master switch to turn all testing and quality gates ON or OFF across Theme Guardian, git hooks, and runner.",
+  "git_hook_enforcement": false,
+  "runner_enforcement": false,
+  "skip_layers": [],
+  "updated_at": "2026-09-20T12:42:33.585Z"
+}

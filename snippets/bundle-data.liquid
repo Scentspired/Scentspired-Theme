@@ -1,0 +1,191 @@
+{%- comment -%}
+  ============================================================================
+  SCENTSPIRED — Centralized Bundle Data Provider & Catalog Resolver
+  ============================================================================
+  Encapsulates dynamic product pricing extraction and strategy fallback matrices.
+  Renders a clean JSON payload for JavaScript bundle builders.
+  100% Region-Agnostic: Delegates all regional pricing defaults to store-context.
+
+  Parameters:
+    - bundle_type: 'five-box' | 'trio-set' | 'discovery' (required)
+    - product: Shopify Product object (optional, defaults to handle resolution)
+  ============================================================================
+{%- endcomment -%}
+{%- capture curr_sym -%}{%- render 'store-context', key: 'currency_symbol' -%}{%- endcapture -%}
+{%- assign curr_sym = curr_sym | strip_newlines -%}
+{%- if curr_sym == 'AED' -%}
+  {%- assign curr_sym = 'AED ' -%}
+{%- endif -%}
+{%- liquid
+  if bundle_type == 'five-box'
+    # 1. Fallback Defaults from Regional Strategy Registry
+    capture b_50
+      render 'store-context', key: 'five_box_50_id'
+    endcapture
+    capture b_100
+      render 'store-context', key: 'five_box_100_id'
+    endcapture
+    capture b_price_50
+      render 'store-context', key: 'five_box_price_50'
+    endcapture
+    capture b_price_100
+      render 'store-context', key: 'five_box_price_100'
+    endcapture
+    capture b_std_50
+      render 'store-context', key: 'five_box_std_50'
+    endcapture
+    capture b_std_100
+      render 'store-context', key: 'five_box_std_100'
+    endcapture
+    capture b_saving_50
+      render 'store-context', key: 'five_box_saving_50'
+    endcapture
+    capture b_saving_100
+      render 'store-context', key: 'five_box_saving_100'
+    endcapture
+
+    assign b_50 = b_50 | strip | plus: 0
+    assign b_100 = b_100 | strip | plus: 0
+    assign b_price_50 = b_price_50 | strip | plus: 0.0
+    assign b_price_100 = b_price_100 | strip | plus: 0.0
+    assign b_std_50 = b_std_50 | strip | plus: 0.0
+    assign b_std_100 = b_std_100 | strip | plus: 0.0
+    assign b_saving_50 = b_saving_50 | strip | plus: 0.0
+    assign b_saving_100 = b_saving_100 | strip | plus: 0.0
+
+    # 2. Dynamic Override from Linked Catalog Product
+    assign target_product = product | default: all_products['the-five-favourites'] | default: all_products['five-favourites'] | default: all_products['the-five-box'] | default: all_products['five-box']
+    if target_product and target_product.variants.size > 0
+      for variant in target_product.variants
+        if variant.title contains '50'
+          assign b_50 = variant.id
+          if variant.price > 0
+            assign b_price_50 = variant.price | divided_by: 100.0
+            if variant.compare_at_price > variant.price
+              assign b_std_50 = variant.compare_at_price | divided_by: 100.0
+              assign b_saving_50 = variant.compare_at_price | minus: variant.price | divided_by: 100.0
+            endif
+          endif
+        elsif variant.title contains '100'
+          assign b_100 = variant.id
+          if variant.price > 0
+            assign b_price_100 = variant.price | divided_by: 100.0
+            if variant.compare_at_price > variant.price
+              assign b_std_100 = variant.compare_at_price | divided_by: 100.0
+              assign b_saving_100 = variant.compare_at_price | minus: variant.price | divided_by: 100.0
+            endif
+          endif
+        endif
+      endfor
+    endif
+
+  elsif bundle_type == 'trio-set'
+    # 1. Fallback Defaults from Regional Strategy Registry
+    capture b_50
+      render 'store-context', key: 'trio_50_id'
+    endcapture
+    capture b_100
+      render 'store-context', key: 'trio_100_id'
+    endcapture
+    capture b_price_50
+      render 'store-context', key: 'trio_price_50'
+    endcapture
+    capture b_price_100
+      render 'store-context', key: 'trio_price_100'
+    endcapture
+    capture b_std_50
+      render 'store-context', key: 'trio_std_50'
+    endcapture
+    capture b_std_100
+      render 'store-context', key: 'trio_std_100'
+    endcapture
+    capture b_saving_50
+      render 'store-context', key: 'trio_saving_50'
+    endcapture
+    capture b_saving_100
+      render 'store-context', key: 'trio_saving_100'
+    endcapture
+
+    assign b_50 = b_50 | strip | plus: 0
+    assign b_100 = b_100 | strip | plus: 0
+    assign b_price_50 = b_price_50 | strip | plus: 0.0
+    assign b_price_100 = b_price_100 | strip | plus: 0.0
+    assign b_std_50 = b_std_50 | strip | plus: 0.0
+    assign b_std_100 = b_std_100 | strip | plus: 0.0
+    assign b_saving_50 = b_saving_50 | strip | plus: 0.0
+    assign b_saving_100 = b_saving_100 | strip | plus: 0.0
+
+    # 2. Dynamic Override from Linked Catalog Product
+    assign target_product = product | default: all_products['the-signature-trio'] | default: all_products['signature-trio'] | default: all_products['the-trio-set'] | default: all_products['trio-set']
+    if target_product and target_product.variants.size > 0
+      for variant in target_product.variants
+        if variant.title contains '50'
+          assign b_50 = variant.id
+          if variant.price > 0
+            assign b_price_50 = variant.price | divided_by: 100.0
+            if variant.compare_at_price > variant.price
+              assign b_std_50 = variant.compare_at_price | divided_by: 100.0
+              assign b_saving_50 = variant.compare_at_price | minus: variant.price | divided_by: 100.0
+            endif
+          endif
+        elsif variant.title contains '100'
+          assign b_100 = variant.id
+          if variant.price > 0
+            assign b_price_100 = variant.price | divided_by: 100.0
+            if variant.compare_at_price > variant.price
+              assign b_std_100 = variant.compare_at_price | divided_by: 100.0
+              assign b_saving_100 = variant.compare_at_price | minus: variant.price | divided_by: 100.0
+            endif
+          endif
+        endif
+      endfor
+    endif
+
+  elsif bundle_type == 'discovery'
+    # 1. Fallback Defaults from Regional Strategy Registry
+    capture disc_variant_id
+      render 'store-context', key: 'discovery_variant_id'
+    endcapture
+    capture disc_price_display
+      render 'store-context', key: 'discovery_price_display'
+    endcapture
+
+    assign disc_variant_id = disc_variant_id | strip | plus: 0
+    assign disc_price_display = disc_price_display | strip
+
+    assign target_product = product | default: all_products['discovery-set'] | default: all_products['discovery-set-5ml'] | default: all_products['the-discovery-set']
+    if target_product and target_product.variants.size > 0
+      assign disc_variant_id = target_product.first_available_variant.id | default: target_product.variants.first.id
+      if target_product.price > 0
+        assign disc_price_display = target_product.price | money
+      endif
+    endif
+  endif
+-%}
+{%- if bundle_type == 'discovery' -%}
+{
+  "currencySymbol": {{ curr_sym | json }},
+  "variantId": {{ disc_variant_id | json }},
+  "priceDisplay": {{ disc_price_display | json }}
+}
+{%- else -%}
+{
+  "currencySymbol": {{ curr_sym | json }},
+  "pricing": {
+    "50ml": {
+      "total": {{ b_price_50 | json }},
+      "standard": {{ b_std_50 | json }},
+      "saving": {{ b_saving_50 | json }}
+    },
+    "100ml": {
+      "total": {{ b_price_100 | json }},
+      "standard": {{ b_std_100 | json }},
+      "saving": {{ b_saving_100 | json }}
+    }
+  },
+  "variants": {
+    "50ml": {{ b_50 | json }},
+    "100ml": {{ b_100 | json }}
+  }
+}
+{%- endif -%}

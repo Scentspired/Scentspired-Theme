@@ -1,3 +1,5 @@
+{%- capture curr_sym -%}{%- render 'store-context', key: 'currency_symbol' -%}{%- endcapture -%}
+{%- assign curr_sym = curr_sym | strip -%}
 <style>
     {% comment %} Font Imports {% endcomment %}
     @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700&display=swap');
@@ -2755,11 +2757,11 @@
         <div style="padding-left: 10px; margin-top: 6px;">
           <label>
             <input type="checkbox" class="filter-range" data-min="0" data-max="50" data-variant-index="0">
-            0 – 25{{ cart.currency.symbol | default: '$' }} </label
+            0 – 25{{ cart.currency.symbol | default: curr_sym }} </label
           ><br>
           <label>
             <input type="checkbox" class="filter-size" value="100ml" data-variant-index="1">
-            25 – 50{{ cart.currency.symbol | default: '$' }}
+            25 – 50{{ cart.currency.symbol | default: curr_sym }}
           </label>
         </div>
       </details>
@@ -3251,7 +3253,7 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '{{ cart.currency.symbol }}' || '$';
+    const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '{{ curr_sym }}' || '{{ cart.currency.symbol }}';
     let cartQuantities = {};
     let cartFetchInProgress = false;
 
@@ -3459,7 +3461,7 @@
 <script>
   // This script handles the interactive elements of the collection page, including sidebar toggling, search functionality, and filtering.
   document.addEventListener('DOMContentLoaded', () => {
-    const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '{{ cart.currency.symbol }}' || '$';
+    const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '{{ curr_sym }}' || '{{ cart.currency.symbol }}';
     {% comment %} DOM Element References {% endcomment %}
     const filterToggleButton = document.getElementById('filterToggleButton');
     const filterToggleDesktop = document.getElementById('filterToggleDesktop');

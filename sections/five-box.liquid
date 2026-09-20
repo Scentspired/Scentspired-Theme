@@ -26,42 +26,11 @@
   </div>
 </div>
 
-{% assign fb_parent = section.settings.bundle_product | default: all_products["the-five-favourites"] %}
-{% assign fb_50 = 57083185922393 %}
-{% assign fb_100 = 57083185955161 %}
-{% assign fb_price_50 = 64.99 %}
-{% assign fb_price_100 = 99.99 %}
-{% assign fb_std_50 = 99.95 %}
-{% assign fb_std_100 = 149.95 %}
-{% assign fb_saving_50 = 34.96 %}
-{% assign fb_saving_100 = 49.96 %}
-{% assign fb_curr_sym = "£" %}
+{% capture bundle_data_json %}{% render 'bundle-data', bundle_type: 'five-box', product: section.settings.bundle_product %}{% endcapture %}
+{%- capture curated_brands_json -%}{%- render 'bundle-curated-brands' -%}{%- endcapture -%}
 
-{% if cart.currency.iso_code == "USD" or shop.currency == "USD" %}
-  {% assign fb_50 = 45733941936311 %}
-  {% assign fb_100 = 45733941969079 %}
-  {% assign fb_price_50 = 129.99 %}
-  {% assign fb_price_100 = 179.99 %}
-  {% assign fb_std_50 = 199.95 %}
-  {% assign fb_std_100 = 249.95 %}
-  {% assign fb_saving_50 = 69.96 %}
-  {% assign fb_saving_100 = 69.96 %}
-  {% assign fb_curr_sym = "$" %}
-{% endif %}
-
-{% for variant in fb_parent.variants %}
-  {% if variant.title contains "50" %}
-    {% assign fb_50 = variant.id %}
-    {% if variant.price > 0 %}
-      {% assign fb_price_50 = variant.price | divided_by: 100.0 %}
-    {% endif %}
-  {% elsif variant.title contains "100" %}
-    {% assign fb_100 = variant.id %}
-    {% if variant.price > 0 %}
-      {% assign fb_price_100 = variant.price | divided_by: 100.0 %}
-    {% endif %}
-  {% endif %}
-{% endfor %}
+{% assign fb_col_50 = section.settings.collection_50ml | default: collections['bundle-50ml'] | default: collections['all'] %}
+{% assign fb_col_100 = section.settings.collection_100ml | default: collections['bundle-100ml'] | default: collections['all'] %}
 
 <script>
   let activeSize = null;
@@ -69,32 +38,16 @@
 let hasAddedFirstProduct = false;     // Becomes true after first product is added
 let allFilteredProducts = [];
 
-const CURRENCY_SYMBOL = {{ fb_curr_sym | json }};
+const BUNDLE_DATA = {{ bundle_data_json }};
+const CURRENCY_SYMBOL = BUNDLE_DATA.currencySymbol;
+const PRICING = BUNDLE_DATA.pricing;
+const DISCOVERY_SET_VARIANT = BUNDLE_DATA.variants;
 
-const PRICING = {
-  "50ml": {
-    total: {{ fb_price_50 | json }},
-    standard: {{ fb_std_50 | json }},
-    saving: {{ fb_saving_50 | json }}
-  },
-  "100ml": {
-    total: {{ fb_price_100 | json }},
-    standard: {{ fb_std_100 | json }},
-    saving: {{ fb_saving_100 | json }}
-  }
-};
-
-// 🔑 Five Favourites main product variants (US & UK)
-const DISCOVERY_SET_VARIANT = {
-  "50ml": {{ fb_50 | json }},
-  "100ml": {{ fb_100 | json }}
-};
-
-  // Load all products from the 'shop' collection
+  // Load all products from dynamic or fallback collections
   const PRODUCTS_BY_SIZE = {
   "50ml": [
-    {% paginate collections['bundle-50ml'].products by 100 %}
-      {% for product in collections['bundle-50ml'].products %}
+    {% paginate fb_col_50.products by 250 %}
+      {% for product in fb_col_50.products %}
         {
           id: {{ product.id }},
           title: {{ product.title | json }},
@@ -118,8 +71,8 @@ variants: [
   ],
 
   "100ml": [
-    {% paginate collections['bundle-100ml'].products by 100 %}
-      {% for product in collections['bundle-100ml'].products %}
+    {% paginate fb_col_100.products by 250 %}
+      {% for product in fb_col_100.products %}
         {
           id: {{ product.id }},
           title: {{ product.title | json }},
@@ -144,39 +97,30 @@ variants: [
   ]
 };
 
+  const curatedBrands = {{ curated_brands_json }};
 
- 
-  const brands = [
-    { tag: "tomford", name: "Tom Ford" },
-    { tag: "chanel", name: "Chanel" },
-    { tag: "lv", name: "Louis Vuitton" },
-    { tag: "bykillian", name: "By Killian" },
-    { tag: "byredo", name: "Byredo" },
-    { tag: "dior", name: "Dior" },
-    { tag: "maisoncrivelli", name: "Maison Crivelli" },
-    { tag: "creed", name: "Creed" },
-    { tag: "lelabo", name: "Le Labo" },
-    { tag: "ysl", name: "YSL" },
-    { tag: "burberry", name: "Burberry" },
-    { tag: "exnihilos", name: "Ex Nihilo's" },
-    { tag: "parfums", name: "Parfums" },
-    { tag: "bvlgari", name: "Bvlgari" },
-    { tag: "carolinaherrera", name: "Carolina Herrera" },
-    { tag: "diptyque", name: "Diptyque" },
-    { tag: "giorgioarmani", name: "Giorgio Armani" },
-    { tag: "gucci", name: "Gucci" },
-    { tag: "herm", name: "Hermès" },
-    { tag: "initio", name: "Initio" },
-    { tag: "lancôme", name: "Lancôme" },
-    { tag: "mfk", name: "MFK" },
-    { tag: "narciso", name: "Narciso" },
-    { tag: "nasomattos", name: "Nasomatto's" },
-    { tag: "nishane", name: "Nishane" },
-    { tag: "pacorabanne", name: "Paco Rabanne" }
-  ];
+  // Smart auto-accommodating brand list: canonical display + dynamic extraction of any new catalog vendors
+  function resolveBrands() {
+    const brandMap = new Map();
+    curatedBrands.forEach(b => brandMap.set(b.tag.toLowerCase(), b));
+
+    const allProducts = [...(PRODUCTS_BY_SIZE["50ml"] || []), ...(PRODUCTS_BY_SIZE["100ml"] || [])];
+    allProducts.forEach(p => {
+      if (p.vendor && p.vendor.trim()) {
+        const cleanTag = p.vendor.toLowerCase().replace(/[^a-z0-9]/g, '');
+        if (cleanTag && cleanTag !== 'scentspired' && !brandMap.has(cleanTag)) {
+          brandMap.set(cleanTag, { tag: cleanTag, name: p.vendor.trim() });
+        }
+      }
+    });
+    return Array.from(brandMap.values());
+  }
+
+  const brands = resolveBrands();
 
   let bundle = [null, null, null, null, null];
   let currentSlot = null;
+  let activeBrand = null;
 
   function isDesktop() {
     return window.innerWidth > 1024;
@@ -233,6 +177,13 @@ variants: [
 
   function goBackToStep() {
     if (currentStep === 'Step-Product') {
+      if (activeBrand) {
+        activeBrand = null;
+        renderProducts();
+        const headline = document.getElementById('DrawerHeadline');
+        if (headline) headline.innerText = 'Select Product';
+        return;
+      }
       showStep('Step-Size');
     }
   }
@@ -240,6 +191,27 @@ variants: [
   function selectSize(size) {
     activeSize = size;
     showStep('Step-Product');
+  }
+
+  // Render brands in the drawer
+  function renderBrands() {
+    const grid = document.getElementById('BrandGrid');
+    if (!grid) return;
+    grid.innerHTML = brands.map(b => `
+      <div class="option-item" data-tag="${b.tag}" onclick="selectBrand(this.dataset.tag)">
+        <span>${b.name}</span>
+      </div>
+    `).join('');
+  }
+
+  function selectBrand(tag) {
+    activeBrand = tag;
+    showStep('Step-Product');
+    const headline = document.getElementById('DrawerHeadline');
+    if (headline) {
+      const bObj = brands.find(b => b.tag === tag);
+      headline.innerText = bObj ? bObj.name : 'Select Product';
+    }
   }
 
   function handleSearch(event) {
@@ -271,11 +243,22 @@ variants: [
 
     let displayProducts = filtered;
 
+    // Apply active brand filter if selected
+    if (activeBrand) {
+      const normBrand = activeBrand.toLowerCase().replace(/[^a-z0-9]/g, '');
+      displayProducts = displayProducts.filter(p => {
+        const normVendor = (p.vendor || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+        const matchesVendor = normVendor === normBrand;
+        const matchesTags = p.tags && p.tags.some(tag => tag.toLowerCase().replace(/[^a-z0-9]/g, '') === normBrand);
+        return matchesVendor || matchesTags;
+      });
+    }
+
     if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase();
-      displayProducts = filtered.filter(p => {
-        const matchesTitle = p.title.toLowerCase().includes(query);
-        const matchesVendor = p.vendor.toLowerCase().includes(query);
+      displayProducts = displayProducts.filter(p => {
+        const matchesTitle = p.title && p.title.toLowerCase().includes(query);
+        const matchesVendor = p.vendor && p.vendor.toLowerCase().includes(query);
         const matchesTags = p.tags && p.tags.some(tag => tag.toLowerCase().includes(query));
         
         return matchesTitle || matchesVendor || matchesTags;
@@ -553,6 +536,18 @@ variants: [
       "id": "bundle_product",
       "label": "Bundle Parent Product (Optional Override)",
       "info": "Leave empty to automatically resolve by product handle ('the-five-favourites') and currency."
+    },
+    {
+      "type": "collection",
+      "id": "collection_50ml",
+      "label": "50ml Products Collection (Optional Override)",
+      "info": "Leave empty to use 'bundle-50ml' collection automatically."
+    },
+    {
+      "type": "collection",
+      "id": "collection_100ml",
+      "label": "100ml Products Collection (Optional Override)",
+      "info": "Leave empty to use 'bundle-100ml' collection automatically."
     }
   ],
   "presets": [

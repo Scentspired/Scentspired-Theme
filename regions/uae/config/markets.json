@@ -1,0 +1,7 @@
+{
+  "markets": {
+    "uae": {
+      "parent": "@default"
+    }
+  }
+}

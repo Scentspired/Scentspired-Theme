@@ -9,9 +9,9 @@ function getFocusableElements(container) {
 const trapFocusHandlers = {};
 
 function trapFocus(container, elementToFocus = container) {
-  var elements = getFocusableElements(container);
-  var first = elements[0];
-  var last = elements[elements.length - 1];
+  const elements = getFocusableElements(container);
+  const first = elements[0];
+  const last = elements[elements.length - 1];
 
   removeTrapFocus();
 
@@ -76,51 +76,3 @@ function onKeyUpEscape(event) {
   }
 }
 
-// Here run the querySelector to figure out if the browser supports :focus-visible or not and run code based on it.
-try {
-  document.querySelector(":focus-visible");
-} catch (e) {
-  focusVisiblePolyfill();
-}
-
-function focusVisiblePolyfill() {
-  const navKeys = [
-    "ARROWUP",
-    "ARROWDOWN",
-    "ARROWLEFT",
-    "ARROWRIGHT",
-    "TAB",
-    "ENTER",
-    "SPACE",
-    "ESCAPE",
-    "HOME",
-    "END",
-    "PAGEUP",
-    "PAGEDOWN",
-  ];
-  let currentFocusedElement = null;
-  let mouseClick = null;
-
-  window.addEventListener("keydown", event => {
-    if (navKeys.includes(event.code.toUpperCase())) {
-      mouseClick = false;
-    }
-  });
-
-  window.addEventListener("mousedown", event => {
-    mouseClick = true;
-  });
-
-  window.addEventListener(
-    "focus",
-    () => {
-      if (currentFocusedElement) currentFocusedElement.classList.remove("focused");
-
-      if (mouseClick) return;
-
-      currentFocusedElement = document.activeElement;
-      currentFocusedElement.classList.add("focused");
-    },
-    true
-  );
-}

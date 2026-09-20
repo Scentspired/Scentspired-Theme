@@ -29,11 +29,10 @@ document.addEventListener("shopify:section:load", () => {
   hideProductModal();
   const zoomOnHoverScript = document.querySelector("[id^=EnableZoomOnHover]");
   if (!zoomOnHoverScript) return;
-  if (zoomOnHoverScript) {
-    const newScriptTag = document.createElement("script");
-    newScriptTag.src = zoomOnHoverScript.src;
-    zoomOnHoverScript.parentNode.replaceChild(newScriptTag, zoomOnHoverScript);
-  }
+
+  const newScriptTag = document.createElement("script");
+  newScriptTag.src = zoomOnHoverScript.src;
+  zoomOnHoverScript.parentNode.replaceChild(newScriptTag, zoomOnHoverScript);
 });
 
 document.addEventListener("shopify:section:unload", event => {

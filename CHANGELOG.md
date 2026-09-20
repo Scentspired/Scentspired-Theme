@@ -111,8 +111,8 @@ graph LR
 
 | Referenced Asset / Snippet | Location | Issue Detected | Resolution |
 | :--- | :--- | :--- | :--- |
-| **`MonumentExtended-Regular.woff2`** | `blocks/ai_gen_block_9f36455.liquid` | 404 Asset Not Found | Removed draft placeholder `@font-face` declaration |
-| **`Recta-Light-SmallCaps.woff2`** | `blocks/ai_gen_block_9f36455.liquid` | 404 Asset Not Found | Removed draft placeholder `@font-face` declaration |
+| **`MonumentExtended-Regular.woff2`** | `blocks/bundle--discovery-builder.liquid` | 404 Asset Not Found | Removed draft placeholder `@font-face` declaration |
+| **`Recta-Light-SmallCaps.woff2`** | `blocks/bundle--discovery-builder.liquid` | 404 Asset Not Found | Removed draft placeholder `@font-face` declaration |
 | **`PPMori-Regular.woff2`** | `sections/dual-slider.liquid` | 404 Asset Not Found | Updated to live Shopify CDN OTF URL |
 | **`logo.png`** | `snippets/ecom_google_snippet.liquid` | 404 Asset Not Found | Replaced with dynamic `settings.logo \| image_url` |
 

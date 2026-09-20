@@ -178,7 +178,7 @@ if (fs.existsSync(templatesDir)) {
         for (const [secId, sec] of Object.entries(parsed.sections)) {
           if (sec && sec.blocks) {
             for (const [bId, blk] of Object.entries(sec.blocks)) {
-              if (blk && blk.type && (blk.type.includes('0232e4c') || blk.type.includes('5c54be2'))) {
+              if (blk && blk.type && blk.type.includes('blog--luxury-perfume-banner')) {
                 const s = blk.settings || {};
                 if (s.content_padding && s.content_padding !== 40) {
                   errors.push({

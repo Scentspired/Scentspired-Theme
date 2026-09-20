@@ -1,3 +1,5 @@
+{%- capture curr_sym -%}{%- render 'store-context', key: 'currency_symbol' -%}{%- endcapture -%}
+{%- assign curr_sym = curr_sym | strip -%}
 <style>
   /* Container */
   .fragrance-container {
@@ -105,22 +107,22 @@
 
   /* Men */
   .product-badge.badge-men {
-    background-color: #363745 !important;
+    background-color: var(--badge-men-bg, #363745) !important;
   }
 
   /* Women */
   .product-badge.badge-women {
-    background-color: #79242f !important;
+    background-color: var(--badge-women-bg, #79242f) !important;
   }
 
   /* Unisex */
   .product-badge.badge-unisex {
-    background-color: #4e4a33 !important;
+    background-color: var(--badge-unisex-bg, #4e4a33) !important;
   }
 
   /* Coming Soon - Red with white text */
   .product-badge.badge-coming-soon {
-    background-color: #ff0000 !important;
+    background-color: var(--badge-coming-soon-bg, #ff0000) !important;
     color: #fff !important;
   }
 
@@ -137,20 +139,20 @@
 
   /* Stars - left aligned, NO hover effects */
   .fragrance-rating {
-    font-size: 24px;
-    color: #cbdd00;
-    letter-spacing: -2px;
+    font-size: var(--rating-font-size, 24px);
+    color: var(--rating-star-color, #cbdd00);
+    letter-spacing: var(--rating-letter-spacing, -2px);
     margin: 0;
     text-align: left;
     margin-top: -20px;
   }
 
   .rating-star.filled {
-    color: #cbdd00;
+    color: var(--rating-star-color, #cbdd00);
   }
 
   .rating-star:not(.filled) {
-    color: #e0e0e0;
+    color: var(--rating-star-empty, #e0e0e0);
   }
 
   /* Product title - left aligned, NO hover effects */
@@ -192,19 +194,20 @@
   }
 
   .price-badge {
-    background-color: #d90429;
-    color: #ffffff;
-    font-size: 12px;
+    background-color: var(--price-badge-bg, #d90429);
+    color: var(--price-badge-color, #ffffff);
+    font-size: var(--price-badge-font-size, 12px);
     font-weight: 600;
-    padding: 2px 8px;
-    border-radius: 3px;
+    padding: var(--price-badge-padding-y, 2px) var(--price-badge-padding-x, 8px);
+    border-radius: var(--price-badge-radius, 3px);
     font-family: var(--font-family-primary);
   }
 
   .original-price {
-    font-size: 12px;
-    color: #000 !important;
+    font-size: var(--price-compare-font-size, 12px);
+    color: var(--price-compare-color, #999);
     text-decoration: line-through;
+    margin-right: 8px;
     font-family: var(--font-family-primary);
     font-weight: 400;
   }
@@ -231,28 +234,28 @@
   }
 
   .variant-option-btn.active {
-    background-color: #f4ff41 !important;
-    color: #000 !important;
-    border-color: #000 !important;
+    background-color: var(--btn-pill-active-bg, #f4ff41) !important;
+    color: var(--color-text-primary, #000) !important;
+    border-color: var(--btn-pill-active-border, #000) !important;
   }
   .variant-option-btn.disabled {
     color: #4a4a4a !important;
     cursor: not-allowed;
     text-decoration: line-through;
     pointer-events: none;
-    background-color: #f0f0f0;
-    border-color: #c4c4c4;
+    background-color: var(--btn-pill-disabled-bg, #f0f0f0) !important;
+    border-color: var(--btn-pill-disabled-border, #c4c4c4) !important;
   }
 
-  /* Add to cart button */
+  /* Add to cart button (SSOT Token Integration) */
   .cart-button {
     margin-top: 8px;
-    background: #f4ff41;
-    color: #000;
-    font-weight: 600;
-    font-size: 12px !important;
-    padding: 16px 16px !important;
-    border-radius: 20px !important;
+    background: var(--btn-brand-bg, #f4ff41);
+    color: var(--btn-brand-color, #000);
+    font-weight: var(--btn-brand-font-weight, 600);
+    font-size: var(--btn-brand-font-size, 12px) !important;
+    padding: var(--btn-brand-padding-y, 16px) var(--btn-brand-padding-x, 16px) !important;
+    border-radius: var(--btn-brand-radius, 20px) !important;
     cursor: pointer;
     border: none;
     width: 100%;
@@ -261,13 +264,13 @@
   }
 
   .cart-button:hover {
-    background: #e0ea36;
+    background: var(--btn-brand-hover-bg, #e0ea36);
   }
 
   .cart-button:disabled,
   .cart-button.disabled {
-    background: #e0e0e0 !important;
-    color: #333333 !important;
+    background: var(--btn-brand-disabled-bg, #e0e0e0) !important;
+    color: var(--btn-brand-disabled-color, #333333) !important;
     cursor: not-allowed;
     text-transform: uppercase;
   }
@@ -276,11 +279,11 @@
   .show-all-btn {
     display: inline-block;
     padding: 16px 94px;
-    background: #f4ff41;
-    color: #000;
+    background: var(--color-brand-primary, #f4ff41);
+    color: var(--color-text-primary, #000);
     font-weight: 500;
     font-size: 15px;
-    border-radius: 999px;
+    border-radius: var(--radius-pill, 999px);
     text-transform: uppercase;
     margin-top: 60px;
     text-decoration: none;
@@ -289,7 +292,7 @@
   }
 
   .show-all-btn:hover {
-    background: #e0ea36;
+    background: var(--btn-brand-hover-bg, #e0ea36);
   }
 
   /* Mobile Styles - 2 products per row */
@@ -356,7 +359,7 @@
     }
 
     .fragrance-dot.active {
-      background: #f4ff41;
+      background: var(--color-brand-primary, #f4ff41);
     }
 
     .fragrance-image-wrap {
@@ -421,30 +424,37 @@
 
   <div class="fragrance-carousel-wrapper">
     <div class="fragrance-layout" id="fragrance-carousel">
-      {% assign products = collections[section.settings.collection].products %}
-      {% for product in products limit: 4 %}
+        {% assign featured_collection = collections[section.settings.collection] | default: collections['featured-collection'] | default: collections['all'] %}
+        {% assign products = featured_collection.products %}
+        {% for product in products limit: 4 %}
         <div class="fragrance-item product-card" data-product-id="{{ product.id }}">
           <!-- Badges -->
 
           <!-- Image with secondary image on hover -->
           <a href="{{ product.url }}" style="text-decoration: none; color: inherit;">
             <div class="fragrance-image-wrap">
-              <img
-                src="{{ product.featured_image | image_url: width: 600 }}"
-                alt="{{ product.title }}"
-                loading="lazy"
-                decoding="async"
-                width="600"
-                height="{{ 600 | divided_by: product.featured_image.aspect_ratio | default: 600 | round }}">
-              {% if product.images.size > 1 %}
+              {% if product.featured_image != blank %}
                 <img
-                  class="secondary-image"
-                  src="{{ product.images[1] | image_url: width: 600 }}"
+                  src="{{ product.featured_image | image_url: width: 600 }}"
                   alt="{{ product.title }}"
                   loading="lazy"
                   decoding="async"
                   width="600"
-                  height="{{ 600 | divided_by: product.images[1].aspect_ratio | default: 600 | round }}">
+                  height="{{ 600 | divided_by: product.featured_image.aspect_ratio | default: 600 | round }}">
+                {% if product.images.size > 1 %}
+                  <img
+                    class="secondary-image"
+                    src="{{ product.images[1] | image_url: width: 600 }}"
+                    alt="{{ product.title }}"
+                    loading="lazy"
+                    decoding="async"
+                    width="600"
+                    height="{{ 600 | divided_by: product.images[1].aspect_ratio | default: 600 | round }}">
+                {% endif %}
+              {% else %}
+                <div class="fragrance-placeholder" style="width: 100%; height: 100%; background-color: #e5e5e5; display: flex; align-items: center; justify-content: center;">
+                  <svg style="width: 35%; height: 35%; opacity: 0.15;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                </div>
               {% endif %}
               <div class="product-badges">
                 {% for tag in product.tags %}
@@ -529,8 +539,8 @@
                 <input type="hidden" name="id" value="{{ product.variants.first.id }}">
               {% endif %}
 
-              <!-- Add to cart button -->
-              <button type="submit" class="cart-button">ADD TO CART</button>
+              <!-- Add to cart button (SSOT Component) -->
+              {% render 'component-button', type: 'submit', variant: 'brand', text: 'ADD TO CART' %}
             </form>
           </div>
         </div>
@@ -544,7 +554,7 @@
   </div>
 
   {% if section.settings.view_all_link != blank %}
-    <div style="text-align: center;">
+    <div style="text-align: center; margin-top: 20px; margin-bottom: 60px;">
       <a href="{{ section.settings.view_all_link }}" class="show-all-btn"> View All Products </a>
     </div>
   {% endif %}
@@ -552,7 +562,7 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '{{ cart.currency.symbol }}' || '$';
+    const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '{{ curr_sym }}' || '{{ cart.currency.symbol }}';
 
     function updateVariantAvailability() {
       // Update all product cards

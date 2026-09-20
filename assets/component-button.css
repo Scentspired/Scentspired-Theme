@@ -1,0 +1,131 @@
+/*
+ * ============================================================================
+ * SCENTSPIRED THEME — MASTER BUTTON COMPONENT SYSTEM (SSOT)
+ * ============================================================================
+ * Centralized, production-grade button primitives for Scentspired stores.
+ * Powered by Master Design Tokens in theme-design-tokens.liquid.
+ *
+ * ZERO VISUAL CHANGE • ZERO FUNCTIONAL REGRESSION • SHOPIFY OS 2.0 COMPLIANT
+ * ============================================================================
+ */
+
+/* ── 1. SIGNATURE BRAND CTA BUTTON (.button--brand / .cart-button) ─────── */
+.button--brand,
+.cart-button {
+  margin-top: 8px;
+  background: var(--btn-brand-bg, #f4ff41);
+  color: var(--btn-brand-color, #000000);
+  font-weight: var(--btn-brand-font-weight, 600);
+  font-size: var(--btn-brand-font-size, 12px);
+  padding: var(--btn-brand-padding-y, 16px) var(--btn-brand-padding-x, 16px);
+  border-radius: var(--btn-brand-radius, 20px);
+  cursor: pointer;
+  border: none;
+  width: 100%;
+  font-family: var(--font-family-primary);
+  transition: background var(--transition-fast, 0.2s ease), all var(--transition-base, 0.3s ease);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-sizing: border-box;
+  line-height: 1;
+  letter-spacing: normal;
+  text-align: center;
+  user-select: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.button--brand:hover,
+.cart-button:hover {
+  background: var(--btn-brand-hover-bg, #e0ea36);
+}
+
+.button--brand:disabled,
+.button--brand.disabled,
+.button--brand.sold-out,
+.cart-button:disabled,
+.cart-button.disabled,
+.cart-button.sold-out {
+  background: var(--btn-brand-disabled-bg, #e0e0e0) !important;
+  color: var(--btn-brand-disabled-color, #333333) !important;
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+  text-transform: uppercase;
+}
+
+/* Mobile responsive padding & typography for SSOT brand buttons */
+@media screen and (max-width: 768px) {
+  .button--brand {
+    padding: 12px;
+    font-size: 10px;
+  }
+}
+
+/* ── 2. CIRCULAR NAVIGATION ARROW BUTTONS (.button--circle) ─────────────── */
+.button--circle {
+  width: var(--btn-circle-size, 40px);
+  height: var(--btn-circle-size, 40px);
+  border-radius: var(--radius-circle, 50%);
+  border: 1px solid var(--btn-circle-border, #000000);
+  background: var(--btn-circle-bg, #ffffff);
+  color: var(--btn-circle-color, #000000);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  transition: background var(--transition-fast, 0.2s ease), color var(--transition-fast, 0.2s ease);
+  padding: 0;
+  text-decoration: none;
+  line-height: 1;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.button--circle:hover {
+  background: var(--btn-circle-hover-bg, #000000);
+  color: var(--btn-circle-hover-color, #ffffff);
+}
+
+.button--circle:disabled,
+.button--circle.disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ── 3. VARIANT SELECTION PILLS (.button--variant-pill) ─────────────────── */
+.button--variant-pill {
+  padding: var(--btn-pill-padding-y, 6px) var(--btn-pill-padding-x, 12px);
+  font-size: var(--btn-pill-font-size, 11px);
+  border: 1px solid var(--btn-pill-border, #e0e0e0);
+  background: #ffffff;
+  cursor: pointer;
+  border-radius: var(--btn-pill-radius, 4px);
+  transition: all var(--transition-fast, 0.2s ease);
+  font-family: var(--font-family-primary);
+  color: #000000;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  line-height: 1.2;
+  box-sizing: border-box;
+}
+
+.button--variant-pill.active {
+  background-color: var(--btn-pill-active-bg, #f4ff41);
+  color: #000000;
+  border-color: var(--btn-pill-active-border, #000000);
+}
+
+.button--variant-pill:disabled,
+.button--variant-pill.disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+  text-decoration: line-through;
+  background-color: var(--btn-pill-disabled-bg, #f0f0f0);
+  border-color: var(--btn-pill-disabled-border, #c4c4c4);
+}

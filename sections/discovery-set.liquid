@@ -1,6 +1,8 @@
 {% comment %}
   Bundle Builder Section - 5 Products Only, No Discounts, Checkout Enabled Only When 5 Items Added
 {% endcomment %}
+{%- capture curr_sym -%}{%- render 'store-context', key: 'currency_symbol' -%}{%- endcapture -%}
+{%- assign curr_sym = curr_sym | strip -%}
 
 <div class="bundle-builder-section">
   <!-- Bundle Header Section -->
@@ -49,7 +51,7 @@
           <div class="pricing-section">
             <div class="initial-price-row">
               <span>Total Price</span>
-              <span>$<span id="initial-price">0</span></span>
+              <span>{{ cart.currency.symbol | default: curr_sym }}<span id="initial-price">0</span></span>
             </div>
             <p class="savings-text" id="savings-message">Add 5 items to checkout</p>
           </div>
@@ -57,7 +59,7 @@
           <div class="checkout-section">
             <div class="subtotal-row">
               <span>SUBTOTAL</span>
-              <span>$<span id="subtotal-amount">0</span></span>
+              <span>{{ cart.currency.symbol | default: curr_sym }}<span id="subtotal-amount">0</span></span>
             </div>
             <button class="checkout-button" id="checkout-btn" disabled>CHECKOUT</button>
           </div>
@@ -127,7 +129,7 @@
             data-product-image="{{ product.featured_image | img_url: '100x100' }}"
             data-tags="{{ product.tags | join: ',' | downcase }}"
             data-bestseller="{{ is_bestseller }}"
-            style="background-image: url('{{ product.featured_image | img_url: '400x400' }}');">
+            style="background-image: url('{{ product.featured_image | img_url: '400x400' }}'); background-color: #e5e5e5;">
             <!-- Product Badges -->
             <div class="product-badges">
               {% for tag in product.tags %}
@@ -145,7 +147,7 @@
             </div>
 
             <!-- Price Overlay in Top Right -->
-            <div class="product-price-overlay">${{ product.price | money_without_currency }}</div>
+            <div class="product-price-overlay">{{ cart.currency.symbol | default: curr_sym }}{{ product.price | money_without_currency }}</div>
 
             <!-- Product Info Overlay at Bottom -->
             <div class="product-info-overlay">
@@ -184,9 +186,7 @@
 </div>
 
 <style>
-  * {
-    margin: 0;
-    padding: 0;
+  .bundle-builder-section * {
     box-sizing: border-box;
   }
 

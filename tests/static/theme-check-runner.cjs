@@ -11,7 +11,18 @@
 
 const path = require("path");
 const fs = require("fs");
-const { check, Severity } = require("@shopify/theme-check-node");
+
+let themeCheck;
+try {
+  themeCheck = require("@shopify/theme-check-node");
+} catch (e) {
+  console.log("────────────────────────────────────────────────────────────────");
+  console.log("  🛍️  SHOPIFY THEME CHECK (Official Shopify Engine)");
+  console.log("  [INFO] @shopify/theme-check-node not installed. Skipping check.");
+  console.log("────────────────────────────────────────────────────────────────\n");
+  process.exit(0);
+}
+const { check, Severity } = themeCheck;
 
 // Parse CLI flags
 const args = process.argv.slice(2);

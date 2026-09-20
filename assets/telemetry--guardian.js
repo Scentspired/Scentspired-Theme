@@ -219,7 +219,7 @@
     }
 
     // 5. Primary Remote Dispatch: GitHub Issues Auto-Filer (Bypassed for test runners & crawlers)
-    var isBotOrTest = navigator.webdriver || /lighthouse|headless|bot|crawl/i.test(navigator.userAgent || '');
+    const isBotOrTest = navigator.webdriver || /lighthouse|headless|bot|crawl/i.test(navigator.userAgent || '');
     if (!isBotOrTest && window.__SCENTSPIRED_GITHUB_CONFIG__ && window.__SCENTSPIRED_GITHUB_CONFIG__.endpoint) {
       try {
         const ghPayload = {

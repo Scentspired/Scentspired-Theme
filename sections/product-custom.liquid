@@ -12,6 +12,8 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Monument+Extended&display=swap" rel="stylesheet">
+{%- capture curr_sym -%}{%- render 'store-context', key: 'currency_symbol' -%}{%- endcapture -%}
+{%- assign curr_sym = curr_sym | strip -%}
 
 <!-- HTML MARKUP -->
 <div class="ps-wrapper">
@@ -77,12 +79,12 @@
         <div class="ps-price-container">
           {% assign variant = product.selected_or_first_available_variant %}
           <span class="ps-price" id="psPriceDisplay" data-price>
-            {{ cart.currency.symbol | default: '$' }}{{ variant.price | divided_by: 100.0 | round: 2 }}
+            {{ cart.currency.symbol | default: curr_sym }}{{ variant.price | divided_by: 100.0 | round: 2 }}
           </span>
 
           {% if variant.compare_at_price and variant.compare_at_price > variant.price %}
             <span class="ps-original-price" data-compare-price>
-              {{ cart.currency.symbol | default: '$' }}{{ variant.compare_at_price | divided_by: 100.0 | round: 2 }}
+              {{ cart.currency.symbol | default: curr_sym }}{{ variant.compare_at_price | divided_by: 100.0 | round: 2 }}
             </span>
             <span class="ps-price-badge" data-sale-badge>Sale</span>
           {% endif %}
@@ -761,7 +763,7 @@
 <!-- JAVASCRIPT -->
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '{{ cart.currency.symbol }}' || '$';
+    const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '{{ curr_sym }}' || '{{ cart.currency.symbol }}';
     const variantButtons = document.querySelectorAll('.ps-variant-btn');
     const variantIdInput = document.querySelector('.ps-variant-id-input');
     const priceContainer = document.querySelector('.ps-price-container');
