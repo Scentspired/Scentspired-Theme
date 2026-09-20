@@ -1,20 +1,15 @@
-{%- liquid
-  if cart.currency.iso_code == 'GBP' or shop.currency == 'GBP' or shop.domain contains 'scentspired.co.uk' or shop.permanent_domain contains 'scentspireduk' or shop.domain contains 'scentspireduk'
-    assign is_uk = true
-    assign footer_home_url = 'https://scentspired.co.uk'
-  else
-    assign is_uk = false
-    assign footer_home_url = 'https://scentspired.com'
-  endif
--%}
+{%- capture has_trustpilot -%}{%- render 'store-context', key: 'has_trustpilot' -%}{%- endcapture -%}
+{%- assign footer_home_url = shop.url | default: routes.root_url | default: '/' -%}
 <footer class="custom-footer">
   <div class="footer-container">
     <div class="footer-content">
       <!-- Left Column - Brand Description -->
       <div class="footer-column footer-brand">
-        <p class="brand-description">{{ section.settings.brand_description }}</p>
+        <p class="brand-description">
+          {{- section.settings.brand_description | default: "At Scentspired, we believe fragrance should do more than smell good; it should feel personal. Inspired by iconic scents and crafted with precision, our fragrances are designed to become part of your everyday story." -}}
+        </p>
         <h3 class="brand-tagline">{{ section.settings.brand_tagline }}</h3>
-        {%- unless is_uk -%}
+        {%- if has_trustpilot == 'true' -%}
           <div id="trustpilot-desktop-slot">
             <div id="trustpilot-widget-trustbox-0-wrapper">
               <!-- BEGIN Trustpilot Review Collector Widget (USA Storefront) -->
@@ -44,15 +39,16 @@
               <!-- END Trustpilot Review Collector Widget -->
             </div>
           </div>
-        {%- endunless -%}
+        {%- endif -%}
       </div>
 
       <!-- Social Media Column -->
       <div class="footer-column footer-social">
-        <h4>{{ section.settings.social_heading }}</h4>
+        <h4>{{ section.settings.social_heading | default: "FOLLOW US FOR FEEL-GOOD CONTENT" }}</h4>
         <div class="social-icons">
-          {% if section.settings.facebook_url != blank %}
-            <a href="{{ section.settings.facebook_url }}" target="_blank" rel="noopener" aria-label="Facebook">
+          {%- assign fb_url = section.settings.facebook_url | default: 'https://www.facebook.com/profile.php?id=61568107508172&sk=about' -%}
+          {%- if fb_url != blank -%}
+            <a href="{{ fb_url }}" target="_blank" rel="noopener" aria-label="Facebook">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -63,9 +59,10 @@
                 <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
               </svg>
             </a>
-          {% endif %}
-          {% if section.settings.instagram_url != blank %}
-            <a href="{{ section.settings.instagram_url }}" target="_blank" rel="noopener" aria-label="Instagram">
+          {%- endif -%}
+          {%- assign ig_url = section.settings.instagram_url | default: 'https://www.instagram.com/thescentspired/' -%}
+          {%- if ig_url != blank -%}
+            <a href="{{ ig_url }}" target="_blank" rel="noopener" aria-label="Instagram">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -76,9 +73,10 @@
                 <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
               </svg>
             </a>
-          {% endif %}
-          {% if section.settings.tiktok_url != blank %}
-            <a href="{{ section.settings.tiktok_url }}" target="_blank" rel="noopener" aria-label="Tiktok">
+          {%- endif -%}
+          {%- assign tt_url = section.settings.tiktok_url | default: 'https://www.tiktok.com/@thescentspireduk?' -%}
+          {%- if tt_url != blank -%}
+            <a href="{{ tt_url }}" target="_blank" rel="noopener" aria-label="Tiktok">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -89,9 +87,10 @@
                 <path d="M9 0h1.98c.144.715.54 1.617 1.235 2.512C12.895 3.389 13.797 4 15 4v2c-1.753 0-3.07-.814-4-1.829V11a5 5 0 1 1-5-5v2a3 3 0 1 0 3 3z"/>
               </svg>
             </a>
-          {% endif %}
-          {% if section.settings.threads_url != blank %}
-            <a href="{{ section.settings.threads_url }}" target="_blank" rel="noopener" aria-label="Threads">
+          {%- endif -%}
+          {%- assign th_url = section.settings.threads_url | default: 'https://www.threads.com/@thescentspired?' -%}
+          {%- if th_url != blank -%}
+            <a href="{{ th_url }}" target="_blank" rel="noopener" aria-label="Threads">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -102,16 +101,18 @@
                 <path d="M6.321 6.016c-.27-.18-1.166-.802-1.166-.802.756-1.081 1.753-1.502 3.132-1.502.975 0 1.803.327 2.394.948s.928 1.509 1.005 2.644q.492.207.905.484c1.109.745 1.719 1.86 1.719 3.137 0 2.716-2.226 5.075-6.256 5.075C4.594 16 1 13.987 1 7.994 1 2.034 4.482 0 8.044 0 9.69 0 13.55.243 15 5.036l-1.36.353C12.516 1.974 10.163 1.43 8.006 1.43c-3.565 0-5.582 2.171-5.582 6.79 0 4.143 2.254 6.343 5.63 6.343 2.777 0 4.847-1.443 4.847-3.556 0-1.438-1.208-2.127-1.27-2.127-.236 1.234-.868 3.31-3.644 3.31-1.618 0-3.013-1.118-3.013-2.582 0-2.09 1.984-2.847 3.55-2.847.586 0 1.294.04 1.663.114 0-.637-.54-1.728-1.9-1.728-1.25 0-1.566.405-1.967.868ZM8.716 8.19c-2.04 0-2.304.87-2.304 1.416 0 .878 1.043 1.168 1.6 1.168 1.02 0 2.067-.282 2.232-2.423a6.2 6.2 0 0 0-1.528-.161"/>
               </svg>
             </a>
-          {% endif %}
-          {% if section.settings.youtube_url != blank %}
-            <a href="{{ section.settings.youtube_url }}" target="_blank" rel="noopener" aria-label="YouTube">
+          {%- endif -%}
+          {%- assign yt_url = section.settings.youtube_url | default: 'https://youtube.com/@thescentspired?' -%}
+          {%- if yt_url != blank -%}
+            <a href="{{ yt_url }}" target="_blank" rel="noopener" aria-label="YouTube">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                 <path d="M8.051 1.999h-.002C3.617 1.999 1.5 2.216 1.5 8c0 5.784 2.117 6.001 6.549 6.001h.002C12.383 14.001 14.5 13.784 14.5 8c0-5.784-2.117-6.001-6.449-6.001zM6.5 10.5v-5l4 2.5-4 2.5z"/>
               </svg>
             </a>
-          {% endif %}
-          {% if section.settings.pinterest_url != blank %}
-            <a href="{{ section.settings.pinterest_url }}" target="_blank" rel="noopener" aria-label="Pinterest">
+          {%- endif -%}
+          {%- assign pin_url = section.settings.pinterest_url | default: 'https://pin.it/4Oxas1d7Y' -%}
+          {%- if pin_url != blank -%}
+            <a href="{{ pin_url }}" target="_blank" rel="noopener" aria-label="Pinterest">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -122,82 +123,116 @@
                 <path d="M8 0a8 8 0 0 0-2.915 15.452c-.07-.633-.134-1.606.027-2.297.146-.625.938-3.977.938-3.977s-.239-.479-.239-1.187c0-1.113.645-1.943 1.448-1.943.682 0 1.012.512 1.012 1.127 0 .686-.437 1.712-.663 2.663-.188.796.4 1.446 1.185 1.446 1.422 0 2.515-1.5 2.515-3.664 0-1.915-1.377-3.254-3.342-3.254-2.276 0-3.612 1.707-3.612 3.471 0 .688.265 1.425.595 1.826a.24.24 0 0 1 .056.23c-.061.252-.196.796-.222.907-.035.146-.116.177-.268.107-1-.465-1.624-1.926-1.624-3.1 0-2.523 1.834-4.84 5.286-4.84 2.775 0 4.932 1.977 4.932 4.62 0 2.757-1.739 4.976-4.151 4.976-.811 0-1.573-.421-1.834-.919l-.498 1.902c-.181.695-.669 1.566-.995 2.097A8 8 0 1 0 8 0"/>
               </svg>
             </a>
-          {% endif %}
+          {%- endif -%}
         </div>
         <div class="footer-auth-links">
-          <a href="/account/login">{{ section.settings.sign_in_text }}</a>
-          <a href="/account/register">{{ section.settings.create_account_text }}</a>
+          <a href="/account/login">{{ section.settings.sign_in_text | default: 'My Account' }}</a>
+          {%- if section.settings.create_account_text != blank -%}
+            <a href="/account/register">{{ section.settings.create_account_text }}</a>
+          {%- endif -%}
         </div>
       </div>
 
       <!-- Meet Section -->
       <div class="footer-column footer-meet">
-        <h4>{{ section.settings.meet_heading }}</h4>
+        <h4>{{ section.settings.meet_heading | default: 'QUICK LINKS' }}</h4>
         <ul class="footer-links">
-          {% for block in section.blocks %}
-            {% if block.type == "meet_link" %}
+          {%- assign has_meet_links = false -%}
+          {%- for block in section.blocks -%}
+            {%- if block.type == "meet_link" -%}
+              {%- assign has_meet_links = true -%}
               <li>
                 <a href="{{ block.settings.link_url }}">{{ block.settings.link_text }}</a>
               </li>
-            {% endif %}
-          {% endfor %}
+            {%- endif -%}
+          {%- endfor -%}
+          {%- unless has_meet_links -%}
+            <li><a href="/collections/shop">SHOP ALL</a></li>
+            <li><a href="/pages/about-us">ABOUT US</a></li>
+            <li><a href="/pages/disclaimer">DISCLAIMER</a></li>
+            <li><a href="/pages/scent-notes">SCENT NOTES</a></li>
+            <li><a href="/pages/fragrance-finder">FRAGRANCE FINDER</a></li>
+            <li><a href="/pages/blogs">BLOGS</a></li>
+          {%- endunless -%}
         </ul>
       </div>
 
       <!-- Questions Section -->
       <div class="footer-column footer-questions">
-        <h4>{{ section.settings.questions_heading }}</h4>
+        <h4>{{ section.settings.questions_heading | default: "HAVE QUESTIONS? WE'VE GOT ANSWERS" }}</h4>
         <ul class="footer-links">
-          {% for block in section.blocks %}
-            {% if block.type == "question_link" %}
+          {%- assign has_question_links = false -%}
+          {%- for block in section.blocks -%}
+            {%- if block.type == "question_link" -%}
+              {%- assign has_question_links = true -%}
               <li>
                 <a href="{{ block.settings.link_url }}">{{ block.settings.link_text }}</a>
               </li>
-            {% endif %}
-          {% endfor %}
+            {%- endif -%}
+          {%- endfor -%}
+          {%- unless has_question_links -%}
+            <li><a href="/pages/contact">CONTACT</a></li>
+            <li><a href="/pages/faqs">FAQs</a></li>
+            <li><a href="/pages/privacy-policy">PRIVACY POLICY</a></li>
+            <li><a href="/pages/returns">RETURNS</a></li>
+            <li><a href="/pages/terms-and-conditions">TERMS AND CONDITIONS</a></li>
+          {%- endunless -%}
         </ul>
       </div>
 
       <!-- Additional Links -->
       <div class="footer-column footer-additional">
         <ul class="footer-links">
-          {% for block in section.blocks %}
-            {% if block.type == "additional_link" %}
+          {%- for block in section.blocks -%}
+            {%- if block.type == "additional_link" -%}
               <li>
                 <a href="{{ block.settings.link_url }}">{{ block.settings.link_text }}</a>
               </li>
-            {% endif %}
-          {% endfor %}
+            {%- endif -%}
+          {%- endfor -%}
         </ul>
       </div>
     </div>
 
-    <!-- Background Text -->
     <!-- Background Text / Image -->
     <div class="footer-background-text">
-      {% if section.settings.footer_bg_image != blank %}
+      {%- if section.settings.footer_bg_image != blank -%}
         <a href="{{ footer_home_url }}" class="footer-background-link" aria-label="Scentspired home">
           <img
             src="{{ section.settings.footer_bg_image | image_url: width: 1200 }}"
-            alt=""
+            alt="Scentspired"
             loading="lazy"
+            onload="if(!this.naturalWidth || this.naturalWidth === 0){this.style.display='none'; var fb=this.parentNode.querySelector('.footer-fallback-text'); if(fb) fb.style.display='inline-flex';}"
+            onerror="this.style.display='none'; var fb=this.parentNode.querySelector('.footer-fallback-text'); if(fb) fb.style.display='inline-flex';"
             class="footer-background-image">
+          <span class="footer-fallback-text brand-name-two-fonts" style="display: none;">
+            <span class="brand-name__scent">Scent</span><span class="brand-name__spired">spired</span>
+          </span>
         </a>
-      {% else %}
-        <span class="footer-fallback-text">
-          {{ section.settings.background_text }}
-        </span>
-      {% endif %}
+      {%- else -%}
+        <a href="{{ footer_home_url }}" class="footer-background-link" aria-label="Scentspired home">
+          {%- assign bg_text_clean = section.settings.background_text | strip | remove: ' ' | downcase -%}
+          {%- if bg_text_clean == 'scentspired' or bg_text_clean == blank -%}
+            <span class="footer-fallback-text brand-name-two-fonts">
+              <span class="brand-name__scent">Scent</span><span class="brand-name__spired">spired</span>
+            </span>
+          {%- else -%}
+            <span class="footer-fallback-text">
+              {{ section.settings.background_text }}
+            </span>
+          {%- endif -%}
+        </a>
+      {%- endif -%}
     </div>
 
-    {%- unless is_uk -%}
+    {%- if has_trustpilot == 'true' -%}
       <!-- Mobile slot for Trustpilot widget, centered below the logo -->
       <div id="trustpilot-mobile-slot"></div>
-    {%- endunless -%}
+    {%- endif -%}
   </div>
 </footer>
 
-{%- unless is_uk -%}
+{%- if has_trustpilot == 'true' -%}
 <script>
 (function() {
   function moveTrustpilotWidget() {
@@ -230,9 +265,9 @@
   });
 })();
 </script>
-{%- endunless -%}
+{%- endif -%}
 
-{%- if is_uk -%}
+{%- if has_trustpilot != 'true' -%}
 <script>
 (function() {
   function purgeTrustpilot() {
@@ -262,8 +297,8 @@
 
 <style>
   .custom-footer {
-    background-color: {{ section.settings.footer_bg_color | default: '#ebfb33' }};
-    color: {{ section.settings.footer_text_color | default: '#000000' }};
+    background-color: {{ section.settings.footer_bg_color | default: '#121212' }};
+    color: {{ section.settings.footer_text_color | default: '#ffffff' }};
     padding: 60px 0 80px;
     position: relative;
     overflow: hidden;
@@ -403,6 +438,24 @@
     opacity: 0.95;
   }
 
+  .footer-fallback-text.brand-name-two-fonts {
+    display: inline-flex;
+    align-items: baseline;
+    justify-content: center;
+  }
+
+  .footer-fallback-text .brand-name__scent {
+    font-family: var(--font-family-brand-scent, 'PP Editorial New', Georgia, serif);
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  .footer-fallback-text .brand-name__spired {
+    font-family: var(--font-family-brand-spired, 'PPEditorialNew Ultralight Italic', 'PPEditorialNew Italic', Georgia, serif);
+    font-style: italic;
+    font-weight: 400;
+  }
+
   .footer-background-link {
     display: inline-block;
     position: relative;
@@ -482,8 +535,8 @@
     }
   }
 
-  {%- if is_uk -%}
-    /* Completely remove and eradicate Trustpilot widget, app blocks, and iframes on UK */
+  {%- if has_trustpilot != 'true' -%}
+    /* Completely remove and eradicate Trustpilot widget, app blocks, and iframes on UK and UAE */
     #trustpilot-desktop-slot,
     #trustpilot-mobile-slot,
     #trustpilot-widget-trustbox-0-wrapper,
@@ -511,24 +564,28 @@
 {% schema %}
 {
   "name": "Custom Footer",
+  "enabled_on": {
+    "groups": ["footer"],
+    "templates": ["*"]
+  },
   "settings": [
     {
       "type": "color",
       "id": "footer_bg_color",
       "label": "Footer Background Color",
-      "default": "#c4ff00"
+      "default": "#121212"
     },
     {
       "type": "color",
       "id": "footer_text_color",
       "label": "Footer Text Color",
-      "default": "#000000"
+      "default": "#ffffff"
     },
     {
       "type": "textarea",
       "id": "brand_description",
       "label": "Brand Description",
-      "default": "This isn't just perfume—it's power in a bottle. Designed to ignite the senses and turn heads, our scents are unapologetically bold, deeply alluring, and made for those who own every room they enter. Spray it, wear it, become unforgettable."
+      "default": "At Scentspired, we believe fragrance should do more than smell good; it should feel personal. Inspired by iconic scents and crafted with precision, our fragrances are designed to become part of your everyday story."
     },
     {
       "type": "image_picker",
@@ -539,7 +596,7 @@
       "type": "text",
       "id": "brand_tagline",
       "label": "Brand Tagline",
-      "default": "Scents with a Little Spark & Sass"
+      "default": ""
     },
     {
       "type": "text",
@@ -581,19 +638,19 @@
       "type": "text",
       "id": "sign_in_text",
       "label": "Sign In Text",
-      "default": "Sign In"
+      "default": "My Account"
     },
     {
       "type": "text",
       "id": "create_account_text",
       "label": "Create Account Text",
-      "default": "Create Your Account"
+      "default": ""
     },
     {
       "type": "text",
       "id": "meet_heading",
       "label": "Meet Section Heading",
-      "default": "MEET SOLEST"
+      "default": "QUICK LINKS"
     },
     {
       "type": "text",
@@ -605,7 +662,7 @@
       "type": "text",
       "id": "background_text",
       "label": "Background Text",
-      "default": "Scent Spired"
+      "default": "ScentSpired"
     }
   ],
   "blocks": [
@@ -665,78 +722,78 @@
         {
           "type": "meet_link",
           "settings": {
-            "link_text": "Shop All",
-            "link_url": "/collections/all"
+            "link_text": "SHOP ALL",
+            "link_url": "/collections/shop"
           }
         },
         {
           "type": "meet_link",
           "settings": {
-            "link_text": "About Us",
-            "link_url": "/pages/about"
+            "link_text": "ABOUT US",
+            "link_url": "/pages/about-us"
           }
         },
         {
           "type": "meet_link",
           "settings": {
-            "link_text": "Reviews",
-            "link_url": "/pages/reviews"
+            "link_text": "DISCLAIMER",
+            "link_url": "/pages/disclaimer"
           }
         },
         {
           "type": "meet_link",
           "settings": {
-            "link_text": "Scent Families",
-            "link_url": "/pages/scent-families"
+            "link_text": "SCENT NOTES",
+            "link_url": "/pages/scent-notes"
+          }
+        },
+        {
+          "type": "meet_link",
+          "settings": {
+            "link_text": "FRAGRANCE FINDER",
+            "link_url": "/pages/fragrance-finder"
+          }
+        },
+        {
+          "type": "meet_link",
+          "settings": {
+            "link_text": "BLOGS",
+            "link_url": "/pages/blogs"
           }
         },
         {
           "type": "question_link",
           "settings": {
-            "link_text": "FAQ",
-            "link_url": "/pages/faq"
+            "link_text": "CONTACT",
+            "link_url": "/pages/contact"
           }
         },
         {
           "type": "question_link",
           "settings": {
-            "link_text": "info@scentstories",
-            "link_url": "mailto:info@scentstories"
+            "link_text": "FAQs",
+            "link_url": "/pages/faqs"
           }
         },
         {
           "type": "question_link",
           "settings": {
-            "link_text": "1-888-205-9655",
-            "link_url": "tel:1-888-205-9655"
+            "link_text": "PRIVACY POLICY",
+            "link_url": "/pages/privacy-policy"
           }
         },
         {
           "type": "question_link",
           "settings": {
-            "link_text": "Press Inquiries",
-            "link_url": "/pages/press"
+            "link_text": "RETURNS",
+            "link_url": "/pages/returns"
           }
         },
         {
-          "type": "additional_link",
+          "type": "question_link",
           "settings": {
-            "link_text": "Careers",
-            "link_url": "/pages/careers"
-          }
-        },
-        {
-          "type": "additional_link",
-          "settings": {
-            "link_text": "Privacy Policy",
-            "link_url": "/policies/privacy-policy"
-          }
-        },
-        {
-          "type": "additional_link",
-          "settings": {
-            "link_text": "Terms of Service",
-            "link_url": "/policies/terms-of-service"
+            "link_text": "TERMS AND CONDITIONS",
+            "link_url": "/pages/terms-and-conditions"
           }
         }
       ]
