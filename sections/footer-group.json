@@ -160,5 +160,8 @@
       "settings": {}
     }
   },
-  "order": ["footer", "17677801892897efa9"]
+  "order": [
+    "footer",
+    "17677801892897efa9"
+  ]
 }
