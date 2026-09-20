@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="js" lang="{{ request.locale.iso_code }}">
+<html class="js" lang="{{ request.locale.iso_code }}" data-region="{% render 'region-detect' %}">
   <head>
     <style>
       @font-face {
@@ -69,28 +69,9 @@
 
 
 
-    {%- liquid
-      assign store_domain = shop.domain
-      if store_domain contains 'scentspired.co.uk' or store_domain contains 'scentspireduk' or shop.permanent_domain contains 'scentspireduk' or shop.currency == 'GBP' or cart.currency.iso_code == 'GBP'
-        assign store_region = 'UK'
-        assign store_currency_symbol = '£'
-        assign store_free_shipping_threshold = 3500
-        assign store_shipping_cost = 499
-        assign homepage_seo_title = 'Inspired Designer Perfumes for Men & Women | Scentspired UK'
-        assign homepage_seo_description = 'Shop long-lasting inspired perfumes for men, women & unisex. Premium extrait de parfum oils, luxury quality, honest prices. Free delivery on orders over £35.'
-      else
-        assign store_region = 'US'
-        assign store_currency_symbol = '$'
-        assign store_free_shipping_threshold = 7000
-        assign store_shipping_cost = 799
-        assign homepage_seo_title = 'Inspired Designer Perfumes for Men & Women | Scentspired'
-        assign homepage_seo_description = 'Shop long-lasting inspired perfumes for men, women & unisex. Premium extrait de parfum oils, luxury quality, honest prices. Free shipping over $70.'
-      endif
-    -%}
-
     <title>
       {%- if request.page_type == 'index' -%}
-        {{ homepage_seo_title }}
+        {%- render 'store-context', key: 'seo_title' -%}
       {%- else -%}
         {{ page_title }}
         {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ", " }}"{% endif -%}
@@ -100,19 +81,16 @@
     </title>
 
     {% if request.page_type == 'index' %}
-      <meta name="description" content="{{ homepage_seo_description | escape }}">
+      <meta name="description" content="{%- render 'store-context', key: 'seo_description' -%}">
     {% elsif page_description %}
       <meta name="description" content="{{ page_description | escape }}">
     {% endif %}
 
+    {%- capture store_config_json -%}{%- render 'store-context' -%}{%- endcapture -%}
     <script>
-      window.__STORE_CONFIG = {
-        region: {{ store_region | json }},
-        currencySymbol: {{ store_currency_symbol | json }},
-        currencyCode: {{ cart.currency.iso_code | default: shop.currency | json }},
-        freeShippingThreshold: {{ store_free_shipping_threshold | json }},
-        shippingCost: {{ store_shipping_cost | json }}
-      };
+      window.__STORE_CONFIG = {{ store_config_json }};
+      window.Scentspired = window.Scentspired || {};
+      window.Scentspired.store = window.__STORE_CONFIG;
     </script>
 
     {% render "meta-tags" %}
@@ -137,6 +115,7 @@
     <script src="{{ 'ui--details-disclosure.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'ui--details-modal.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'search--form.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'scentspired--product-carousel.js' | asset_url }}" defer="defer"></script>
 
     {%- if settings.animations_reveal_on_scroll -%}
       <script src="{{ 'animation--scroll.js' | asset_url }}" defer="defer"></script>
@@ -362,7 +341,15 @@
 
     {% render 'theme-design-tokens' %}
 
+    <script>
+      window.Scentspired = window.Scentspired || {};
+      window.Scentspired.region = document.documentElement.dataset.region || 'usa';
+      window.Scentspired.currency = '{{ cart.currency.iso_code | default: shop.currency }}';
+      window.Scentspired.currencySymbol = '{{ cart.currency.symbol }}';
+    </script>
+
     {{ "base.css" | asset_url | stylesheet_tag }}
+    {{ "component-button.css" | asset_url | stylesheet_tag }}
     {%- if template contains 'article' or template contains 'blog' -%}
       {{ "blog--typography.css" | asset_url | stylesheet_tag }}
     {%- endif -%}
@@ -611,6 +598,19 @@
     </main>
 
     {% sections "footer-group" %}
+    <div id="footer-fallback-mount" style="display: none;">
+      {% section "footer" %}
+    </div>
+    <script>
+      (function() {
+        var fb = document.getElementById('footer-fallback-mount');
+        if (!fb) return;
+        var mainFooter = document.querySelector('body > :not(#footer-fallback-mount) .custom-footer, .shopify-section-group-footer-group .custom-footer');
+        if (!mainFooter) {
+          fb.style.display = 'block';
+        }
+      })();
+    </script>
 
     <ul hidden>
       <li id="a11y-refresh-page-message">{{ "accessibility.refresh_page" | t }}</li>
