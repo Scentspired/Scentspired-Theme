@@ -22,8 +22,7 @@ if (fs.existsSync(gitHooksDir)) {
 # SCENTSPIRED THEME GUARDIAN — Pre-Push Quality Gate Interceptor
 # ============================================================================
 echo ""
-echo "🛡️  Intercepting Git Push: Running 10-Layer Master Quality Gate..."
-echo ""
+echo "🛡️  [PRE-PUSH] Evaluating Scentspired Theme Guardian Quality Gate..."
 
 node runner.cjs --target=.
 
@@ -36,7 +35,6 @@ if [ $STATUS -ne 0 ]; then
   exit 1
 fi
 
-echo ""
 echo "✅ Quality Gate Passed. Proceeding with Git push..."
 echo ""
 exit 0

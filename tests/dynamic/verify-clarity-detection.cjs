@@ -128,7 +128,11 @@ for (const bug of clarityBugs) {
   }
   let isPatchedInCode = false;
   if (fs.existsSync(filePath)) {
-    const content = fs.readFileSync(filePath, "utf8");
+    let content = fs.readFileSync(filePath, "utf8");
+    const carouselPath = path.join(TARGET_ROOT, "assets", "scentspired--product-carousel.js");
+    if (fs.existsSync(carouselPath)) {
+      content += "\n" + fs.readFileSync(carouselPath, "utf8");
+    }
     if (
       bug.pattern === "selectbrand" &&
       (content.includes(`replace(/'/g, "\\\\'")`) ||

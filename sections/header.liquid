@@ -194,15 +194,15 @@
       }
       .header__heading-link .brand-name-two-fonts .brand-name__scent,
       .header .header__heading .brand-name-two-fonts .brand-name__scent {
-        font-family: var(--font-family-brand-scent, 'PP Editorial New', Georgia, serif) !important;
+        font-family: var(--font-family-brand-scent) !important;
         font-style: normal !important;
-        font-weight: 600 !important;
+        font-weight: 500 !important;
       }
       .header__heading-link .brand-name-two-fonts .brand-name__spired,
       .header .header__heading .brand-name-two-fonts .brand-name__spired {
-        font-family: var(--font-family-brand-spired, 'PPEditorialNew Ultralight Italic', Georgia, serif) !important;
+        font-family: var(--font-family-brand-spired) !important;
         font-style: italic !important;
-        font-weight: 400 !important;
+        font-weight: 300 !important;
       }
 
       /* Mobile Bottom Navigation - EXACT MATCH TO REFERENCE */
@@ -5410,8 +5410,7 @@
     }
   }
 
-  // Aliases for backwards compatibility
-  const MobileMenuManager = MobileNavigation;
+  window.MobileNavigation = MobileNavigation;
 
   // Initialize when DOM is loaded
   document.addEventListener('DOMContentLoaded', () => {

@@ -15,6 +15,8 @@
     --font-family-primary-light: 'PPMori Extralight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --font-family-heading: 'PPEditorialNew Italic', Georgia, serif;
     --font-family-heading-light: 'PPEditorialNew Ultralight Italic', Georgia, serif;
+    --font-family-brand-scent: 'IvyOra Display', 'Ivy Ora', Georgia, serif;
+    --font-family-brand-spired: 'IvyOra Display', 'Ivy Ora', Georgia, serif;
 
     --font-weight-light: 200;
     --font-weight-regular: 400;
@@ -79,5 +81,152 @@
     --z-drawer: 1000;
     --z-modal: 9999;
     --z-toast: 10000;
+
+    /* ── 7. BUTTON SYSTEM TOKENS ────────────────────────────────────────── */
+    --btn-brand-bg: var(--color-brand-primary, #f4ff41);
+    --btn-brand-color: var(--color-text-primary, #000000);
+    --btn-brand-hover-bg: #e0ea36;
+    --btn-brand-disabled-bg: #e0e0e0;
+    --btn-brand-disabled-color: #333333;
+    --btn-brand-radius: 20px;
+    --btn-brand-padding-y: 16px;
+    --btn-brand-padding-x: 16px;
+    --btn-brand-font-size: 12px;
+    --btn-brand-font-weight: var(--font-weight-semibold, 600);
+
+    --btn-circle-size: 40px;
+    --btn-circle-border: #000000;
+    --btn-circle-bg: #ffffff;
+    --btn-circle-hover-bg: #000000;
+    --btn-circle-hover-color: #ffffff;
+
+    --btn-pill-padding-y: 6px;
+    --btn-pill-padding-x: 12px;
+    --btn-pill-font-size: 11px;
+    --btn-pill-border: #e0e0e0;
+    --btn-pill-radius: 4px;
+    --btn-pill-active-bg: var(--color-brand-primary, #f4ff41);
+    --btn-pill-active-border: #000000;
+    --btn-pill-disabled-bg: #f0f0f0;
+    --btn-pill-disabled-border: #c4c4c4;
+
+    /* ── 8. BADGE SYSTEM TOKENS ────────────────────────────────────────── */
+    --badge-men-bg: #363745;
+    --badge-women-bg: #79242f;
+    --badge-unisex-bg: #4e4a33;
+    --badge-sale-bg: #d90429;
+    --badge-coming-soon-bg: #ff0000;
+    --badge-color: #ffffff;
+    --badge-radius: 20px;
+    --badge-font-size: 12px;
+    --badge-font-weight: 400;
+    --badge-padding-y: 4px;
+    --badge-padding-x: 18px;
+
+    /* ── 9. STAR RATING SYSTEM TOKENS ──────────────────────────────────── */
+    --rating-star-color: #cbdd00;
+    --rating-star-empty: #e0e0e0;
+    --rating-font-size: 24px;
+    --rating-font-size-mobile: 18px;
+    --rating-letter-spacing: -2px;
+
+    /* ── 10. PRICE & PROMOTION TOKENS ──────────────────────────────────── */
+    --price-font-size: 18px;
+    --price-font-weight: 600;
+    --price-color: #000000;
+    --price-compare-font-size: 12px;
+    --price-compare-color: #999999;
+    --price-badge-bg: #d90429;
+    --price-badge-color: #ffffff;
+    --price-badge-radius: 3px;
+    --price-badge-font-size: 12px;
+    --price-badge-padding-y: 2px;
+    --price-badge-padding-x: 8px;
+
+    /* ── 11. SECTION HEADING & CAROUSEL TOKENS ─────────────────────────── */
+    --section-heading-font-family: var(--font-family-heading);
+    --section-heading-font-size: 48px;
+    --section-heading-font-size-mobile: 32px;
+    --section-heading-font-weight: 400;
+    --section-heading-font-style: italic;
+    --section-heading-accent-color: #FADB95;
+    --section-heading-accent-thickness: 2px;
+    --carousel-nav-arrow-size: 45px;
+    --carousel-nav-arrow-bg: #f4ff41;
+    --carousel-nav-arrow-border: #f4ff41;
+    --carousel-nav-arrow-font-size: 24px;
+
+    /* ── 12. FRAGRANCE CARD TOKENS ─────────────────────────────────────── */
+    --fragrance-card-bg: #f5f5f5;
+    --fragrance-card-padding: 16px 12px;
+    --fragrance-card-border-radius: 12px;
+    --fragrance-card-image-radius: 16px;
+    --fragrance-title-font-size: 16px;
+    --fragrance-title-font-weight: 600;
+    --fragrance-brand-font-size: 12px;
+    --fragrance-brand-font-style: italic;
+    --fragrance-brand-font-weight: 300;
+
+    /* ── 13. SHIPPING PROGRESS BAR TOKENS ───────────────────────────────── */
+    --shipping-bar-height: 8px;
+    --shipping-bar-track-bg: #e0e0e0;
+    --shipping-bar-fill-bg: #f4ff41;
+    --shipping-bar-radius: 999px;
+
+    /* ── 14. RUNNING TICKER TOKENS ──────────────────────────────────────── */
+    --ticker-font-family: var(--font-family-heading-light);
+    --ticker-font-size: 60px;
+    --ticker-font-size-mobile: 20px;
+    --ticker-gap: 40px;
+    --ticker-duration: 15s;
+
+    /* ── 15. VARIANT PILL EXTENSIONS & COUNTER ──────────────────────────── */
+    --variant-pill-round-radius: 20px;
+    --variant-pill-round-padding-x: 16px;
+    --carousel-nav-counter-font-size: 14px;
+    --carousel-nav-counter-color: #666666;
+
+    /* ── 16. QUANTITY SELECTOR TOKENS ───────────────────────────────────── */
+    --quantity-input-height: 40px;
+    --quantity-input-border: #000000;
+    --quantity-input-bg: #ffffff;
+    --quantity-input-radius: 0px;
+    --quantity-button-size: 40px;
+
+    /* ── 17. ACCORDION & VALUE PROPS TOKENS ─────────────────────────────── */
+    --accordion-border-color: #e0e0e0;
+    --accordion-title-size: 16px;
+    --accordion-title-weight: 500;
+    --value-prop-icon-size: 28px;
+    --value-prop-title-size: 14px;
+    --value-prop-title-weight: 600;
+    --value-prop-subtitle-size: 12px;
+    --value-prop-subtitle-color: #666666;
+  }
+
+  /* ── BRAND SIGNATURE TWO-FONT COMPOSITION ─────────────────────────────────── */
+  .scentspired-brand-text,
+  .brand-name-two-fonts {
+    display: inline-flex;
+    align-items: baseline;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    text-decoration: none;
+  }
+  .scentspired-brand-text .brand-scent,
+  .scentspired-brand-text .brand-name__scent,
+  .brand-name-two-fonts .brand-name__scent,
+  .brand-name-two-fonts .brand-scent {
+    font-family: var(--font-family-brand-scent, 'IvyOra Display', Georgia, serif) !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
+  }
+  .scentspired-brand-text .brand-spired,
+  .scentspired-brand-text .brand-name__spired,
+  .brand-name-two-fonts .brand-name__spired,
+  .brand-name-two-fonts .brand-spired {
+    font-family: var(--font-family-brand-spired, 'IvyOra Display', Georgia, serif) !important;
+    font-style: italic !important;
+    font-weight: 300 !important;
   }
 </style>

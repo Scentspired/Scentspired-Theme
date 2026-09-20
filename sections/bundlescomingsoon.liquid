@@ -3,7 +3,7 @@
     <div class="coming-soon-content">
       <h2 class="coming-soon-heading">{{ section.settings.heading }}</h2>
       <div id="countdown"></div>
-      <a href="/" class="coming-soon-button">Go Back to Home</a>
+      <a href="{{ routes.root_url | default: '/' }}" class="coming-soon-button">Go Back to Home</a>
     </div>
   </div>
 {% endif %}

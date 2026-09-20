@@ -38,13 +38,8 @@ To maintain maximum modularity, zero coupling, single-file blast radius, and cle
 
 Whenever refactoring or renaming files across Scentspired repositories, you MUST obey these four rules:
 
-### Rule 1: Zero-Downtime Forwarding Shimming
-Never delete an existing snippet name that might be referenced by legacy templates, drafts, or third-party apps without leaving a **1-line forwarding shim**:
-```liquid
-{% comment %} SVPA Backward-Compatibility Forwarding Shim {% endcomment %}
-{% render 'blog--article--breadcrumb', article: article, blog: blog, show_home: show_home, show_blog: show_blog, show_category: show_category %}
-```
-This ensures zero downtime and prevents `Liquid error: Could not find snippet` crashes.
+### Rule 1: Direct Semantic Architecture & Zero Cruft
+Never use cryptic machine hashes or backward-compatibility shims. All components, blocks, and snippets must be directly and semantically named using the SVPA Double-Hyphen (`--`) convention, with callers updated directly to ensure a clean, modern, and straightforward architecture.
 
 ### Rule 2: Single Atomic Commit
 All asset renames, template imports, and caller references must be staged and committed atomically in the same Git commit.

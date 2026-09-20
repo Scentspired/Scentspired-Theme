@@ -1,0 +1,261 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "image_banner_a83WhY": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_TJagL6": {
+          "type": "heading",
+          "settings": {
+            "heading": "Image banner",
+            "heading_size": "h1",
+            "heading_tag": "h1"
+          }
+        },
+        "text_iUPQkR": {
+          "type": "text",
+          "settings": {
+            "text": "Give customers details about the banner image(s) or content on the template.",
+            "text_style": "body"
+          }
+        },
+        "buttons_zcnqmk": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Button label",
+            "button_link_1": "",
+            "button_style_secondary_1": false,
+            "button_label_2": "Button label",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_TJagL6",
+        "text_iUPQkR",
+        "buttons_zcnqmk"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/ScentSpired_-_Homepage_06_-_Image_01_1.png",
+        "image_overlay_opacity": 0,
+        "image_height": "medium",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "blog_section_4VLNh8": {
+      "type": "blog-section",
+      "blocks": {
+        "blog_item_nNRxck": {
+          "type": "blog_item",
+          "settings": {
+            "image": "shopify://shop_images/Meet_Scentspired_Blog_Image_jpg.jpg",
+            "tag": "",
+            "title": "Meet Scentspired Because Incredible Fragrance Should Be Something Everyone Gets To Wear Every day",
+            "excerpt": "Here is something that happens more than it should. Someone picks up an amazing bottle of perfume, or gets one as a gift, and it ends up sitting on the bathroom shelf, used sparingly, saved for special occasions, rationed like it is the last of something. Meanwhile, every regular morning they reach for whatever is cheapest or most familiar. Because the good stuff feels too precious to use up.",
+            "link": "shopify://blogs/news/meet-scentspired-because-incredible-fragrance-should-be-something-everyone-gets-to-wear-every-day",
+            "link_label": "Read Article"
+          }
+        },
+        "blog_item_wikGx6": {
+          "type": "blog_item",
+          "settings": {
+            "image": "shopify://shop_images/The_ultimate_guide_jpg.jpg",
+            "tag": "",
+            "title": "The ultimate guide to buying luxury perfumes on a budget: because smelling iconic really should not require a payment plan",
+            "excerpt": "Let us be honest about something. The fragrance industry has a pricing problem. Not in the sense that great perfumery is not worth paying for, because it often is. The\nproblem is the gap between the price of the juice and the price of everything around\nit: the bottle, the campaign, the celebrity, the flagship store on Fifth Avenue with the\nmarble floors and the person whose entire job is to hand you a tester strip with the\nright amount of reverence. You are paying for all of that. The scent is almost the\nafterthought.",
+            "link": "shopify://blogs/news/the-ultimate-guide-to-buying-luxury-perfumes-on-a-budget-because-smelling-iconic-really-should-not-require-a-payment-plan",
+            "link_label": "Read Article"
+          }
+        },
+        "blog_item_rWL7x4": {
+          "type": "blog_item",
+          "settings": {
+            "image": "shopify://shop_images/We_put_our_luxury_inspired_perfumes_jpg.jpg",
+            "tag": "",
+            "title": "We put our luxury inspired perfumes upagainst the originals: an honest breakdown for first time buyers who want the truth",
+            "excerpt": "There is a question that comes up constantly when people are shopping for inspired\nfragrances for the first time. It is not really about price, even though that is what gets\npeople into the conversation. It is a simpler question than that: does it actually smell\nthe same?",
+            "link": "shopify://blogs/news/we-put-our-luxury-inspired-perfumes-up-against-the-originals-an-honest-breakdown-for-first-time-buyers-who-want-the-truth",
+            "link_label": "Read Article"
+          }
+        },
+        "blog_item_BPJWBG": {
+          "type": "blog_item",
+          "settings": {
+            "image": "shopify://shop_images/How_to_make_your_fragrance_last_all_day_Thumbnail_jpg.jpg",
+            "tag": "",
+            "title": "How to make your fragrance last all day: because great scent should not quit before you do",
+            "excerpt": "You put it on in the morning, carefully, and by 11am it is gone. Not faded. Gone. You did everything right: let it dry naturally instead of rubbing it in (you read that tip somewhere and took it seriously). And still, by the time you are reaching for your second iced Starbucks, you might as well be wearing nothing. Just the memory of something that smelled great a few hours ago, before the day got going. This happens with luxury perfumes and inspired fragrances alike. The problem is almost never the scent itself.",
+            "link": "shopify://blogs/news/how-to-make-your-fragrance-last-all-day-because-great-scent-should-not-quit-before-you-do",
+            "link_label": "Read Article"
+          }
+        },
+        "blog_item_8Hkcfk": {
+          "type": "blog_item",
+          "settings": {
+            "image": "shopify://shop_images/Refuse_to_let_the_heat_be_an_excuse_Thumbnail.jpg_1.jpg",
+            "tag": "",
+            "title": "The Coachella fragrance survival kit: the best perfume for women who refuse to let the heat be an excuse",
+            "excerpt": "Coachella is 95 degrees, dusty, and entirely unreasonable. The lineup is stacked, the outfits are considered well in advance, and somewhere in the middle of weekend two, someone in your group will lose a sandal in the crowd and it will not slow them down at all. This is peak American festival energy: you are doing a lot, it looks effortless, and you smell incredible while doing it.",
+            "link": "shopify://blogs/news/the-coachella-fragrance-survival-kit-the-best-perfume-for-women-who-refuse-to-let-the-heat-be-an-excuse",
+            "link_label": "Read Article"
+          }
+        },
+        "blog_item_zNY9Aj": {
+          "type": "blog_item",
+          "settings": {
+            "image": "shopify://shop_images/Make_The_Night_Completely_Unforgettable_Thumbnail.jpg_1.jpg",
+            "tag": "",
+            "title": "FIRST DATE FRAGRANCE: the best cologne for men and luxury perfumes for women that make the night completely unforgettable",
+            "excerpt": "Here is what nobody tells you about first impressions: the one that sticks usually\nhappens in the first thirty seconds, before you have found the table or figured out where to put your jacket. Scent is doing that work. It is the part of the introduction the other person processes without realizing it, which is exactly why it matters more than most people account for when they are getting ready.",
+            "link": "shopify://blogs/news/first-date-fragrance-the-best-cologne-for-men-and-luxury-perfumes-for-women-that-make-the-night-completely-unforgettable",
+            "link_label": "Read Article"
+          }
+        },
+        "blog_item_9eQwUt": {
+          "type": "blog_item",
+          "settings": {
+            "image": "shopify://shop_images/EDT_EDP_OR_PARFUM.jpg_2.jpg",
+            "tag": "",
+            "title": "EDT, EDP, or Parfum: the label that determines whether your fragrance lasts all day or ghosts you by noon",
+            "excerpt": "You are standing in Sephora. You have found something that smells incredible. You are ready to buy it. And then you notice there are three versions of the same fragrance: an EDT, an EDP, and a Parfum. The prices are different. The bottles look almost identical. Nobody on the floor has explained what any of it means. You pick the one in the middle and hope for the best.",
+            "link": "shopify://blogs/news/edt-edp-or-parfum-the-label-that-determines-whether-your-fragrance-lasts-all-day-or-ghosts-you-by-noon",
+            "link_label": "Read Article"
+          }
+        },
+        "blog_item_hBk6hW": {
+          "type": "blog_item",
+          "settings": {
+            "image": "shopify://shop_images/Six_perfume_myths_thumbnail_jpg.jpg",
+            "tag": "",
+            "title": "Six perfume myths it is time to leave behind, because you deserve fragrance advice that actually holds up",
+            "excerpt": "There is a lot of fragrance advice floating around out there, and a surprising amount of it is just wrong. Not nuanced-and-debatable wrong. Flat-out wrong. Things that got repeated often enough in Vogue magazine, Bloomingdales and fragrance TikToks that they eventually started sounding like facts.&nbsp;\n\nHere are six of the most stubborn ones, along with what is actually true.",
+            "link": "shopify://blogs/news/six-perfume-myths-it-is-time-to-leave-behind-because-you-deserve-fragrance-advice-that-actually-holds-up",
+            "link_label": "Read Article"
+          }
+        },
+        "blog_item_gKjkJB": {
+          "type": "blog_item",
+          "settings": {
+            "image": "shopify://shop_images/TOP_NOTES_HEART_NOTES_BASE_NOTES_Thumbnail_jpg.jpg",
+            "tag": "",
+            "title": "Top notes, heart notes, base notes: the only fragrance guide you need before your next perfume haul",
+            "excerpt": "Picture this: you're browsing an online perfume shop at 10pm (as one does), you've found something that sounds absolutely incredible, and the description reads: opens with bergamot and pink pepper, a heart of jasmine and cedarwood, drying down to musk and amber. Gorgeous. But also: what does any of that actually mean? And more to the point, is this going to smell the way you're imagining, or are you about to spend real money on a vibe that ghosts you by noon? It happens with luxury inspired perfumes and niche fragrances alike. Knowing the notes is the fix.\n\nOr maybe this one's more familiar: you tested something at a perfume shop, fell completely in love on the spot, bought it, got home, spritzed it on later, and found yourself wondering by evening what happened to the fragrance you were so certain about six hours ago. Nothing went wrong. You just met top notes, and then you didn't.",
+            "link": "shopify://blogs/news/top-notes-heart-notes-base-notes-the-only-fragrance-guide-you-need-before-your-next-perfume-haul",
+            "link_label": "Read Article"
+          }
+        },
+        "blog_item_JVbhhK": {
+          "type": "blog_item",
+          "settings": {
+            "image": "shopify://shop_images/What_you_are_actually_paying_for_Thumbnail_jpg.jpg",
+            "tag": "",
+            "title": "What you are actually paying for in a $300 luxury perfume brand bottle: the real cost breakdown nobody talks about",
+            "excerpt": "Walk into Sephora on a Saturday afternoon and an impeccably made-up\nsalesperson will spritz a card, hand it to you, and watch your face for a reaction while a $300 bottle sits on the counter behind them looking like an art piece. It smells incredible. Of course it does. At that price it should. Few people ever stop to ask where the $300 is actually going, because a surprisingly small amount of it is sitting inside the bottle itself.\n\nThis is not a scandal. It is just supply and demand pulled apart and once you see the pieces laid out, luxury perfume pricing starts to make a very different kind of sense. None of it is exactly a secret. It is just spread out across enough different receipts that nobody bothers connecting the dots until someone lays them out in one place.",
+            "link": "shopify://blogs/news/what-you-are-actually-paying-for-in-a-300-luxury-perfume-brand-bottle-the-real-cost-breakdown-nobody-talks-about",
+            "link_label": "Read Article"
+          }
+        },
+        "blog_item_BM3Exx": {
+          "type": "blog_item",
+          "settings": {
+            "image": "shopify://shop_images/Americans_Love_Thumbnail_jpg.jpg",
+            "tag": "",
+            "title": "America's love of gourmand fragrance: why the best perfume for women now smells like something absolutely delicious",
+            "excerpt": "Walk through any department store’s fragrance section and it smells like dessert.\nVanilla, caramel, something that might be tonka bean or might just be a very\nconvincing sugar cookie, and half the bottles on that shelf are doing their best\nimpression of a bakery case. This is not an accident. Somewhere over the last few\nyears, America decided the best perfume for women should smell a little bit like\nsomething you would actually want to eat, and it is not hard to see why.\nThis is not new exactly. What is new is how good it has gotten.",
+            "link": "shopify://blogs/news/americas-love-of-gourmand-fragrance-why-the-best-perfume-for-women-now-smells-like-something-absolutely-delicious",
+            "link_label": "Read Article"
+          }
+        },
+        "blog_item_wDa4Hp": {
+          "type": "blog_item",
+          "settings": {
+            "image": "shopify://shop_images/The_Fragrance_Gift_Guide_for_People_-_01_jpg.jpg",
+            "tag": "",
+            "title": "The fragrance gift guide for people who refuse to give boring presents: luxury inspired perfumes sorted by personality, not price",
+            "excerpt": "Somewhere in America right now, someone is unwrapping a Bath and Body Works\ngift set for the third year running, smiling the exact smile you give a gift that required\nzero information about the person receiving it. This is not anyone's fault. It is just\nwhat happens when gift shopping turns into a category to check off instead of an\nactual person to think about. Candles, lotion sets, a mug that says something\ngeneric about coffee: all perfectly nice, all instantly forgettable, all grabbed under\npressure in the last aisle of a store that was never the plan.\nFragrance can fix this, but only if you stop shopping by budget and start shopping by\nwho someone actually is. A 20 dollar bottle picked because it is unmistakably them\nwill beat an 80 dollar gift set picked because it was sitting at the Sephora checkout\nline. Here is how to get it right this year, sorted by personality instead of price tag.",
+            "link": "shopify://blogs/news/the-fragrance-gift-guide-for-people-who-refuse-to-give-boring-presents-luxury-inspired-perfumes-sorted-by-personality-not-price",
+            "link_label": "Read Article"
+          }
+        },
+        "blog_item_9FRjY3": {
+          "type": "blog_item",
+          "settings": {
+            "image": "shopify://shop_images/The_scent_of_an_American_summer_Thumbnail_jpg.jpg",
+            "tag": "",
+            "title": "The scent of an American summer: sunscreenyou swear you applied, a screen door slamming,and the fragrance that ties the whole seasontogether",
+            "excerpt": "An American summer starts the second school lets out and does not fully quit until the first\npumpkin flavored latte shows up at the coffee shop and ruins everyone&#39;s denial. In between, it is\none long, sun-drunk stretch of lake days, backyard cookouts, road trips with the windows down,\nand at least one Fourth of July where someone insists they know what they are doing with the fireworks. You mean to reapply the sunscreen. You truly do. Then the game gets competitive,\nthe burgers are ready, and by evening your shoulders are telling a story your memory does not\nfully back up.\nSummer has a smell, and you know it before you can name it. Warm cut grass and charcoal\nsmoke. Sunscreen and chlorine and watermelon eaten over the sink. Hot asphalt right before a\nthunderstorm finally breaks the humidity. A screen door swinging open onto a porch in the\nevening. It is nostalgia you can breathe, and it is doing a lot of quiet emotional work before you\nhave thought about it once.",
+            "link": "shopify://blogs/news/the-scent-of-an-american-summer-sunscreen-you-swear-you-applied-a-screen-door-slamming-and-the-fragrance-that-ties-the-whole-season-together",
+            "link_label": "Read Article"
+          }
+        },
+        "blog_item_edTkkn": {
+          "type": "blog_item",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Jul_13_2026_09_46_58_PM_54c55edf-fe39-4bf4-a3b9-790174f0c05f.png",
+            "tag": "",
+            "title": "Fragrance layering, explained: how to turn two colognes into a signature scent no one else is wearing",
+            "excerpt": "Somewhere in the past couple of years, wearing one fragrance stopped cutting it. Open TikTok\nand inside a minute you'll catch someone double-fisting two bottles like a bartender at happy\nhour, swearing the result is a scent nobody else on the planet is wearing. It looks like a gimmick.\nIt looks like a slick way to sell you twice the cologne. It is neither. Layering is one of the oldest\nplays in a perfumer's book, finally run for the rest of us, and once it clicks you'll wonder why you\nspent years wearing your fragrances one at a time like it was still 1998.",
+            "link": "shopify://blogs/news/fragrance-layering-explained-how-to-turn-two-colognes-into-a-signature-scent-no-one-else-is-wearing",
+            "link_label": "Read Article"
+          }
+        },
+        "blog_item_WWNAtw": {
+          "type": "blog_item",
+          "settings": {
+            "image": "shopify://shop_images/USA_Last_Blog_Thumbnail_jpg.jpg",
+            "tag": "",
+            "title": "The best cologne for men, chosen for you: a gift guide for when \"what do you even want?\" gets you nowhere",
+            "excerpt": "Buying a gift for a man can feel like negotiating with someone who refuses to name a ransom.\nYou ask what he wants and get a shrug and a \"I really don't need anything.\" He will not send a\nlink, he will not drop a hint, and he will absolutely clock it if a gift card shows up again. Which\nleaves you where you are every year: in a store with a deadline and no plan.\nHere is the case for cologne. He would never spend the money on himself, he will use it every\nmorning, and it refreshes a corner of his routine he stopped thinking about years ago. The only\nreal work is matching the scent to the man instead of grabbing whatever is stacked highest at\nthe counter. So let's make it easy and go by the guy you are shopping for. Each pick is a\nScentspired bestseller made with high-quality, Swiss-sourced fragrance oil, the thing that keeps\na scent going all day rather than fading out before his second coffee.",
+            "link": "shopify://blogs/news/the-best-cologne-for-men-chosen-for-you-a-gift-guide-for-when-what-do-you-even-want-gets-you-nowhere",
+            "link_label": "Read Article"
+          }
+        }
+      },
+      "block_order": [
+        "blog_item_nNRxck",
+        "blog_item_wikGx6",
+        "blog_item_rWL7x4",
+        "blog_item_BPJWBG",
+        "blog_item_8Hkcfk",
+        "blog_item_zNY9Aj",
+        "blog_item_9eQwUt",
+        "blog_item_hBk6hW",
+        "blog_item_gKjkJB",
+        "blog_item_JVbhhK",
+        "blog_item_BM3Exx",
+        "blog_item_wDa4Hp",
+        "blog_item_9FRjY3",
+        "blog_item_edTkkn",
+        "blog_item_WWNAtw"
+      ],
+      "custom_css": [],
+      "name": "Zigzag Blog",
+      "settings": {
+        "heading_label": "From the Journal",
+        "heading_title": "Stories Worth Reading",
+        "heading_subtitle": "Curated stories for the discerning nose"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "image_banner_a83WhY",
+    "blog_section_4VLNh8"
+  ]
+}

@@ -1,4 +1,6 @@
 <section id="mvps-{{ section.id }}" class="mvps-section" aria-label="Video product selector">
+  {%- capture curr_sym -%}{%- render 'store-context', key: 'currency_symbol' -%}{%- endcapture -%}
+  {%- assign curr_sym = curr_sym | strip -%}
   {% assign desktop_src = "" %}
   {% assign mobile_src = "" %}
   {%- if section.settings.desktop_video != blank -%}
@@ -215,8 +217,8 @@
                         <input type="hidden" name="id" value="{{ product.variants.first.id }}">
                       {% endif %}
 
-                      <!-- Add to cart button -->
-                      <button type="submit" class="cart-button">ADD TO CART</button>
+                      <!-- Add to cart button (SSOT Component) -->
+                      {% render 'component-button', type: 'submit', variant: 'brand', text: 'ADD TO CART' %}
                     </form>
                   </div>
                 </div>
@@ -324,7 +326,8 @@
                       <!-- Force quantity to 1 -->
                       <input type="hidden" name="quantity" value="1">
 
-                      <button type="submit" class="cart-button">ADD TO CART</button>
+                      <!-- Add to cart button (SSOT Component) -->
+                      {% render 'component-button', type: 'submit', variant: 'brand', text: 'ADD TO CART' %}
                     </form>
                   </div>
                 </div>
@@ -793,7 +796,7 @@
       const section = document.getElementById('mvps-{{ section.id }}');
       if (!section) return;
 
-      const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '{{ cart.currency.symbol }}' || '$';
+      const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '{{ curr_sym }}' || '{{ cart.currency.symbol }}';
 
       // --- Fetch current cart ---
       async function getCart() {

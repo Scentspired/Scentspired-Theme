@@ -1,0 +1,86 @@
+{% comment %}
+  ============================================================================
+  SCENTSPIRED THEME — ATOMIC BUTTON COMPONENT (SSOT)
+  ============================================================================
+  Universal button primitive for Scentspired stores.
+  Outputs either an accessible <button> or an <a> element with full styling,
+  event attributes, and design token integration.
+
+  Accepts:
+    - text: {String} Button label text
+    - url: {String} Optional link URL. If present, renders <a>, else <button>
+    - type: {String} Button type: 'button' | 'submit' | 'reset' (default: 'button')
+    - variant: {String} Visual style: 'brand' | 'circle' | 'variant-pill' | 'primary' | 'secondary' (default: 'brand')
+    - class: {String} Optional additional CSS classes
+    - id: {String} Optional element ID
+    - name: {String} Optional input/button name attribute
+    - value: {String} Optional value attribute
+    - disabled: {Boolean} Whether the button is disabled (default: false)
+    - aria_label: {String} Optional accessible label
+    - data_product_title: {String} Optional product title for data-product-title attribute
+    - attr: {String} Optional raw HTML attributes
+
+  Usage Examples:
+    {% render 'component-button', type: 'submit', variant: 'brand', text: 'ADD TO CART' %}
+    {% render 'component-button', type: 'submit', variant: 'brand', text: 'ADD TO CART', data_product_title: product.title %}
+    {% render 'component-button', url: routes.all_products_collection_url, variant: 'brand', text: 'SHOP ALL' %}
+    {% render 'component-button', variant: 'circle', id: 'nextBtn', text: '›', aria_label: 'Next slide' %}
+  ============================================================================
+{% endcomment %}
+
+{%- liquid
+  assign btn_type = type | default: 'button'
+  assign btn_variant = variant | default: 'brand'
+  assign btn_disabled = disabled | default: false
+  assign btn_label = text | default: ''
+
+  assign btn_classes = ''
+  if btn_variant == 'brand'
+    assign btn_classes = 'button--brand cart-button'
+  elsif btn_variant == 'circle'
+    assign btn_classes = 'button--circle'
+  elsif btn_variant == 'variant-pill'
+    assign btn_classes = 'button--variant-pill'
+  elsif btn_variant == 'primary'
+    assign btn_classes = 'button button--primary'
+  elsif btn_variant == 'secondary'
+    assign btn_classes = 'button button--secondary'
+  else
+    assign btn_classes = 'button button--' | append: btn_variant
+  endif
+
+  if class != blank
+    assign btn_classes = btn_classes | append: ' ' | append: class
+  endif
+
+  if btn_disabled
+    assign btn_classes = btn_classes | append: ' disabled'
+  endif
+-%}
+
+{%- if url != blank -%}
+  <a
+    href="{{ url }}"
+    class="{{ btn_classes }}"
+    {% if id != blank %}id="{{ id }}"{% endif %}
+    {% if aria_label != blank %}aria-label="{{ aria_label | escape }}"{% endif %}
+    {% if data_product_title != blank %}data-product-title="{{ data_product_title | escape }}"{% endif %}
+    {% if attr != blank %}{{ attr }}{% endif %}
+  >
+    {{- btn_label -}}
+  </a>
+{%- else -%}
+  <button
+    type="{{ btn_type }}"
+    class="{{ btn_classes }}"
+    {% if id != blank %}id="{{ id }}"{% endif %}
+    {% if name != blank %}name="{{ name }}"{% endif %}
+    {% if value != blank %}value="{{ value | escape }}"{% endif %}
+    {% if btn_disabled %}disabled{% endif %}
+    {% if aria_label != blank %}aria-label="{{ aria_label | escape }}"{% endif %}
+    {% if data_product_title != blank %}data-product-title="{{ data_product_title | escape }}"{% endif %}
+    {% if attr != blank %}{{ attr }}{% endif %}
+  >
+    {{- btn_label -}}
+  </button>
+{%- endif -%}

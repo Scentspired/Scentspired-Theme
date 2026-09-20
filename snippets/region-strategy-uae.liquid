@@ -1,0 +1,62 @@
+{%- comment -%}
+  ============================================================================
+  SCENTSPIRED — Regional Strategy Module: United Arab Emirates (UAE)
+  ============================================================================
+  Encapsulates all store context, policy parameters, SEO metadata,
+  feature flags, and bundle fallback catalog defaults for the UAE storefront.
+  ============================================================================
+{%- endcomment -%}
+{%- if key != blank -%}
+  {%- case key -%}
+    {%- when 'region_code' or 'region' -%}UAE
+    {%- when 'region_id' -%}uae
+    {%- when 'currency_code' -%}AED
+    {%- when 'currency_symbol' -%}{{- 'AED ' -}}
+    {%- when 'shipping_threshold_cents' -%}15000
+    {%- when 'shipping_threshold_amount' -%}150
+    {%- when 'shipping_cost_cents' -%}2500
+    {%- when 'shipping_cost_amount' -%}25
+    {%- when 'canonical_url' -%}https://scentspired.ae
+    {%- when 'seo_title' -%}Inspired Designer Perfumes for Men & Women | Scentspired UAE
+    {%- when 'seo_description' -%}Shop long-lasting inspired perfumes in Dubai & across UAE. Premium extrait de parfum oils, luxury quality, honest prices. Free delivery on orders over AED 150.
+    {%- when 'default_video_url' -%}https://cdn.shopify.com/videos/c/o/v/fbfe40c4c4c744f5b13cfbe4d843fe31.mp4
+    {%- when 'category_label_1' -%}ICONS
+    {%- when 'category_label_2' -%}VIBES
+    {%- when 'has_trustpilot' -%}false
+    {%- when 'five_box_50_id' -%}45733941936311
+    {%- when 'five_box_100_id' -%}45733941969079
+    {%- when 'five_box_price_50' -%}249.99
+    {%- when 'five_box_price_100' -%}369.99
+    {%- when 'five_box_std_50' -%}375.00
+    {%- when 'five_box_std_100' -%}550.00
+    {%- when 'five_box_saving_50' -%}125.01
+    {%- when 'five_box_saving_100' -%}180.01
+    {%- when 'trio_50_id' -%}45733933154487
+    {%- when 'trio_100_id' -%}45733933187255
+    {%- when 'trio_price_50' -%}149.99
+    {%- when 'trio_price_100' -%}229.99
+    {%- when 'trio_std_50' -%}225.00
+    {%- when 'trio_std_100' -%}345.00
+    {%- when 'trio_saving_50' -%}75.01
+    {%- when 'trio_saving_100' -%}115.01
+    {%- when 'discovery_variant_id' -%}45733851955383
+    {%- when 'discovery_price_display' -%}AED 75
+  {%- endcase -%}
+{%- else -%}
+{
+  "region": "UAE",
+  "regionCode": "uae",
+  "currencyCode": "AED",
+  "currencySymbol": "AED ",
+  "canonicalUrl": "https://scentspired.ae",
+  "freeShippingThreshold": 15000,
+  "shippingCost": 2500,
+  "shippingThresholdCents": 15000,
+  "shippingThresholdAmount": "150",
+  "shippingCostCents": 2500,
+  "shippingCostAmount": "25",
+  "seoTitle": "Inspired Designer Perfumes for Men & Women | Scentspired UAE",
+  "seoDescription": "Shop long-lasting inspired perfumes in Dubai & across UAE. Premium extrait de parfum oils, luxury quality, honest prices. Free delivery on orders over AED 150.",
+  "hasTrustpilot": "false"
+}
+{%- endif -%}

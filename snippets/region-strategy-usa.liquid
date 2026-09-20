@@ -1,0 +1,62 @@
+{%- comment -%}
+  ============================================================================
+  SCENTSPIRED — Regional Strategy Module: United States (USA)
+  ============================================================================
+  Encapsulates all store context, policy parameters, SEO metadata,
+  feature flags, and bundle fallback catalog defaults for the USA storefront.
+  ============================================================================
+{%- endcomment -%}
+{%- if key != blank -%}
+  {%- case key -%}
+    {%- when 'region_code' or 'region' -%}USA
+    {%- when 'region_id' -%}usa
+    {%- when 'currency_code' -%}USD
+    {%- when 'currency_symbol' -%}$
+    {%- when 'shipping_threshold_cents' -%}7000
+    {%- when 'shipping_threshold_amount' -%}70
+    {%- when 'shipping_cost_cents' -%}799
+    {%- when 'shipping_cost_amount' -%}7.99
+    {%- when 'canonical_url' -%}https://scentspired.com
+    {%- when 'seo_title' -%}Inspired Designer Perfumes for Men & Women | Scentspired
+    {%- when 'seo_description' -%}Shop long-lasting inspired perfumes for men, women & unisex. Premium extrait de parfum oils, luxury quality, honest prices. Free shipping over $70.
+    {%- when 'default_video_url' -%}https://cdn.shopify.com/videos/c/o/v/fbfe40c4c4c744f5b13cfbe4d843fe31.mp4
+    {%- when 'category_label_1' -%}ICONS
+    {%- when 'category_label_2' -%}VIBES
+    {%- when 'has_trustpilot' -%}true
+    {%- when 'five_box_50_id' -%}45733941936311
+    {%- when 'five_box_100_id' -%}45733941969079
+    {%- when 'five_box_price_50' -%}129.99
+    {%- when 'five_box_price_100' -%}179.99
+    {%- when 'five_box_std_50' -%}199.95
+    {%- when 'five_box_std_100' -%}249.95
+    {%- when 'five_box_saving_50' -%}69.96
+    {%- when 'five_box_saving_100' -%}69.96
+    {%- when 'trio_50_id' -%}45733933154487
+    {%- when 'trio_100_id' -%}45733933187255
+    {%- when 'trio_price_50' -%}79.99
+    {%- when 'trio_price_100' -%}119.99
+    {%- when 'trio_std_50' -%}119.97
+    {%- when 'trio_std_100' -%}179.97
+    {%- when 'trio_saving_50' -%}39.98
+    {%- when 'trio_saving_100' -%}59.98
+    {%- when 'discovery_variant_id' -%}45733851955383
+    {%- when 'discovery_price_display' -%}$19.99
+  {%- endcase -%}
+{%- else -%}
+{
+  "region": "USA",
+  "regionCode": "usa",
+  "currencyCode": "USD",
+  "currencySymbol": "$",
+  "canonicalUrl": "https://scentspired.com",
+  "freeShippingThreshold": 7000,
+  "shippingCost": 799,
+  "shippingThresholdCents": 7000,
+  "shippingThresholdAmount": "70",
+  "shippingCostCents": 799,
+  "shippingCostAmount": "7.99",
+  "seoTitle": "Inspired Designer Perfumes for Men & Women | Scentspired",
+  "seoDescription": "Shop long-lasting inspired perfumes for men, women & unisex. Premium extrait de parfum oils, luxury quality, honest prices. Free shipping over $70.",
+  "hasTrustpilot": "true"
+}
+{%- endif -%}

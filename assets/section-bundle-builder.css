@@ -257,11 +257,11 @@
 
 .add-to-cart-btn {
   width: 100%;
-  background: #f4ff41;
-  color: #000;
+  background: var(--btn-brand-bg, #f4ff41);
+  color: var(--btn-brand-color, #000);
   padding: 20px;
   font-size: 15px;
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold, 600);
   text-transform: uppercase;
   letter-spacing: 2px;
   border: none;
@@ -274,7 +274,7 @@
 }
 
 .add-to-cart-btn:disabled {
-  background-color: #f4ff41;
+  background-color: var(--btn-brand-bg, #f4ff41);
   opacity: 0.7;
   cursor: not-allowed;
 }

@@ -1,5 +1,6 @@
 {
   "upstreamName": "Scentspired-Theme",
+  "defaultTarget": "uae",
   "coreSyncDirs": [
     "assets",
     "blocks",
@@ -20,12 +21,30 @@
   ],
   "downstreamTargets": [
     {
+      "name": "Scentspired-UAE",
+      "id": "uae",
+      "path": "../Scentspired-UAE",
+      "branch": "develop",
+      "mainBranch": "main",
+      "remote": "origin",
+      "locked": false,
+      "readOnly": false,
+      "pushDisabled": false,
+      "autoUpdate": true,
+      "allowPush": true
+    },
+    {
       "name": "Scentspired-USA",
       "id": "usa",
       "path": "../Scentspired-USA",
       "branch": "develop",
       "mainBranch": "main",
-      "remote": "origin"
+      "remote": "origin",
+      "locked": true,
+      "readOnly": true,
+      "pushDisabled": true,
+      "autoUpdate": false,
+      "allowPush": false
     },
     {
       "name": "Scentspired-UK",
@@ -33,7 +52,12 @@
       "path": "../Scentspired-UK",
       "branch": "develop",
       "mainBranch": "main",
-      "remote": "origin"
+      "remote": "origin",
+      "locked": true,
+      "readOnly": true,
+      "pushDisabled": true,
+      "autoUpdate": false,
+      "allowPush": false
     }
   ]
 }
