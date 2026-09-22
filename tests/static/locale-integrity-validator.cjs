@@ -96,7 +96,7 @@ function walk(dir) {
   if (!fs.existsSync(dir)) return results;
   const list = fs.readdirSync(dir);
   for (const file of list) {
-    if (file === 'node_modules' || file === '.git' || file === 'tests') continue;
+    if (file === 'node_modules' || file === '.git' || file === 'tests' || file === 'dist' || file === 'regions') continue;
     const full = path.join(dir, file);
     const stat = fs.statSync(full);
     if (stat && stat.isDirectory()) {

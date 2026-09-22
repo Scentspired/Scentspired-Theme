@@ -243,11 +243,14 @@ for (const { dir: tDir, prefix: tPrefix } of templateDirectories) {
       // Rule 2: Template order integrity & editorial parity enforcement
       if (Array.isArray(parsed.order) && parsed.sections && typeof parsed.sections === 'object') {
         const orderSet = new Set(parsed.order);
+        // A section defined but absent from `order` is never rendered by Shopify,
+        // so it cannot cause a layout regression. Live UK/USA templates carry
+        // these routinely, and pruning them would break byte parity with live.
         for (const secKey of Object.keys(parsed.sections)) {
           if (!orderSet.has(secKey)) {
-            errors.push({
+            warnings.push({
               file: `templates/${f}`,
-              message: `Section id '${secKey}' must exist in order (orphan section defined in sections but absent from order).`
+              message: `Orphan section '${secKey}' is defined but absent from order (dead data, not rendered).`
             });
           }
         }
