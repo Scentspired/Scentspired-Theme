@@ -51,8 +51,18 @@ function assertRemoteAllowed(remoteUrl) {
   }
 }
 
-/** Refuse any Shopify CLI operation aimed at a live regional store. */
-function assertStoreAllowed(store) {
+/**
+ * Refuse any Shopify CLI operation aimed at a live regional store.
+ *
+ * `mode` separates reading a storefront from changing one:
+ *   'write' (default) — push/publish/delete. Always refused for a live store.
+ *   'read'            — dev/pull/list/info. Permitted, because verifying the
+ *                       theme against real catalog data requires attaching to
+ *                       a store that has it. `theme dev` creates a separate
+ *                       UNPUBLISHED development theme and never touches the
+ *                       published one.
+ */
+function assertStoreAllowed(store, mode = 'write') {
   if (!store) {
     fail([
       'No --store was supplied to a Shopify CLI operation.',
@@ -60,13 +70,25 @@ function assertStoreAllowed(store) {
       `which may be live. Pin it explicitly: --store=${ALLOWED_STORE}`,
     ]);
   }
+
   const normalized = String(store).toLowerCase();
-  if (LOCKED_STORES.some(locked => normalized.includes(locked))) {
+  const isLocked = LOCKED_STORES.some(locked => normalized.includes(locked));
+  if (!isLocked) return;
+
+  if (mode === 'write') {
     fail([
       `Store is a LOCKED live storefront: ${store}`,
+      '',
+      'Writing to a live storefront is never permitted from here.',
       `The only deployable store is ${ALLOWED_STORE} (UAE, development themes only).`,
     ]);
   }
+
+  console.warn('');
+  console.warn(`⚠️  Attaching to LIVE storefront ${store} in read mode.`);
+  console.warn('   A separate unpublished development theme will be created.');
+  console.warn('   The published theme is not modified. Delete the dev theme when done.');
+  console.warn('');
 }
 
 /** Refuse to operate while sitting inside a locked reference checkout. */
@@ -101,7 +123,9 @@ if (require.main === module) {
 
   assertCwdNotLocked();
   if (args.includes('--remote')) assertRemoteAllowed(valueFor('--remote'));
-  if (args.includes('--store')) assertStoreAllowed(valueFor('--store'));
+  if (args.includes('--store')) {
+    assertStoreAllowed(valueFor('--store'), args.includes('--read') ? 'read' : 'write');
+  }
 
   console.log('✅ Lockdown guard: operation permitted.');
 }

@@ -53,7 +53,9 @@
     "sync:pull:usa": "node engine/sync-regions.cjs --pull --target=usa",
     "sync:pull:uae": "node engine/sync-regions.cjs --pull --target=uae",
     "region:sync": "node scripts/region-engine.cjs --sync",
-    "region:list": "node scripts/region-engine.cjs"
+    "region:list": "node scripts/region-engine.cjs",
+    "dev:uk:live": "node scripts/guard-live-repos.cjs --store scentspireduk.myshopify.com --read && npm run compile:uk && shopify theme dev --path=dist/uk --store=scentspireduk.myshopify.com",
+    "dev:usa:live": "node scripts/guard-live-repos.cjs --store scentspired-usa.myshopify.com --read && npm run compile:usa && shopify theme dev --path=dist/usa --store=scentspired-usa.myshopify.com"
   },
   "devDependencies": {
     "@shopify/cli": "^3.94.0",
