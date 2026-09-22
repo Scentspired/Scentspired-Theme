@@ -81,9 +81,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="theme-color" content="">
     <link rel="canonical" href="{{ canonical_url }}">
-    <link rel="alternate" hreflang="en-gb" href="https://scentspired.co.uk{{ request.path }}">
-    <link rel="alternate" hreflang="en-us" href="https://scentspired.com{{ request.path }}">
-    <link rel="alternate" hreflang="x-default" href="https://scentspired.com{{ request.path }}">
+    {%- render 'region-registry', mode: 'hreflang' -%}
 
     {%- if settings.favicon != blank -%}
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
@@ -472,10 +470,10 @@
       })();
     </script>
 
+    {%- capture region_geo_map -%}{%- render 'region-registry', mode: 'geo_map' -%}{%- endcapture -%}
     <script>
       (function () {
-        // Skip immediately on US storefront - already on correct domain
-        if (location.hostname.includes('scentspired.com')) return;
+        var REGIONS = {{ region_geo_map | strip }};
 
         // Skip redirect for automated audits, headless browsers, and search engine crawlers
         if (navigator.webdriver) return;
@@ -490,10 +488,12 @@
           fetch('https://ipapi.co/json/')
             .then(function (res) { return res.json(); })
             .then(function (data) {
-              if (data && data.country === 'US') {
-                if (!location.hostname.includes('scentspired.com')) {
-                  location.replace('https://scentspired.com' + location.pathname);
-                }
+              if (!data || !data.country) return;
+              var match = REGIONS.filter(function (r) { return r.country === data.country; })[0];
+              if (!match) return;
+              var target = match.url.replace(/^https?:\/\//, '');
+              if (location.hostname.indexOf(target) === -1) {
+                location.replace(match.url + location.pathname);
               }
             })
             .catch(function () {});

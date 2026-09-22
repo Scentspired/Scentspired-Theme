@@ -1,0 +1,36 @@
+{%- comment -%}
+  ============================================================================
+  SCENTSPIRED — Cross-Region Storefront Registry
+  ============================================================================
+  The only place that knows about ALL storefronts at once. Every fact is read
+  from the per-region strategy modules, so adding a region means editing
+  region-strategy-<id>.liquid and adding one line here — never a consuming file.
+
+  Modes:
+    {% render 'region-registry', mode: 'hreflang' %}  -> <link rel="alternate"> set
+    {% render 'region-registry', mode: 'geo_map' %}   -> JSON [{country,url}]
+  ============================================================================
+{%- endcomment -%}
+
+{%- capture uk_url -%}{%- render 'region-strategy-uk', key: 'canonical_url' -%}{%- endcapture -%}
+{%- capture usa_url -%}{%- render 'region-strategy-usa', key: 'canonical_url' -%}{%- endcapture -%}
+{%- capture uae_url -%}{%- render 'region-strategy-uae', key: 'canonical_url' -%}{%- endcapture -%}
+
+{%- capture uk_hreflang -%}{%- render 'region-strategy-uk', key: 'hreflang' -%}{%- endcapture -%}
+{%- capture usa_hreflang -%}{%- render 'region-strategy-usa', key: 'hreflang' -%}{%- endcapture -%}
+{%- capture uae_hreflang -%}{%- render 'region-strategy-uae', key: 'hreflang' -%}{%- endcapture -%}
+
+{%- capture uk_countries -%}{%- render 'region-strategy-uk', key: 'geo_countries' -%}{%- endcapture -%}
+{%- capture usa_countries -%}{%- render 'region-strategy-usa', key: 'geo_countries' -%}{%- endcapture -%}
+{%- capture uae_countries -%}{%- render 'region-strategy-uae', key: 'geo_countries' -%}{%- endcapture -%}
+
+{%- case mode -%}
+  {%- when 'hreflang' -%}
+    <link rel="alternate" hreflang="{{ uk_hreflang | strip }}" href="{{ uk_url | strip }}{{ request.path }}">
+    <link rel="alternate" hreflang="{{ usa_hreflang | strip }}" href="{{ usa_url | strip }}{{ request.path }}">
+    <link rel="alternate" hreflang="{{ uae_hreflang | strip }}" href="{{ uae_url | strip }}{{ request.path }}">
+    <link rel="alternate" hreflang="x-default" href="{{ usa_url | strip }}{{ request.path }}">
+
+  {%- when 'geo_map' -%}
+    [{"country":"{{ uk_countries | strip }}","url":"{{ uk_url | strip }}"},{"country":"{{ usa_countries | strip }}","url":"{{ usa_url | strip }}"},{"country":"{{ uae_countries | strip }}","url":"{{ uae_url | strip }}"}]
+{%- endcase -%}
