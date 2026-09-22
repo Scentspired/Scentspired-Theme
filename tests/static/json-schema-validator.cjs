@@ -190,6 +190,9 @@ for (const { dir: tDir, prefix: tPrefix } of templateDirectories) {
     filesChecked++;
     const fullPath = path.join(tDir, f);
     const displayFile = `${tPrefix}/${f}`;
+    // regions/** mirrors a live storefront byte for byte; so does a compiled dist.
+    // Its dead data is reported, never blocking — we must be able to build what live actually is.
+    const isMirror = tPrefix.startsWith('regions/') || process.env.SCENTSPIRED_MIRROR_SOURCE === '1';
 
     try {
       const raw = fs.readFileSync(fullPath, 'utf8');
@@ -230,7 +233,7 @@ for (const { dir: tDir, prefix: tPrefix } of templateDirectories) {
           if (f.startsWith('article.') && Array.isArray(sectionConfig.custom_css)) {
             for (const rule of sectionConfig.custom_css) {
               if (/margin-bottom\s*:\s*-[0-9]+/i.test(rule)) {
-                errors.push({
+                (isMirror ? warnings : errors).push({
                   file: displayFile,
                   message: `Prohibited negative margin hack in section "${sectionId}" custom_css: "${rule}". In article templates, layout spacing must be managed via centralized typography CSS.`
                 });
@@ -249,7 +252,7 @@ for (const { dir: tDir, prefix: tPrefix } of templateDirectories) {
         for (const secKey of Object.keys(parsed.sections)) {
           if (!orderSet.has(secKey)) {
             warnings.push({
-              file: `templates/${f}`,
+              file: displayFile,
               message: `Orphan section '${secKey}' is defined but absent from order (dead data, not rendered).`
             });
           }
@@ -258,28 +261,28 @@ for (const { dir: tDir, prefix: tPrefix } of templateDirectories) {
           const sec = parsed.sections[sectionId];
           if (!sec) {
             errors.push({
-              file: `templates/${f}`,
+              file: displayFile,
               message: `Section "${sectionId}" is in order array but does not exist in sections dictionary.`
             });
             continue;
           }
           // In article templates, ghost/disabled sections are strictly prohibited to maintain universal layout parity
           if (f.startsWith('article.') && sec.disabled === true) {
-            errors.push({
-              file: `templates/${f}`,
+            (isMirror ? warnings : errors).push({
+              file: displayFile,
               message: `Ghost section detected in order: section "${sectionId}" is marked disabled: true. In article templates, disabled sections must be pruned from order to ensure strict layout parity.`
             });
           }
           if (sec.blocks && typeof sec.blocks === 'object') {
             const blockValues = Object.values(sec.blocks);
             if (blockValues.length === 0 && sec.type === '_blocks') {
-              errors.push({
-                file: `templates/${f}`,
+              (isMirror ? warnings : errors).push({
+                file: displayFile,
                 message: `Empty section detected in order: section "${sectionId}" (type: ${sec.type}) has 0 blocks. It must be pruned from order to avoid empty rendering artifacts.`
               });
             } else if (f.startsWith('article.') && blockValues.length > 0 && blockValues.every(b => b && b.disabled === true)) {
-              errors.push({
-                file: `templates/${f}`,
+              (isMirror ? warnings : errors).push({
+                file: displayFile,
                 message: `Ghost section detected in order: all blocks inside section "${sectionId}" are marked disabled: true. In article templates, this must be pruned to guarantee editorial parity.`
               });
             }
@@ -296,13 +299,13 @@ for (const { dir: tDir, prefix: tPrefix } of templateDirectories) {
                 const s = blk.settings || {};
                 if (s.content_padding && s.content_padding !== 40) {
                   errors.push({
-                    file: `templates/${f}`,
+                    file: displayFile,
                     message: `Hero banner in section "${secId}" has non-standard content_padding: ${s.content_padding} (must be 40px for universal layout parity).`
                   });
                 }
                 if (s.content_max_width_inner && s.content_max_width_inner !== 680) {
                   errors.push({
-                    file: `templates/${f}`,
+                    file: displayFile,
                     message: `Hero banner in section "${secId}" has non-standard content_max_width_inner: ${s.content_max_width_inner} (must be 680px for universal layout parity).`
                   });
                 }
@@ -313,7 +316,7 @@ for (const { dir: tDir, prefix: tPrefix } of templateDirectories) {
       }
     } catch (e) {
       errors.push({
-        file: `templates/${f}`,
+        file: displayFile,
         message: `Invalid JSON syntax: ${e.message}`
       });
     }
