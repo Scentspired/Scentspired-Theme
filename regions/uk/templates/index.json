@@ -47,7 +47,8 @@
         "stack_images_on_mobile": false,
         "mobile_content_alignment": "center",
         "show_text_below": false
-      }
+      },
+      "disabled": true
     },
     "image_banner_dVVjYy": {
       "type": "image-banner",
@@ -97,11 +98,11 @@
         "stack_images_on_mobile": false,
         "mobile_content_alignment": "left",
         "show_text_below": false
-      }
+      },
+      "disabled": true
     },
     "video_banner_UijrkX": {
       "type": "video-banner",
-      "disabled": true,
       "custom_css": [
         ".video-container {margin-top: 0px; padding-bottom: 50px;}",
         "@media screen and (min-width: 1024px) and (max-width: 1439px) {.curved-line {position: absolute; top: 58%; left: 72%; transform: translateY(-50%); z-index: 1; } .video-button-rounded {margin-top: 20px; }}",
