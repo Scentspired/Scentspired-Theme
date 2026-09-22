@@ -1,0 +1,367 @@
+
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-comparison-table-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 900px;
+    overflow-x: auto;
+    margin: 0 auto;
+  }
+
+  .ai-comparison-table__table-{{ ai_gen_id }} {
+    width: 100%;
+    border-collapse: collapse;
+    border: {{ block.settings.table_border_thickness }}px solid {{ block.settings.table_border_color }};
+  }
+
+  .ai-comparison-table__header-{{ ai_gen_id }} {
+    background-color: {{ block.settings.header_bg_color }};
+    color: {{ block.settings.header_text_color }};
+  }
+
+  .ai-comparison-table__header-cell-{{ ai_gen_id }} {
+    padding: {{ block.settings.cell_padding }}px;
+    text-align: {{ block.settings.text_alignment }};
+    font-weight: 600;
+    border: {{ block.settings.cell_border_thickness }}px solid {{ block.settings.cell_border_color }};
+    font-size: {{ block.settings.header_font_size }}px;
+  }
+
+  .ai-comparison-table__header-cell-{{ ai_gen_id }}:first-child {
+    width: {{ block.settings.column_1_width }}%;
+  }
+
+  .ai-comparison-table__header-cell-{{ ai_gen_id }}:nth-child(2) {
+    width: {{ block.settings.column_2_width }}%;
+  }
+
+  .ai-comparison-table__row-{{ ai_gen_id }} {
+    background-color: {{ block.settings.row_bg_color }};
+  }
+
+  .ai-comparison-table__row-{{ ai_gen_id }}:nth-child(even) {
+    background-color: {{ block.settings.row_alt_bg_color }};
+  }
+
+  .ai-comparison-table__cell-{{ ai_gen_id }} {
+    padding: {{ block.settings.cell_padding }}px;
+    text-align: {{ block.settings.text_alignment }};
+    color: {{ block.settings.row_text_color }};
+    border: {{ block.settings.cell_border_thickness }}px solid {{ block.settings.cell_border_color }};
+    font-size: {{ block.settings.body_font_size }}px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-comparison-table-{{ ai_gen_id }} {
+      width: 100%;
+    }
+
+    .ai-comparison-table__header-cell-{{ ai_gen_id }},
+    .ai-comparison-table__cell-{{ ai_gen_id }} {
+      font-size: {{ block.settings.header_font_size | times: 0.9 }}px;
+      padding: {{ block.settings.cell_padding | times: 0.8 }}px;
+    }
+
+    .ai-comparison-table__cell-{{ ai_gen_id }} {
+      font-size: {{ block.settings.body_font_size | times: 0.9 }}px;
+    }
+  }
+{% endstyle %}
+
+<comparison-table-{{ ai_gen_id }} class="ai-comparison-table-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <table class="ai-comparison-table__table-{{ ai_gen_id }}">
+    <thead class="ai-comparison-table__header-{{ ai_gen_id }}">
+      <tr>
+        <th class="ai-comparison-table__header-cell-{{ ai_gen_id }}">{{ block.settings.header_col_1 }}</th>
+        <th class="ai-comparison-table__header-cell-{{ ai_gen_id }}">{{ block.settings.header_col_2 }}</th>
+        <th class="ai-comparison-table__header-cell-{{ ai_gen_id }}">{{ block.settings.header_col_3 }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="ai-comparison-table__row-{{ ai_gen_id }}">
+        <td class="ai-comparison-table__cell-{{ ai_gen_id }}">{{ block.settings.row_1_col_1 }}</td>
+        <td class="ai-comparison-table__cell-{{ ai_gen_id }}">{{ block.settings.row_1_col_2 }}</td>
+        <td class="ai-comparison-table__cell-{{ ai_gen_id }}">{{ block.settings.row_1_col_3 }}</td>
+      </tr>
+      <tr class="ai-comparison-table__row-{{ ai_gen_id }}">
+        <td class="ai-comparison-table__cell-{{ ai_gen_id }}">{{ block.settings.row_2_col_1 }}</td>
+        <td class="ai-comparison-table__cell-{{ ai_gen_id }}">{{ block.settings.row_2_col_2 }}</td>
+        <td class="ai-comparison-table__cell-{{ ai_gen_id }}">{{ block.settings.row_2_col_3 }}</td>
+      </tr>
+      <tr class="ai-comparison-table__row-{{ ai_gen_id }}">
+        <td class="ai-comparison-table__cell-{{ ai_gen_id }}">{{ block.settings.row_3_col_1 }}</td>
+        <td class="ai-comparison-table__cell-{{ ai_gen_id }}">{{ block.settings.row_3_col_2 }}</td>
+        <td class="ai-comparison-table__cell-{{ ai_gen_id }}">{{ block.settings.row_3_col_3 }}</td>
+      </tr>
+    </tbody>
+  </table>
+</comparison-table-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class ComparisonTable{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.style.display = 'block';
+      }
+    }
+
+    customElements.define('comparison-table-{{ ai_gen_id }}', ComparisonTable{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Comparison table",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Header row"
+    },
+    {
+      "type": "text",
+      "id": "header_col_1",
+      "label": "Column 1",
+      "default": "Feature"
+    },
+    {
+      "type": "text",
+      "id": "header_col_2",
+      "label": "Column 2",
+      "default": "Option A"
+    },
+    {
+      "type": "text",
+      "id": "header_col_3",
+      "label": "Column 3",
+      "default": "Option B"
+    },
+    {
+      "type": "color",
+      "id": "header_bg_color",
+      "label": "Background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "header_text_color",
+      "label": "Text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "header_font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Row 1"
+    },
+    {
+      "type": "text",
+      "id": "row_1_col_1",
+      "label": "Column 1",
+      "default": "Price"
+    },
+    {
+      "type": "text",
+      "id": "row_1_col_2",
+      "label": "Column 2",
+      "default": "$29"
+    },
+    {
+      "type": "text",
+      "id": "row_1_col_3",
+      "label": "Column 3",
+      "default": "$39"
+    },
+    {
+      "type": "header",
+      "content": "Row 2"
+    },
+    {
+      "type": "text",
+      "id": "row_2_col_1",
+      "label": "Column 1",
+      "default": "Quality"
+    },
+    {
+      "type": "text",
+      "id": "row_2_col_2",
+      "label": "Column 2",
+      "default": "Premium"
+    },
+    {
+      "type": "text",
+      "id": "row_2_col_3",
+      "label": "Column 3",
+      "default": "Luxury"
+    },
+    {
+      "type": "header",
+      "content": "Row 3"
+    },
+    {
+      "type": "text",
+      "id": "row_3_col_1",
+      "label": "Column 1",
+      "default": "Shipping"
+    },
+    {
+      "type": "text",
+      "id": "row_3_col_2",
+      "label": "Column 2",
+      "default": "Free"
+    },
+    {
+      "type": "text",
+      "id": "row_3_col_3",
+      "label": "Column 3",
+      "default": "Free"
+    },
+    {
+      "type": "header",
+      "content": "Row style"
+    },
+    {
+      "type": "color",
+      "id": "row_bg_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "row_alt_bg_color",
+      "label": "Alternate background",
+      "default": "#f3f3f3"
+    },
+    {
+      "type": "color",
+      "id": "row_text_color",
+      "label": "Text",
+      "default": "#121212"
+    },
+    {
+      "type": "range",
+      "id": "body_font_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Table style"
+    },
+    {
+      "type": "range",
+      "id": "column_1_width",
+      "min": 15,
+      "max": 50,
+      "step": 5,
+      "unit": "%",
+      "label": "Column 1 width",
+      "default": 25
+    },
+    {
+      "type": "range",
+      "id": "column_2_width",
+      "min": 15,
+      "max": 50,
+      "step": 5,
+      "unit": "%",
+      "label": "Column 2 width",
+      "default": 25
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "cell_padding",
+      "min": 8,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Cell padding",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "table_border_thickness",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "label": "Table border thickness",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "cell_border_thickness",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "label": "Cell border thickness",
+      "default": 1
+    },
+    {
+      "type": "color",
+      "id": "table_border_color",
+      "label": "Table border color",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "cell_border_color",
+      "label": "Cell border color",
+      "default": "#e0e0e0"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    }
+  ],
+  "presets": [
+    {
+      "name": "Comparison table"
+    }
+  ]
+}
+{% endschema %}

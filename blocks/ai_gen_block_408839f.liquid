@@ -1,0 +1,369 @@
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-comparison-table-wrapper-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px {{ block.settings.side_padding }}px;
+  }
+
+  .ai-comparison-table-container-{{ ai_gen_id }} {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-comparison-table-container-{{ ai_gen_id }} {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .ai-comparison-table-container-{{ ai_gen_id }}::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .ai-comparison-table-{{ ai_gen_id }} {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'PPMori Regular', Arial, sans-serif;
+    background-color: {{ block.settings.table_bg_color }};
+  }
+
+  .ai-comparison-table-{{ ai_gen_id }} thead {
+    background-color: {{ block.settings.header_bg_color }};
+  }
+
+  .ai-comparison-table-{{ ai_gen_id }} thead th {
+    color: {{ block.settings.header_text_color }};
+    font-weight: bold;
+    padding: {{ block.settings.cell_padding }}px;
+    text-align: left;
+    border: 1px solid {{ block.settings.border_color }};
+  }
+
+  .ai-comparison-table-{{ ai_gen_id }} thead th:first-child {
+    background-color: {{ block.settings.header_bg_color }};
+  }
+
+  .ai-comparison-table-{{ ai_gen_id }} tbody tr {
+    background-color: {{ block.settings.row_bg_color }};
+  }
+
+  .ai-comparison-table-{{ ai_gen_id }} tbody td {
+    padding: {{ block.settings.cell_padding }}px;
+    border: 1px solid {{ block.settings.border_color }};
+    text-align: left;
+    font-weight: normal;
+    white-space: normal;
+    color: {{ block.settings.body_text_color }};
+  }
+
+  .ai-comparison-table-{{ ai_gen_id }} tbody td:first-child {
+    font-weight: {{ block.settings.label_font_weight }};
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-comparison-table-{{ ai_gen_id }} thead th,
+    .ai-comparison-table-{{ ai_gen_id }} tbody td {
+      min-width: 180px;
+    }
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-comparison-table-{{ ai_gen_id }} thead th,
+    .ai-comparison-table-{{ ai_gen_id }} tbody td {
+      min-width: auto;
+    }
+  }
+{% endstyle %}
+
+<fragrance-comparison-table-{{ ai_gen_id }}
+  class="ai-comparison-table-wrapper-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-comparison-table-container-{{ ai_gen_id }}">
+    <table class="ai-comparison-table-{{ ai_gen_id }}">
+      <thead>
+        <tr>
+          <th></th>
+          <th>{{ block.settings.header_1 }}</th>
+          <th>{{ block.settings.header_2 }}</th>
+          <th>{{ block.settings.header_3 }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ block.settings.row_1_label }}</td>
+          <td>{{ block.settings.row_1_col_1 }}</td>
+          <td>{{ block.settings.row_1_col_2 }}</td>
+          <td>{{ block.settings.row_1_col_3 }}</td>
+        </tr>
+        <tr>
+          <td>{{ block.settings.row_2_label }}</td>
+          <td>{{ block.settings.row_2_col_1 }}</td>
+          <td>{{ block.settings.row_2_col_2 }}</td>
+          <td>{{ block.settings.row_2_col_3 }}</td>
+        </tr>
+        <tr>
+          <td>{{ block.settings.row_3_label }}</td>
+          <td>{{ block.settings.row_3_col_1 }}</td>
+          <td>{{ block.settings.row_3_col_2 }}</td>
+          <td>{{ block.settings.row_3_col_3 }}</td>
+        </tr>
+        <tr>
+          <td>{{ block.settings.row_4_label }}</td>
+          <td>{{ block.settings.row_4_col_1 }}</td>
+          <td>{{ block.settings.row_4_col_2 }}</td>
+          <td>{{ block.settings.row_4_col_3 }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</fragrance-comparison-table-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class FragranceComparisonTable{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.style.display = 'block';
+      }
+    }
+
+    customElements.define('fragrance-comparison-table-{{ ai_gen_id }}', FragranceComparisonTable{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Comparison table",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Table headers"
+    },
+    {
+      "type": "text",
+      "id": "header_1",
+      "label": "Header 1",
+      "default": "EDT"
+    },
+    {
+      "type": "text",
+      "id": "header_2",
+      "label": "Header 2",
+      "default": "EDP"
+    },
+    {
+      "type": "text",
+      "id": "header_3",
+      "label": "Header 3",
+      "default": "Parfum"
+    },
+    {
+      "type": "header",
+      "content": "Row 1"
+    },
+    {
+      "type": "text",
+      "id": "row_1_label",
+      "label": "Label",
+      "default": "Oil concentration"
+    },
+    {
+      "type": "text",
+      "id": "row_1_col_1",
+      "label": "Column 1",
+      "default": "5-15%"
+    },
+    {
+      "type": "text",
+      "id": "row_1_col_2",
+      "label": "Column 2",
+      "default": "15-20%"
+    },
+    {
+      "type": "text",
+      "id": "row_1_col_3",
+      "label": "Column 3",
+      "default": "20-30%"
+    },
+    {
+      "type": "header",
+      "content": "Row 2"
+    },
+    {
+      "type": "text",
+      "id": "row_2_label",
+      "label": "Label",
+      "default": "Longevity"
+    },
+    {
+      "type": "text",
+      "id": "row_2_col_1",
+      "label": "Column 1",
+      "default": "3-5 hours"
+    },
+    {
+      "type": "text",
+      "id": "row_2_col_2",
+      "label": "Column 2",
+      "default": "5-8 hours"
+    },
+    {
+      "type": "text",
+      "id": "row_2_col_3",
+      "label": "Column 3",
+      "default": "8+ hours"
+    },
+    {
+      "type": "header",
+      "content": "Row 3"
+    },
+    {
+      "type": "text",
+      "id": "row_3_label",
+      "label": "Label",
+      "default": "Projection"
+    },
+    {
+      "type": "text",
+      "id": "row_3_col_1",
+      "label": "Column 1",
+      "default": "Light to moderate"
+    },
+    {
+      "type": "text",
+      "id": "row_3_col_2",
+      "label": "Column 2",
+      "default": "Moderate to strong"
+    },
+    {
+      "type": "text",
+      "id": "row_3_col_3",
+      "label": "Column 3",
+      "default": "Strong and lasting"
+    },
+    {
+      "type": "header",
+      "content": "Row 4"
+    },
+    {
+      "type": "text",
+      "id": "row_4_label",
+      "label": "Label",
+      "default": "Best for"
+    },
+    {
+      "type": "text",
+      "id": "row_4_col_1",
+      "label": "Column 1",
+      "default": "Everyday wear, warm weather"
+    },
+    {
+      "type": "text",
+      "id": "row_4_col_2",
+      "label": "Column 2",
+      "default": "Work, evening events"
+    },
+    {
+      "type": "text",
+      "id": "row_4_col_3",
+      "label": "Column 3",
+      "default": "Special occasions, cold weather"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "range",
+      "id": "side_padding",
+      "label": "Side padding",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "cell_padding",
+      "label": "Cell padding",
+      "min": 8,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "label_font_weight",
+      "label": "Label font weight",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "bold",
+          "label": "Bold"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "header_bg_color",
+      "label": "Header background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "header_text_color",
+      "label": "Header text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "row_bg_color",
+      "label": "Row background",
+      "default": "#F9F9F9"
+    },
+    {
+      "type": "color",
+      "id": "body_text_color",
+      "label": "Body text",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border",
+      "default": "#e0e0e0"
+    },
+    {
+      "type": "color",
+      "id": "table_bg_color",
+      "label": "Table background",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Comparison table"
+    }
+  ]
+}
+{% endschema %}
