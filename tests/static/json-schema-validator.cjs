@@ -190,9 +190,10 @@ for (const { dir: tDir, prefix: tPrefix } of templateDirectories) {
     filesChecked++;
     const fullPath = path.join(tDir, f);
     const displayFile = `${tPrefix}/${f}`;
-    // regions/** mirrors a live storefront byte for byte; so does a compiled dist.
-    // Its dead data is reported, never blocking — we must be able to build what live actually is.
-    const isMirror = tPrefix.startsWith('regions/') || process.env.SCENTSPIRED_MIRROR_SOURCE === '1';
+    // regions/** is a byte-exact mirror of a live storefront. We cannot edit live,
+    // so its cosmetic debt (negative margins, disabled sections) is reported, not blocking.
+    const isLiveMirror = tPrefix.startsWith('regions/');
+    const isMirror = isLiveMirror || process.env.SCENTSPIRED_MIRROR_SOURCE === '1';
 
     try {
       const raw = fs.readFileSync(fullPath, 'utf8');
@@ -246,14 +247,14 @@ for (const { dir: tDir, prefix: tPrefix } of templateDirectories) {
       // Rule 2: Template order integrity & editorial parity enforcement
       if (Array.isArray(parsed.order) && parsed.sections && typeof parsed.sections === 'object') {
         const orderSet = new Set(parsed.order);
-        // A section defined but absent from `order` is never rendered by Shopify,
-        // so it cannot cause a layout regression. Live UK/USA templates carry
-        // these routinely, and pruning them would break byte parity with live.
+        // Shopify's uploader REJECTS a template whose `sections` holds an id that is
+        // absent from `order`. Only regions/** is exempt: it mirrors live, which we
+        // cannot edit, and the compiler prunes these on the way into dist/.
         for (const secKey of Object.keys(parsed.sections)) {
           if (!orderSet.has(secKey)) {
-            warnings.push({
+            (isLiveMirror ? warnings : errors).push({
               file: displayFile,
-              message: `Orphan section '${secKey}' is defined but absent from order (dead data, not rendered).`
+              message: `Orphan section '${secKey}' is defined but absent from order — Shopify will reject this template on upload.`
             });
           }
         }
