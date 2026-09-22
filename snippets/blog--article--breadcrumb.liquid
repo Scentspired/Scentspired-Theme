@@ -10,7 +10,7 @@
   - show_category: {Boolean} Show category pill/link from first tag (default: true)
 
   Usage:
-  {% render 'blog--article--breadcrumb', article: article, blog: blog, show_home: true, show_blog: true, show_category: true %}
+  {% render 'article-breadcrumb', article: article, blog: blog, show_home: true, show_blog: true, show_category: true %}
 {% endcomment %}
 
 {%- assign show_home_link = show_home | default: true -%}

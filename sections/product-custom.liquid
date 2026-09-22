@@ -2,18 +2,14 @@
 {
   "name": "Custom Product Section",
   "settings": [],
-  "presets": [
-    {
-      "name": "Custom Product Section"
-    }
-  ]
+  "presets": [{
+    "name": "Custom Product Section"
+  }]
 }
 {% endschema %}
 
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Monument+Extended&display=swap" rel="stylesheet">
-{%- capture curr_sym -%}{%- render 'store-context', key: 'currency_symbol' -%}{%- endcapture -%}
-{%- assign curr_sym = curr_sym | strip -%}
 
 <!-- HTML MARKUP -->
 <div class="ps-wrapper">
@@ -23,46 +19,40 @@
       <!-- Grid layout: first image full-width, then 2 per row -->
       <!-- Mobile: converted to horizontal scrollable carousel without thumbnails -->
       <div class="ps-gallery-grid" id="psProductGallery">
-        {% for media in product.media %}
-          {% if forloop.first %}
-            <div class="ps-gallery-item ps-gallery-item-large">
-              {% if media.media_type == "video" %}
-                {{ media | video_tag: autoplay: true, muted: true, loop: true, playsinline: true, controls: false }}
-              {% elsif media.media_type == "external_video" %}
-                {{ media | external_video_tag }}
-              {% else %}
-                <img
-                  class="ps-gallery-media"
-                  src="{{ media | image_url: width: 1000 }}"
-                  alt="{{ media.alt | default: product.title | escape }}"
-                  loading="eager"
-                  fetchpriority="high"
-                  width="1000"
-                  height="{{ 1000 | divided_by: media.aspect_ratio | default: 1000 | round }}"
-                  data-full="{{ media | image_url: width: 2000 }}">
-              {% endif %}
-            </div>
-          {% else %}
-            <div class="ps-gallery-item ps-gallery-item-small">
-              {% if media.media_type == "video" %}
-                {{ media | video_tag: autoplay: true, muted: true, loop: true, playsinline: true, controls: false }}
-              {% elsif media.media_type == "external_video" %}
-                {{ media | external_video_tag }}
-              {% else %}
-                <img
-                  class="ps-gallery-media"
-                  src="{{ media | image_url: width: 500 }}"
-                  alt="{{ media.alt | default: product.title | escape }}"
-                  loading="lazy"
-                  decoding="async"
-                  width="500"
-                  height="{{ 500 | divided_by: media.aspect_ratio | default: 500 | round }}"
-                  data-full="{{ media | image_url: width: 2000 }}">
-              {% endif %}
-            </div>
-          {% endif %}
-        {% endfor %}
+  {% for media in product.media %}
+    {% if forloop.first %}
+      <div class="ps-gallery-item ps-gallery-item-large">
+        {% if media.media_type == 'video' %}
+          {{ media | video_tag: autoplay: true, muted: true, loop: true, playsinline: true, controls: false }}
+        {% elsif media.media_type == 'external_video' %}
+          {{ media | external_video_tag }}
+        {% else %}
+          <img
+            class="ps-gallery-media"
+            src="{{ media | image_url: width: 1000 }}"
+            alt="{{ media.alt }}"
+            data-full="{{ media | image_url: width: 2000 }}"
+          >
+        {% endif %}
       </div>
+    {% else %}
+      <div class="ps-gallery-item ps-gallery-item-small">
+        {% if media.media_type == 'video' %}
+          {{ media | video_tag: autoplay: true, muted: true, loop: true, playsinline: true, controls: false }}
+        {% elsif media.media_type == 'external_video' %}
+          {{ media | external_video_tag }}
+        {% else %}
+          <img
+            class="ps-gallery-media"
+            src="{{ media | image_url: width: 500 }}"
+            alt="{{ media.alt }}"
+            data-full="{{ media | image_url: width: 2000 }}"
+          >
+        {% endif %}
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
 
       <!-- Mobile: pagination dots -->
       <div class="ps-pagination-dots" id="psPaginationDots"></div>
@@ -73,86 +63,94 @@
       <div class="ps-top-row">
         <span class="ps-vendor">{{ product.vendor }}</span>
       </div>
-      <div class="ps-top-row">
-        <h1 class="ps-title">{{ product.title }}</h1>
+     <div class="ps-top-row">
+  <h1 class="ps-title">{{ product.title }}</h1>
+  
+  <div class="ps-price-container">
+    {% assign variant = product.selected_or_first_available_variant %}
+    <span class="ps-price" id="psPriceDisplay" data-price>
+      £{{ variant.price | divided_by: 100.0 | round: 2 }}
+    </span>
 
-        <div class="ps-price-container">
-          {% assign variant = product.selected_or_first_available_variant %}
-          <span class="ps-price" id="psPriceDisplay" data-price>
-            {{ cart.currency.symbol | default: curr_sym }}{{ variant.price | divided_by: 100.0 | round: 2 }}
-          </span>
+    {% if variant.compare_at_price and variant.compare_at_price > variant.price %}
+      <span class="ps-original-price" data-compare-price>
+        £{{ variant.compare_at_price | divided_by: 100.0 | round: 2 }}
+      </span>
+      <span class="ps-price-badge" data-sale-badge>Sale</span>
+    {% endif %}
+  </div>
 
-          {% if variant.compare_at_price and variant.compare_at_price > variant.price %}
-            <span class="ps-original-price" data-compare-price>
-              {{ cart.currency.symbol | default: curr_sym }}{{ variant.compare_at_price | divided_by: 100.0 | round: 2 }}
-            </span>
-            <span class="ps-price-badge" data-sale-badge>Sale</span>
-          {% endif %}
-        </div>
-      </div>
+</div>
 
+      
       <!-- Variant Options -->
       {% if product.variants.size > 1 %}
         <div class="ps-variant ps-variant-options" data-variant-options>
           {% for variant in product.variants %}
-            <button
-              class="ps-variant ps-variant-btn{% if forloop.first %} active{% endif %}"
-              data-variant-id="{{ variant.id }}"
-              data-variant-price="{{ variant.price }}"
-              data-variant-compare="{% if variant.compare_at_price %}{{ variant.compare_at_price }}{% else %}0{% endif %}"
-              data-available="{{ variant.available | json }}"
-              data-inventory="{{ variant.inventory_quantity }}"
-              data-inventory-policy="{{ variant.inventory_policy }}"
-              data-inventory-management="{{ variant.inventory_management }}">
-              {{ variant.title }}
-            </button>
+          <button
+  class="ps-variant ps-variant-btn{% if forloop.first %} active{% endif %}"
+  data-variant-id="{{ variant.id }}"
+  data-variant-price="{{ variant.price }}"
+  data-variant-compare="{% if variant.compare_at_price %}{{ variant.compare_at_price }}{% else %}0{% endif %}"
+  data-available="{{ variant.available | json }}"
+  data-inventory="{{ variant.inventory_quantity }}"
+  data-inventory-policy="{{ variant.inventory_policy }}"
+  data-inventory-management="{{ variant.inventory_management }}"
+>
+  {{ variant.title }}
+</button>
+
+
           {% endfor %}
         </div>
       {% endif %}
 
       <!-- Quantity Control -->
       <form method="post" action="/cart/add" class="ps-form" data-product-id="{{ product.id }}">
-        <!-- Quantity (NOW INSIDE FORM) -->
-        <div class="ps-quantity-wrapper">
-          <span class="ps-qty-label">QTY</span>
-          <button type="button" class="ps-qty-circle ps-qty-minus">−</button>
-          <span id="psQuantityDisplay">1</span>
-          <button type="button" class="ps-qty-circle ps-qty-plus">+</button>
-        </div>
 
-        <!-- REQUIRED hidden inputs -->
-        <input type="hidden" name="id" class="ps-variant-id-input" value="{{ product.variants.first.id }}">
-        <input type="hidden" name="quantity" id="psQuantityInput" value="1">
+  <!-- Quantity (NOW INSIDE FORM) -->
+  <div class="ps-quantity-wrapper">
+    <span class="ps-qty-label">QTY</span>
+<button type="button" class="ps-qty-circle ps-qty-minus">−</button>
+<span id="psQuantityDisplay">1</span>
+<button type="button" class="ps-qty-circle ps-qty-plus">+</button>
+  </div>
 
-        <button type="submit" class="ps-cart ps-cart-btn">ADD TO CART</button>
-      </form>
+  <!-- REQUIRED hidden inputs -->
+  <input type="hidden" name="id" class="ps-variant-id-input" value="{{ product.variants.first.id }}">
+  <input type="hidden" name="quantity" id="psQuantityInput" value="1">
+
+  <button type="submit" class="ps-cart ps-cart-btn">ADD TO CART</button>
+
+</form>
+
 
       <!-- Product Description -->
-      <div class="ps-description">{{ product.description }}</div>
+      <div class="ps-description">{{ product.description }}</div> 
 
       <!-- Product Icons -->
       <div class="product-icons">
         <div class="icon-item">
           <div class="icon-wrapper">
-            <img src="{{ 'icon-return.svg' | asset_url }}" alt="30 Days Return" width="40" height="40">
+            <img src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Screenshot_2025-06-30_161707.webp?v=1789409350" alt="">
           </div>
           <p>30 Days Return</p>
         </div>
         <div class="icon-item">
           <div class="icon-wrapper">
-            <img src="{{ 'icon-2.png' | asset_url }}" alt="Fast Shipping" width="40" height="40">
+            <img src="{{ 'icon-2.png' | asset_url }}" alt="">
           </div>
           <p>Fast Shipping</p>
         </div>
         <div class="icon-item">
           <div class="icon-wrapper">
-            <img src="{{ 'icon-3.png' | asset_url }}" alt="Vegan & Cruelty Free" width="40" height="40">
+            <img src="{{ 'icon-3.png' | asset_url }}" alt="">
           </div>
           <p>Vegan & Cruelty Free</p>
         </div>
         <div class="icon-item">
           <div class="icon-wrapper">
-            <img src="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Frame_1.png?v=1767264841" alt="Long-Lasting Extrait Formula" width="40" height="40">
+            <img src="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Frame_1.png?v=1767264841" alt="">
           </div>
           <p>Long-Lasting Extrait Formula</p>
         </div>
@@ -175,38 +173,60 @@
       muted
       playsinline
       loop
-      style="display:none;"></video>
+      style="display:none;"
+    ></video>
+
   </div>
 </div>
 
+
 <!-- CSS STYLES -->
 <style>
-  /* Typography inherited from theme design tokens (layout/theme.liquid) */
-  #psModalVideo,
-  #psModalImage {
-    max-width: 90vw;
-    max-height: 90vh;
-    width: 100%;
-    height: auto;
-    object-fit: contain;
+  @font-face {
+    font-family: 'PPMori Extralight';
+    src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPMori-Extralight.otf?v=1751619970') format('opentype');
+    font-weight: 200;
+    font-style: normal;
   }
 
+  @font-face {
+    font-family: 'PPEditorialNew Italic';
+    src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPEditorialNew-Italic-BF644b214fb0c0a.otf?v=1751620955') format('opentype');
+    font-weight: 900;
+    font-style: italic;
+  }
+
+  @font-face {
+    font-family: 'PPMori Regular';
+    src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPMori-Regular.otf?v=1751621372') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+  }
+#psModalVideo,
+#psModalImage {
+  max-width: 90vw;
+  max-height: 90vh;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
   .ps-title {
-    font-family: var(--font-family-primary);
+    font-family: 'PPMori Regular', sans-serif;
     font-size: 48px;
     font-weight: 400;
     margin-top: -10px;
   }
 
   .ps-vendor {
-    font-family: var(--font-family-primary);
+    font-family: 'PPMori Regular', sans-serif;
     font-weight: 400;
     font-size: 16px;
     color: #000;
   }
 
   .ps-wrapper {
-    font-family: var(--font-family-primary);
+    font-family: 'PPMori Regular', sans-serif;
     padding: 160px 5rem 0px 5rem;
     max-width: 2100px;
     width: 100%;
@@ -227,11 +247,11 @@
     overflow: visible !important;
   }
   .ps-gallery-item video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
   @media screen and (min-width: 1025px) {
     .ps-info-right {
@@ -242,14 +262,14 @@
   }
 
   .ps-wrapper .ps-price {
-    font-family: var(--font-family-primary);
+    font-family: 'PPMori Regular', sans-serif;
     font-size: 28px;
     font-weight: 600;
     color: #000;
   }
 
   .ps-original-price {
-    font-family: var(--font-family-primary);
+    font-family: 'PPMori Regular', sans-serif;
     font-size: 18px !important;
     color: #999;
     text-decoration: line-through;
@@ -258,7 +278,7 @@
 
   .ps-price-badge {
     display: inline-block;
-    background: #d90429;
+    background: #fa0000ff;
     color: #fff;
     padding: 4px 12px;
     border-radius: 20px;
@@ -408,21 +428,19 @@
   }
 
   .ps-variant .ps-variant-btn {
-    cursor: pointer;
+cursor: pointer;
     padding: 8px 40px !important;
     border-radius: 30px;
     border: 1px solid #000;
     background: #fff;
     color: #000;
     font-size: 16px !important;
-    transition:
-      background-color 0.3s ease,
-      color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
     font-weight: 800 !important;
-    font-family: var(--font-family-primary);
+    font-family: "PPMori Regular", sans-serif;
   }
 
-  .ps-variant-btn.active {
+  .ps-variant-btn.active{
     background-color: #f4ff41 !important;
     color: #000 !important;
     border-color: #000 !important;
@@ -444,13 +462,13 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    font-family: var(--font-family-primary);
+    font-family: 'PPMori Regular', sans-serif;
     padding-top: 43px;
   }
 
   .ps-qty-label {
     color: #000;
-    font-family: var(--font-family-primary);
+    font-family: 'PPMori Regular', sans-serif;
     font-size: 16px;
     font-weight: 600;
     letter-spacing: 1px;
@@ -463,7 +481,7 @@
     height: 36px;
     border-radius: 50%;
     border: 1px solid #f7f7f7;
-    background-color: #dfdfdf;
+    background-color: #DFDFDF;
     color: #000;
     font-size: 23px;
     display: flex;
@@ -478,7 +496,7 @@
   }
 
   .ps-qty-circle:hover {
-    background-color: #c0c0c0;
+    background-color: #C0C0C0;
   }
 
   .ps-qty-circle:active {
@@ -493,9 +511,9 @@
     color: #000;
   }
 
-  .ps-cart-btn {
+.ps-cart-btn {
     margin-top: 20px !important;
-    background: #f4ff41;
+background: #f4ff41;
     color: #000;
     font-weight: 600;
     font-size: 12px !important;
@@ -504,15 +522,15 @@
     cursor: pointer;
     border: none;
     width: 100%;
-    font-family: var(--font-family-primary);
+    font-family: 'PPMori Regular', sans-serif;
     transition: background 0.2s ease;
-  }
+}
 
   .ps-description {
     font-size: 16px !important;
     line-height: 1.6;
     color: #000 !important;
-    font-family: var(--font-family-primary);
+    font-family: 'PPMori Regular', sans-serif;
     padding-top: 60px;
     font-weight: 400;
   }
@@ -531,20 +549,20 @@
   }
 
   .ps-rating-star:not(.filled) {
-    color: #e0e0e0;
+    color: #E0E0E0;
   }
 
-  .product-icons {
+    .product-icons {
     display: flex;
     gap: 10px;
     margin-top: 25px;
-    font-family: var(--font-family-primary);
+    font-family: 'PPMori Regular', sans-serif;
   }
 
   .icon-item {
     text-align: center;
     flex: 1;
-    font-family: var(--font-family-primary);
+    font-family: 'PPMori Regular', sans-serif;
   }
 
   .icon-item img {
@@ -633,26 +651,26 @@
     .ps-gallery-item-small {
       display: flex;
     }
-    .ps-gallery-grid {
-      scrollbar-width: none; /* Firefox */
-      -ms-overflow-style: none; /* IE / Edge */
-    }
+  .ps-gallery-grid {
+    scrollbar-width: none;        /* Firefox */
+    -ms-overflow-style: none;     /* IE / Edge */
+  }
 
-    .ps-gallery-grid::-webkit-scrollbar {
-      display: none; /* Chrome / Safari */
-    }
+  .ps-gallery-grid::-webkit-scrollbar {
+    display: none;                /* Chrome / Safari */
+  }
     /* Pagination dots styling - updated active color to #f4ff3d */
-    .ps-pagination-dots {
-      position: absolute;
-      bottom: 8px;
-      left: 8px;
-      display: flex;
-      gap: 8px;
-      margin-top: 0;
-      pointer-events: auto;
-      background: rgba(255, 255, 255, 0.8);
-      padding: 7px;
-      border-radius: 40px;
+       .ps-pagination-dots {
+        position: absolute;
+        bottom: 8px;
+        left: 8px;
+        display: flex;
+        gap: 8px;
+        margin-top: 0;
+        pointer-events: auto;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 7px;
+        border-radius: 40px;
     }
 
     .ps-dot {
@@ -682,7 +700,7 @@
       margin-top: -40px !important;
     }
 
-    .product-icons {
+     .product-icons {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 0;
@@ -703,14 +721,14 @@
       border-bottom: 1px solid #ddd;
       width: 100%;
       flex: none;
-      font-family: var(--font-family-primary);
+      font-family: 'PPMori Regular', sans-serif;
     }
 
     .icon-item:nth-child(2n) {
       border-right: none;
     }
 
-    .icon-item:nth-child(n + 3) {
+    .icon-item:nth-child(n+3) {
       border-bottom: none;
     }
 
@@ -728,7 +746,7 @@
       font-size: 12px;
       color: #333;
       margin: 0;
-      font-family: var(--font-family-primary);
+      font-family: 'PPMori Regular', sans-serif;
       line-height: 1.3;
       font-weight: 400;
     }
@@ -740,432 +758,367 @@
     }
   }
   .ps-variant-btn.disabled {
-    text-decoration-color: #000 !important;
-    text-decoration-thickness: 2px !important;
-  }
-  .ps-qty-circle:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-  }
+  text-decoration-color: #000 !important;
+  text-decoration-thickness: 2px !important;
+}
+.ps-qty-circle:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
 
-  .ps-qty-plus:disabled {
-    background-color: #f0f0f0 !important;
-    color: #bbb !important;
-    border-color: #f0f0f0 !important;
-  }
+.ps-qty-plus:disabled {
+  background-color: #F0F0F0 !important;
+  color: #BBB !important;
+  border-color: #F0F0F0 !important;
+}
 
-  .ps-cart-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
+.ps-cart-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 </style>
 
 <!-- JAVASCRIPT -->
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '{{ curr_sym }}' || '{{ cart.currency.symbol }}';
-    const variantButtons = document.querySelectorAll('.ps-variant-btn');
-    const variantIdInput = document.querySelector('.ps-variant-id-input');
-    const priceContainer = document.querySelector('.ps-price-container');
-    const priceEl = priceContainer?.querySelector('[data-price]');
+document.addEventListener('DOMContentLoaded', function () {
+  const variantButtons = document.querySelectorAll('.ps-variant-btn');
+  const variantIdInput = document.querySelector('.ps-variant-id-input');
+  const priceContainer = document.querySelector('.ps-price-container');
+  const priceEl = priceContainer?.querySelector('[data-price]');
 
-    if (!variantButtons.length || !priceContainer || !priceEl) return;
+  if (!variantButtons.length || !priceContainer || !priceEl) return;
 
-    // Price update function
-    function updatePriceUI(price, compare) {
-      priceEl.textContent = currSym + (price / 100).toFixed(2);
+  // Price update function
+  function updatePriceUI(price, compare) {
+    priceEl.textContent = '£' + (price / 100).toFixed(2);
 
-      let compareEl = priceContainer.querySelector('[data-compare-price]');
-      let badgeEl = priceContainer.querySelector('[data-sale-badge]');
+    let compareEl = priceContainer.querySelector('[data-compare-price]');
+    let badgeEl = priceContainer.querySelector('[data-sale-badge]');
 
-      if (compare && compare > price) {
-        if (!compareEl) {
-          compareEl = document.createElement('span');
-          compareEl.className = 'ps-original-price';
-          compareEl.setAttribute('data-compare-price', '');
-          priceEl.parentNode.insertBefore(compareEl, priceEl.nextSibling);
-        }
-        compareEl.textContent = currSym + (compare / 100).toFixed(2);
-        compareEl.style.display = 'inline';
-
-        if (!badgeEl) {
-          badgeEl = document.createElement('span');
-          badgeEl.className = 'ps-price-badge';
-          badgeEl.setAttribute('data-sale-badge', '');
-          badgeEl.textContent = 'Sale';
-          compareEl.parentNode.insertBefore(badgeEl, compareEl.nextSibling);
-        }
-        badgeEl.style.display = 'inline-block';
-      } else {
-        if (compareEl) compareEl.style.display = 'none';
-        if (badgeEl) badgeEl.style.display = 'none';
+    if (compare && compare > price) {
+      if (!compareEl) {
+        compareEl = document.createElement('span');
+        compareEl.className = 'ps-original-price';
+        compareEl.setAttribute('data-compare-price', '');
+        priceEl.parentNode.insertBefore(compareEl, priceEl.nextSibling);
       }
+      compareEl.textContent = '£' + (compare / 100).toFixed(2);
+      compareEl.style.display = 'inline';
+
+      if (!badgeEl) {
+        badgeEl = document.createElement('span');
+        badgeEl.className = 'ps-price-badge';
+        badgeEl.setAttribute('data-sale-badge', '');
+        badgeEl.textContent = 'Sale';
+        compareEl.parentNode.insertBefore(badgeEl, compareEl.nextSibling);
+      }
+      badgeEl.style.display = 'inline-block';
+    } else {
+      if (compareEl) compareEl.style.display = 'none';
+      if (badgeEl) badgeEl.style.display = 'none';
     }
+  }
 
-    // Variant selection function
-    function selectVariant(btn) {
-      variantButtons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      variantIdInput.value = btn.dataset.variantId;
+  // Variant selection function
+  function selectVariant(btn) {
+    variantButtons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    variantIdInput.value = btn.dataset.variantId;
 
-      const price = parseInt(btn.dataset.variantPrice, 10);
-      const compare = parseInt(btn.dataset.variantCompare, 10) || null;
-      updatePriceUI(price, compare);
+    const price = parseInt(btn.dataset.variantPrice, 10);
+    const compare = parseInt(btn.dataset.variantCompare, 10) || null;
+    updatePriceUI(price, compare);
 
-      // Optional: update inventory/quantity
-      if (typeof updateInventoryState === 'function') {
-        updateInventoryState(btn.dataset.variantId);
-      }
+    // Optional: update inventory/quantity
+    if (typeof updateInventoryState === 'function') {
+      updateInventoryState(btn.dataset.variantId);
     }
+  }
 
-    // Disable unavailable variants
-    variantButtons.forEach(btn => {
-      if (btn.dataset.available === 'false') {
-        btn.classList.add('disabled');
-        btn.style.cursor = 'not-allowed';
-        btn.style.textDecoration = 'line-through';
-      }
-      btn.addEventListener('click', () => {
-        if (!btn.classList.contains('disabled')) selectVariant(btn);
-      });
+  // Disable unavailable variants
+  variantButtons.forEach(btn => {
+    if (btn.dataset.available === "false") {
+      btn.classList.add('disabled');
+      btn.style.cursor = 'not-allowed';
+      btn.style.textDecoration = 'line-through';
+    }
+    btn.addEventListener('click', () => {
+      if (!btn.classList.contains('disabled')) selectVariant(btn);
     });
-
-    const firstAvailable =
-      Array.from(variantButtons).find(btn => btn.dataset.available !== 'false') || variantButtons[0];
-
-    if (firstAvailable) selectVariant(firstAvailable);
   });
+
+  const firstAvailable =
+    Array.from(variantButtons).find(btn => btn.dataset.available !== "false")
+    || variantButtons[0];
+
+  if (firstAvailable) selectVariant(firstAvailable);
+});
 </script>
 <script>
-  document.addEventListener('DOMContentLoaded', async function () {
-    const qtyDisplay = document.getElementById('psQuantityDisplay');
-    const qtyInput = document.getElementById('psQuantityInput');
-    const minusBtn = document.querySelector('.ps-qty-circle.ps-qty-minus');
-    const plusBtn = document.querySelector('.ps-qty-circle.ps-qty-plus');
-    const addBtn = document.querySelector('.ps-cart-btn');
+document.addEventListener('DOMContentLoaded', async function () {
 
-    let maxQty = Infinity;
+  const qtyDisplay = document.getElementById('psQuantityDisplay');
+  const qtyInput = document.getElementById('psQuantityInput');
+  const minusBtn = document.querySelector('.ps-qty-circle.ps-qty-minus');
+  const plusBtn = document.querySelector('.ps-qty-circle.ps-qty-plus');
+  const addBtn = document.querySelector('.ps-cart-btn');
 
-    async function getCartQtyForVariant(variantId) {
-      try {
-        const res = await fetch('/cart.js');
-        if (!res.ok) return 0;
-        const cart = await res.json();
-        const item = (cart.items || []).find(i => i.variant_id == variantId);
-        return item ? item.quantity : 0;
-      } catch (e) {
-        console.warn('Error fetching cart qty:', e);
-        return 0;
-      }
+  let maxQty = Infinity;
+
+  async function getCartQtyForVariant(variantId) {
+    const res = await fetch('/cart.js');
+    const cart = await res.json();
+    const item = cart.items.find(i => i.variant_id == variantId);
+    return item ? item.quantity : 0;
+  }
+
+  async function updateInventoryState(variantId) {
+    const btn = document.querySelector(`.ps-variant-btn[data-variant-id="${variantId}"]`);
+    if (!btn) return;
+
+    const inventory = parseInt(btn.dataset.inventory);
+    const policy = btn.dataset.inventoryPolicy;
+    const management = btn.dataset.inventoryManagement;
+
+    if (!management || policy === 'continue') {
+      maxQty = Infinity;
+      enableQty();
+      return;
     }
 
-    async function updateInventoryState(variantId) {
-      const btn = document.querySelector(`.ps-variant-btn[data-variant-id="${variantId}"]`);
-      if (!btn) return;
+    const cartQty = await getCartQtyForVariant(variantId);
+    const available = Math.max(0, inventory - cartQty);
+    maxQty = available;
 
-      const inventory = parseInt(btn.dataset.inventory);
-      const policy = btn.dataset.inventoryPolicy;
-      const management = btn.dataset.inventoryManagement;
+    if (available <= 0) {
+      disableQty();
+    } else {
+      enableQty();
+    }
 
-      if (!management || policy === 'continue') {
-        maxQty = Infinity;
-        enableQty();
-        return;
-      }
+    // Ensure quantity display never exceeds max
+    const displayQty = Math.min(parseInt(qtyDisplay.textContent, 10) || 1, maxQty);
+    qtyDisplay.textContent = displayQty;
+    qtyInput.value = displayQty;
+    
+    // Check and update plus button state immediately after setting quantity
+    checkPlusButtonState();
+  }
 
-      const cartQty = await getCartQtyForVariant(variantId);
-      const available = Math.max(0, inventory - cartQty);
-      maxQty = available;
+  function disableQty() {
+    plusBtn.disabled = true;
+    minusBtn.disabled = true;
+    addBtn.disabled = true;
+    addBtn.textContent = 'SOLD OUT';
+  }
 
-      if (available <= 0) {
-        disableQty();
-      } else {
-        enableQty();
-      }
+  function enableQty() {
+    plusBtn.disabled = false;
+    minusBtn.disabled = false;
+    addBtn.disabled = false;
+    addBtn.textContent = 'ADD TO CART';
+  }
 
-      // Ensure quantity display never exceeds max
-      const displayQty = Math.min(parseInt(qtyDisplay.textContent, 10) || 1, maxQty);
-      qtyDisplay.textContent = displayQty;
-      qtyInput.value = displayQty;
+  // Function to check and update plus button state
+  function checkPlusButtonState() {
+    const currentQty = parseInt(qtyDisplay.textContent, 10) || 1;
+    if (currentQty >= maxQty) {
+      plusBtn.disabled = true;
+    } else {
+      plusBtn.disabled = false;
+    }
+  }
 
-      // Check and update plus button state immediately after setting quantity
+  plusBtn.addEventListener('click', () => {
+    let qty = parseInt(qtyDisplay.textContent);
+    if (qty < maxQty) {
+      qty++;
+      qtyDisplay.textContent = qty;
+      qtyInput.value = qty;
+      
+      // Check and update plus button state immediately
       checkPlusButtonState();
     }
+  });
 
-    function disableQty() {
-      plusBtn.disabled = true;
-      minusBtn.disabled = true;
-      addBtn.disabled = true;
-      addBtn.textContent = 'SOLD OUT';
+  minusBtn.addEventListener('click', () => {
+    let qty = parseInt(qtyDisplay.textContent);
+    if (qty > 1) {
+      qty--;
+      qtyDisplay.textContent = qty;
+      qtyInput.value = qty;
+      
+      // Check and update plus button state immediately
+      checkPlusButtonState();
     }
+  });
 
-    function enableQty() {
-      plusBtn.disabled = false;
-      minusBtn.disabled = false;
-      addBtn.disabled = false;
-      addBtn.textContent = 'ADD TO CART';
-    }
-
-    // Function to check and update plus button state
-    function checkPlusButtonState() {
-      const currentQty = parseInt(qtyDisplay.textContent, 10) || 1;
-      if (currentQty >= maxQty) {
-        plusBtn.disabled = true;
-      } else {
-        plusBtn.disabled = false;
-      }
-    }
-
-    plusBtn.addEventListener('click', () => {
-      let qty = parseInt(qtyDisplay.textContent);
-      if (qty < maxQty) {
-        qty++;
-        qtyDisplay.textContent = qty;
-        qtyInput.value = qty;
-
-        // Check and update plus button state immediately
-        checkPlusButtonState();
-      }
+  // Variant click
+  document.querySelectorAll('.ps-variant-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const variantId = btn.dataset.variantId;
+      updateInventoryState(variantId);
     });
+  });
 
-    minusBtn.addEventListener('click', () => {
-      let qty = parseInt(qtyDisplay.textContent);
-      if (qty > 1) {
-        qty--;
-        qtyDisplay.textContent = qty;
-        qtyInput.value = qty;
+  // ===== Form Submission (Add to Cart) =====
+  document.querySelectorAll('.ps-form').forEach(form => {
+    let isSubmitting = false;
 
-        // Check and update plus button state immediately
-        checkPlusButtonState();
-      }
-    });
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (isSubmitting) return;
 
-    // Variant click
-    document.querySelectorAll('.ps-variant-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const variantId = btn.dataset.variantId;
-        updateInventoryState(variantId);
-      });
-    });
+      const submitBtn = form.querySelector('.ps-cart-btn');
+      const variantIdInput = form.querySelector('input[name="id"]');
+      const variantId = variantIdInput?.value;
+      if (!variantId) { alert('Please select a variant'); return; }
 
-    // ===== Form Submission (Add to Cart) =====
-    document.querySelectorAll('.ps-form').forEach(form => {
-      let isSubmitting = false;
+      const qtyInputField = form.querySelector('input[name="quantity"]');
+      const qty = parseInt(qtyInputField?.value, 10) || 1;
 
-      form.addEventListener('submit', async e => {
-        e.preventDefault();
-        if (isSubmitting) return;
+      isSubmitting = true;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Adding...';
 
-        const submitBtn = form.querySelector('.ps-cart-btn');
-        const variantIdInput = form.querySelector('input[name="id"]');
-        const variantId = variantIdInput?.value;
-        if (!variantId) {
-          alert('Please select a variant');
-          return;
-        }
+      try {
+        const res = await fetch('/cart/add.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({ id: variantId, quantity: qty })
+        });
 
-        const qtyInputField = form.querySelector('input[name="quantity"]');
-        const qty = parseInt(qtyInputField?.value, 10) || 1;
+        if (!res.ok) throw new Error('Failed to add to cart');
+        const cart = await res.json();
 
-        isSubmitting = true;
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Adding...';
+        // 🔹 Immediately update inventory after adding
+        await updateInventoryState(variantId);
 
-        try {
-          const res = await fetch('/cart/add.js', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-            body: JSON.stringify({ id: variantId, quantity: qty }),
-          });
-
-          if (!res.ok) throw new Error('Failed to add to cart');
-          const cart = await res.json();
-
-          // 🔹 Immediately update inventory after adding
-          await updateInventoryState(variantId);
-
-          submitBtn.textContent = 'ADDED!';
-          setTimeout(() => {
-            submitBtn.textContent = 'ADD TO CART';
-            isSubmitting = false;
-          }, 1500);
-
-          // 🔹 Open cart drawer
-          if (window.theme?.cartNotification) {
-            window.theme.cartNotification
-              .renderContents()
-              .then(() => {
-                window.theme.cartNotification.open();
-              })
-              .catch(console.log);
-          }
-        } catch (err) {
-          console.error(err);
-          submitBtn.disabled = false;
+        submitBtn.textContent = 'ADDED!';
+        setTimeout(() => {
           submitBtn.textContent = 'ADD TO CART';
           isSubmitting = false;
+        }, 1500);
+
+        // 🔹 Open cart drawer
+        if (window.theme?.cartNotification) {
+          window.theme.cartNotification.renderContents().then(() => {
+            window.theme.cartNotification.open();
+          }).catch(console.log);
         }
-      });
+
+      } catch (err) {
+        console.error(err);
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'ADD TO CART';
+        isSubmitting = false;
+      }
     });
-
-    // ===== Listen for cart updates (removal from cart) =====
-    setInterval(async () => {
-      const activeVariant = document.querySelector('.ps-variant-btn.active');
-      if (activeVariant) {
-        const variantId = activeVariant.dataset.variantId;
-        await updateInventoryState(variantId);
-      }
-    }, 1000); // every second, adjust inventory
-
-    async function getCartQtyForVariant(variantId) {
-      try {
-        const res = await fetch('/cart.js');
-        if (!res.ok) return 0;
-        const cart = await res.json();
-        const item = (cart.items || []).find(i => i.variant_id == variantId);
-        return item ? item.quantity : 0;
-      } catch (e) {
-        console.warn('Error fetching cart qty:', e);
-        return 0;
-      }
-    }
-
-    async function updateInventoryState(variantId) {
-      const btn = document.querySelector(`.ps-variant-btn[data-variant-id="${variantId}"]`);
-      if (!btn) return;
-
-      const inventory = parseInt(btn.dataset.inventory);
-      const policy = btn.dataset.inventoryPolicy;
-      const inCartQty = await getCartQtyForVariant(variantId);
-      const remainingQty = Math.max(0, inventory - inCartQty);
-
-      if (policy !== 'continue' && remainingQty <= 0) {
-        addBtn.disabled = true;
-        addBtn.classList.add('disabled');
-        addBtn.innerText = 'Sold Out';
-      } else {
-        addBtn.disabled = false;
-        addBtn.classList.remove('disabled');
-        addBtn.innerText = 'Add to Cart';
-      }
-    }
-
-    // --- Auto-select first variant on load ---
-    const activeVariant = document.querySelector('.ps-variant-btn.active');
-    if (activeVariant) await updateInventoryState(activeVariant.dataset.variantId);
   });
+
+  // ===== Listen for cart updates (removal from cart) =====
+  setInterval(async () => {
+    const activeVariant = document.querySelector('.ps-variant-btn.active');
+    if (activeVariant) {
+      const variantId = activeVariant.dataset.variantId;
+      await updateInventoryState(variantId);
+    }
+  }, 1000); // every second, adjust inventory
+
+  // Initial load
+  const activeVariant = document.querySelector('.ps-variant-btn.active') || document.querySelector('.ps-variant-btn');
+  if (activeVariant) await updateInventoryState(activeVariant.dataset.variantId);
+
+});
+
 </script>
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const modal = document.getElementById('psImageModal');
-    if (!modal) return;
-    const modalImage = document.getElementById('psModalImage');
-    const modalClose = document.querySelector('.ps-modal-close');
-    const modalVideo = document.getElementById('psModalVideo');
+document.addEventListener('DOMContentLoaded', function () {
+  const modal = document.getElementById('psImageModal');
+  const modalImage = document.getElementById('psModalImage');
+  const modalClose = document.querySelector('.ps-modal-close');
 
-    document.querySelectorAll('.ps-gallery-item').forEach(item => {
-      item.addEventListener('click', () => {
-        const img = item.querySelector('img');
-        const video = item.querySelector('video');
+  document.querySelectorAll('.ps-gallery-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const img = item.querySelector('img');
+      const video = item.querySelector('video');
 
-        if (modal) modal.classList.add('active');
+      modal.classList.add('active');
 
-        if (video) {
-          if (modalImage) modalImage.style.display = 'none';
-          if (modalVideo) {
-            modalVideo.style.display = 'block';
-            modalVideo.src = video.currentSrc || video.querySelector('source')?.src;
-            modalVideo.play();
-          }
-        } else if (img) {
-          if (modalVideo) {
-            modalVideo.pause();
-            modalVideo.style.display = 'none';
-          }
-          if (modalImage) {
-            modalImage.style.display = 'block';
-            modalImage.src = img.dataset.full || img.src;
-          }
-        }
-      });
-    });
+      if (video) {
+        modalImage.style.display = 'none';
+        document.getElementById('psModalVideo').style.display = 'block';
 
-    if (modalClose && modal) {
-      modalClose.addEventListener('click', () => {
-        modal.classList.remove('active');
-      });
-    }
+        document.getElementById('psModalVideo').src = video.currentSrc || video.querySelector('source')?.src;
+        document.getElementById('psModalVideo').play();
+      } else if (img) {
+        document.getElementById('psModalVideo').pause();
+        document.getElementById('psModalVideo').style.display = 'none';
 
-    if (modal) {
-      modal.addEventListener('click', e => {
-        if (e.target === modal) {
-          modal.classList.remove('active');
-        }
-      });
-    }
-
-    function updatePaginationDots() {
-      const gallery = document.getElementById('psProductGallery');
-      const dotsContainer = document.getElementById('psPaginationDots');
-
-      if (window.innerWidth > 1080) return; // Only on mobile
-      if (!dotsContainer) return;
-
-      dotsContainer.innerHTML = '';
-      const itemCount = document.querySelectorAll('.ps-gallery-item').length;
-
-      for (let i = 0; i < itemCount; i++) {
-        const dot = document.createElement('div');
-        dot.className = 'ps-dot' + (i === 0 ? ' active' : '');
-        dot.addEventListener('click', () => {
-          const items = document.querySelectorAll('.ps-gallery-item');
-          if (items[i]) {
-            items[i].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
-          }
-        });
-        dotsContainer.appendChild(dot);
+        modalImage.style.display = 'block';
+        modalImage.src = img.dataset.full || img.src;
       }
-
-      // improved scroll event handling with debouncing for better mobile detection
-      let scrollTimeout;
-      const updateActiveDot = () => {
-        const scrollLeft = gallery.scrollLeft;
-        const itemWidth = gallery.offsetWidth;
-        const currentIndex = Math.round(scrollLeft / itemWidth);
-
-        document.querySelectorAll('.ps-dot').forEach((dot, index) => {
-          dot.classList.toggle('active', index === currentIndex);
-        });
-      };
-
-      gallery.addEventListener(
-        'scroll',
-        () => {
-          clearTimeout(scrollTimeout);
-          scrollTimeout = setTimeout(updateActiveDot, 50);
-        },
-        { passive: true }
-      );
-
-      let touchStartX = 0;
-      gallery.addEventListener(
-        'touchstart',
-        e => {
-          touchStartX = e.touches[0].clientX;
-        },
-        { passive: true }
-      );
-
-      gallery.addEventListener(
-        'touchend',
-        () => {
-          updateActiveDot();
-        },
-        { passive: true }
-      );
-    }
-
-    updatePaginationDots();
-    window.addEventListener('resize', updatePaginationDots);
+    });
   });
+
+  modalClose.addEventListener('click', () => {
+    modal.classList.remove('active');
+  });
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.classList.remove('active');
+    }
+  });
+
+  function updatePaginationDots() {
+    const gallery = document.getElementById('psProductGallery');
+    const dotsContainer = document.getElementById('psPaginationDots');
+    
+    if (window.innerWidth > 1080) return; // Only on mobile
+    
+    dotsContainer.innerHTML = '';
+    const itemCount = document.querySelectorAll('.ps-gallery-item').length;
+    
+    for (let i = 0; i < itemCount; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'ps-dot' + (i === 0 ? ' active' : '');
+      dot.addEventListener('click', () => {
+        const item = document.querySelectorAll('.ps-gallery-item')[i];
+        item.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+      });
+      dotsContainer.appendChild(dot);
+    }
+    
+    // improved scroll event handling with debouncing for better mobile detection
+    let scrollTimeout;
+    const updateActiveDot = () => {
+      const scrollLeft = gallery.scrollLeft;
+      const itemWidth = gallery.offsetWidth;
+      const currentIndex = Math.round(scrollLeft / itemWidth);
+      
+      document.querySelectorAll('.ps-dot').forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentIndex);
+      });
+    };
+    
+    gallery.addEventListener('scroll', () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(updateActiveDot, 50);
+    }, { passive: true });
+    
+    let touchStartX = 0;
+    gallery.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+    
+    gallery.addEventListener('touchend', () => {
+      updateActiveDot();
+    }, { passive: true });
+  }
+  
+  updatePaginationDots();
+  window.addEventListener('resize', updatePaginationDots);
+});
+
 </script>

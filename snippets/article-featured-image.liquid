@@ -1,0 +1,9 @@
+{% comment %}
+  SVPA Backward-Compatibility Forwarding Shim
+  Target: snippets/blog--article--featured-image.liquid
+{% endcomment %}
+{%- render 'blog--article--featured-image',
+  image: image,
+  title: title,
+  image_height: image_height
+-%}

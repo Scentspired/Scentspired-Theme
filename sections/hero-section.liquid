@@ -14,7 +14,7 @@
       </div>
       <div class="hero-text-container">
         <p class="fragrance-finder-text">Fragrance Finder</p>
-        <h1 class="hero-heading">Discover the Scent That Defines You — Scentspired</h1>
+        <h2 class="hero-heading">Discover the Scent That Defines You — Scentspired</h2>
         <button id="quiz-trigger-btn" class="show-all-btn">START THE QUIZ</button>
       </div>
     </div>
@@ -255,7 +255,13 @@
 </div>
 
 <style>
-  /* Typography inherited from theme design tokens (layout/theme.liquid) */
+  @font-face {
+    font-family: 'PPMori Regular';
+    src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPMori-Regular.otf?v=1751621372')
+      format('opentype');
+    font-weight: 400;
+    font-style: normal;
+  }
 
   * {
     box-sizing: border-box;
@@ -304,14 +310,14 @@
   }
 
   .fragrance-finder-text {
-    font-family: var(--font-family-primary);
+    font-family: 'PPMori Regular', sans-serif;
     font-size: 14px;
     color: #333;
     margin-bottom: 10px;
   }
 
   .hero-heading {
-    font-family: var(--font-family-primary);
+    font-family: 'PPMori Regular', sans-serif;
     font-size: 40px;
     line-height: 1.1;
     font-weight: 400;
@@ -332,7 +338,7 @@
     font-size: 14px;
     border-radius: 999px;
     transition: background 0.3s ease;
-    font-family: var(--font-family-primary);
+    font-family: 'PPMori Regular', sans-serif;
     text-transform: uppercase;
     width: 359px;
     height: 67px;
@@ -353,7 +359,7 @@
     justify-content: space-around;
     align-items: center;
     padding: 20px 0;
-    font-family: var(--font-family-primary);
+    font-family: 'PPMori Regular', sans-serif;
     font-size: 14px;
     text-transform: uppercase;
     flex-shrink: 0;
@@ -381,7 +387,7 @@
     align-items: center;
     justify-content: center;
     z-index: 9999;
-    font-family: var(--font-family-primary);
+    font-family: 'PPMori Regular', sans-serif;
   }
 
   .quiz-modal.hidden {
@@ -581,7 +587,7 @@
     padding: 14px 18px;
     border: 2px solid #e0e0e0;
     border-radius: 12px;
-    font-family: var(--font-family-primary);
+    font-family: 'PPMori Regular', sans-serif;
     font-size: 16px;
     color: #000;
     background: #ffffff;
@@ -628,7 +634,7 @@
     color: #fff;
     border: none;
     border-radius: 12px;
-    font-family: var(--font-family-primary);
+    font-family: 'PPMori Regular', sans-serif;
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
@@ -783,7 +789,7 @@
     background: #000;
     border: none;
     border-radius: 12px;
-    font-family: var(--font-family-primary);
+    font-family: 'PPMori Regular', sans-serif;
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
@@ -805,7 +811,7 @@
     border: 2px solid #e0e0e0;
     background: #ffffff;
     border-radius: 12px;
-    font-family: var(--font-family-primary);
+    font-family: 'PPMori Regular', sans-serif;
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;

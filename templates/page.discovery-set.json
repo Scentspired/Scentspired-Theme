@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "image_banner_K3tzTP": {
@@ -7,8 +16,7 @@
           "type": "heading",
           "settings": {
             "heading": "Discovery Box",
-            "heading_size": "h0",
-            "heading_tag": "h1"
+            "heading_size": "h0"
           }
         },
         "text_x87VnL": {
@@ -119,14 +127,14 @@
     "17634705605577f121": {
       "type": "_blocks",
       "blocks": {
-        "bundle_discovery_builder_x3Xae8": {
-          "type": "bundle--discovery-builder",
+        "ai_gen_block_9f36455_x3Xae8": {
+          "type": "ai_gen_block_9f36455",
           "settings": {},
           "blocks": {}
         }
       },
       "block_order": [
-        "bundle_discovery_builder_x3Xae8"
+        "ai_gen_block_9f36455_x3Xae8"
       ],
       "disabled": true,
       "custom_css": [

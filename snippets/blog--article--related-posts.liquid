@@ -9,7 +9,7 @@
   - posts_to_show: {Number} Max posts to show (default: 3)
 
   Usage:
-  {% render 'blog--article--related-posts', article: article, blog: blog, heading: "Related Reads", posts_to_show: 3 %}
+  {% render 'article-related-posts', article: article, blog: blog, heading: "Related Reads", posts_to_show: 3 %}
 {% endcomment %}
 
 {%- if blog.articles_count > 1 -%}

@@ -52,10 +52,8 @@
     assign stacked_sizes = "(min-width: 750px) 50vw, 100vw"
   endif
   assign fetch_priority = "auto"
-  assign loading_strategy = "lazy"
-  if section.index <= 2
+  if section.index == 1
     assign fetch_priority = "high"
-    assign loading_strategy = "eager"
   endif
 -%}
 
@@ -93,8 +91,7 @@
           class: image_class,
           sizes: sizes,
           widths: widths,
-          fetchpriority: fetch_priority,
-          loading: loading_strategy
+          fetchpriority: fetch_priority
       }}
     </div>
   {%- elsif section.settings.image_2 == blank -%}
@@ -126,8 +123,7 @@
           class: image_class_2,
           sizes: sizes,
           widths: widths,
-          fetchpriority: fetch_priority,
-          loading: loading_strategy
+          fetchpriority: fetch_priority
       }}
     </div>
   {%- endif -%}
@@ -136,12 +132,11 @@
       {%- for block in section.blocks -%}
         {%- case block.type -%}
           {%- when "heading" -%}
-            {%- assign banner_heading_tag = block.settings.heading_tag | default: "h2" -%}
-            <{{ banner_heading_tag }}
+            <h2
               class="banner__heading inline-richtext {{ block.settings.heading_size }}"
               {{ block.shopify_attributes }}>
               {{ block.settings.heading }}
-            </{{ banner_heading_tag }}>
+            </h2>
           {%- when "text" -%}
             <div class="banner__text rte {{ block.settings.text_style }}" {{ block.shopify_attributes }}>
               <p>{{ block.settings.text }}</p>
@@ -468,22 +463,6 @@
           ],
           "default": "h1",
           "label": "t:sections.all.heading_size.label"
-        },
-        {
-          "type": "select",
-          "id": "heading_tag",
-          "options": [
-            {
-              "value": "h1",
-              "label": "H1"
-            },
-            {
-              "value": "h2",
-              "label": "H2"
-            }
-          ],
-          "default": "h2",
-          "label": "Heading tag"
         }
       ]
     },

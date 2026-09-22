@@ -3,17 +3,31 @@
   It includes a sidebar for navigation and dynamic content blocks.
 {% endcomment %}
 <style>
-  /* Typography inherited from theme design tokens (layout/theme.liquid) */
+  /* Custom Fonts */
+  @font-face {
+    font-family: 'PPMori Regular';
+    src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPMori-Regular.otf?v=1751621372')
+      format('opentype');
+    font-weight: 400;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'PPEditorialNew Italic';
+    src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPEditorialNew-Italic-BF644b214fb0c0a.otf?v=1751620955')
+      format('opentype');
+    font-weight: 900;
+    font-style: italic;
+  }
   /* Base Styles */
   .faq-section {
-    font-family: var(--font-family-primary);
+    font-family: 'PPMori Regular', sans-serif;
     background-color: #fff;
     padding: 40px 0;
     margin-top: 100px;
     margin-bottom: 0px;
   }
   .contact-main-heading {
-    font-family: var(--font-family-heading);
+    font-family: 'PPEditorialNew Italic', serif;
     font-size: 42px;
     font-weight: 400;
     margin-bottom: 30px;
@@ -22,7 +36,7 @@
     letter-spacing: 0;
   }
   .contact-description {
-    font-family: var(--font-family-primary);
+    font-family: 'PPMori Regular', sans-serif;
     font-size: 16px;
     line-height: 1.6;
     color: #333;
@@ -53,7 +67,7 @@
     padding: 15px;
     border: none;
     background-color: #f4f4f4;
-    font-family: var(--font-family-primary);
+    font-family: 'PPMori Regular', sans-serif;
     font-size: 14px;
     color: #333;
     border-radius: 0;
@@ -69,7 +83,7 @@
   .contact-submit-btn {
     background-color: #f4ff41;
     color: #000;
-    font-family: var(--font-family-primary);
+    font-family: 'PPMORI REGULAR';
     border: none;
     padding: 12px 150px;
     font-size: 14px;
@@ -104,7 +118,7 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     color: #333;
-    font-family: var(--font-family-heading);
+    font-family: 'PPEditorialNew Italic', serif;
     flex-shrink: 0;
   }
   .faq-title-line {
@@ -147,7 +161,7 @@
     display: block;
     padding: 4px 8px;
     border-radius: 4px;
-    font-family: var(--font-family-primary);
+    font-family: 'PPMori Regular', sans-serif;
   }
   .faq-sidebar a:hover {
     color: #000;
@@ -173,13 +187,13 @@
     text-transform: uppercase;
     letter-spacing: 0.5px;
     color: #333;
-    font-family: var(--font-family-primary);
+    font-family: 'PPMori Regular', sans-serif;
   }
   .privacy-policy-content {
     font-size: 14px;
     line-height: 1.5;
     color: #000;
-    font-family: var(--font-family-primary);
+    font-family: 'PPMori Regular', sans-serif;
   }
   .privacy-policy-content p {
     margin-bottom: 1em;
@@ -358,9 +372,9 @@
           {% endif %}
         </ul>
       </aside>
-      <div class="faq-main">
+      <main class="faq-main">
         <div class="contact-form-wrapper">
-          <h2 class="contact-main-heading">{{ section.settings.main_heading | default: "" }}</h2>
+          <h1 class="contact-main-heading">{{ section.settings.main_heading | default: "" }}</h1>
           <div class="contact-description">
             {{ section.settings.main_description }}
           </div>
@@ -435,7 +449,7 @@
             </div>
           {%- endform -%}
         </div>
-      </div>
+      </main>
     </div>
   </div>
 </div>

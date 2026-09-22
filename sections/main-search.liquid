@@ -5,14 +5,14 @@
 
 {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
   {{ "component-facets.css" | asset_url | stylesheet_tag }}
-  <script src="{{ 'collection--facets.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'facets.js' | asset_url }}" defer="defer"></script>
 {%- endif -%}
 
 {% if section.settings.image_shape == "blob" %}
   {{ "mask-blobs.css" | asset_url | stylesheet_tag }}
 {%- endif -%}
 
-<script src="{{ 'search--main.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'main-search.js' | asset_url }}" defer="defer"></script>
 
 <style>
   .template-search__header {
@@ -274,7 +274,7 @@
                         %}
                         {%- assign skip_card_product_styles = true -%}
                       {%- when "article" -%}
-                        {% render "blog--listing--card",
+                        {% render "article-card",
                           article: item,
                           show_image: true,
                           show_date: section.settings.article_show_date,

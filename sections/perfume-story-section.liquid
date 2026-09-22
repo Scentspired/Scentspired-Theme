@@ -1,5 +1,6 @@
 <style>
-  /* Typography inherited from theme design tokens (layout/theme.liquid) */
+  @import url('https://fonts.googleapis.com/css2?family=PP+Editorial+New:ital,wght@0,200;0,400;1,400&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=PP+Mori:wght@400;600&display=swap');
 
   .perfume-story-section {
     background-color: #efff31;
@@ -44,7 +45,7 @@
   }
 
   .main-headline {
-    font-family: var(--font-family-heading);
+    font-family: 'PP Editorial New', serif;
     font-size: 78px;
     line-height: 1.1;
     color: #000;
@@ -55,7 +56,7 @@
   }
 
   .story-text {
-    font-family: var(--font-family-primary);
+    font-family: 'PP Mori', sans-serif;
     font-weight: 400;
     font-size: clamp(16px, 1.2vw, 18px);
     line-height: 1.4;
@@ -65,7 +66,7 @@
   }
 
   .get-scentspired {
-    font-family: var(--font-family-heading);
+    font-family: 'PP Editorial New', serif;
     font-weight: 400;
     font-style: italic;
     font-size: clamp(24px, 2.5vw, 32px);
@@ -77,7 +78,7 @@
   .shop-button {
     background-color: #000;
     color: #fff;
-    font-family: var(--font-family-primary);
+    font-family: 'PP Mori', sans-serif;
     font-weight: 600;
     font-size: 14px;
     letter-spacing: 0.1em;
@@ -172,9 +173,9 @@
 <section class="perfume-story-section">
   <div class="perfume-story-container">
     <div class="perfume-story-content">
-      <h2 class="main-headline">
+      <h1 class="main-headline">
         {{ section.settings.main_headline | default: "We are not just a perfume house." }}
-      </h2>
+      </h1>
 
       <p class="story-text">
         {{

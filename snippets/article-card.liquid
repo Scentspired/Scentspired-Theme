@@ -1,0 +1,16 @@
+{% comment %}
+  SVPA Backward-Compatibility Forwarding Shim
+  Target: snippets/blog--listing--card.liquid
+{% endcomment %}
+{%- render 'blog--listing--card',
+  article: article,
+  media_height: media_height,
+  media_aspect_ratio: media_aspect_ratio,
+  show_image: show_image,
+  show_date: show_date,
+  show_author: show_author,
+  show_excerpt: show_excerpt,
+  show_category: show_category,
+  featured: featured,
+  lazy_load: lazy_load
+-%}

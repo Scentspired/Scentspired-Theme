@@ -1,6 +1,4 @@
 <section id="mvps-{{ section.id }}" class="mvps-section" aria-label="Video product selector">
-  {%- capture curr_sym -%}{%- render 'store-context', key: 'currency_symbol' -%}{%- endcapture -%}
-  {%- assign curr_sym = curr_sym | strip -%}
   {% assign desktop_src = "" %}
   {% assign mobile_src = "" %}
   {%- if section.settings.desktop_video != blank -%}
@@ -25,12 +23,13 @@
   <div class="mvps-video-wrap" aria-hidden="true">
     <video
       class="mvps-video mvps-desktop mvps-mobile"
+      autoplay
       muted
       loop
       playsinline
-      preload="none"
+      preload="auto"
       style="filter: brightness(70%);">
-      <source data-src="https://cdn.shopify.com/videos/c/o/v/2fe67c6edaa646b18805a79903b1059c.mp4" type="video/mp4">
+      <source src="https://cdn.shopify.com/videos/c/o/v/2fe67c6edaa646b18805a79903b1059c.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
   </div>
@@ -217,8 +216,8 @@
                         <input type="hidden" name="id" value="{{ product.variants.first.id }}">
                       {% endif %}
 
-                      <!-- Add to cart button (SSOT Component) -->
-                      {% render 'component-button', type: 'submit', variant: 'brand', text: 'ADD TO CART' %}
+                      <!-- Add to cart button -->
+                      <button type="submit" class="cart-button">ADD TO CART</button>
                     </form>
                   </div>
                 </div>
@@ -326,8 +325,7 @@
                       <!-- Force quantity to 1 -->
                       <input type="hidden" name="quantity" value="1">
 
-                      <!-- Add to cart button (SSOT Component) -->
-                      {% render 'component-button', type: 'submit', variant: 'brand', text: 'ADD TO CART' %}
+                      <button type="submit" class="cart-button">ADD TO CART</button>
                     </form>
                   </div>
                 </div>
@@ -768,27 +766,6 @@
     .mvps-dot:hover {
       background: rgba(255, 255, 255, 0.6);
     }
-
-    .price-badge {
-      background-color: #d90429;
-      color: #ffffff !important;
-      font-size: 12px;
-      font-weight: 700;
-      padding: 2px 8px;
-      border-radius: 4px;
-      margin-left: 8px;
-      font-family: var(--font-family-primary);
-      text-transform: uppercase;
-      display: inline-block;
-    }
-
-    .variant-option-btn.disabled {
-      color: #222222 !important;
-      background: #e9e9e9 !important;
-      border-color: #bbbbbb !important;
-      cursor: not-allowed !important;
-      text-decoration: line-through !important;
-    }
   </style>
 
   <script>
@@ -796,7 +773,7 @@
       const section = document.getElementById('mvps-{{ section.id }}');
       if (!section) return;
 
-      const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '{{ curr_sym }}' || '{{ cart.currency.symbol }}';
+      const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '{{ cart.currency.symbol }}' || '$';
 
       // --- Fetch current cart ---
       async function getCart() {
@@ -1040,33 +1017,6 @@
             }
           }
         });
-      }
-
-      // --- Lazy-load and play background video on scroll ---
-      const mvpsVideo = section ? section.querySelector('.mvps-video') : null;
-      if (mvpsVideo) {
-        const loadAndPlayMvps = () => {
-          const srcEl = mvpsVideo.querySelector('source');
-          if (srcEl && srcEl.dataset.src && !srcEl.src) {
-            srcEl.src = srcEl.dataset.src;
-            mvpsVideo.load();
-          }
-          mvpsVideo.play().catch(() => {});
-        };
-
-        if ('IntersectionObserver' in window) {
-          const vObs = new IntersectionObserver((entries, obs) => {
-            entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                loadAndPlayMvps();
-                obs.unobserve(entry.target);
-              }
-            });
-          }, { rootMargin: '300px 0px' });
-          vObs.observe(sectionEl);
-        } else {
-          loadAndPlayMvps();
-        }
       }
 
       // --- Initialize first layout & dropdown text ---

@@ -1,0 +1,8 @@
+{% comment %}
+  SVPA Backward-Compatibility Forwarding Shim
+  Target: snippets/blog--article--share.liquid
+{% endcomment %}
+{%- render 'blog--article--share',
+  article: article,
+  share_label: share_label
+-%}

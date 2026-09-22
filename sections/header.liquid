@@ -14,12 +14,6 @@
 {%- endif -%}
 
 <style>
-  .header-wrapper { background: transparent !important; border: none !important; position: absolute; width: 100%; z-index: 1000; }
-  .header { position: absolute; max-width: 2100px; width: 100%; z-index: 1000; left: 0; right: 0; margin: 0 auto; }
-  @media only screen and (min-width: 1440px) { .header__inline-menu { padding-left: 300px !important; } }
-  @media only screen and (min-width: 1251px) and (max-width: 1329px) { .header__inline-menu { padding-left: 70px !important; } }
-  @media only screen and (min-width: 1440px) and (max-width: 1510px) { .header__inline-menu { padding-left: 163px !important; } }
-  @media only screen and (min-width: 1330px) and (max-width: 1439px) { .header__inline-menu { padding-left: 110px !important; } }
 
   @media screen and (min-width: 1230px) {
    .header::before {
@@ -177,7 +171,7 @@
       .h2,
       span.h2,
       body .header .h2 {
-        font-family: var(--font-family-heading-light) !important;
+        font-family: "PPEditorialNew Ultralight", sans-serif !important;
         font-weight: 700 !important;
         margin: 0 !important;
         color: #000000 !important;
@@ -185,24 +179,6 @@
         line-height: 1 !important;
         text-decoration: none !important;
         font-size: 24px !important;
-      }
-
-      .header__heading-link .brand-name-two-fonts,
-      .header .header__heading .brand-name-two-fonts {
-        display: inline-flex !important;
-        align-items: baseline !important;
-      }
-      .header__heading-link .brand-name-two-fonts .brand-name__scent,
-      .header .header__heading .brand-name-two-fonts .brand-name__scent {
-        font-family: var(--font-family-brand-scent) !important;
-        font-style: normal !important;
-        font-weight: 500 !important;
-      }
-      .header__heading-link .brand-name-two-fonts .brand-name__spired,
-      .header .header__heading .brand-name-two-fonts .brand-name__spired {
-        font-family: var(--font-family-brand-spired) !important;
-        font-style: italic !important;
-        font-weight: 300 !important;
       }
 
       /* Mobile Bottom Navigation - EXACT MATCH TO REFERENCE */
@@ -363,7 +339,7 @@
         color: #000;
         text-decoration: none;
         font-size: 18px;
-        font-family: var(--font-family-primary);
+        font-family: 'PPMori Regular', sans-serif;
         flex: 1;
         padding: 0;
         margin: 0;
@@ -461,7 +437,7 @@
         letter-spacing: 0.8px;
         margin: 20px 0 10px 0;
         padding-left: 0;
-        font-family: var(--font-family-primary);
+        font-family: 'PPMori Regular', sans-serif;
       }
 
       .mobile-submenu-section-title:first-child {
@@ -489,7 +465,7 @@
         font-weight: 500;
         transition: color 0.2s ease;
         position: relative;
-        font-family: var(--font-family-primary);
+        font-family: 'PPMori Regular', sans-serif;
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
       }
 
@@ -530,7 +506,7 @@
         border-radius: 10px;
         margin-left: auto;
         text-transform: uppercase;
-        font-family: var(--font-family-primary);
+        font-family: 'PPMori Regular', sans-serif;
       }
 
       /* Prevent body scroll when drawer is open */
@@ -555,13 +531,13 @@
       }
       .h2 {
         font-size: 40px;
-        font-family: var(--font-family-heading-light);
+        font-family: "PPEditorialNew Ultralight", sans-serif;
         font-weight: 700;
       }
 
       .header, .header__heading, .header__inline-menu a, .header__menu-item {
         font-size: 13px;
-        font-family: var(--font-family-primary);
+        font-family: "PPMori Regular", sans-serif;
       }
 
       .search-icon-with-text {
@@ -569,7 +545,7 @@
         align-items: center;
         gap: 1px;
         margin-left: -120px;
-        font-family: var(--font-family-primary);
+        font-family: 'PPMori Regular', sans-serif;
         text-decoration: none !important;
         margin-top: 9px !important;
       }
@@ -748,7 +724,7 @@
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
                 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     width: 280px;
-    z-index: var(--z-drawer, 1000);
+    z-index: 1000;
 
     /* Animation */
     opacity: 0;
@@ -756,7 +732,7 @@
     transform: translateY(-10px);
     transition: opacity 0.3s ease, transform 0.3s ease;
 
-    font-family: var(--font-family-primary);
+    font-family: 'PPMori Regular', sans-serif;
     padding: 0;
     display: block !important;
 
@@ -835,7 +811,7 @@
         margin-bottom: 8px;
         margin-top: 20px;
         padding-left: 0;
-        font-family: var(--font-family-primary);
+        font-family: 'PPMori Regular', sans-serif;
       }
 
       .dropdown-section-title:first-child {
@@ -872,7 +848,7 @@
         font-weight: 500;
         transition: color 0.2s ease;
         position: relative;
-        font-family: var(--font-family-primary);
+        font-family: 'PPMori Regular', sans-serif;
       }
 
       .dropdown-item:hover {
@@ -911,7 +887,7 @@
         font-weight: 500;
         color: #000;
         margin: 0;
-        font-family: var(--font-family-primary);
+        font-family: 'PPMori Regular', sans-serif;
       }
 
       .dropdown-item-arrow {
@@ -936,7 +912,7 @@
         border-radius: 10px;
         margin-left: 8px;
         text-transform: uppercase;
-        font-family: var(--font-family-primary);
+        font-family: 'PPMori Regular', sans-serif;
       }
 
       .dropdown-badge.new {
@@ -2128,6 +2104,7 @@
       .custom-search-left {
         margin-top: 10px;
       }
+    }
 
     /* Additional mobile overlay fixes */
     @media (max-width: 1025px) {
@@ -2241,12 +2218,12 @@
     align-items: center;
     justify-content: center;
 
-    font-family: var(--font-family-primary);
+    font-family: 'PPMori Regular', sans-serif;
     white-space: nowrap; /* prevents line break */
   }
 {%- endstyle -%}
 
-<script src="{{ 'cart--notification.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
 
 {%- liquid
   for block in section.blocks
@@ -2317,7 +2294,7 @@
             }}
           </div>
         {%- else -%}
-          <span class="h2 brand-name-two-fonts"><span class="brand-name__scent">Scent</span><span class="brand-name__spired">spired</span></span>
+          <span class="h2">ScentSpired</span>
         {%- endif -%}
       </a>
       {%- if request.page_type == "index" -%}
@@ -2326,29 +2303,19 @@
     {%- endif -%}
 
     {%- liquid
-      assign menu_handle = section.settings.menu | default: 'main-menu'
-      assign nav_links = linklists[menu_handle].links
-      assign has_full_menu = false
+      if section.settings.menu != blank
+        if section.settings.menu_type_desktop == "dropdown"
+          # Custom Dossier-style dropdown menu - ONLY FOR FIRST MENU ITEM
+          echo '<nav class="header__inline-menu">'
+          echo '<ul class="list-menu list-menu--inline" role="list">'
 
-      # Determine if the store's Shopify menu has a configured Scentspired navigation
-      if nav_links.size >= 5
-        assign has_full_menu = true
-      endif
-
-      if section.settings.menu_type_desktop != "drawer"
-        # Custom Scentspired navigation menu matching UK and USA live production stores
-        echo '<nav class="header__inline-menu">'
-        echo '<ul class="list-menu list-menu--inline" role="list">'
-
-        if has_full_menu
           assign first_menu_item = true
-          for link in nav_links
-            assign link_title_upper = link.title | upcase | strip
-            if link_title_upper contains 'SHOP' or first_menu_item
+          for link in linklists[section.settings.menu].links
+            if link.links != blank and first_menu_item
               echo '<li class="header__menu-item header__menu-item--has-dropdown">'
               echo '<a href="' | append: link.url | append: '" class="header__menu-item-link list-menu__item list-menu__item--link">' | append: link.title | append: "</a>"
 
-              # Custom Dossier dropdown
+              # Custom Dossier dropdown - ONLY FOR FIRST MENU ITEM
               echo '<div class="dossier-dropdown">'
               echo '<div class="dossier-dropdown-content">'
 
@@ -2448,12 +2415,14 @@
               echo "</li>"
               assign first_menu_item = false
 
-            elsif link_title_upper contains 'BUNDLE' or forloop.index == 6
-              # Bundles menu item with dropdown arrow
+            elsif forloop.index == 6
+              # 6th menu item with dropdown arrow
               echo '<li class="header__menu-item header__menu-item--has-dropdown">'
               echo '<a href="' | append: link.url | append: '" class="header__menu-item-link list-menu__item list-menu__item--link">' | append: link.title | append: "</a>"
               echo '<div class="dossier-dropdown">'
               echo '<div class="dossier-dropdown-content">'
+
+              # <-- Add your 6th menu dropdown content here -->
               echo '<div class="dropdown-section-title"></div>'
               echo '<div class="dropdown-section">'
 
@@ -2476,6 +2445,7 @@
               echo "</a>"
 
               echo "</div>"
+
               echo "</div>"
               echo "</div>"
               echo "</li>"
@@ -2488,162 +2458,11 @@
             endif
           endfor
 
-        else
-          # Complete Scentspired Signature 6-Option Navigation (Exact 1:1 match with UK & USA live production)
-          # 1. SHOP (with Dossier Mega-Dropdown)
-          echo '<li class="header__menu-item header__menu-item--has-dropdown">'
-          echo '<a href="/collections/shop" class="header__menu-item-link list-menu__item list-menu__item--link">SHOP</a>'
-          echo '<div class="dossier-dropdown">'
-          echo '<div class="dossier-dropdown-content">'
-
-          # Shop All Section
-          echo '<div class="dropdown-section">'
-          echo '<a href="/collections/shop" class="dropdown-item">'
-          echo '<div class="dropdown-item-icon">'
-          echo '<img src="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Website_-_Shop_All_799328f0-a349-4bba-a2e8-b9860554638b.png?v=1767011119" alt="All Perfumes">'
-          echo "</div>"
-          echo '<div class="dropdown-item-content">'
-          echo '<div class="dropdown-item-title">Shop All </div>'
-          echo "</div>"
-          echo "</a>"
-          echo "</div>"
-
-          # Shop by Gender
-          echo '<div class="dropdown-section-title">FRAGRANCES FOR</div>'
-          echo '<div class="dropdown-section">'
-          echo '<a href="/collections/women" class="dropdown-item">'
-          echo '<div class="dropdown-item-icon">'
-          echo '<img src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Screenshot_2025-07-01_133909_1_2.webp?v=1772711912" alt="Women">'
-          echo "</div>"
-          echo '<div class="dropdown-item-content">'
-          echo '<div class="dropdown-item-title">Women</div>'
-          echo "</div>"
-          echo "</a>"
-          echo '<a href="/collections/men" class="dropdown-item">'
-          echo '<div class="dropdown-item-icon">'
-          echo '<img src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Screenshot_2025-07-01_134105_1_1.webp?v=1772711986" alt="Men">'
-          echo "</div>"
-          echo '<div class="dropdown-item-content">'
-          echo '<div class="dropdown-item-title">Men</div>'
-          echo "</div>"
-          echo "</a>"
-          echo '<a href="/collections/unisex" class="dropdown-item">'
-          echo '<div class="dropdown-item-icon">'
-          echo '<img src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Screenshot_2025-07-01_134204_1.webp?v=1772712073" alt="Unisex">'
-          echo "</div>"
-          echo '<div class="dropdown-item-content">'
-          echo '<div class="dropdown-item-title">Unisex</div>'
-          echo "</div>"
-          echo "</a>"
-          echo "</div>"
-
-          # More Ways to Shop
-          echo '<div class="dropdown-section-title">MORE WAYS TO SHOP</div>'
-          echo '<div class="dropdown-section">'
-          echo '<a href="/pages/discovery-set" class="dropdown-item">'
-          echo '<div class="dropdown-item-icon">'
-          echo '<img src="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Website_-_Discovery_Box_01_5b146efd-da46-4977-bcd6-6981f4948e94.png?v=1767011253" alt="New Arrivals">'
-          echo "</div>"
-          echo '<div class="dropdown-item-content">'
-          echo '<div class="dropdown-item-title">Discovery Box</div>'
-          echo "</div>"
-          echo "</a>"
-          echo '<a href="/collections/bestsellers" class="dropdown-item">'
-          echo '<div class="dropdown-item-icon">'
-          echo '<img src="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Website_-_Shop_All_799328f0-a349-4bba-a2e8-b9860554638b.png?v=1767011119" alt="Bestsellers">'
-          echo "</div>"
-          echo '<div class="dropdown-item-content">'
-          echo '<div class="dropdown-item-title">Bestsellers</div>'
-          echo "</div>"
-          echo "</a>"
-          echo '<a href="/pages/scent-families" class="dropdown-item">'
-          echo '<div class="dropdown-item-icon">'
-          echo '<img src="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_01_-_Banner_afefa9f0-db52-4f23-9567-ec1c0edbfa9a.jpg?v=1767011440" alt="Scent Families">'
-          echo "</div>"
-          echo '<div class="dropdown-item-content">'
-          echo '<div class="dropdown-item-title">Notes / Seasons</div>'
-          echo "</div>"
-          echo "</a>"
-          echo "</div>"
-
-          # Bundles in Shop Dropdown
-          echo '<div class="dropdown-section-title">Bundles</div>'
-          echo '<div class="dropdown-section">'
-          echo '<a href="/pages/trio" class="dropdown-item">'
-          echo '<div class="dropdown-item-icon">'
-          echo '<img src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/M5_92c2ac96-d4db-4220-b8e5-3e2f35a80548.webp?v=1772712198" alt="New Arrivals">'
-          echo "</div>"
-          echo '<div class="dropdown-item-content">'
-          echo '<div class="dropdown-item-title">The Signature Trio</div>'
-          echo "</div>"
-          echo "</a>"
-          echo '<a href="/pages/fifer-box" class="dropdown-item">'
-          echo '<div class="dropdown-item-icon">'
-          echo '<img src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/2_00a7c831-c9bc-4568-af98-4c674e4fc4e8.webp?v=1772712250" alt="Bestsellers">'
-          echo "</div>"
-          echo '<div class="dropdown-item-content">'
-          echo '<div class="dropdown-item-title">The Five Favorites</div>'
-          echo "</div>"
-          echo "</a>"
-          echo "</div>"
-
-          echo "</div>"
-          echo "</li>"
-
-          # 2. FIND YOUR SCENT
-          echo '<li class="header__menu-item">'
-          echo '<a href="/collections/shop" class="header__menu-item-link list-menu__item list-menu__item--link">FIND YOUR SCENT</a>'
-          echo "</li>"
-
-          # 3. ABOUT US
-          echo '<li class="header__menu-item">'
-          echo '<a href="/pages/about-us" class="header__menu-item-link list-menu__item list-menu__item--link">ABOUT US</a>'
-          echo "</li>"
-
-          # 4. SCENT NOTES
-          echo '<li class="header__menu-item">'
-          echo '<a href="/pages/scent-notes" class="header__menu-item-link list-menu__item list-menu__item--link">SCENT NOTES</a>'
-          echo "</li>"
-
-          # 5. DISCOVERY BOX
-          echo '<li class="header__menu-item">'
-          echo '<a href="/pages/discovery-set" class="header__menu-item-link list-menu__item list-menu__item--link">DISCOVERY BOX</a>'
-          echo "</li>"
-
-          # 6. BUNDLES (with Dropdown)
-          echo '<li class="header__menu-item header__menu-item--has-dropdown">'
-          echo '<a href="/pages/bundle-1" class="header__menu-item-link list-menu__item list-menu__item--link">BUNDLES</a>'
-          echo '<div class="dossier-dropdown">'
-          echo '<div class="dossier-dropdown-content">'
-          echo '<div class="dropdown-section-title"></div>'
-          echo '<div class="dropdown-section">'
-
-          echo '<a href="/pages/trio" class="dropdown-item">'
-          echo '<div class="dropdown-item-icon">'
-          echo '<img src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/M5_1.webp?v=1772712427" alt="The Signature Trio">'
-          echo "</div>"
-          echo '<div class="dropdown-item-content">'
-          echo '<div class="dropdown-item-title">The Signature Trio</div>'
-          echo "</div>"
-          echo "</a>"
-
-          echo '<a href="/pages/fifer-box" class="dropdown-item">'
-          echo '<div class="dropdown-item-icon">'
-          echo '<img src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/2_1ae5ba53-2d4a-4517-8adc-50a5facd4758_1.webp?v=1772712481" alt="The Five Favourites">'
-          echo "</div>"
-          echo '<div class="dropdown-item-content">'
-          echo '<div class="dropdown-item-title">The Five Favourites</div>'
-          echo "</div>"
-          echo "</a>"
-
-          echo "</div>"
-          echo "</div>"
-          echo "</div>"
-          echo "</li>"
+          echo "</ul>"
+          echo "</nav>"
+        elsif section.settings.menu_type_desktop != "drawer"
+          render "header-mega-menu"
         endif
-
-        echo "</ul>"
-        echo "</nav>"
       endif
     %}
 
@@ -2672,7 +2491,7 @@
             }}
           </div>
         {%- else -%}
-          <span class="h2 brand-name-two-fonts"><span class="brand-name__scent">Scent</span><span class="brand-name__spired">spired</span></span>
+          <span class="h2">{{ shop.name }}</span>
         {%- endif -%}
       </a>
       {%- if request.page_type == "index" -%}
@@ -2835,8 +2654,8 @@
     <!-- Mobile Menu Drawer - HARDCODED MENU STRUCTURE -->
     <div class="mobile-menu-drawer" id="mobileMenuDrawer">
       <div class="mobile-menu-header">
-        <h2 class="mobile-menu-title" style="margin: 0; font-family: var(--font-family-primary); font-size: 1.8rem;">Menu</h2>
-        <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close menu">
+        <h3 style="margin: 0; font-family: 'PPMori Regular', sans-serif;">Menu</h3>
+        <button class="mobile-menu-close" id="mobileMenuClose">
           <svg viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor">
             <line x1="18" y1="6" x2="6" y2="18"></line>
             <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -2848,7 +2667,7 @@
         <div class="mobile-menu-item-wrapper">
           <div class="mobile-menu-item-header">
             <a href="/collections/shop" class="mobile-menu-item">SHOP</a>
-            <button class="mobile-menu-toggle" onclick="toggleMobileSubmenu(this)" aria-label="Toggle submenu">
+            <button class="mobile-menu-toggle" onclick="toggleMobileSubmenu(this)">
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
@@ -2983,7 +2802,7 @@
         <div class="mobile-menu-item-wrapper">
           <div class="mobile-menu-item-header">
             <a href="#" class="mobile-menu-item">BUNDLES</a>
-            <button class="mobile-menu-toggle" onclick="toggleMobileSubmenu(this)" aria-label="Toggle submenu">
+            <button class="mobile-menu-toggle" onclick="toggleMobileSubmenu(this)">
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
@@ -5410,7 +5229,8 @@
     }
   }
 
-  window.MobileNavigation = MobileNavigation;
+  // Aliases for backwards compatibility
+  const MobileMenuManager = MobileNavigation;
 
   // Initialize when DOM is loaded
   document.addEventListener('DOMContentLoaded', () => {
@@ -5537,6 +5357,7 @@
 
   overrideAllSearchTriggers();
   document.addEventListener('DOMContentLoaded', overrideAllSearchTriggers);
+  setInterval(overrideAllSearchTriggers, 1000);
 
   window.toggleMobileSubmenu = function (button) {
     if (!button) return false;
@@ -5558,6 +5379,22 @@
   };
 {% endjavascript %}
 
+{%- if request.page_type == "index" -%}
+  {% assign potential_action_target = request.origin | append: routes.search_url | append: "?q={search_term_string}" %}
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": {{ shop.name | json }},
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {{ potential_action_target | json }},
+        "query-input": "required name=search_term_string"
+      },
+      "url": {{ request.origin | append: page.url | json }}
+    }
+  </script>
+{%- endif -%}
 
 {% schema %}
 {

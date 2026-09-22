@@ -5,7 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Select Aroma Interactive Section</title>
     <style>
-      /* Typography inherited from theme design tokens (layout/theme.liquid) */
+      @font-face {
+        font-family: 'PPEditorialNew Italic';
+        src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPEditorialNew-Italic-BF644b214fb0c0a.otf?v=1751620955')
+          format('opentype');
+        font-weight: 900;
+        font-style: italic;
+      }
+
+      @font-face {
+        font-family: 'PPMori Regular';
+        src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPMori-Regular.otf?v=1751621372')
+          format('opentype');
+        font-weight: 400;
+        font-style: normal;
+      }
 
       * {
         margin: 0;
@@ -136,7 +150,7 @@
         margin: 0;
         position: relative;
         z-index: 2;
-        font-family: var(--font-family-primary);
+        font-family: 'PPMori Regular', sans-serif;
       }
 
       .product-title {
@@ -146,7 +160,7 @@
         letter-spacing: 4px;
         text-transform: uppercase;
         text-align: center;
-        font-family: var(--font-family-primary);
+        font-family: 'PPMori Regular', sans-serif;
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
       }
 
@@ -157,7 +171,7 @@
         letter-spacing: 4px;
         text-transform: uppercase;
         text-align: center;
-        font-family: var(--font-family-primary);
+        font-family: 'PPMori Regular', sans-serif;
         text-shadow: none;
       }
 
@@ -187,7 +201,7 @@
         color: #333;
         letter-spacing: 1px;
         text-transform: uppercase;
-        font-family: var(--font-family-primary);
+        font-family: 'PPMori Regular', sans-serif;
         width: 70px;
         flex-shrink: 0;
       }
@@ -196,7 +210,7 @@
         font-size: 13px;
         color: #666;
         text-align: left;
-        font-family: var(--font-family-primary);
+        font-family: 'PPMori Regular', sans-serif;
         flex: 1;
         margin-left: 20px;
       }
@@ -212,14 +226,14 @@
         letter-spacing: 1px;
         text-transform: uppercase;
         margin-bottom: 5px;
-        font-family: var(--font-family-primary);
+        font-family: 'PPMori Regular', sans-serif;
       }
 
       .mood-description {
         font-size: 15px;
         line-height: 1.5;
         color: #666;
-        font-family: var(--font-family-primary);
+        font-family: 'PPMori Regular', sans-serif;
       }
 
       .shop-button {
@@ -231,7 +245,7 @@
         text-transform: uppercase;
         cursor: pointer;
         transition: all 0.3s ease;
-        font-family: var(--font-family-primary);
+        font-family: 'PPMori Regular', sans-serif;
         text-decoration: none;
         display: inline-block;
         text-align: center;
@@ -268,7 +282,7 @@
         font-weight: 400;
         cursor: pointer;
         transition: all 0.3s ease;
-        font-family: var(--font-family-primary);
+        font-family: 'PPMori Regular', sans-serif;
         letter-spacing: 1px;
       }
 
@@ -325,7 +339,7 @@
         font-weight: 400;
         cursor: pointer;
         transition: all 0.3s ease;
-        font-family: var(--font-family-primary);
+        font-family: 'PPMori Regular', sans-serif;
         letter-spacing: 1px;
       }
 
@@ -411,7 +425,7 @@
         font-size: 32px;
         letter-spacing: 2px;
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        font-family: var(--font-family-primary);
+        font-family: 'PPMori Regular', sans-serif;
       }
 
       .modal-details-content {
@@ -484,7 +498,7 @@
           text-transform: uppercase;
           margin: 0;
           color: #333;
-          font-family: var(--font-family-primary);
+          font-family: 'PPMori Regular', sans-serif;
         }
 
         .back-button {
@@ -513,7 +527,7 @@
           font-weight: 400;
           cursor: pointer;
           transition: all 0.3s ease;
-          font-family: var(--font-family-primary);
+          font-family: 'PPMori Regular', sans-serif;
           letter-spacing: 1px;
         }
 
@@ -607,7 +621,7 @@
           </div>
         </div>
         <div class="aroma-image default-state" id="aromaImage">
-          <h2 class="product-title" id="productTitle">SELECT AROMA</h2>
+          <h1 class="product-title" id="productTitle">SELECT AROMA</h1>
           <div class="pagination-numbers" id="paginationNumbers" style="display: none;">
             Numbers will be dynamically generated here
           </div>

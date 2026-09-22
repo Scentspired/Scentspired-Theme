@@ -10,12 +10,12 @@
  */
 
 :root {
-  --perfume-gold: var(--color-brand-gold, #b39152);
-  --perfume-dark: var(--color-text-primary, #000000);
+  --perfume-gold: #b39152;
+  --perfume-dark: #000;
   --perfume-gray: #f2f2f2;
   --sidebar-bg: #f5f0e6;
   --border-dashed: #a8a095;
-  --font-primary: var(--font-family-primary);
+  --font-primary: "Montserrat", sans-serif;
 }
 
 .perfume-bundle-section {
@@ -257,11 +257,11 @@
 
 .add-to-cart-btn {
   width: 100%;
-  background: var(--btn-brand-bg, #f4ff41);
-  color: var(--btn-brand-color, #000);
+  background: #f4ff41;
+  color: #000;
   padding: 20px;
   font-size: 15px;
-  font-weight: var(--font-weight-semibold, 600);
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 2px;
   border: none;
@@ -274,7 +274,7 @@
 }
 
 .add-to-cart-btn:disabled {
-  background-color: var(--btn-brand-bg, #f4ff41);
+  background-color: #f4ff41;
   opacity: 0.7;
   cursor: not-allowed;
 }

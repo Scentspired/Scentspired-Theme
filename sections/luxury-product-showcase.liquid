@@ -1,5 +1,30 @@
 <style>
-    /* Typography inherited from theme design tokens (layout/theme.liquid) */
+    @font-face {
+    font-family: "MElle HK Light";
+    src: url("https://db.onlinewebfonts.com/t/f120acc511b79fea64e46c0e2880c3df.woff2") format("woff2"),
+         url("https://db.onlinewebfonts.com/t/f120acc511b79fea64e46c0e2880c3df.woff") format("woff"),
+         url("https://db.onlinewebfonts.com/t/f120acc511b79fea64e46c0e2880c3df.ttf") format("truetype");
+    font-weight: 100;
+    font-style: normal;
+  }
+    @font-face {
+    font-family: 'PPMori Extralight';
+    src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPMori-Extralight.otf?v=1751619970') format('opentype');
+    font-weight: 200;
+    font-style: normal;
+  }
+    @font-face {
+    font-family: 'PPEditorialNew Italic';
+    src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPEditorialNew-Italic-BF644b214fb0c0a.otf?v=1751620955') format('opentype');
+    font-weight: 900px;
+    font-style: italic;
+  }
+    @font-face {
+    font-family: 'PPMori Regular';
+    src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPMori-Regular.otf?v=1751621372') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+  }
 
     .luxury-showcase {
       display: grid;
@@ -50,7 +75,7 @@
       margin: 0 0 8px 0;
       line-height: 1.1;
       letter-spacing: 1px;
-      font-family: var(--font-family-primary-light);
+      font-family: 'PPMori Extralight', sans-serif;
     }
 
     .luxury-showcase__subheading {
@@ -60,7 +85,7 @@
       margin: -10px 0 60px 0;
       line-height: 1.1;
       position: relative;
-      font-family: var(--font-family-heading);
+      font-family: 'PPEditorialNew Italic', serif;
       font-weight: 600;
     }
 
@@ -90,7 +115,7 @@
       letter-spacing: 2px;
       text-transform: uppercase;
       width: 220px;
-      font-family: var(--font-family-primary);
+      font-family: 'PPMori Regular', sans-serif;
     }
 
     .luxury-showcase__description {
@@ -101,7 +126,7 @@
       margin: 0;
       text-align: center;
       font-weight: 500;
-      font-family: var(--font-family-primary);
+      font-family: 'PPMori Regular', sans-serif;
     }
 
     /* Tablet Styles */

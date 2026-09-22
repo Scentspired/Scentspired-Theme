@@ -140,6 +140,16 @@
         </pickup-availability-preview>
       </template>
     </pickup-availability>
-    <script src="{{ 'product--pickup-availability.js' | asset_url }}" defer="defer"></script>
+    <script>
+      window.addEventListener('load', function () {
+        // Load Shopify accelerated checkout CSS after page load
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = '/assets/accelerated-checkout-backwards-compat.css';
+        document.head.appendChild(link);
+      });
+    </script>
+
+    <script src="{{ 'pickup-availability.js' | asset_url }}" defer="defer"></script>
   {%- endif -%}
 </div>

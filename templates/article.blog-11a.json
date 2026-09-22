@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -44,11 +53,11 @@
           "settings": {
             "heading": "<p>How luxury unisex perfumes became the most searched scent category in the UK and why everyone is obsessed</p>",
             "heading_size": 48,
-            "mobile_heading_size": 22,
+            "mobile_heading_size": 16,
             "heading_line_height": 1.1,
             "heading_color": "#000000",
             "paragraph": "",
-            "paragraph_size": 20,
+            "paragraph_size": 44,
             "mobile_paragraph_size": 16,
             "paragraph_line_height": 1,
             "paragraph_color": "#ffffff",
@@ -58,13 +67,13 @@
             "vertical_alignment": "center",
             "text_alignment": "left",
             "content_padding": 40,
-            "content_max_width_inner": 680,
+            "content_max_width_inner": 560,
             "mobile_horizontal_alignment": "flex-start",
             "mobile_vertical_alignment": "center",
             "mobile_text_alignment": "left",
-            "mobile_content_padding": 25,
-            "content_max_width": 1400,
-            "outer_spacing": 0,
+            "mobile_content_padding": 30,
+            "content_max_width": 1600,
+            "outer_spacing": 20,
             "mobile_outer_spacing": 15,
             "background_color": "#f5f3f0"
           },
@@ -74,12 +83,16 @@
       "block_order": [
         "ai_gen_block_5c54be2_9Wtw4b"
       ],
-      "custom_css": [],
+      "custom_css": [
+        ".ai-luxury-banner-heading-ammo0z3n4zljydhrpdaigenblock5c54be29wtw4b {margin-bottom: -53px;}",
+        "@media screen and (max-width: 749px) {.ai-luxury-banner-heading-ammo0z3n4zljydhrpdaigenblock5c54be29wtw4b {margin-bottom: -19px; }}"
+      ],
       "settings": {}
     },
     "blog_text_7BWxfp": {
       "type": "blog-text",
       "custom_css": [
+        "@media screen and (min-width: 1024px) {.shopify-hardcoded-text-section-content {font-size: 24px !important; margin: 0 !important; } .shopify-hardcoded-text-section-wrapper {margin-bottom: -85px; }}",
         ".shopify-hardcoded-text-section-content {font-size: 16px; margin-left: 0px; text-align: left;}",
         "@media screen and (max-width: 1024px) {.shopify-hardcoded-text-section-wrapper {min-height: 200px; padding: 16px !important; }}",
         "a {color: #000;}"
@@ -97,7 +110,7 @@
           "settings": {
             "background_image": "shopify://shop_images/wmremove-transformed_17.png",
             "outer_border_color": "#ffffff",
-            "outer_border_px": 0,
+            "outer_border_px": 16,
             "aspect_ratio": 49.5,
             "font_family_regular": "'PP Editorial New', 'Cormorant Garamond', Georgia, serif",
             "font_family_italic": "'PPEditorialNew Ultralight Italic', 'Cormorant Garamond', Georgia, serif",
@@ -127,6 +140,7 @@
     "blog_text_mELacU": {
       "type": "blog-text",
       "custom_css": [
+        "@media screen and (min-width: 1024px) {.shopify-hardcoded-text-section-content {font-size: 24px !important; margin: 0 !important; } .shopify-hardcoded-text-section-wrapper {margin-bottom: -85px; }}",
         ".shopify-hardcoded-text-section-content {font-size: 16px; margin-left: 0px; text-align: left;}",
         "@media screen and (max-width: 1024px) {.shopify-hardcoded-text-section-wrapper {min-height: 200px; padding: 16px !important; }}",
         "a {color: #000;}"
@@ -140,6 +154,7 @@
       "type": "blog-text",
       "disabled": true,
       "custom_css": [
+        "@media screen and (min-width: 1024px) {.shopify-hardcoded-text-section-content {font-size: 24px !important; margin: 0 !important; } .shopify-hardcoded-text-section-wrapper {margin-bottom: -85px; }}",
         ".shopify-hardcoded-text-section-content {font-size: 16px; margin-left: 0px; text-align: left;}",
         "@media screen and (max-width: 1024px) {.shopify-hardcoded-text-section-wrapper {min-height: 200px; padding: 16px !important; }}"
       ],
@@ -634,15 +649,23 @@
     }
   },
   "order": [
+    "main",
     "177883883994f3af2c",
     "blog_text_7BWxfp",
     "1778840570728901cb",
     "blog_text_mELacU",
+    "blog_text_fgfNXN",
+    "1778849786d4cbe62f",
     "1778843746bf825332",
+    "1779107504f82a420f",
+    "blocks_daydAE",
     "blocks_UXR9hM",
+    "178125733149f92c38",
     "1778843499df5a6469",
     "blocks_YHwgUg",
+    "177884398431108114",
     "blocks_HnBAMt",
-    "17788441780b9287af"
+    "17788441780b9287af",
+    "1778844323c8772560"
   ]
 }

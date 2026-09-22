@@ -204,16 +204,22 @@
 }
 {% endschema %}
 
-{%- capture default_video_url -%}{%- render 'store-context', key: 'default_video_url' -%}{%- endcapture -%}
-{%- capture default_cat1 -%}{%- render 'store-context', key: 'category_label_1' -%}{%- endcapture -%}
-{%- capture default_cat2 -%}{%- render 'store-context', key: 'category_label_2' -%}{%- endcapture -%}
-{%- capture curr_sym -%}{%- render 'store-context', key: 'currency_symbol' -%}{%- endcapture -%}
-{%- assign curr_sym = curr_sym | strip -%}
+{%- liquid
+  if cart.currency.iso_code == 'GBP' or shop.currency == 'GBP' or shop.domain contains 'scentspired.co.uk'
+    assign default_video_url = 'https://cdn.shopify.com/videos/c/o/v/2fe67c6edaa646b18805a79903b1059c.mp4'
+    assign default_cat1 = 'VIBES'
+    assign default_cat2 = 'OCCASIONS'
+  else
+    assign default_video_url = 'https://cdn.shopify.com/videos/c/o/v/fbfe40c4c4c744f5b13cfbe4d843fe31.mp4'
+    assign default_cat1 = 'ICONS'
+    assign default_cat2 = 'VIBES'
+  endif
+-%}
 
 <div class="scent-video-banner" id="scent-video-banner">
   <div class="video-container">
-    <video id="main-video" preload="none" muted loop playsinline style="filter: brightness(40%);">
-      <source data-src="{{ section.settings.video_url | default: default_video_url }}" type="video/mp4">
+    <video id="main-video" autoplay muted loop playsinline style="filter: brightness(40%);">
+      <source src="{{ section.settings.video_url | default: default_video_url }}" type="video/mp4">
     </video>
 
     <div class="scent-content">
@@ -283,94 +289,7 @@
             <button class="nav-btn next-btn" id="nextBtn">›</button>
           </div>
 
-          <div class="products-display" id="productsDisplay">
-            {%- liquid
-              assign initial_col_key = section.settings.brand_collection_3
-              if initial_col_key == blank
-                assign initial_col_key = section.settings.brand_collection_1
-              endif
-              assign initial_col = collections[initial_col_key]
-            -%}
-            {%- if initial_col != blank and initial_col.products.size > 0 -%}
-              {%- for product in initial_col.products limit: 2 -%}
-                {%- liquid
-                  assign gender_tag = 'Unisex'
-                  for tag in product.tags
-                    assign t_down = tag | downcase
-                    if t_down == 'men' or t_down == 'women' or t_down == 'unisex'
-                      assign gender_tag = tag
-                      break
-                    endif
-                  endfor
-                  assign first_var = product.selected_or_first_available_variant | default: product.variants.first
-                  assign has_discount = false
-                  if first_var.compare_at_price > first_var.price
-                    assign has_discount = true
-                  endif
-                -%}
-                <div class="fragrance-item product-card" data-product-id="{{ product.id }}" data-product-index="{{ forloop.index0 }}">
-                  <a href="{{ product.url }}" class="fragrance-image-wrap">
-                    <img
-                      src="{{ product.featured_image | image_url: width: 400 }}"
-                      alt="{{ product.title | escape }}"
-                      class="product-main-image"
-                      width="400"
-                      height="400"
-                      {% if forloop.first %}fetchpriority="high" loading="eager"{% else %}loading="lazy"{% endif %}
-                    >
-                    {%- if product.images.size > 1 -%}
-                      <img
-                        class="product-hover-image"
-                        src="{{ product.images[1] | image_url: width: 400 }}"
-                        alt="{{ product.title | escape }}"
-                        width="400"
-                        height="400"
-                        loading="lazy"
-                      >
-                    {%- endif -%}
-                    <div class="product-badges">
-                      <span class="product-badge badge-{{ gender_tag | downcase }}">{{ gender_tag }}</span>
-                    </div>
-                  </a>
-                  <div class="fragrance-info">
-                    <a href="{{ product.url }}" style="text-decoration: none;">
-                      <h3 class="fragrance-name">{{ product.title }}</h3>
-                    </a>
-                    <p class="fragrance-brand">{{ product.vendor }}</p>
-                    <div class="price-section">
-                      <span class="product-price-display" data-price-display>{{ first_var.price | money }}</span>
-                      <span class="original-price" data-compare-at-price-display style="{% if has_discount %}display: inline;{% else %}display: none;{% endif %}">
-                        {%- if has_discount %}{{ first_var.compare_at_price | money }}{% endif -%}
-                      </span>
-                      <span class="price-badge" data-price-badge style="{% if has_discount %}display: inline;{% else %}display: none;{% endif %}">Sale</span>
-                    </div>
-                    <form class="item-form" method="post" action="/cart/add">
-                      {%- if product.variants.size > 1 -%}
-                        <div class="variant-options">
-                          {%- for variant in product.variants -%}
-                            <button
-                              type="button"
-                              class="variant-option-btn{% if variant.inventory_quantity == 0 %} disabled{% endif %}{% if variant.id == first_var.id %} active{% endif %}"
-                              data-variant-id="{{ variant.id }}"
-                              data-variant-price="{{ variant.price | money }}"
-                              data-variant-price-raw="{{ variant.price }}"
-                              data-variant-compare-at-price="{{ variant.compare_at_price | default: 0 }}"
-                              data-available="{{ variant.available }}"
-                              data-inventory="{{ variant.inventory_quantity }}">
-                              {{ variant.title }}
-                            </button>
-                          {%- endfor -%}
-                        </div>
-                      {%- endif -%}
-                      <input type="hidden" name="id" class="variant-id-input" value="{{ first_var.id }}">
-                      <input type="hidden" name="quantity" value="1">
-                      {% render 'component-button', type: 'submit', variant: 'brand', text: 'ADD TO CART', data_product_title: product.title %}
-                    </form>
-                  </div>
-                </div>
-              {%- endfor -%}
-            {%- endif -%}
-          </div>
+          <div class="products-display" id="productsDisplay"></div>
 
           <div class="pagination-dots" id="paginationDots"></div>
 
@@ -478,28 +397,7 @@
     const video = document.getElementById('main-video');
     if (video) {
       video.muted = true;
-      const loadAndPlayVideo = () => {
-        const source = video.querySelector('source');
-        if (source && source.dataset.src && !source.src) {
-          source.src = source.dataset.src;
-          video.load();
-        }
-        video.play().catch(e => console.warn('Autoplay issue:', e));
-      };
-
-      if ('IntersectionObserver' in window) {
-        const obs = new IntersectionObserver((entries, o) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              loadAndPlayVideo();
-              o.unobserve(entry.target);
-            }
-          });
-        }, { rootMargin: '300px 0px' });
-        obs.observe(video);
-      } else {
-        loadAndPlayVideo();
-      }
+      video.play().catch(e => console.warn('Autoplay issue:', e));
     }
 
     const scentSection = document.getElementById('scent-video-banner');
@@ -513,7 +411,7 @@
 
     if (!scentSection) return;
 
-    const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '{{ curr_sym }}' || '{{ cart.currency.symbol }}';
+    const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '{{ cart.currency.symbol }}' || '$';
 
     function selectVariantOnCard(productCard, btn) {
       if (!productCard || !btn) return;
@@ -911,13 +809,7 @@
       updateVariantAvailability();
     }
 
-    // Event-driven variant availability updates (replaces aggressive 2s polling)
-    document.addEventListener('cart:updated', updateVariantAvailability);
-    document.addEventListener('visibilitychange', function() {
-      if (document.visibilityState === 'visible') {
-        updateVariantAvailability();
-      }
-    });
+    setInterval(updateVariantAvailability, 2000);
 
     // EVENT DELEGATION - Set up once at the document level
     document.addEventListener(
@@ -1417,8 +1309,8 @@
   }
 
   .price-badge {
-    background-color: #d90429;
-    color: #ffffff;
+    background-color: #ff0000ff;
+    color: #fff;
     font-size: 12px;
     padding: 2px 8px;
     border-radius: 4px;
@@ -1624,17 +1516,16 @@
       padding: 12px;
     }
     .variant-option-btn.disabled {
-      color: #4a4a4a !important;
+      opacity: 0.4;
       cursor: not-allowed;
       pointer-events: none;
       text-decoration: line-through;
-      background-color: #f0f0f0;
-      border-color: #c4c4c4;
+      background-color: #f5f5f5;
+      border-color: #ccc;
     }
 
     .cart-button.sold-out {
-      background: var(--btn-brand-disabled-bg, #e0e0e0) !important;
-      color: var(--btn-brand-disabled-color, #333333) !important;
+      opacity: 0.5;
       cursor: not-allowed;
       pointer-events: none;
     }

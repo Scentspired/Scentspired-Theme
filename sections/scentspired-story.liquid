@@ -4,12 +4,9 @@
     {% if section.settings.desktop_lines_image != blank %}
       <div class="lines-desktop">
         <img
-          src="{{ section.settings.desktop_lines_image | image_url: width: 1400 }}"
+          src="{{ section.settings.desktop_lines_image | img_url: 'master' }}"
           alt="Decorative lines"
-          loading="lazy"
-          decoding="async"
-          width="1400"
-          height="{{ 1400 | divided_by: section.settings.desktop_lines_image.aspect_ratio | default: 800 | round }}">
+          loading="lazy">
       </div>
     {% endif %}
 
@@ -17,12 +14,9 @@
     {% if section.settings.mobile_lines_image != blank %}
       <div class="lines-mobile">
         <img
-          src="{{ section.settings.mobile_lines_image | image_url: width: 800 }}"
+          src="{{ section.settings.mobile_lines_image | img_url: 'master' }}"
           alt="Decorative lines"
-          loading="lazy"
-          decoding="async"
-          width="800"
-          height="{{ 800 | divided_by: section.settings.mobile_lines_image.aspect_ratio | default: 400 | round }}">
+          loading="lazy">
       </div>
     {% endif %}
 
@@ -30,12 +24,9 @@
       {% if section.settings.icon_image != blank %}
         <div class="story-icon">
           <img
-            src="{{ section.settings.icon_image | image_url: width: 100 }}"
+            src="{{ section.settings.icon_image | img_url: '100x100' }}"
             alt="{{ section.settings.icon_alt | default: 'Icon' }}"
-            loading="lazy"
-            decoding="async"
-            width="100"
-            height="100">
+            loading="lazy">
         </div>
       {% endif %}
 

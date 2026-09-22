@@ -1,0 +1,10 @@
+{% comment %}
+  SVPA Backward-Compatibility Forwarding Shim
+  Target: snippets/blog--article--author-bio.liquid
+{% endcomment %}
+{%- render 'blog--article--author-bio',
+  article: article,
+  show_avatar: show_avatar,
+  avatar: avatar,
+  bio_text: bio_text
+-%}

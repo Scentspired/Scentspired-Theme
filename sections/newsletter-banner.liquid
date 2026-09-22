@@ -243,9 +243,9 @@
   class="newsletter-banner"
   style="
     {% if section.settings.background_image != blank %}
-      background-image: url('{{ section.settings.background_image | image_url: width: 2000 }}');
+      background-image: url('{{ section.settings.background_image | img_url: 'master' }}');
     {% else %}
-      background-color: #f3f3f3;
+      background-color: #eaeaea;
     {% endif %}
   ">
   <div class="newsletter-content">

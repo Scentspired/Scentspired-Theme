@@ -1,9 +1,9 @@
 {% if section.settings.enable_overlay %}
   <div id="coming-soon-overlay">
     <div class="coming-soon-content">
-      <h2 class="coming-soon-heading">{{ section.settings.heading }}</h2>
+      <h1>{{ section.settings.heading }}</h1>
       <div id="countdown"></div>
-      <a href="{{ routes.root_url | default: '/' }}" class="coming-soon-button">Go Back to Home</a>
+      <a href="/" class="coming-soon-button">Go Back to Home</a>
     </div>
   </div>
 {% endif %}
@@ -27,9 +27,7 @@
   }
 
   /* Coming Soon text */
-  #coming-soon-overlay .coming-soon-heading,
-  #coming-soon-overlay h1,
-  #coming-soon-overlay h2 {
+  #coming-soon-overlay h1 {
     font-size: 80px;
     font-weight: bold;
     color: white;
@@ -62,9 +60,7 @@
     background-color: #e0e900;
   }
   @media (max-width: 768px) {
-    #coming-soon-overlay .coming-soon-heading,
-    #coming-soon-overlay h1,
-    #coming-soon-overlay h2 {
+    #coming-soon-overlay h1 {
       font-size: 50px;
     }
     #countdown {

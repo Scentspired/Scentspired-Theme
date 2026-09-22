@@ -1,19 +1,14 @@
-{%- capture curr_sym -%}{%- render 'store-context', key: 'currency_symbol' -%}{%- endcapture -%}
-{%- capture shipping_threshold_amount -%}{%- render 'store-context', key: 'shipping_threshold_amount' -%}{%- endcapture -%}
-{%- capture shipping_cost_amount -%}{%- render 'store-context', key: 'shipping_cost_amount' -%}{%- endcapture -%}
-{%- capture shipping_threshold_cents -%}{%- render 'store-context', key: 'shipping_threshold_cents' -%}{%- endcapture -%}
-{%- capture shipping_cost_cents -%}{%- render 'store-context', key: 'shipping_cost_cents' -%}{%- endcapture -%}
 <style>
-  .sp-bundle-container {
+  .sp-bundle-container{
     background-color: #f3f3f3;
   }
-  .sp-logo-text {
+  .sp-logo-text{
     color: #cbdd00 !important;
   }
-  .sp-plus-badge {
+  .sp-plus-badge{
     background-color: #cbdd00 !important;
   }
-  .sp-tier-active {
+  .sp-tier-active{
     background-color: #cbdd00 !important;
     border-color: #cbdd00 !important;
   }
@@ -23,11 +18,11 @@
   .sp-discounted-price {
     color: #cbdd00 !important;
   }
-  .sp-product-category-badge {
+  .sp-product-category-badge{
     color: #cbdd00 !important;
     border-color: #cbdd00 !important;
   }
-  .sp-logo-inline {
+  .sp-logo-inline{
     color: #cbdd00 !important;
   }
   .sp-plus-small {
@@ -40,32 +35,32 @@
     border-color: #cbdd00 !important;
     color: #cbdd00 !important;
   }
-  .sp-option-price {
+  .sp-option-price{
     color: #cbdd00 !important;
   }
-  .sp-summary-box {
+  .sp-summary-box{
     border-color: #cbdd00 !important;
   }
-  .sp-recommended-item {
+  .sp-recommended-item{
     background-color: #fff !important;
   }
-  .sp-cart-container {
+  .sp-cart-container{
     background-color: #f5f5f5 !important;
   }
-  .sp-product-details {
+  .sp-product-details{
     background-color: #f3f3f3 !important;
   }
-  .sp-shop-box {
+  .sp-shop-box{
     background-color: #f3f3f3 !important;
   }
-  .sp-section-header {
+  .sp-section-header{
     background-color: #f3f3f3 !important;
     background: #f3f3f3 !important;
   }
-  .sp-benefits-header {
+  .sp-benefits-header{
     background-color: #f3f3f3 !important;
   }
-  .sp-checkout-btn {
+  .sp-checkout-btn{
     background-color: #e5ff00 !important;
     color: #000 !important;
   }
@@ -78,10 +73,10 @@
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
-    z-index: var(--z-modal, 9999);
+    z-index: 9999;
     display: none;
     opacity: 0;
-    transition: opacity var(--transition-base, 0.3s ease);
+    transition: opacity 0.3s ease;
   }
 
   .sp-cart-overlay.sp-active {
@@ -97,11 +92,11 @@
     max-width: 400px;
     height: 100%;
     background: white;
-    z-index: var(--z-toast, 10000);
+    z-index: 10000;
     transform: translateX(100%);
-    transition: transform var(--transition-base, 0.3s ease);
+    transition: transform 0.3s ease;
     overflow-y: auto;
-    font-family: var(--font-family-primary);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     display: none;
   }
 
@@ -242,7 +237,7 @@
   }
 
   .sp-bottle::before {
-    content: '';
+    content: "";
     position: absolute;
     top: -2px;
     left: 50%;
@@ -282,7 +277,7 @@
   }
 
   .sp-single-bottle.originals::before {
-    content: '';
+    content: "";
     position: absolute;
     top: -3px;
     left: 50%;
@@ -316,7 +311,7 @@
   }
 
   .sp-single-bottle.home-scents::before {
-    content: '';
+    content: "";
     position: absolute;
     top: -3px;
     left: 50%;
@@ -736,29 +731,29 @@
 
   .sp-qty-decrease:hover,
   .sp-qty-increase:hover {
-    background: #f5f5f5;
+  background: #f5f5f5;
   }
 
   .sp-qty-increase.sp-qty-disabled {
-    opacity: 0.4 !important;
-    cursor: not-allowed !important;
-    pointer-events: none !important;
-    background: none !important;
+  opacity: 0.4 !important;
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+  background: none !important;
   }
 
   .sp-qty-increase.sp-qty-disabled:hover {
-    background: none !important;
+  background: none !important;
   }
 
   .sp-qty-decrease.sp-qty-disabled {
-    opacity: 0.4 !important;
-    cursor: not-allowed !important;
-    pointer-events: none !important;
-    background: none !important;
+  opacity: 0.4 !important;
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+  background: none !important;
   }
 
   .sp-qty-decrease.sp-qty-disabled:hover {
-    background: none !important;
+  background: none !important;
   }
 
   .sp-quantity-display {
@@ -848,7 +843,7 @@
     flex-shrink: 0;
   }
 
-  .sp-shop-option input[type='radio'] {
+  .sp-shop-option input[type="radio"] {
     position: absolute;
     opacity: 0;
     width: 100%;
@@ -1116,8 +1111,8 @@
     padding: 12px;
     text-align: center;
     border: 1px solid #f0f0f0;
-    display: flex;
-    flex-direction: column;
+     display: flex;
+  flex-direction: column;
   }
 
   .sp-rec-image {
@@ -1213,7 +1208,7 @@
     flex-direction: column;
     align-items: center;
     gap: 4px;
-    flex: 1; /* key */
+     flex: 1; /* key */
   }
 
   .sp-rec-details h4 {
@@ -1269,7 +1264,7 @@
     transition: all 0.2s ease;
     color: #000;
     border: none;
-    margin-top: auto; /* key */
+     margin-top: auto; /* key */
   }
 
   .sp-add-to-cart-btn:hover {
@@ -1329,16 +1324,16 @@
 
   /* Responsive */
   @media (max-width: 480px) {
-    .sp-cart-drawer {
+   .sp-cart-drawer {
       max-width: 80%;
     }
-
+    
     .sp-product-actions {
-      width: 105px;
-    }
-    .sp-remove-product {
-      padding: 0px;
-    }
+    width: 105px;
+}
+.sp-remove-product {
+    padding: 0px;
+}
     .sp-bundle-tiers {
       flex-wrap: wrap;
     }
@@ -1397,28 +1392,29 @@
       font-size: 13px;
     }
   }
-  .sp-original-price-bundle {
+.sp-original-price-bundle{
     font-size: 14px;
     color: #cbdd00 !important;
     line-height: 1;
     font-weight: 700;
-  }
-  .bundle-restrict {
-    color: #000 !important;
-    font-size: 13px;
-    text-align: left;
+}
+.bundle-restrict{
+color: #000 !important;
+font-size: 13px;
+text-align: left;
     font-style: italic;
-  }
-  .sp-logo-image {
-    height: 30px !important; /* adjust as needed */
-    width: auto;
-    display: block;
-  }
-  .sp-rec-link {
-    display: block;
-    text-decoration: none;
-    color: inherit;
-  }
+}
+.sp-logo-image {
+  height: 30px !important;        /* adjust as needed */
+  width: auto;
+  display: block;
+}
+.sp-rec-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
 </style>
 
 {% comment %}
@@ -1432,6 +1428,7 @@
 <!-- Cart Drawer -->
 <div id="sp-cart-drawer" class="sp-cart-drawer">
   <div class="sp-cart-content">
+
     <!-- Header -->
     <div class="sp-cart-header">
       <button class="sp-back-btn" onclick="closeDossierCart()">
@@ -1442,96 +1439,87 @@
       </button>
     </div>
 
-    <!-- Empty Cart State - Full Drawer -->
-    <div
-      class="sp-empty-cart-full-container"
-      id="sp-empty-cart-full-container"
-      {% if cart.items.size > 0 %}
-        style="display: none;"
-      {% endif %}>
-      <div class="sp-empty-cart-content">
-        <h2 class="sp-empty-title">Oops...</h2>
-        <p class="sp-empty-subtitle">You have no items in your bag.</p>
-        <p class="sp-empty-help">Let us help!</p>
+    {% if cart.items.size == 0 %}
+      <!-- Empty Cart State - Full Drawer -->
+      <div class="sp-empty-cart-full-container" id="sp-empty-cart-full-container">
+        <div class="sp-empty-cart-content">
+          <h2 class="sp-empty-title">Oops...</h2>
+          <p class="sp-empty-subtitle">You have no items in your bag.</p>
+          <p class="sp-empty-help">Let us help!</p>
 
-        <!-- Collections Grid -->
-        <div class="sp-collections-grid">
-          {% comment %} You can change these collection handles as needed {% endcomment %}
-          {% assign collection_handles = "men,women,bestsellers,unisex" | split: "," %}
-          {% assign collection_names = "Men Inspired Impressions,Women Inspired Impressions,Best-sellers,Unisex Inspired Impression"
-            | split: ","
-          %}
+          <!-- Collections Grid -->
+          <div class="sp-collections-grid">
+            {% comment %} You can change these collection handles as needed {% endcomment %}
+            {% assign collection_handles = 'men,women,bestsellers,unisex' | split: ',' %}
+            {% assign collection_names = 'Men Inspired Impressions,Women Inspired Impressions,Best-sellers,Unisex Inspired Impression' | split: ',' %}
 
-          {% for handle in collection_handles %}
-            {% assign collection = collections[handle] %}
-            {% assign collection_name = collection_names[forloop.index0] %}
+            {% for handle in collection_handles %}
+              {% assign collection = collections[handle] %}
+              {% assign collection_name = collection_names[forloop.index0] %}
 
-            <a
-              href="{{ collection.url | default: '/collections/all' }}"
-              class="sp-collection-card"
-              onclick="closeDossierCart()">
-              <div class="sp-collection-image">
-                {% if collection.image %}
-                  <img src="{{ collection.image | img_url: '120x120' }}" alt="{{ collection_name }}" loading="lazy">
-                {% else %}
-                  <!-- Fallback placeholder based on collection type -->
-                  <div class="sp-collection-placeholder" data-collection="{{ forloop.index }}">
-                    {% case forloop.index %}
-                      {% when 1 %}
-                        <!-- Impressions placeholder -->
-                        <div class="sp-bottles-group">
-                          <div class="sp-bottle impressions"></div>
-                          <div class="sp-bottle impressions-2"></div>
-                          <div class="sp-bottle impressions-3"></div>
-                        </div>
-                      {% when 2 %}
-                        <!-- Originals placeholder -->
-                        <div class="sp-single-bottle originals"></div>
-                      {% when 3 %}
-                        <!-- Best-sellers placeholder -->
-                        <div class="sp-bottles-group bestsellers">
-                          <div class="sp-bottle best-1"></div>
-                          <div class="sp-bottle best-2"></div>
-                        </div>
-                      {% when 4 %}
-                        <!-- Home Scents placeholder -->
-                        <div class="sp-single-bottle home-scents"></div>
-                    {% endcase %}
-                  </div>
-                {% endif %}
-              </div>
-              <h3 class="sp-collection-name">{{ collection_name }}</h3>
-            </a>
-          {% endfor %}
+              <a href="{{ collection.url | default: '/collections/all' }}" class="sp-collection-card" onclick="closeDossierCart()">
+                <div class="sp-collection-image">
+                  {% if collection.image %}
+                    <img src="{{ collection.image | img_url: '120x120' }}" alt="{{ collection_name }}" loading="lazy">
+                  {% else %}
+                    <!-- Fallback placeholder based on collection type -->
+                    <div class="sp-collection-placeholder" data-collection="{{ forloop.index }}">
+                      {% case forloop.index %}
+                        {% when 1 %}
+                          <!-- Impressions placeholder -->
+                          <div class="sp-bottles-group">
+                            <div class="sp-bottle impressions"></div>
+                            <div class="sp-bottle impressions-2"></div>
+                            <div class="sp-bottle impressions-3"></div>
+                          </div>
+                        {% when 2 %}
+                          <!-- Originals placeholder -->
+                          <div class="sp-single-bottle originals"></div>
+                        {% when 3 %}
+                          <!-- Best-sellers placeholder -->
+                          <div class="sp-bottles-group bestsellers">
+                            <div class="sp-bottle best-1"></div>
+                            <div class="sp-bottle best-2"></div>
+                          </div>
+                        {% when 4 %}
+                          <!-- Home Scents placeholder -->
+                          <div class="sp-single-bottle home-scents"></div>
+                      {% endcase %}
+                    </div>
+                  {% endif %}
+                </div>
+                <h3 class="sp-collection-name">{{ collection_name }}</h3>
+              </a>
+            {% endfor %}
+          </div>
+
+          <!-- Shop All Button -->
+          <a href="https://scentspired.myshopify.com/collections/shop" class="sp-shop-all-btn" onclick="closeDossierCart()">
+            SHOP ALL PERFUMES
+          </a>
+
+          <!-- Free Shipping Text -->
+          <p class="sp-free-shipping-text">Free Shipping over £35 </p>
         </div>
-
-        <!-- Shop All Button -->
-        <a
-          href="https://scentspired.myshopify.com/collections/shop"
-          class="sp-shop-all-btn"
-          onclick="closeDossierCart()">
-          SHOP ALL PERFUMES
-        </a>
-
-        <!-- Free Shipping Text -->
-        <p class="sp-free-shipping-text">Free Shipping over {{ curr_sym }}{{ shipping_threshold_amount }}</p>
       </div>
-    </div>
 
-    <!-- Full Cart Sections -->
-    <div
-      id="sp-full-cart-sections"
-      {% if cart.items.size == 0 %}
-        style="display: none;"
-      {% endif %}>
+      <!-- Hidden sections when cart is empty -->
+      <div id="sp-full-cart-sections" style="display: none;">
+    {% else %}
+      <!-- Visible sections when cart has items -->
+      <div id="sp-empty-cart-full-container" style="display: none;"></div>
+      <div id="sp-full-cart-sections">
+    {% endif %}
+
       <!-- Bundle Offers Section -->
       <div class="sp-bundle-section">
         <div class="sp-bundle-container">
           <div class="sp-bundle-header">
-            <img
-              src="https://scentspired.com/cdn/shop/files/Scentspired_logo.png?v=1758619291&width=200"
-              alt="Scentspired"
-              class="sp-logo-image" />
+<img 
+  src="https://scentspired.com/cdn/shop/files/Scentspired_logo.png?v=1758619291&width=200" 
+  alt="Scentspired" 
+  class="sp-logo-image"
+/>
 
             <div class="sp-info-icon">
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -1541,15 +1529,16 @@
             </div>
           </div>
 
+
           <!-- Updated bundle tiers from 3 to 5 tiers with new discount and shipping structure -->
           <div class="sp-bundle-tiers">
             <div class="sp-tier" data-items="1">
-              <div class="sp-tier-items">Below {{ curr_sym }}{{ shipping_threshold_amount }}</div>
-              <div class="sp-tier-discount">{{ curr_sym }}{{ shipping_cost_amount }} Shipping</div>
+              <div class="sp-tier-items">Below £35</div>
+              <div class="sp-tier-discount">£4.99 Shipping</div>
             </div>
             <div class="sp-tier" data-items="2">
-              <div class="sp-tier-items">{{ curr_sym }}{{ shipping_threshold_amount }}+</div>
-              <div class="sp-tier-discount">Free Shipping</div>
+              <div class="sp-tier-items">£35+</div>
+              <div class="sp-tier-discount">FreeShipping</div>
             </div>
           </div>
           <!-- Free Shipping Threshold -->
@@ -1560,28 +1549,28 @@
                 <circle cx="8" cy="8" r="3" fill="#666"/>
               </svg>
             </div>
-            <span><strong>FREE</strong> shipping on orders over {{ curr_sym }}{{ shipping_threshold_amount }} | {{ curr_sym }}{{ shipping_cost_amount }} shipping under {{ curr_sym }}{{ shipping_threshold_amount }}</span>
+            <span><strong>FREE</strong> shipping on orders over £35 | £4.99 shipping under £35</span>
           </div>
         </div>
       </div>
 
       <!-- Login Section - Updated Design -->
       <div class="sp-login-section">
-        <div class="sp-login-header">
-          <button class="sp-go-to-summary" onclick="scrollToOrderSummary()">
-            <span>Go to Order Summary</span>
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-              <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
+  <div class="sp-login-header">
+    <button class="sp-go-to-summary" onclick="scrollToOrderSummary()">
+      <span>Go to Order Summary</span>
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+        <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
 
-          {% if customer %}
-            <a href="/account" class="sp-login-link">View Account</a>
-          {% else %}
-            <a href="/account/login" class="sp-login-link">Login</a>
-          {% endif %}
-        </div>
-      </div>
+    {% if customer %}
+      <a href="/account" class="sp-login-link">View Account</a>
+    {% else %}
+      <a href="/account/login" class="sp-login-link">Login</a>
+    {% endif %}
+  </div>
+</div>
 
       <!-- Your Cart Section - ALL PRODUCTS VERTICAL -->
       <div class="sp-cart-section">
@@ -1601,14 +1590,10 @@
 
             <!-- SHIPPING LOGIC ONLY: No Discounts -->
             {% assign bundle_discount_percentage = 0 %}
-            {% assign shipping_cost_cents = 799 %}
+            {% assign shipping_cost_cents = 499 %}
 
             {% for item in cart.items %}
-              <div
-                class="sp-product-item"
-                data-key="{{ item.key }}"
-                data-variant-id="{{ item.variant.id }}"
-                data-inventory="{{ item.variant.inventory_quantity | default: 999 }}">
+              <div class="sp-product-item" data-key="{{ item.key }}" data-variant-id="{{ item.variant.id }}" data-inventory="{{ item.variant.inventory_quantity | default: 999 }}">
                 <div class="sp-product-image-container">
                   <img src="{{ item.image | img_url: '120x120' }}" alt="{{ item.title }}" class="sp-product-image">
                 </div>
@@ -1621,14 +1606,9 @@
                       {% assign total_discounted_line_price = original_price_per_item | times: item.quantity %}
 
                       <span class="sp-discounted-price">
-                        {{ curr_sym }}<span
-                          class="price-value"
-                          data-single-price="{{ original_price_per_item | money_without_currency }}"
-                          data-original-single="{{ original_price_per_item | money_without_currency }}"
-                          data-discount="0">
-                          {{- total_discounted_line_price | money_without_currency -}}
-                        </span>
+                        £<span class="price-value" data-single-price="{{ original_price_per_item | money_without_currency }}" data-original-single="{{ original_price_per_item | money_without_currency }}" data-discount="0">{{ total_discounted_line_price | money_without_currency }}</span>
                       </span>
+
                     </div>
                   </div>
 
@@ -1636,14 +1616,14 @@
                     {% if item.product.description != blank %}
                       {{ item.product.description | strip_html | truncate: 60 }}
                     {% else %}
-                      Eau de Parfum, Size: {{ item.variant.option1 | default: "50ml" }} / 1.7oz
+                      Eau de Parfum, Size: {{ item.variant.option1 | default: '50ml' }} / 1.7oz
                     {% endif %}
                   </div>
 
                   <div class="sp-product-vendor">
                     {% if item.product.metafields.custom.inspired_by != blank %}
                       Inspired by {{ item.product.metafields.custom.inspired_by }}
-                    {% elsif item.vendor != blank and item.vendor != "Your Store" %}
+                    {% elsif item.vendor != blank and item.vendor != 'Your Store' %}
                       {{ item.vendor }}
                     {% else %}
                       Dossier Perfumes
@@ -1678,6 +1658,7 @@
         </div>
       </div>
 
+
       <!-- Order Summary Section - Move this right after Pick the Way You Shop -->
       <div class="sp-order-summary-section" id="sp-order-summary">
         <div class="sp-summary-box">
@@ -1689,17 +1670,17 @@
           <div class="sp-summary-details">
             <div class="sp-summary-line">
               <span class="sp-summary-label"> Cart Subtotal </span>
-              <span class="sp-summary-price" id="summary-initial-price">{{ curr_sym }}0.00</span>
+              <span class="sp-summary-price" id="summary-initial-price">£0.00</span>
             </div>
 
             <div class="sp-summary-line">
               <span class="sp-summary-label">Shipping</span>
-              <span class="sp-summary-price" id="sp-shipping-cost">{{ curr_sym }}{{ shipping_cost_amount }}</span>
+              <span class="sp-summary-price" id="sp-shipping-cost">£4.99</span>
             </div>
 
             <div class="sp-summary-line sp-member-discount-line" id="member-discount-line" style="display: none;">
               <span>d<sup>+</sup> Discount: 10% OFF</span>
-              <span id="summary-member-discount">-{{ curr_sym }}0.00</span>
+              <span id="summary-member-discount">-£0.00</span>
             </div>
 
             <div class="sp-tax-note" style="display: none;">
@@ -1726,43 +1707,38 @@
 
         <div class="sp-recommended-products">
           {% comment %} Get products from most-popular collection {% endcomment %}
-          {% assign recommended_collection = collections.bestsellers %}
+          {% assign recommended_collection = collections['bestsellers'] %}
           {% if recommended_collection.products.size > 0 %}
             {% for product in recommended_collection.products limit: 10 %}
               <div class="sp-recommended-item" data-product-id="{{ product.id }}">
                 <a href="{{ product.url }}" class="sp-rec-link">
-                  <div class="sp-rec-image">
-                    {% if product.featured_image %}
-                      <img
-                        src="{{ product.featured_image | img_url: '200x200' }}"
-                        alt="{{ product.title }}"
-                        class="sp-rec-product-image">
+                <div class="sp-rec-image">
+                  {% if product.featured_image %}
+                    <img src="{{ product.featured_image | img_url: '200x200' }}" alt="{{ product.title }}" class="sp-rec-product-image">
+                  {% else %}
+                    <div class="sp-rec-placeholder">
+                      <div class="sp-single-bottle"></div>
+                    </div>
+                  {% endif %}
+                </div>
+                <div class="sp-rec-details">
+                  <h4>{{ product.title | upcase }}</h4>
+                  <p class="sp-rec-vendor">
+                    {% if product.vendor and product.vendor != 'Your Store' %}
+                      {{ product.vendor }}
                     {% else %}
-                      <div class="sp-rec-placeholder">
-                        <div class="sp-single-bottle"></div>
-                      </div>
+                      Dossier Perfumes
                     {% endif %}
-                  </div>
-                  <div class="sp-rec-details">
-                    <h4>{{ product.title | upcase }}</h4>
-                    <p class="sp-rec-vendor">
-                      {% if product.vendor and product.vendor != "Your Store" %}
-                        {{ product.vendor }}
-                      {% else %}
-                        Dossier Perfumes
-                      {% endif %}
-                    </p>
-                    {% if product.metafields.custom.inspired_by %}
-                      <p class="sp-rec-inspired">Inspired by {{ product.metafields.custom.inspired_by }}</p>
-                    {% endif %}
-                    <div class="sp-rec-price">{{ curr_sym }}{{ product.price | money_without_currency }}</div>
-                  </div>
+                  </p>
+                  {% if product.metafields.custom.inspired_by %}
+                    <p class="sp-rec-inspired">Inspired by {{ product.metafields.custom.inspired_by }}</p>
+                  {% endif %}
+                  <div class="sp-rec-price">£{{ product.price | money_without_currency }}</div>
                 </a>
-                <button
-                  class="sp-add-to-cart-btn"
-                  onclick="addDossierRecommended('{{ product.variants.first.id }}', '{{ product.title | escape }}', '{{ product.featured_image | img_url: '120x120' }}', {{ product.price }}, {{ product.compare_at_price | default: product.price }})">
-                  ADD TO CART
-                </button>
+                  <button class="sp-add-to-cart-btn" onclick="addDossierRecommended('{{ product.variants.first.id }}', '{{ product.title | escape }}', '{{ product.featured_image | img_url: '120x120' }}', {{ product.price }}, {{ product.compare_at_price | default: product.price }})">
+                    ADD TO CART
+                  </button>
+                </div>
               </div>
             {% endfor %}
           {% else %}
@@ -1780,8 +1756,10 @@
               <div class="sp-rec-details">
                 <h4>DISCOVERY SET</h4>
                 <p class="sp-rec-vendor">Dossier Perfumes</p>
-                <div class="sp-rec-price">{{ curr_sym }}99</div>
-                <button class="sp-add-to-cart-btn" onclick="addDossierRecommended('discovery-set')">ADD TO CART</button>
+                <div class="sp-rec-price">£99</div>
+                <button class="sp-add-to-cart-btn" onclick="addDossierRecommended('discovery-set')">
+                  ADD TO CART
+                </button>
               </div>
             </div>
 
@@ -1795,8 +1773,10 @@
                 <h4>WOODY SAGE</h4>
                 <p class="sp-rec-vendor">Inspired by</p>
                 <p class="sp-rec-inspired">Jo Malone's Wood Sage & Sea Salt</p>
-                <div class="sp-rec-price">{{ curr_sym }}29</div>
-                <button class="sp-add-to-cart-btn" onclick="addDossierRecommended('woody-sage')">ADD TO CART</button>
+                <div class="sp-rec-price">£29</div>
+                <button class="sp-add-to-cart-btn" onclick="addDossierRecommended('woody-sage')">
+                  ADD TO CART
+                </button>
               </div>
             </div>
 
@@ -1810,7 +1790,7 @@
                 <h4>FLORA LAVENDER</h4>
                 <p class="sp-rec-vendor">Inspired by</p>
                 <p class="sp-rec-inspired">YSL's Libre</p>
-                <div class="sp-rec-price">{{ curr_sym }}29</div>
+                <div class="sp-rec-price">£29</div>
                 <button class="sp-add-to-cart-btn" onclick="addDossierRecommended('flora-lavender')">
                   ADD TO CART
                 </button>
@@ -1824,9 +1804,12 @@
       <div class="sp-checkout-section">
         <button class="sp-checkout-btn" onclick="proceedToDossierCheckout()">
           GO TO CHECKOUT
-          <span class="sp-checkout-total" id="checkout-total">{{ curr_sym }}0.00</span>
+          <span class="sp-checkout-total" id="checkout-total">£0.00</span>
         </button>
+
+
       </div>
+
     </div>
   </div>
 </div>
@@ -1836,9 +1819,6 @@
 let isUserLoggedIn = false;
 let currentShopMethod = 'guest';
 let isProcessingCartAction = false; // Added flag to prevent duplicate submissions
-const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || {{ curr_sym | json }};
-const freeShippingThreshold = Number((window.__STORE_CONFIG && window.__STORE_CONFIG.freeShippingThreshold) || {{ shipping_threshold_cents | json }});
-const defaultShippingCost = Number((window.__STORE_CONFIG && window.__STORE_CONFIG.shippingCost) || {{ shipping_cost_cents | json }});
 
 // Helper function to generate HTML for a single cart item
 function generateCartItemHtml(item) {
@@ -1877,7 +1857,7 @@ function generateCartItemHtml(item) {
   </h3>
   <div class="sp-product-pricing">
     <span class="sp-discounted-price">
-      ${currSym}<span class="price-value"
+      £<span class="price-value"
         data-single-price="${(originalPricePerItem / 100).toFixed(2)}"
         data-original-single="${(originalPricePerItem / 100).toFixed(2)}"
         data-discount="0">${(totalDiscountedLinePrice / 100).toFixed(2)}
@@ -2222,47 +2202,13 @@ function selectShopMethod(method) {
 
 // OPTIMIZED: Single function to update all dynamic elements with one fetch
 function updateAllDossierDynamicElements(cart) {
-  // ZERO-PRICE PROTECTION: Auto-purge any $0.00 items unconditionally
-  const zeroPriceItems = (cart.items || []).filter(item => {
-    return item.price <= 0 || item.original_price <= 0 || item.line_price <= 0 || (item.final_price !== undefined && item.final_price <= 0);
-  });
-
-  if (zeroPriceItems.length > 0 && !window.isPurgingZeroPriceItems) {
-    window.isPurgingZeroPriceItems = true;
-    const updates = {};
-    zeroPriceItems.forEach(item => {
-      updates[item.key || item.id] = 0;
-    });
-    fetch('/cart/update.js', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({ updates })
-    })
-      .then(r => {
-        if (!r.ok) throw new Error('Failed to update cart');
-        return r.json();
-      })
-      .then(cleanCart => {
-        window.isPurgingZeroPriceItems = false;
-        if (typeof updateDossierCartUI === 'function') {
-          updateDossierCartUI(cleanCart);
-        }
-      })
-      .catch(() => {
-        window.isPurgingZeroPriceItems = false;
-      });
-  }
-
   // Calculate totals once
   let totalItems = 0;
   let subtotal = 0;
 
-  (cart.items || []).forEach(item => {
-    // Only count items with positive price
-    if (item.original_line_price > 0) {
-      totalItems += item.quantity;
-      subtotal += item.original_line_price;
-    }
+  cart.items.forEach(item => {
+    totalItems += item.quantity;
+    subtotal += item.original_line_price;
   });
 
   // 1. Update Progress Lines
@@ -2280,40 +2226,26 @@ function updateAllDossierDynamicElements(cart) {
   const tiers = document.querySelectorAll('.sp-tier');
   tiers.forEach(tier => tier.classList.remove('sp-tier-active'));
 
-  if (subtotal >= freeShippingThreshold) {
+  if (subtotal >= 3500) { // £70 or more
     const tier2 = document.querySelector('[data-items="2"]');
     if (tier2) tier2.classList.add('sp-tier-active');
-  } else {
+  } else { // Less than $70
     const tier1 = document.querySelector('[data-items="1"]');
     if (tier1) tier1.classList.add('sp-tier-active');
   }
 
   // 3. Update Pricing Display
   let shipping = 0;
-  if (subtotal > 0 && subtotal < freeShippingThreshold) {
-    shipping = defaultShippingCost;
+  if (subtotal < 3500) {
+    shipping = 499; // £7.99
   } else {
     shipping = 0; // FREE
   }
 
-  const finalTotal = subtotal > 0 ? (subtotal + shipping) : 0;
+  const finalTotal = subtotal + shipping;
   const checkoutTotal = document.getElementById('checkout-total');
   if (checkoutTotal) {
-    checkoutTotal.textContent = `${currSym}${(finalTotal / 100).toFixed(2)}`;
-  }
-
-  // Update Checkout Button State (Lock if cart is empty or subtotal <= 0)
-  const checkoutBtn = document.querySelector('.sp-checkout-btn');
-  if (checkoutBtn) {
-    if (subtotal <= 0 || totalItems === 0) {
-      checkoutBtn.disabled = true;
-      checkoutBtn.style.opacity = '0.5';
-      checkoutBtn.style.cursor = 'not-allowed';
-    } else {
-      checkoutBtn.disabled = false;
-      checkoutBtn.style.opacity = '1';
-      checkoutBtn.style.cursor = 'pointer';
-    }
+    checkoutTotal.textContent = `£${(finalTotal / 100).toFixed(2)}`;
   }
 
   // Update order summary
@@ -2325,7 +2257,7 @@ function updateOrderSummary(subtotal, shipping) {
   // Show initial price (no discounts)
   const initialPrice = document.getElementById('summary-initial-price');
   if (initialPrice) {
-    initialPrice.textContent = `${currSym}${(subtotal / 100).toFixed(2)}`;
+    initialPrice.textContent = `£${(subtotal / 100).toFixed(2)}`;
   }
 
   // Update shipping UI
@@ -2333,7 +2265,7 @@ function updateOrderSummary(subtotal, shipping) {
   if (shippingCost) {
     shippingCost.textContent = shipping === 0
       ? 'FREE'
-      : `${currSym}${(shipping / 100).toFixed(2)}`;
+      : `£${(shipping / 100).toFixed(2)}`;
   }
 
   // Hide discount lines since there are no discounts
@@ -2370,6 +2302,7 @@ async function updateDossierItemQuantity(key, newQuantity) {
       const cartItem = cart.items.find(item => item.key === key);
       const inventory = parseInt(itemEl.getAttribute('data-inventory') || '999', 10);
       const plusBtn = itemEl.querySelector('.sp-qty-increase');
+      
       if (plusBtn) {
         if (cartItem && cartItem.quantity >= inventory) {
           plusBtn.classList.add('sp-qty-disabled');
@@ -2518,64 +2451,7 @@ function addDossierRecommended(variantId, productTitle, productImage, productPri
 
 
 function proceedToDossierCheckout() {
-  const checkoutBtn = document.querySelector('.sp-checkout-btn');
-  if (checkoutBtn && checkoutBtn.disabled) {
-    return;
-  }
-
-  if (checkoutBtn) {
-    checkoutBtn.disabled = true;
-    checkoutBtn.style.opacity = '0.7';
-  }
-
-  fetch('/cart.js')
-    .then(res => {
-      if (!res.ok) throw new Error('Failed to fetch cart');
-      return res.json();
-    })
-    .then(cart => {
-      const items = cart.items || [];
-      const zeroItems = items.filter(i => i.price <= 0 || i.original_price <= 0 || i.line_price <= 0 || (i.final_price !== undefined && i.final_price <= 0));
-
-      if (items.length === 0) {
-        alert('Your cart is empty.');
-        if (checkoutBtn) {
-          checkoutBtn.disabled = false;
-          checkoutBtn.style.opacity = '1';
-        }
-        return;
-      }
-
-      if (zeroItems.length > 0) {
-        alert(`Your cart contains zero-priced items (${currSym}0.00) that cannot be purchased individually. Please configure a valid bundle set.`);
-        updateAllDossierDynamicElements(cart);
-        if (checkoutBtn) {
-          checkoutBtn.disabled = false;
-          checkoutBtn.style.opacity = '1';
-        }
-        return;
-      }
-
-      if (cart.total_price <= 0) {
-        alert(`Order subtotal cannot be ${currSym}0.00. Please add a valid product to proceed.`);
-        if (checkoutBtn) {
-          checkoutBtn.disabled = false;
-          checkoutBtn.style.opacity = '1';
-        }
-        return;
-      }
-
-      // 100% Valid Cart -> Proceed to Checkout
-      window.location.href = '/checkout';
-    })
-    .catch(err => {
-      console.error('Checkout verification error:', err);
-      if (checkoutBtn) {
-        checkoutBtn.disabled = false;
-        checkoutBtn.style.opacity = '1';
-      }
-      alert('Unable to verify cart. Please refresh the page and try again.');
-    });
+  window.location.href = '/checkout';
 }
 
 function initializeDossierCartTriggers() {
