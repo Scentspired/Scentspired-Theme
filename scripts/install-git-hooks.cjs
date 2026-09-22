@@ -25,8 +25,7 @@ if (fs.existsSync(gitHooksDir)) {
 node scripts/guard-live-repos.cjs --remote "$2" || exit 1
 
 echo ""
-echo "🛡️  Intercepting Git Push: Running 10-Layer Master Quality Gate..."
-echo ""
+echo "🛡️  [PRE-PUSH] Evaluating Scentspired Theme Guardian Quality Gate..."
 
 node runner.cjs --target=.
 
@@ -39,7 +38,6 @@ if [ $STATUS -ne 0 ]; then
   exit 1
 fi
 
-echo ""
 echo "✅ Quality Gate Passed. Proceeding with Git push..."
 echo ""
 exit 0

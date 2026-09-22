@@ -1,0 +1,77 @@
+name: Auto-Update UAE Live Store
+
+# ==============================================================================
+# 🚀 SCENTSPIRED UAE LIVE AUTOMATION PIPELINE
+# ==============================================================================
+# STRICT POLICY:
+# - ONLY pushes to Scentspired-UAE (which auto-updates UAE Live via Shopify).
+# - NEVER pushes to Scentspired-UK or Scentspired-USA (permanently locked).
+# ==============================================================================
+
+on:
+  workflow_run:
+    workflows: ["Scentspired Core Theme Quality Gate"]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy-uae-live:
+    name: Sync & Deploy to UAE Live Store
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
+
+    steps:
+      - name: 🔒 Assert Policy Lockdown (UK & USA Safety Guard)
+        run: |
+          echo "=============================================================="
+          echo "🛡️ SCENTSPIRED DEPLOYMENT POLICY ENFORCEMENT"
+          echo "   Target Store : UAE Live Store (Scentspired-UAE)"
+          echo "   Lockdown     : UK & USA are strictly READ-ONLY (Zero-Push)"
+          echo "=============================================================="
+
+      - name: Checkout Upstream SSOT (Scentspired-Theme)
+        uses: actions/checkout@v4
+        with:
+          path: Scentspired-Theme
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+          cache-dependency-path: Scentspired-Theme/package-lock.json
+
+      - name: Install Dependencies
+        working-directory: Scentspired-Theme
+        run: npm ci --prefer-offline --no-audit --no-fund
+
+      - name: Validate Quality Gates (UAE Scope)
+        working-directory: Scentspired-Theme
+        run: node runner.cjs --scope=core
+
+      - name: Checkout Target Repo (Scentspired-UAE)
+        uses: actions/checkout@v4
+        with:
+          repository: Scentspired/Scentspired-UAE
+          path: Scentspired-UAE
+          token: ${{ secrets.SYNC_TOKEN || secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Configure Git Author
+        working-directory: Scentspired-UAE
+        run: |
+          git config user.name "Scentspired Auto-Sync Engine"
+          git config user.email "bot@scentspired.com"
+
+      - name: Execute UAE Live Synchronization
+        working-directory: Scentspired-Theme
+        run: |
+          node engine/sync-regions.cjs --target=uae
+
+      - name: Verification & Safety Summary
+        run: |
+          echo "=============================================================="
+          echo "✅ UAE Live auto-sync successfully completed."
+          echo "🔒 UK and USA repositories remained untouched and locked."
+          echo "=============================================================="

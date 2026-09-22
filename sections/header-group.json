@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "name": "t:sections.header.name",
   "type": "header",
@@ -40,13 +31,7 @@
     },
     "header": {
       "type": "header",
-      "custom_css": [
-        ".header {position: absolute; max-width: 2100px; width: 100%; z-index: 1000;}",
-        "@media only screen and (min-width: 1440px) {.header__inline-menu {padding-left: 300px !important; }}",
-        "@media only screen and (min-width: 1251px) and (max-width: 1329px) {.header__inline-menu {padding-left: 70px !important; }}",
-        "@media only screen and (min-width: 1440px) and (max-width: 1510px) {.header__inline-menu {padding-left: 163px !important; }}",
-        "@media only screen and (min-width: 1330px) and (max-width: 1439px) {.header__inline-menu {padding-left: 110px !important; }}"
-      ],
+      "custom_css": [],
       "settings": {
         "logo_position": "middle-left",
         "mobile_logo_position": "center",

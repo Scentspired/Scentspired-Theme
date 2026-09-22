@@ -34,11 +34,15 @@
     border-radius: 15px;
     overflow: hidden;
     scroll-snap-align: start;
+    aspect-ratio: 784 / 1172;
+    background-color: #1a1a1a;
   }
 
-  .collection-card img {
+  .collection-card img,
+  .collection-card video,
+  .collection-video {
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: cover;
     display: block;
     border-radius: 15px;
@@ -102,10 +106,13 @@
       width: 100%;
       max-width: 392px;
       height: 240px;
+      aspect-ratio: auto;
       margin: 0 auto;
     }
 
-    .collection-card img {
+    .collection-card img,
+    .collection-card video,
+    .collection-video {
       width: 100%;
       height: 240px;
       object-fit: cover;
@@ -143,6 +150,8 @@
     .collection-card {
       flex: 1 1 calc(33.333% - 13.33px);
       max-width: calc(33.333% - 13.33px);
+      aspect-ratio: 784 / 1172;
+      height: auto;
     }
 
     .mobile-arrows {
@@ -188,27 +197,53 @@
   <div class="featured-collections-wrapper" id="collectionSlider">
     {% for block in section.blocks %}
       {% assign collection = collections[block.settings.collection] %}
-      {% if collection != blank %}
+      {% if collection != blank or block.settings.title != blank %}
         <div class="collection-card">
           <a
-            href="{{ block.settings.button_link }}"
+            href="{{ block.settings.button_link | default: collection.url | default: '#' }}"
             aria-label="Shop {{ block.settings.title | default: collection.title }}"
-            style="text-decoration: none; color: inherit;">
+            style="text-decoration: none; color: inherit; display: block; width: 100%; height: 100%;">
             {% if block.settings.video_url != blank %}
               <video
-                class="collection-video"
+                class="collection-video lazy-video"
+                data-src="{{ block.settings.video_url }}"
                 src="{{ block.settings.video_url }}"
                 autoplay
                 muted
                 loop
-                playsinline></video>
+                playsinline
+                preload="metadata"
+                style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px; display: block;">
+                <track kind="captions" src="data:text/vtt,WEBVTT" srclang="en" label="English">
+              </video>
+            {% elsif collection.image != blank %}
+              <img
+                class="collection-image"
+                src="{{ collection.image | image_url: width: 600, format: 'webp' }}"
+                alt="{{ block.settings.title | default: collection.title | escape }}"
+                loading="lazy"
+                decoding="async"
+                width="600"
+                height="{{ 600 | divided_by: collection.image.aspect_ratio | default: 897 | round }}"
+                style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px; display: block;">
+            {% elsif block.settings.mobile_image != blank %}
+              <img
+                class="collection-image"
+                src="{{ block.settings.mobile_image | image_url: width: 600, format: 'webp' }}"
+                alt="{{ block.settings.title | default: 'Collection' | escape }}"
+                loading="lazy"
+                decoding="async"
+                width="600"
+                height="{{ 600 | divided_by: block.settings.mobile_image.aspect_ratio | default: 897 | round }}"
+                style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px; display: block;">
             {% else %}
-              <!-- Fallback image if video not added -->
-              <img src="{{ collection.image | img_url: 'master' }}" alt="{{ collection.title }}">
+              <div class="ai-collection-placeholder" style="width: 100%; height: 100%; background-color: #1a1a1a; display: flex; align-items: center; justify-content: center; border-radius: 15px;">
+                <svg style="width: 35%; height: 35%; opacity: 0.15;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+              </div>
             {% endif %}
           </a>
-          <div class="collection-content">{{ block.settings.title }}</div>
-          <a href="{{ block.settings.button_link }}" class="collection-button">
+          <div class="collection-content" style="z-index: 2;">{{ block.settings.title }}</div>
+          <a href="{{ block.settings.button_link | default: collection.url | default: '#' }}" class="collection-button" style="z-index: 2;">
             {{ block.settings.button_text }}
           </a>
         </div>
@@ -238,26 +273,69 @@
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const leftBtn = document.getElementById('arrow-left');
-    const rightBtn = document.getElementById('arrow-right');
-    const slider = document.getElementById('collectionSlider');
+  (function () {
+    function initFeaturedCollections() {
+      const leftBtn = document.getElementById('arrow-left');
+      const rightBtn = document.getElementById('arrow-right');
+      const slider = document.getElementById('collectionSlider');
 
-    if (!slider || !leftBtn || !rightBtn) return;
+      if (slider && leftBtn && rightBtn && window.innerWidth >= 768) {
+        const scrollAmount = () => slider.offsetWidth * 0.9;
+        leftBtn.addEventListener('click', () => {
+          slider.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
+        });
+        rightBtn.addEventListener('click', () => {
+          slider.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
+        });
+      }
 
-    // Only enable slider functionality on desktop
-    if (window.innerWidth >= 768) {
-      const scrollAmount = () => slider.offsetWidth * 0.9;
+      // Video Facade Pattern: lazy-load, hover activation, and pause when out of view
+      const lazyVideos = document.querySelectorAll('.featured-collections-section .lazy-video');
+      if (!lazyVideos.length) return;
 
-      leftBtn.addEventListener('click', () => {
-        slider.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
+      function playVideo(video) {
+        if (!video) return;
+        if (video.dataset.src && !video.src) {
+          video.src = video.dataset.src;
+          video.removeAttribute('data-src');
+          video.load();
+        }
+        video.style.display = 'block';
+        video.play().catch(() => {});
+      }
+
+      // Desktop hover facade trigger
+      document.querySelectorAll('.featured-collections-section .collection-card').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+          const video = card.querySelector('.lazy-video');
+          playVideo(video);
+        }, { passive: true });
       });
 
-      rightBtn.addEventListener('click', () => {
-        slider.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
-      });
+      if ('IntersectionObserver' in window) {
+        const videoObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            const video = entry.target;
+            if (entry.isIntersecting) {
+              playVideo(video);
+            } else if (video.src) {
+              video.pause();
+            }
+          });
+        }, { rootMargin: '200px 0px', threshold: 0.15 });
+
+        lazyVideos.forEach(v => videoObserver.observe(v));
+      } else {
+        lazyVideos.forEach(v => playVideo(v));
+      }
     }
-  });
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initFeaturedCollections);
+    } else {
+      initFeaturedCollections();
+    }
+  })();
 </script>
 
 {% schema %}

@@ -96,7 +96,8 @@ const clarityBugs = [
   },
   {
     name: "SyntaxError: Invalid RegExp in predictive-search",
-    file: "predictive-search.js",
+    file: "search--predictive.js",
+    altFile: "predictive-search.js",
     pattern: "escaperegexp",
   },
 ];
@@ -113,7 +114,7 @@ let missed = 0;
 for (const bug of clarityBugs) {
   const found = data.violations.find(
     v =>
-      v.file.includes(bug.file) &&
+      (v.file.includes(bug.file) || (bug.altFile && v.file.includes(bug.altFile))) &&
       (v.message.toLowerCase().includes(bug.pattern) || v.code.toLowerCase().includes(bug.pattern))
   );
 
@@ -122,9 +123,16 @@ for (const bug of clarityBugs) {
   if (!fs.existsSync(filePath)) {
     filePath = path.join(TARGET_ROOT, "assets", bug.file);
   }
+  if (!fs.existsSync(filePath) && bug.altFile) {
+    filePath = path.join(TARGET_ROOT, "assets", bug.altFile);
+  }
   let isPatchedInCode = false;
   if (fs.existsSync(filePath)) {
-    const content = fs.readFileSync(filePath, "utf8");
+    let content = fs.readFileSync(filePath, "utf8");
+    const carouselPath = path.join(TARGET_ROOT, "assets", "scentspired--product-carousel.js");
+    if (fs.existsSync(carouselPath)) {
+      content += "\n" + fs.readFileSync(carouselPath, "utf8");
+    }
     if (
       bug.pattern === "selectbrand" &&
       (content.includes(`replace(/'/g, "\\\\'")`) ||

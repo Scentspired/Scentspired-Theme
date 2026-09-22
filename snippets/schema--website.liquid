@@ -1,0 +1,26 @@
+{%- comment -%}
+  Structured Data: WebSite
+  Canonical WebSite entity with Google Sitelinks Searchbox integration.
+  Blast radius: SEO metadata only. Non-blocking.
+{%- endcomment -%}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "{{ shop.url }}/#website",
+  "name": {{ shop.name | json }},
+  "url": {{ shop.url | json }},
+  "publisher": {
+    "@id": "{{ shop.url }}/#organization"
+  },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "{{ shop.url }}/search?q={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>

@@ -1,17 +1,8 @@
-{%- liquid
-  assign curr_sym = cart.currency.symbol | default: '$'
-  if cart.currency.iso_code == 'GBP' or shop.currency == 'GBP' or shop.domain contains 'scentspired.co.uk'
-    assign shipping_threshold_amount = '35'
-    assign shipping_cost_amount = '3.95'
-    assign shipping_threshold_cents = 3500
-    assign shipping_cost_cents = 395
-  else
-    assign shipping_threshold_amount = '70'
-    assign shipping_cost_amount = '7.99'
-    assign shipping_threshold_cents = 7000
-    assign shipping_cost_cents = 799
-  endif
--%}
+{%- capture curr_sym -%}{%- render 'store-context', key: 'currency_symbol' -%}{%- endcapture -%}
+{%- capture shipping_threshold_amount -%}{%- render 'store-context', key: 'shipping_threshold_amount' -%}{%- endcapture -%}
+{%- capture shipping_cost_amount -%}{%- render 'store-context', key: 'shipping_cost_amount' -%}{%- endcapture -%}
+{%- capture shipping_threshold_cents -%}{%- render 'store-context', key: 'shipping_threshold_cents' -%}{%- endcapture -%}
+{%- capture shipping_cost_cents -%}{%- render 'store-context', key: 'shipping_cost_cents' -%}{%- endcapture -%}
 <style>
   .sp-bundle-container {
     background-color: #f3f3f3;
@@ -87,10 +78,10 @@
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
-    z-index: 9999;
+    z-index: var(--z-modal, 9999);
     display: none;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity var(--transition-base, 0.3s ease);
   }
 
   .sp-cart-overlay.sp-active {
@@ -106,11 +97,11 @@
     max-width: 400px;
     height: 100%;
     background: white;
-    z-index: 10000;
+    z-index: var(--z-toast, 10000);
     transform: translateX(100%);
-    transition: transform 0.3s ease;
+    transition: transform var(--transition-base, 0.3s ease);
     overflow-y: auto;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: var(--font-family-primary);
     display: none;
   }
 
@@ -1845,9 +1836,9 @@
 let isUserLoggedIn = false;
 let currentShopMethod = 'guest';
 let isProcessingCartAction = false; // Added flag to prevent duplicate submissions
-const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || {{ curr_sym | json }} || '$';
-const freeShippingThreshold = (window.__STORE_CONFIG && window.__STORE_CONFIG.freeShippingThreshold) || {{ shipping_threshold_cents | json }} || 7000;
-const defaultShippingCost = (window.__STORE_CONFIG && window.__STORE_CONFIG.shippingCost) || {{ shipping_cost_cents | json }} || 799;
+const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || {{ curr_sym | json }};
+const freeShippingThreshold = Number((window.__STORE_CONFIG && window.__STORE_CONFIG.freeShippingThreshold) || {{ shipping_threshold_cents | json }});
+const defaultShippingCost = Number((window.__STORE_CONFIG && window.__STORE_CONFIG.shippingCost) || {{ shipping_cost_cents | json }});
 
 // Helper function to generate HTML for a single cart item
 function generateCartItemHtml(item) {

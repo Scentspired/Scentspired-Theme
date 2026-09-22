@@ -1,7 +1,9 @@
 name: Sync Core Updates to Regional Stores
 
 on:
-  push:
+  workflow_run:
+    workflows: ["Scentspired Core Theme Quality Gate"]
+    types: [completed]
     branches: [main]
   workflow_dispatch:
 
@@ -9,17 +11,11 @@ jobs:
   notify-sync:
     name: Notify Regional Stores of Upstream Release
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
 
     steps:
-      - name: Checkout Scentspired-Theme
-        uses: actions/checkout@v4
-
-      - name: Validate Core Theme Quality Gate
-        run: |
-          npm ci
-          node runner.cjs --target=.
-
       - name: Upstream Release Log
         run: |
-          echo "✅ Scentspired-Theme core update verified and ready for regional sync."
-          echo "Commit SHA: ${{ github.sha }}"
+          echo "✅ Scentspired-Theme core update verified."
+          echo "🇦🇪 UAE Live: Handled automatically via auto-update-uae-live.yml pipeline."
+          echo "🔒 UK & USA: Strictly locked to READ-ONLY (Zero-Push policy active)."

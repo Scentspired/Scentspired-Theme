@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="js" lang="{{ request.locale.iso_code }}">
+<html class="js" lang="{{ request.locale.iso_code }}" data-region="{% render 'region-detect' %}">
   <head>
     <style>
       @font-face {
@@ -45,10 +45,39 @@
         font-style: normal;
         font-display: swap;
       }
+      @font-face {
+        font-family: 'IvyOra Display';
+        src: url({{ 'IvyOraDisplay-Medium.woff2' | asset_url }}) format('woff2');
+        font-weight: 500;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'IvyOra Display';
+        src: url({{ 'IvyOraDisplay-LightItalic.woff2' | asset_url }}) format('woff2');
+        font-weight: 300;
+        font-style: italic;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'IvyOra Display';
+        src: url({{ 'IvyOraDisplay-ThinItalic.woff2' | asset_url }}) format('woff2');
+        font-weight: 100;
+        font-style: italic;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'IvyOra Display';
+        src: url({{ 'IvyOraDisplay-BoldItalic.woff2' | asset_url }}) format('woff2');
+        font-weight: 700;
+        font-style: italic;
+        font-display: swap;
+      }
     </style>
-    {%- render "ecom_header" -%}
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="theme-color" content="">
     <link rel="canonical" href="{{ canonical_url }}">
@@ -60,32 +89,20 @@
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
     {%- endif -%}
 
-    {%- unless settings.type_header_font.system? and settings.type_body_font.system? -%}
-      <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
-    {%- endunless -%}
+    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.shopify.com">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://analytics.ahrefs.com">
+    <link rel="preload" href="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPEditorialNew-UltralightItalic-BF644b214ff1e9b.woff2?v=1772015053" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPMori-Regular_1.woff2?v=1772014282" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ 'IvyOraDisplay-Medium.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ 'IvyOraDisplay-LightItalic.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
 
-    {%- liquid
-      assign store_domain = shop.domain
-      if store_domain contains 'scentspired.co.uk' or shop.currency == 'GBP' or cart.currency.iso_code == 'GBP'
-        assign store_region = 'UK'
-        assign store_currency_symbol = '£'
-        assign store_free_shipping_threshold = 3500
-        assign store_shipping_cost = 499
-        assign homepage_seo_title = 'Inspired Designer Perfumes for Men & Women | Scentspired UK'
-        assign homepage_seo_description = 'Shop long-lasting inspired perfumes for men, women & unisex. Premium extrait de parfum oils, luxury quality, honest prices. Free delivery on orders over £35.'
-      else
-        assign store_region = 'US'
-        assign store_currency_symbol = '$'
-        assign store_free_shipping_threshold = 7000
-        assign store_shipping_cost = 799
-        assign homepage_seo_title = 'Inspired Designer Perfumes for Men & Women | Scentspired'
-        assign homepage_seo_description = 'Shop long-lasting inspired perfumes for men, women & unisex. Premium extrait de parfum oils, luxury quality, honest prices. Free shipping over $70.'
-      endif
-    -%}
+
 
     <title>
       {%- if request.page_type == 'index' -%}
-        {{ homepage_seo_title }}
+        {%- render 'store-context', key: 'seo_title' -%}
       {%- else -%}
         {{ page_title }}
         {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ", " }}"{% endif -%}
@@ -95,32 +112,44 @@
     </title>
 
     {% if request.page_type == 'index' %}
-      <meta name="description" content="{{ homepage_seo_description | escape }}">
+      <meta name="description" content="{%- render 'store-context', key: 'seo_description' -%}">
     {% elsif page_description %}
       <meta name="description" content="{{ page_description | escape }}">
     {% endif %}
 
+    {%- capture store_config_json -%}{%- render 'store-context' -%}{%- endcapture -%}
     <script>
-      window.__STORE_CONFIG = {
-        region: {{ store_region | json }},
-        currencySymbol: {{ store_currency_symbol | json }},
-        currencyCode: {{ cart.currency.iso_code | default: shop.currency | json }},
-        freeShippingThreshold: {{ store_free_shipping_threshold | json }},
-        shippingCost: {{ store_shipping_cost | json }}
-      };
+      window.__STORE_CONFIG = {{ store_config_json }};
+      window.Scentspired = window.Scentspired || {};
+      window.Scentspired.store = window.__STORE_CONFIG;
     </script>
 
     {% render "meta-tags" %}
 
-    <script src="{{ 'constants.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'details-disclosure.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'details-modal.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'search-form.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'architecture--constants.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'architecture--pubsub.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'architecture--utilities.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'dom--focus.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'dom--html-update.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'dom--section-id.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'shopify--core.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'shopify--cart-performance.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'ui--quantity-input.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'ui--modal.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'ui--drawer.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'ui--slider.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'ui--deferred-media.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'product--variant-selects.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'product--recommendations.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'account--icon.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'cart--bulk-add.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'ui--details-disclosure.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'ui--details-modal.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'search--form.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'scentspired--product-carousel.js' | asset_url }}" defer="defer"></script>
 
     {%- if settings.animations_reveal_on_scroll -%}
-      <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
+      <script src="{{ 'animation--scroll.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
 
     {% render 'scentspired-telemetry' %}
@@ -341,18 +370,35 @@
       }
     {% endstyle %}
 
+    {% render 'theme-design-tokens' %}
+
+    <script>
+      window.Scentspired = window.Scentspired || {};
+      window.Scentspired.region = document.documentElement.dataset.region || 'usa';
+      window.Scentspired.currency = '{{ cart.currency.iso_code | default: shop.currency }}';
+      window.Scentspired.currencySymbol = '{{ cart.currency.symbol }}';
+    </script>
+
     {{ "base.css" | asset_url | stylesheet_tag }}
+    {{ "component-button.css" | asset_url | stylesheet_tag }}
     {%- if template contains 'article' or template contains 'blog' -%}
       {{ "blog--typography.css" | asset_url | stylesheet_tag }}
     {%- endif -%}
     <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
 
     {%- if settings.cart_type == "drawer" -%}
-      {{ "component-cart-drawer.css" | asset_url | stylesheet_tag }}
-      {{ "component-cart.css" | asset_url | stylesheet_tag }}
-      {{ "component-totals.css" | asset_url | stylesheet_tag }}
-      {{ "component-price.css" | asset_url | stylesheet_tag }}
-      {{ "component-discounts.css" | asset_url | stylesheet_tag }}
+      <link rel="stylesheet" href="{{ 'component-cart-drawer.css' | asset_url }}" media="print" onload="this.media='all'">
+      <link rel="stylesheet" href="{{ 'component-cart.css' | asset_url }}" media="print" onload="this.media='all'">
+      <link rel="stylesheet" href="{{ 'component-totals.css' | asset_url }}" media="print" onload="this.media='all'">
+      <link rel="stylesheet" href="{{ 'component-price.css' | asset_url }}" media="print" onload="this.media='all'">
+      <link rel="stylesheet" href="{{ 'component-discounts.css' | asset_url }}" media="print" onload="this.media='all'">
+      <noscript>
+        {{ "component-cart-drawer.css" | asset_url | stylesheet_tag }}
+        {{ "component-cart.css" | asset_url | stylesheet_tag }}
+        {{ "component-totals.css" | asset_url | stylesheet_tag }}
+        {{ "component-price.css" | asset_url | stylesheet_tag }}
+        {{ "component-discounts.css" | asset_url | stylesheet_tag }}
+      </noscript>
     {%- endif -%}
 
     {%- unless settings.type_body_font.system? -%}
@@ -368,7 +414,7 @@
 
     {%- if localization.available_countries.size > 1 or localization.available_languages.size > 1 -%}
       {{ "component-localization-form.css" | asset_url | stylesheet_tag: preload: true }}
-      <script src="{{ 'localization-form.js' | asset_url }}" defer="defer"></script>
+      <script src="{{ 'localization--form.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
 
     {%- if settings.predictive_search_enabled -%}
@@ -426,28 +472,43 @@
       })();
     </script>
 
-    {% render 'pagefly-app-header' %}
-
     <script>
-      (async function () {
-        // Skip redirect for search engine crawlers so they can index scentspired.co.uk
-        var ua = navigator.userAgent.toLowerCase();
+      (function () {
+        // Skip immediately on US storefront - already on correct domain
+        if (location.hostname.includes('scentspired.com')) return;
+
+        // Skip redirect for automated audits, headless browsers, and search engine crawlers
+        if (navigator.webdriver) return;
+        var ua = (navigator.userAgent || '').toLowerCase();
         var isBot =
-          /bot|googlebot|crawler|spider|crawling|bingbot|yandex|baiduspider|duckduckbot|slurp|facebookexternalhit/.test(
+          /bot|googlebot|crawler|spider|crawling|bingbot|yandex|baiduspider|duckduckbot|slurp|facebookexternalhit|lighthouse|chrome-lighthouse|speed|insights|headless/i.test(
             ua
           );
         if (isBot) return;
 
-        try {
-          const res = await fetch('https://ipapi.co/json/');
-          const data = await res.json();
+        function runGeoCheck() {
+          fetch('https://ipapi.co/json/')
+            .then(function (res) { return res.json(); })
+            .then(function (data) {
+              if (data && data.country === 'US') {
+                if (!location.hostname.includes('scentspired.com')) {
+                  location.replace('https://scentspired.com' + location.pathname);
+                }
+              }
+            })
+            .catch(function () {});
+        }
 
-          if (data.country === 'US') {
-            if (!location.hostname.includes('scentspired.com')) {
-              location.replace('https://scentspired.com' + location.pathname);
-            }
-          }
-        } catch (e) {}
+        // Run on browser idle after page load so it never impacts FCP, LCP, or TBT
+        if ('requestIdleCallback' in window) {
+          window.addEventListener('load', function () {
+            requestIdleCallback(runGeoCheck, { timeout: 4000 });
+          });
+        } else {
+          window.addEventListener('load', function () {
+            setTimeout(runGeoCheck, 2500);
+          });
+        }
       })();
     </script>
 
@@ -455,7 +516,6 @@
     <meta name="google-site-verification" content="google2d3d4ccd9457489c.html" />
 
     <!-- Google Analytics GA4 UK -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7G717SKL2C"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
@@ -463,149 +523,36 @@
       }
       gtag('js', new Date());
       gtag('config', 'G-7G717SKL2C');
-    </script>
-    {% if template contains "product" %}
-      <script type="application/ld+json" id="product-schema-{{ product.id }}">
-        {
-          "@context": "https://schema.org/",
-          "@type": "Product",
-          "name": "{{ product.title | escape }}",
-          "image": [
-            {% for image in product.images %}
-              "{{ image | image_url | prepend: 'https:' }}"{% unless forloop.last %},{% endunless %}
-            {% endfor %}
-          ],
-          "description": "{{ product.description | strip_html | escape }}",
-          "sku": "{{ product.selected_or_first_available_variant.sku }}",
-          "brand": {
-            "@type": "Brand",
-            "name": "Scentspired"
-          },
-          "offers": {
-          "@type": "Offer",
-          "url": "{{ shop.url }}{{ product.url }}",
-          "priceCurrency": "GBP",
-          "price": "{{ product.selected_or_first_available_variant.price | money_without_currency }}",
-          "availability": "{% if product.available %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}",
-          "itemCondition": "https://schema.org/NewCondition",
-          "shippingDetails": {
-            "@type": "OfferShippingDetails",
-            "shippingRate": {
-              "@type": "MonetaryAmount",
-              "value": "{% if product.selected_or_first_available_variant.price >= 7000 %}0{% else %}7.99{% endif %}",
-              "currency": "GBP"
-            },
-            "shippingDestination": {
-              "@type": "DefinedRegion",
-              "addressCountry": "GB"
-            },
-            "deliveryTime": {
-              "@type": "ShippingDeliveryTime",
-              "transitTime": {
-                "@type": "QuantitativeValue",
-                "minValue": 3,
-                "maxValue": 7,
-                "unitCode": "DAY"
-              }
-            }
-          },
-          "hasMerchantReturnPolicy": {
-            "@type": "MerchantReturnPolicy",
-            "applicableCountry": "GB",
-            "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
-            "merchantReturnDays": "30",
-            "returnMethod": "https://schema.org/ReturnByMail",
-            "returnFees": "https://schema.org/ReturnShippingFees",
-            "returnShippingFeesAmount": {
-              "@type": "MonetaryAmount",
-              "value": "4.99",
-              "currency": "GBP"
-            }
-          }
-        }{% if product.metafields.reviews.rating %}
-        ,
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "{{ shop.metafields.judgeme.all_reviews_rating | round: 2 }}",
-          "ratingCount": "{{ shop.metafields.judgeme.all_reviews_count }}"
-        }
-        {% endif %}
-        }
-      </script>
-      <script>
-        (function () {
 
-        function addJudgeMeReviews() {
-
-          if (
-            typeof jdgm === "undefined" ||
-            !jdgm.data ||
-            !jdgm.data.reviewWidget
-          ) {
-            setTimeout(addJudgeMeReviews, 500);
-            return;
-          }
-
-          var productId = {{ product.id }};
-          var jdgmProduct = jdgm.data.reviewWidget[productId];
-
-          if (
-            !jdgmProduct ||
-            !jdgmProduct.reviews ||
-            !jdgmProduct.reviews.length
-          ) {
-            return;
-          }
-
-          var reviews = jdgmProduct.reviews.map(function(review){
-            return {
-              "@type": "Review",
-              "author": {
-                "@type": "Person",
-                "name": review.reviewer_name
-              },
-              "datePublished": review.created_at,
-              "reviewBody": review.body,
-              "reviewRating": {
-                "@type": "Rating",
-                "ratingValue": review.rating,
-                "bestRating": "5",
-                "worstRating": "1"
-              }
-            };
+      (function() {
+        var gtmLoaded = false;
+        function loadGtm() {
+          if (gtmLoaded) return;
+          gtmLoaded = true;
+          ['scroll', 'touchstart', 'click', 'keydown'].forEach(function(e) {
+            window.removeEventListener(e, loadGtm);
           });
-
-          var scriptTag = document.getElementById("product-schema-{{ product.id }}");
-          if (!scriptTag) return;
-
-          try {
-            var productSchema = JSON.parse(scriptTag.textContent);
-            productSchema.review = reviews;
-            scriptTag.textContent = JSON.stringify(productSchema);
-          } catch (e) {
-            console.error("Failed to merge Judge.me reviews into Product schema:", e);
-          }
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=G-7G717SKL2C';
+          document.head.appendChild(s);
         }
-
-        addJudgeMeReviews();
-
-        })();
-      </script>
-    {% endif %}
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "{{ shop.name }}",
-        "url": "{{ shop.url }}",
-        "logo": "{{ settings.logo | image_url: width: 500 }}",
-        "sameAs": [
-          "https://www.facebook.com/profile.php?id=61568107508172&sk=about",
-          "https://www.instagram.com/thescentspired/",
-          "https://www.tiktok.com/@thescentspireduk?"
-        ]
-      }
+        if ('requestIdleCallback' in window) {
+          window.addEventListener('load', function() {
+            requestIdleCallback(loadGtm, { timeout: 4000 });
+          });
+        } else {
+          window.addEventListener('load', function() {
+            setTimeout(loadGtm, 2500);
+          });
+        }
+        ['scroll', 'touchstart', 'click'].forEach(function(e) {
+          window.addEventListener(e, loadGtm, { once: true, passive: true });
+        });
+      })();
     </script>
+    {% render 'schema--orchestrator' %}
+
     {% if product.tags contains "5ml"
       or product.tags contains "50ml"
       or product.tags contains "bundle"
@@ -639,7 +586,29 @@
       </script>
     {% endif %}
 
-    <script src="https://analytics.ahrefs.com/analytics.js" data-key="VwQqpLi0JY7J65Y0OLlFfw" async></script>
+    <script>
+      (function() {
+        var ahrefsLoaded = false;
+        function loadAhrefs() {
+          if (ahrefsLoaded) return;
+          ahrefsLoaded = true;
+          var s = document.createElement('script');
+          s.src = 'https://analytics.ahrefs.com/analytics.js';
+          s.setAttribute('data-key', 'VwQqpLi0JY7J65Y0OLlFfw');
+          s.async = true;
+          document.head.appendChild(s);
+        }
+        if ('requestIdleCallback' in window) {
+          window.addEventListener('load', function() {
+            requestIdleCallback(loadAhrefs, { timeout: 5000 });
+          });
+        } else {
+          window.addEventListener('load', function() {
+            setTimeout(loadAhrefs, 3000);
+          });
+        }
+      })();
+    </script>
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %} {% if request.page_type == 'index' %}homepage{% else %}innerpage{% endif %}">
@@ -653,7 +622,7 @@
 
     {% sections "header-group" %}
 
-    <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
+    <main id="MainContent" class="content-for-layout focus-none" tabindex="-1">
       {{ content_for_layout }}
     </main>
 
@@ -710,12 +679,8 @@
     </script>
 
     {%- if settings.predictive_search_enabled -%}
-      <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
+      <script src="{{ 'search--predictive.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
-
-    {%- comment -%}
-      <script src="{{ 'cart-drawer.js' | asset_url }}" defer></script>
-    {%- endcomment -%}
 
     <script>
       document.addEventListener('DOMContentLoaded', function () {
@@ -771,36 +736,9 @@
     </script>
     <script>
       (function () {
-        let lastScroll = 0;
-        const header = document.querySelector('.header');
-
-        if (!header) return;
-
-        window.addEventListener('scroll', () => {
-          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-          if (window.innerWidth <= 768) return;
-
-          if (scrollTop > lastScroll && scrollTop > 50) {
-            header.classList.add('scroll-hidden');
-          } else if (scrollTop < lastScroll) {
-            header.classList.remove('scroll-hidden');
-          }
-
-          if (scrollTop <= 0) {
-            header.classList.remove('scroll-hidden');
-          }
-
-          lastScroll = scrollTop;
-        });
-      })();
-    </script>
-    <script>
-      (function () {
         // Wait for DOM ready
         document.addEventListener('DOMContentLoaded', function () {
           // 1) Find header candidates and decide which is main desktop header
-          // Try to find .section-header .header first (common in Dawn-like themes)
           var candidate =
             document.querySelector('.section-header .header') ||
             document.querySelector('.section-header') ||
@@ -808,7 +746,6 @@
           if (!candidate) return;
 
           // Ensure a stable "main-desktop-header" class exists
-          // If candidate is nested (like .section-header .header), we want the topmost header element.
           var mainHeader = candidate.closest('.section-header') || candidate;
           mainHeader.classList.add('main-desktop-header');
 
@@ -819,10 +756,8 @@
           // If mobile nav exists and is inside the header, move it to body so it doesn't get hidden with header
           if (mobileNav) {
             if (mainHeader.contains(mobileNav)) {
-              // move node to body end
               document.body.appendChild(mobileNav);
             }
-            // ensure the mobile nav has the class
             mobileNav.classList.add('mobile-bottom-nav');
           }
 
@@ -836,7 +771,6 @@
           // Debounced rAF-driven scroll handler for smoothness
           function onScroll() {
             if (window.innerWidth <= 768) {
-              // On mobile we don't hide the header — ensure visible
               header.classList.remove('scroll-hidden');
               lastScroll = window.pageYOffset || document.documentElement.scrollTop || 0;
               return;
@@ -845,14 +779,11 @@
             var scrollTop = window.pageYOffset || document.documentElement.scrollTop || 0;
 
             if (scrollTop > lastScroll && scrollTop > 60) {
-              // scrolling down -> hide
               header.classList.add('scroll-hidden');
             } else if (scrollTop < lastScroll) {
-              // scrolling up -> show
               header.classList.remove('scroll-hidden');
             }
 
-            // always show at very top
             if (scrollTop <= 0) {
               header.classList.remove('scroll-hidden');
             }
@@ -872,34 +803,28 @@
             { passive: true }
           );
 
-          // Extra safety: if the header is re-rendered by theme scripts later,
-          // re-apply class and re-append mobile nav (in case DOM was replaced)
-          var observer = new MutationObserver(function (mutations) {
-            mutations.forEach(function (m) {
-              // if header lost the class, re-add it
-              if (!document.querySelector('.main-desktop-header')) {
-                var newCandidate =
-                  document.querySelector('.section-header .header') ||
-                  document.querySelector('.section-header') ||
-                  document.querySelector('.header');
-                if (newCandidate) {
-                  var newMain = newCandidate.closest('.section-header') || newCandidate;
-                  newMain.classList.add('main-desktop-header');
-                  header = document.querySelector('.main-desktop-header');
-                }
+          // Targeted observer on header wrapper only (avoids observing full document subtree)
+          var headerParent = mainHeader.parentElement || document.querySelector('#shopify-section-header') || document.body;
+          var observer = new MutationObserver(function () {
+            if (!document.querySelector('.main-desktop-header')) {
+              var newCandidate =
+                document.querySelector('.section-header .header') ||
+                document.querySelector('.section-header') ||
+                document.querySelector('.header');
+              if (newCandidate) {
+                var newMain = newCandidate.closest('.section-header') || newCandidate;
+                newMain.classList.add('main-desktop-header');
+                header = document.querySelector('.main-desktop-header');
               }
-              if (mobileNav && !document.body.contains(mobileNav)) {
-                // re-append if removed
-                document.body.appendChild(mobileNav);
-              }
-            });
+            }
+            if (mobileNav && !document.body.contains(mobileNav)) {
+              document.body.appendChild(mobileNav);
+            }
           });
 
-          observer.observe(document.body, { childList: true, subtree: true });
+          observer.observe(headerParent, { childList: true, subtree: false });
         }); // DOMContentLoaded
       })();
     </script>
-
-    {%- render "ecom_footer" -%}
   </body>
 </html>

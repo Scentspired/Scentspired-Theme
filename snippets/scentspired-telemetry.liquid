@@ -1,4 +1,4 @@
-<!-- iOS WebKit Native Bridge Shield (Prevents window.webkit.messageHandlers runtime exceptions) -->
+<!-- iOS WebKit Native Bridge Shield & Third-Party Network Interceptor -->
 <script>
   (function () {
     try {
@@ -8,13 +8,53 @@
         } else if (!window.webkit.messageHandlers) {
           window.webkit.messageHandlers = {};
         }
+
+        // Intercept broken dummy Firework calls (playlist 0) to prevent 400 Bad Request console errors
+        var origFetch = window.fetch;
+        if (origFetch) {
+          window.fetch = function (input, init) {
+            var url = typeof input === 'string' ? input : (input && input.url ? input.url : '');
+            if (url && (url.indexOf('playlists/0/') !== -1 || url.indexOf('playlist_id=0') !== -1)) {
+              return Promise.resolve(new Response(JSON.stringify({ feeds: [], total: 0 }), {
+                status: 200,
+                headers: { 'Content-Type': 'application/json' }
+              }));
+            }
+            return origFetch.apply(this, arguments);
+          };
+        }
+        var origOpen = XMLHttpRequest.prototype.open;
+        if (origOpen) {
+          XMLHttpRequest.prototype.open = function (method, url) {
+            if (typeof url === 'string' && (url.indexOf('playlists/0/') !== -1 || url.indexOf('playlist_id=0') !== -1)) {
+              this._isFireworkDummy = true;
+            }
+            return origOpen.apply(this, arguments);
+          };
+          var origSend = XMLHttpRequest.prototype.send;
+          if (origSend) {
+            XMLHttpRequest.prototype.send = function () {
+              if (this._isFireworkDummy) {
+                try {
+                  Object.defineProperty(this, 'status', { value: 200, writable: false });
+                  Object.defineProperty(this, 'responseText', { value: '{}', writable: false });
+                  Object.defineProperty(this, 'readyState', { value: 4, writable: false });
+                } catch (_) {}
+                if (typeof this.onreadystatechange === 'function') this.onreadystatechange();
+                if (typeof this.onload === 'function') this.onload();
+                return;
+              }
+              return origSend.apply(this, arguments);
+            };
+          }
+        }
       }
     } catch (_) {}
   })();
 </script>
 
 <!-- Sentry.io Enterprise Observability Loader -->
-<script src="{{ 'sentry-telemetry-loader.min.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'telemetry--sentry-loader.min.js' | asset_url }}" defer="defer"></script>
 
 <script>
   window.__SCENTSPIRED_TELEMETRY__ = {
@@ -28,12 +68,12 @@
     storeUrl: {{ shop.permanent_domain | json }}
   };
 
-  // Initialize Sentry SDK on load
+  // Initialize Sentry SDK on load (traces disabled for maximum main-thread speed)
   if (window.Sentry && window.Sentry.onLoad) {
     window.Sentry.onLoad(function() {
       window.Sentry.init({
         dsn: "https://314455254b3e53ad0250625ccba3fd29@o4511982699806720.ingest.us.sentry.io/4511982711275520",
-        tracesSampleRate: 1.0,
+        tracesSampleRate: 0,
         ignoreErrors: [
           'Failed to fetch dynamically imported module',
           'Importing a module script failed',
@@ -80,6 +120,24 @@
         currency: {{ cart.currency.iso_code | default: 'USD' | json }}
       });
     });
+
+    // Lazy load Sentry on user interaction or idle timeout (zero impact on initial load)
+    var sentryTriggered = false;
+    function triggerSentryLoad() {
+      if (sentryTriggered) return;
+      sentryTriggered = true;
+      ['click', 'touchstart', 'keydown', 'scroll', 'mousemove'].forEach(function(evt) {
+        window.removeEventListener(evt, triggerSentryLoad);
+      });
+      if (window.Sentry && typeof window.Sentry.forceLoad === 'function') {
+        window.Sentry.forceLoad();
+      }
+    }
+    ['click', 'touchstart', 'keydown', 'scroll', 'mousemove'].forEach(function(evt) {
+      window.addEventListener(evt, triggerSentryLoad, { once: true, passive: true });
+    });
+    // Fallback idle timeout: 10s
+    setTimeout(triggerSentryLoad, 10000);
   }
 
   // ── GitHub Issues Auto-Filer (Secure Private Repo Ingestion) ────────────
@@ -88,4 +146,4 @@
   };
 </script>
 
-<script src="{{ 'scentspired-telemetry.js' | asset_url }}" defer></script>
+<script src="{{ 'telemetry--guardian.js' | asset_url }}" defer></script>

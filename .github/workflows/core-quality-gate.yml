@@ -18,11 +18,17 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
           cache: "npm"
 
       - name: Install Dependencies
-        run: npm ci
+        run: npm ci --prefer-offline --no-audit --no-fund
 
-      - name: Run 7-Layer Central Quality Gate
-        run: node runner.cjs --target=.
+      - name: Run 13-Layer Central & Regional Quality Gates
+        run: node runner.cjs --scope=all
+
+      - name: Upstream Release Log
+        if: github.ref == 'refs/heads/main'
+        run: |
+          echo "✅ Scentspired-Theme core update verified and ready for regional sync."
+          echo "Commit SHA: ${{ github.sha }}"

@@ -1,5 +1,41 @@
 {
   "sections": {
+    "main": {
+      "type": "main-article",
+      "blocks": {
+        "featured_image": {
+          "type": "featured_image",
+          "settings": {
+            "image_height": "adapt"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "blog_show_date": true,
+            "blog_show_author": false
+          }
+        },
+        "share": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
+        },
+        "content": {
+          "type": "content",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "featured_image",
+        "title",
+        "share",
+        "content"
+      ],
+      "disabled": true,
+      "settings": {}
+    },
     "177883883994f3af2c": {
       "type": "_blocks",
       "blocks": {
@@ -8,7 +44,7 @@
           "settings": {
             "heading": "<p>EDT, EDP, Parfum:</p>",
             "heading_size": 48,
-            "mobile_heading_size": 24,
+            "mobile_heading_size": 22,
             "heading_line_height": 1.1,
             "heading_color": "#000000",
             "paragraph": "<p> The label nobody explains, the question nobody asks, and the reason you smell incredible at 9am and of absolutely nothing by lunch</p>",
@@ -187,6 +223,44 @@
       ],
       "settings": {}
     },
+    "1779107504f82a420f": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_e17473f_Pmbp9t": {
+          "type": "ai_gen_block_e17473f",
+          "settings": {
+            "line_1_text": "Timeless Grace",
+            "line_1_alignment": "left",
+            "line_1_offset": 300,
+            "line_2_text": "vs",
+            "line_2_alignment": "center",
+            "line_2_offset": 0,
+            "line_3_text": "Coco Mademoiselle by Chanel",
+            "line_3_alignment": "right",
+            "line_3_offset": -40,
+            "body_text": "<p><strong>Coco Mademoiselle</strong> is the benchmark for a certain kind of feminine fragrance. Clean, grown-up, and instantly recognisable. It has been the top-selling women's perfume in the UK for years, which is a remarkable achievement in a market this competitive. The EDP retails at around £120 for 100ml, and you will find it in every Boots or John Lewis and every pharmacy or department store in between for a reason.<br/><br/><strong>Timeless Grace</strong> opens with the same fresh orange and bergamot, develops through jasmine and rose, and settles into a warm patchouli base that wears beautifully throughout the day. The comparison here produced the closest result of the three: on dry-down, both fragrances sat in the same warm, clean territory. The original has a very slight additional depth in the base that reflects a higher concentration of raw materials, but it is a difference you would only notice if you were specifically looking for it, tester strip in hand, in the fragrance hall at Fortnum and Mason with nothing else to do.</p><p>At around twenty quid versus £120, Timeless Grace makes a compelling case for anyone who loves the Coco Mademoiselle profile but would rather wear it every single day without eking it out like the last of the Nutella in the jar you have to make last until payday.</p>",
+            "line_1_size": 44,
+            "line_2_size": 85,
+            "line_3_size": 44,
+            "body_size": 22,
+            "line_2_margin_top": -20,
+            "line_3_margin_top": 0,
+            "header_spacing": 40,
+            "body_max_width": 1000,
+            "section_padding_top": 60,
+            "section_padding_bottom": 60,
+            "background_color": "#ffffff",
+            "text_color": "#121212"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_e17473f_Pmbp9t"
+      ],
+      "disabled": true,
+      "settings": {}
+    },
     "1780928095624f9a81": {
       "type": "_blocks",
       "blocks": {
@@ -278,6 +352,97 @@
       "name": "Editorial section",
       "settings": {}
     },
+    "blocks_UXR9hM": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_3a2b0a1_D4QJ4w": {
+          "type": "ai_gen_block_3a2b0a1",
+          "settings": {
+            "desktop_width_percent": 100,
+            "max_width": 1200,
+            "section_padding": 20,
+            "background_color": "#f9f6f1",
+            "heading": "<p>The verdict</p>",
+            "heading_size": 50,
+            "heading_color": "#121212",
+            "heading_spacing": 10,
+            "box_color": "#8b1d22",
+            "box_radius": 25,
+            "box_padding": 40,
+            "box_spacing": 10,
+            "box_paragraph_1": "<p>If you have been spending £150 or more on a bottle of fragrance and wearing it sparingly because it feels too precious for an ordinary day, a quality inspired alternative is worth trying properly. Not as a consolation prize. As a genuine option.</p><p>The question is not whether it smells exactly the same. It is whether it smells good enough to wear every day, with confidence, at a price that means you actually will. For the fragrances in the Scentspired range, the answer is yes. Browse the full collection for perfume online shopping any time, with every fragrance listed by notes and inspiration so you know exactly what you are getting before you spend a penny.</p>",
+            "box_paragraph_2": "",
+            "box_paragraph_3": "",
+            "box_text_color": "#ffffff",
+            "box_text_size": 24,
+            "box_text_line_height": 1.6,
+            "paragraph_spacing": 25,
+            "subheading": "",
+            "subheading_size": 60,
+            "subheading_color": "#000000",
+            "subheading_spacing": 10,
+            "bottom_text": "",
+            "bottom_text_size": 24,
+            "bottom_text_color": "#000000",
+            "bottom_text_line_height": 1.6
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_3a2b0a1_D4QJ4w"
+      ],
+      "disabled": true,
+      "settings": {}
+    },
+    "1778843499df5a6469": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_d9dab0a_d6LjbG": {
+          "type": "ai_gen_block_d9dab0a",
+          "disabled": true,
+          "settings": {
+            "container_width": 1200,
+            "left_column_width": 40,
+            "right_column_width": 60,
+            "column_gap": 40,
+            "desktop_width_percent": 100,
+            "heading": "What makes us different from the other lot",
+            "heading_font": "serif",
+            "heading_size": 56,
+            "mobile_heading_size": 40,
+            "heading_color": "#121212",
+            "heading_indent": 25,
+            "mobile_heading_indent": 40,
+            "image_max_width": 600,
+            "heading_image_gap": 4,
+            "mobile_heading_image_gap": 25,
+            "body_text": "<p>Scentspired creates luxury inspired perfumes. Each one is developed to capture the essence of a designer fragrance you already know, using high-quality fragrance oils that perform at the level you expect. Not something that smells roughly similar on the first spray and then disappears by lunch. Something you reach for because it works, lasts, and costs about £15.99. The idea being that you can actually wear it. Every day. Without keeping a tally.</p><p>We also believe that incredible scent should not be a privilege. It should be accessible to anyone who wants to feel something when they walk into a room, whatever their budget happens to be. That is the whole point of what we do.</p>",
+            "body_font": "system_ui_n4",
+            "body_size": 32,
+            "mobile_body_size": 16,
+            "body_color": "#111111",
+            "paragraph_spacing": 30,
+            "mobile_paragraph_spacing": 15,
+            "text_vertical_offset": 10,
+            "background_color": "#ffffff",
+            "padding_top": 100,
+            "padding_bottom": 100,
+            "horizontal_padding": 40,
+            "mobile_padding_top": 60,
+            "mobile_padding_bottom": 60,
+            "mobile_horizontal_padding": 20,
+            "mobile_gap": 30
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_d9dab0a_d6LjbG"
+      ],
+      "disabled": true,
+      "settings": {}
+    },
     "177884398431108114": {
       "type": "_blocks",
       "blocks": {
@@ -331,6 +496,42 @@
       "block_order": [
         "ai_gen_block_af322f3_bnrhkr"
       ],
+      "settings": {}
+    },
+    "1778844323c8772560": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_7c627d8_BUM397": {
+          "type": "ai_gen_block_7c627d8",
+          "settings": {
+            "desktop_image": "shopify://shop_images/wmremove-transformed_1.png",
+            "mobile_image": "shopify://shop_images/wmremove-transformed_1.png",
+            "text_horizontal_position": 10,
+            "text_max_width": 800,
+            "text_size": 38,
+            "line_height": 1
+          },
+          "blocks": {}
+        },
+        "ai_gen_block_708f5b7_bWFdAC": {
+          "type": "ai_gen_block_708f5b7",
+          "disabled": true,
+          "settings": {
+            "desktop_image": "shopify://shop_images/wmremove-transformed_1.png",
+            "mobile_image": "shopify://shop_images/wmremove-transformed_1.png",
+            "text_horizontal_position": 10,
+            "text_max_width": 650,
+            "text_size": 32,
+            "line_height": 1
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_7c627d8_BUM397",
+        "ai_gen_block_708f5b7_bWFdAC"
+      ],
+      "disabled": true,
       "settings": {}
     }
   },

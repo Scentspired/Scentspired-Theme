@@ -1,0 +1,334 @@
+{
+  "sections": {
+    "177868548039dc52a1": {
+      "type": "_blocks",
+      "blocks": {
+        "blog_luxury_perfume_banner_37U8Va": {
+          "type": "blog--luxury-perfume-banner",
+          "settings": {
+            "heading": "<p>THE SCENT OF AN AMERICAN SUMMER:</p>",
+            "heading_size": 48,
+            "mobile_heading_size": 24,
+            "heading_line_height": 1.1,
+            "heading_color": "#1a1a1a",
+            "paragraph": "<p>sunscreen you swear you applied, a screen door slamming, and the fragrance that captures the season</p>",
+            "paragraph_size": 18,
+            "mobile_paragraph_size": 16,
+            "paragraph_line_height": 1.4,
+            "paragraph_color": "#332F2B",
+            "desktop_image": "shopify://shop_images/The_scent_of_an_American_summer_jpg.jpg",
+            "image_aspect_ratio": "16/9",
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "text_alignment": "left",
+            "content_padding": 40,
+            "content_max_width_inner": 680,
+            "mobile_horizontal_alignment": "flex-start",
+            "mobile_vertical_alignment": "center",
+            "mobile_text_alignment": "left",
+            "mobile_content_padding": 25,
+            "content_max_width": 1400,
+            "outer_spacing": 0,
+            "mobile_outer_spacing": 0,
+            "background_color": "#FAF8F5"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "blog_luxury_perfume_banner_37U8Va"
+      ],
+      "custom_css": [],
+      "settings": {}
+    },
+    "blogtextliquid_LBJgtB": {
+      "type": "blogtextliquid",
+      "custom_css": [],
+      "name": "Blog Text Liquid",
+      "settings": {
+        "text_content": "<p>An American summer starts the second school lets out and does not fully quit until the first pumpkin spice sign appears in September. It is a season defined by sensory memory: lake docks warmed by the sun, salt spray clinging to your hair after an afternoon in the surf, and cold lemonade sweating on a patio table.</p><p>Summer fragrance is unique because warmth turns the volume up on everything. Heat lifts scent molecules off your skin with incredible speed, carrying them further on the breeze while simultaneously testing their longevity.</p>"
+      }
+    },
+    "177868816090d620d4": {
+      "type": "_blocks",
+      "blocks": {
+        "blog_perfume_feature_banner_GyikqF": {
+          "type": "blog--perfume-feature-banner",
+          "settings": {
+            "background_image": "shopify://shop_images/ChatGPT_Image_Jul_11_2026_05_52_31_PM.png",
+            "outer_border_color": "#FAF8F5",
+            "outer_border_px": 0,
+            "aspect_ratio": 56,
+            "font_family_regular": "'PP Editorial New', 'Cormorant Garamond', Georgia, serif",
+            "font_family_italic": "'PPEditorialNew Ultralight Italic', 'Cormorant Garamond', Georgia, serif",
+            "text_color": "#ffffff",
+            "text_line_1": "",
+            "line1_top": 66,
+            "line1_left": 19,
+            "brand_name_regular": "",
+            "brand_name_italic": "THE SHORT VERSION",
+            "brand_top": 6,
+            "brand_left": 50,
+            "text_line_2": "",
+            "line3_top": 87,
+            "line3_left": 63
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "blog_perfume_feature_banner_GyikqF"
+      ],
+      "settings": {}
+    },
+    "blogtextliquid_ra7Awx": {
+      "type": "blogtextliquid",
+      "custom_css": [],
+      "name": "Blog Text Liquid",
+      "settings": {
+        "text_content": "<p>Wearing fragrance in July and August requires an intentional shift in notes. Heavy vanillas and winter ambers that felt so comforting in December become suffocating when the temperature climbs past 85 degrees.</p><p>Summer calls for effervescent citrus, crisp aquatics, and sun-drenched woods that radiate effortless refreshment. Here is how to curate your summer scent rotation so you smell crisp from morning beach walks to sunset rooftop gatherings.</p>"
+      }
+    },
+    "blocks_ji7beH": {
+      "type": "_blocks",
+      "blocks": {
+        "blog_editorial_text_section_zNd6WG": {
+          "type": "blog--editorial-text-section",
+          "settings": {
+            "heading": "Coastal Aquatics vs High-Desert Woods",
+            "heading_size": 42,
+            "heading_size_mobile": 28,
+            "heading_line_height": 1.1,
+            "heading_color": "#1A1816",
+            "heading_margin_bottom": 30,
+            "heading_margin_bottom_mobile": 25,
+            "column_1_text": "<p>Coastal aquatics capture the exhilarating rush of the ocean. Featuring marine ozone, sea salt, grapefruit, and driftwood accords, these scents feel like diving into cold Atlantic water on a scorching afternoon.</p><p>They are light, crisp, and completely inoffensive, making them the ultimate daytime companion for backyard barbecues, tennis courts, and boardwalk strolls.</p>",
+            "column_2_text": "<p>High-desert woods take summer freshness in an earthier, more rugged direction. Think sunbaked cedar, wild juniper, vetiver, and crushed pine needles underfoot.</p><p>These aromatic profiles have superior heat tolerance because their woody base notes anchor volatile citrus compounds, projecting with dry, confident elegance as the summer sun sets.</p>",
+            "body_size": 17,
+            "body_size_mobile": 15,
+            "body_line_height": 1.9,
+            "body_color": "#2D2A26",
+            "paragraph_spacing": 20,
+            "column_gap": 55,
+            "column_gap_mobile": 30,
+            "max_width": 1100,
+            "desktop_width_percent": 100,
+            "background_color": "#FAF8F5",
+            "padding_top": 60,
+            "padding_bottom": 60,
+            "padding_horizontal": 40,
+            "padding_top_mobile": 40,
+            "padding_bottom_mobile": 40,
+            "padding_horizontal_mobile": 20
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "blog_editorial_text_section_zNd6WG"
+      ],
+      "name": "Editorial text section",
+      "settings": {}
+    },
+    "1778690749e24fd023": {
+      "type": "_blocks",
+      "blocks": {
+        "blog_narrative_content_9nTtAA": {
+          "type": "blog--narrative-content",
+          "settings": {
+            "desktop_width_percent": 100,
+            "max_width": 1100,
+            "section_padding": 60,
+            "background_color": "#FAF8F5",
+            "heading": "<p>Cool Alpine: a cold drink you can wear</p>",
+            "heading_size": 42,
+            "heading_color": "#1A1816",
+            "heading_spacing": 25,
+            "box_color": "#1C1917",
+            "box_radius": 15,
+            "box_padding": 45,
+            "box_spacing": 35,
+            "box_paragraph_1": "<p>Some scents just feel like immediate relief, and <strong>Cool Alpine</strong> (inspired by Silver Mountain Water by Creed) is at the top of that list. Opening with crisp green tea, bergamot, and blackcurrant, it evokes glacial mountain streams and clean alpine breezes.</p><p>For an equally versatile summer staple, <strong>Marine</strong> (inspired by Bleu de Chanel) combines peppermint and citrus with clean cedar and incense, delivering fresh, effortless confidence.</p><p>If you prefer an intriguing green profile, <strong>Eternal Verde</strong> (inspired by Hacivat by Nishane) balances smoky pineapple and oakmoss for an unforgettable summer signature.</p>",
+            "box_paragraph_2": "",
+            "box_paragraph_3": "",
+            "box_text_color": "#F5EFE6",
+            "box_text_size": 17,
+            "box_text_line_height": 1.9,
+            "paragraph_spacing": 20,
+            "subheading": "<p>Luminous Wonder & Fate for summer evenings</p>",
+            "subheading_size": 42,
+            "subheading_color": "#1A1816",
+            "subheading_spacing": 40,
+            "bottom_text": "<p>When daytime heat yields to cool evening breezes, reach for <strong>Luminous Wonder</strong> (inspired by J'Adore by Dior) or <strong>Fate</strong> (inspired by Chance EDP). Their sparkling solar florals and white amber bases radiate warmth on sun-kissed skin without feeling dense.</p><p>American summer has a rhythm: hot afternoons, warm evenings, and scents that carry through both.</p>",
+            "bottom_text_size": 17,
+            "bottom_text_color": "#2D2A26",
+            "bottom_text_line_height": 1.9
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "blog_narrative_content_9nTtAA"
+      ],
+      "settings": {}
+    },
+    "1780925695be0a3de2": {
+      "type": "_blocks",
+      "blocks": {
+        "blog_fragrance_comparison_table_nQznTw": {
+          "type": "blog--fragrance-comparison-table",
+          "settings": {
+            "header_1": "Summer Occasion",
+            "header_2": "Top Note Focus",
+            "header_3": "Recommended Scentspired Bottle",
+            "row_1_label": "Beach & Poolside Day",
+            "row_1_col_1": "Green Tea, Blackcurrant, Bergamot",
+            "row_1_col_2": "Cool Alpine (Silver Mountain Water inspired)",
+            "row_1_col_3": "Crisp, glacial refreshment in high heat",
+            "row_2_label": "Backyard BBQ & Casual Day",
+            "row_2_col_1": "Sea Salt, Grapefruit, Mint",
+            "row_2_col_2": "Marine (Bleu de Chanel inspired)",
+            "row_2_col_3": "Universally loved aquatic-aromatic trail",
+            "row_3_label": "Sunset Rooftop Drinks",
+            "row_3_col_1": "Mandarin, Jasmine, White Woods",
+            "row_3_col_2": "Luminous Wonder (J'Adore inspired)",
+            "row_3_col_3": "Golden-hour floral radiance that glows",
+            "row_4_label": "Warm Night Bonfire / Outing",
+            "row_4_col_1": "Smoky Pineapple, Patchouli, Oakmoss",
+            "row_4_col_2": "Eternal Verde (Hacivat inspired)",
+            "row_4_col_3": "Complex, distinctive trail that lasts all night",
+            "side_padding": 20,
+            "cell_padding": 18,
+            "label_font_weight": "bold",
+            "header_bg_color": "#1A1816",
+            "header_text_color": "#F8F5F0",
+            "row_bg_color": "#FAF8F5",
+            "body_text_color": "#383430",
+            "border_color": "rgba(0,0,0,0.06)",
+            "table_bg_color": "#FAF8F5"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "blog_fragrance_comparison_table_nQznTw"
+      ],
+      "settings": {}
+    },
+    "17786893180b60ea14": {
+      "type": "_blocks",
+      "blocks": {
+        "blog_editorial_callout_section_m8PFU4": {
+          "type": "blog--editorial-callout-section",
+          "settings": {
+            "container_width": 1100,
+            "left_column_width": 45,
+            "right_column_width": 55,
+            "column_gap": 50,
+            "desktop_width_percent": 100,
+            "heading": "What this means when you are shopping",
+            "heading_font": "serif",
+            "heading_size": 42,
+            "mobile_heading_size": 28,
+            "heading_color": "#1A1816",
+            "heading_indent": 0,
+            "mobile_heading_indent": 0,
+            "image": "shopify://shop_images/ChatGPT_Image_Jul_11_2026_02_29_17_PM.png",
+            "image_max_width": 500,
+            "heading_image_gap": 16,
+            "mobile_heading_image_gap": 20,
+            "body_text": "<p>A few small moves make a tremendous difference in summer. Always apply fragrance immediately after stepping out of the shower and applying an unscented light moisturizer, which seals hydration into your skin.</p><p>Never leave your perfume bottles in the glove compartment or on a sunny windowsill—UV rays and excessive heat will degrade the delicate citrus top notes in weeks. Keep your bottles in a cool drawer.</p>",
+            "body_font": "system_ui_n4",
+            "body_size": 17,
+            "mobile_body_size": 15,
+            "body_color": "#2D2A26",
+            "paragraph_spacing": 20,
+            "mobile_paragraph_spacing": 15,
+            "text_vertical_offset": 0,
+            "background_color": "#FAF8F5",
+            "padding_top": 60,
+            "padding_bottom": 60,
+            "horizontal_padding": 30,
+            "mobile_padding_top": 40,
+            "mobile_padding_bottom": 40,
+            "mobile_horizontal_padding": 20,
+            "mobile_gap": 30
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "blog_editorial_callout_section_m8PFU4"
+      ],
+      "settings": {}
+    },
+    "1778692264fe7b6973": {
+      "type": "_blocks",
+      "blocks": {
+        "blog_split_editorial_text_QF8teC": {
+          "type": "blog--split-editorial-text",
+          "settings": {
+            "container_width": 1100,
+            "horizontal_padding": 30,
+            "padding_top": 60,
+            "padding_bottom": 60,
+            "column_gap": 50,
+            "mobile_gap": 25,
+            "mobile_scale": 0.7,
+            "background_color": "#FAF8F5",
+            "prefix_text": "ONE MORE",
+            "prefix_font_size": 38,
+            "brand_scent_text": "",
+            "brand_spired_text": "",
+            "brand_font_size": 38,
+            "start_text": "",
+            "start_font_size": 38,
+            "bestsellers_text": "THING",
+            "bestsellers_font_size": 38,
+            "heading_line_spacing": 4,
+            "heading_line_height": 1.1,
+            "heading_color": "#1A1816",
+            "body_text": "Capture the spirit of the season with our summer-ready collection. Browse crisp, revitalizing scents in the <a href=\"/collections/shop\">Scentspired perfume collection</a>.",
+            "body_font_size": 17,
+            "body_line_height": 1.8,
+            "body_color": "#2D2A26"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "blog_split_editorial_text_QF8teC"
+      ],
+      "custom_css": [],
+      "settings": {}
+    },
+    "1778701783b132082f": {
+      "type": "_blocks",
+      "blocks": {
+        "blog_product_collection_grid_icikjA": {
+          "type": "blog--product-collection-grid",
+          "settings": {
+            "collection": "bestsellers"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "blog_product_collection_grid_icikjA"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "177868548039dc52a1",
+    "blogtextliquid_LBJgtB",
+    "177868816090d620d4",
+    "blogtextliquid_ra7Awx",
+    "blocks_ji7beH",
+    "1778690749e24fd023",
+    "1780925695be0a3de2",
+    "17786893180b60ea14",
+    "1778692264fe7b6973",
+    "1778701783b132082f"
+  ]
+}

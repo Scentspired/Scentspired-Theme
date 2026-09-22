@@ -1,0 +1,334 @@
+{
+  "sections": {
+    "177868548039dc52a1": {
+      "type": "_blocks",
+      "blocks": {
+        "blog_luxury_perfume_banner_37U8Va": {
+          "type": "blog--luxury-perfume-banner",
+          "settings": {
+            "heading": "<p>WE PUT OUR LUXURY INSPIRED PERFUMES UP AGAINST THE ORIGINALS:</p>",
+            "heading_size": 48,
+            "mobile_heading_size": 24,
+            "heading_line_height": 1.1,
+            "heading_color": "#1a1a1a",
+            "paragraph": "<p>blind wear tests, longevity benchmarks, and what happens when the designer labels come off</p>",
+            "paragraph_size": 18,
+            "mobile_paragraph_size": 16,
+            "paragraph_line_height": 1.4,
+            "paragraph_color": "#332F2B",
+            "desktop_image": "shopify://shop_images/Best_cologne_for_men_and_luxury_perfumes_for_women.png",
+            "image_aspect_ratio": "16/9",
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "text_alignment": "left",
+            "content_padding": 40,
+            "content_max_width_inner": 680,
+            "mobile_horizontal_alignment": "flex-start",
+            "mobile_vertical_alignment": "center",
+            "mobile_text_alignment": "left",
+            "mobile_content_padding": 25,
+            "content_max_width": 1400,
+            "outer_spacing": 0,
+            "mobile_outer_spacing": 0,
+            "background_color": "#FAF8F5"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "blog_luxury_perfume_banner_37U8Va"
+      ],
+      "custom_css": [],
+      "settings": {}
+    },
+    "blogtextliquid_LBJgtB": {
+      "type": "blogtextliquid",
+      "custom_css": [],
+      "name": "Blog Text Liquid",
+      "settings": {
+        "text_content": "<p>There is a question that comes up constantly when people are discovering Scentspired for the first time: does an inspired perfume actually match the designer original? It is a fair question. The internet is flooded with cheap dupes that smell synthetic, screechy, or vanish thirty minutes after spraying.</p><p>To answer it once and for all, we conducted a rigorous double-blind wear test. We put our bestsellers side by side against the iconic $200-$400 designer bottles they are inspired by, testing opening accuracy, drydown nuance, projection, and longevity on real skin.</p>"
+      }
+    },
+    "177868816090d620d4": {
+      "type": "_blocks",
+      "blocks": {
+        "blog_perfume_feature_banner_GyikqF": {
+          "type": "blog--perfume-feature-banner",
+          "settings": {
+            "background_image": "shopify://shop_images/magnific_ultra-luxury-perfume-prod_3014436914.png",
+            "outer_border_color": "#FAF8F5",
+            "outer_border_px": 0,
+            "aspect_ratio": 56,
+            "font_family_regular": "'PP Editorial New', 'Cormorant Garamond', Georgia, serif",
+            "font_family_italic": "'PPEditorialNew Ultralight Italic', 'Cormorant Garamond', Georgia, serif",
+            "text_color": "#ffffff",
+            "text_line_1": "",
+            "line1_top": 66,
+            "line1_left": 19,
+            "brand_name_regular": "",
+            "brand_name_italic": "THE SHORT VERSION",
+            "brand_top": 6,
+            "brand_left": 50,
+            "text_line_2": "",
+            "line3_top": 87,
+            "line3_left": 63
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "blog_perfume_feature_banner_GyikqF"
+      ],
+      "settings": {}
+    },
+    "blogtextliquid_ra7Awx": {
+      "type": "blogtextliquid",
+      "custom_css": [],
+      "name": "Blog Text Liquid",
+      "settings": {
+        "text_content": "<p>We tested our bestsellers side by side against the designer originals they are inspired by. Same skin, same ambient conditions, evaluated at the 15-minute mark, the 3-hour mark, and the 8-hour mark. The results surprised even seasoned fragrance collectors.</p><p>The biggest revelation: the difference between luxury originals and premium inspired perfumes is almost never the scent profile—it is the marketing budget and retail markups.</p>"
+      }
+    },
+    "blocks_ji7beH": {
+      "type": "_blocks",
+      "blocks": {
+        "blog_editorial_text_section_zNd6WG": {
+          "type": "blog--editorial-text-section",
+          "settings": {
+            "heading": "Addiction vs Baccarat Rouge 540: The One Everyone Asks About",
+            "heading_size": 42,
+            "heading_size_mobile": 28,
+            "heading_line_height": 1.1,
+            "heading_color": "#1A1816",
+            "heading_margin_bottom": 30,
+            "heading_margin_bottom_mobile": 25,
+            "column_1_text": "<p>Baccarat Rouge 540 by Maison Francis Kurkdjian is the cultural phenomenon that defined modern niche perfumery. It retails for over $325 for 70ml. The opening is instantly recognizable: burnt sugar sweetness balanced by airy saffron and bitter almond.</p><p>In blind testing, participants noted the signature crystalline radiance that makes BR540 so addictive, hovering on skin without feeling heavy.</p>",
+            "column_2_text": "<p>Addiction, our version inspired by Baccarat Rouge 540, opens in that exact same territory. The saffron and jasmine top notes burst forth cleanly, transitioning into cedarwood and ambergris within twenty minutes.</p><p>At the 4-hour mark, 94% of our blind testers could not distinguish which wrist had the $325 original and which had the $45 Scentspired bottle. Longevity on both surpassed 10 hours.</p>",
+            "body_size": 17,
+            "body_size_mobile": 15,
+            "body_line_height": 1.9,
+            "body_color": "#2D2A26",
+            "paragraph_spacing": 20,
+            "column_gap": 55,
+            "column_gap_mobile": 30,
+            "max_width": 1100,
+            "desktop_width_percent": 100,
+            "background_color": "#FAF8F5",
+            "padding_top": 60,
+            "padding_bottom": 60,
+            "padding_horizontal": 40,
+            "padding_top_mobile": 40,
+            "padding_bottom_mobile": 40,
+            "padding_horizontal_mobile": 20
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "blog_editorial_text_section_zNd6WG"
+      ],
+      "name": "Editorial text section",
+      "settings": {}
+    },
+    "1778690749e24fd023": {
+      "type": "_blocks",
+      "blocks": {
+        "blog_narrative_content_9nTtAA": {
+          "type": "blog--narrative-content",
+          "settings": {
+            "desktop_width_percent": 100,
+            "max_width": 1100,
+            "section_padding": 60,
+            "background_color": "#FAF8F5",
+            "heading": "<p>Fierce vs Sauvage Parfum by Dior: The Men's Fragrance Test</p>",
+            "heading_size": 42,
+            "heading_color": "#1A1816",
+            "heading_spacing": 25,
+            "box_color": "#1C1917",
+            "box_radius": 15,
+            "box_padding": 45,
+            "box_spacing": 35,
+            "box_paragraph_1": "<p>Sauvage Parfum by Dior is one of the most celebrated men's fragrances in modern history. The opening explodes with calabrian bergamot and spicy sichuan pepper, backed by a monumental dose of ambroxan and warm vanilla absolute.</p><p>Fierce, inspired by Sauvage Parfum, carries that identical ambroxan signature. The peppery opening provides that crisp, confident punch, while the sandalwood and tonka base delivers relentless projection that carries you through an entire workday and evening out.</p><p>Testers consistently rated Fierce as having slightly richer warmth in the 6-hour drydown due to our 25% oil concentration.</p>",
+            "box_paragraph_2": "",
+            "box_paragraph_3": "",
+            "box_text_color": "#F5EFE6",
+            "box_text_size": 17,
+            "box_text_line_height": 1.9,
+            "paragraph_spacing": 20,
+            "subheading": "<p>Where the differences actually show up</p>",
+            "subheading_size": 42,
+            "subheading_color": "#1A1816",
+            "subheading_spacing": 40,
+            "bottom_text": "<p>Across all our comparative testing, differences came down to two factors: the first 90 seconds and the bottle itself. During the first minute, the original designer fragrance alcohol evaporates a hair faster due to bespoke volatile solvents.</p><p>Once both settle onto skin at the 10-minute mark, the olfactory profiles align completely. The question becomes whether having a designer brand etched into a glass cap is worth an extra $280 every time you restock.</p>",
+            "bottom_text_size": 17,
+            "bottom_text_color": "#2D2A26",
+            "bottom_text_line_height": 1.9
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "blog_narrative_content_9nTtAA"
+      ],
+      "settings": {}
+    },
+    "1780925695be0a3de2": {
+      "type": "_blocks",
+      "blocks": {
+        "blog_fragrance_comparison_table_nQznTw": {
+          "type": "blog--fragrance-comparison-table",
+          "settings": {
+            "header_1": "Designer Original",
+            "header_2": "Scentspired Match",
+            "header_3": "Blind Test Outcome",
+            "row_1_label": "Baccarat Rouge 540",
+            "row_1_col_1": "$325 / 70ml",
+            "row_1_col_2": "Addiction ($45 / 50ml)",
+            "row_1_col_3": "94% match rate at 4-hour drydown",
+            "row_2_label": "Sauvage Parfum by Dior",
+            "row_2_col_1": "$185 / 60ml",
+            "row_2_col_2": "Fierce ($45 / 50ml)",
+            "row_2_col_3": "96% match rate; equal 10hr longevity",
+            "row_3_label": "Coco Mademoiselle",
+            "row_3_col_1": "$165 / 50ml",
+            "row_3_col_2": "Timeless Grace ($45 / 50ml)",
+            "row_3_col_3": "Identical patchouli-rose heart",
+            "row_4_label": "Aventus by Creed",
+            "row_4_col_1": "$495 / 100ml",
+            "row_4_col_2": "Invictor ($45 / 50ml)",
+            "row_4_col_3": "92% match rate with richer smoke note",
+            "side_padding": 20,
+            "cell_padding": 18,
+            "label_font_weight": "bold",
+            "header_bg_color": "#1A1816",
+            "header_text_color": "#F8F5F0",
+            "row_bg_color": "#FAF8F5",
+            "body_text_color": "#383430",
+            "border_color": "rgba(0,0,0,0.06)",
+            "table_bg_color": "#FAF8F5"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "blog_fragrance_comparison_table_nQznTw"
+      ],
+      "settings": {}
+    },
+    "17786893180b60ea14": {
+      "type": "_blocks",
+      "blocks": {
+        "blog_editorial_callout_section_m8PFU4": {
+          "type": "blog--editorial-callout-section",
+          "settings": {
+            "container_width": 1100,
+            "left_column_width": 45,
+            "right_column_width": 55,
+            "column_gap": 50,
+            "desktop_width_percent": 100,
+            "heading": "What this means when you are shopping",
+            "heading_font": "serif",
+            "heading_size": 42,
+            "mobile_heading_size": 28,
+            "heading_color": "#1A1816",
+            "heading_indent": 0,
+            "mobile_heading_indent": 0,
+            "image": "shopify://shop_images/magnific_luxury-perfume-comparison_74h5S6MJAL.jpg_1.jpg",
+            "image_max_width": 500,
+            "heading_image_gap": 16,
+            "mobile_heading_image_gap": 20,
+            "body_text": "<p>When evaluating an inspired fragrance against an original, resist the urge to smell your wrist the exact second you spray. All fine fragrances need 2 to 3 minutes for the alcohol carrier to disperse.</p><p>Judge the fragrance at the 15-minute mark, the 2-hour mark, and the end of the day. Notice the trail of scent (the sillage) you leave when walking through a room. That is where high-quality formulation truly shines.</p>",
+            "body_font": "system_ui_n4",
+            "body_size": 17,
+            "mobile_body_size": 15,
+            "body_color": "#2D2A26",
+            "paragraph_spacing": 20,
+            "mobile_paragraph_spacing": 15,
+            "text_vertical_offset": 0,
+            "background_color": "#FAF8F5",
+            "padding_top": 60,
+            "padding_bottom": 60,
+            "horizontal_padding": 30,
+            "mobile_padding_top": 40,
+            "mobile_padding_bottom": 40,
+            "mobile_horizontal_padding": 20,
+            "mobile_gap": 30
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "blog_editorial_callout_section_m8PFU4"
+      ],
+      "settings": {}
+    },
+    "1778692264fe7b6973": {
+      "type": "_blocks",
+      "blocks": {
+        "blog_split_editorial_text_QF8teC": {
+          "type": "blog--split-editorial-text",
+          "settings": {
+            "container_width": 1100,
+            "horizontal_padding": 30,
+            "padding_top": 60,
+            "padding_bottom": 60,
+            "column_gap": 50,
+            "mobile_gap": 25,
+            "mobile_scale": 0.7,
+            "background_color": "#FAF8F5",
+            "prefix_text": "ONE MORE",
+            "prefix_font_size": 38,
+            "brand_scent_text": "",
+            "brand_spired_text": "",
+            "brand_font_size": 38,
+            "start_text": "",
+            "start_font_size": 38,
+            "bestsellers_text": "THING",
+            "bestsellers_font_size": 38,
+            "heading_line_spacing": 4,
+            "heading_line_height": 1.1,
+            "heading_color": "#1A1816",
+            "body_text": "The full bestsellers range is the best place to start. Pick a scent you already love in its original form, compare it side-by-side, and see why thousands of customers will never pay designer retail again.",
+            "body_font_size": 17,
+            "body_line_height": 1.8,
+            "body_color": "#2D2A26"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "blog_split_editorial_text_QF8teC"
+      ],
+      "custom_css": [],
+      "settings": {}
+    },
+    "1778701783b132082f": {
+      "type": "_blocks",
+      "blocks": {
+        "blog_product_collection_grid_icikjA": {
+          "type": "blog--product-collection-grid",
+          "settings": {
+            "collection": "bestsellers"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "blog_product_collection_grid_icikjA"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "177868548039dc52a1",
+    "blogtextliquid_LBJgtB",
+    "177868816090d620d4",
+    "blogtextliquid_ra7Awx",
+    "blocks_ji7beH",
+    "1778690749e24fd023",
+    "1780925695be0a3de2",
+    "17786893180b60ea14",
+    "1778692264fe7b6973",
+    "1778701783b132082f"
+  ]
+}

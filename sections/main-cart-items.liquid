@@ -25,10 +25,10 @@
 {%- endstyle -%}
 
 {%- unless settings.cart_type == "drawer" -%}
-  <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'cart--items.js' | asset_url }}" defer="defer"></script>
 {%- endunless -%}
 
-<script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'ui--quantity-popover.js' | asset_url }}" defer="defer"></script>
 
 <script>
   class CartManager {
@@ -206,7 +206,7 @@
     </div>
 
     <div class="cart__warnings">
-      <h1 class="cart__empty-text">{{ "sections.cart.empty" | t }}</h1>
+      <h2 class="cart__empty-text h1">{{ "sections.cart.empty" | t }}</h2>
       <a href="{{ routes.all_products_collection_url }}" class="button">
         {{ "general.continue_shopping" | t }}
       </a>

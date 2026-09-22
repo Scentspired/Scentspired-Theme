@@ -1,5 +1,41 @@
 {
   "sections": {
+    "main": {
+      "type": "main-article",
+      "blocks": {
+        "featured_image": {
+          "type": "featured_image",
+          "settings": {
+            "image_height": "adapt"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "blog_show_date": true,
+            "blog_show_author": false
+          }
+        },
+        "share": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
+        },
+        "content": {
+          "type": "content",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "featured_image",
+        "title",
+        "share",
+        "content"
+      ],
+      "disabled": true,
+      "settings": {}
+    },
     "177883883994f3af2c": {
       "type": "_blocks",
       "blocks": {
@@ -8,7 +44,7 @@
           "settings": {
             "heading": "<p>How luxury unisex perfumes became the most searched scent category in the UK and why everyone is obsessed</p>",
             "heading_size": 48,
-            "mobile_heading_size": 24,
+            "mobile_heading_size": 22,
             "heading_line_height": 1.1,
             "heading_color": "#000000",
             "paragraph": "",
@@ -100,6 +136,62 @@
         "text_content": "<p>Retail is usually the last part of any industry to notice a shift, and fragrance has been no exception. The actual change started in the search bar. Typing <a href=\"/collections/unisex\" title=\"Unisex\">best unisex perfume</a> or gender-neutral fragrance UK into Google costs nothing and commits you to nothing, which makes it a far more honest indicator of what people want than what they feel obliged to ask for out loud at a counter with an assistant hovering. Search interest in unisex and gender-neutral fragrance has climbed steadily for years, well before most shop floors caught up with it. Nobody has to explain themselves to a search engine, which turns out to be exactly the point.</p>"
       }
     },
+    "blog_text_fgfNXN": {
+      "type": "blog-text",
+      "disabled": true,
+      "custom_css": [
+        ".shopify-hardcoded-text-section-content {font-size: 16px; margin-left: 0px; text-align: left;}",
+        "@media screen and (max-width: 1024px) {.shopify-hardcoded-text-section-wrapper {min-height: 200px; padding: 16px !important; }}"
+      ],
+      "name": "Blog Text Section",
+      "settings": {
+        "text_content": "<p>Retail is usually the last part of any industry to notice a shift, and fragrance has been no exception. The actual change started in the search bar. Typing best unisex perfume or gender-neutral fragrance UK into Google costs nothing and commits you to nothing, which makes it a far more honest indicator of what people want than what they feel obliged to ask for out loud at a counter with an assistant hovering. Search<br/>interest in unisex and gender-neutral fragrance has climbed steadily for years, well before most shop floors caught up with it. Nobody has to explain themselves to a<br/>search engine, which turns out to be exactly the point.</p>"
+      }
+    },
+    "1778849786d4cbe62f": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_6894d32_KAA87y": {
+          "type": "ai_gen_block_6894d32",
+          "settings": {
+            "heading": "Top notes: the opening act (and why they do not hang around)",
+            "heading_size": 56,
+            "heading_size_mobile": 32,
+            "heading_line_height": 1,
+            "heading_color": "#000000",
+            "heading_margin_bottom": 50,
+            "heading_margin_bottom_mobile": 30,
+            "column_1_text": "<p>Top notes are what hit you the moment you first spray. Bright, crisp, and instantly appealing, they are designed to make a strong first impression. Citrus notes like bergamot, lemon, and grapefruit are classic top notes. So are light fruits, fresh herbs, and anything with that clean, just-stepped-outside feeling.</p><p></p><p>Here is the thing though: top notes do not last. They are highly volatile, which means they evaporate fast, usually within 15 to 30 minutes. That scent perfume you tested at the luxury perfume store that smelled absolutely perfect in the moment? You were smelling the top notes. By the time you got home and wore it again, they had gone, disappeared faster than a decent bank holiday weather forecast.</p>",
+            "column_2_text": "<p>This catches out a lot of people who buy perfume online based on reviews that focus entirely on the opening spray. Top notes are the introduction. They are not the whole story, and they are absolutely not what you will be wearing all day.<br/><br/></p>",
+            "body_size": 24,
+            "body_size_mobile": 14,
+            "body_line_height": 1.6,
+            "body_color": "#000000",
+            "paragraph_spacing": 10,
+            "column_gap": 70,
+            "column_gap_mobile": 30,
+            "max_width": 1400,
+            "desktop_width_percent": 100,
+            "background_color": "#f9f6f1",
+            "padding_top": 60,
+            "padding_bottom": 60,
+            "padding_horizontal": 40,
+            "padding_top_mobile": 40,
+            "padding_bottom_mobile": 40,
+            "padding_horizontal_mobile": 20
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_6894d32_KAA87y"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".ai-editorial-heading-aq1zua2fxdjneutvhmaigenblock6894d32kaa87y {max-width: 625px;}"
+      ],
+      "settings": {}
+    },
     "1778843746bf825332": {
       "type": "_blocks",
       "blocks": {
@@ -145,6 +237,93 @@
       ],
       "settings": {}
     },
+    "1779107504f82a420f": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_e17473f_Pmbp9t": {
+          "type": "ai_gen_block_e17473f",
+          "settings": {
+            "line_1_text": "Timeless Grace",
+            "line_1_alignment": "left",
+            "line_1_offset": 300,
+            "line_2_text": "vs",
+            "line_2_alignment": "center",
+            "line_2_offset": 0,
+            "line_3_text": "Coco Mademoiselle by Chanel",
+            "line_3_alignment": "right",
+            "line_3_offset": -40,
+            "body_text": "<p><strong>Coco Mademoiselle</strong> is the benchmark for a certain kind of feminine fragrance. Clean, grown-up, and instantly recognisable. It has been the top-selling women's perfume in the UK for years, which is a remarkable achievement in a market this competitive. The EDP retails at around £120 for 100ml, and you will find it in every Boots or John Lewis and every pharmacy or department store in between for a reason.<br/><br/><strong>Timeless Grace</strong> opens with the same fresh orange and bergamot, develops through jasmine and rose, and settles into a warm patchouli base that wears beautifully throughout the day. The comparison here produced the closest result of the three: on dry-down, both fragrances sat in the same warm, clean territory. The original has a very slight additional depth in the base that reflects a higher concentration of raw materials, but it is a difference you would only notice if you were specifically looking for it, tester strip in hand, in the fragrance hall at Fortnum and Mason with nothing else to do.</p><p>At around twenty quid versus £120, Timeless Grace makes a compelling case for anyone who loves the Coco Mademoiselle profile but would rather wear it every single day without eking it out like the last of the Nutella in the jar you have to make last until payday.</p>",
+            "line_1_size": 44,
+            "line_2_size": 85,
+            "line_3_size": 44,
+            "body_size": 22,
+            "line_2_margin_top": -20,
+            "line_3_margin_top": 0,
+            "header_spacing": 40,
+            "body_max_width": 1000,
+            "section_padding_top": 60,
+            "section_padding_bottom": 60,
+            "background_color": "#ffffff",
+            "text_color": "#121212"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_e17473f_Pmbp9t"
+      ],
+      "disabled": true,
+      "settings": {}
+    },
+    "blocks_daydAE": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_87b20c9_a3xwjd": {
+          "type": "ai_gen_block_87b20c9",
+          "settings": {
+            "container_width": 1200,
+            "left_column_width": 40,
+            "right_column_width": 60,
+            "column_gap": 80,
+            "desktop_width_percent": 100,
+            "heading": "Where the differences actually show up",
+            "heading_font": "serif",
+            "heading_size": 56,
+            "mobile_heading_size": 40,
+            "heading_color": "#000000",
+            "heading_indent": 15,
+            "mobile_heading_indent": 15,
+            "image": "shopify://shop_images/magnific_luxury-perfume-comparison_74h5S6MJAL_jpg.jpg",
+            "image_max_width": 600,
+            "heading_image_gap": 4,
+            "mobile_heading_image_gap": 25,
+            "body_text": "<p>Across all three tests, the differences between inspired fragrances and originals came down to the same three things.</p><p><strong>Concentration of raw materials.</strong> Designer houses use extremely high concentrations of expensive ingredients. The originals have a richness in the base that reflects this. A well-made inspired fragrance gets close, but the very finest nuances of a £250 bottle sometimes live in those base notes, and it is worth knowing that going in rather than expecting an identical experience.</p><p><strong>Projection in the opening.</strong> Top notes on the originals tend to radiate a little further in the first thirty minutes. If you are heading somewhere and want to make an immediate impression stepping off the train at Waterloo Station and weaving through the throngs of humanity, the original does have a slight edge there. If you are wearing something all day for your own pleasure, the difference matters considerably less.</p><p><strong>Longevity on dry skin.</strong> Both perform significantly better on moisturised skin. On bare, dry skin the originals hold on a touch longer. Twelve seconds of unscented moisturiser before you spray closes that gap considerably on both sides.</p>",
+            "body_font": "system_ui_n4",
+            "body_size": 22,
+            "mobile_body_size": 16,
+            "body_color": "#111111",
+            "paragraph_spacing": 30,
+            "mobile_paragraph_spacing": 15,
+            "text_vertical_offset": 10,
+            "background_color": "#f5f3ee",
+            "padding_top": 40,
+            "padding_bottom": 40,
+            "horizontal_padding": 40,
+            "mobile_padding_top": 60,
+            "mobile_padding_bottom": 60,
+            "mobile_horizontal_padding": 20,
+            "mobile_gap": 40
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_87b20c9_a3xwjd"
+      ],
+      "disabled": true,
+      "name": "Editorial section",
+      "settings": {}
+    },
     "blocks_UXR9hM": {
       "type": "_blocks",
       "blocks": {
@@ -188,6 +367,50 @@
       "custom_css": [
         "a{color: #fff;}"
       ],
+      "settings": {}
+    },
+    "178125733149f92c38": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_42e8eee_xEGjr4": {
+          "type": "ai_gen_block_42e8eee",
+          "settings": {
+            "header_col_1": "Feature",
+            "header_col_2": "Option A",
+            "header_col_3": "Option B",
+            "header_bg_color": "#000000",
+            "header_text_color": "#ffffff",
+            "header_font_size": 16,
+            "row_1_col_1": "Price",
+            "row_1_col_2": "$29",
+            "row_1_col_3": "$39",
+            "row_2_col_1": "Quality",
+            "row_2_col_2": "Premium",
+            "row_2_col_3": "Luxury",
+            "row_3_col_1": "Shipping",
+            "row_3_col_2": "Free",
+            "row_3_col_3": "Free",
+            "row_bg_color": "#ffffff",
+            "row_alt_bg_color": "#f3f3f3",
+            "row_text_color": "#121212",
+            "body_font_size": 14,
+            "column_1_width": 25,
+            "column_2_width": 25,
+            "text_alignment": "center",
+            "cell_padding": 16,
+            "table_border_thickness": 1,
+            "cell_border_thickness": 1,
+            "table_border_color": "#121212",
+            "cell_border_color": "#e0e0e0",
+            "desktop_width_percent": 100
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_42e8eee_xEGjr4"
+      ],
+      "disabled": true,
       "settings": {}
     },
     "1778843499df5a6469": {
@@ -275,6 +498,49 @@
       "name": "Staggered typography",
       "settings": {}
     },
+    "177884398431108114": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_8091a19_49mDF7": {
+          "type": "ai_gen_block_8091a19",
+          "settings": {
+            "container_width": 1100,
+            "horizontal_padding": 20,
+            "padding_top": 80,
+            "padding_bottom": 80,
+            "column_gap": 40,
+            "mobile_gap": 20,
+            "mobile_scale": 0.6,
+            "background_color": "#ffffff",
+            "prefix_text": "",
+            "prefix_font_size": 50,
+            "brand_scent_text": "",
+            "brand_spired_text": "",
+            "brand_font_size": 50,
+            "start_text": "",
+            "start_font_size": 50,
+            "bestsellers_text": "",
+            "bestsellers_font_size": 50,
+            "heading_line_spacing": 4,
+            "heading_line_height": 1,
+            "heading_color": "#000000",
+            "body_text": "Once you start reading fragrance this way, there is no going back. You will know what you are buying before you hand over anything, you will understand why the same scent smells completely different on your colleague, and you will have rather more fun with the whole business. The notes have been there all along. Now you know what they mean.",
+            "body_font_size": 25,
+            "body_line_height": 1.3,
+            "body_color": "#121212"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_8091a19_49mDF7"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".ai-split-editorial-right-aqwq3qnv6qwnloem3aaigenblock8091a1949mdf7 {max-width: 100%;}"
+      ],
+      "settings": {}
+    },
     "blocks_HnBAMt": {
       "type": "_blocks",
       "blocks": {
@@ -328,6 +594,42 @@
       "block_order": [
         "ai_gen_block_af322f3_bnrhkr"
       ],
+      "settings": {}
+    },
+    "1778844323c8772560": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_7c627d8_BUM397": {
+          "type": "ai_gen_block_7c627d8",
+          "settings": {
+            "desktop_image": "shopify://shop_images/wmremove-transformed_1.png",
+            "mobile_image": "shopify://shop_images/wmremove-transformed_1.png",
+            "text_horizontal_position": 10,
+            "text_max_width": 800,
+            "text_size": 38,
+            "line_height": 1
+          },
+          "blocks": {}
+        },
+        "ai_gen_block_708f5b7_bWFdAC": {
+          "type": "ai_gen_block_708f5b7",
+          "disabled": true,
+          "settings": {
+            "desktop_image": "shopify://shop_images/wmremove-transformed_1.png",
+            "mobile_image": "shopify://shop_images/wmremove-transformed_1.png",
+            "text_horizontal_position": 10,
+            "text_max_width": 650,
+            "text_size": 32,
+            "line_height": 1
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_7c627d8_BUM397",
+        "ai_gen_block_708f5b7_bWFdAC"
+      ],
+      "disabled": true,
       "settings": {}
     }
   },

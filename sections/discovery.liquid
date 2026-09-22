@@ -26,36 +26,19 @@
   </div>
 </div>
 
-{% assign discovery_parent = section.settings.bundle_product
-  | default: all_products["discovery-set"]
-  | default: all_products["discovery-set-5ml"]
-%}
-{% assign disc_variant_id = 57083186217305 %}
-{% if cart.currency.iso_code == "USD" or shop.currency == "USD" %}
-  {% assign disc_variant_id = 45733851955383 %}
-{% endif %}
-{% if discovery_parent and discovery_parent.variants.size > 0 %}
-  {% assign disc_variant_id = discovery_parent.first_available_variant.id
-    | default: discovery_parent.variants.first.id
-  %}
-{% endif %}
-
-{% if discovery_parent and discovery_parent.price > 0 %}
-  {% assign disc_price_display = discovery_parent.price | money %}
-{% elsif cart.currency.iso_code == "USD" or shop.currency == "USD" %}
-  {% assign disc_price_display = "$19.99" %}
-{% else %}
-  {% assign disc_price_display = "£14.99" %}
-{% endif %}
+{% capture disc_data_json %}{% render 'bundle-data', bundle_type: 'discovery', product: section.settings.bundle_product %}{% endcapture %}
+{%- capture curated_brands_json -%}{%- render 'bundle-curated-brands' -%}{%- endcapture -%}
+{% assign disc_col = section.settings.collection | default: collections['discovery'] | default: collections['all'] %}
 
 <script>
-  const DISCOVERY_SET_VARIANT_ID = {{ disc_variant_id | json }}; // Dynamic Discovery Set variant (US & UK)
-  const DISCOVERY_PRICE_DISPLAY = {{ disc_price_display | json }}; // Dynamic currency formatted price
+  const DISC_DATA = {{ disc_data_json }};
+  const DISCOVERY_SET_VARIANT_ID = DISC_DATA.variantId;
+  const DISCOVERY_PRICE_DISPLAY = DISC_DATA.priceDisplay;
 
-  // Load all products from the 'shop' collection
+  // Load all products from dynamic or fallback collections
   const products = [
-    {% paginate collections['discovery'].products by 100 %}
-      {% for product in collections['discovery'].products %}
+    {% paginate disc_col.products by 250 %}
+      {% for product in disc_col.products %}
         {
           id: {{ product.id }},
           title: {{ product.title | json }},
@@ -78,35 +61,25 @@
     {% endpaginate %}
   ];
 
- 
-  const brands = [
-    { tag: "tomford", name: "Tom Ford" },
-    { tag: "chanel", name: "Chanel" },
-    { tag: "lv", name: "Louis Vuitton" },
-    { tag: "bykillian", name: "By Killian" },
-    { tag: "byredo", name: "Byredo" },
-    { tag: "dior", name: "Dior" },
-    { tag: "maisoncrivelli", name: "Maison Crivelli" },
-    { tag: "creed", name: "Creed" },
-    { tag: "lelabo", name: "Le Labo" },
-    { tag: "ysl", name: "YSL" },
-    { tag: "burberry", name: "Burberry" },
-    { tag: "exnihilos", name: "Ex Nihilo's" },
-    { tag: "parfums", name: "Parfums" },
-    { tag: "bvlgari", name: "Bvlgari" },
-    { tag: "carolinaherrera", name: "Carolina Herrera" },
-    { tag: "diptyque", name: "Diptyque" },
-    { tag: "giorgioarmani", name: "Giorgio Armani" },
-    { tag: "gucci", name: "Gucci" },
-    { tag: "herm", name: "Hermès" },
-    { tag: "initio", name: "Initio" },
-    { tag: "lancôme", name: "Lancôme" },
-    { tag: "mfk", name: "MFK" },
-    { tag: "narciso", name: "Narciso" },
-    { tag: "nasomattos", name: "Nasomatto's" },
-    { tag: "nishane", name: "Nishane" },
-    { tag: "pacorabanne", name: "Paco Rabanne" }
-  ];
+  const curatedBrands = {{ curated_brands_json }};
+
+  // Smart auto-accommodating brand list: canonical display + dynamic extraction of any new catalog vendors
+  function resolveBrands() {
+    const brandMap = new Map();
+    curatedBrands.forEach(b => brandMap.set(b.tag.toLowerCase(), b));
+
+    products.forEach(p => {
+      if (p.vendor && p.vendor.trim()) {
+        const cleanTag = p.vendor.toLowerCase().replace(/[^a-z0-9]/g, '');
+        if (cleanTag && cleanTag !== 'scentspired' && !brandMap.has(cleanTag)) {
+          brandMap.set(cleanTag, { tag: cleanTag, name: p.vendor.trim() });
+        }
+      }
+    });
+    return Array.from(brandMap.values());
+  }
+
+  const brands = resolveBrands();
 
   let bundle = [null, null, null, null, null];
   let currentSlot = null;
@@ -159,6 +132,8 @@
   function goBackToStep() {
     activeBrand = null;
     showStep('Step-Brand');
+    const headline = document.getElementById('DrawerHeadline');
+    if (headline) headline.innerText = 'Select Brand';
   }
 
   function renderBrands() {
@@ -174,6 +149,11 @@
   function selectBrand(tag) {
     activeBrand = tag;
     showStep('Step-Product');
+    const headline = document.getElementById('DrawerHeadline');
+    if (headline) {
+      const bObj = brands.find(b => b.tag === tag);
+      headline.innerText = bObj ? bObj.name : 'Select Product';
+    }
   }
 
   let allFilteredProducts = [];
@@ -190,11 +170,22 @@
 
     let displayProducts = filtered;
 
+    // Apply active brand filter if selected
+    if (activeBrand) {
+      const normBrand = activeBrand.toLowerCase().replace(/[^a-z0-9]/g, '');
+      displayProducts = displayProducts.filter(p => {
+        const normVendor = (p.vendor || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+        const matchesVendor = normVendor === normBrand;
+        const matchesTags = p.tags && p.tags.some(tag => tag.toLowerCase().replace(/[^a-z0-9]/g, '') === normBrand);
+        return matchesVendor || matchesTags;
+      });
+    }
+
     if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase();
-      displayProducts = filtered.filter(p => {
-        const matchesTitle = p.title.toLowerCase().includes(query);
-        const matchesVendor = p.vendor.toLowerCase().includes(query);
+      displayProducts = displayProducts.filter(p => {
+        const matchesTitle = p.title && p.title.toLowerCase().includes(query);
+        const matchesVendor = p.vendor && p.vendor.toLowerCase().includes(query);
         const matchesTags = p.tags && p.tags.some(tag => tag.toLowerCase().includes(query));
         
         return matchesTitle || matchesVendor || matchesTags;
@@ -476,6 +467,12 @@
       "id": "bundle_product",
       "label": "Bundle Parent Product (Optional Override)",
       "info": "Leave empty to automatically resolve by product handle ('discovery-set') and currency."
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Discovery Fragrances Collection (Optional Override)",
+      "info": "Leave empty to use 'discovery' collection automatically."
     }
   ],
   "presets": [

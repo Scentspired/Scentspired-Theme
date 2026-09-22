@@ -1,0 +1,204 @@
+{
+  "sections": {
+    "image_banner_V8niWG": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_qHmUCw": {
+          "type": "heading",
+          "settings": {
+            "heading": "Your Custom Collection",
+            "heading_size": "h2",
+            "heading_tag": "h1"
+          }
+        },
+        "text_dn9m8Y": {
+          "type": "text",
+          "settings": {
+            "text": "Add more, Unlock more",
+            "text_style": "subtitle"
+          }
+        }
+      },
+      "block_order": [
+        "heading_qHmUCw",
+        "text_dn9m8Y"
+      ],
+      "custom_css": [
+        ".banner__heading {margin-bottom: 0; margin-left: -80px; color: #000; font-family: \"PPEditorialNew Ultralight Italic\", serif; font-weight: 500; font-style: italic;}",
+        ".banner__text {margin-bottom: 0; margin-left: -80px; color: #000; font-family: \"PPMori\", serif; font-weight: 500; max-width: 400px; font-size: 20px;}",
+        "@media screen and (min-width: 750px) {.page-width {margin: unset; padding: 1.5rem; }}",
+        "@media screen and (min-width: 750px) {.banner--desktop-transparent .banner__box {padding: 3rem 150px; }}",
+        "@media (max-width: 768px) {.banner {display: none; }}"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/Customized_Bundle_Banner_1920_X_700_1.png",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-left",
+        "desktop_content_alignment": "left",
+        "show_text_box": false,
+        "color_scheme": "",
+        "stack_images_on_mobile": false,
+        "mobile_content_alignment": "left",
+        "show_text_below": false
+      }
+    },
+    "image_banner_dKh8Ch": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_fzmUgP": {
+          "type": "heading",
+          "settings": {
+            "heading": "Your Custom Collection",
+            "heading_size": "h2"
+          }
+        },
+        "text_eMBTUW": {
+          "type": "text",
+          "settings": {
+            "text": "Add more, Unlock more",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_fzmUgP",
+        "text_eMBTUW"
+      ],
+      "custom_css": [
+        ".banner__heading {margin-bottom: 0; margin-left: 15px !important; color: #fff !important; font-family: \"PPEditorialNew Ultralight Italic\", serif !important; font-weight: 500 !important; font-style: italic !important; margin-top: 300px !important;}",
+        ".banner__text {margin-bottom: 0; margin-left: 15px; color: #fff; font-family: \"PPMori\", serif !important; font-weight: 500; max-width: 400px;}",
+        "@media (min-width: 768px) {.banner {display: none; }}",
+        ".banner__content {padding-top: 40px;}",
+        ".banner__media {height: auto;}",
+        ".banner__text {line-height: 23px;}"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/3_401b4d3d-9c11-4893-a212-8517d206fe9f.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-left",
+        "desktop_content_alignment": "left",
+        "show_text_box": false,
+        "color_scheme": "",
+        "stack_images_on_mobile": false,
+        "mobile_content_alignment": "left",
+        "show_text_below": false
+      }
+    },
+    "image_banner_DpWmep": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_CyWijF": {
+          "type": "heading",
+          "settings": {
+            "heading": "A Scent for Every Side of You",
+            "heading_size": "h1"
+          }
+        },
+        "text_zkDyey": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "Give customers details about the banner image(s) or content on the template.",
+            "text_style": "body"
+          }
+        },
+        "buttons_MMVd3h": {
+          "type": "buttons",
+          "disabled": true,
+          "settings": {
+            "button_label_1": "Button label",
+            "button_link_1": "",
+            "button_style_secondary_1": false,
+            "button_label_2": "Button label",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_CyWijF",
+        "text_zkDyey",
+        "buttons_MMVd3h"
+      ],
+      "disabled": true,
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/Website_-_Bundle_Box.png",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "top-left",
+        "desktop_content_alignment": "center",
+        "show_text_box": false,
+        "color_scheme": "",
+        "stack_images_on_mobile": false,
+        "mobile_content_alignment": "center",
+        "show_text_below": false
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "custom_css": [
+        ".bundle-builder-section {margin-top: 100px;}",
+        ".bundle-header-area {background-color: #f3f3f3; padding: 40px 20px; width: 100%; max-width: 1000px; /* or 1200px depending on your site */ margin: 0 auto; /* center it horizontally */ box-sizing: border-box; border-radius: 20px;}",
+        ".bundle-header-outer {width: 100%; background-color: #ffffff; /* white background on full width */}",
+        ".discount-extra {display: none;}"
+      ],
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "bundle_tDywUt": {
+      "type": "bundle",
+      "custom_css": [],
+      "name": "Bundle Builder",
+      "settings": {}
+    },
+    "newsletter_banner_JztXfP": {
+      "type": "newsletter-banner",
+      "custom_css": [
+        "@media only screen and (min-width: 1024px) and (max-width: 1439px) {.newsletter-banner .newsletter-content {margin-right: 0px !important; }}",
+        "@media (max-width: 1023px) {.newsletter-banner button {width: 240px; height: 48px; margin-left: -323px; margin-top: 90px; } .newsletter-banner small {display: block; margin-top: 150px; font-size: 12px; color: #000; text-align: center; font-family: \"PPMori Regular\", sans-serif; line-height: 120%; } .newsletter-banner {height: 790px; } .newsletter-banner .newsletter-content {margin-bottom: 175px !important; }}"
+      ],
+      "name": "Newsletter Banner",
+      "settings": {
+        "background_image": "shopify://shop_images/ScentSpired_-_Scent_Notes_06_-_Banner.png",
+        "heading": "Join the",
+        "subheading": "inner circle",
+        "description": "New launches, exclusive edits, and first access, straight to your inbox."
+      }
+    },
+    "newsletter_banner_Uw6Na3": {
+      "type": "newsletter-banner",
+      "disabled": true,
+      "custom_css": [
+        "@media only screen and (min-width: 1024px) and (max-width: 1439px) {.newsletter-banner .newsletter-content {margin-right: 0px !important; }}",
+        "@media (max-width: 768px) {.newsletter-banner button {width: 240px; height: 48px; margin-left: -323px; margin-top: 90px; } .newsletter-banner small {display: block; margin-top: 150px; font-size: 12px; color: #000; text-align: center; font-family: \"PPMori Regular\", sans-serif; line-height: 120%; } .newsletter-banner {height: 790px; } .newsletter-banner .newsletter-content {margin-bottom: 175px !important; }}"
+      ],
+      "name": "Newsletter Banner",
+      "settings": {
+        "background_image": "shopify://shop_images/ScentSpired_-_Scent_Notes_06_-_Banner_d12edcd9-7761-4580-8abf-be16f210716a.png",
+        "heading": "Hear More",
+        "subheading": "From Us",
+        "description": "Get the latest news about skincare tips and new products."
+      }
+    }
+  },
+  "order": [
+    "image_banner_V8niWG",
+    "image_banner_dKh8Ch",
+    "image_banner_DpWmep",
+    "main",
+    "bundle_tDywUt",
+    "newsletter_banner_JztXfP",
+    "newsletter_banner_Uw6Na3"
+  ]
+}

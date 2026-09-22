@@ -1,18 +1,5 @@
-{%- liquid
-  if shop.domain contains 'scentspired.co.uk' or cart.currency.iso_code == 'GBP' or shop.currency == 'GBP'
-    assign footer_home_url = 'https://scentspired.co.uk'
-    assign has_trustpilot = 'false'
-  elsif shop.domain contains 'scentspired.ae' or cart.currency.iso_code == 'AED' or shop.currency == 'AED'
-    assign footer_home_url = 'https://scentspired.ae'
-    assign has_trustpilot = 'false'
-  elsif shop.domain contains 'scentspired.com' or cart.currency.iso_code == 'USD' or shop.currency == 'USD'
-    assign footer_home_url = 'https://scentspired.com'
-    assign has_trustpilot = 'true'
-  else
-    assign footer_home_url = shop.url | default: routes.root_url | default: '/'
-    assign has_trustpilot = 'false'
-  endif
--%}
+{%- capture has_trustpilot -%}{%- render 'store-context', key: 'has_trustpilot' -%}{%- endcapture -%}
+{%- assign footer_home_url = shop.url | default: routes.root_url | default: '/' -%}
 <footer class="custom-footer">
   <div class="footer-container">
     <div class="footer-content">

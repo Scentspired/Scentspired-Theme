@@ -10,12 +10,12 @@
   --blog-body-size: 19px;
   --blog-body-line-height: 1.7;
   --blog-body-color: #1a1a1a;
-  --blog-body-font: 'PPMori Regular', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --blog-body-font: var(--font-family-primary);
 
   /* Headings */
   --blog-h1-size: 42px;
   --blog-h1-line-height: 1.12;
-  --blog-h1-font: 'PPEditorialNew Italic', Georgia, serif;
+  --blog-h1-font: var(--font-family-heading);
 
   --blog-h2-size: 30px;
   --blog-h2-line-height: 1.2;
@@ -29,7 +29,7 @@
   /* Meta (date, author, breadcrumb) */
   --blog-meta-size: 14px;
   --blog-meta-color: rgba(0, 0, 0, 0.6);
-  --blog-meta-font: 'PPMori Regular', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --blog-meta-font: var(--font-family-primary);
 
   /* Layout */
   --blog-column-max-width: 680px;

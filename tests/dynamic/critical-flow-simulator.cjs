@@ -257,8 +257,11 @@ async function runSuiteA() {
   console.log("│ SUITE A: Product Detail Page (PDP) Add-to-Cart Simulation    │");
   console.log("└──────────────────────────────────────────────────────────────┘");
 
-  // Load actual product-form.js code from repo
-  const productFormCode = fs.readFileSync(path.join(ROOT, "assets/product-form.js"), "utf8");
+  // Load actual product--form.js code from repo
+  const productFormRel = fs.existsSync(path.join(ROOT, "assets/product--form.js"))
+    ? "assets/product--form.js"
+    : "assets/product-form.js";
+  const productFormCode = fs.readFileSync(path.join(ROOT, productFormRel), "utf8");
   eval(productFormCode);
 
   const ProductFormClass = customElements.get("product-form");

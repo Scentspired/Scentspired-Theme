@@ -1,0 +1,38 @@
+{%- comment -%}
+  Structured Data: Central Orchestrator
+  Determines page context and conditionally delegates schema generation
+  to isolated, dedicated schema components.
+  Blast radius: SEO metadata only. Non-blocking.
+{%- endcomment -%}
+
+{%- comment -%} 1. Global Business Identity {%- endcomment -%}
+{%- render 'schema--organization' -%}
+
+{%- comment -%} 2. Homepage & WebSite Sitelinks Searchbox {%- endcomment -%}
+{%- if request.page_type == 'index' -%}
+  {%- render 'schema--website' -%}
+{%- endif -%}
+
+{%- comment -%} 3. Product Pages {%- endcomment -%}
+{%- if request.page_type == 'product' or template contains 'product' -%}
+  {%- render 'schema--product' -%}
+  {%- render 'schema--breadcrumb', type: 'product' -%}
+
+{%- comment -%} 4. Collection Pages {%- endcomment -%}
+{%- elsif request.page_type == 'collection' or template contains 'collection' -%}
+  {%- render 'schema--breadcrumb', type: 'collection' -%}
+
+{%- comment -%} 5. Blog Articles {%- endcomment -%}
+{%- elsif request.page_type == 'article' or template contains 'article' -%}
+  {%- render 'schema--article' -%}
+  {%- render 'schema--breadcrumb', type: 'article' -%}
+
+{%- comment -%} 6. FAQ Page (Authentic visible FAQ content) {%- endcomment -%}
+{%- elsif template == 'page.faqs' or page.handle == 'faqs' or page.handle == 'frequently-asked-questions' -%}
+  {%- render 'schema--faq' -%}
+  {%- render 'schema--breadcrumb', type: 'page' -%}
+
+{%- comment -%} 7. Standard Static Pages {%- endcomment -%}
+{%- elsif request.page_type == 'page' -%}
+  {%- render 'schema--breadcrumb', type: 'page' -%}
+{%- endif -%}

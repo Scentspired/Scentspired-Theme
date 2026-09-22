@@ -1,23 +1,23 @@
 {% comment %}
-  Discovery Box Builder
-  - 5 slots with dynamic progress timeline
+  Signature Trio Set Box Builder
+  - 3 slots with dynamic progress timeline
   - Desktop: Auto-open first slot, sequential product filling, auto-advance to next slot
   - Mobile: Original flexible behavior (no auto-select, manual slot selection)
   - Direct to checkout redirect
   - Selection flow: Brand -> Product
-  - Requires exactly 5 items to checkout
+  - Requires exactly 3 items to checkout
 {% endcomment %}
 
 {{ "section-bundle-builder.css" | asset_url | stylesheet_tag }}
 
 <div class="perfume-bundle-section">
   <div class="builder-layout">
-    {%- assign trio_heading = section.settings.heading | default: 'Build Your Own Signature Trio Set' -%}
-    {%- assign trio_subheading = section.settings.subheading | default: 'Add 3 items to complete your Signature Trio Set' -%}
+    {%- assign trioset_heading = section.settings.heading | default: 'Build Your Own Signature Trio Set' -%}
+    {%- assign trioset_subheading = section.settings.subheading | default: 'Add 3 items to complete your Signature Trio Set' -%}
     {%
       render 'bundle-sidebar',
-      title: trio_heading,
-      subtitle: trio_subheading,
+      title: trioset_heading,
+      subtitle: trioset_subheading,
       capacity: 3,
       show_savings: true
     %}
@@ -26,68 +26,26 @@
   </div>
 </div>
 
-{% assign trio_parent = section.settings.bundle_product | default: all_products["the-signature-trio"] %}
-{% assign trio_50 = 57083186086233 %}
-{% assign trio_100 = 57083186119001 %}
-{% assign trio_price_50 = 39.99 %}
-{% assign trio_price_100 = 59.99 %}
-{% assign trio_std_50 = 59.97 %}
-{% assign trio_std_100 = 89.97 %}
-{% assign trio_saving_50 = 19.98 %}
-{% assign trio_saving_100 = 29.98 %}
-{% assign trio_curr_sym = "£" %}
+{% capture bundle_data_json %}{% render 'bundle-data', bundle_type: 'trio-set', product: section.settings.bundle_product %}{% endcapture %}
+{%- capture curated_brands_json -%}{%- render 'bundle-curated-brands' -%}{%- endcapture -%}
 
-{% if cart.currency.iso_code == "USD" or shop.currency == "USD" %}
-  {% assign trio_50 = 45733933154487 %}
-  {% assign trio_100 = 45733933187255 %}
-  {% assign trio_price_50 = 79.99 %}
-  {% assign trio_price_100 = 119.99 %}
-  {% assign trio_std_50 = 119.97 %}
-  {% assign trio_std_100 = 179.97 %}
-  {% assign trio_saving_50 = 39.98 %}
-  {% assign trio_saving_100 = 59.98 %}
-  {% assign trio_curr_sym = "$" %}
-{% endif %}
-
-{% for variant in trio_parent.variants %}
-  {% if variant.title contains "50" %}
-    {% assign trio_50 = variant.id %}
-    {% if variant.price > 0 %}
-      {% assign trio_price_50 = variant.price | divided_by: 100.0 %}
-    {% endif %}
-  {% elsif variant.title contains "100" %}
-    {% assign trio_100 = variant.id %}
-    {% if variant.price > 0 %}
-      {% assign trio_price_100 = variant.price | divided_by: 100.0 %}
-    {% endif %}
-  {% endif %}
-{% endfor %}
+{% assign trio_col_50 = section.settings.collection_50ml | default: collections['bundle-50ml'] | default: collections['all'] %}
+{% assign trio_col_100 = section.settings.collection_100ml | default: collections['bundle-100ml'] | default: collections['all'] %}
 
 <script>
   let activeSize = null;
 let currentStep = 'Step-Size';        // Tracks which step is open
 let hasAddedFirstProduct = false;     // Becomes true after first product is added
 
-const CURRENCY_SYMBOL = {{ trio_curr_sym | json }};
+const BUNDLE_DATA = {{ bundle_data_json }};
+const CURRENCY_SYMBOL = BUNDLE_DATA.currencySymbol;
+const PRICING = BUNDLE_DATA.pricing;
 
-const PRICING = {
-  "50ml": {
-    total: {{ trio_price_50 | json }},
-    standard: {{ trio_std_50 | json }},
-    saving: {{ trio_saving_50 | json }}
-  },
-  "100ml": {
-    total: {{ trio_price_100 | json }},
-    standard: {{ trio_std_100 | json }},
-    saving: {{ trio_saving_100 | json }}
-  }
-};
-
-  // Load all products from the 'shop' collection
+  // Load all products from dynamic or fallback collections
   const PRODUCTS_BY_SIZE = {
   "50ml": [
-    {% paginate collections['bundle-50ml'].products by 100 %}
-      {% for product in collections['bundle-50ml'].products %}
+    {% paginate trio_col_50.products by 250 %}
+      {% for product in trio_col_50.products %}
         {
           id: {{ product.id }},
           title: {{ product.title | json }},
@@ -111,8 +69,8 @@ const PRICING = {
   ],
 
   "100ml": [
-    {% paginate collections['bundle-100ml'].products by 100 %}
-      {% for product in collections['bundle-100ml'].products %}
+    {% paginate trio_col_100.products by 250 %}
+      {% for product in trio_col_100.products %}
         {
           id: {{ product.id }},
           title: {{ product.title | json }},
@@ -136,36 +94,26 @@ const PRICING = {
   ]
 };
 
+  const curatedBrands = {{ curated_brands_json }};
 
- 
-  const brands = [
-    { tag: "tomford", name: "Tom Ford" },
-    { tag: "chanel", name: "Chanel" },
-    { tag: "lv", name: "Louis Vuitton" },
-    { tag: "bykillian", name: "By Killian" },
-    { tag: "byredo", name: "Byredo" },
-    { tag: "dior", name: "Dior" },
-    { tag: "maisoncrivelli", name: "Maison Crivelli" },
-    { tag: "creed", name: "Creed" },
-    { tag: "lelabo", name: "Le Labo" },
-    { tag: "ysl", name: "YSL" },
-    { tag: "burberry", name: "Burberry" },
-    { tag: "exnihilos", name: "Ex Nihilo's" },
-    { tag: "parfums", name: "Parfums" },
-    { tag: "bvlgari", name: "Bvlgari" },
-    { tag: "carolinaherrera", name: "Carolina Herrera" },
-    { tag: "diptyque", name: "Diptyque" },
-    { tag: "giorgioarmani", name: "Giorgio Armani" },
-    { tag: "gucci", name: "Gucci" },
-    { tag: "herm", name: "Hermès" },
-    { tag: "initio", name: "Initio" },
-    { tag: "lancôme", name: "Lancôme" },
-    { tag: "mfk", name: "MFK" },
-    { tag: "narciso", name: "Narciso" },
-    { tag: "nasomattos", name: "Nasomatto's" },
-    { tag: "nishane", name: "Nishane" },
-    { tag: "pacorabanne", name: "Paco Rabanne" }
-  ];
+  // Smart auto-accommodating brand list: canonical display + dynamic extraction of any new catalog vendors
+  function resolveBrands() {
+    const brandMap = new Map();
+    curatedBrands.forEach(b => brandMap.set(b.tag.toLowerCase(), b));
+
+    const allProducts = [...(PRODUCTS_BY_SIZE["50ml"] || []), ...(PRODUCTS_BY_SIZE["100ml"] || [])];
+    allProducts.forEach(p => {
+      if (p.vendor && p.vendor.trim()) {
+        const cleanTag = p.vendor.toLowerCase().replace(/[^a-z0-9]/g, '');
+        if (cleanTag && cleanTag !== 'scentspired' && !brandMap.has(cleanTag)) {
+          brandMap.set(cleanTag, { tag: cleanTag, name: p.vendor.trim() });
+        }
+      }
+    });
+    return Array.from(brandMap.values());
+  }
+
+  const brands = resolveBrands();
 
   let bundle = [null, null, null];
   let currentSlot = null;
@@ -233,8 +181,17 @@ const PRICING = {
   }
 
   function goBackToStep() {
-    if (currentStep === 'Step-Product' && !hasAddedFirstProduct) {
-      showStep('Step-Size');
+    if (currentStep === 'Step-Product') {
+      if (activeBrand) {
+        activeBrand = null;
+        renderProducts();
+        const headline = document.getElementById('DrawerHeadline');
+        if (headline) headline.innerText = 'Select Product';
+        return;
+      }
+      if (!hasAddedFirstProduct) {
+        showStep('Step-Size');
+      }
     }
   }
 
@@ -257,6 +214,11 @@ const PRICING = {
   function selectBrand(tag) {
     activeBrand = tag;
     showStep('Step-Product');
+    const headline = document.getElementById('DrawerHeadline');
+    if (headline) {
+      const bObj = brands.find(b => b.tag === tag);
+      headline.innerText = bObj ? bObj.name : 'Select Product';
+    }
   }
 
   // Store filtered products for search
@@ -277,10 +239,21 @@ const PRICING = {
 
     let displayProducts = filtered;
 
+    // Apply active brand filter if selected
+    if (activeBrand) {
+      const normBrand = activeBrand.toLowerCase().replace(/[^a-z0-9]/g, '');
+      displayProducts = displayProducts.filter(p => {
+        const normVendor = (p.vendor || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+        const matchesVendor = normVendor === normBrand;
+        const matchesTags = p.tags && p.tags.some(tag => tag.toLowerCase().replace(/[^a-z0-9]/g, '') === normBrand);
+        return matchesVendor || matchesTags;
+      });
+    }
+
     // Apply search filter if query exists
     if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase();
-      displayProducts = filtered.filter(p => {
+      displayProducts = displayProducts.filter(p => {
         const matchesTitle = p.title.toLowerCase().includes(query);
         const matchesVendor = p.vendor.toLowerCase().includes(query);
         const matchesTags = p.tags && p.tags.some(tag => tag.toLowerCase().includes(query));
@@ -457,10 +430,7 @@ const PRICING = {
   }
 
   // 🔑 Signature Trio main product variants (US & UK)
-  const TRIO_SET_VARIANT = {
-    "50ml": {{ trio_50 | json }},
-    "100ml": {{ trio_100 | json }}
-  };
+  const TRIO_SET_VARIANT = BUNDLE_DATA.variants;
 
   async function handleCheckout() {
     const btn = document.getElementById('MainActionBtn');
@@ -572,6 +542,18 @@ const PRICING = {
       "id": "bundle_product",
       "label": "Bundle Parent Product (Optional Override)",
       "info": "Leave empty to automatically resolve by product handle ('the-signature-trio') and currency."
+    },
+    {
+      "type": "collection",
+      "id": "collection_50ml",
+      "label": "50ml Products Collection (Optional Override)",
+      "info": "Leave empty to use 'bundle-50ml' collection automatically."
+    },
+    {
+      "type": "collection",
+      "id": "collection_100ml",
+      "label": "100ml Products Collection (Optional Override)",
+      "info": "Leave empty to use 'bundle-100ml' collection automatically."
     }
   ],
   "presets": [

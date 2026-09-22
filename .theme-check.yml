@@ -5,13 +5,16 @@
 
 extends: theme-check:recommended
 
-# Ignore vendor bundles, regional packages, tests, and third-party app blocks
+# Ignore vendor bundles, regional packages, tests, docs, and third-party app blocks
 ignore:
   - 'node_modules/**'
   - 'regions/**'
   - 'tests/**'
+  - 'docs/**'
+  - '.github/**'
   - 'assets/*.min.js'
   - 'assets/*.min.css'
+  - '.upstream-sync-metadata.json'
 
 # Critical Quality Gates (Strict Errors)
 ValidSchemaTranslations:
@@ -34,11 +37,10 @@ UnknownFilter:
   enabled: true
   severity: error
 
-ImgWidthAndHeight:
-  enabled: true
-  severity: warning
-
 # Configurable Rules for Custom Stores
+ImgWidthAndHeight:
+  enabled: false # Non-blocking asset dimensions checked via Layer 11 budget guard
+
 MatchingTranslations:
   enabled: false # English is primary; international stores translate dynamically
 
@@ -52,9 +54,7 @@ UndefinedObject:
   enabled: false # Third-party builder & app bridge globals (EComposer, Loox, Ryviu)
 
 UnusedAssign:
-  enabled: true
-  severity: warning
+  enabled: false # Heavy AST symbol table traversal skipped; covered by Layer 3 static analysis
 
 VariableName:
-  enabled: true
-  severity: warning
+  enabled: false # Naming convention checked by Layer 3 static analysis

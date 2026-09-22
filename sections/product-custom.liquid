@@ -12,6 +12,8 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Monument+Extended&display=swap" rel="stylesheet">
+{%- capture curr_sym -%}{%- render 'store-context', key: 'currency_symbol' -%}{%- endcapture -%}
+{%- assign curr_sym = curr_sym | strip -%}
 
 <!-- HTML MARKUP -->
 <div class="ps-wrapper">
@@ -32,7 +34,11 @@
                 <img
                   class="ps-gallery-media"
                   src="{{ media | image_url: width: 1000 }}"
-                  alt="{{ media.alt }}"
+                  alt="{{ media.alt | default: product.title | escape }}"
+                  loading="eager"
+                  fetchpriority="high"
+                  width="1000"
+                  height="{{ 1000 | divided_by: media.aspect_ratio | default: 1000 | round }}"
                   data-full="{{ media | image_url: width: 2000 }}">
               {% endif %}
             </div>
@@ -46,7 +52,11 @@
                 <img
                   class="ps-gallery-media"
                   src="{{ media | image_url: width: 500 }}"
-                  alt="{{ media.alt }}"
+                  alt="{{ media.alt | default: product.title | escape }}"
+                  loading="lazy"
+                  decoding="async"
+                  width="500"
+                  height="{{ 500 | divided_by: media.aspect_ratio | default: 500 | round }}"
                   data-full="{{ media | image_url: width: 2000 }}">
               {% endif %}
             </div>
@@ -69,12 +79,12 @@
         <div class="ps-price-container">
           {% assign variant = product.selected_or_first_available_variant %}
           <span class="ps-price" id="psPriceDisplay" data-price>
-            {{ cart.currency.symbol | default: '$' }}{{ variant.price | divided_by: 100.0 | round: 2 }}
+            {{ cart.currency.symbol | default: curr_sym }}{{ variant.price | divided_by: 100.0 | round: 2 }}
           </span>
 
           {% if variant.compare_at_price and variant.compare_at_price > variant.price %}
             <span class="ps-original-price" data-compare-price>
-              {{ cart.currency.symbol | default: '$' }}{{ variant.compare_at_price | divided_by: 100.0 | round: 2 }}
+              {{ cart.currency.symbol | default: curr_sym }}{{ variant.compare_at_price | divided_by: 100.0 | round: 2 }}
             </span>
             <span class="ps-price-badge" data-sale-badge>Sale</span>
           {% endif %}
@@ -171,29 +181,7 @@
 
 <!-- CSS STYLES -->
 <style>
-  @font-face {
-    font-family: 'PPMori Extralight';
-    src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPMori-Extralight.otf?v=1751619970')
-      format('opentype');
-    font-weight: 200;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: 'PPEditorialNew Italic';
-    src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPEditorialNew-Italic-BF644b214fb0c0a.otf?v=1751620955')
-      format('opentype');
-    font-weight: 900;
-    font-style: italic;
-  }
-
-  @font-face {
-    font-family: 'PPMori Regular';
-    src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPMori-Regular.otf?v=1751621372')
-      format('opentype');
-    font-weight: 400;
-    font-style: normal;
-  }
+  /* Typography inherited from theme design tokens (layout/theme.liquid) */
   #psModalVideo,
   #psModalImage {
     max-width: 90vw;
@@ -204,21 +192,21 @@
   }
 
   .ps-title {
-    font-family: 'PPMori Regular', sans-serif;
+    font-family: var(--font-family-primary);
     font-size: 48px;
     font-weight: 400;
     margin-top: -10px;
   }
 
   .ps-vendor {
-    font-family: 'PPMori Regular', sans-serif;
+    font-family: var(--font-family-primary);
     font-weight: 400;
     font-size: 16px;
     color: #000;
   }
 
   .ps-wrapper {
-    font-family: 'PPMori Regular', sans-serif;
+    font-family: var(--font-family-primary);
     padding: 160px 5rem 0px 5rem;
     max-width: 2100px;
     width: 100%;
@@ -254,14 +242,14 @@
   }
 
   .ps-wrapper .ps-price {
-    font-family: 'PPMori Regular', sans-serif;
+    font-family: var(--font-family-primary);
     font-size: 28px;
     font-weight: 600;
     color: #000;
   }
 
   .ps-original-price {
-    font-family: 'PPMori Regular', sans-serif;
+    font-family: var(--font-family-primary);
     font-size: 18px !important;
     color: #999;
     text-decoration: line-through;
@@ -270,7 +258,7 @@
 
   .ps-price-badge {
     display: inline-block;
-    background: #fa0000ff;
+    background: #d90429;
     color: #fff;
     padding: 4px 12px;
     border-radius: 20px;
@@ -431,7 +419,7 @@
       background-color 0.3s ease,
       color 0.3s ease;
     font-weight: 800 !important;
-    font-family: 'PPMori Regular', sans-serif;
+    font-family: var(--font-family-primary);
   }
 
   .ps-variant-btn.active {
@@ -456,13 +444,13 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    font-family: 'PPMori Regular', sans-serif;
+    font-family: var(--font-family-primary);
     padding-top: 43px;
   }
 
   .ps-qty-label {
     color: #000;
-    font-family: 'PPMori Regular', sans-serif;
+    font-family: var(--font-family-primary);
     font-size: 16px;
     font-weight: 600;
     letter-spacing: 1px;
@@ -516,7 +504,7 @@
     cursor: pointer;
     border: none;
     width: 100%;
-    font-family: 'PPMori Regular', sans-serif;
+    font-family: var(--font-family-primary);
     transition: background 0.2s ease;
   }
 
@@ -524,7 +512,7 @@
     font-size: 16px !important;
     line-height: 1.6;
     color: #000 !important;
-    font-family: 'PPMori Regular', sans-serif;
+    font-family: var(--font-family-primary);
     padding-top: 60px;
     font-weight: 400;
   }
@@ -550,13 +538,13 @@
     display: flex;
     gap: 10px;
     margin-top: 25px;
-    font-family: 'PPMori Regular', sans-serif;
+    font-family: var(--font-family-primary);
   }
 
   .icon-item {
     text-align: center;
     flex: 1;
-    font-family: 'PPMori Regular', sans-serif;
+    font-family: var(--font-family-primary);
   }
 
   .icon-item img {
@@ -715,7 +703,7 @@
       border-bottom: 1px solid #ddd;
       width: 100%;
       flex: none;
-      font-family: 'PPMori Regular', sans-serif;
+      font-family: var(--font-family-primary);
     }
 
     .icon-item:nth-child(2n) {
@@ -740,7 +728,7 @@
       font-size: 12px;
       color: #333;
       margin: 0;
-      font-family: 'PPMori Regular', sans-serif;
+      font-family: var(--font-family-primary);
       line-height: 1.3;
       font-weight: 400;
     }
@@ -775,7 +763,7 @@
 <!-- JAVASCRIPT -->
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '{{ cart.currency.symbol }}' || '$';
+    const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '{{ curr_sym }}' || '{{ cart.currency.symbol }}';
     const variantButtons = document.querySelectorAll('.ps-variant-btn');
     const variantIdInput = document.querySelector('.ps-variant-id-input');
     const priceContainer = document.querySelector('.ps-price-container');

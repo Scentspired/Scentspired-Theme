@@ -1,7 +1,8 @@
 node_modules/
 .DS_Store
 *.log
-tests/reports/archive/
 tests/reports/
+tests/reports/archive/
+tests/reporting/reports/archive/
 dist/
 .build/

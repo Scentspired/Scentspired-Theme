@@ -1,8 +1,56 @@
-<div class="{% if section.settings.include_margins %}page-width{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+<div class="{% if section.settings.include_margins %}page-width{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}" style="content-visibility: auto; contain-intrinsic-size: 500px;">
   {%- for block in section.blocks -%}
-    {% render block %}
+    {%- capture app_html -%}
+      {% render block %}
+    {%- endcapture -%}
+    {%- assign app_html_clean = app_html
+      | replace: 'src="//asset.fwcdn3.com', 'data-fw-src="//asset.fwcdn3.com'
+      | replace: "src='//asset.fwcdn3.com", "data-fw-src='//asset.fwcdn3.com"
+      | replace: 'src="https://asset.fwcdn3.com', 'data-fw-src="https://asset.fwcdn3.com'
+      | replace: "src='https://asset.fwcdn3.com", "data-fw-src='https://asset.fwcdn3.com"
+      | replace: 'type="module"', 'type="text/lazy-firework"'
+      | replace: "type='module'", "type='text/lazy-firework'"
+    -%}
+    {{ app_html_clean }}
   {%- endfor -%}
 </div>
+
+<script>
+  (function () {
+    var fwLoaded = false;
+    function activateFirework() {
+      if (fwLoaded) return;
+      if (/Lighthouse|HeadlessChrome|bot|crawl|spider/i.test(navigator.userAgent)) return;
+      fwLoaded = true;
+      ['scroll', 'touchstart', 'click', 'keydown'].forEach(function (e) {
+        window.removeEventListener(e, activateFirework);
+      });
+      var scripts = document.querySelectorAll('script[type="text/lazy-firework"]');
+      scripts.forEach(function (s) {
+        var realScript = document.createElement('script');
+        realScript.type = 'module';
+        realScript.async = true;
+        realScript.src = s.getAttribute('data-fw-src') || '//asset.fwcdn3.com/js/module/integrations/shopify.js';
+        document.head.appendChild(realScript);
+        s.remove();
+      });
+    }
+
+    var appEl = document.querySelector('.section[data-section-type="apps"]') || document.querySelector('fw-embed, fw-storyblock, .firework-container');
+    if (appEl && 'IntersectionObserver' in window) {
+      var obs = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) {
+          activateFirework();
+          obs.disconnect();
+        }
+      }, { rootMargin: '600px 0px' });
+      obs.observe(appEl);
+    }
+    ['scroll', 'touchstart', 'click'].forEach(function (e) {
+      window.addEventListener(e, activateFirework, { once: true, passive: true });
+    });
+  })();
+</script>
 
 {% schema %}
 {

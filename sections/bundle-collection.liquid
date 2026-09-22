@@ -209,8 +209,12 @@
             {%- if block.settings.mobile_image != blank -%}
               <!-- Mobile Image -->
               <img
-                src="{{ block.settings.mobile_image | img_url: 'master' }}"
+                src="{{ block.settings.mobile_image | image_url: width: 800 }}"
                 alt="{{ block.settings.title }}"
+                loading="lazy"
+                decoding="async"
+                width="800"
+                height="{{ 800 | divided_by: block.settings.mobile_image.aspect_ratio | default: 800 | round }}"
                 class="collection-img mobile-only">
             {%- endif -%}
 
@@ -222,11 +226,17 @@
                 autoplay
                 muted
                 loop
-                playsinline></video>
+                playsinline
+                preload="metadata"
+                {% if collection.image != blank %}poster="{{ collection.image | image_url: width: 800 }}"{% endif %}></video>
             {%- else -%}
               <img
-                src="{{ collection.image | img_url: 'master' }}"
+                src="{{ collection.image | image_url: width: 800 }}"
                 alt="{{ collection.title }}"
+                loading="lazy"
+                decoding="async"
+                width="800"
+                height="{{ 800 | divided_by: collection.image.aspect_ratio | default: 800 | round }}"
                 class="collection-img desktop-only">
             {%- endif -%}
           </a>

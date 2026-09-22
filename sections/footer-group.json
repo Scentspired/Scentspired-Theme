@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "name": "t:sections.footer.name",
   "type": "footer",
@@ -119,7 +110,7 @@
         "footer_bg_color": "#121212",
         "footer_text_color": "#ffffff",
         "brand_description": "At Scentspired, we believe fragrance should do more than smell good; it should feel personal. Inspired by iconic scents and crafted with precision, our fragrances are designed to become part of your everyday story.",
-        "footer_bg_image": "shopify://shop_images/Scentspired_logo_WHITE_2.png",
+        "footer_bg_image": "shopify://shop_images/Scentspired_logo_WHITE_4.png",
         "brand_tagline": "",
         "social_heading": "FOLLOW US FOR FEEL-GOOD CONTENT",
         "facebook_url": "https://www.facebook.com/profile.php?id=61568107508172&sk=about",
@@ -138,8 +129,8 @@
     "17677801892897efa9": {
       "type": "_blocks",
       "blocks": {
-        "ai_gen_block_efb927c_WGwQKa": {
-          "type": "ai_gen_block_efb927c",
+        "footer_copyright": {
+          "type": "footer--copyright",
           "settings": {
             "show_copyright_symbol": true,
             "show_year": true,
@@ -160,14 +151,15 @@
           "blocks": {}
         }
       },
-      "block_order": ["ai_gen_block_efb927c_WGwQKa"],
+      "block_order": ["footer_copyright"],
       "custom_css": [
-        ".ai-footer-copyright__container-aetrncunrtktlukljaaigenblockefb927cwgwqka {max-width: 100%; margin: 0 auto; padding: 0px 35px;}",
-        ".reforce-link {color: inherit; /* no color change */ text-decoration: underline;}",
-        ".reforce-link:hover,.reforce-link:visited,.reforce-link:active {color: inherit; /* prevent default link colors */}"
+        ".ai-footer-copyright__container-aetrncunrtktlukljfootercopyright {max-width: 100%; margin: 0 auto; padding: 0px 35px;}"
       ],
       "settings": {}
     }
   },
-  "order": ["footer", "17677801892897efa9"]
+  "order": [
+    "footer",
+    "17677801892897efa9"
+  ]
 }

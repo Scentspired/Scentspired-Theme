@@ -25,6 +25,13 @@
       gap: 30px;
       align-items: start;
   }
+  .bs-grid.bs-grid--full {
+      grid-template-columns: 1fr !important;
+  }
+  .bs-grid.bs-grid--full .bs-products-side {
+      width: 100%;
+      max-width: 100%;
+  }
 
   .bs-products-side {
       display: flex;
@@ -86,7 +93,7 @@
 
   .product-badge {
       color: #fff !important;
-      font-family: 'PPMori Regular', sans-serif;
+      font-family: var(--font-family-primary);
       font-weight: 400;
       font-size: 12px;
       padding: 4px 18px;
@@ -95,13 +102,13 @@
       white-space: nowrap;
   }
 
-  .badge-men { background-color: #242521 !important; }
-  .badge-women { background-color: #8b5b5d !important; }
-  .badge-unisex { background-color: #7a795c !important; }
+  .badge-men { background-color: var(--badge-men-bg, #242521) !important; }
+  .badge-women { background-color: var(--badge-women-bg, #8b5b5d) !important; }
+  .badge-unisex { background-color: var(--badge-unisex-bg, #7a795c) !important; }
 
   .fragrance-info {
-      background-color: #F5F5F5;
-      padding: 16px 12px;
+      background-color: var(--fragrance-card-bg, #F5F5F5);
+      padding: var(--fragrance-card-padding, 16px 12px);
       display: flex;
       flex-direction: column;
       gap: 6px;
@@ -110,39 +117,39 @@
   }
 
   .fragrance-rating {
-      font-size: 24px;
-      color: #cbdd00;
-      letter-spacing: -2px;
+      font-size: var(--rating-font-size, 24px);
+      color: var(--rating-star-color, #cbdd00);
+      letter-spacing: var(--rating-letter-spacing, -2px);
       margin: 0;
       text-align: left;
       margin-top: -10px;
   }
 
   .fragrance-name {
-      font-size: 16px;
-      font-weight: 600;
+      font-size: var(--fragrance-title-font-size, 16px);
+      font-weight: var(--fragrance-title-font-weight, 600);
       margin: 0;
-      font-family: 'PPMori Regular', sans-serif;
+      font-family: var(--font-family-primary);
       text-transform: uppercase;
       text-align: left;
       line-height: 1.3;
-      color: #000;
+      color: var(--color-text-primary, #000);
   }
 
   .fragrance-brand {
       margin: 0;
-      font-size: 12px;
-      font-family: 'PPMori Regular', sans-serif;
-      font-weight: 400;
+      font-size: var(--fragrance-brand-font-size, 12px);
+      font-family: var(--font-family-primary);
+      font-weight: var(--fragrance-brand-font-weight, 400);
       text-align: left;
-      color: #666;
+      color: var(--color-text-muted, #666);
   }
 
   .product-price-display {
-      font-size: 18px;
-      font-weight: 600;
-      color: #000;
-      font-family: 'PPMori Regular', sans-serif;
+      font-size: var(--price-font-size, 18px);
+      font-weight: var(--price-font-weight, 600);
+      color: var(--price-color, #000);
+      font-family: var(--font-family-primary);
       margin-top: 2px;
       display: flex;
       align-items: center;
@@ -156,20 +163,20 @@
   }
 
   .compare-price {
-      font-size: 14px;
-      color: #666;
+      font-size: var(--price-compare-font-size, 14px);
+      color: var(--price-compare-color, #666);
       text-decoration: line-through;
       font-weight: 400;
   }
 
   .sale-badge {
-      background-color: #fa0000ff;
-      color: #fff;
-      font-size: 12px;
+      background-color: var(--price-badge-bg, #d90429);
+      color: var(--price-badge-color, #ffffff);
+      font-size: var(--price-badge-font-size, 12px);
       font-weight: 600;
-      padding: 2px 8px;
-      border-radius: 4px;
-      font-family: 'PPMori Regular', sans-serif;
+      padding: var(--price-badge-padding-y, 2px) var(--price-badge-padding-x, 8px);
+      border-radius: var(--price-badge-radius, 4px);
+      font-family: var(--font-family-primary);
       white-space: nowrap;
   }
 
@@ -181,43 +188,52 @@
   }
 
   .variant-option-btn {
-      padding: 6px 16px;
+      padding: var(--btn-pill-padding-y, 6px) var(--variant-pill-round-padding-x, 16px);
       background-color: #fff;
-      border: 1px solid #ddd;
-      border-radius: 20px;
-      font-size: 11px;
+      border: 1px solid var(--btn-pill-border, #ddd);
+      border-radius: var(--variant-pill-round-radius, 20px);
+      font-size: var(--btn-pill-font-size, 11px);
       cursor: pointer;
-      font-family: 'PPMori Regular', sans-serif;
+      font-family: var(--font-family-primary);
       transition: all 0.2s ease;
-      color: #000;
+      color: var(--color-text-primary, #000);
   }
 
   .variant-option-btn.active {
-      background-color: #f4ff41;
-      color: #000;
-      border-color: #000;
+      background-color: var(--btn-pill-active-bg, #f4ff41);
+      color: var(--color-text-primary, #000);
+      border-color: var(--btn-pill-active-border, #000);
+  }
+
+  .variant-option-btn.disabled {
+      color: #4a4a4a !important;
+      background-color: var(--btn-pill-disabled-bg, #f0f0f0);
+      border-color: var(--btn-pill-disabled-border, #c4c4c4);
+      cursor: not-allowed;
+      pointer-events: none;
+      text-decoration: line-through;
   }
 
   .cart-button {
       margin-top: 8px;
-      background: #f4ff41;
-      color: #000;
-      font-weight: 600;
-      font-size: 12px;
-      padding: 16px 16px;
-      border-radius: 20px;
+      background: var(--btn-brand-bg, #f4ff41);
+      color: var(--btn-brand-color, #000);
+      font-weight: var(--btn-brand-font-weight, 600);
+      font-size: var(--btn-brand-font-size, 12px);
+      padding: var(--btn-brand-padding-y, 16px) var(--btn-brand-padding-x, 16px);
+      border-radius: var(--btn-brand-radius, 20px);
       cursor: pointer;
       border: none;
       width: 100%;
-      font-family: 'PPMori Regular', sans-serif;
+      font-family: var(--font-family-primary);
       transition: all 0.3s ease;
   }
 
-  .cart-button:hover { background: #e0ea36; }
+  .cart-button:hover { background: var(--btn-brand-hover-bg, #e0ea36); }
 
   .cart-button.sold-out {
-      background: #f4ff41;
-      opacity: 0.5;
+      background: var(--btn-brand-disabled-bg, #e0e0e0) !important;
+      color: var(--btn-brand-disabled-color, #333333) !important;
       cursor: not-allowed;
       pointer-events: none;
   }
@@ -237,19 +253,30 @@
   /* Existing Navigation Styles */
   .bs-navigation { display: flex; gap: 10px; align-items: center; }
   .bs-nav-arrow {
-      width: 45px; height: 45px; background: #f4ff41; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; transition: all 0.3s ease; border: 2px solid #f4ff41 !important;
-      font-size: 24px;
+      width: var(--carousel-nav-arrow-size, 45px);
+      height: var(--carousel-nav-arrow-size, 45px);
+      background: var(--carousel-nav-arrow-bg, #f4ff41);
+      border-radius: var(--radius-circle, 50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 2px solid var(--carousel-nav-arrow-border, #f4ff41) !important;
+      font-size: var(--carousel-nav-arrow-font-size, 24px);
   }
-  .bs-nav-counter { font-family: 'PPMori Regular', sans-serif; font-size: 14px; color: #666; }
+  .bs-nav-counter { font-family: var(--font-family-primary); font-size: var(--carousel-nav-counter-font-size, 14px); color: var(--carousel-nav-counter-color, #666); }
 
   .bs-title {
-      font-family: 'PPEditorialNew Italic', serif;
-      font-size: 48px; font-weight: 400; font-style: italic; color: #000; margin: 0;
+      font-family: var(--section-heading-font-family, var(--font-family-heading));
+      font-size: var(--section-heading-font-size, 48px);
+      font-weight: var(--section-heading-font-weight, 400);
+      font-style: var(--section-heading-font-style, italic);
+      color: var(--color-text-primary, #000);
+      margin: 0;
       text-decoration: underline;
-      text-decoration-color: #FADB95;
-      text-decoration-thickness: 2px;
+      text-decoration-color: var(--section-heading-accent-color, #FADB95);
+      text-decoration-thickness: var(--section-heading-accent-thickness, 2px);
       text-underline-offset: 2px;
   }
 
@@ -294,7 +321,7 @@
   }
 
   .bs-subheading p {
-      font-family: 'PPMori Regular', sans-serif;
+      font-family: var(--font-family-primary);
       font-size: 14px;
       font-weight: 400;
       line-height: 1.5;
@@ -310,77 +337,72 @@
         }
 {% endstylesheet %}
 
-<section class="bs-section">
+<section class="bs-section" id="bestSellers-{{ section.id }}">
   <div class="bs-container">
-    <div class="bs-grid">
+    <div class="bs-grid{% unless section.settings.show_featured_image and section.settings.featured_image %} bs-grid--full{% endunless %}">
       <div class="bs-products-side">
         <div class="bs-heading">
           <div class="bs-heading-content">
             <h2 class="bs-title">{{ section.settings.section_title }}</h2>
           </div>
           <div class="bs-navigation">
-            <button class="bs-nav-arrow" id="prevBtn" onclick="navigateProducts(-1)">‹</button>
+            <button class="bs-nav-arrow bs-prev-btn" id="prevBtn" aria-label="Previous products">‹</button>
             <span class="bs-nav-counter"> <span id="currentPage">1</span> / <span id="totalPages">1</span> </span>
-            <button class="bs-nav-arrow" id="nextBtn" onclick="navigateProducts(1)">›</button>
+            <button class="bs-nav-arrow bs-next-btn" id="nextBtn" aria-label="Next products">›</button>
           </div>
         </div>
 
-        <div class="bs-products-grid" id="productsGrid">
-          <!-- Cards are rendered here via JavaScript -->
-        </div>
+        {% if section.settings.show_products %}
+          <div class="bs-products-grid" id="productsGrid">
+            <!-- Cards are rendered here via JavaScript -->
+          </div>
+        {% else %}
+          <div class="bs-editorial-spacer" style="min-height: 100px;"></div>
+        {% endif %}
 
-        {% if section.settings.subheading %}
+        {% if section.settings.subheading != blank and section.settings.subheading != "" %}
           <div class="bs-subheading">
             <p>{{ section.settings.subheading }}</p>
           </div>
         {% endif %}
 
         {% if section.settings.view_all_link != blank %}
-          <div style="text-align: center; margin-top: 0px;">
+          <div style="text-align: center; margin-top: 20px; margin-bottom: 40px;">
             <a
               href="{{ section.settings.view_all_link }}"
               class="view-all-button"
-              style="display: inline-block; padding: 16px 80px; background: #f4ff41; border-radius: 999px; text-decoration: none; color: #000; font-family: 'PPMori Regular', sans-serif; font-weight: 500; text-transform: uppercase;">
-              View All Products
+              aria-label="View all bestsellers"
+              style="display: inline-block; padding: 16px 80px; background: var(--color-brand-primary, #f4ff41); border-radius: var(--radius-pill, 999px); text-decoration: none; color: var(--color-text-primary, #000); font-family: var(--font-family-primary); font-weight: 500; text-transform: uppercase;">
+              View All Bestsellers
             </a>
           </div>
         {% endif %}
       </div>
 
-      <div class="bs-image-side">
-        {% if section.settings.featured_image %}
+      {% if section.settings.show_featured_image and section.settings.featured_image %}
+        <div class="bs-image-side">
           <div class="bs-featured-image">
             <img
               src="{{ section.settings.featured_image | image_url: width: 1200 }}"
-              alt="{{ section.settings.featured_image.alt }}"
-              loading="lazy">
+              alt="{{ section.settings.featured_image.alt | default: 'Best Sellers' | escape }}"
+              loading="lazy"
+              decoding="async"
+              width="1200"
+              height="{{ 1200 | divided_by: section.settings.featured_image.aspect_ratio | default: 900 | round }}">
           </div>
-        {% endif %}
-      </div>
+        </div>
+      {% endif %}
     </div>
   </div>
 </section>
 
 <script>
+// Unified carousel engine (.selected-variant-id, bindEvents, window.rebindProductEvents)
 let allProducts = [];
-let currentIndex = 0;
-let totalProducts = 0;
-let totalPages = 0;
-let isMobile = window.innerWidth <= 800;
-
-// Determine products per page
-function getPerPage() {
-  return isMobile ? 1 : 2;
-}
-
-// Format price to currency
-function formatPrice(priceInCents) {
-  const sym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '{{ cart.currency.symbol }}' || '$';
-  return sym + (priceInCents / 100).toFixed(2);
-}
 
 document.addEventListener('DOMContentLoaded', function () {
-  {% assign collection = collections[section.settings.collection] %}
+  {% assign collection = collections[section.settings.collection] | default: collections['best-sellers'] | default: collections['all'] %}
+  {% paginate collection.products by 250 %}
   allProducts = [
   {% for product in collection.products %}
   {
@@ -407,375 +429,29 @@ document.addEventListener('DOMContentLoaded', function () {
   }{% unless forloop.last %},{% endunless %}
   {% endfor %}
 ];
-
-  totalProducts = allProducts.length;
-  updatePageCalculation();
-  updateProductsDisplay();
-  const totalPagesEl = document.getElementById('totalPages');
-  if (totalPagesEl) totalPagesEl.textContent = totalPages;
-
-  updateVariantAvailability();
-  setInterval(updateVariantAvailability, 2000);
-
-  // Handle window resize for mobile / desktop
-  window.addEventListener('resize', function () {
-    const prevState = isMobile;
-    isMobile = window.innerWidth <= 800;
-    if (prevState !== isMobile) {
-      currentIndex = 0;
-      updatePageCalculation();
-      updateProductsDisplay();
-      const tp = document.getElementById('totalPages');
-      if (tp) tp.textContent = totalPages;
-      const cp = document.getElementById('currentPage');
-      if (cp) cp.textContent = 1;
-      updateVariantAvailability();
+  {% endpaginate %}
+  function initBestSellersCarousel() {
+    var container = document.getElementById('bestSellers-{{ section.id }}');
+    var grid = document.getElementById('productsGrid');
+    if (!grid) return;
+    if (container && window.ScentspiredProductCarousel) {
+      new window.ScentspiredProductCarousel(container, allProducts, {
+        showRating: false,
+        showComparePrice: true,
+        buttonText: 'Add to Cart',
+        breakpoint: 800
+      });
     }
-  });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initBestSellersCarousel);
+  } else {
+    initBestSellersCarousel();
+  }
+  window.addEventListener('load', initBestSellersCarousel);
+  document.addEventListener('scentspired:carousel-ready', initBestSellersCarousel);
 });
-
-// Calculate total pages
-function updatePageCalculation() {
-  totalPages = Math.ceil(totalProducts / getPerPage());
-}
-
-// Navigate products
-function navigateProducts(direction) {
-  const perPage = getPerPage();
-  currentIndex += direction * perPage;
-
-  if (currentIndex >= totalProducts) currentIndex = 0;
-  if (currentIndex < 0) {
-    currentIndex = Math.floor((totalProducts - 1) / perPage) * perPage;
-  }
-
-  updateProductsDisplay();
-  const cp = document.getElementById('currentPage');
-  if (cp) {
-    cp.textContent = Math.floor(currentIndex / perPage) + 1;
-  }
-}
-
-// Get product badges
-function getBadgeHTML(tagsString) {
-  const tags = (tagsString || '').toLowerCase().split(',');
-  if (tags.includes('men')) return '<span class="product-badge badge-men">Men</span>';
-  if (tags.includes('women')) return '<span class="product-badge badge-women">Women</span>';
-  if (tags.includes('unisex')) return '<span class="product-badge badge-unisex">Unisex</span>';
-  return '';
-}
-
-function updateVariantAvailability() {
-  fetch('/cart.js')
-    .then(res => {
-      if (!res.ok) throw new Error('Failed to fetch cart');
-      return res.json();
-    })
-    .then(cartData => {
-      const variantQtyMap = {};
-      (cartData.items || []).forEach(item => {
-        variantQtyMap[item.variant_id] = item.quantity;
-      });
-
-      document.querySelectorAll('.variant-option-btn').forEach(btn => {
-        const variantId = parseInt(btn.dataset.variantId);
-        const inventory = parseInt(btn.dataset.inventory) || 0;
-        const cartQty = variantQtyMap[variantId] || 0;
-
-        if (inventory <= 0 || inventory <= cartQty) {
-          btn.classList.add('disabled');
-          btn.style.opacity = '0.5';
-          btn.style.cursor = 'not-allowed';
-        } else {
-          btn.classList.remove('disabled');
-          btn.style.opacity = '1';
-          btn.style.cursor = 'pointer';
-        }
-      });
-
-      // Update cart buttons based on available variants
-      document.querySelectorAll('.product-form').forEach(form => {
-        const productCard = form.closest('.fragrance-item');
-        if (!productCard) return;
-        const cartBtn = form.querySelector('.cart-button');
-        if (!cartBtn) return;
-        const availableVariants = productCard.querySelectorAll('.variant-option-btn:not(.disabled)');
-        
-        if (availableVariants.length === 0) {
-          cartBtn.classList.add('sold-out');
-          cartBtn.innerText = 'Sold Out';
-          cartBtn.disabled = true;
-          cartBtn.style.pointerEvents = 'none';
-        } else {
-          cartBtn.classList.remove('sold-out');
-          cartBtn.innerText = 'Add to Cart';
-          cartBtn.disabled = false;
-          cartBtn.style.pointerEvents = 'auto';
-        }
-      });
-    })
-    .catch(err => console.warn('Cart fetch error:', err));
-}
-
-// Render products in grid
-function updateProductsDisplay() {
-  const grid = document.getElementById('productsGrid');
-  if (!grid) return;
-  const perPage = getPerPage();
-  const productsToShow = allProducts.slice(currentIndex, currentIndex + perPage);
-
-  grid.innerHTML = '';
-  productsToShow.forEach(product => {
-    const badgeHTML = getBadgeHTML(product.tags);
-    const variantsHTML = product.variants.length > 1 ? `
-  <div class="variant-options">
-    ${product.variants.map(v => `
-      <button
-        type="button"
-        class="variant-option-btn ${v.available ? '' : 'disabled'}"
-        data-variant-id="${v.id}"
-        data-variant-price="${v.price}"
-        data-compare-price="${v.compareAtPrice || 0}"
-        data-inventory="${v.availableInventory}"
-        data-available="${v.available}">
-        ${v.title}
-      </button>
-    `).join('')}
-  </div>` : '';
-
-    grid.innerHTML += `
-      <div class="fragrance-item" data-product-id="${product.id}">
-        <a href="${product.url}" style="text-decoration: none; color: inherit;">
-          <div class="fragrance-image-wrap">
-            <img src="${product.featured_image}" alt="${product.title}">
-            ${product.hover_image ? `<img class="secondary-image" src="${product.hover_image}" alt="${product.title}">` : ''}
-            <div class="product-badges">${badgeHTML}</div>
-          </div>
-        </a>
-        <div class="fragrance-info">
-         <a href="${product.url}" style="text-decoration: none; color: inherit;">
-          <div class="fragrance-name">${product.title}</div>
-          </a>
-          <div class="fragrance-brand">${product.vendor}</div>
-          <div class="product-price-display" data-price-display>
-            <div class="price-wrapper">
-              <span data-current-price>${product.variants[0].price}</span>
-              ${product.variants[0].compareAtPrice > 0 ? `<span class="compare-price">${formatPrice(product.variants[0].compareAtPrice)}</span>` : ''}
-              ${product.variants[0].compareAtPrice > 0 ? '<span class="sale-badge">SALE</span>' : ''}
-            </div>
-          </div>
-
-          <!-- Shopify native cart form -->
-          <form method="post" action="/cart/add" class="product-form" data-product-id="${product.id}">
-            <input type="hidden" name="id" class="selected-variant-id" value="${product.variants[0].id}">
-            ${variantsHTML}
-            <button type="submit" class="cart-button" data-all-variants="${JSON.stringify(product.variants.map(v => ({ available: v.available, id: v.id })))}">Add to Cart</button>
-          </form>
-        </div>
-      </div>`;
-  });
-
-  // Auto-select first AVAILABLE variant per product
-  grid.querySelectorAll('.fragrance-item').forEach(card => {
-    const variantBtns = card.querySelectorAll('.variant-option-btn');
-    const idInput = card.querySelector('.selected-variant-id');
-    const priceDisplay = card.querySelector('[data-price-display]');
-    const cartBtn = card.querySelector('.cart-button');
-
-    let firstAvailableBtn = null;
-    let hasAnyAvailable = false;
-
-    variantBtns.forEach(btn => {
-      const available = btn.dataset.available === 'true';
-      const inventory = parseInt(btn.dataset.inventory) || 0;
-      
-      // Check if variant has stock and is available
-      if (!available || inventory === 0) {
-        btn.classList.add('disabled');
-        return;
-      }
-      hasAnyAvailable = true;
-      if (!firstAvailableBtn) {
-        firstAvailableBtn = btn;
-      }
-    });
-
-    // Check if ALL variants are out of stock
-    if (cartBtn) {
-      if (!hasAnyAvailable) {
-        cartBtn.classList.add('sold-out');
-        cartBtn.innerText = 'Sold Out';
-        cartBtn.disabled = true;
-        if (idInput) idInput.value = '';
-      } else {
-        cartBtn.classList.remove('sold-out');
-        cartBtn.innerText = 'Add to Cart';
-        cartBtn.disabled = false;
-      }
-    }
-
-    if (firstAvailableBtn) {
-      variantBtns.forEach(b => b.classList.remove('active'));
-      firstAvailableBtn.classList.add('active');
-
-      if (idInput) idInput.value = firstAvailableBtn.dataset.variantId;
-      
-      const comparePrice = parseFloat(firstAvailableBtn.dataset.comparePrice) || 0;
-      const currentPrice = firstAvailableBtn.dataset.variantPrice;
-      
-      let priceHTML = `<div class="price-wrapper">`;
-      priceHTML += `<span data-current-price>${currentPrice}</span>`;
-      if (comparePrice > 0) {
-        priceHTML += `<span class="compare-price">${formatPrice(comparePrice)}</span>`;
-        priceHTML += `<span class="sale-badge">SALE</span>`;
-      }
-      priceHTML += `</div>`;
-      
-      if (priceDisplay) priceDisplay.innerHTML = priceHTML;
-    }
-  });
-
-  // IMPORTANT: Rebind event handlers AFTER all HTML is added to DOM
-  rebindProductEvents();
-}
-
-// Check if all variants are out of stock
-function checkAllVariantAvailability(product) {
-  return (product.variants || []).every(v => !v.available);
-}
-
-// Update cart button state based on product availability
-function updateCartButtonState(card) {
-  if (!card) return;
-  const cartBtn = card.querySelector('.cart-button');
-  if (!cartBtn) return;
-  const variantData = cartBtn.dataset.allVariants;
-  
-  if (!variantData) return;
-  
-  try {
-    const variants = JSON.parse(variantData);
-    const allOutOfStock = variants.every(v => !v.available);
-    
-    if (allOutOfStock) {
-      cartBtn.classList.add('sold-out');
-      cartBtn.innerText = 'Sold Out';
-      cartBtn.disabled = true;
-    } else {
-      cartBtn.classList.remove('sold-out');
-      cartBtn.innerText = 'Add to Cart';
-      cartBtn.disabled = false;
-    }
-  } catch (e) {
-    console.warn('Error parsing variant data:', e);
-  }
-}
-
-// Separate function to rebind all product events after DOM update
-function rebindProductEvents() {
-  /* UPDATE CART BUTTON STATES ON LOAD */
-  document.querySelectorAll('.fragrance-item').forEach(card => {
-    updateCartButtonState(card);
-  });
-
-  /* VARIANT BUTTONS */
-  document.querySelectorAll('.variant-option-btn').forEach(btn => {
-    btn.addEventListener('click', function (e) {
-      if (btn.classList.contains('disabled')) return;
-
-      const card = btn.closest('.fragrance-item');
-      if (!card) return;
-
-      card.querySelectorAll('.variant-option-btn')
-        .forEach(b => b.classList.remove('active'));
-
-      btn.classList.add('active');
-
-      const idInput = card.querySelector('.selected-variant-id');
-      if (idInput) idInput.value = btn.dataset.variantId;
-      
-      const comparePrice = parseFloat(btn.dataset.comparePrice) || 0;
-      const currentPrice = btn.dataset.variantPrice;
-      const priceDisplay = card.querySelector('[data-price-display]');
-      
-      let priceHTML = `<div class="price-wrapper">`;
-      priceHTML += `<span data-current-price>${currentPrice}</span>`;
-      if (comparePrice > 0) {
-        priceHTML += `<span class="compare-price">${formatPrice(comparePrice)}</span>`;
-        priceHTML += `<span class="sale-badge">SALE</span>`;
-      }
-      priceHTML += `</div>`;
-      
-      if (priceDisplay) priceDisplay.innerHTML = priceHTML;
-    });
-  });
-
-  /* ADD TO CART */
-  document.querySelectorAll('.product-form').forEach(form => {
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      e.stopPropagation();
-
-      const varInput = form.querySelector('.selected-variant-id');
-      const variantId = varInput ? varInput.value : null;
-      if (!variantId) return;
-
-      const submitBtn = form.querySelector('.cart-button');
-      let originalText = 'Add to Cart';
-      if (submitBtn) {
-        originalText = submitBtn.innerText;
-        submitBtn.disabled = true;
-        submitBtn.innerText = 'Adding...';
-      }
-
-      fetch('/cart/add.js', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({ id: variantId, quantity: 1 })
-      })
-      .then(res => {
-        if (!res.ok) throw new Error('Add to cart failed');
-        return res.json();
-      })
-      .then(() => {
-        updateVariantAvailability();
-        return fetch('/cart.js');
-      })
-      .then(res => {
-        if (!res.ok) throw new Error('Failed to fetch cart');
-        return res.json();
-      })
-      .then(cartData => {
-        if (typeof window.updateDossierCartUI === 'function') {
-          window.updateDossierCartUI(cartData);
-        }
-        if (typeof window.openDossierCart === 'function') {
-          window.openDossierCart();
-        }
-
-        if (submitBtn) submitBtn.innerText = 'ADDED!';
-        setTimeout(() => {
-          if (submitBtn) {
-            submitBtn.disabled = false;
-            submitBtn.innerText = originalText;
-          }
-        }, 2000);
-      })
-      .catch(err => {
-        console.error(err);
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          submitBtn.innerText = originalText;
-        }
-      });
-    });
-  });
-}
-
-window.rebindProductEvents = rebindProductEvents;
 </script>
 {% schema %}
 {
@@ -802,6 +478,18 @@ window.rebindProductEvents = rebindProductEvents;
       "type": "image_picker",
       "id": "featured_image",
       "label": "Featured Image"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_products",
+      "label": "Show Product Cards Grid",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_featured_image",
+      "label": "Show Featured Side Image",
+      "default": false
     },
     {
       "type": "url",
