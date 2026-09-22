@@ -1,49 +1,105 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
+    "main": {
+      "type": "main-article",
+      "blocks": {
+        "featured_image": {
+          "type": "featured_image",
+          "disabled": true,
+          "settings": {
+            "image_height": "adapt"
+          }
+        },
+        "title": {
+          "type": "title",
+          "disabled": true,
+          "settings": {
+            "blog_show_date": true,
+            "blog_show_author": false
+          }
+        },
+        "share": {
+          "type": "share",
+          "disabled": true,
+          "settings": {
+            "share_label": "Share"
+          }
+        },
+        "content": {
+          "type": "content",
+          "disabled": true,
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "featured_image",
+        "title",
+        "share",
+        "content"
+      ],
+      "disabled": true,
+      "settings": {}
+    },
     "177868548039dc52a1": {
       "type": "_blocks",
       "blocks": {
-        "blog_luxury_perfume_banner_37U8Va": {
-          "type": "blog--luxury-perfume-banner",
+        "ai_gen_block_0232e4c_37U8Va": {
+          "type": "ai_gen_block_0232e4c",
           "settings": {
             "heading": "<p>EDT, EDP, OR PARFUM:</p>",
             "heading_size": 48,
-            "mobile_heading_size": 24,
+            "mobile_heading_size": 16,
             "heading_line_height": 1.1,
             "heading_color": "#1a1a1a",
             "paragraph": "<p>the label that determines whether your fragrance lasts all day or ghosts you by noon</p>",
-            "paragraph_size": 18,
+            "paragraph_size": 48,
             "mobile_paragraph_size": 16,
-            "paragraph_line_height": 1.4,
-            "paragraph_color": "#332F2B",
+            "paragraph_line_height": 1,
+            "paragraph_color": "#000000",
             "desktop_image": "shopify://shop_images/EDT_EDP_OR_PARFUM.jpg_3.jpg",
             "image_aspect_ratio": "16/9",
             "horizontal_alignment": "flex-start",
             "vertical_alignment": "center",
             "text_alignment": "left",
-            "content_padding": 40,
-            "content_max_width_inner": 680,
+            "content_padding": 20,
+            "content_max_width_inner": 500,
             "mobile_horizontal_alignment": "flex-start",
             "mobile_vertical_alignment": "center",
             "mobile_text_alignment": "left",
             "mobile_content_padding": 25,
-            "content_max_width": 1400,
-            "outer_spacing": 0,
-            "mobile_outer_spacing": 0,
-            "background_color": "#FAF8F5"
+            "content_max_width": 1600,
+            "outer_spacing": 20,
+            "mobile_outer_spacing": 15,
+            "background_color": "#f5f3f0"
           },
           "blocks": {}
         }
       },
       "block_order": [
-        "blog_luxury_perfume_banner_37U8Va"
+        "ai_gen_block_0232e4c_37U8Va"
       ],
-      "custom_css": [],
+      "custom_css": [
+        ".ai-luxury-banner-heading-az3lemduwt3lddllxsaigenblock0232e4c37u8va {margin-bottom: -53px;}",
+        "@media screen and (max-width: 749px) {.ai-luxury-banner-heading-az3lemduwt3lddllxsaigenblock0232e4c37u8va {margin-bottom: -17px; }}"
+      ],
       "settings": {}
     },
     "blogtextliquid_LBJgtB": {
       "type": "blogtextliquid",
-      "custom_css": [],
+      "custom_css": [
+        "@media screen and (min-width: 1024px) {.shopify-hardcoded-text-section-content {font-size: 24px !important; margin: 0 !important; } .shopify-hardcoded-text-section-wrapper {margin-bottom: -85px; }}",
+        ".shopify-hardcoded-text-section-content {font-size: 16px; margin-left: 0px; text-align: left;}",
+        "@media screen and (max-width: 1024px) {.shopify-hardcoded-text-section-wrapper {min-height: 200px; padding: 16px !important; }}"
+      ],
       "name": "Blog Text Liquid",
       "settings": {
         "text_content": "<p>You are standing in Sephora. You have found something that smells incredible. You are ready to buy it. And then you notice there are three versions of the same fragrance: an EDT, an EDP, and a Parfum. The prices are different. The bottles look almost identical. Nobody on the floor has explained what any of it means. You pick the one in the middle and hope for the best.</p><p>This happens constantly, and the cost is high. In dollars and cents. And in style.<br/>The concentration label on a perfume bottle is one of the most important pieces of information about how a fragrance is going to perform, and it is almost never explained at the point of purchase. Here is what it actually means, what the differences feel like in real life, and how to stop buying the wrong one.</p>"
@@ -52,12 +108,12 @@
     "177868816090d620d4": {
       "type": "_blocks",
       "blocks": {
-        "blog_perfume_feature_banner_GyikqF": {
-          "type": "blog--perfume-feature-banner",
+        "ai_gen_block_a1afcd9_GyikqF": {
+          "type": "ai_gen_block_a1afcd9",
           "settings": {
             "background_image": "shopify://shop_images/The_Short_Version.png",
-            "outer_border_color": "#FAF8F5",
-            "outer_border_px": 0,
+            "outer_border_color": "#ffffff",
+            "outer_border_px": 16,
             "aspect_ratio": 56,
             "font_family_regular": "'PP Editorial New', 'Cormorant Garamond', Georgia, serif",
             "font_family_italic": "'PPEditorialNew Ultralight Italic', 'Cormorant Garamond', Georgia, serif",
@@ -67,8 +123,8 @@
             "line1_left": 19,
             "brand_name_regular": "",
             "brand_name_italic": "THE SHORT VERSION",
-            "brand_top": 6,
-            "brand_left": 50,
+            "brand_top": 2,
+            "brand_left": 36,
             "text_line_2": "",
             "line3_top": 87,
             "line3_left": 63
@@ -77,13 +133,17 @@
         }
       },
       "block_order": [
-        "blog_perfume_feature_banner_GyikqF"
+        "ai_gen_block_a1afcd9_GyikqF"
       ],
       "settings": {}
     },
     "blogtextliquid_ra7Awx": {
       "type": "blogtextliquid",
-      "custom_css": [],
+      "custom_css": [
+        "@media screen and (min-width: 1024px) {.shopify-hardcoded-text-section-content {font-size: 24px !important; margin: 0 !important; } .shopify-hardcoded-text-section-wrapper {margin-bottom: -85px; }}",
+        ".shopify-hardcoded-text-section-content {font-size: 16px; margin-left: 0px; text-align: left;}",
+        "@media screen and (max-width: 1024px) {.shopify-hardcoded-text-section-wrapper {min-height: 200px; padding: 16px !important; }}"
+      ],
       "name": "Blog Text Liquid",
       "settings": {
         "text_content": "<p>EDT, EDP, and Parfum refer to the percentage of fragrance oil in the bottle. More oil means longer wear and a different kind of projection. Less oil means the scent radiates more freely but fades faster. That is the whole thing. Everything else is detail.</p><p>Eau de Toilette (EDT) sits at roughly 5 to 15 percent oil. Eau de Parfum (EDP) sits at 15 to 20 percent. Parfum, sometimes called Extrait de Parfum, sits at 20 to 30 percent and is the most concentrated of the three. Higher concentration does not mean a better or stronger fragrance. It means a different performance profile, and knowing which one you want changes every purchase you make going forward. </p>"
@@ -92,28 +152,28 @@
     "blocks_ji7beH": {
       "type": "_blocks",
       "blocks": {
-        "blog_editorial_text_section_zNd6WG": {
-          "type": "blog--editorial-text-section",
+        "ai_gen_block_614820f_zNd6WG": {
+          "type": "ai_gen_block_614820f",
           "settings": {
             "heading": "EDT: Great Opening, Short Story",
-            "heading_size": 42,
-            "heading_size_mobile": 28,
-            "heading_line_height": 1.1,
-            "heading_color": "#1A1816",
-            "heading_margin_bottom": 30,
-            "heading_margin_bottom_mobile": 25,
+            "heading_size": 56,
+            "heading_size_mobile": 32,
+            "heading_line_height": 1,
+            "heading_color": "#121212",
+            "heading_margin_bottom": 50,
+            "heading_margin_bottom_mobile": 30,
             "column_1_text": "<p>An Eau de Toilette is the lightest concentration. The lower oil percentage means more alcohol in the formula, which creates that immediate burst of freshness you get on the first spray. It diffuses quickly, radiates well, and smells incredible for the first hour or two.</p><p>The trade-off is longevity. Most EDTs last two to four hours on bare skin, which means if you are spraying first thing in the morning and expecting to still smell good when you’re reaching for your afternoon coffee pick-me-up, you are going to be disappointed. This is not a flaw in the fragrance. It is just what EDT concentration does.</p>",
             "column_2_text": "<p>EDTs work best for fresh, citrus-heavy fragrances where the light, airy quality is the whole point. They also work well in heat. On a summer afternoon in a park, a good EDT radiates with perfection. For all-day wear, you need something with more staying power.</p>",
-            "body_size": 17,
-            "body_size_mobile": 15,
-            "body_line_height": 1.9,
-            "body_color": "#2D2A26",
+            "body_size": 22,
+            "body_size_mobile": 14,
+            "body_line_height": 1.6,
+            "body_color": "#000000",
             "paragraph_spacing": 20,
-            "column_gap": 55,
+            "column_gap": 60,
             "column_gap_mobile": 30,
-            "max_width": 1100,
+            "max_width": 1000,
             "desktop_width_percent": 100,
-            "background_color": "#FAF8F5",
+            "background_color": "#f9f6f1",
             "padding_top": 60,
             "padding_bottom": 60,
             "padding_horizontal": 40,
@@ -125,7 +185,7 @@
         }
       },
       "block_order": [
-        "blog_editorial_text_section_zNd6WG"
+        "ai_gen_block_614820f_zNd6WG"
       ],
       "name": "Editorial text section",
       "settings": {}
@@ -133,50 +193,89 @@
     "1778690749e24fd023": {
       "type": "_blocks",
       "blocks": {
-        "blog_narrative_content_9nTtAA": {
-          "type": "blog--narrative-content",
+        "ai_gen_block_fb81b45_9nTtAA": {
+          "type": "ai_gen_block_fb81b45",
           "settings": {
             "desktop_width_percent": 100,
-            "max_width": 1100,
-            "section_padding": 60,
-            "background_color": "#FAF8F5",
+            "max_width": 1200,
+            "section_padding": 20,
+            "background_color": "#f9f6f1",
             "heading": "<p>EDP: the one that actually goes the distance</p>",
-            "heading_size": 42,
-            "heading_color": "#1A1816",
-            "heading_spacing": 25,
-            "box_color": "#1C1917",
-            "box_radius": 15,
-            "box_padding": 45,
-            "box_spacing": 35,
+            "heading_size": 60,
+            "heading_color": "#000000",
+            "heading_spacing": 10,
+            "box_color": "#8b1d22",
+            "box_radius": 25,
+            "box_padding": 40,
+            "box_spacing": 10,
             "box_paragraph_1": "<p>Eau de Parfum is the sweet spot for most people who want a fragrance that lasts through a full day without constant reapplication. At 15 to 20 percent oil concentration, a good EDP on moisturized skin will last six to eight hours, and on some skin types considerably longer.</p><p>The projection is steadier and more balanced than an EDT. Rather than the immediate burst and fade, an EDP develops more slowly through its notes and maintains a consistent presence throughout the day. This is why most of the <a href=\"/collections/women\" title=\"Women\">top perfumes for women</a> and the best colognes for men that get serious wear time tend to sit at EDP concentration.</p><p><strong>Timeless Grace</strong> (inspired by Coco Mademoiselle by Chanel) and <strong>Fate</strong> (inspired by Chance EDP by Chanel) are both EDPs in the Scentspired range. So is <strong>Fierce</strong> (inspired by Sauvage Parfum by Dior). These are all-day fragrances at a price point that means you can actually spray them every morning without doing mental arithmetic about whether the occasion justifies it. <strong>Visionary </strong>(inspired by Imagination by Paco Rabanne) is another EDP worth knowing about if you want something a little more unexpected.</p>",
             "box_paragraph_2": "",
             "box_paragraph_3": "",
-            "box_text_color": "#F5EFE6",
-            "box_text_size": 17,
-            "box_text_line_height": 1.9,
-            "paragraph_spacing": 20,
+            "box_text_color": "#ffffff",
+            "box_text_size": 22,
+            "box_text_line_height": 1.6,
+            "paragraph_spacing": 25,
             "subheading": "<p>Parfum: the one that stays with you</p>",
-            "subheading_size": 42,
-            "subheading_color": "#1A1816",
+            "subheading_size": 60,
+            "subheading_color": "#000000",
             "subheading_spacing": 40,
             "bottom_text": "<p>Parfum, or Extrait de Parfum, is the most concentrated and the most misunderstood of the three. At 20 to 30 percent oil, it has the least alcohol in the formula, which means it does not project outward the way an EDT does. It stays close to the skin, develops slowly over several hours, and lasts longer than anything else, often eight to twelve hours, sometimes well into the next morning on pulse points.</p><p>Here is where people get tripped up: a Parfum does not fill a room. It does not announce itself when you walk in. If you are shopping for something with projection and reach, an EDP is almost always the better call. If you want something intimate, something that is entirely for you and the person standing close to you, Parfum is in a different category entirely.</p><p><strong>Addictive</strong> (inspired by Baccarat Rouge 540) at Parfum concentration is the kind of fragrance you catch on your own wrist hours later and feel pretty good about. It is not performing for the room. It is just there, warm and present, doing its thing.</p>",
-            "bottom_text_size": 17,
-            "bottom_text_color": "#2D2A26",
-            "bottom_text_line_height": 1.9
+            "bottom_text_size": 22,
+            "bottom_text_color": "#000000",
+            "bottom_text_line_height": 1.6
           },
           "blocks": {}
         }
       },
       "block_order": [
-        "blog_narrative_content_9nTtAA"
+        "ai_gen_block_fb81b45_9nTtAA"
       ],
+      "settings": {}
+    },
+    "blocks_jgTJWD": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_19f144a_kVmwE7": {
+          "type": "ai_gen_block_19f144a",
+          "settings": {
+            "line_1_text": "What this means",
+            "line_1_alignment": "left",
+            "line_1_offset": 270,
+            "line_2_text": "when",
+            "line_2_alignment": "center",
+            "line_2_offset": 0,
+            "line_3_text": "you are shopping",
+            "line_3_alignment": "right",
+            "line_3_offset": -175,
+            "body_text": "<p>Coco Mademoiselle is the benchmark for a certain kind of feminine fragrance. Clean, grown-up, and immediately recognisable. It has been the top-selling women's perfume in the UK and US for years. The EDP retails at around $160 for 100ml and it earns that position consistently.</p><p><strong>Timeless Grace</strong> opens with the same fresh orange and bergamot, develops through jasmine and rose, and settles into a warm patchouli base that wears throughout the day. The comparison test here produced the closest result of the three: on dry-down, both fragrances sat in the same warm, clean territory. The original has a very slight additional depth in the base that reflects the higher concentration of raw materials, but it is a difference you would only notice if you were specifically looking for it.<br/><br/>At around $20 versus $160, Timeless Grace makes a compelling case for anyone who loves the Coco Mademoiselle profile but wants to wear it every day without the creeping sense that they should be saving it for something more significant.</p>",
+            "line_1_size": 44,
+            "line_2_size": 85,
+            "line_3_size": 44,
+            "body_size": 22,
+            "line_2_margin_top": 30,
+            "line_3_margin_top": 4,
+            "header_spacing": 40,
+            "body_max_width": 1000,
+            "section_padding_top": 60,
+            "section_padding_bottom": 60,
+            "background_color": "#ffffff",
+            "text_color": "#121212"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_19f144a_kVmwE7"
+      ],
+      "disabled": true,
+      "name": "Staggered typography",
       "settings": {}
     },
     "1780925695be0a3de2": {
       "type": "_blocks",
       "blocks": {
-        "blog_fragrance_comparison_table_nQznTw": {
-          "type": "blog--fragrance-comparison-table",
+        "ai_gen_block_e9499a3_nQznTw": {
+          "type": "ai_gen_block_e9499a3",
           "settings": {
             "header_1": "EDT",
             "header_2": "EDP",
@@ -197,60 +296,60 @@
             "row_4_col_1": "Daytime, warm weather",
             "row_4_col_2": "All-day wear, evenings",
             "row_4_col_3": "Special occasions, cold weather",
-            "side_padding": 20,
-            "cell_padding": 18,
+            "side_padding": 40,
+            "cell_padding": 16,
             "label_font_weight": "bold",
-            "header_bg_color": "#1A1816",
-            "header_text_color": "#F8F5F0",
-            "row_bg_color": "#FAF8F5",
-            "body_text_color": "#383430",
-            "border_color": "rgba(0,0,0,0.06)",
-            "table_bg_color": "#FAF8F5"
+            "header_bg_color": "#000000",
+            "header_text_color": "#ffffff",
+            "row_bg_color": "#f9f9f9",
+            "body_text_color": "#121212",
+            "border_color": "#e0e0e0",
+            "table_bg_color": "#ffffff"
           },
           "blocks": {}
         }
       },
       "block_order": [
-        "blog_fragrance_comparison_table_nQznTw"
+        "ai_gen_block_e9499a3_nQznTw"
       ],
       "settings": {}
     },
     "17786893180b60ea14": {
       "type": "_blocks",
       "blocks": {
-        "blog_editorial_callout_section_m8PFU4": {
-          "type": "blog--editorial-callout-section",
+        "ai_gen_block_c88e324_m8PFU4": {
+          "type": "ai_gen_block_c88e324",
           "settings": {
-            "container_width": 1100,
-            "left_column_width": 45,
-            "right_column_width": 55,
-            "column_gap": 50,
+            "container_width": 1200,
+            "left_column_width": 40,
+            "right_column_width": 60,
+            "column_gap": 40,
             "desktop_width_percent": 100,
             "heading": "What this means when you are shopping",
             "heading_font": "serif",
-            "heading_size": 42,
-            "mobile_heading_size": 28,
-            "heading_color": "#1A1816",
-            "heading_indent": 0,
-            "mobile_heading_indent": 0,
+            "heading_size": 54,
+            "mobile_heading_size": 32,
+            "heading_color": "#000000",
+            "heading_indent": 10,
+            "mobile_heading_indent": 40,
             "image": "shopify://shop_images/What_this_means_1.png",
-            "image_max_width": 500,
-            "heading_image_gap": 16,
-            "mobile_heading_image_gap": 20,
+            "image_max_width": 600,
+            "heading_image_gap": 4,
+            "mobile_heading_image_gap": 25,
             "body_text": "<p>If your fragrance keeps disappearing before lunch, you are almost certainly wearing an EDT on dry skin. The fix is to move to an EDP version of the same fragrance, to moisturise before you spray, or both. Twelve seconds of unscented lotion before application makes a bigger difference to longevity than most people expect.</p><p>If your fragrance feels overwhelming in warm weather or small spaces, you are probably wearing an EDP or Parfum concentration when an EDT would suit the moment better. The goal is not the most concentrated option. The goal is the right one for how and when you wear it.</p>",
             "body_font": "system_ui_n4",
-            "body_size": 17,
-            "mobile_body_size": 15,
-            "body_color": "#2D2A26",
-            "paragraph_spacing": 20,
+            "body_size": 25,
+            "mobile_body_size": 16,
+            "body_color": "#000000",
+            "paragraph_spacing": 35,
             "mobile_paragraph_spacing": 15,
-            "text_vertical_offset": 0,
-            "background_color": "#FAF8F5",
-            "padding_top": 60,
-            "padding_bottom": 60,
-            "horizontal_padding": 30,
-            "mobile_padding_top": 40,
-            "mobile_padding_bottom": 40,
+            "text_vertical_offset": 100,
+            "background_color": "#ffffff",
+            "padding_top": 100,
+            "padding_bottom": 100,
+            "horizontal_padding": 40,
+            "mobile_padding_top": 60,
+            "mobile_padding_bottom": 60,
             "mobile_horizontal_padding": 20,
             "mobile_gap": 30
           },
@@ -258,55 +357,101 @@
         }
       },
       "block_order": [
-        "blog_editorial_callout_section_m8PFU4"
+        "ai_gen_block_c88e324_m8PFU4"
       ],
       "settings": {}
     },
-    "1778692264fe7b6973": {
+    "blocks_NgyNz4": {
       "type": "_blocks",
       "blocks": {
-        "blog_split_editorial_text_QF8teC": {
-          "type": "blog--split-editorial-text",
+        "ai_gen_block_fb81b45_qVFqqX": {
+          "type": "ai_gen_block_fb81b45",
           "settings": {
-            "container_width": 1100,
-            "horizontal_padding": 30,
-            "padding_top": 60,
-            "padding_bottom": 60,
-            "column_gap": 50,
-            "mobile_gap": 25,
-            "mobile_scale": 0.7,
-            "background_color": "#FAF8F5",
-            "prefix_text": "ONE MORE",
-            "prefix_font_size": 38,
-            "brand_scent_text": "",
-            "brand_spired_text": "",
-            "brand_font_size": 38,
-            "start_text": "",
-            "start_font_size": 38,
-            "bestsellers_text": "THING",
-            "bestsellers_font_size": 38,
-            "heading_line_spacing": 4,
-            "heading_line_height": 1.1,
-            "heading_color": "#1A1816",
-            "body_text": "Every fragrance in the <a href=\"https://scentspired.com/collections/shop\">Scentspired perfume collection</a> lists its concentration clearly. Browse the full range, find the profile that fits your day, and buy perfume online knowing exactly what you are getting. No more noon ghosting.",
-            "body_font_size": 17,
-            "body_line_height": 1.8,
-            "body_color": "#2D2A26"
+            "desktop_width_percent": 100,
+            "max_width": 1200,
+            "section_padding": 20,
+            "background_color": "#f9f6f1",
+            "heading": "<p>The Verdict For First-Time Buyers</p>",
+            "heading_size": 60,
+            "heading_color": "#000000",
+            "heading_spacing": 10,
+            "box_color": "#8b1d22",
+            "box_radius": 25,
+            "box_padding": 40,
+            "box_spacing": 10,
+            "box_paragraph_1": "<p>If you have been spending $150 to $300 on a bottle of fragrance and wearing it sparingly because it feels too good to use up every day, an inspired alternative from a quality range is worth trying seriously. The question is not really whether it smells<br/>exactly the same. It is whether it smells good enough to wear every day, with confidence, at a price that means you actually will.<br/><br/></p>",
+            "box_paragraph_2": "<p>For most of the fragrances in our collection, the answer to that question is yes. The Scentspired perfume collection is available to browse and buy perfume online, with every fragrance listing its notes and its inspiration so you know exactly what you are getting before you hit that checkout button.</p>",
+            "box_paragraph_3": "",
+            "box_text_color": "#ffffff",
+            "box_text_size": 22,
+            "box_text_line_height": 1.6,
+            "paragraph_spacing": 25,
+            "subheading": "",
+            "subheading_size": 60,
+            "subheading_color": "#000000",
+            "subheading_spacing": 40,
+            "bottom_text": "",
+            "bottom_text_size": 22,
+            "bottom_text_color": "#000000",
+            "bottom_text_line_height": 1.6
           },
           "blocks": {}
         }
       },
       "block_order": [
-        "blog_split_editorial_text_QF8teC"
+        "ai_gen_block_fb81b45_qVFqqX"
       ],
-      "custom_css": [],
+      "disabled": true,
+      "settings": {}
+    },
+    "1778692264fe7b6973": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_e9ac98b_QF8teC": {
+          "type": "ai_gen_block_e9ac98b",
+          "settings": {
+            "container_width": 1200,
+            "horizontal_padding": 20,
+            "padding_top": 80,
+            "padding_bottom": 80,
+            "column_gap": 40,
+            "mobile_gap": 30,
+            "mobile_scale": 0.6,
+            "background_color": "#ffffff",
+            "prefix_text": "ONE MORE",
+            "prefix_font_size": 50,
+            "brand_scent_text": "",
+            "brand_spired_text": "",
+            "brand_font_size": 50,
+            "start_text": "",
+            "start_font_size": 50,
+            "bestsellers_text": "THING",
+            "bestsellers_font_size": 50,
+            "heading_line_spacing": 4,
+            "heading_line_height": 1,
+            "heading_color": "#000000",
+            "body_text": "Every fragrance in the <a href=\"https://scentspired.com/collections/shop\">Scentspired perfume collection</a> lists its concentration clearly. Browse the full range, find the profile that fits your day, and buy perfume online knowing exactly what you are getting. No more noon ghosting.",
+            "body_font_size": 25,
+            "body_line_height": 1.3,
+            "body_color": "#121212"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_e9ac98b_QF8teC"
+      ],
+      "custom_css": [
+        "@media screen and (min-width: 1024px) {.ai-split-editorial-right-auuyyd3rwymllyjdksaigenblocke9ac98bqf8tec {max-width: 50%; }}",
+        "a{color: #000;}"
+      ],
       "settings": {}
     },
     "1778701783b132082f": {
       "type": "_blocks",
       "blocks": {
-        "blog_product_collection_grid_icikjA": {
-          "type": "blog--product-collection-grid",
+        "ai_gen_block_29a8932_icikjA": {
+          "type": "ai_gen_block_29a8932",
           "settings": {
             "collection": "bestsellers"
           },
@@ -314,21 +459,74 @@
         }
       },
       "block_order": [
-        "blog_product_collection_grid_icikjA"
+        "ai_gen_block_29a8932_icikjA"
       ],
+      "settings": {}
+    },
+    "177870354789d2efcb": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_f4b496d_dDGK7Q": {
+          "type": "ai_gen_block_f4b496d",
+          "disabled": true,
+          "settings": {
+            "desktop_image": "shopify://shop_images/wmremove-transformed_1.png",
+            "mobile_image": "shopify://shop_images/wmremove-transformed_1.png",
+            "text_horizontal_position": 10,
+            "text_max_width": 700,
+            "text_size": 32,
+            "line_height": 1
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_f4b496d_dDGK7Q"
+      ],
+      "disabled": true,
+      "settings": {}
+    },
+    "1779206966fe81762b": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_36376d7_3UnFbY": {
+          "type": "ai_gen_block_36376d7",
+          "settings": {
+            "desktop_image": "shopify://shop_images/wmremove-transformed_1.png",
+            "mobile_image": "shopify://shop_images/wmremove-transformed_1.png",
+            "heading_line_1_part_1": "Try The Inspired Version",
+            "heading_line_1_part_2": "",
+            "heading_line_2": "See And Smell For Yourself",
+            "text_horizontal_position": 10,
+            "text_max_width": 700,
+            "text_size": 42,
+            "line_height": 1
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_36376d7_3UnFbY"
+      ],
+      "disabled": true,
       "settings": {}
     }
   },
   "order": [
+    "main",
     "177868548039dc52a1",
     "blogtextliquid_LBJgtB",
     "177868816090d620d4",
     "blogtextliquid_ra7Awx",
     "blocks_ji7beH",
     "1778690749e24fd023",
+    "blocks_jgTJWD",
     "1780925695be0a3de2",
     "17786893180b60ea14",
+    "blocks_NgyNz4",
     "1778692264fe7b6973",
-    "1778701783b132082f"
+    "1778701783b132082f",
+    "177870354789d2efcb",
+    "1779206966fe81762b"
   ]
 }

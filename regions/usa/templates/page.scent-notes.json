@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -15,8 +24,7 @@
           "type": "heading",
           "settings": {
             "heading": "Where Scents Become Stories",
-            "heading_size": "h1",
-            "heading_tag": "h1"
+            "heading_size": "h1"
           }
         },
         "text_fwWB8n": {
@@ -99,8 +107,8 @@
     "1767617578596b5a9a": {
       "type": "_blocks",
       "blocks": {
-        "catalog_aroma_notes_DCMWA9": {
-          "type": "catalog--aroma-notes",
+        "ai_gen_block_5fa445c_DCMWA9": {
+          "type": "ai_gen_block_5fa445c",
           "settings": {
             "heading": "Scent Profile",
             "desktop_width_percent": 100
@@ -109,7 +117,7 @@
         }
       },
       "block_order": [
-        "catalog_aroma_notes_DCMWA9"
+        "ai_gen_block_5fa445c_DCMWA9"
       ],
       "custom_css": [
         "@media (max-width: 768px) {.aroma-block {height: 120px; }}",

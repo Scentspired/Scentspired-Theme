@@ -119,14 +119,14 @@
     "17634705605577f121": {
       "type": "_blocks",
       "blocks": {
-        "bundle_discovery_builder_x3Xae8": {
-          "type": "bundle--discovery-builder",
+        "ai_gen_block_9f36455_x3Xae8": {
+          "type": "ai_gen_block_9f36455",
           "settings": {},
           "blocks": {}
         }
       },
       "block_order": [
-        "bundle_discovery_builder_x3Xae8"
+        "ai_gen_block_9f36455_x3Xae8"
       ],
       "disabled": true,
       "custom_css": [

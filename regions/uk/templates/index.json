@@ -209,8 +209,8 @@
     "1759310717cd816b0a": {
       "type": "_blocks",
       "blocks": {
-        "home_fragrance_showcase_YdV8xq": {
-          "type": "home--fragrance-showcase",
+        "ai_gen_block_3cc563e_YdV8xq": {
+          "type": "ai_gen_block_3cc563e",
           "disabled": true,
           "settings": {
             "heading": "Featured Fragrances",
@@ -223,7 +223,7 @@
         }
       },
       "block_order": [
-        "home_fragrance_showcase_YdV8xq"
+        "ai_gen_block_3cc563e_YdV8xq"
       ],
       "disabled": true,
       "settings": {}
@@ -382,7 +382,6 @@
     },
     "bundle_collection_dNJFpE": {
       "type": "bundle-collection",
-      "disabled": true,
       "blocks": {
         "collection_block_7VGMEN": {
           "type": "collection_block",
@@ -456,7 +455,6 @@
     },
     "1770888173be79f9a8": {
       "type": "apps",
-      "disabled": true,
       "blocks": {
         "firework_shoppable_video_ugc_firework_embed_383LLL": {
           "type": "shopify://apps/firework-shoppable-video-ugc/blocks/firework-embed/347a2e4c-f5cb-410d-8354-490d1e80558c",
@@ -499,10 +497,16 @@
     "1756981498fec8c3c0": {
       "type": "_blocks",
       "blocks": {
-        "home_instagram_grid_kqp7mT": {
-          "type": "home--instagram-grid",
+        "ai_gen_block_6068b75_kqp7mT": {
+          "type": "ai_gen_block_6068b75",
           "settings": {
             "instagram_url": "https://www.instagram.com/thescentspired/",
+            "image_1": "shopify://shop_images/imgi_1_669677066_17914666242357350_2487952813188035984_n.jpg",
+            "image_2": "shopify://shop_images/imgi_1_653065007_17910131769357350_3400065105340633507_n.jpg",
+            "image_3": "shopify://shop_images/image_1.png",
+            "image_4": "shopify://shop_images/image_4.png",
+            "image_5": "shopify://shop_images/imgi_1_671161054_17915003391357350_8066704312270788470_n.jpg",
+            "image_6": "shopify://shop_images/imgi_10_669055390_17914225821357350_2880828186054914834_n.jpg",
             "gap_desktop": 10,
             "gap_tablet": 10,
             "gap_mobile": 10,
@@ -516,7 +520,7 @@
         }
       },
       "block_order": [
-        "home_instagram_grid_kqp7mT"
+        "ai_gen_block_6068b75_kqp7mT"
       ],
       "custom_css": [],
       "settings": {}
@@ -529,7 +533,7 @@
       ],
       "name": "Newsletter Banner",
       "settings": {
-        "background_image": "",
+        "background_image": "shopify://shop_images/ScentSpired_-_Homepage_06_-_Image_01_2.jpg",
         "heading": "Join the",
         "subheading": "inner circle",
         "description": "New launches, exclusive edits, and first access, straight to your inbox."

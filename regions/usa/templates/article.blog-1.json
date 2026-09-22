@@ -1,256 +1,176 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
+    "main": {
+      "type": "main-article",
+      "blocks": {
+        "featured_image": {
+          "type": "featured_image",
+          "disabled": true,
+          "settings": {
+            "image_height": "adapt"
+          }
+        },
+        "title": {
+          "type": "title",
+          "disabled": true,
+          "settings": {
+            "blog_show_date": true,
+            "blog_show_author": false
+          }
+        },
+        "share": {
+          "type": "share",
+          "disabled": true,
+          "settings": {
+            "share_label": "Share"
+          }
+        },
+        "content": {
+          "type": "content",
+          "disabled": true,
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "featured_image",
+        "title",
+        "share",
+        "content"
+      ],
+      "disabled": true,
+      "settings": {}
+    },
     "177868548039dc52a1": {
       "type": "_blocks",
       "blocks": {
-        "blog_luxury_perfume_banner_37U8Va": {
-          "type": "blog--luxury-perfume-banner",
+        "ai_gen_block_0232e4c_37U8Va": {
+          "type": "ai_gen_block_0232e4c",
           "settings": {
-            "heading": "<p>MEET SCENTSPIRED:</p>",
+            "heading": "<p>Meet Scentspired</p>",
             "heading_size": 48,
-            "mobile_heading_size": 24,
+            "mobile_heading_size": 20,
             "heading_line_height": 1.1,
             "heading_color": "#1a1a1a",
-            "paragraph": "<p>because incredible fragrance should be something everyone can enjoy, not just a luxury few</p>",
-            "paragraph_size": 18,
-            "mobile_paragraph_size": 16,
-            "paragraph_line_height": 1.4,
-            "paragraph_color": "#332F2B",
+            "paragraph": "<p>Because Incredible Fragrance Should Be Something Everyone Gets To Wear Every day</p>",
+            "paragraph_size": 48,
+            "mobile_paragraph_size": 14,
+            "paragraph_line_height": 1,
+            "paragraph_color": "#000000",
             "desktop_image": "shopify://shop_images/TOP_Image_jpg.jpg",
             "image_aspect_ratio": "16/9",
             "horizontal_alignment": "flex-start",
             "vertical_alignment": "center",
             "text_alignment": "left",
-            "content_padding": 40,
-            "content_max_width_inner": 680,
+            "content_padding": 60,
+            "content_max_width_inner": 700,
             "mobile_horizontal_alignment": "flex-start",
             "mobile_vertical_alignment": "center",
             "mobile_text_alignment": "left",
             "mobile_content_padding": 25,
-            "content_max_width": 1400,
-            "outer_spacing": 0,
-            "mobile_outer_spacing": 0,
-            "background_color": "#FAF8F5"
+            "content_max_width": 1600,
+            "outer_spacing": 20,
+            "mobile_outer_spacing": 15,
+            "background_color": "#f5f3f0"
           },
           "blocks": {}
         }
       },
       "block_order": [
-        "blog_luxury_perfume_banner_37U8Va"
+        "ai_gen_block_0232e4c_37U8Va"
       ],
-      "custom_css": [],
       "settings": {}
     },
-    "blogtextliquid_LBJgtB": {
-      "type": "blogtextliquid",
-      "custom_css": [],
-      "name": "Blog Text Liquid",
-      "settings": {
-        "text_content": "<p>There is a quiet scandal at the heart of the luxury perfume industry. Walk into any high-end department store and you will see 50ml bottles retailing between $250 and $450. The packaging is heavy, the glass is cut like crystal, and the marketing campaign features a Hollywood celebrity gazing moodily across an empty beach.</p><p>What nobody at the beauty counter will tell you is what is actually inside that bottle. The raw fragrance oil—the compound that creates the scent—typically accounts for less than 5% of the retail price. The rest is marketing budgets, licensing agreements, department store real estate, and exorbitant wholesale margins.</p>"
-      }
+    "text_blog_7mqeaj": {
+      "type": "text-blog",
+      "custom_css": [
+        "@media screen and (min-width: 1024px) {.shopify-hardcoded-text-section-content {font-size: 24px !important; margin: 0 !important; } .shopify-hardcoded-text-section-wrapper {margin-bottom: -85px; }}",
+        ".shopify-hardcoded-text-section-content {font-size: 16px; margin-left: 0px; text-align: left;}",
+        "@media screen and (max-width: 1024px) {.shopify-hardcoded-text-section-wrapper {min-height: 200px; padding: 16px !important; }}"
+      ],
+      "name": "Blog Text Section",
+      "settings": {}
     },
     "177868816090d620d4": {
       "type": "_blocks",
       "blocks": {
-        "blog_perfume_feature_banner_GyikqF": {
-          "type": "blog--perfume-feature-banner",
+        "ai_gen_block_a1afcd9_GyikqF": {
+          "type": "ai_gen_block_a1afcd9",
           "settings": {
-            "background_image": "shopify://shop_images/The_Short_Version.png",
-            "outer_border_color": "#FAF8F5",
-            "outer_border_px": 0,
+            "background_image": "shopify://shop_images/magnific__create-a-premium-luxury-perfume-product-photograph__85315.png",
+            "outer_border_color": "#ffffff",
+            "outer_border_px": 16,
             "aspect_ratio": 56,
             "font_family_regular": "'PP Editorial New', 'Cormorant Garamond', Georgia, serif",
             "font_family_italic": "'PPEditorialNew Ultralight Italic', 'Cormorant Garamond', Georgia, serif",
             "text_color": "#ffffff",
-            "text_line_1": "",
+            "text_line_1": "That Is Where",
             "line1_top": 66,
             "line1_left": 19,
-            "brand_name_regular": "",
-            "brand_name_italic": "THE SHORT VERSION",
-            "brand_top": 6,
-            "brand_left": 50,
-            "text_line_2": "",
-            "line3_top": 87,
-            "line3_left": 63
+            "brand_name_regular": "Scent",
+            "brand_name_italic": "spired",
+            "brand_top": 74,
+            "brand_left": 37,
+            "text_line_2": "Comes In",
+            "line3_top": 84,
+            "line3_left": 59
           },
           "blocks": {}
         }
       },
       "block_order": [
-        "blog_perfume_feature_banner_GyikqF"
+        "ai_gen_block_a1afcd9_GyikqF"
       ],
-      "settings": {}
-    },
-    "blogtextliquid_ra7Awx": {
-      "type": "blogtextliquid",
-      "custom_css": [],
-      "name": "Blog Text Liquid",
-      "settings": {
-        "text_content": "<p>Scentspired was founded on a simple premise: great fragrance is a question of chemistry and craftsmanship, not billboard budgets. By cutting out celebrity endorsements, proprietary bottle molds, and luxury retail markups, we can invest directly in the juice itself.</p><p>We source premium fragrance oils from the world's leading perfume houses in Grasse, France, and formulate at Eau de Parfum and Extrait de Parfum concentrations (20% to 30% oil). The result is inspired luxury perfumes that match the scent profile, depth, and longevity of the originals—at a price that makes them an everyday pleasure.</p>"
-      }
-    },
-    "blocks_ji7beH": {
-      "type": "_blocks",
-      "blocks": {
-        "blog_editorial_text_section_zNd6WG": {
-          "type": "blog--editorial-text-section",
-          "settings": {
-            "heading": "The Traditional Retail Model vs The Scentspired Standard",
-            "heading_size": 42,
-            "heading_size_mobile": 28,
-            "heading_line_height": 1.1,
-            "heading_color": "#1A1816",
-            "heading_margin_bottom": 30,
-            "heading_margin_bottom_mobile": 25,
-            "column_1_text": "<p>Traditional luxury houses spend tens of millions of dollars each year maintaining brand prestige. Between international licensing fees, supermodel contracts, and the margins taken by department stores, consumer prices are inflated tenfold before a single spray leaves the nozzle.</p><p>Because so much money is tied up in marketing, many designer brands quietly dilute their formulas to Eau de Toilette concentrations (8-12% oil) to protect profit margins, leaving you with a scent that fades before lunch.</p>",
-            "column_2_text": "<p>We do things backwards. We start by investing in the highest grade perfume oils, working with master perfumers to capture the exact olfactory pyramid of the world's most sought-after fragrances.</p><p>Because we sell directly to you online, 100% of our focus is on wear-time, projection, and ingredient purity. You get 8 to 12 hours of rich, nuanced fragrance without the $300 penalty for a designer logo.</p>",
-            "body_size": 17,
-            "body_size_mobile": 15,
-            "body_line_height": 1.9,
-            "body_color": "#2D2A26",
-            "paragraph_spacing": 20,
-            "column_gap": 55,
-            "column_gap_mobile": 30,
-            "max_width": 1100,
-            "desktop_width_percent": 100,
-            "background_color": "#FAF8F5",
-            "padding_top": 60,
-            "padding_bottom": 60,
-            "padding_horizontal": 40,
-            "padding_top_mobile": 40,
-            "padding_bottom_mobile": 40,
-            "padding_horizontal_mobile": 20
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "blog_editorial_text_section_zNd6WG"
-      ],
-      "name": "Editorial text section",
-      "settings": {}
-    },
-    "1778690749e24fd023": {
-      "type": "_blocks",
-      "blocks": {
-        "blog_narrative_content_9nTtAA": {
-          "type": "blog--narrative-content",
-          "settings": {
-            "desktop_width_percent": 100,
-            "max_width": 1100,
-            "section_padding": 60,
-            "background_color": "#FAF8F5",
-            "heading": "<p>Concentration without compromise</p>",
-            "heading_size": 42,
-            "heading_color": "#1A1816",
-            "heading_spacing": 25,
-            "box_color": "#1C1917",
-            "box_radius": 15,
-            "box_padding": 45,
-            "box_spacing": 35,
-            "box_paragraph_1": "<p>When you buy an inspired perfume, concentration is everything. Cheap dupes cut corners with industrial alcohol bases that evaporate violently, smelling harsh for five minutes and completely disappearing thirty minutes later.</p><p>Every bottle in the Scentspired collection is formulated at a minimum of 20% fragrance oil concentration. That means the top notes transition seamlessly into rich heart notes, anchored by deep resins, woods, and musks that cling to your skin all day long.</p><p><strong>Addiction</strong> (inspired by Baccarat Rouge 540) and <strong>Fierce</strong> (inspired by Sauvage Parfum by Dior) are proof that you don't need to choose between affordability and performance.</p>",
-            "box_paragraph_2": "",
-            "box_paragraph_3": "",
-            "box_text_color": "#F5EFE6",
-            "box_text_size": 17,
-            "box_text_line_height": 1.9,
-            "paragraph_spacing": 20,
-            "subheading": "<p>Fragrance as an everyday ritual</p>",
-            "subheading_size": 42,
-            "subheading_color": "#1A1816",
-            "subheading_spacing": 40,
-            "bottom_text": "<p>When a perfume costs $350, you save it for anniversaries, galas, and special occasions. It sits on your dresser, slowly degrading under bedroom lighting, while you hesitate to use it on an ordinary Tuesday.</p><p>We believe fragrance should be part of how you show up in the world every day. Whether you're heading into a morning meeting, grabbing coffee, or relaxing at home, you deserve to smell unforgettable without doing mental math about cost-per-spray.</p>",
-            "bottom_text_size": 17,
-            "bottom_text_color": "#2D2A26",
-            "bottom_text_line_height": 1.9
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "blog_narrative_content_9nTtAA"
-      ],
-      "settings": {}
-    },
-    "1780925695be0a3de2": {
-      "type": "_blocks",
-      "blocks": {
-        "blog_fragrance_comparison_table_nQznTw": {
-          "type": "blog--fragrance-comparison-table",
-          "settings": {
-            "header_1": "Traditional Designer",
-            "header_2": "Cheap Drugstore Dupes",
-            "header_3": "Scentspired",
-            "row_1_label": "Oil concentration",
-            "row_1_col_1": "10-15% (EDT / Light EDP)",
-            "row_1_col_2": "3-6% (Body Mist)",
-            "row_1_col_3": "20-25% (Extrait / High EDP)",
-            "row_2_label": "Average wear time",
-            "row_2_col_1": "4-6 hours",
-            "row_2_col_2": "1-2 hours",
-            "row_2_col_3": "8-12 hours",
-            "row_3_label": "Price per bottle",
-            "row_3_col_1": "$250 - $450+",
-            "row_3_col_2": "$15 - $25",
-            "row_3_col_3": "$39 - $49",
-            "row_4_label": "Where money goes",
-            "row_4_col_1": "Billboards & Celebrity Endorsements",
-            "row_4_col_2": "Cheap Solvents & Fillers",
-            "row_4_col_3": "Master Grasse Oils & High Concentration",
-            "side_padding": 20,
-            "cell_padding": 18,
-            "label_font_weight": "bold",
-            "header_bg_color": "#1A1816",
-            "header_text_color": "#F8F5F0",
-            "row_bg_color": "#FAF8F5",
-            "body_text_color": "#383430",
-            "border_color": "rgba(0,0,0,0.06)",
-            "table_bg_color": "#FAF8F5"
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "blog_fragrance_comparison_table_nQznTw"
+      "custom_css": [
+        "@media screen and (min-width: 768px) {.lux-line2-regular-azlk4vnzleevhumpowaigenblocka1afcd9gyikqf {margin-right: 0px; } .lux-line2-azlk4vnzleevhumpowaigenblocka1afcd9gyikqf {font-size: clamp(42px, 5.6vw, 145px); }}",
+        "@media (max-width: 480px) {@media (max-width: 768px) {.lux-line2-azlk4vnzleevhumpowaigenblocka1afcd9gyikqf {position: absolute; top: 77%; left: 40%; } }}"
       ],
       "settings": {}
     },
     "17786893180b60ea14": {
       "type": "_blocks",
       "blocks": {
-        "blog_editorial_callout_section_m8PFU4": {
-          "type": "blog--editorial-callout-section",
+        "ai_gen_block_c88e324_m8PFU4": {
+          "type": "ai_gen_block_c88e324",
           "settings": {
-            "container_width": 1100,
-            "left_column_width": 45,
-            "right_column_width": 55,
-            "column_gap": 50,
+            "container_width": 1200,
+            "left_column_width": 40,
+            "right_column_width": 60,
+            "column_gap": 40,
             "desktop_width_percent": 100,
-            "heading": "What this means when you are shopping",
+            "heading": "What We Make",
             "heading_font": "serif",
-            "heading_size": 42,
-            "mobile_heading_size": 28,
-            "heading_color": "#1A1816",
-            "heading_indent": 0,
-            "mobile_heading_indent": 0,
-            "image": "shopify://shop_images/magnific__create-a-premium-luxury-perfume-product-photograph__85315.png",
-            "image_max_width": 500,
-            "heading_image_gap": 16,
-            "mobile_heading_image_gap": 20,
-            "body_text": "<p>If you have never purchased an inspired fragrance before, start with a scent profile you already love. Check the olfactory notes—the top, heart, and base notes—and compare our inspired formulation directly against the designer bottle on your dresser.</p><p>Spray once on your wrist and give it 15 minutes to settle through the opening alcohol. Once the perfume warms with your body temperature, you will experience the identical luxurious drydown and complex scent trail that made the original iconic.</p>",
+            "heading_size": 56,
+            "mobile_heading_size": 40,
+            "heading_color": "#000000",
+            "heading_indent": 25,
+            "mobile_heading_indent": 40,
+            "image": "shopify://shop_images/perfume_3_jpg.jpg",
+            "image_max_width": 600,
+            "heading_image_gap": 4,
+            "mobile_heading_image_gap": 25,
+            "body_text": "<p>Inspired by: not a copy of, not a knockoff. Each one is developed using high-quality fragrance oils to capture the character, the warmth, the notes, and the longevity of the original. The kind of scent that has people asking what you are wearing. At around $20 a bottle, it is something you can wear every day, take to a festival, pack for a trip, or keep in your gym bag without a second thought.</p><p>We also believe that this kind of quality should be accessible to everyone. People with every kind of budget. People who walk into a department store and people who never set foot in one. </p><p>Great fragrance should be something anybody can reach for. That is not a side note. It is the whole point.</p>",
             "body_font": "system_ui_n4",
-            "body_size": 17,
-            "mobile_body_size": 15,
-            "body_color": "#2D2A26",
-            "paragraph_spacing": 20,
+            "body_size": 24,
+            "mobile_body_size": 16,
+            "body_color": "#000000",
+            "paragraph_spacing": 30,
             "mobile_paragraph_spacing": 15,
-            "text_vertical_offset": 0,
-            "background_color": "#FAF8F5",
-            "padding_top": 60,
-            "padding_bottom": 60,
-            "horizontal_padding": 30,
-            "mobile_padding_top": 40,
-            "mobile_padding_bottom": 40,
+            "text_vertical_offset": 10,
+            "background_color": "#ffffff",
+            "padding_top": 100,
+            "padding_bottom": 100,
+            "horizontal_padding": 40,
+            "mobile_padding_top": 60,
+            "mobile_padding_bottom": 60,
             "mobile_horizontal_padding": 20,
             "mobile_gap": 30
           },
@@ -258,55 +178,100 @@
         }
       },
       "block_order": [
-        "blog_editorial_callout_section_m8PFU4"
+        "ai_gen_block_c88e324_m8PFU4"
       ],
       "settings": {}
     },
-    "1778692264fe7b6973": {
+    "1778690749e24fd023": {
       "type": "_blocks",
       "blocks": {
-        "blog_split_editorial_text_QF8teC": {
-          "type": "blog--split-editorial-text",
+        "ai_gen_block_fb81b45_9nTtAA": {
+          "type": "ai_gen_block_fb81b45",
           "settings": {
-            "container_width": 1100,
-            "horizontal_padding": 30,
-            "padding_top": 60,
-            "padding_bottom": 60,
-            "column_gap": 50,
-            "mobile_gap": 25,
-            "mobile_scale": 0.7,
-            "background_color": "#FAF8F5",
-            "prefix_text": "ONE MORE",
-            "prefix_font_size": 38,
-            "brand_scent_text": "",
-            "brand_spired_text": "",
-            "brand_font_size": 38,
-            "start_text": "",
-            "start_font_size": 38,
-            "bestsellers_text": "THING",
-            "bestsellers_font_size": 38,
-            "heading_line_spacing": 4,
-            "heading_line_height": 1.1,
-            "heading_color": "#1A1816",
-            "body_text": "Every fragrance in the <a href=\"/collections/shop\">Scentspired perfume collection</a> lists its inspiration, notes, and concentration clearly. Find your signature profile and enjoy luxury scent every single day.",
-            "body_font_size": 17,
-            "body_line_height": 1.8,
-            "body_color": "#2D2A26"
+            "desktop_width_percent": 100,
+            "max_width": 1200,
+            "section_padding": 20,
+            "background_color": "#f9f6f1",
+            "heading": "<p>Why Quality Is The Whole Thing</p>",
+            "heading_size": 60,
+            "heading_color": "#000000",
+            "heading_spacing": 10,
+            "box_color": "#8b1d22",
+            "box_radius": 25,
+            "box_padding": 40,
+            "box_spacing": 10,
+            "box_paragraph_1": "<p>The<a href=\"https://scentspired.com/\" title=\"https://scentspired.com/\"> inspired fragrance</a> space is not all the same, and the difference shows up fast. The single biggest variable between a fragrance that performs and one that fades out by mid-morning is the quality of the fragrance oil. We do not cut corners there. </p>",
+            "box_paragraph_2": "<p>The formulation, the concentration, the way a scent develops on your skin throughout the day: these are the things we are focused on getting right every time.</p>",
+            "box_paragraph_3": "<p>The presentation matters too. Scentspired does not look or feel like a budget option, because it is not one. It is a quality product at a price that makes sense. There is a difference, and we think it shows.<br/><br/></p>",
+            "box_text_color": "#ffffff",
+            "box_text_size": 24,
+            "box_text_line_height": 1.6,
+            "paragraph_spacing": 25,
+            "subheading": "<p>The word you will not find here</p>",
+            "subheading_size": 60,
+            "subheading_color": "#000000",
+            "subheading_spacing": 10,
+            "bottom_text": "<p>We do not use the word dupe anywhere on this site. That word suggests a cheap imitation trying to pass itself off as something it is not. What we make is different. Our fragrances are inspired by great perfumery, developed with quality ingredients, and sold with full transparency about what the inspiration is. We are not hiding it. We are proud of it. What we are offering is the experience of a fragrance you love, made well, at a price that lets you actually enjoy it.</p>",
+            "bottom_text_size": 24,
+            "bottom_text_color": "#000000",
+            "bottom_text_line_height": 1.6
           },
           "blocks": {}
         }
       },
       "block_order": [
-        "blog_split_editorial_text_QF8teC"
+        "ai_gen_block_fb81b45_9nTtAA"
       ],
       "custom_css": [],
+      "settings": {}
+    },
+    "1778692264fe7b6973": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_e9ac98b_QF8teC": {
+          "type": "ai_gen_block_e9ac98b",
+          "settings": {
+            "container_width": 1200,
+            "horizontal_padding": 20,
+            "padding_top": 80,
+            "padding_bottom": 80,
+            "column_gap": 40,
+            "mobile_gap": 30,
+            "mobile_scale": 0.6,
+            "background_color": "#ffffff",
+            "prefix_text": "New to",
+            "prefix_font_size": 50,
+            "brand_scent_text": "Scent",
+            "brand_spired_text": "spired",
+            "brand_font_size": 50,
+            "start_text": "Start with the",
+            "start_font_size": 50,
+            "bestsellers_text": "best sellers",
+            "bestsellers_font_size": 50,
+            "heading_line_spacing": 4,
+            "heading_line_height": 1,
+            "heading_color": "#000000",
+            "body_text": "These are the fragrances that turned skeptics into regulars, the ones people reorder & then tell their friends about.",
+            "body_font_size": 25,
+            "body_line_height": 1.3,
+            "body_color": "#121212"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_e9ac98b_QF8teC"
+      ],
+      "custom_css": [
+        "@media screen and (min-width: 768px) {.ai-split-editorial-right-aum5zv3foz2pzvwxrraigenblocke9ac98bqf8tec {max-width: 50%; }}"
+      ],
       "settings": {}
     },
     "1778701783b132082f": {
       "type": "_blocks",
       "blocks": {
-        "blog_product_collection_grid_icikjA": {
-          "type": "blog--product-collection-grid",
+        "ai_gen_block_29a8932_icikjA": {
+          "type": "ai_gen_block_29a8932",
           "settings": {
             "collection": "bestsellers"
           },
@@ -314,21 +279,41 @@
         }
       },
       "block_order": [
-        "blog_product_collection_grid_icikjA"
+        "ai_gen_block_29a8932_icikjA"
+      ],
+      "settings": {}
+    },
+    "177870354789d2efcb": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_f4b496d_dDGK7Q": {
+          "type": "ai_gen_block_f4b496d",
+          "settings": {
+            "desktop_image": "shopify://shop_images/ScentSpired_-_FindYourScent_02_1.png",
+            "mobile_image": "shopify://shop_images/ScentSpired_-_FindYourScent_02_1_99a2742d-6bc6-4f6f-a3a7-3ee377d5079f.png",
+            "text_horizontal_position": 10,
+            "text_max_width": 700,
+            "text_size": 32,
+            "line_height": 1
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_f4b496d_dDGK7Q"
       ],
       "settings": {}
     }
   },
   "order": [
+    "main",
     "177868548039dc52a1",
-    "blogtextliquid_LBJgtB",
+    "text_blog_7mqeaj",
     "177868816090d620d4",
-    "blogtextliquid_ra7Awx",
-    "blocks_ji7beH",
-    "1778690749e24fd023",
-    "1780925695be0a3de2",
     "17786893180b60ea14",
+    "1778690749e24fd023",
     "1778692264fe7b6973",
-    "1778701783b132082f"
+    "1778701783b132082f",
+    "177870354789d2efcb"
   ]
 }

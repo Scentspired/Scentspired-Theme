@@ -1,63 +1,119 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
+    "main": {
+      "type": "main-article",
+      "blocks": {
+        "featured_image": {
+          "type": "featured_image",
+          "disabled": true,
+          "settings": {
+            "image_height": "adapt"
+          }
+        },
+        "title": {
+          "type": "title",
+          "disabled": true,
+          "settings": {
+            "blog_show_date": true,
+            "blog_show_author": false
+          }
+        },
+        "share": {
+          "type": "share",
+          "disabled": true,
+          "settings": {
+            "share_label": "Share"
+          }
+        },
+        "content": {
+          "type": "content",
+          "disabled": true,
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "featured_image",
+        "title",
+        "share",
+        "content"
+      ],
+      "disabled": true,
+      "settings": {}
+    },
     "177868548039dc52a1": {
       "type": "_blocks",
       "blocks": {
-        "blog_luxury_perfume_banner_37U8Va": {
-          "type": "blog--luxury-perfume-banner",
+        "ai_gen_block_0232e4c_37U8Va": {
+          "type": "ai_gen_block_0232e4c",
           "settings": {
-            "heading": "<p>THE SCENT OF AN AMERICAN SUMMER:</p>",
-            "heading_size": 48,
-            "mobile_heading_size": 24,
+            "heading": "<p>The scent of an American summer: </p>",
+            "heading_size": 40,
+            "mobile_heading_size": 16,
             "heading_line_height": 1.1,
-            "heading_color": "#1a1a1a",
-            "paragraph": "<p>sunscreen you swear you applied, a screen door slamming, and the fragrance that captures the season</p>",
-            "paragraph_size": 18,
+            "heading_color": "#000000",
+            "paragraph": "<p>sunscreen you swear you applied, a screen door slamming, and the fragrance that ties the whole season together</p>",
+            "paragraph_size": 40,
             "mobile_paragraph_size": 16,
-            "paragraph_line_height": 1.4,
-            "paragraph_color": "#332F2B",
+            "paragraph_line_height": 1,
+            "paragraph_color": "#000000",
             "desktop_image": "shopify://shop_images/The_scent_of_an_American_summer_jpg.jpg",
             "image_aspect_ratio": "16/9",
             "horizontal_alignment": "flex-start",
-            "vertical_alignment": "center",
+            "vertical_alignment": "flex-start",
             "text_alignment": "left",
             "content_padding": 40,
-            "content_max_width_inner": 680,
+            "content_max_width_inner": 600,
             "mobile_horizontal_alignment": "flex-start",
             "mobile_vertical_alignment": "center",
             "mobile_text_alignment": "left",
             "mobile_content_padding": 25,
-            "content_max_width": 1400,
-            "outer_spacing": 0,
-            "mobile_outer_spacing": 0,
-            "background_color": "#FAF8F5"
+            "content_max_width": 1600,
+            "outer_spacing": 20,
+            "mobile_outer_spacing": 15,
+            "background_color": "#f5f3f0"
           },
           "blocks": {}
         }
       },
       "block_order": [
-        "blog_luxury_perfume_banner_37U8Va"
+        "ai_gen_block_0232e4c_37U8Va"
       ],
-      "custom_css": [],
+      "custom_css": [
+        ".ai-luxury-banner-heading-asmuzq2t4ewpbz0neraigenblock0232e4c37u8va {margin-bottom: -46px;}",
+        "@media screen and (max-width: 749px) {.ai-luxury-banner-heading-asmuzq2t4ewpbz0neraigenblock0232e4c37u8va {margin-bottom: -17px; }}"
+      ],
       "settings": {}
     },
     "blogtextliquid_LBJgtB": {
       "type": "blogtextliquid",
-      "custom_css": [],
+      "custom_css": [
+        "@media screen and (min-width: 1024px) {.shopify-hardcoded-text-section-content {font-size: 24px !important; margin: 0 !important; } .shopify-hardcoded-text-section-wrapper {margin-bottom: -85px; }}",
+        ".shopify-hardcoded-text-section-content {font-size: 16px; margin-left: 0px; text-align: left;}",
+        "@media screen and (max-width: 1024px) {.shopify-hardcoded-text-section-wrapper {min-height: 200px; padding: 16px !important; }}"
+      ],
       "name": "Blog Text Liquid",
       "settings": {
-        "text_content": "<p>An American summer starts the second school lets out and does not fully quit until the first pumpkin spice sign appears in September. It is a season defined by sensory memory: lake docks warmed by the sun, salt spray clinging to your hair after an afternoon in the surf, and cold lemonade sweating on a patio table.</p><p>Summer fragrance is unique because warmth turns the volume up on everything. Heat lifts scent molecules off your skin with incredible speed, carrying them further on the breeze while simultaneously testing their longevity.</p>"
+        "text_content": "<p>An American summer starts the second school lets out and does not fully quit until the first pumpkin flavored latte shows up at the coffee shop and ruins everyone's denial. In between, it is one long, sun-drunk stretch of lake days, backyard cookouts, road trips with the windows down, and at least one Fourth of July where someone insists they know what they are doing with the fireworks. You mean to reapply the sunscreen. You truly do. Then the game gets competitive, the burgers are ready, and by evening your shoulders are telling a story your memory does not fully back up.</p><p><br/>Summer has a smell, and you know it before you can name it. Warm cut grass and charcoal smoke. Sunscreen and  chlorine and watermelon eaten over the sink. Hot asphalt right before a thunderstorm finally breaks the humidity. A screen door swinging open onto a porch in the evening. It is nostalgia you can breathe, and it is doing a lot of quiet emotional work before you have thought about it once. </p><p>So here is the question worth asking. If summer already smells like something this good, what should you smell like inside it? The wrong fragrance in July feels like showing up to a pool party in a heavy sweater: not wrong exactly, just badly out of step. The right one moves with the heat instead of fighting it. Here is how a summer scent actually works, plus the Scentspired bestsellers that were basically made for the season.</p>"
       }
     },
     "177868816090d620d4": {
       "type": "_blocks",
       "blocks": {
-        "blog_perfume_feature_banner_GyikqF": {
-          "type": "blog--perfume-feature-banner",
+        "ai_gen_block_a1afcd9_GyikqF": {
+          "type": "ai_gen_block_a1afcd9",
           "settings": {
             "background_image": "shopify://shop_images/ChatGPT_Image_Jul_11_2026_05_52_31_PM.png",
-            "outer_border_color": "#FAF8F5",
-            "outer_border_px": 0,
+            "outer_border_color": "#ffffff",
+            "outer_border_px": 16,
             "aspect_ratio": 56,
             "font_family_regular": "'PP Editorial New', 'Cormorant Garamond', Georgia, serif",
             "font_family_italic": "'PPEditorialNew Ultralight Italic', 'Cormorant Garamond', Georgia, serif",
@@ -66,9 +122,9 @@
             "line1_top": 66,
             "line1_left": 19,
             "brand_name_regular": "",
-            "brand_name_italic": "THE SHORT VERSION",
-            "brand_top": 6,
-            "brand_left": 50,
+            "brand_name_italic": "Why heat changes the way a fragrance behaves",
+            "brand_top": 2,
+            "brand_left": 19,
             "text_line_2": "",
             "line3_top": 87,
             "line3_left": 63
@@ -77,43 +133,171 @@
         }
       },
       "block_order": [
-        "blog_perfume_feature_banner_GyikqF"
+        "ai_gen_block_a1afcd9_GyikqF"
       ],
       "settings": {}
     },
     "blogtextliquid_ra7Awx": {
       "type": "blogtextliquid",
-      "custom_css": [],
+      "custom_css": [
+        "@media screen and (min-width: 1024px) {.shopify-hardcoded-text-section-content {font-size: 24px !important; margin: 0 !important; } .shopify-hardcoded-text-section-wrapper {margin-bottom: -85px; }}",
+        ".shopify-hardcoded-text-section-content {font-size: 16px; margin-left: 0px; text-align: left;}",
+        "@media screen and (max-width: 1024px) {.shopify-hardcoded-text-section-wrapper {min-height: 200px; padding: 16px !important; }}"
+      ],
       "name": "Blog Text Liquid",
       "settings": {
-        "text_content": "<p>Wearing fragrance in July and August requires an intentional shift in notes. Heavy vanillas and winter ambers that felt so comforting in December become suffocating when the temperature climbs past 85 degrees.</p><p>Summer calls for effervescent citrus, crisp aquatics, and sun-drenched woods that radiate effortless refreshment. Here is how to curate your summer scent rotation so you smell crisp from morning beach walks to sunset rooftop gatherings.</p>"
+        "text_content": "<p>Warmth turns the volume up on everything. Heat lifts fragrance off your skin faster and carries it further, which is why a scent that felt soft and close in January can suddenly fill an entire elevator in July. None of that is the fragrance failing you, it is just how heat and skin work together. What it does mean is that a rich, heavy winter scent, all smoke and resin and cozy depth, can swing from comforting to way too much the moment the temperature climbs.</p><p>Summer is the season for the lighter stuff. Citrus, green notes, crisp aquatics, airy florals, clean musks. None of these are lightweight in the dismissive sense. They just open up in the heat instead of turning into a headache by lunch. A well-made fresh fragrance on a hot day is one of those small, reliable pleasures, right up there with the first jump into cold water.</p>"
       }
+    },
+    "17834175956186729f": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_79f8247_F8zLA6": {
+          "type": "ai_gen_block_79f8247",
+          "settings": {
+            "header_column_1": "What",
+            "header_column_2": "Rough share of the price",
+            "row_1_label": "Fragrance oil (the actual scent)",
+            "row_1_value": "$15 to $40",
+            "row_2_label": "Bottle, cap and packaging",
+            "row_2_value": "$20 to $40",
+            "row_3_label": "Marketing, advertising and celebrity deals",
+            "row_3_value": "$100 to $160",
+            "row_4_label": "Retail markup and brand profit",
+            "row_4_value": "The rest",
+            "row_5_label": "",
+            "row_5_value": "",
+            "max_width": 800,
+            "first_column_width": 60,
+            "second_column_width": 40,
+            "header_background": "#000000",
+            "header_text_color": "#ffffff",
+            "header_font_size": 18,
+            "table_background": "#ffffff",
+            "row_alternate_background": "#f9f9f9",
+            "body_text_color": "#000000",
+            "body_font_size": 16,
+            "cell_padding": 16,
+            "border_width": 1,
+            "border_color": "#e0e0e0"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_79f8247_F8zLA6"
+      ],
+      "disabled": true,
+      "settings": {}
+    },
+    "178125601117c0d1d4": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_313b73e_nPM9ar": {
+          "type": "ai_gen_block_313b73e",
+          "disabled": true,
+          "settings": {
+            "header_col_1": "What",
+            "header_col_2": "Rough share of the price",
+            "header_col_3": "",
+            "header_bg_color": "#000000",
+            "header_text_color": "#ffffff",
+            "header_font_size": 16,
+            "row_1_col_1": "Fragrance oil (the actual scent)",
+            "row_1_col_2": "15-30 mins",
+            "row_1_col_3": "",
+            "row_2_col_1": "Bottle, cap and packaging",
+            "row_2_col_2": "2-4 hours",
+            "row_2_col_3": "",
+            "row_3_col_1": "Marketing, advertising and celebrity deals",
+            "row_3_col_2": "4-8+ hours",
+            "row_3_col_3": "",
+            "row_bg_color": "#ffffff",
+            "row_alt_bg_color": "#f3f3f3",
+            "row_text_color": "#121212",
+            "body_font_size": 16,
+            "column_1_width": 50,
+            "column_2_width": 30,
+            "text_alignment": "left",
+            "cell_padding": 16,
+            "table_border_thickness": 1,
+            "cell_border_thickness": 1,
+            "table_border_color": "#121212",
+            "cell_border_color": "#e0e0e0",
+            "desktop_width_percent": 100
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_313b73e_nPM9ar"
+      ],
+      "settings": {}
     },
     "blocks_ji7beH": {
       "type": "_blocks",
+      "name": "Editorial text section",
+      "settings": {}
+    },
+    "1778690749e24fd023": {
+      "type": "_blocks",
       "blocks": {
-        "blog_editorial_text_section_zNd6WG": {
-          "type": "blog--editorial-text-section",
+        "ai_gen_block_fb81b45_9nTtAA": {
+          "type": "ai_gen_block_fb81b45",
           "settings": {
-            "heading": "Coastal Aquatics vs High-Desert Woods",
-            "heading_size": 42,
-            "heading_size_mobile": 28,
-            "heading_line_height": 1.1,
-            "heading_color": "#1A1816",
-            "heading_margin_bottom": 30,
-            "heading_margin_bottom_mobile": 25,
-            "column_1_text": "<p>Coastal aquatics capture the exhilarating rush of the ocean. Featuring marine ozone, sea salt, grapefruit, and driftwood accords, these scents feel like diving into cold Atlantic water on a scorching afternoon.</p><p>They are light, crisp, and completely inoffensive, making them the ultimate daytime companion for backyard barbecues, tennis courts, and boardwalk strolls.</p>",
-            "column_2_text": "<p>High-desert woods take summer freshness in an earthier, more rugged direction. Think sunbaked cedar, wild juniper, vetiver, and crushed pine needles underfoot.</p><p>These aromatic profiles have superior heat tolerance because their woody base notes anchor volatile citrus compounds, projecting with dry, confident elegance as the summer sun sets.</p>",
-            "body_size": 17,
-            "body_size_mobile": 15,
-            "body_line_height": 1.9,
-            "body_color": "#2D2A26",
-            "paragraph_spacing": 20,
-            "column_gap": 55,
-            "column_gap_mobile": 30,
-            "max_width": 1100,
             "desktop_width_percent": 100,
-            "background_color": "#FAF8F5",
+            "max_width": 1200,
+            "section_padding": 20,
+            "background_color": "#f9f6f1",
+            "heading": "<p>Cool Alpine (inspired by Silver Mountain Water by Creed): a cold drink you can wear</p>",
+            "heading_size": 46,
+            "heading_color": "#000000",
+            "heading_spacing": 10,
+            "box_color": "#8b1d22",
+            "box_radius": 25,
+            "box_padding": 40,
+            "box_spacing": 10,
+            "box_paragraph_1": "<p>Some scents just feel like relief, and Cool Alpine is one of them. Inspired by Silver Mountain Water, it opens bright and green with a cool, almost sparkling quality that reads like mountain air even when you are standing on scorching pavement waiting for the walk signal. Green tea, blackcurrant, and a clean musk that keeps the whole thing feeling rinsed and fresh.<br/></p><p>This is a <a href=\"/collections/unisex\" title=\"Unisex\">best unisex perfume</a> in the real sense, easy on anyone, and it is the one to grab when the day is hot and you want to smell like you are handling it rather than slowly melting. Light, smart, and quietly expensive-feeling. The fragrance version of stepping into air conditioning after twenty minutes in a parking lot.</p>",
+            "box_paragraph_2": "",
+            "box_paragraph_3": "",
+            "box_text_color": "#ffffff",
+            "box_text_size": 22,
+            "box_text_line_height": 1.6,
+            "paragraph_spacing": 25,
+            "subheading": "<p>Marine (inspired by Bleu de Chanel): fresh, easy, and impossible to get wrong</p>",
+            "subheading_size": 46,
+            "subheading_color": "#000000",
+            "subheading_spacing": 40,
+            "bottom_text": "<p>If summer had a default setting, Marine would be it. Inspired by Bleu de Chanel, it is clean citrus over ginger and dry sandalwood, and it nails the one thing every great summer scent has to do: it smells effortless. A best cologne for men that works for a backyard party, a wedding, and a Sunday spent doing absolutely nothing, without ever changing its story.</p><p><br/>It holds up in heat because it is balanced. There is enough freshness up top to keep it breathable and enough warmth in the base to keep it from disappearing the second you step outside. A men's fragrance guys keep in steady rotation precisely because it never asks anything of you. Put it on, forget about it, and get complimented on it anyway.</p>",
+            "bottom_text_size": 22,
+            "bottom_text_color": "#000000",
+            "bottom_text_line_height": 1.6
+          },
+          "blocks": {}
+        },
+        "ai_gen_block_614820f_zVYidR": {
+          "type": "ai_gen_block_614820f",
+          "disabled": true,
+          "settings": {
+            "heading": "The guy who irons his shirts for no reason",
+            "heading_size": 50,
+            "heading_size_mobile": 32,
+            "heading_line_height": 1,
+            "heading_color": "#121212",
+            "heading_margin_bottom": 50,
+            "heading_margin_bottom_mobile": 30,
+            "column_1_text": "<p>This is the guy who irons his shirts for no particular occasion and always somehow<br/>looks a little more put together than everyone else in the room. Visionary, inspired by Imagination by Louis Vuitton, opens fresh with citron and bergamot, moves through neroli and ginger, and settles into black tea and warm cedar. It is confident without being loud about it, which tracks for a person who has never once needed to<br/>raise his voice to be heard.</p>",
+            "column_2_text": "<p>Oud Maracujá by Maison Crivelli belongs in the same conversation. It regularly sells<br/>for $300 to $375 depending on size, built around an unexpected pairing of passionfruit and oud that quickly built a cult following in niche perfumery circles.<br/>Mirage takes the same passionfruit-and-oud contrast and makes it available at a<br/>fraction of the price, so the pairing that made the original famous is not locked<br/>behind a three-figure price tag.</p>",
+            "body_size": 20,
+            "body_size_mobile": 14,
+            "body_line_height": 1.6,
+            "body_color": "#000000",
+            "paragraph_spacing": 20,
+            "column_gap": 60,
+            "column_gap_mobile": 30,
+            "max_width": 1000,
+            "desktop_width_percent": 100,
+            "background_color": "#f9f6f1",
             "padding_top": 60,
             "padding_bottom": 60,
             "padding_horizontal": 40,
@@ -125,132 +309,87 @@
         }
       },
       "block_order": [
-        "blog_editorial_text_section_zNd6WG"
+        "ai_gen_block_fb81b45_9nTtAA",
+        "ai_gen_block_614820f_zVYidR"
       ],
-      "name": "Editorial text section",
       "settings": {}
     },
-    "1778690749e24fd023": {
+    "blocks_jgTJWD": {
       "type": "_blocks",
       "blocks": {
-        "blog_narrative_content_9nTtAA": {
-          "type": "blog--narrative-content",
+        "ai_gen_block_19f144a_kVmwE7": {
+          "type": "ai_gen_block_19f144a",
+          "disabled": true,
           "settings": {
-            "desktop_width_percent": 100,
-            "max_width": 1100,
-            "section_padding": 60,
-            "background_color": "#FAF8F5",
-            "heading": "<p>Cool Alpine: a cold drink you can wear</p>",
-            "heading_size": 42,
-            "heading_color": "#1A1816",
-            "heading_spacing": 25,
-            "box_color": "#1C1917",
-            "box_radius": 15,
-            "box_padding": 45,
-            "box_spacing": 35,
-            "box_paragraph_1": "<p>Some scents just feel like immediate relief, and <strong>Cool Alpine</strong> (inspired by Silver Mountain Water by Creed) is at the top of that list. Opening with crisp green tea, bergamot, and blackcurrant, it evokes glacial mountain streams and clean alpine breezes.</p><p>For an equally versatile summer staple, <strong>Marine</strong> (inspired by Bleu de Chanel) combines peppermint and citrus with clean cedar and incense, delivering fresh, effortless confidence.</p><p>If you prefer an intriguing green profile, <strong>Eternal Verde</strong> (inspired by Hacivat by Nishane) balances smoky pineapple and oakmoss for an unforgettable summer signature.</p>",
-            "box_paragraph_2": "",
-            "box_paragraph_3": "",
-            "box_text_color": "#F5EFE6",
-            "box_text_size": 17,
-            "box_text_line_height": 1.9,
-            "paragraph_spacing": 20,
-            "subheading": "<p>Luminous Wonder & Fate for summer evenings</p>",
-            "subheading_size": 42,
-            "subheading_color": "#1A1816",
-            "subheading_spacing": 40,
-            "bottom_text": "<p>When daytime heat yields to cool evening breezes, reach for <strong>Luminous Wonder</strong> (inspired by J'Adore by Dior) or <strong>Fate</strong> (inspired by Chance EDP). Their sparkling solar florals and white amber bases radiate warmth on sun-kissed skin without feeling dense.</p><p>American summer has a rhythm: hot afternoons, warm evenings, and scents that carry through both.</p>",
-            "bottom_text_size": 17,
-            "bottom_text_color": "#2D2A26",
-            "bottom_text_line_height": 1.9
+            "line_1_text": "Timeless Grace",
+            "line_1_alignment": "left",
+            "line_1_offset": 300,
+            "line_2_text": "vs",
+            "line_2_alignment": "center",
+            "line_2_offset": 0,
+            "line_3_text": "Coco Mademoiselle by Chanel:",
+            "line_3_alignment": "right",
+            "line_3_offset": -40,
+            "body_text": "<p>Coco Mademoiselle is the benchmark for a certain kind of feminine fragrance. Clean, grown-up, and immediately recognisable. It has been the top-selling women's perfume in the UK and US for years. The EDP retails at around $160 for 100ml and it earns that position consistently.</p><p><strong>Timeless Grace</strong> opens with the same fresh orange and bergamot, develops through jasmine and rose, and settles into a warm patchouli base that wears throughout the day. The comparison test here produced the closest result of the three: on dry-down, both fragrances sat in the same warm, clean territory. The original has a very slight additional depth in the base that reflects the higher concentration of raw materials, but it is a difference you would only notice if you were specifically looking for it.<br/><br/>At around $20 versus $160, Timeless Grace makes a compelling case for anyone who loves the Coco Mademoiselle profile but wants to wear it every day without the creeping sense that they should be saving it for something more significant.</p>",
+            "line_1_size": 44,
+            "line_2_size": 85,
+            "line_3_size": 44,
+            "body_size": 22,
+            "line_2_margin_top": 30,
+            "line_3_margin_top": 4,
+            "header_spacing": 40,
+            "body_max_width": 1000,
+            "section_padding_top": 60,
+            "section_padding_bottom": 60,
+            "background_color": "#ffffff",
+            "text_color": "#121212"
           },
           "blocks": {}
         }
       },
       "block_order": [
-        "blog_narrative_content_9nTtAA"
+        "ai_gen_block_19f144a_kVmwE7"
       ],
-      "settings": {}
-    },
-    "1780925695be0a3de2": {
-      "type": "_blocks",
-      "blocks": {
-        "blog_fragrance_comparison_table_nQznTw": {
-          "type": "blog--fragrance-comparison-table",
-          "settings": {
-            "header_1": "Summer Occasion",
-            "header_2": "Top Note Focus",
-            "header_3": "Recommended Scentspired Bottle",
-            "row_1_label": "Beach & Poolside Day",
-            "row_1_col_1": "Green Tea, Blackcurrant, Bergamot",
-            "row_1_col_2": "Cool Alpine (Silver Mountain Water inspired)",
-            "row_1_col_3": "Crisp, glacial refreshment in high heat",
-            "row_2_label": "Backyard BBQ & Casual Day",
-            "row_2_col_1": "Sea Salt, Grapefruit, Mint",
-            "row_2_col_2": "Marine (Bleu de Chanel inspired)",
-            "row_2_col_3": "Universally loved aquatic-aromatic trail",
-            "row_3_label": "Sunset Rooftop Drinks",
-            "row_3_col_1": "Mandarin, Jasmine, White Woods",
-            "row_3_col_2": "Luminous Wonder (J'Adore inspired)",
-            "row_3_col_3": "Golden-hour floral radiance that glows",
-            "row_4_label": "Warm Night Bonfire / Outing",
-            "row_4_col_1": "Smoky Pineapple, Patchouli, Oakmoss",
-            "row_4_col_2": "Eternal Verde (Hacivat inspired)",
-            "row_4_col_3": "Complex, distinctive trail that lasts all night",
-            "side_padding": 20,
-            "cell_padding": 18,
-            "label_font_weight": "bold",
-            "header_bg_color": "#1A1816",
-            "header_text_color": "#F8F5F0",
-            "row_bg_color": "#FAF8F5",
-            "body_text_color": "#383430",
-            "border_color": "rgba(0,0,0,0.06)",
-            "table_bg_color": "#FAF8F5"
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "blog_fragrance_comparison_table_nQznTw"
-      ],
+      "name": "Staggered typography",
       "settings": {}
     },
     "17786893180b60ea14": {
       "type": "_blocks",
       "blocks": {
-        "blog_editorial_callout_section_m8PFU4": {
-          "type": "blog--editorial-callout-section",
+        "ai_gen_block_c88e324_m8PFU4": {
+          "type": "ai_gen_block_c88e324",
+          "disabled": true,
           "settings": {
-            "container_width": 1100,
-            "left_column_width": 45,
-            "right_column_width": 55,
-            "column_gap": 50,
+            "container_width": 1200,
+            "left_column_width": 40,
+            "right_column_width": 60,
+            "column_gap": 40,
             "desktop_width_percent": 100,
-            "heading": "What this means when you are shopping",
+            "heading": "Where The Differences actually Show Up",
             "heading_font": "serif",
-            "heading_size": 42,
-            "mobile_heading_size": 28,
-            "heading_color": "#1A1816",
-            "heading_indent": 0,
-            "mobile_heading_indent": 0,
-            "image": "shopify://shop_images/ChatGPT_Image_Jul_11_2026_02_29_17_PM.png",
-            "image_max_width": 500,
-            "heading_image_gap": 16,
-            "mobile_heading_image_gap": 20,
-            "body_text": "<p>A few small moves make a tremendous difference in summer. Always apply fragrance immediately after stepping out of the shower and applying an unscented light moisturizer, which seals hydration into your skin.</p><p>Never leave your perfume bottles in the glove compartment or on a sunny windowsill—UV rays and excessive heat will degrade the delicate citrus top notes in weeks. Keep your bottles in a cool drawer.</p>",
+            "heading_size": 56,
+            "mobile_heading_size": 40,
+            "heading_color": "#000000",
+            "heading_indent": 10,
+            "mobile_heading_indent": 40,
+            "image": "shopify://shop_images/magnific_luxury-perfume-comparison_74h5S6MJAL_jpg.jpg",
+            "image_max_width": 600,
+            "heading_image_gap": 4,
+            "mobile_heading_image_gap": 25,
+            "body_text": "<p>Across all our tests, the differences between inspired fragrances and originals came down to three things.<br/><br/><strong>Concentration of raw materials</strong>. Designer houses use extremely high concentrations of expensive ingredients. The originals have a certain richness in the base that reflects this. A well-made inspired fragrance gets close, but the very finest nuances of a $300 bottle are sometimes in those base notes, and it is worth knowing that going in.<br/><br/><strong>Projection in the opening</strong>. Top notes on the originals tend to radiate a little further, particularly in the first half an hour after applying. This matters if you are spraying in an elevator and want to make an immediate impression. It matters less if you are wearing something all day for yourself.<br/><br/><strong>Longevity on dry skin</strong>. Both perform significantly better on moisturised skin. On dry skin, the originals do have a slight edge in staying power. The fix is twelve seconds of moisturiser before you spray. After that, the gap closes considerably.</p>",
             "body_font": "system_ui_n4",
-            "body_size": 17,
-            "mobile_body_size": 15,
-            "body_color": "#2D2A26",
-            "paragraph_spacing": 20,
+            "body_size": 24,
+            "mobile_body_size": 16,
+            "body_color": "#000000",
+            "paragraph_spacing": 30,
             "mobile_paragraph_spacing": 15,
-            "text_vertical_offset": 0,
-            "background_color": "#FAF8F5",
-            "padding_top": 60,
-            "padding_bottom": 60,
-            "horizontal_padding": 30,
-            "mobile_padding_top": 40,
-            "mobile_padding_bottom": 40,
+            "text_vertical_offset": 10,
+            "background_color": "#ffffff",
+            "padding_top": 100,
+            "padding_bottom": 100,
+            "horizontal_padding": 40,
+            "mobile_padding_top": 60,
+            "mobile_padding_bottom": 60,
             "mobile_horizontal_padding": 20,
             "mobile_gap": 30
           },
@@ -258,55 +397,242 @@
         }
       },
       "block_order": [
-        "blog_editorial_callout_section_m8PFU4"
+        "ai_gen_block_c88e324_m8PFU4"
+      ],
+      "settings": {}
+    },
+    "blocks_g6VtBW": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_19f144a_BAgRLn": {
+          "type": "ai_gen_block_19f144a",
+          "disabled": true,
+          "settings": {
+            "line_1_text": "The one who is",
+            "line_1_alignment": "left",
+            "line_1_offset": 155,
+            "line_2_text": "nearly impossible",
+            "line_2_alignment": "center",
+            "line_2_offset": 0,
+            "line_3_text": "to shop for",
+            "line_3_alignment": "center",
+            "line_3_offset": 200,
+            "body_text": "<p>Every friend group has one person who is nearly impossible to shop for. They already own what they want, care more about quality than quantity, and will<br/>absolutely return whatever misses. A unisex fragrance is the smartest move here, since it skips the guesswork of gendered marketing altogether. Cool Alpine, inspired by Silver Mountain Water by Creed, is clean and universally flattering enough that it rarely misses, whoever ends up opening it, which makes it the closest thing to a safe pick that still feels like an actual gift instead of a placeholder.</p>",
+            "line_1_size": 40,
+            "line_2_size": 55,
+            "line_3_size": 40,
+            "body_size": 22,
+            "line_2_margin_top": 40,
+            "line_3_margin_top": -14,
+            "header_spacing": 40,
+            "body_max_width": 900,
+            "section_padding_top": 60,
+            "section_padding_bottom": 60,
+            "background_color": "#ffffff",
+            "text_color": "#000000"
+          },
+          "blocks": {}
+        },
+        "ai_gen_block_614820f_AUBiD6": {
+          "type": "ai_gen_block_614820f",
+          "settings": {
+            "heading": "Luminous Wonder (inspired by J'Adore by Dior): sunshine, bottled",
+            "heading_size": 50,
+            "heading_size_mobile": 32,
+            "heading_line_height": 1,
+            "heading_color": "#121212",
+            "heading_margin_bottom": 50,
+            "heading_margin_bottom_mobile": 30,
+            "column_1_text": "<p>A lot of florals save themselves for cooler weather. Luminous Wonder does its best work in the sun. Inspired by J'Adore, it is a glowing bouquet of ylang-ylang, rose, and jasmine that stays golden instead of tipping into heavy, which is not an easy thing for a floral to pull off once it warms up. It smells like the best part of summer: warm skin, a garden at full tilt, that flash of feeling completely put together.</p>",
+            "column_2_text": "<p>This is a <a href=\"/collections/women\" title=\"Women\">best perfume for women</a> who want something unmistakably feminine and celebratory that will not turn cloying by mid-afternoon. It carries beautifully in warm air, so a light hand does the job. Wear it to anything worth putting on a nice dress for, and it will hold right through to the part of the night where someone suggests one more stop.</p>",
+            "body_size": 20,
+            "body_size_mobile": 14,
+            "body_line_height": 1.6,
+            "body_color": "#000000",
+            "paragraph_spacing": 20,
+            "column_gap": 60,
+            "column_gap_mobile": 30,
+            "max_width": 1000,
+            "desktop_width_percent": 100,
+            "background_color": "#f9f6f1",
+            "padding_top": 60,
+            "padding_bottom": 60,
+            "padding_horizontal": 40,
+            "padding_top_mobile": 40,
+            "padding_bottom_mobile": 40,
+            "padding_horizontal_mobile": 20
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_19f144a_BAgRLn",
+        "ai_gen_block_614820f_AUBiD6"
+      ],
+      "name": "Staggered typography",
+      "settings": {}
+    },
+    "blocks_NgyNz4": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_fb81b45_qVFqqX": {
+          "type": "ai_gen_block_fb81b45",
+          "settings": {
+            "desktop_width_percent": 100,
+            "max_width": 1200,
+            "section_padding": 20,
+            "background_color": "#f9f6f1",
+            "heading": "<p>Eternal Verde (inspired by Hacivat by Nishane): green, crisp, and more interesting than the rest</p>",
+            "heading_size": 50,
+            "heading_color": "#000000",
+            "heading_spacing": 10,
+            "box_color": "#8b1d22",
+            "box_radius": 25,
+            "box_padding": 40,
+            "box_spacing": 10,
+            "box_paragraph_1": "<p>For anyone who finds standard summer freshness a little predictable, Eternal Verde is the upgrade. Inspired by Hacivat, it pairs crisp pineapple and bergamot with a green, woody heart that gives it real backbone. Fresh, sure, but with a grown up edge that keeps it from blending into every other citrus scent flooding fragrance TikTok this time of year.</p><p>This one feels like a niche fragrance: the kind that earns a raised eyebrow and a \"wait, what is that?\" from the one friend who actually knows scent. A luxury inspired perfume that reads as intentional rather than default, and it holds its freshness impressively well even when the afternoon refuses to cool off.</p>",
+            "box_paragraph_2": "",
+            "box_paragraph_3": "",
+            "box_text_color": "#ffffff",
+            "box_text_size": 22,
+            "box_text_line_height": 1.6,
+            "paragraph_spacing": 25,
+            "subheading": "<p>Fate (inspired by Chance EDP by Chanel): the one for when the night keeps going</p>",
+            "subheading_size": 50,
+            "subheading_color": "#000000",
+            "subheading_spacing": 40,
+            "bottom_text": "<p>American summer has a rhythm to it. The day is warm, the evening stays warm, and suddenly you are out on a patio at ten at night, string lights on, nobody in any hurry to leave. Fate is the scent for that stretch. Inspired by Chance, it is pink pepper and jasmine over a soft, warm base: fresh enough for daytime, with enough staying power to carry a night that nobody planned and nobody wants to wrap up. </p><p>A best fragrance for women that bridges the entire day, which matters in a season where you head out in the afternoon and get home a lot later than you meant to. It does not quit when the sun goes down. It just settles in and stays with you.</p>",
+            "bottom_text_size": 22,
+            "bottom_text_color": "#000000",
+            "bottom_text_line_height": 1.6
+          },
+          "blocks": {}
+        },
+        "ai_gen_block_19f144a_ypgJWf": {
+          "type": "ai_gen_block_19f144a",
+          "settings": {
+            "line_1_text": "How to",
+            "line_1_alignment": "left",
+            "line_1_offset": 205,
+            "line_2_text": "actually wear fragrance",
+            "line_2_alignment": "center",
+            "line_2_offset": 0,
+            "line_3_text": "in the heat",
+            "line_3_alignment": "right",
+            "line_3_offset": -135,
+            "body_text": "<p>A few small moves make a real difference in summer. Moisturize first, because warm skin still needs something to hold onto, and hydrated skin holds scent much longer. Stick to pulse points and go lighter than you would in winter, since the heat is already doing half the projecting for you. And keep the bottle out of direct sun; a windowsill in a heat wave will quietly cook a fragrance and dull it over time.</p><p><br/>The practical win with a Scentspired bestseller is simple. High-quality, Swiss-sourced fragrance oil means the scent really lasts through a long, hot day, and at around $20 a bottle you can keep one in your bag for a festival, one in the car, and one by the door without treating any of them like something breakable. That is the whole spirit of summer. You are supposed to be out living in it, not rationing the good stuff.</p>",
+            "line_1_size": 42,
+            "line_2_size": 55,
+            "line_3_size": 42,
+            "body_size": 23,
+            "line_2_margin_top": 40,
+            "line_3_margin_top": -14,
+            "header_spacing": 40,
+            "body_max_width": 900,
+            "section_padding_top": 60,
+            "section_padding_bottom": 60,
+            "background_color": "#ffffff",
+            "text_color": "#000000"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_fb81b45_qVFqqX",
+        "ai_gen_block_19f144a_ypgJWf"
+      ],
+      "settings": {}
+    },
+    "blocks_LdziD8": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_e9ac98b_PRWMMm": {
+          "type": "ai_gen_block_e9ac98b",
+          "settings": {
+            "container_width": 1200,
+            "horizontal_padding": 20,
+            "padding_top": 80,
+            "padding_bottom": 80,
+            "column_gap": 20,
+            "mobile_gap": 30,
+            "mobile_scale": 0.6,
+            "background_color": "#ffffff",
+            "prefix_text": "",
+            "prefix_font_size": 50,
+            "brand_scent_text": "",
+            "brand_spired_text": "",
+            "brand_font_size": 50,
+            "start_text": "",
+            "start_font_size": 18,
+            "bestsellers_text": "",
+            "bestsellers_font_size": 52,
+            "heading_line_spacing": 4,
+            "heading_line_height": 1,
+            "heading_color": "#000000",
+            "body_text": "Once you start reading fragrance this way, you can't go back. You'll know what you're buying before you hit checkout, you'll understand why the same fragrance smells completely different on your best friend, and you'll have so much more fun exploring. Fragrance is so much more interesting when you know what's going on underneath, and now you do",
+            "body_font_size": 25,
+            "body_line_height": 1.3,
+            "body_color": "#121212"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_e9ac98b_PRWMMm"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".ai-split-editorial-right-anxdtuyt1avl2mep1maigenblocke9ac98bprwmmm {max-width: 100%;}"
       ],
       "settings": {}
     },
     "1778692264fe7b6973": {
       "type": "_blocks",
       "blocks": {
-        "blog_split_editorial_text_QF8teC": {
-          "type": "blog--split-editorial-text",
+        "ai_gen_block_e9ac98b_QF8teC": {
+          "type": "ai_gen_block_e9ac98b",
           "settings": {
-            "container_width": 1100,
-            "horizontal_padding": 30,
-            "padding_top": 60,
-            "padding_bottom": 60,
-            "column_gap": 50,
-            "mobile_gap": 25,
-            "mobile_scale": 0.7,
-            "background_color": "#FAF8F5",
-            "prefix_text": "ONE MORE",
-            "prefix_font_size": 38,
+            "container_width": 1200,
+            "horizontal_padding": 20,
+            "padding_top": 80,
+            "padding_bottom": 80,
+            "column_gap": 40,
+            "mobile_gap": 30,
+            "mobile_scale": 0.6,
+            "background_color": "#ffffff",
+            "prefix_text": "Where To",
+            "prefix_font_size": 56,
             "brand_scent_text": "",
             "brand_spired_text": "",
-            "brand_font_size": 38,
+            "brand_font_size": 50,
             "start_text": "",
-            "start_font_size": 38,
-            "bestsellers_text": "THING",
-            "bestsellers_font_size": 38,
+            "start_font_size": 50,
+            "bestsellers_text": "Start",
+            "bestsellers_font_size": 56,
             "heading_line_spacing": 4,
-            "heading_line_height": 1.1,
-            "heading_color": "#1A1816",
-            "body_text": "Capture the spirit of the season with our summer-ready collection. Browse crisp, revitalizing scents in the <a href=\"/collections/shop\">Scentspired perfume collection</a>.",
-            "body_font_size": 17,
-            "body_line_height": 1.8,
-            "body_color": "#2D2A26"
+            "heading_line_height": 1,
+            "heading_color": "#000000",
+            "body_text": "The scent of an American summer will always be a little chaotic, half sunscre n and half optimism, gone before you fully appreciate it. What you wear through it does not have to be. Browse the full Scentspired collection, shop for perfume online, and find the one that fits your version of the season. Then go be in it, while it lasts.",
+            "body_font_size": 22,
+            "body_line_height": 1.3,
+            "body_color": "#121212"
           },
           "blocks": {}
         }
       },
       "block_order": [
-        "blog_split_editorial_text_QF8teC"
+        "ai_gen_block_e9ac98b_QF8teC"
       ],
-      "custom_css": [],
+      "custom_css": [
+        "@media screen and (min-width: 1024px) {.ai-split-editorial-right-auuyyd3rwymllyjdksaigenblocke9ac98bqf8tec {max-width: 50%; }}"
+      ],
       "settings": {}
     },
     "1778701783b132082f": {
       "type": "_blocks",
       "blocks": {
-        "blog_product_collection_grid_icikjA": {
-          "type": "blog--product-collection-grid",
+        "ai_gen_block_29a8932_icikjA": {
+          "type": "ai_gen_block_29a8932",
           "settings": {
             "collection": "bestsellers"
           },
@@ -314,21 +640,77 @@
         }
       },
       "block_order": [
-        "blog_product_collection_grid_icikjA"
+        "ai_gen_block_29a8932_icikjA"
       ],
+      "settings": {}
+    },
+    "177870354789d2efcb": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_f4b496d_dDGK7Q": {
+          "type": "ai_gen_block_f4b496d",
+          "disabled": true,
+          "settings": {
+            "desktop_image": "shopify://shop_images/wmremove-transformed_1.png",
+            "mobile_image": "shopify://shop_images/wmremove-transformed_1.png",
+            "text_horizontal_position": 10,
+            "text_max_width": 700,
+            "text_size": 32,
+            "line_height": 1
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_f4b496d_dDGK7Q"
+      ],
+      "disabled": true,
+      "settings": {}
+    },
+    "1779206966fe81762b": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_36376d7_3UnFbY": {
+          "type": "ai_gen_block_36376d7",
+          "settings": {
+            "desktop_image": "shopify://shop_images/wmremove-transformed_1.png",
+            "mobile_image": "shopify://shop_images/wmremove-transformed_1.png",
+            "heading_line_1_part_1": "Try The Inspired Version",
+            "heading_line_1_part_2": "",
+            "heading_line_2": "See And Smell For Yourself",
+            "text_horizontal_position": 10,
+            "text_max_width": 700,
+            "text_size": 42,
+            "line_height": 1
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_36376d7_3UnFbY"
+      ],
+      "disabled": true,
       "settings": {}
     }
   },
   "order": [
+    "main",
     "177868548039dc52a1",
     "blogtextliquid_LBJgtB",
     "177868816090d620d4",
     "blogtextliquid_ra7Awx",
+    "17834175956186729f",
+    "178125601117c0d1d4",
     "blocks_ji7beH",
     "1778690749e24fd023",
-    "1780925695be0a3de2",
+    "blocks_jgTJWD",
     "17786893180b60ea14",
+    "blocks_g6VtBW",
+    "blocks_NgyNz4",
+    "blocks_LdziD8",
     "1778692264fe7b6973",
-    "1778701783b132082f"
+    "1778701783b132082f",
+    "177870354789d2efcb",
+    "1779206966fe81762b"
   ]
 }
