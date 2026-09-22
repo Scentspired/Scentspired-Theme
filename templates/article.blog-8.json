@@ -16,7 +16,7 @@
             "mobile_paragraph_size": 16,
             "paragraph_line_height": 1.4,
             "paragraph_color": "#332F2B",
-            "desktop_image": "shopify://shop_images/Six_perfume_myths_-_01_jpg.jpg",
+            "desktop_image": "shopify://shop_images/Six_perfume_myths_jpg.jpg",
             "image_aspect_ratio": "16/9",
             "horizontal_alignment": "flex-start",
             "vertical_alignment": "center",
@@ -46,7 +46,7 @@
       "custom_css": [],
       "name": "Blog Text Liquid",
       "settings": {
-        "text_content": "<p>There is a lot of fragrance advice floating around out there, and an alarming amount of it is completely wrong. Passed down through beauty counter folklore, social media trends, and outdated magazine columns, these myths cause shoppers to waste money on overpriced bottles and apply their perfume in ways that ruin its performance.</p><p>In reality, perfumery is an exact science of molecular volatility, evaporation rates, and organic chemistry. Let's separate fact from fiction and leave the six most stubborn perfume myths behind for good.</p>"
+        "text_content": "<p>There is a lot of fragrance advice floating around out there, and an alarming amount of it is completely wrong. Passed down through department store counters, social media videos, and magazine columns, these myths cause shoppers to waste money on overpriced bottles and apply their perfume in ways that ruin its performance.</p><p>In reality, perfumery is an exact science of molecular volatility, evaporation rates, and organic chemistry. Let's separate fact from fiction and leave the six most stubborn perfume myths behind for good.</p>"
       }
     },
     "177868816090d620d4": {
@@ -103,7 +103,7 @@
             "heading_margin_bottom": 30,
             "heading_margin_bottom_mobile": 25,
             "column_1_text": "<p>When you spray perfume onto your wrists and rub them together vigorously, you generate thermal friction. That heat causes the volatile top notes—such as delicate bergamot, mandarin, and light florals—to evaporate prematurely.</p><p>Instead of experiencing a smooth 30-minute transition, you crush the opening and jump straight into the mid-notes. The fix is simple: spray, let the liquid air-dry for ten seconds, and let your natural body heat do the work.</p>",
-            "column_2_text": "<p>Price tag has virtually zero correlation with longevity. Many $400 niche fragrances are formulated as light Eau de Colognes or delicate citrus florals designed to last only 3 to 4 hours by artistic choice.</p><p>Conversely, a well-formulated inspired Eau de Parfum with rich amber, cedarwood, or vanilla bases will comfortably last 10 hours. Longevity is determined by molecular weight and oil concentration, not price tags.</p>",
+            "column_2_text": "<p>Price tag has virtually zero correlation with longevity. Many £300 niche fragrances are formulated as light Eau de Colognes or delicate citrus florals designed to last only 3 to 4 hours by artistic choice.</p><p>Conversely, a well-formulated inspired Eau de Parfum with rich amber, cedarwood, or vanilla bases will comfortably last 10 hours. Longevity is determined by molecular weight and oil concentration, not price tags.</p>",
             "body_size": 17,
             "body_size_mobile": 15,
             "body_line_height": 1.9,
@@ -159,7 +159,7 @@
             "subheading_size": 42,
             "subheading_color": "#1A1816",
             "subheading_spacing": 40,
-            "bottom_text": "<p>Your bathroom is the worst possible place to store fine fragrance. The rapid temperature fluctuations and steamy humidity from daily showers cause the delicate chemical bonds in perfume oils to oxidize and spoil rapidly.</p><p>Store your bottles in a cool, dark place—like a bedroom closet or dresser drawer. Kept away from direct sunlight and heat, high-concentration inspired perfumes will maintain their original beauty for years.</p>",
+            "bottom_text": "<p>Your bathroom is the worst possible place to store fine fragrance. The rapid temperature fluctuations and steamy humidity from daily showers cause the delicate chemical bonds in perfume oils to oxidise and spoil rapidly.</p><p>Store your bottles in a cool, dark place—like a bedroom wardrobe or dresser drawer. Kept away from direct sunlight and heat, high-concentration inspired perfumes will maintain their original beauty for years.</p>",
             "bottom_text_size": 17,
             "bottom_text_color": "#2D2A26",
             "bottom_text_line_height": 1.9
@@ -191,7 +191,7 @@
             "row_2_col_3": "Choose high-concentration formulations",
             "row_3_label": "Store bottles in bathroom",
             "row_3_col_1": "Heat and humidity spoil perfume oils fast",
-            "row_3_col_2": "Store in a cool, dark bedroom closet",
+            "row_3_col_2": "Store in a cool, dark bedroom wardrobe",
             "row_3_col_3": "Protects fragrance integrity for years",
             "row_4_label": "100% natural is always best",
             "row_4_col_1": "Naturals degrade quickly without fixatives",
@@ -237,7 +237,7 @@
             "image_max_width": 500,
             "heading_image_gap": 16,
             "mobile_heading_image_gap": 20,
-            "body_text": "<p>Another widespread myth is that perfume never expires. While unopened perfume can last for decades, once a bottle is half-empty, oxygen enters the chamber and begins slowly oxidizing the essential oils.</p><p>Do not save your favorite luxury perfume for rare once-a-year occasions. Use it, enjoy it, and make it part of your everyday life. With Scentspired, you can afford to spray generously without worrying about replacement costs.</p>",
+            "body_text": "<p>Another widespread myth is that perfume never expires. While unopened perfume can last for decades, once a bottle is half-empty, oxygen enters the chamber and begins slowly oxidising the essential oils.</p><p>Do not save your favourite luxury perfume for rare once-a-year occasions. Use it, enjoy it, and make it part of your everyday life. With Scentspired, you can afford to spray generously without worrying about replacement costs.</p>",
             "body_font": "system_ui_n4",
             "body_size": 17,
             "mobile_body_size": 15,
@@ -288,7 +288,7 @@
             "heading_line_spacing": 4,
             "heading_line_height": 1.1,
             "heading_color": "#1A1816",
-            "body_text": "Leave the marketing myths behind and enjoy honest, high-performance fragrance. Explore the <a href=\"/collections/shop\">Scentspired inspired collection</a> today.",
+            "body_text": "Leave the marketing myths behind and enjoy honest, high-performance fragrance. Explore the <a href=\"/collections/shop\">Scentspired UK collection</a> today.",
             "body_font_size": 17,
             "body_line_height": 1.8,
             "body_color": "#2D2A26"

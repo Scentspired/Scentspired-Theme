@@ -24,6 +24,7 @@
     "report:all": "node tests/reporting/generate-report.cjs && node tests/reporting/generate-master-catalog.cjs",
     "dev": "shopify theme dev",
     "dev:store": "shopify theme dev --store=$npm_config_store",
+    "dev:uae": "shopify theme dev --path=../Scentspired-UAE --store=scentspiredae.myshopify.com",
     "check": "shopify theme check --fail-level error",
     "format": "prettier --write \"**/*.{liquid,json,js,css,md}\"",
     "prepare": "node scripts/install-git-hooks.cjs",
@@ -36,13 +37,8 @@
     "theme:list": "shopify theme list",
     "theme:open": "shopify theme open",
     "theme:info": "shopify theme info",
-    "sync:regions": "node engine/sync-regions.cjs",
-    "sync:regions:dry": "node engine/sync-regions.cjs --dry-run",
-    "sync:usa": "node engine/sync-regions.cjs --target=usa",
-    "sync:uk": "node engine/sync-regions.cjs --target=uk",
-    "sync:pull": "node engine/sync-regions.cjs --pull",
-    "sync:pull:usa": "node engine/sync-regions.cjs --pull --target=usa",
-    "sync:pull:uk": "node engine/sync-regions.cjs --pull --target=uk"
+    "sync:uae": "node engine/sync-regions.cjs --target=uae",
+    "sync:uae:dry": "node engine/sync-regions.cjs --dry-run --target=uae"
   },
   "devDependencies": {
     "@shopify/cli": "^3.94.0",

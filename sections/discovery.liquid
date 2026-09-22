@@ -12,10 +12,12 @@
 
 <div class="perfume-bundle-section">
   <div class="builder-layout">
+    {%- assign discovery_heading = section.settings.heading | default: 'Your Fragrance Discovery Starts Here' -%}
+    {%- assign discovery_subheading = section.settings.subheading | default: 'Add 5 items to complete your Discovery Box' -%}
     {%
       render 'bundle-sidebar',
-      title: section.settings.heading | default: 'Your Fragrance Discovery Starts Here',
-      subtitle: section.settings.subheading | default: 'Add 5 items to complete your Discovery Box',
+      title: discovery_heading,
+      subtitle: discovery_subheading,
       capacity: 5,
       show_savings: false
     %}

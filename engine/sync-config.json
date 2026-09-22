@@ -20,17 +20,9 @@
   ],
   "downstreamTargets": [
     {
-      "name": "Scentspired-USA",
-      "id": "usa",
-      "path": "../Scentspired-USA",
-      "branch": "develop",
-      "mainBranch": "main",
-      "remote": "origin"
-    },
-    {
-      "name": "Scentspired-UK",
-      "id": "uk",
-      "path": "../Scentspired-UK",
+      "name": "Scentspired-UAE",
+      "id": "uae",
+      "path": "../Scentspired-UAE",
       "branch": "develop",
       "mainBranch": "main",
       "remote": "origin"

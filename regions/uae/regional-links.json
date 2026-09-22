@@ -1,0 +1,14 @@
+{
+  "region": "uae",
+  "name": "United Arab Emirates",
+  "domain": "scentspired.ae",
+  "home_url": "https://scentspired.ae",
+  "currency": "AED",
+  "currency_symbol": "AED",
+  "social_links": {
+    "instagram": "https://www.instagram.com/scentspired/"
+  },
+  "trustpilot": {
+    "enabled": false
+  }
+}

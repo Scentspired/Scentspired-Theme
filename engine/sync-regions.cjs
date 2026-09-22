@@ -23,6 +23,12 @@ const skipTests = args.includes('--skip-tests');
 const targetArg = args.find(a => a.startsWith('--target='));
 const targetRegion = targetArg ? targetArg.split('=')[1].toLowerCase() : null;
 
+// STRICT LOCKDOWN POLICY: UK and USA are permanently locked
+if (targetRegion === 'usa' || targetRegion === 'uk') {
+  console.error(`\n🚫 [LOCKED] Scentspired-${targetRegion.toUpperCase()} is strictly locked down. No operations allowed.\n`);
+  process.exit(1);
+}
+
 // Read config
 if (!fs.existsSync(CONFIG_PATH)) {
   console.error(`❌ Configuration file not found: ${CONFIG_PATH}`);

@@ -177,10 +177,14 @@ const CORE_LAYERS = [
   },
   {
     name: "Layer 12: Shopify Theme Check Strict Error Gate",
-    cmd: fs.existsSync(path.join(GUARDIAN_ROOT, "node_modules", ".bin", "shopify"))
-      ? path.join(GUARDIAN_ROOT, "node_modules", ".bin", "shopify")
-      : "npx",
-    args: fs.existsSync(path.join(GUARDIAN_ROOT, "node_modules", ".bin", "shopify"))
+    cmd: process.platform === "win32"
+      ? (fs.existsSync(path.join(GUARDIAN_ROOT, "node_modules", ".bin", "shopify.cmd"))
+          ? path.join(GUARDIAN_ROOT, "node_modules", ".bin", "shopify.cmd")
+          : "npx.cmd")
+      : (fs.existsSync(path.join(GUARDIAN_ROOT, "node_modules", ".bin", "shopify"))
+          ? path.join(GUARDIAN_ROOT, "node_modules", ".bin", "shopify")
+          : "npx"),
+    args: (fs.existsSync(path.join(GUARDIAN_ROOT, "node_modules", ".bin", "shopify.cmd")) || fs.existsSync(path.join(GUARDIAN_ROOT, "node_modules", ".bin", "shopify")))
       ? ["theme", "check", `--path=${resolvedTarget}`, "--fail-level=error"]
       : ["--yes", "shopify", "theme", "check", `--path=${resolvedTarget}`, "--fail-level=error"],
     failMsg: "Shopify Theme Check detected critical syntax or schema errors",
@@ -199,6 +203,7 @@ for (let i = 0; i < CORE_LAYERS.length; i++) {
     stdio: "inherit",
     env: { ...process.env, THEME_TARGET_DIR: resolvedTarget },
     cwd: GUARDIAN_ROOT,
+    shell: process.platform === "win32",
   });
 
   if (result.status !== 0) {

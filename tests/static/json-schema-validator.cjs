@@ -82,11 +82,29 @@ function parseJsonc(content) {
   return JSON.parse(output);
 }
 
-// Discover all existing section names (checks target and falls back to Core Theme sections)
+// Discover all existing section names and parse section/block schemas
 const coreSectionsDir = path.resolve(__dirname, '../../sections');
 const targetSectionsDir = path.join(ROOT, 'sections');
 const sectionsDirs = [targetSectionsDir, coreSectionsDir];
 const availableSections = new Set();
+const sectionSchemas = new Map();
+const blockSchemas = new Map();
+
+function parseLiquidSchemas(dir, map) {
+  if (!fs.existsSync(dir)) return;
+  for (const f of fs.readdirSync(dir)) {
+    if (!f.endsWith('.liquid')) continue;
+    const name = f.replace('.liquid', '');
+    if (map.has(name)) continue;
+    try {
+      const content = fs.readFileSync(path.join(dir, f), 'utf8');
+      const match = content.match(/{%\s*schema\s*%}([\s\S]*?){%\s*endschema\s*%}/);
+      if (match) {
+        map.set(name, JSON.parse(match[1]));
+      }
+    } catch (e) {}
+  }
+}
 
 for (const sDir of sectionsDirs) {
   if (fs.existsSync(sDir)) {
@@ -97,16 +115,81 @@ for (const sDir of sectionsDirs) {
       }
     }
   }
+  parseLiquidSchemas(sDir, sectionSchemas);
 }
 
-// 1. Scan templates/
-const templatesDir = path.join(ROOT, 'templates');
-if (fs.existsSync(templatesDir)) {
-  const templateFiles = fs.readdirSync(templatesDir);
+const blocksDirs = [path.join(ROOT, 'blocks'), path.resolve(__dirname, '../../blocks')];
+for (const bDir of blocksDirs) {
+  parseLiquidSchemas(bDir, blockSchemas);
+}
+
+// Rule 4 Helper: Universal Schema Setting Type & Range Step Validator
+function validateSettingsAgainstSchema(settings, schemaSettings, contextDesc, templateFile) {
+  if (!settings || !Array.isArray(schemaSettings)) return;
+  const schemaMap = new Map();
+  schemaSettings.forEach(s => { if (s && s.id) schemaMap.set(s.id, s); });
+
+  for (const [id, val] of Object.entries(settings)) {
+    const s = schemaMap.get(id);
+    if (!s) continue;
+
+    if (s.type === 'range' && typeof val === 'number') {
+      const min = s.min !== undefined ? s.min : 0;
+      const max = s.max !== undefined ? s.max : 100;
+      const step = s.step !== undefined ? s.step : 1;
+
+      if (val < min || val > max) {
+        errors.push({
+          file: templateFile,
+          message: `${contextDesc}: Setting '${id}' value ${val} is out of bounds [${min}, ${max}].`
+        });
+      } else {
+        const diff = Math.round((val - min) * 1000000) / 1000000;
+        const stepScaled = Math.round(step * 1000000) / 1000000;
+        const remainder = Math.round((diff % stepScaled) * 1000000) / 1000000;
+        if (remainder !== 0 && Math.abs(remainder - stepScaled) > 0.0001 && Math.abs(remainder) > 0.0001) {
+          errors.push({
+            file: templateFile,
+            message: `${contextDesc}: Setting '${id}' must be a step in the range (value ${val} is not a step of ${step} starting at min ${min}).`
+          });
+        }
+      }
+    }
+
+    if (s.type === 'select' && Array.isArray(s.options)) {
+      const validOptions = new Set(s.options.map(o => String(o.value)));
+      if (val !== '' && val !== null && !validOptions.has(String(val))) {
+        errors.push({
+          file: templateFile,
+          message: `${contextDesc}: Setting '${id}' value '${val}' is not a valid option [${Array.from(validOptions).join(', ')}].`
+        });
+      }
+    }
+  }
+}
+
+// 1. Scan templates/ and regional templates
+const templateDirectories = [];
+const directTemplatesDir = path.join(ROOT, 'templates');
+if (fs.existsSync(directTemplatesDir)) templateDirectories.push({ dir: directTemplatesDir, prefix: 'templates' });
+
+const regionsDir = path.join(ROOT, 'regions');
+if (fs.existsSync(regionsDir)) {
+  for (const r of fs.readdirSync(regionsDir)) {
+    const rTemplates = path.join(regionsDir, r, 'templates');
+    if (fs.existsSync(rTemplates)) {
+      templateDirectories.push({ dir: rTemplates, prefix: `regions/${r}/templates` });
+    }
+  }
+}
+
+for (const { dir: tDir, prefix: tPrefix } of templateDirectories) {
+  const templateFiles = fs.readdirSync(tDir);
   for (const f of templateFiles) {
     if (!f.endsWith('.json')) continue;
     filesChecked++;
-    const fullPath = path.join(templatesDir, f);
+    const fullPath = path.join(tDir, f);
+    const displayFile = `${tPrefix}/${f}`;
 
     try {
       const raw = fs.readFileSync(fullPath, 'utf8');
@@ -116,10 +199,29 @@ if (fs.existsSync(templatesDir)) {
         for (const [sectionId, sectionConfig] of Object.entries(parsed.sections)) {
           if (!sectionConfig || !sectionConfig.type) continue;
           const secType = sectionConfig.type;
+          const secSchema = sectionSchemas.get(secType);
+
+          if (secSchema) {
+            validateSettingsAgainstSchema(sectionConfig.settings, secSchema.settings, `section "${sectionId}" (${secType})`, displayFile);
+          }
+
+          if (sectionConfig.blocks && typeof sectionConfig.blocks === 'object') {
+            for (const [bId, blk] of Object.entries(sectionConfig.blocks)) {
+              if (!blk || !blk.type) continue;
+              let blkSchema = blockSchemas.get(blk.type);
+              if (!blkSchema && secSchema && Array.isArray(secSchema.blocks)) {
+                const found = secSchema.blocks.find(b => b.type === blk.type);
+                if (found) blkSchema = found;
+              }
+              if (blkSchema) {
+                validateSettingsAgainstSchema(blk.settings, blkSchema.settings, `block "${bId}" in section "${sectionId}" (${blk.type})`, displayFile);
+              }
+            }
+          }
 
           if (!availableSections.has(secType) && !secType.startsWith('apps/') && !secType.startsWith('shopify://') && !secType.startsWith('_')) {
             warnings.push({
-              file: `templates/${f}`,
+              file: displayFile,
               message: `Section "${secType}" (id: ${sectionId}) referenced in template but sections/${secType}.liquid does not exist on disk`
             });
           }
@@ -129,7 +231,7 @@ if (fs.existsSync(templatesDir)) {
             for (const rule of sectionConfig.custom_css) {
               if (/margin-bottom\s*:\s*-[0-9]+/i.test(rule)) {
                 errors.push({
-                  file: `templates/${f}`,
+                  file: displayFile,
                   message: `Prohibited negative margin hack in section "${sectionId}" custom_css: "${rule}". In article templates, layout spacing must be managed via centralized typography CSS.`
                 });
               }
@@ -140,6 +242,15 @@ if (fs.existsSync(templatesDir)) {
 
       // Rule 2: Template order integrity & editorial parity enforcement
       if (Array.isArray(parsed.order) && parsed.sections && typeof parsed.sections === 'object') {
+        const orderSet = new Set(parsed.order);
+        for (const secKey of Object.keys(parsed.sections)) {
+          if (!orderSet.has(secKey)) {
+            errors.push({
+              file: `templates/${f}`,
+              message: `Section id '${secKey}' must exist in order (orphan section defined in sections but absent from order).`
+            });
+          }
+        }
         for (const sectionId of parsed.order) {
           const sec = parsed.sections[sectionId];
           if (!sec) {
