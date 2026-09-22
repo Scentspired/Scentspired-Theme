@@ -64,6 +64,20 @@ const PAGES = {
 function normalize(html) {
   return (
     html
+      // Shopify injects installed-app blocks through content_for_header, and
+      // their ORDER varies between identical requests. They are not our theme's
+      // markup, so they are removed wholesale rather than compared.
+      .replace(/<!-- BEGIN app block[\s\S]*?<!-- END app block -->/g, '<!-- APP BLOCK -->')
+      .replace(/<!-- BEGIN app snippet[\s\S]*?<!-- END app snippet -->/g, '<!-- APP SNIPPET -->')
+      // App-extension asset tags are emitted in a different order each request.
+      // Same set, shuffled — so they are dropped rather than diffed.
+      .replace(/<(?:script|link)[^>]*cdn\.shopify\.com\/extensions\/[^>]*>(?:<\/script>)?/g, '')
+      // Shopify's analytics bootstrap carries a fresh request id every time
+      .replace(/__st=\{[\s\S]*?\};/g, '__st={X};')
+      .replace(/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/g, 'UUID')
+      // per-session cart token and app cache-busting timestamps
+      .replace(/cart-id="[0-9a-f]{32}"/g, 'cart-id="X"')
+      .replace(/\bver=\d{9,}/g, 'ver=X')
       // Shopify re-numbers section instance ids on every theme upload
       .replace(/shopify-section-(?:template|sections)--\d+__/g, 'shopify-section-X__')
       .replace(/(?:template|sections)--\d+__/g, 'X__')
@@ -80,6 +94,9 @@ function normalize(html) {
       .replace(/"requestId":"[^"]*"/g, '"requestId":"X"')
       .replace(/"pageurl":"[^"]*"/g, '"pageurl":"X"')
       .replace(/\b\d{13}\b/g, 'TS')
+      // live inventory moves between requests; stock level is not layout
+      .replace(/availableInventory"?:\s*\d+/g, 'availableInventory: N')
+      .replace(/data-inventory="\d+"/g, 'data-inventory="N"')
       // the dev server injects its own hot-reload client
       .replace(/<script[^>]*hot-reload[^>]*>[\s\S]*?<\/script>/g, '')
       .replace(/\r\n/g, '\n')
@@ -133,10 +150,22 @@ async function fetchPage(route) {
         continue;
       }
       const before = fs.readFileSync(file, 'utf8');
-      if (before === normalized) {
-        console.log(`  ✓ ${name.padEnd(20)} identical (${normalized.length} bytes)`);
+      let current = normalized;
+
+      // Shopify occasionally injects an extra app fragment on one request and
+      // not the next. A real regression reproduces every time, so a single
+      // mismatch is retried before it is believed.
+      if (before !== current) {
+        await new Promise(r => setTimeout(r, 1200));
+        try {
+          current = normalize((await fetchPage(route)).html);
+        } catch { /* keep the first result */ }
+      }
+
+      if (before === current) {
+        console.log(`  ✓ ${name.padEnd(20)} identical (${current.length} bytes)`);
       } else {
-        const delta = normalized.length - before.length;
+        const delta = current.length - before.length;
         failures.push(`${name}: rendered output changed (${delta >= 0 ? '+' : ''}${delta} bytes)`);
         console.log(`  ✗ ${name.padEnd(20)} CHANGED (${delta >= 0 ? '+' : ''}${delta} bytes)`);
       }
