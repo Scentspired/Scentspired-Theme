@@ -23,12 +23,6 @@ const skipTests = args.includes('--skip-tests');
 const targetArg = args.find(a => a.startsWith('--target='));
 const targetRegion = targetArg ? targetArg.split('=')[1].toLowerCase() : null;
 
-// STRICT LOCKDOWN POLICY: UK and USA are permanently locked
-if (targetRegion === 'usa' || targetRegion === 'uk') {
-  console.error(`\n🚫 [LOCKED] Scentspired-${targetRegion.toUpperCase()} is strictly locked down. No operations allowed.\n`);
-  process.exit(1);
-}
-
 // Read config
 if (!fs.existsSync(CONFIG_PATH)) {
   console.error(`❌ Configuration file not found: ${CONFIG_PATH}`);
@@ -138,6 +132,17 @@ const targets = config.downstreamTargets.filter(t => {
 if (targets.length === 0) {
   console.error(`❌ No downstream target found matching: ${targetRegion}`);
   process.exit(1);
+}
+
+// STRICT LOCKDOWN POLICY: pull-only targets are live storefronts kept as
+// read-only reference. They may be read from, never written to.
+if (!isPull) {
+  const locked = targets.filter(t => t.mode === 'pull-only');
+  if (locked.length > 0) {
+    console.error(`\n🚫 [LOCKED] ${locked.map(t => t.name).join(', ')} is pull-only (live storefront).`);
+    console.error(`   Push refused. Use --pull to read its regional payload into regions/<id>/.\n`);
+    process.exit(1);
+  }
 }
 
 // ==================================================================

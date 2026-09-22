@@ -25,7 +25,20 @@
       "path": "../Scentspired-UAE",
       "branch": "develop",
       "mainBranch": "main",
-      "remote": "origin"
+      "remote": "origin",
+      "mode": "read-write"
+    },
+    {
+      "name": "Scentspired-UK",
+      "id": "uk",
+      "path": "../Scentspired-UK",
+      "mode": "pull-only"
+    },
+    {
+      "name": "Scentspired-USA",
+      "id": "usa",
+      "path": "../Scentspired-USA",
+      "mode": "pull-only"
     }
   ]
 }

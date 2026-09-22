@@ -21,6 +21,9 @@ if (fs.existsSync(gitHooksDir)) {
 # ============================================================================
 # SCENTSPIRED THEME GUARDIAN — Pre-Push Quality Gate Interceptor
 # ============================================================================
+# Git passes the remote name as $1 and the remote URL as $2.
+node scripts/guard-live-repos.cjs --remote "$2" || exit 1
+
 echo ""
 echo "🛡️  Intercepting Git Push: Running 10-Layer Master Quality Gate..."
 echo ""
