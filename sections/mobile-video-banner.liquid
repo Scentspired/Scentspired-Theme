@@ -205,7 +205,7 @@
                               data-variant-price="{{ variant.price }}"
                               data-variant-compare="{{ variant.compare_at_price }}"
                               data-available="{{ variant.available }}"
-                              data-inventory="{{ variant.inventory_quantity }}">
+                              data-inventory="{{ variant.inventory_quantity | default: 0 }}">
                               {{ variant.title }}
                             </button>
                           {% endfor %}
@@ -312,7 +312,7 @@
                               data-variant-price="{{ variant.price }}"
                               data-variant-compare="{{ variant.compare_at_price }}"
                               data-available="{{ variant.available }}"
-                              data-inventory="{{ variant.inventory_quantity }}">
+                              data-inventory="{{ variant.inventory_quantity | default: 0 }}">
                               {{ variant.title }}
                             </button>
                           {% endfor %}

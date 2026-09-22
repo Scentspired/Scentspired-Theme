@@ -26,6 +26,16 @@ const isCheck = args.includes('--check');
 const urlArg = args.find(a => a.startsWith('--url='));
 const BASE_URL = (urlArg ? urlArg.split('=')[1] : 'http://127.0.0.1:9292').replace(/\/$/, '');
 
+/**
+ * Shopify picks the market from the request, and `shopify theme dev` serves the
+ * myshopify domain — so it resolves to the developer's own country, not the
+ * storefront's. In the wrong market products read as unavailable and inventory
+ * is withheld, which looks exactly like a broken theme. Pinning the country
+ * makes snapshots reproducible from any location.
+ */
+const countryArg = args.find(a => a.startsWith('--country='));
+const COUNTRY = countryArg ? countryArg.split('=')[1] : 'GB';
+
 // The page set. Every surface whose markup we intend to keep stable.
 const PAGES = {
   home: '/',
@@ -78,7 +88,9 @@ function normalize(html) {
 }
 
 async function fetchPage(route) {
-  const res = await fetch(BASE_URL + route, {
+  const url = new URL(BASE_URL + route);
+  url.searchParams.set('country', COUNTRY);
+  const res = await fetch(url, {
     headers: { 'User-Agent': 'scentspired-parity-harness' },
     redirect: 'follow',
   });

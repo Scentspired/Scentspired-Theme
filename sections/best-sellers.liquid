@@ -398,7 +398,7 @@ document.addEventListener('DOMContentLoaded', function () {
         priceRaw: {{ variant.price }},
         compareAtPrice: {{ variant.compare_at_price | default: 0 }},
         available: {{ variant.available | json }},
-        availableInventory: {{ variant.inventory_quantity }}
+        availableInventory: {{ variant.inventory_quantity | default: 0 }}
       }{% unless forloop.last %},{% endunless %}
       {% endfor %}
     ]
