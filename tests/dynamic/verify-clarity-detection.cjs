@@ -166,7 +166,12 @@ for (const bug of clarityBugs) {
       isPatchedInCode = true;
     } else if (
       bug.pattern === "rebindproductevents" &&
-      (content.includes("window.rebindProductEvents") || content.includes("bindEvents"))
+      // Attaching to window is one remediation; declaring the function in the
+      // same <script> block is another, since the declaration hoists above the
+      // call. Both remove the ReferenceError.
+      (content.includes("window.rebindProductEvents") ||
+        content.includes("bindEvents") ||
+        /function\s+rebindProductEvents\s*\(/.test(content))
     ) {
       isPatchedInCode = true;
     } else if (

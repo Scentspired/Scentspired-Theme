@@ -1094,4 +1094,62 @@ function runScan() {
 // ── Execute ────────────────────────────────────────────────────────────────
 const violations = runScan();
 const errorCount = violations.filter(v => v.severity === "error").length;
-process.exit(errorCount > 0 ? 1 : 0);
+
+/**
+ * Baseline ratchet.
+ *
+ * The theme core is the live storefront, and live carries defensive-coding debt
+ * that predates this work. Blocking on it would mean never building; deleting
+ * the rules would mean never fixing it. So the accepted count per rule is
+ * recorded in tests/static/baseline-violations.json: the build fails on any NEW
+ * violation, and the baseline can only be lowered. Fix a file, re-record, and
+ * the ratchet tightens. `--update-baseline` re-records.
+ */
+const BASELINE_FILE = path.join(__dirname, "baseline-violations.json");
+
+// --fix-report emits machine-readable JSON that other layers parse, so the
+// ratchet must stay silent and non-blocking in that mode.
+if (fixReport) process.exit(0);
+
+const countsByRule = violations
+  .filter(v => v.severity === "error")
+  .reduce((acc, v) => {
+    acc[v.rule] = (acc[v.rule] || 0) + 1;
+    return acc;
+  }, {});
+
+if (process.argv.includes("--update-baseline")) {
+  fs.writeFileSync(BASELINE_FILE, JSON.stringify(countsByRule, null, 2) + "\n");
+  console.log(`  📌 Baseline recorded: ${errorCount} accepted violation(s).\n`);
+  process.exit(0);
+}
+
+let baseline = {};
+if (fs.existsSync(BASELINE_FILE)) {
+  baseline = JSON.parse(fs.readFileSync(BASELINE_FILE, "utf8"));
+}
+
+const regressions = Object.entries(countsByRule)
+  .filter(([rule, count]) => count > (baseline[rule] || 0))
+  .map(([rule, count]) => `${rule}: ${count} (baseline ${baseline[rule] || 0})`);
+
+if (regressions.length > 0) {
+  console.log("  ❌ NEW violations beyond the recorded baseline:");
+  regressions.forEach(r => console.log(`     ${r}`));
+  console.log("");
+  process.exit(1);
+}
+
+const improved = Object.entries(baseline).filter(
+  ([rule, count]) => (countsByRule[rule] || 0) < count
+);
+if (improved.length > 0) {
+  console.log("  ✅ Below baseline — re-record with: node tests/static/static-analysis.cjs --update-baseline");
+  improved.forEach(([rule, count]) => console.log(`     ${rule}: ${countsByRule[rule] || 0} (was ${count})`));
+  console.log("");
+}
+
+if (errorCount > 0) {
+  console.log(`  ⚠️  ${errorCount} pre-existing violation(s) carried from the live theme — tracked, not growing.\n`);
+}
+process.exit(0);

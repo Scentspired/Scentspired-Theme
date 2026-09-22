@@ -31,7 +31,7 @@
     "compile:uk": "node scripts/compile-region.cjs uk",
     "compile:usa": "node scripts/compile-region.cjs usa",
     "compile:uae": "node scripts/compile-region.cjs uae",
-    "compile:all": "npm run compile:uk && npm run compile:usa && npm run compile:uae",
+    "compile:all": "node scripts/compile-all.cjs",
     "dev:uk": "npm run compile:uk && shopify theme dev --path=dist/uk --store=scentspiredae.myshopify.com",
     "dev:usa": "npm run compile:usa && shopify theme dev --path=dist/usa --store=scentspiredae.myshopify.com",
     "dev:uae": "npm run compile:uae && shopify theme dev --path=dist/uae --store=scentspiredae.myshopify.com",
@@ -51,7 +51,9 @@
     "sync:uae:dry": "node engine/sync-regions.cjs --target=uae --dry-run",
     "sync:pull:uk": "node engine/sync-regions.cjs --pull --target=uk",
     "sync:pull:usa": "node engine/sync-regions.cjs --pull --target=usa",
-    "sync:pull:uae": "node engine/sync-regions.cjs --pull --target=uae"
+    "sync:pull:uae": "node engine/sync-regions.cjs --pull --target=uae",
+    "region:sync": "node scripts/region-engine.cjs --sync",
+    "region:list": "node scripts/region-engine.cjs"
   },
   "devDependencies": {
     "@shopify/cli": "^3.94.0",

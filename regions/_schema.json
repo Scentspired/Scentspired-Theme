@@ -1,0 +1,61 @@
+{
+  "$comment": "The region contract. Every key a storefront can vary lives here and nowhere else. A region file may only use keys defined below; the compiler rejects unknown keys and type mismatches, so a typo fails the build instead of silently rendering an empty string.",
+  "required": [
+    "id",
+    "code",
+    "name",
+    "domain",
+    "home_url",
+    "hreflang",
+    "geo_countries",
+    "currency_code",
+    "currency_symbol",
+    "free_shipping_threshold_cents",
+    "free_shipping_threshold_display",
+    "shipping_cost_cents",
+    "shipping_cost_display",
+    "seo_title",
+    "seo_description",
+    "support_email",
+    "returns_email"
+  ],
+  "properties": {
+    "id": { "type": "string", "description": "Folder name and build target, e.g. uk" },
+    "code": { "type": "string", "description": "Short display code, e.g. UK" },
+    "name": { "type": "string", "description": "Human readable region name" },
+
+    "domain": { "type": "string", "description": "Primary storefront domain, no scheme" },
+    "home_url": { "type": "string", "description": "Absolute storefront URL" },
+    "hreflang": { "type": "string", "description": "hreflang value, e.g. en-gb" },
+    "geo_countries": { "type": "array", "description": "ISO country codes routed to this storefront" },
+    "is_default": { "type": "boolean", "description": "Receives hreflang x-default" },
+    "published": {
+      "type": "boolean",
+      "description": "Storefront is live. Unpublished regions still compile and can be previewed, but are never advertised to search engines or used as a geo-redirect target."
+    },
+
+    "currency_code": { "type": "string", "description": "ISO currency, e.g. GBP" },
+    "currency_symbol": { "type": "string", "description": "Display symbol, e.g. £" },
+
+    "free_shipping_threshold_cents": { "type": "number", "description": "Cart total in cents unlocking free shipping" },
+    "free_shipping_threshold_display": { "type": "string", "description": "Formatted threshold, e.g. £35" },
+    "shipping_cost_cents": { "type": "number", "description": "Shipping charge in cents below the threshold" },
+    "shipping_cost_display": { "type": "string", "description": "Formatted shipping charge, e.g. £4.99" },
+
+    "seo_title": { "type": "string", "description": "Homepage title tag" },
+    "seo_description": { "type": "string", "description": "Homepage meta description" },
+
+    "support_email": { "type": "string" },
+    "returns_email": { "type": "string" },
+    "company_address": { "type": "string" },
+
+    "logo_url": { "type": "string", "description": "Absolute URL of the logo used in transactional UI" },
+
+    "hero_video_url": { "type": "string", "description": "Fallback hero video when the section has no upload" },
+    "category_label_1": { "type": "string", "description": "First hero category label, e.g. VIBES" },
+    "category_label_2": { "type": "string", "description": "Second hero category label, e.g. OCCASIONS" },
+
+    "social": { "type": "object", "description": "Social profile URLs keyed by network" },
+    "trustpilot": { "type": "object", "description": "{ enabled: boolean, url: string }" }
+  }
+}

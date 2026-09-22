@@ -205,15 +205,18 @@
 {% endschema %}
 
 {%- liquid
-  if cart.currency.iso_code == 'GBP' or shop.currency == 'GBP' or shop.domain contains 'scentspired.co.uk'
-    assign default_video_url = 'https://cdn.shopify.com/videos/c/o/v/2fe67c6edaa646b18805a79903b1059c.mp4'
-    assign default_cat1 = 'VIBES'
-    assign default_cat2 = 'OCCASIONS'
-  else
-    assign default_video_url = 'https://cdn.shopify.com/videos/c/o/v/fbfe40c4c4c744f5b13cfbe4d843fe31.mp4'
-    assign default_cat1 = 'ICONS'
-    assign default_cat2 = 'VIBES'
-  endif
+  capture default_video_url
+    render 'region--active', key: 'hero_video_url'
+  endcapture
+  capture default_cat1
+    render 'region--active', key: 'category_label_1'
+  endcapture
+  capture default_cat2
+    render 'region--active', key: 'category_label_2'
+  endcapture
+  assign default_video_url = default_video_url | strip
+  assign default_cat1 = default_cat1 | strip
+  assign default_cat2 = default_cat2 | strip
 -%}
 
 <div class="scent-video-banner" id="scent-video-banner">

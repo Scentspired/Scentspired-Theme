@@ -15,6 +15,7 @@ const fs = require('fs');
 const path = require('path');
 const { spawnSync } = require('child_process');
 const { assertCwdNotLocked } = require('./guard-live-repos.cjs');
+const { emitRegionSnippet, emitRegistrySnippet } = require('./region-engine.cjs');
 
 assertCwdNotLocked();
 
@@ -90,13 +91,13 @@ function removeStale(dir) {
 
 const stats = {};
 
-console.log('>>> [1/5] Copying shared core...');
+console.log('>>> [1/6] Copying shared core...');
 for (const dir of CORE_DIRS) {
   stats[dir] = copyTree(path.join(THEME_ROOT, dir), path.join(DIST_DIR, dir));
   console.log(`  + ${dir.padEnd(12)}: ${stats[dir]} files`);
 }
 
-console.log(`\n>>> [2/5] Overlaying ${target.toUpperCase()} data payload...`);
+console.log(`\n>>> [2/6] Overlaying ${target.toUpperCase()} data payload...`);
 const overlaid = {};
 for (const dir of OVERLAY_DIRS) {
   const n = copyTree(path.join(REGION_DIR, dir), path.join(DIST_DIR, dir));
@@ -109,11 +110,30 @@ if (Object.keys(overlaid).length === 0) {
   console.log('  (no regional overrides present)');
 }
 
+// Resolve the region at build time so the shipped theme carries one region's
+// values and no conditionals. See scripts/region-engine.cjs.
+console.log(`\n>>> [3/6] Resolving ${target.toUpperCase()} region data...`);
+let resolvedRegion;
+try {
+  resolvedRegion = emitRegionSnippet(target, DIST_DIR);
+} catch (err) {
+  if (!err.handled) throw err;
+  process.exit(1);
+}
+emitted.add('snippets/region--active.liquid');
+console.log(
+  `  + snippets/region--active.liquid  (${resolvedRegion.currency_code} ${resolvedRegion.currency_symbol}, ${resolvedRegion.home_url})`
+);
+
+const publishedCount = emitRegistrySnippet(DIST_DIR);
+emitted.add('snippets/region--registry.liquid');
+console.log(`  + snippets/region--registry.liquid (${publishedCount} published storefront(s))`);
+
 // Shopify's uploader rejects any template whose `sections` contains an id that
 // is absent from `order`. Live storefronts accumulate these, and regions/**
 // mirrors live byte for byte, so the prune happens here on the way out. The
 // pruned sections were never rendered, so output is unchanged.
-console.log('\n>>> [3/5] Pruning orphan sections for upload...');
+console.log('\n>>> [4/6] Pruning orphan sections for upload...');
 let prunedSections = 0;
 let prunedFiles = 0;
 
@@ -157,7 +177,7 @@ console.log(
 const staleRemoved = removeStale(DIST_DIR);
 if (staleRemoved > 0) console.log(`  - removed ${staleRemoved} stale file(s)`);
 
-console.log('\n>>> [4/5] Writing compilation metadata...');
+console.log('\n>>> [5/6] Writing compilation metadata...');
 fs.writeFileSync(
   path.join(DIST_DIR, '.compilation-metadata.json'),
   JSON.stringify(
@@ -168,6 +188,7 @@ fs.writeFileSync(
       core: stats,
       overlaid,
       prunedOrphanSections: prunedSections,
+      resolved: { currency: resolvedRegion.currency_code, home: resolvedRegion.home_url },
     },
     null,
     2
@@ -175,7 +196,7 @@ fs.writeFileSync(
 );
 console.log('  + .compilation-metadata.json');
 
-console.log('\n>>> [5/5] Validating compiled output...');
+console.log('\n>>> [6/6] Validating compiled output...');
 const result = spawnSync('node', [path.join(THEME_ROOT, 'tests/static/json-schema-validator.cjs')], {
   stdio: 'inherit',
   env: { ...process.env, THEME_TARGET_DIR: DIST_DIR, SCENTSPIRED_MIRROR_SOURCE: '1' },

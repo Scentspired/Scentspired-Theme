@@ -1,0 +1,7 @@
+{
+  "$comment": "USA matches the shared defaults, so this file declares only its identity. That is the intended shape of a region file.",
+
+  "id": "usa",
+  "code": "US",
+  "name": "United States"
+}
