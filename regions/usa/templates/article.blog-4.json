@@ -53,7 +53,7 @@
       "type": "_blocks",
       "blocks": {
         "ai_gen_block_0232e4c_37U8Va": {
-          "type": "ai_gen_block_0232e4c",
+          "type": "editorial--luxury-perfume-banner",
           "settings": {
             "heading": "<p>How To Make Your Fragrance Last All Day: </p>",
             "heading_size": 52,
@@ -109,7 +109,7 @@
       "type": "_blocks",
       "blocks": {
         "ai_gen_block_a1afcd9_GyikqF": {
-          "type": "ai_gen_block_a1afcd9",
+          "type": "editorial--luxury-perfume-banner-2",
           "settings": {
             "background_image": "shopify://shop_images/magnific_ultrarealistic-luxury-per_ubWbGwXQLD.png",
             "outer_border_color": "#ffffff",
@@ -153,7 +153,7 @@
       "type": "_blocks",
       "blocks": {
         "ai_gen_block_c1e8ed1_KFd7kR": {
-          "type": "ai_gen_block_c1e8ed1",
+          "type": "catalog--fragrance-guide",
           "settings": {
             "title": "Where To Apply Your Fragrance",
             "subtitle": "Pulse points emit heat to activate and project scent all day",
@@ -207,7 +207,7 @@
       "type": "_blocks",
       "blocks": {
         "ai_gen_block_614820f_zNd6WG": {
-          "type": "ai_gen_block_614820f",
+          "type": "editorial--text-section",
           "settings": {
             "heading": "The Three Things That Actually Make A Difference",
             "heading_size": 56,
@@ -248,7 +248,7 @@
       "type": "_blocks",
       "blocks": {
         "ai_gen_block_fb81b45_9nTtAA": {
-          "type": "ai_gen_block_fb81b45",
+          "type": "editorial--content",
           "settings": {
             "desktop_width_percent": 100,
             "max_width": 1200,
@@ -291,7 +291,7 @@
       "type": "_blocks",
       "blocks": {
         "ai_gen_block_19f144a_kVmwE7": {
-          "type": "ai_gen_block_19f144a",
+          "type": "editorial--staggered-typography",
           "settings": {
             "line_1_text": "Timeless Grace",
             "line_1_alignment": "left",
@@ -330,7 +330,7 @@
       "type": "_blocks",
       "blocks": {
         "ai_gen_block_c88e324_m8PFU4": {
-          "type": "ai_gen_block_c88e324",
+          "type": "editorial--section",
           "settings": {
             "container_width": 1200,
             "left_column_width": 40,
@@ -380,7 +380,7 @@
       "type": "_blocks",
       "blocks": {
         "ai_gen_block_fb81b45_qVFqqX": {
-          "type": "ai_gen_block_fb81b45",
+          "type": "editorial--content",
           "settings": {
             "desktop_width_percent": 100,
             "max_width": 1200,
@@ -423,7 +423,7 @@
       "type": "_blocks",
       "blocks": {
         "ai_gen_block_e9ac98b_QF8teC": {
-          "type": "ai_gen_block_e9ac98b",
+          "type": "editorial--split-text",
           "settings": {
             "container_width": 1100,
             "horizontal_padding": 20,
@@ -462,7 +462,7 @@
       "type": "_blocks",
       "blocks": {
         "ai_gen_block_29a8932_icikjA": {
-          "type": "ai_gen_block_29a8932",
+          "type": "catalog--product-collection-grid",
           "settings": {
             "collection": "bestsellers"
           },
@@ -478,7 +478,7 @@
       "type": "_blocks",
       "blocks": {
         "ai_gen_block_f4b496d_dDGK7Q": {
-          "type": "ai_gen_block_f4b496d",
+          "type": "editorial--banner",
           "disabled": true,
           "settings": {
             "desktop_image": "shopify://shop_images/wmremove-transformed_1.png",
@@ -501,7 +501,7 @@
       "type": "_blocks",
       "blocks": {
         "ai_gen_block_36376d7_3UnFbY": {
-          "type": "ai_gen_block_36376d7",
+          "type": "editorial--banner-2",
           "disabled": true,
           "settings": {
             "desktop_image": "shopify://shop_images/wmremove-transformed_1.png",

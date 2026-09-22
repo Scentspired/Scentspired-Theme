@@ -106,11 +106,11 @@
         All rights reserved. All logos, trademarks and brand names are the property of their respective trademark
         owners. Powered By
         <a
-          href="https://reforcedigital.com"
+          href="{{ block.settings.credit_url | default: 'https://github.com/AhmadHassan-BTed' }}"
           target="_blank"
           rel="noopener"
-          class="reforce-link">
-          Reforce Digital
+          class="footer-credit-link">
+          {{ block.settings.credit_name | default: 'B-Ted' }}
         </a>
       </p>
       {% if block.settings.show_powered_by %}
@@ -172,6 +172,17 @@
       "id": "rights_text",
       "label": "Rights text",
       "default": "All rights reserved."
+    },
+    {
+      "type": "text",
+      "id": "credit_name",
+      "label": "Built by — name",
+      "default": "B-Ted"
+    },
+    {
+      "type": "url",
+      "id": "credit_url",
+      "label": "Built by — link"
     },
     {
       "type": "checkbox",

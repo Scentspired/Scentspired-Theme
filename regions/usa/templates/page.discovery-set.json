@@ -128,7 +128,7 @@
       "type": "_blocks",
       "blocks": {
         "ai_gen_block_9f36455_x3Xae8": {
-          "type": "ai_gen_block_9f36455",
+          "type": "bundle--builder",
           "settings": {},
           "blocks": {}
         }

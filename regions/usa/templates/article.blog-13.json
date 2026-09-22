@@ -53,7 +53,7 @@
       "type": "_blocks",
       "blocks": {
         "ai_gen_block_0232e4c_37U8Va": {
-          "type": "ai_gen_block_0232e4c",
+          "type": "editorial--luxury-perfume-banner",
           "settings": {
             "heading": "<p>The scent of an American summer: </p>",
             "heading_size": 40,
@@ -109,7 +109,7 @@
       "type": "_blocks",
       "blocks": {
         "ai_gen_block_a1afcd9_GyikqF": {
-          "type": "ai_gen_block_a1afcd9",
+          "type": "editorial--luxury-perfume-banner-2",
           "settings": {
             "background_image": "shopify://shop_images/ChatGPT_Image_Jul_11_2026_05_52_31_PM.png",
             "outer_border_color": "#ffffff",
@@ -153,7 +153,7 @@
       "type": "_blocks",
       "blocks": {
         "ai_gen_block_79f8247_F8zLA6": {
-          "type": "ai_gen_block_79f8247",
+          "type": "editorial--comparison-table-3",
           "settings": {
             "header_column_1": "What",
             "header_column_2": "Rough share of the price",
@@ -194,7 +194,7 @@
       "type": "_blocks",
       "blocks": {
         "ai_gen_block_313b73e_nPM9ar": {
-          "type": "ai_gen_block_313b73e",
+          "type": "editorial--comparison-table-2",
           "disabled": true,
           "settings": {
             "header_col_1": "What",
@@ -243,7 +243,7 @@
       "type": "_blocks",
       "blocks": {
         "ai_gen_block_fb81b45_9nTtAA": {
-          "type": "ai_gen_block_fb81b45",
+          "type": "editorial--content",
           "settings": {
             "desktop_width_percent": 100,
             "max_width": 1200,
@@ -276,7 +276,7 @@
           "blocks": {}
         },
         "ai_gen_block_614820f_zVYidR": {
-          "type": "ai_gen_block_614820f",
+          "type": "editorial--text-section",
           "disabled": true,
           "settings": {
             "heading": "The guy who irons his shirts for no reason",
@@ -318,7 +318,7 @@
       "type": "_blocks",
       "blocks": {
         "ai_gen_block_19f144a_kVmwE7": {
-          "type": "ai_gen_block_19f144a",
+          "type": "editorial--staggered-typography",
           "disabled": true,
           "settings": {
             "line_1_text": "Timeless Grace",
@@ -357,7 +357,7 @@
       "type": "_blocks",
       "blocks": {
         "ai_gen_block_c88e324_m8PFU4": {
-          "type": "ai_gen_block_c88e324",
+          "type": "editorial--section",
           "disabled": true,
           "settings": {
             "container_width": 1200,
@@ -405,7 +405,7 @@
       "type": "_blocks",
       "blocks": {
         "ai_gen_block_19f144a_BAgRLn": {
-          "type": "ai_gen_block_19f144a",
+          "type": "editorial--staggered-typography",
           "disabled": true,
           "settings": {
             "line_1_text": "The one who is",
@@ -434,7 +434,7 @@
           "blocks": {}
         },
         "ai_gen_block_614820f_AUBiD6": {
-          "type": "ai_gen_block_614820f",
+          "type": "editorial--text-section",
           "settings": {
             "heading": "Luminous Wonder (inspired by J'Adore by Dior): sunshine, bottled",
             "heading_size": 50,
@@ -476,7 +476,7 @@
       "type": "_blocks",
       "blocks": {
         "ai_gen_block_fb81b45_qVFqqX": {
-          "type": "ai_gen_block_fb81b45",
+          "type": "editorial--content",
           "settings": {
             "desktop_width_percent": 100,
             "max_width": 1200,
@@ -509,7 +509,7 @@
           "blocks": {}
         },
         "ai_gen_block_19f144a_ypgJWf": {
-          "type": "ai_gen_block_19f144a",
+          "type": "editorial--staggered-typography",
           "settings": {
             "line_1_text": "How to",
             "line_1_alignment": "left",
@@ -547,7 +547,7 @@
       "type": "_blocks",
       "blocks": {
         "ai_gen_block_e9ac98b_PRWMMm": {
-          "type": "ai_gen_block_e9ac98b",
+          "type": "editorial--split-text",
           "settings": {
             "container_width": 1200,
             "horizontal_padding": 20,
@@ -590,7 +590,7 @@
       "type": "_blocks",
       "blocks": {
         "ai_gen_block_e9ac98b_QF8teC": {
-          "type": "ai_gen_block_e9ac98b",
+          "type": "editorial--split-text",
           "settings": {
             "container_width": 1200,
             "horizontal_padding": 20,
@@ -632,7 +632,7 @@
       "type": "_blocks",
       "blocks": {
         "ai_gen_block_29a8932_icikjA": {
-          "type": "ai_gen_block_29a8932",
+          "type": "catalog--product-collection-grid",
           "settings": {
             "collection": "bestsellers"
           },
@@ -648,7 +648,7 @@
       "type": "_blocks",
       "blocks": {
         "ai_gen_block_f4b496d_dDGK7Q": {
-          "type": "ai_gen_block_f4b496d",
+          "type": "editorial--banner",
           "disabled": true,
           "settings": {
             "desktop_image": "shopify://shop_images/wmremove-transformed_1.png",
@@ -671,7 +671,7 @@
       "type": "_blocks",
       "blocks": {
         "ai_gen_block_36376d7_3UnFbY": {
-          "type": "ai_gen_block_36376d7",
+          "type": "editorial--banner-2",
           "settings": {
             "desktop_image": "shopify://shop_images/wmremove-transformed_1.png",
             "mobile_image": "shopify://shop_images/wmremove-transformed_1.png",

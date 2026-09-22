@@ -77,6 +77,18 @@ function normalize(html) {
       .replace(/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/g, 'UUID')
       // per-session cart token and app cache-busting timestamps
       .replace(/cart-id="[0-9a-f]{32}"/g, 'cart-id="X"')
+      // Shopify fingerprints the theme's file contents; it changes whenever any
+      // file changes, including a pure rename, so it says nothing about markup.
+      .replace(/"themeCityHash":"\d+"/g, '"themeCityHash":"X"')
+      // per-search session id threaded through search result URLs
+      .replace(/_sid=[0-9a-f]+/g, '_sid=X')
+      // Shopify's own platform assets and session state, which change when
+      // Shopify ships, not when we do
+      .replace(/trekkie\.storefront\.[0-9a-f]+\.min\.js/g, 'trekkie.storefront.X.min.js')
+      // Shopify injects its event-observer bootstrap on some requests only —
+      // this was the intermittent ~1155 byte fragment
+      .replace(/<script data-source-attribution="shopify\.event_observer\.bootstrap">[\s\S]*?<\/script>/g, '')
+      .replace(/redirectState = (?:null|"[^"]*")/g, 'redirectState = X')
       .replace(/\bver=\d{9,}/g, 'ver=X')
       // Shopify re-numbers section instance ids on every theme upload
       .replace(/shopify-section-(?:template|sections)--\d+__/g, 'shopify-section-X__')
@@ -100,6 +112,9 @@ function normalize(html) {
       // the dev server injects its own hot-reload client
       .replace(/<script[^>]*hot-reload[^>]*>[\s\S]*?<\/script>/g, '')
       .replace(/\r\n/g, '\n')
+      // Removing an injected block leaves a blank line behind, which offsets
+      // every following line. Blank lines do not render, so collapse them.
+      .replace(/\n[ \t]*\n+/g, '\n')
       .trim()
   );
 }

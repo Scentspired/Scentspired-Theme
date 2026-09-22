@@ -13,7 +13,7 @@
       "type": "_blocks",
       "blocks": {
         "ai_gen_block_0232e4c_37U8Va": {
-          "type": "ai_gen_block_0232e4c",
+          "type": "editorial--luxury-perfume-banner",
           "settings": {
             "heading": "<p>THE MAN WHO IS IMPOSSIBLE TO BUY FOR:</p>",
             "heading_size": 48,
@@ -62,7 +62,7 @@
       "type": "_blocks",
       "blocks": {
         "ai_gen_block_a1afcd9_GyikqF": {
-          "type": "ai_gen_block_a1afcd9",
+          "type": "editorial--luxury-perfume-banner-2",
           "settings": {
             "background_image": "shopify://shop_images/ChatGPT_Image_Jul_14_2026_02_16_15_PM.png",
             "outer_border_color": "#FAF8F5",
@@ -102,7 +102,7 @@
       "type": "_blocks",
       "blocks": {
         "ai_gen_block_614820f_zNd6WG": {
-          "type": "ai_gen_block_614820f",
+          "type": "editorial--text-section",
           "settings": {
             "heading": "For The Big Presence vs The Quiet Visionary",
             "heading_size": 42,
@@ -143,7 +143,7 @@
       "type": "_blocks",
       "blocks": {
         "ai_gen_block_fb81b45_9nTtAA": {
-          "type": "ai_gen_block_fb81b45",
+          "type": "editorial--content",
           "settings": {
             "desktop_width_percent": 100,
             "max_width": 1100,
@@ -185,7 +185,7 @@
       "type": "_blocks",
       "blocks": {
         "ai_gen_block_e9499a3_nQznTw": {
-          "type": "ai_gen_block_e9499a3",
+          "type": "editorial--comparison-table",
           "settings": {
             "header_1": "His Personality Archetype",
             "header_2": "Key Note Profile",
@@ -228,7 +228,7 @@
       "type": "_blocks",
       "blocks": {
         "ai_gen_block_c88e324_m8PFU4": {
-          "type": "ai_gen_block_c88e324",
+          "type": "editorial--section",
           "settings": {
             "container_width": 1100,
             "left_column_width": 45,
@@ -275,7 +275,7 @@
       "type": "_blocks",
       "blocks": {
         "ai_gen_block_e9ac98b_QF8teC": {
-          "type": "ai_gen_block_e9ac98b",
+          "type": "editorial--split-text",
           "settings": {
             "container_width": 1100,
             "horizontal_padding": 30,
@@ -315,7 +315,7 @@
       "type": "_blocks",
       "blocks": {
         "ai_gen_block_29a8932_icikjA": {
-          "type": "ai_gen_block_29a8932",
+          "type": "catalog--product-collection-grid",
           "settings": {
             "collection": "bestsellers"
           },
