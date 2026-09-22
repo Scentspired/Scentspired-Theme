@@ -82,7 +82,9 @@
           <img src="{{ section.settings.icon_image | image_url: width: 60 }}" alt="icon" />
         {% endif %}
         <span>{{ section.settings.text_right }}</span>
-        <img src="{{ section.settings.icon_image | image_url: width: 60 }}" alt="icon" />
+        {% if section.settings.icon_image != blank %}
+          <img src="{{ section.settings.icon_image | image_url: width: 60 }}" alt="icon" />
+        {% endif %}
       </div>
     {% endfor %}
   </div>
