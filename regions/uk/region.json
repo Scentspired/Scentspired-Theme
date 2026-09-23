@@ -29,8 +29,7 @@
   "returns_email": "returns@scentspired.co.uk",
   "logo_url": "https://scentspired.com/cdn/shop/files/Scentspired_logo.png?v=1758619291",
   "trustpilot": {
-    "enabled": false,
-    "url": "https://www.trustpilot.com/review/scentspired.com"
+    "enabled": false
   },
   "published": true,
   "myshopify_domain": "scentspireduk.myshopify.com"

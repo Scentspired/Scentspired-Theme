@@ -1,0 +1,178 @@
+{%- comment -%}
+  ============================================================================
+  SCENTSPIRED — Trustpilot
+  ============================================================================
+  Placement copied from the live storefronts: the desktop slot sits in the
+  footer's brand column directly under .brand-tagline, the mobile slot sits at
+  the very end of the footer under the background logo, and Trustpilot's widget
+  is moved between them on resize.
+
+  Which regions show it is region data, not code. The live UK theme took the
+  other route — it shipped the USA widget behind `{% unless is_uk %}` and then
+  ran a purgeTrustpilot() loop plus a block of `display: none !important` CSS
+  to tear it back out of the page on every load. Here a region that has it off
+  emits nothing at all: no slots, no script, no CSS, nothing to purge.
+
+  regions/<id>/region.json:
+
+    "trustpilot": { "enabled": false }
+        Renders nothing. UK and UAE today.
+
+    "trustpilot": { "enabled": true, "embed": "app", "url": "…" }
+        Ships the two slots and the repositioning script, and lets the
+        Trustpilot Shopify app inject the widget into them. This is what the
+        USA storefront does.
+
+    "trustpilot": {
+      "enabled": true, "embed": "widget",
+      "businessunit_id": "…", "template_id": "…",
+      "locale": "en-GB", "url": "…", "height": "52px"
+    }
+        The theme renders the widget itself. For a region that has a Trustpilot
+        account but no app installed — add the ids and it works, no code
+        change.
+
+  Usage, all three from sections/footer.liquid:
+
+    {% render 'widget--trustpilot', slot: 'desktop' %}
+    {% render 'widget--trustpilot', slot: 'mobile' %}
+    {% render 'widget--trustpilot', slot: 'runtime' %}
+
+  The CSS lives in 'runtime' rather than the footer's own stylesheet because
+  it only makes sense when the widget is there — including the mobile
+  .footer-container height, which the USA storefront raises purely to make
+  room for it.
+  ============================================================================
+{%- endcomment -%}
+
+{%- liquid
+  capture tp_enabled
+    render 'region--active', key: 'trustpilot.enabled'
+  endcapture
+  assign tp_enabled = tp_enabled | strip
+-%}
+
+{%- if tp_enabled == 'true' -%}
+  {%- liquid
+    capture tp_embed
+      render 'region--active', key: 'trustpilot.embed'
+    endcapture
+    assign tp_embed = tp_embed | strip | default: 'app'
+  -%}
+
+  {%- case slot -%}
+    {%- when 'desktop' -%}
+      <div id="trustpilot-desktop-slot">
+        {%- if tp_embed == 'widget' -%}
+          {%- render 'widget--trustpilot-embed' -%}
+        {%- endif -%}
+      </div>
+
+    {%- when 'mobile' -%}
+      <!-- Mobile slot for Trustpilot widget, centered below the logo -->
+      <div id="trustpilot-mobile-slot"></div>
+
+    {%- when 'runtime' -%}
+      <script>
+        (function () {
+          function moveTrustpilotWidget() {
+            var widget = document.getElementById('trustpilot-widget-trustbox-0-wrapper');
+            if (!widget) return;
+
+            var isDesktop = window.matchMedia('(min-width: 1025px)').matches;
+            var targetSlot = document.getElementById(
+              isDesktop ? 'trustpilot-desktop-slot' : 'trustpilot-mobile-slot'
+            );
+
+            if (targetSlot && widget.parentElement !== targetSlot) {
+              targetSlot.appendChild(widget);
+            }
+          }
+
+          // Trustpilot injects its widget asynchronously, so poll briefly until it appears
+          var attempts = 0;
+          var poll = setInterval(function () {
+            attempts++;
+            if (document.getElementById('trustpilot-widget-trustbox-0-wrapper')) {
+              moveTrustpilotWidget();
+              clearInterval(poll);
+            }
+            if (attempts > 40) clearInterval(poll); // give up after ~10s
+          }, 250);
+
+          var resizeTimer;
+          window.addEventListener('resize', function () {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(moveTrustpilotWidget, 200);
+          });
+        })();
+      </script>
+
+      <style>
+        /* Trustpilot widget repositioning */
+        #trustpilot-mobile-slot {
+          display: flex;
+          justify-content: center;
+          margin-top: 20px;
+          position: relative;
+          z-index: 3;
+        }
+
+        #trustpilot-desktop-slot {
+          margin-top: 15px;
+        }
+
+        #trustpilot-desktop-slot #trustpilot-widget-trustbox-0-wrapper,
+        #trustpilot-mobile-slot #trustpilot-widget-trustbox-0-wrapper {
+          margin: 0 !important; /* Trustpilot injects -34px side margins by default */
+        }
+
+        #trustpilot-mobile-slot .trustpilot-widget,
+        #trustpilot-mobile-slot iframe {
+          width: 90% !important;
+          max-width: 320px;
+        }
+
+        @media (max-width: 1024px) {
+          #trustpilot-mobile-slot #trustpilot-widget-trustbox-0-wrapper,
+          #trustpilot-mobile-slot .trustpilot-widget,
+          #trustpilot-mobile-slot iframe {
+            width: 240px !important;
+            max-width: 240px !important;
+          }
+
+          /* Raised to make room for the widget; only applies where it renders. */
+          .footer-container {
+            height: 1094px !important;
+          }
+
+          #trustpilot-mobile-slot {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            text-align: left !important;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            margin-left: -120px !important;
+            position: relative;
+            z-index: 5;
+          }
+        }
+
+        @media (min-width: 1025px) {
+          #trustpilot-desktop-slot {
+            display: flex;
+            justify-content: flex-start;
+            margin-left: -60px;
+          }
+
+          #trustpilot-desktop-slot #trustpilot-widget-trustbox-0-wrapper {
+            max-width: fit-content !important;
+            width: auto !important;
+            margin: 0 !important;
+            margin-left: -97px;
+          }
+        }
+      </style>
+  {%- endcase -%}
+{%- endif -%}

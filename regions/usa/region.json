@@ -27,8 +27,13 @@
     "instagram": "https://www.instagram.com/scentspired/"
   },
   "trustpilot": {
-    "enabled": false,
-    "url": "https://www.trustpilot.com/review/scentspired.com"
+    "enabled": true,
+    "embed": "app",
+    "url": "https://www.trustpilot.com/review/scentspired.com",
+    "businessunit_id": "6a840d286ae341cac54023b6",
+    "template_id": "56278e9abfbbba0bdcd568bc",
+    "locale": "en-US",
+    "height": "52px"
   },
   "is_default": true,
   "published": true,

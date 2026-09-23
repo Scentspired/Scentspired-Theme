@@ -6,6 +6,7 @@
       <div class="footer-column footer-brand">
         <p class="brand-description">{{ section.settings.brand_description }}</p>
         <h3 class="brand-tagline">{{ section.settings.brand_tagline }}</h3>
+        {% render 'widget--trustpilot', slot: 'desktop' %}
       </div>
 
       <!-- Social Media Column -->
@@ -116,8 +117,11 @@
     </span>
   {% endif %}
 </div>
+    {% render 'widget--trustpilot', slot: 'mobile' %}
   </div>
 </footer>
+
+{% render 'widget--trustpilot', slot: 'runtime' %}
 
 <style>
 .custom-footer {

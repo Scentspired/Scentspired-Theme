@@ -29,8 +29,7 @@
   "category_label_1": "ICONS",
   "category_label_2": "VIBES",
   "trustpilot": {
-    "enabled": false,
-    "url": "https://www.trustpilot.com/review/scentspired.com"
+    "enabled": false
   },
   "myshopify_domain": "scentspiredae.myshopify.com"
 }

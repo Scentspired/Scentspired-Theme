@@ -119,7 +119,7 @@
     },
     "trustpilot": {
       "type": "object",
-      "description": "{ enabled: boolean, url: string }"
+      "description": "Per-region Trustpilot. { enabled, embed, url, businessunit_id, template_id, locale, height }. enabled:false renders nothing at all — no slots, no script, no CSS. embed:\"app\" ships the two slots and lets the Trustpilot Shopify app inject the widget, which is what the USA storefront does. embed:\"widget\" makes the theme render the widget itself from businessunit_id/template_id/locale, for a region with a Trustpilot account but no app installed."
     },
     "myshopify_domain": {
       "type": "string",

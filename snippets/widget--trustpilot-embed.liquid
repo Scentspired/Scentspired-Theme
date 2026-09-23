@@ -1,0 +1,69 @@
+{%- comment -%}
+  ============================================================================
+  SCENTSPIRED — Trustpilot widget markup
+  ============================================================================
+  Only rendered when a region sets "embed": "widget" — that is, it has a
+  Trustpilot account but not the Shopify app, so the theme has to place the
+  widget itself. Every value comes from regions/<id>/region.json.
+
+  Rendered by widget--trustpilot; not meant to be called directly.
+
+  The wrapper id matches the one the Trustpilot app produces, so the
+  repositioning script moves this between the desktop and mobile slots
+  exactly as it does the app's.
+  ============================================================================
+{%- endcomment -%}
+
+{%- liquid
+  capture tp_businessunit
+    render 'region--active', key: 'trustpilot.businessunit_id'
+  endcapture
+  capture tp_template
+    render 'region--active', key: 'trustpilot.template_id'
+  endcapture
+  capture tp_locale
+    render 'region--active', key: 'trustpilot.locale'
+  endcapture
+  capture tp_url
+    render 'region--active', key: 'trustpilot.url'
+  endcapture
+  capture tp_height
+    render 'region--active', key: 'trustpilot.height'
+  endcapture
+
+  assign tp_businessunit = tp_businessunit | strip
+  assign tp_template = tp_template | strip
+  assign tp_locale = tp_locale | strip
+  assign tp_url = tp_url | strip
+  assign tp_height = tp_height | strip | default: '52px'
+-%}
+
+{%- if tp_businessunit != blank and tp_template != blank -%}
+  <div id="trustpilot-widget-trustbox-0-wrapper">
+    <script>
+      if (!window.Trustpilot && !document.querySelector('script[src*="tp.widget.bootstrap"]')) {
+        var tp = document.createElement('script');
+        tp.type = 'text/javascript';
+        tp.src = '//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js';
+        tp.async = true;
+        document.head.appendChild(tp);
+      }
+    </script>
+    <div
+      class="trustpilot-widget"
+      data-locale="{{ tp_locale | escape }}"
+      data-template-id="{{ tp_template | escape }}"
+      data-businessunit-id="{{ tp_businessunit | escape }}"
+      data-integration="shopify"
+      data-style-height="{{ tp_height | escape }}"
+      data-style-width="100%"
+      data-font-family="Helvetica Neue"
+      data-text-color="#191919"
+      data-border-color="#00b67a"
+    >
+      {%- if tp_url != blank -%}
+        <a href="{{ tp_url }}" target="_blank" rel="noopener">Trustpilot</a>
+      {%- endif -%}
+    </div>
+  </div>
+{%- endif -%}
