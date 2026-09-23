@@ -18,7 +18,7 @@
   - placeholder_image: {String} The placeholder image to use when no product exists. Default: 'product-apparel-2' (optional)
 
   Usage:
-  {% render 'card-product', show_vendor: section.settings.show_vendor %}
+  {% render 'card--product-legacy', show_vendor: section.settings.show_vendor %}
 {% endcomment %}
 {%- unless skip_styles -%}
   {{ "component-rating.css" | asset_url | stylesheet_tag }}
@@ -299,7 +299,7 @@
                       {{- "icon-arrow.svg" | inline_asset_content -}}
                     </span>
                   {%- endif -%}
-                  {%- render "loading-spinner" -%}
+                  {%- render "ui--loading-spinner" -%}
                 </button>
               </modal-opener>
               <quick-add-modal id="QuickAdd-{{ card_product.id }}" class="quick-add-modal">
@@ -363,7 +363,7 @@
                         {{- "icon-plus.svg" | inline_asset_content -}}
                       </span>
                     {%- endif -%}
-                    {%- render "loading-spinner" -%}
+                    {%- render "ui--loading-spinner" -%}
                   </button>
                 {%- endform -%}
               </product-form>
@@ -415,7 +415,7 @@
                   aria-labelledby="{{ product_form_id }}-submit title-{{ section_id }}-{{ card_product.id }}"
                   data-product-url="{{ card_product.url }}">
                   {{ "products.product.choose_options" | t }}
-                  {%- render "loading-spinner" -%}
+                  {%- render "ui--loading-spinner" -%}
                 </button>
               </modal-opener>
               <modal-dialog

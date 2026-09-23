@@ -6,7 +6,7 @@
   - sku: {String} Sku of Product or Variant (optional)
   - image: {Object} Product or Variant image (optional)
   Usage:
-  {% render 'quick-order-list-row' variant: variant %}
+  {% render 'catalog--quick-order-list-row' variant: variant %}
 {% endcomment %}
 
 {% # theme-check-disable %}
@@ -156,7 +156,7 @@
   </td>
 
   <td class="variant-item__totals right large-up-hide">
-    {%- render "loading-spinner" -%}
+    {%- render "ui--loading-spinner" -%}
     {% comment %} TODO: enable theme-check once `line_items_for` is accepted as valid filter {% endcomment %}
     {% # theme-check-disable %}
     <span class="price">{{ cart | line_items_for: item | sum: "original_line_price" | money }}</span>
@@ -418,7 +418,7 @@
     {%- endif -%}
   </td>
   <td class="variant-item__totals right small-hide medium-hide">
-    {%- render "loading-spinner" -%}
+    {%- render "ui--loading-spinner" -%}
     {% comment %} TODO: enable theme-check once `line_items_for` is accepted as valid filter {% endcomment %}
     {% # theme-check-disable %}
     <span class="price">{{ cart | line_items_for: item | sum: "original_line_price" | money }}</span>

@@ -106,7 +106,7 @@
   <div class="page-width">
     <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
       <div class="grid__item product__media-wrapper">
-        {% render "product-media-gallery", variant_images: variant_images %}
+        {% render "catalog--product-media-gallery", variant_images: variant_images %}
       </div>
       <div class="product__info-wrapper grid__item{% if settings.page_width > 1400 and section.settings.media_size == "small" %} product__info-wrapper--extra-padding{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
         <section
@@ -267,7 +267,7 @@
                   <label class="quantity__label form__label" for="Quantity-{{ section.id }}">
                     {{ "products.product.quantity.label" | t }}
                     <span class="quantity__rules-cart{% if cart_qty == 0 %} hidden{% endif %}">
-                      {%- render "loading-spinner" -%}
+                      {%- render "ui--loading-spinner" -%}
                       <span
                         >(
                         {{- "products.product.quantity.in_cart_html" | t: quantity: cart_qty -}}
@@ -485,7 +485,7 @@
                 %}
 
               {%- when "variant_picker" -%}
-                {% render "product-variant-picker", product: product, block: block, product_form_id: product_form_id %}
+                {% render "catalog--variant-picker", product: product, block: block, product_form_id: product_form_id %}
               {%- when "buy_buttons" -%}
                 {%- render "buy-buttons",
                   block: block,
@@ -595,7 +595,7 @@
                                       {%- else -%}
                                         {% assign quick_add = "none" %}
                                       {%- endif -%}
-                                      {% render "card-product",
+                                      {% render "card--product-legacy",
                                         card_product: product,
                                         media_aspect_ratio: block.settings.image_ratio,
                                         show_secondary_image: false,
@@ -684,7 +684,7 @@
       </div>
     </div>
 
-    {% render "product-media-modal", variant_images: variant_images %}
+    {% render "catalog--product-media-modal", variant_images: variant_images %}
 
     {% assign popups = section.blocks | where: "type", "popup" %}
     {%- for block in popups -%}

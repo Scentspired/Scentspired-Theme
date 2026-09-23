@@ -135,7 +135,7 @@
       <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
 
-    {% render 'scentspired-telemetry' %}
+    {% render 'core--telemetry' %}
 
     {{ content_for_header }}
 
@@ -674,7 +674,7 @@
     </a>
 
     {%- if settings.cart_type == "drawer" -%}
-      {%- render "cart-drawer" -%}
+      {%- render "cart--drawer" -%}
     {%- endif -%}
 
     {% sections "header-group" %}

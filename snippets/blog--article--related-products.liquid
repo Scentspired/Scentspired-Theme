@@ -22,7 +22,7 @@
     <h2 class="blog-related__heading">{{ heading_text | escape }}</h2>
     <div class="blog-related__grid">
       {%- for product in collection.products limit: max_products -%}
-        {%- render "card-product",
+        {%- render "card--product-legacy",
           card_product: product,
           media_aspect_ratio: "adapt",
           image_shape: "default",
@@ -42,7 +42,7 @@
         {%- if products_shown >= max_products -%}{%- break -%}{%- endif -%}
         {%- for ptag in product.tags -%}
           {%- if article.tags contains ptag and products_shown < max_products -%}
-            {%- render "card-product",
+            {%- render "card--product-legacy",
               card_product: product,
               media_aspect_ratio: "adapt",
               image_shape: "default",

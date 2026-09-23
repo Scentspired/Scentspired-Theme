@@ -12,9 +12,9 @@
 
 <div class="perfume-bundle-section">
   <div class="builder-layout">
-    {% render 'bundle-sidebar', title: section.settings.heading, default: 'Add 5 items to complete your five favourites', subtitle: section.settings.subheading, capacity: 5, show_savings: true %}
+    {% render 'bundle--sidebar', title: section.settings.heading, default: 'Add 5 items to complete your five favourites', subtitle: section.settings.subheading, capacity: 5, show_savings: true %}
 
-    {% render "bundle-product-grid", show_size_step: true %}
+    {% render "bundle--product-grid", show_size_step: true %}
   </div>
 </div>
 
@@ -587,13 +587,13 @@ This file has been rewritten to preserve the original behavior.
 Changes:
 - from: |-
     {%
-          render 'bundle-sidebar',
+          render 'bundle--sidebar',
           title: section.settings.heading | default: 'Build Your Own Five Favourites',
           subtitle: section.settings.subheading | default: 'Add 5 items to complete your five favourites',
           capacity: 5,
           show_savings: true
         %}
-  to: "{% render 'bundle-sidebar', title: section.settings.heading, default: 'Add
+  to: "{% render 'bundle--sidebar', title: section.settings.heading, default: 'Add
     5 items to complete your five favourites', subtitle: section.settings.subheading,
     capacity: 5, show_savings: true %}"
   position: 514..705

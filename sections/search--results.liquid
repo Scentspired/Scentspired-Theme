@@ -104,7 +104,7 @@
 
               {%- if settings.predictive_search_enabled -%}
                 <div class="predictive-search predictive-search--search-template" tabindex="-1" data-predictive-search>
-                  {%- render "loading-spinner", class: "predictive-search__loading-state" -%}
+                  {%- render "ui--loading-spinner", class: "predictive-search__loading-state" -%}
                 </div>
 
                 <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true"></span>
@@ -194,7 +194,7 @@
                   {%- endif -%}
                 </span>
               </h2>
-              {%- render "loading-spinner" -%}
+              {%- render "ui--loading-spinner" -%}
             </div>
           </form>
         </facet-filters-form>
@@ -262,7 +262,7 @@
                     {%- case item.object_type -%}
                       {%- when "product" -%}
                         {%- capture product_settings -%}{%- if section.settings.product_show_vendor -%}vendor,{%- endif -%}title,price{%- endcapture -%}
-                        {% render "card-product",
+                        {% render "card--product-legacy",
                           card_product: item,
                           media_aspect_ratio: section.settings.image_ratio,
                           image_shape: section.settings.image_shape,

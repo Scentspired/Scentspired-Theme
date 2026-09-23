@@ -2535,7 +2535,7 @@
         {%- endif -%}
       </div>
 
-      {% render "header-search", input_id: "Search-In-Modal" %}
+      {% render "header--search", input_id: "Search-In-Modal" %}
 
       <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
         {% if cart == empty %}
@@ -2852,7 +2852,7 @@
   </header>
 
   {%- if settings.cart_type == "notification" -%}
-    {%- render "cart-notification",
+    {%- render "cart--notification",
       color_scheme: section.settings.color_scheme,
       desktop_menu_type: section.settings.menu_type_desktop
     -%}

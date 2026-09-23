@@ -17,7 +17,7 @@
   - lazy_load: {Boolean} Image should be lazy loaded. Default: true (optional)
 
   Usage:
-  {% render 'product-thumbnail',
+  {% render 'catalog--product-thumbnail',
     media: media,
     position: forloop.index,
     loop: section.settings.enable_video_looping,
@@ -73,7 +73,7 @@
           </span>
       {% endcase %}
     </span>
-    {%- render "loading-spinner" -%}
+    {%- render "ui--loading-spinner" -%}
     <div class="product__media media media--transparent">
       {{
         media.preview_image

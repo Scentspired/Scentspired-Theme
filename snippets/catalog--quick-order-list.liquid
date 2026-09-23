@@ -7,7 +7,7 @@
   - is_modal: {Boolean} Defines if this snippet lives in a modal (optional)
 
   Usage:
-  {% render 'quick-order-list', product: product %}
+  {% render 'catalog--quick-order-list', product: product %}
 {% endcomment %}
 
 {% comment %} TODO: enable theme-check once `line_items_for` is accepted as valid filter {% endcomment %}
@@ -70,7 +70,7 @@
 
             <tbody>
               {%- if product.has_only_default_variant -%}
-                {%- render "quick-order-list-row",
+                {%- render "catalog--quick-order-list-row",
                   item: product,
                   image: product.featured_media,
                   sku: product.selected_or_first_available_variant.sku,
@@ -81,7 +81,7 @@
                 -%}
               {%- else -%}
                 {%- for variant in product.variants -%}
-                  {%- render "quick-order-list-row",
+                  {%- render "catalog--quick-order-list-row",
                     item: variant,
                     image: variant.image,
                     sku: variant.sku,
@@ -132,7 +132,7 @@
                 <span class="quick-order-list__button-text">{{- "sections.quick_order_list.view_cart" | t -}}</span>
               </a>
               <div class="variant-remove-total{% if items_in_cart == 0 %} variant-remove-total--empty{% endif %}">
-                {%- render "loading-spinner" -%}
+                {%- render "ui--loading-spinner" -%}
                 <quick-order-list-remove-all-button
                   data-action="confirm"
                   class="{% if items_in_cart == 0 %}hidden{% endif %}">
@@ -221,7 +221,7 @@
                 <span class="quick-order-list__button-text">{{- "sections.quick_order_list.view_cart" | t -}}</span>
               </a>
               <div class="variant-remove-total">
-                {%- render "loading-spinner" -%}
+                {%- render "ui--loading-spinner" -%}
                 <quick-order-list-remove-all-button
                   class="{% if items_in_cart == 0 %}hidden{% endif %}"
                   data-action="confirm">

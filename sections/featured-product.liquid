@@ -70,7 +70,7 @@
       <div class="featured-product product product--{{ section.settings.media_size }} grid grid--1-col gradient color-{{ section.settings.color_scheme }} product--{{ section.settings.media_position }}{% if section.settings.secondary_background == false %} isolate{% endif %} {% if product.media.size > 0 or section.settings.product == blank %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
         <div class="grid__item product__media-wrapper">
           {%- unless placeholder -%}
-            {% render "product-media-gallery", product: product, variant_images: variant_images, limit: 1 %}
+            {% render "catalog--product-media-gallery", product: product, variant_images: variant_images, limit: 1 %}
           {%- else -%}
             <div class="product__media-item">
               <div
@@ -167,7 +167,7 @@
                     <label class="quantity__label form__label" for="Quantity-{{ section.id }}">
                       {{ "products.product.quantity.label" | t }}
                       <span class="quantity__rules-cart{% if cart_qty == 0 %} hidden{% endif %}">
-                        {%- render "loading-spinner" -%}
+                        {%- render "ui--loading-spinner" -%}
                         <span
                           >(
                           {{- "products.product.quantity.in_cart_html" | t: quantity: cart_qty -}}
@@ -372,7 +372,7 @@
                     render "share-button", block: block, share_link: share_url
                   %}
                 {%- when "variant_picker" -%}
-                  {% render "product-variant-picker",
+                  {% render "catalog--variant-picker",
                     product: product,
                     block: block,
                     product_form_id: product_form_id
@@ -439,7 +439,7 @@
           </section>
         </div>
       </div>
-      {% render "product-media-modal", product: product, variant_images: variant_images %}
+      {% render "catalog--product-media-modal", product: product, variant_images: variant_images %}
     </div>
   </section>
 

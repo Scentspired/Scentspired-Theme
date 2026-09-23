@@ -34,7 +34,7 @@
             data-cascade
             style="--animation-order: {{ forloop.index }};"
           {% endif %}>
-          {% render "card-collection",
+          {% render "card--collection",
             card_collection: collection,
             media_aspect_ratio: section.settings.image_ratio,
             columns: 3
