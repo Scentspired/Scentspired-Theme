@@ -76,16 +76,20 @@ function exists(handle, hops = 0) {
 }
 
 function access(handle) {
-  const r = spawnSync(
-    process.platform === 'win32' ? 'npx.cmd' : 'npx',
-    ['shopify', 'theme', 'list', `--store=${handle}`],
-    { encoding: 'utf8', timeout: 90000 }
-  );
+  // shell: true is required on Windows — spawning npx.cmd directly fails with
+  // EINVAL and returns no output at all, which reads as "unknown" for every
+  // store and is worse than no check.
+  const r = spawnSync(`npx shopify theme list --store=${handle}`, {
+    encoding: 'utf8',
+    timeout: 120000,
+    shell: true,
+  });
   const out = (r.stdout || '') + (r.stderr || '');
-  if (/don't have access/i.test(out)) return 'no access';
-  if (/log in to Shopify/i.test(out)) return 'not logged in';
-  if (/\[live\]/i.test(out)) return 'ok';
   if (r.error && r.error.code === 'ETIMEDOUT') return 'timed out';
+  if (!out.trim()) return `no output (${r.error ? r.error.code : 'status ' + r.status})`;
+  if (/don't have access/i.test(out)) return 'NO ACCESS';
+  if (/log in to Shopify/i.test(out)) return 'not logged in';
+  if (/\[live\]|\[unpublished/i.test(out)) return 'ok';
   return 'unknown';
 }
 

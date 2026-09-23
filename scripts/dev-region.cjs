@@ -76,11 +76,20 @@ const compile = spawnSync('node', [path.join(THEME_ROOT, 'scripts', 'compile-reg
 if (compile.status !== 0) process.exit(compile.status || 1);
 
 const rest = args.filter((a) => a !== region && !a.startsWith('--store='));
-const dev = spawnSync(
-  process.platform === 'win32' ? 'npx.cmd' : 'npx',
-  ['shopify', 'theme', 'dev', `--path=dist/${region}`, `--store=${store}`, ...rest],
-  { stdio: 'inherit', cwd: THEME_ROOT }
-);
+
+// shell: true is required on Windows — spawning npx.cmd directly fails with
+// EINVAL before the CLI ever starts, which looks exactly like the CLI
+// refusing, except there is no Shopify error to read.
+const cmd = ['npx', 'shopify', 'theme', 'dev', `--path=dist/${region}`, `--store=${store}`, ...rest]
+  .join(' ');
+console.log(`  $ ${cmd}\n`);
+const dev = spawnSync(cmd, { stdio: 'inherit', cwd: THEME_ROOT, shell: true });
+
+if (dev.error) {
+  console.error(`\n❌ Could not start the Shopify CLI: ${dev.error.code || dev.error.message}`);
+  console.error('   This is a spawn failure, not Shopify refusing. Try the command above directly.\n');
+  process.exit(1);
+}
 
 if (dev.status !== 0) {
   console.error('');
