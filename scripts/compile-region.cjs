@@ -28,7 +28,14 @@ const REGION_DIR = path.join(THEME_ROOT, 'regions', target);
 const CORE_DIRS = ['assets', 'blocks', 'config', 'layout', 'locales', 'sections', 'snippets', 'templates'];
 
 // Region payload directories overlaid on top of the core, in this order.
-const OVERLAY_DIRS = ['templates', 'locales', 'config', 'snippets'];
+// All of these hold DATA: page content and section settings (templates),
+// translated strings (locales), and theme settings (config).
+//
+// snippets/ is deliberately absent. A snippet is code, and letting a region
+// drop one in would let it fork a component — the same hole that is closed for
+// sections below. Everything a region needs is in its region.json, resolved at
+// build time into snippets/region--active.liquid.
+const OVERLAY_DIRS = ['templates', 'locales', 'config'];
 
 console.log('╔══════════════════════════════════════════════════════════════╗');
 console.log(`║   📦 COMPILING REGIONAL THEME: ${target.toUpperCase().padEnd(30)}║`);
@@ -113,6 +120,19 @@ for (const dir of OVERLAY_DIRS) {
  * may not be overridden: allowing that would let a region fork a component,
  * which is exactly the duplication this architecture exists to remove.
  */
+/**
+ * Snippets are code. A region that could ship one could fork any component,
+ * which is the duplication this architecture exists to remove.
+ */
+const regionSnippets = path.join(REGION_DIR, 'snippets');
+if (fs.existsSync(regionSnippets) && fs.readdirSync(regionSnippets).length > 0) {
+  console.error(`\n❌ regions/${target}/snippets/ may not exist.`);
+  console.error(`   Found: ${fs.readdirSync(regionSnippets).join(', ')}`);
+  console.error('   A snippet is code. Put the value in region.json and read it');
+  console.error("   with {% render 'region--active', key: '<key>' %}.\n");
+  process.exit(1);
+}
+
 const regionSections = path.join(REGION_DIR, 'sections');
 if (fs.existsSync(regionSections)) {
   const forked = fs.readdirSync(regionSections).filter(f => f.endsWith('.liquid'));

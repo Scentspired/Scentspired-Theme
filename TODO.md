@@ -283,22 +283,31 @@ later: each is now reachable from one place.
     tag-coupled selector (`.sidebar-header h2`), so the selector was widened
     to cover h1 rather than the markup being left alone. **Verified in the
     browser: 22px, weight 600, margin 0 0 10px — the old h2 values exactly.**
-- **Still open — UI labels marked up as headings.** The cart drawer, mobile
-  menu and search filters put `h2`/`h3`/`h4` on chrome: `YOUR CART`,
-  `ORDER SUMMARY`, `Menu`, `Recent Searches`, `Gender`, `Inspired By`,
-  `Scent Families`, `Scent Notes`, `Most Popular Products`, `Shop By Season`,
-  `Oops...`. These sit early in the DOM, so they dominate the outline on every
-  page before any real content heading.
-  - Not yet done because several are tag-coupled — `.sidebar-header h2`,
-    `.sp-recommendations-section h3`, `.sp-rec-details h4`, `.mobile-header h2`
-    and `.custom-collections-section h3` all style by tag, so each needs its
-    selector moved to a class before the tag can change. That is the same
-    shotgun-surgery pattern as 0.13 and wants doing as one deliberate pass,
-    not piecemeal.
-- **Still open — `Video-banner1` renders `<p class="main-heading">`** where a
-  real heading belongs. Classes would stay; only the tag changes.
-
-
+- **DONE — UI labels are no longer headings.** The cart drawer, mobile menu
+  and search overlay labels — `YOUR CART`, `Oops...`, `ORDER SUMMARY`,
+  `You might like to add`, `Menu`, `Recent Searches` — are divs carrying
+  `.ui-label`, a class in `assets/base.css` that reproduces exactly what the
+  heading tag supplied: family, style, weight, letter-spacing, colour,
+  line-height, word-break. It is a deliberate copy of the `h1`–`h5` rule and
+  says so, because the two have to move together.
+  - Three were styled through tag-coupled selectors, so the selectors moved to
+    classes rather than the markup being left alone: `.sp-section-header h2`,
+    `.sp-recommendations-section h3`, `.custom-section-header h3`.
+  - **Verified in the browser, not reasoned about.** Computed styles for all
+    six were captured before the change and compared after. The first pass
+    regressed three of them — `Menu` lost 2px and 2.6px of line-height to the
+    base `h3` rule, `Recent Searches` lost a tag-coupled 14px/600, and
+    `You might like to add` lost the top margin a browser gives an `h3`. All
+    three were traced and pinned, and the second pass came back identical on
+    every property.
+- **DONE — `Video-banner1`'s scent-filter labels.** They were
+  `<p class="main-heading">` at 45px, so that whole tier of the visual
+  hierarchy was missing from the outline. Now `h2`. No selector targeted them
+  by tag and the JS binds by class, so nothing else moved.
+- **Still open — product and collection names inside the cart drawer** render
+  as `h3`/`h4`. Left deliberately: those are content rather than chrome, and a
+  product name is a defensible heading. Worth revisiting only if an audit still
+  reads the outline badly.
 
 ---
 
