@@ -2270,8 +2270,14 @@
     -%}
 
     {%- if section.settings.logo_position != "middle-center" -%}
+      {%- comment -%}
+        The logo is the site name, not the page's heading. It was an <h1> on the
+        homepage, which gave that page two H1s and pushed the real heading down
+        the outline. A div carries the same class, and .header__heading already
+        sets margin and line-height, so nothing moves.
+      {%- endcomment -%}
       {%- if request.page_type == "index" -%}
-        <h1 class="header__heading">
+        <div class="header__heading">
       {%- endif -%}
       <a href="{{ routes.root_url }}" class="header__heading-link link link--text focus-inset">
         {%- if settings.logo != blank -%}
@@ -2298,7 +2304,7 @@
         {%- endif -%}
       </a>
       {%- if request.page_type == "index" -%}
-        </h1>
+        </div>
       {%- endif -%}
     {%- endif -%}
 

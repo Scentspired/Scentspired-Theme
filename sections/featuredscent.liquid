@@ -418,8 +418,17 @@
 }
 </style>
 
+{%- comment -%}
+  The heading level is composition, not code: this section is the page's main
+  heading on the homepage and a secondary one on collection and product pages.
+  Which it is belongs in the template data, so the same component can be placed
+  anywhere without a page-type conditional here. Defaults to h2, the level its
+  sibling blocks/catalog--fragrance-showcase already uses for this class.
+{%- endcomment -%}
+{%- assign fragrance_heading_level = section.settings.heading_level | default: 'h2' -%}
+
 <div class="fragrance-container">
-  <h1 class="fragrance-heading">{{ section.settings.heading }}</h1>
+  <{{ fragrance_heading_level }} class="fragrance-heading">{{ section.settings.heading }}</{{ fragrance_heading_level }}>
   <div class="fragrance-subtitle">{{ section.settings.subheading }}</div>
 
   <div class="fragrance-carousel-wrapper">
@@ -673,6 +682,18 @@ document.addEventListener("DOMContentLoaded", () => {
       "id": "heading",
       "label": "Heading",
       "default": "Featured Collection"
+    },
+    {
+      "type": "select",
+      "id": "heading_level",
+      "label": "Heading level",
+      "info": "Use H1 only where this section carries the page's main heading. A page must have exactly one H1.",
+      "options": [
+        { "value": "h1", "label": "H1 — the page's main heading" },
+        { "value": "h2", "label": "H2 — a section heading" },
+        { "value": "h3", "label": "H3 — a sub-section heading" }
+      ],
+      "default": "h2"
     },
     {
       "type": "text",
