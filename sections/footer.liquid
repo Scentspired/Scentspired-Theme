@@ -102,7 +102,7 @@
     <!-- Background Text / Image -->
 <div class="footer-background-text">
   {% if section.settings.footer_bg_image != blank %}
-    <a href="https://scentspired.com" class="footer-background-link" aria-label="Scentspired home">
+    <a href="{{ routes.root_url }}" class="footer-background-link" aria-label="Scentspired home">
   <img
     src="{{ section.settings.footer_bg_image | image_url: width: 1200 }}"
     alt=""

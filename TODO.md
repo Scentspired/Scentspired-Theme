@@ -153,6 +153,90 @@ later: each is now reachable from one place.
 - **Effect:** none while the webfont loads. The chains differ only if a webfont
   fails, where three files no longer fall back to Arial. Approved explicitly.
 
+### 0.8 Aroma-note imagery is hardcoded to one store's CDN
+
+- **Status:** OPEN — accepted by the region-literal guard, count frozen at 60
+- **What:** `blocks/catalog--aroma-notes.liquid` embeds 60 absolute URLs of the
+  form `https://scentspired.com/cdn/shop/files/<name>.jpg?v=…`.
+- **Why it is not a bug today:** an absolute CDN URL loads from any origin, so
+  the UK and UAE builds render these images correctly. Nothing is broken.
+- **Why it is still debt:** shared code is pinned to one store's uploads. If
+  that store renames or removes a file, every region loses the image at once,
+  and a new region cannot substitute its own artwork without editing code.
+- **Fix:** move the imagery onto product metafields (or a block setting) so the
+  block reads whatever the product carries. That is a content migration — 60
+  images have to be attached to products in Shopify admin — not a refactor,
+  which is why it is deferred rather than done here.
+- **Held by:** `tests/static/baseline-region-literals.json` records the count.
+  The guard fails if a 61st is added.
+
+### 0.9 Currency symbols were hardcoded in twelve more places
+
+- **Status:** DONE — recorded because the first sweep missed them
+- **What:** after the first currency fix (`best-sellers`, `product-custom`,
+  `featuredscent`), nine more hardcoded `£` and one hardcoded `$` remained:
+  - `sections/five-box.liquid` ×3, `sections/trio-set.liquid` ×3
+  - `snippets/cart-drawer.liquid` ×3 — **renders on every page of the site**
+  - `assets/cart.js` ×2 — cart line totals and cart total
+  - `assets/card--product.js` ×1 — a `'$'` fallback, which would have rendered
+    **dollar** signs on the UK store whenever `formatMoney` was not supplied
+- **How they were found:** the first sweep was done by eye and by grep, and
+  missed them. `guard--region-literals` found all ten on its first run. That is
+  the argument for the guard: a manual sweep of 100+ files is not repeatable.
+- **Fix applied:** all now read the region's symbol — `currSym` from
+  `window.__STORE_CONFIG.currencySymbol` in Liquid sections, and a
+  `currencySymbol()` helper in the two plain-JS assets.
+- **Verified:** UK render unchanged (`£` throughout, 0 stray `$`); `dist/usa`
+  resolves `$`, `dist/uae` resolves `AED`.
+
+### 0.10 `five-box` and `trio-set` have no page to render on
+
+- **Status:** OPEN — content gap, not a theme change
+- **What:** `templates/page.fivebox.json` and `templates/page.trio-box.json`
+  exist and are wired to real sections, but `/pages/fivebox` and
+  `/pages/trio-box` both return **404** on the dev store.
+- **Why it matters:** these two sections cannot be regression-checked, because
+  no URL renders them. Code changes to them — including the currency fix in 0.9
+  — are unverifiable end to end until a page exists.
+- **Fix:** create the two pages in Shopify admin and assign the templates, the
+  same fix as 0.6. Then add both routes to `scripts/render-snapshot.cjs`.
+
+### 0.11 Contact addresses disagree between the FAQ and the privacy policy
+
+- **Status:** OPEN — needs your decision, no code change pending
+- **What:** on the UK storefront the FAQ answers say `support@scentspired.com`
+  while the privacy policy says `support@scentspired.co.uk`. Both render today.
+- **Why it was left alone:** the brief was zero visual change, and picking
+  either address changes visible text on one of the two pages. The mechanism is
+  now regional either way — the FAQ reads `support_email` / `returns_email`
+  from region data, and the privacy policy comes from the per-region template
+  JSON, which already overlays correctly.
+- **To resolve:** set `support_email` and `returns_email` in
+  `regions/uk/region.json` to whichever is correct. The FAQ follows
+  immediately. The privacy policy text is merchant content in
+  `regions/uk/templates/page.privacy-policy.json`.
+- **Same question applies to:** `templates/article.blog-7.json`, which links to
+  `scentspired.com` while every sibling article links to `scentspired.co.uk`.
+
+### 0.12 Two region defects fixed, with a deliberate behaviour change
+
+- **Status:** DONE — flagged because rendered output changed
+- **Footer home link.** `sections/footer.liquid` linked the footer background
+  logo to `https://scentspired.com` — sending a **UK shopper to the USA
+  storefront** from every page. Now `{{ routes.root_url }}`, which stays on the
+  current storefront for this region and for every future one, and needs no
+  region data at all. Appearance is identical; the destination changed.
+- **`llms.txt` canonical domain.** `snippets/llms.liquid` advertised
+  `https://scentspired.com` to AI crawlers on every storefront. Now resolves
+  from `home_url`, so UK advertises `scentspired.co.uk` and UAE
+  `scentspired.ae`. Not a rendered page; no visual change.
+- **Accepted compromise:** `sections/privacy-policy.liquid` still holds
+  `support@scentspired.com` inside its `{% schema %}` presets. Schema is pure
+  JSON and cannot hold Liquid, so this literal is unavoidable. It is dead in
+  practice — saved template data overrides presets — and the guard exempts
+  schema blocks for this reason. The `[Your Company Address], USA` placeholder
+  that sat beside it was removed.
+
 ---
 
 ## 1. UK Free Shipping Threshold vs Cart Drawer Tier Mismatch

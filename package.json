@@ -62,7 +62,11 @@
     "fonts:check": "node scripts/font-inventory.cjs --check",
     "fonts:report": "node scripts/font-inventory.cjs --report",
     "parity:check": "node scripts/render-snapshot.cjs --check",
-    "parity:baseline": "node scripts/render-snapshot.cjs"
+    "parity:baseline": "node scripts/render-snapshot.cjs",
+    "guard:literals": "node tests/static/guard--region-literals.cjs",
+    "guard:literals:list": "node tests/static/guard--region-literals.cjs --list",
+    "guard:literals:update": "node tests/static/guard--region-literals.cjs --update",
+    "guard:fixtures": "node tests/static/guard--region-literals.fixture.cjs"
   },
   "devDependencies": {
     "@shopify/cli": "^3.94.0",

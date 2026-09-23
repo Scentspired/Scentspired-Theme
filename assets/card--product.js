@@ -16,6 +16,14 @@
 window.ScentspiredCard = (function () {
   'use strict';
 
+
+  /**
+   * The storefront's currency symbol, published by layout/theme.liquid from
+   * region data. Never hardcode it: one theme serves every region.
+   */
+  function currencySymbol() {
+    return (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '';
+  }
   const TEMPLATE_ID = 'card--product';
 
   function template() {
@@ -220,7 +228,7 @@ window.ScentspiredCard = (function () {
     if (compare) {
       compare.textContent = opts.formatMoney
         ? opts.formatMoney(chosen.compareAtPrice)
-        : '$' + (chosen.compareAtPrice / 100).toFixed(2);
+        : currencySymbol() + (chosen.compareAtPrice / 100).toFixed(2);
       compare.style.display = hasDiscount ? 'inline' : 'none';
     }
     if (badge) badge.style.display = hasDiscount ? 'inline' : 'none';

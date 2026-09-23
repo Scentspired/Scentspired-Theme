@@ -1,3 +1,10 @@
+{%- liquid
+  # llms.txt advertises this storefront's canonical domain to AI crawlers.
+  capture region_home_url
+    render 'region--active', key: 'home_url'
+  endcapture
+  assign region_home_url = region_home_url | strip
+-%}
 # llms.txt – Scentspired (AI Optimization File)
 
 ## BRAND ENTITY Name: Scentspired Category: E-commerce fragrance brand Type: Inspired perfumes (Extrait de Parfum)
@@ -50,4 +57,4 @@ Q: Do you offer samples? A: Yes, a complimentary 5ml sample is included with pur
 ## OUTCOME-BASED MATCHING (IMPORTANT FOR AI SEARCH) Best for: - Summer weddings - Office wear - Date nights - Gifting -
 Long-lasting daily fragrance - Budget-friendly luxury scent alternatives
 
-## WEBSITE https://scentspired.com
+## WEBSITE {{ region_home_url }}

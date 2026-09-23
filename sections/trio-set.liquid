@@ -601,6 +601,7 @@
 </div>
 
 <script>
+  const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '{{ cart.currency.symbol }}' || '$';
   let activeSize = null;
 let currentStep = 'Step-Size';        // Tracks which step is open
 let hasAddedFirstProduct = false;     // Becomes true after first product is added
@@ -959,11 +960,11 @@ mainBtn.disabled = count !== 3;
 if (count === 3 && activeSize) {
   const pricing = PRICING[activeSize];
 
-  totalDisplay.innerText = `£ ${pricing.total}`;
+  totalDisplay.innerText = `${currSym} ${pricing.total}`;
   totalDisplay.style.visibility = 'visible';
 
-  document.querySelector('.savings-row .saving').innerText = `£ ${pricing.standard}`;
-  document.querySelector('.save-row span').innerText = `£ ${pricing.saving}`;
+  document.querySelector('.savings-row .saving').innerText = `${currSym} ${pricing.standard}`;
+  document.querySelector('.save-row span').innerText = `${currSym} ${pricing.saving}`;
 } else {
   totalDisplay.innerText = '';
   totalDisplay.style.visibility = 'hidden';

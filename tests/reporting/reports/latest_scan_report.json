@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-09-23 10:25:27",
+  "timestamp": "2026-09-23 10:44:56",
   "staticData": {
     "filesScanned": 243,
-    "linesScanned": 73626,
+    "linesScanned": 73671,
     "totalViolations": 54,
     "errors": 53,
     "warnings": 1,
@@ -177,7 +177,7 @@
       },
       {
         "file": "sections\\five-box.liquid",
-        "line": 737,
+        "line": 738,
         "rule": "no-unguarded-getElementById",
         "severity": "error",
         "message": "Unguarded getElementById('SelectionDrawer') — will crash with \"null is not an object\" if element doesn't exist",
@@ -185,7 +185,7 @@
       },
       {
         "file": "sections\\five-box.liquid",
-        "line": 752,
+        "line": 753,
         "rule": "no-unguarded-getElementById",
         "severity": "error",
         "message": "Unguarded getElementById('SelectionDrawer') — will crash with \"null is not an object\" if element doesn't exist",
@@ -193,7 +193,7 @@
       },
       {
         "file": "sections\\five-box.liquid",
-        "line": 758,
+        "line": 759,
         "rule": "no-unguarded-getElementById",
         "severity": "error",
         "message": "Unguarded getElementById('id') — will crash with \"null is not an object\" if element doesn't exist",
@@ -201,7 +201,7 @@
       },
       {
         "file": "sections\\five-box.liquid",
-        "line": 778,
+        "line": 779,
         "rule": "no-unguarded-getElementById",
         "severity": "error",
         "message": "Unguarded getElementById('DrawerHeadline') — will crash with \"null is not an object\" if element doesn't exist",
@@ -209,7 +209,7 @@
       },
       {
         "file": "sections\\five-box.liquid",
-        "line": 782,
+        "line": 783,
         "rule": "no-unguarded-getElementById",
         "severity": "error",
         "message": "Unguarded getElementById('DrawerHeadline') — will crash with \"null is not an object\" if element doesn't exist",
@@ -217,7 +217,7 @@
       },
       {
         "file": "sections\\five-box.liquid",
-        "line": 968,
+        "line": 969,
         "rule": "no-unguarded-getElementById",
         "severity": "error",
         "message": "Unguarded getElementById('BundleStatusText') — will crash with \"null is not an object\" if element doesn't exist",
@@ -225,7 +225,7 @@
       },
       {
         "file": "sections\\five-box.liquid",
-        "line": 972,
+        "line": 973,
         "rule": "no-unguarded-getElementById",
         "severity": "error",
         "message": "Unguarded getElementById('Marker-${i}') — will crash with \"null is not an object\" if element doesn't exist",
@@ -233,7 +233,7 @@
       },
       {
         "file": "sections\\five-box.liquid",
-        "line": 740,
+        "line": 741,
         "rule": "no-unguarded-querySelector",
         "severity": "error",
         "message": "Unguarded querySelector('unknown') — will crash with \"null is not an object\" if element doesn't exist",
@@ -241,23 +241,23 @@
       },
       {
         "file": "sections\\five-box.liquid",
-        "line": 958,
-        "rule": "no-unguarded-querySelector",
-        "severity": "error",
-        "message": "Unguarded querySelector('.savings-row .saving') — will crash with \"null is not an object\" if element doesn't exist",
-        "code": "document.querySelector('.savings-row .saving').innerText = `£ ${pricing.standard}`;"
-      },
-      {
-        "file": "sections\\five-box.liquid",
         "line": 959,
         "rule": "no-unguarded-querySelector",
         "severity": "error",
-        "message": "Unguarded querySelector('.save-row span') — will crash with \"null is not an object\" if element doesn't exist",
-        "code": "document.querySelector('.save-row span').innerText = `£ ${pricing.saving}`;"
+        "message": "Unguarded querySelector('.savings-row .saving') — will crash with \"null is not an object\" if element doesn't exist",
+        "code": "document.querySelector('.savings-row .saving').innerText = `${currSym} ${pricing.standard}`;"
       },
       {
         "file": "sections\\five-box.liquid",
-        "line": 923,
+        "line": 960,
+        "rule": "no-unguarded-querySelector",
+        "severity": "error",
+        "message": "Unguarded querySelector('.save-row span') — will crash with \"null is not an object\" if element doesn't exist",
+        "code": "document.querySelector('.save-row span').innerText = `${currSym} ${pricing.saving}`;"
+      },
+      {
+        "file": "sections\\five-box.liquid",
+        "line": 924,
         "rule": "no-unguarded-dom-variable",
         "severity": "error",
         "message": "Variable 'el' from DOM lookup used without null check — will crash if element doesn't exist",
@@ -265,7 +265,7 @@
       },
       {
         "file": "sections\\five-box.liquid",
-        "line": 949,
+        "line": 950,
         "rule": "no-unguarded-dom-variable",
         "severity": "error",
         "message": "Variable 'mainBtn' from DOM lookup used without null check — will crash if element doesn't exist",
@@ -273,7 +273,7 @@
       },
       {
         "file": "sections\\five-box.liquid",
-        "line": 983,
+        "line": 984,
         "rule": "no-unguarded-dom-variable",
         "severity": "error",
         "message": "Variable 'btn' from DOM lookup used without null check — will crash if element doesn't exist",
@@ -281,7 +281,7 @@
       },
       {
         "file": "sections\\five-box.liquid",
-        "line": 861,
+        "line": 862,
         "rule": "bundle-inventory-availability-guard",
         "severity": "error",
         "message": "addProductToBundle does not verify variant availability — out-of-stock items could be selected into bundles",
@@ -321,7 +321,7 @@
       },
       {
         "file": "sections\\trio-set.liquid",
-        "line": 726,
+        "line": 727,
         "rule": "no-unguarded-getElementById",
         "severity": "error",
         "message": "Unguarded getElementById('SelectionDrawer') — will crash with \"null is not an object\" if element doesn't exist",
@@ -329,7 +329,7 @@
       },
       {
         "file": "sections\\trio-set.liquid",
-        "line": 750,
+        "line": 751,
         "rule": "no-unguarded-getElementById",
         "severity": "error",
         "message": "Unguarded getElementById('id') — will crash with \"null is not an object\" if element doesn't exist",
@@ -337,7 +337,7 @@
       },
       {
         "file": "sections\\trio-set.liquid",
-        "line": 761,
+        "line": 762,
         "rule": "no-unguarded-getElementById",
         "severity": "error",
         "message": "Unguarded getElementById('DrawerHeadline') — will crash with \"null is not an object\" if element doesn't exist",
@@ -345,7 +345,7 @@
       },
       {
         "file": "sections\\trio-set.liquid",
-        "line": 769,
+        "line": 770,
         "rule": "no-unguarded-getElementById",
         "severity": "error",
         "message": "Unguarded getElementById('DrawerHeadline') — will crash with \"null is not an object\" if element doesn't exist",
@@ -353,7 +353,7 @@
       },
       {
         "file": "sections\\trio-set.liquid",
-        "line": 975,
+        "line": 976,
         "rule": "no-unguarded-getElementById",
         "severity": "error",
         "message": "Unguarded getElementById('BundleStatusText') — will crash with \"null is not an object\" if element doesn't exist",
@@ -361,7 +361,7 @@
       },
       {
         "file": "sections\\trio-set.liquid",
-        "line": 980,
+        "line": 981,
         "rule": "no-unguarded-getElementById",
         "severity": "error",
         "message": "Unguarded getElementById('Marker-${i}') — will crash with \"null is not an object\" if element doesn't exist",
@@ -369,7 +369,7 @@
       },
       {
         "file": "sections\\trio-set.liquid",
-        "line": 729,
+        "line": 730,
         "rule": "no-unguarded-querySelector",
         "severity": "error",
         "message": "Unguarded querySelector('unknown') — will crash with \"null is not an object\" if element doesn't exist",
@@ -377,23 +377,23 @@
       },
       {
         "file": "sections\\trio-set.liquid",
-        "line": 965,
-        "rule": "no-unguarded-querySelector",
-        "severity": "error",
-        "message": "Unguarded querySelector('.savings-row .saving') — will crash with \"null is not an object\" if element doesn't exist",
-        "code": "document.querySelector('.savings-row .saving').innerText = `£ ${pricing.standard}`;"
-      },
-      {
-        "file": "sections\\trio-set.liquid",
         "line": 966,
         "rule": "no-unguarded-querySelector",
         "severity": "error",
-        "message": "Unguarded querySelector('.save-row span') — will crash with \"null is not an object\" if element doesn't exist",
-        "code": "document.querySelector('.save-row span').innerText = `£ ${pricing.saving}`;"
+        "message": "Unguarded querySelector('.savings-row .saving') — will crash with \"null is not an object\" if element doesn't exist",
+        "code": "document.querySelector('.savings-row .saving').innerText = `${currSym} ${pricing.standard}`;"
       },
       {
         "file": "sections\\trio-set.liquid",
-        "line": 799,
+        "line": 967,
+        "rule": "no-unguarded-querySelector",
+        "severity": "error",
+        "message": "Unguarded querySelector('.save-row span') — will crash with \"null is not an object\" if element doesn't exist",
+        "code": "document.querySelector('.save-row span').innerText = `${currSym} ${pricing.saving}`;"
+      },
+      {
+        "file": "sections\\trio-set.liquid",
+        "line": 800,
         "rule": "no-unsafe-inline-onclick",
         "severity": "error",
         "message": "Unsafe inline onclick with dynamic string ${b.tag} — will crash if value contains apostrophe (e.g., \"Victoria's Secret\")",
@@ -401,7 +401,7 @@
       },
       {
         "file": "sections\\trio-set.liquid",
-        "line": 798,
+        "line": 799,
         "rule": "no-unguarded-dom-variable",
         "severity": "error",
         "message": "Variable 'grid' from DOM lookup used without null check — will crash if element doesn't exist",
@@ -409,7 +409,7 @@
       },
       {
         "file": "sections\\trio-set.liquid",
-        "line": 930,
+        "line": 931,
         "rule": "no-unguarded-dom-variable",
         "severity": "error",
         "message": "Variable 'el' from DOM lookup used without null check — will crash if element doesn't exist",
@@ -417,7 +417,7 @@
       },
       {
         "file": "sections\\trio-set.liquid",
-        "line": 956,
+        "line": 957,
         "rule": "no-unguarded-dom-variable",
         "severity": "error",
         "message": "Variable 'mainBtn' from DOM lookup used without null check — will crash if element doesn't exist",
@@ -425,7 +425,7 @@
       },
       {
         "file": "sections\\trio-set.liquid",
-        "line": 994,
+        "line": 995,
         "rule": "no-unguarded-dom-variable",
         "severity": "error",
         "message": "Variable 'btn' from DOM lookup used without null check — will crash if element doesn't exist",
@@ -433,7 +433,7 @@
       },
       {
         "file": "sections\\trio-set.liquid",
-        "line": 874,
+        "line": 875,
         "rule": "bundle-inventory-availability-guard",
         "severity": "error",
         "message": "addProductToBundle does not verify variant availability — out-of-stock items could be selected into bundles",

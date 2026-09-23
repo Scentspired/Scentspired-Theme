@@ -247,6 +247,17 @@ const CORE_LAYERS = [
     args: [path.join(TESTS_DIR, "dynamic", "verify-live-output-parity.cjs")],
     failMsg: "Output drift detected: compiled theme outputs do not match live stores",
   },
+  {
+    // Always scanned against the core: a compiled theme is supposed to contain
+    // one region's resolved literals, so --root overrides the regional target.
+    name: "Layer 15: Region Literal Coupling Guard",
+    cmd: "node",
+    args: [
+      path.join(TESTS_DIR, "static", "guard--region-literals.cjs"),
+      `--root=${GUARDIAN_ROOT}`,
+    ],
+    failMsg: "Shared code names a region: a literal that ships the wrong value everywhere else",
+  },
 ];
 
 let totalPassed = 0;

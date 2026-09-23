@@ -1,4 +1,16 @@
 {% comment %}  The `faq-section` is a customizable section for displaying privacy policies or FAQ content.  It includes a sidebar for navigation and dynamic content blocks.{% endcomment %}
+
+{%- liquid
+  # Contact addresses are regional data, never literals. See regions/_defaults.json.
+  capture support_email
+    render 'region--active', key: 'support_email'
+  endcapture
+  capture returns_email
+    render 'region--active', key: 'returns_email'
+  endcapture
+  assign support_email = support_email | strip
+  assign returns_email = returns_email | strip
+-%}
 <style>
   /* Custom Fonts */
   @font-face {
@@ -455,7 +467,7 @@
               I have a question about fragrances, can I talk to you about it?
             </button>
             <div class="faq-answer">
-              We’ve got people who love chatting about all things fragrance related, email us at support@scentspired.com
+              We’ve got people who love chatting about all things fragrance related, email us at {{ support_email }}
               to get a quick, personal reply. Don’t worry—we check it constantly.
             </div>
           </div>
@@ -475,7 +487,7 @@
             </button>
             <div class="faq-answer">
               If you need to update your order or shipping address after placing it, please email us at
-              support@scentspired.com as soon as possible and we will be happy to assist you. Make sure to include your
+              {{ support_email }} as soon as possible and we will be happy to assist you. Make sure to include your
               order number and the correct shipping details. Changes can only be made before the order has been
               processed or shipped.
             </div>
@@ -507,7 +519,7 @@
           <div class="faq-item">
             <button class="faq-question" onclick="toggleFaq(this)">How do I cancel my order?</button>
             <div class="faq-answer">
-              If you have changed your mind on your order, email us at support@scentspired.com as soon as possible and
+              If you have changed your mind on your order, email us at {{ support_email }} as soon as possible and
               we will be happy to assist you. Please ensure to include your order number.
             </div>
           </div>
@@ -533,7 +545,7 @@
           <div class="faq-item">
             <button class="faq-question" onclick="toggleFaq(this)">How can I return or exchange my order?</button>
             <div class="faq-answer">
-              To initiate a refund or exchange, please email us at returns@scentspired.com with your order number and
+              To initiate a refund or exchange, please email us at {{ returns_email }} with your order number and
               the items you wish to return or exchange.
 
               We gladly accept returns and exchanges within 30 days of purchase. Unfortunately, if more than 30 days
@@ -548,7 +560,7 @@
               If you haven’t received your refund yet, please first check your bank account. Then contact your credit
               card provider, as it may take some time for the refund to be officially posted. If needed, reach out to
               your bank as well. If you’ve completed all these steps and still haven’t received your refund, please
-              contact us at support@scentspired.com .
+              contact us at {{ support_email }} .
 
               Return shipping costs are the customer’s responsibility and are non-refundable. Delivery times for
               exchanged items may vary based on location. For items valued over $70, we recommend using a trackable
@@ -563,7 +575,7 @@
               <p>
                 All of our products are carefully packaged, and we take every precaution to ensure your order arrives
                 safely and on time. However, in rare cases, damage may occur during transit. If this happens, please
-                contact us at returns@scentspired.com and include the following details:
+                contact us at {{ returns_email }} and include the following details:
               </p>
 
               <ul>

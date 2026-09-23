@@ -1,0 +1,10 @@
+{
+  "accepted": {
+    "blocks/catalog--aroma-notes.liquid::R1c": {
+      "count": 60,
+      "rule": "CDN asset URL",
+      "reason": "Hardcoded product imagery. These absolute CDN URLs load from any origin, so no region renders a broken image today. The real fix is moving this imagery onto product metafields, which is a content migration rather than a refactor — tracked in TODO.md 0.8.",
+      "fix": "move the image to a setting, a metafield, or a region key"
+    }
+  }
+}

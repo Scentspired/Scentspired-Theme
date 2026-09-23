@@ -1,3 +1,11 @@
+/**
+ * The storefront's currency symbol, published by layout/theme.liquid from
+ * region data. Never hardcode it: one theme serves every region.
+ */
+function currencySymbol() {
+  return (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || "";
+}
+
 class CartRemoveButton extends HTMLElement {
   constructor() {
     super();
@@ -113,7 +121,7 @@ class CartItems extends HTMLElement {
     const lineTotal = (pricePerItem * quantity).toFixed(2);
 
     const linePriceEl = cartItem.querySelector(".cart-item__line-price");
-    if (linePriceEl) linePriceEl.textContent = `£${lineTotal}`;
+    if (linePriceEl) linePriceEl.textContent = `${currencySymbol()}${lineTotal}`;
   }
 
   updateCartTotal() {
@@ -127,7 +135,7 @@ class CartItems extends HTMLElement {
 
     const totalEl =
       document.getElementById("Cart-Total") || document.getElementById("CartDrawer-Total");
-    if (totalEl) totalEl.textContent = `£${total.toFixed(2)}`;
+    if (totalEl) totalEl.textContent = `${currencySymbol()}${total.toFixed(2)}`;
   }
 
   onCartUpdate() {

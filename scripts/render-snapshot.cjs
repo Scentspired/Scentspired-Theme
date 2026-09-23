@@ -45,8 +45,15 @@ const PAGES = {
   'collection-all': '/collections/all',
   cart: '/cart',
   search: '/search?q=perfume',
+  // The product page is the highest-value surface in the theme and was the one
+  // the first baseline missed, so its markup is pinned explicitly.
+  product: '/products/addiction',
   blog: '/blogs/news',
+  article:
+    '/blogs/news/fragrance-layering-explained-how-to-turn-two-bottles-into-a-signature-scent-nobody-else-is-wearing',
   'page-about': '/pages/about-us',
+  'page-discovery-set': '/pages/discovery-set',
+  'page-fragrance-finder': '/pages/fragrance-finder',
   'page-faqs': '/pages/faqs',
   'page-contact': '/pages/contact',
   'page-privacy': '/pages/privacy-policy',

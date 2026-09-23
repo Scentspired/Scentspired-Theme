@@ -2435,6 +2435,7 @@ text-align: left;
   </div>
 </div>
 <script>
+  const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '£' || '$';
 // Global variables
 let isUserLoggedIn = false;
 let currentShopMethod = 'guest';
@@ -2790,7 +2791,7 @@ function updateAllDossierDynamicElements(cart) {
   const finalTotal = subtotal + shipping;
   const checkoutTotal = document.getElementById('checkout-total');
   if (checkoutTotal) {
-    checkoutTotal.textContent = `£${(finalTotal / 100).toFixed(2)}`;
+    checkoutTotal.textContent = `${currSym}${(finalTotal / 100).toFixed(2)}`;
   }
   // Update order summary
   updateOrderSummary(subtotal, shipping);
@@ -2800,14 +2801,14 @@ function updateOrderSummary(subtotal, shipping) {
   // Show initial price (no discounts)
   const initialPrice = document.getElementById('summary-initial-price');
   if (initialPrice) {
-    initialPrice.textContent = `£${(subtotal / 100).toFixed(2)}`;
+    initialPrice.textContent = `${currSym}${(subtotal / 100).toFixed(2)}`;
   }
   // Update shipping UI
   const shippingCost = document.getElementById('sp-shipping-cost');
   if (shippingCost) {
     shippingCost.textContent = shipping === 0
       ? 'FREE'
-      : `£${(shipping / 100).toFixed(2)}`;
+      : `${currSym}${(shipping / 100).toFixed(2)}`;
   }
   // Hide discount lines since there are no discounts
   const memberDiscountLine = document.getElementById('member-discount-line');
@@ -14158,7 +14159,7 @@ document.addEventListener("DOMContentLoaded", () => {
     <!-- Background Text -->
     <!-- Background Text / Image -->
 <div class="footer-background-text">
-    <a href="https://scentspired.com" class="footer-background-link" aria-label="Scentspired home">
+    <a href="/" class="footer-background-link" aria-label="Scentspired home">
   <img
     src="/cdn/shop/files/Scentspired_logo_WHITE_4.png?v=X&width=1200"
     alt=""
