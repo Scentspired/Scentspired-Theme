@@ -1,15 +1,15 @@
 {
-  "timestamp": "2026-09-23 10:03:18",
+  "timestamp": "2026-09-23 10:25:27",
   "staticData": {
     "filesScanned": 243,
-    "linesScanned": 73620,
+    "linesScanned": 73626,
     "totalViolations": 54,
     "errors": 53,
     "warnings": 1,
     "violations": [
       {
         "file": "sections\\best-sellers.liquid",
-        "line": 415,
+        "line": 417,
         "rule": "no-unguarded-getElementById",
         "severity": "error",
         "message": "Unguarded getElementById('totalPages') — will crash with \"null is not an object\" if element doesn't exist",
@@ -17,7 +17,7 @@
       },
       {
         "file": "sections\\best-sellers.liquid",
-        "line": 428,
+        "line": 430,
         "rule": "no-unguarded-getElementById",
         "severity": "error",
         "message": "Unguarded getElementById('totalPages') — will crash with \"null is not an object\" if element doesn't exist",
@@ -25,7 +25,7 @@
       },
       {
         "file": "sections\\best-sellers.liquid",
-        "line": 429,
+        "line": 431,
         "rule": "no-unguarded-getElementById",
         "severity": "error",
         "message": "Unguarded getElementById('currentPage') — will crash with \"null is not an object\" if element doesn't exist",
@@ -33,7 +33,7 @@
       },
       {
         "file": "sections\\best-sellers.liquid",
-        "line": 451,
+        "line": 453,
         "rule": "no-unguarded-getElementById",
         "severity": "error",
         "message": "Unguarded getElementById('currentPage') — will crash with \"null is not an object\" if element doesn't exist",
@@ -41,7 +41,7 @@
       },
       {
         "file": "sections\\best-sellers.liquid",
-        "line": 629,
+        "line": 631,
         "rule": "no-unguarded-querySelector",
         "severity": "error",
         "message": "Unguarded querySelector('.selected-variant-id') — will crash with \"null is not an object\" if element doesn't exist",
@@ -49,7 +49,7 @@
       },
       {
         "file": "sections\\best-sellers.liquid",
-        "line": 488,
+        "line": 490,
         "rule": "no-unguarded-dom-variable",
         "severity": "error",
         "message": "Variable 'cartBtn' from DOM lookup used without null check — will crash if element doesn't exist",
@@ -57,7 +57,7 @@
       },
       {
         "file": "sections\\best-sellers.liquid",
-        "line": 655,
+        "line": 657,
         "rule": "no-unguarded-dom-variable",
         "severity": "error",
         "message": "Variable 'submitBtn' from DOM lookup used without null check — will crash if element doesn't exist",

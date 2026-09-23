@@ -375,9 +375,11 @@ function getPerPage() {
   return isMobile ? 1 : 2;
 }
 
-// Format price to currency
+// Format price to currency. The symbol comes from the region resolved at build
+// time — hardcoding it shipped pound signs to every storefront.
 function formatPrice(priceInCents) {
-  return '£' + (priceInCents / 100).toFixed(2);
+  const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '{{ cart.currency.symbol }}' || '$';
+  return currSym + (priceInCents / 100).toFixed(2);
 }
 
 document.addEventListener('DOMContentLoaded', function () {

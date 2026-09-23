@@ -7046,6 +7046,9 @@ function initializeDossierCartTriggers() {
     </div>
 </div>
 <script>
+// Currency symbol comes from the region resolved at build time. It used to be
+// a literal "£", which shipped pound signs to every storefront.
+const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '£' || '$';
 document.addEventListener("DOMContentLoaded", () => {
   function updateVariantAvailability() {
     // Update all product cards
@@ -7110,7 +7113,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const variantPrice = parseInt(btn.dataset.variantPriceRaw, 10);
         const comparePrice = parseInt(btn.dataset.variantCompare, 10);
         if (priceDisplay && variantPrice) {
-          priceDisplay.textContent = "£" + (variantPrice / 100).toFixed(2);
+          priceDisplay.textContent = currSym + (variantPrice / 100).toFixed(2);
         }
         let compareEl = card.querySelector("[data-compare-price]");
         let badgeEl = card.querySelector("[data-sale-badge]");
@@ -7121,7 +7124,7 @@ document.addEventListener("DOMContentLoaded", () => {
             compareEl.setAttribute("data-compare-price", "");
             priceDisplay.after(compareEl);
           }
-          compareEl.textContent = "£" + (comparePrice / 100).toFixed(2);
+          compareEl.textContent = currSym + (comparePrice / 100).toFixed(2);
           if (!badgeEl) {
             badgeEl = document.createElement("span");
             badgeEl.className = "price-badge";
@@ -7143,7 +7146,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (priceDisplay) {
         const price = parseInt(firstAvailableBtn.dataset.variantPriceRaw, 10);
         const compare = parseInt(firstAvailableBtn.dataset.variantCompare, 10);
-        priceDisplay.textContent = "£" + (price / 100).toFixed(2);
+        priceDisplay.textContent = currSym + (price / 100).toFixed(2);
         // Trigger compare-at logic
         firstAvailableBtn.click();
       }
@@ -17307,9 +17310,11 @@ let isMobile = window.innerWidth <= 800;
 function getPerPage() {
   return isMobile ? 1 : 2;
 }
-// Format price to currency
+// Format price to currency. The symbol comes from the region resolved at build
+// time — hardcoding it shipped pound signs to every storefront.
 function formatPrice(priceInCents) {
-  return '£' + (priceInCents / 100).toFixed(2);
+  const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '£' || '$';
+  return currSym + (priceInCents / 100).toFixed(2);
 }
 document.addEventListener('DOMContentLoaded', function () {
   allProducts = [

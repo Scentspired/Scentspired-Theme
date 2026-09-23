@@ -790,7 +790,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Price update function
   function updatePriceUI(price, compare) {
-    priceEl.textContent = '£' + (price / 100).toFixed(2);
+    priceEl.textContent = currSym + (price / 100).toFixed(2);
 
     let compareEl = priceContainer.querySelector('[data-compare-price]');
     let badgeEl = priceContainer.querySelector('[data-sale-badge]');
@@ -802,7 +802,7 @@ document.addEventListener('DOMContentLoaded', function () {
         compareEl.setAttribute('data-compare-price', '');
         priceEl.parentNode.insertBefore(compareEl, priceEl.nextSibling);
       }
-      compareEl.textContent = '£' + (compare / 100).toFixed(2);
+      compareEl.textContent = currSym + (compare / 100).toFixed(2);
       compareEl.style.display = 'inline';
 
       if (!badgeEl) {

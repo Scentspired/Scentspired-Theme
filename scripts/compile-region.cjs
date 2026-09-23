@@ -106,6 +106,29 @@ for (const dir of OVERLAY_DIRS) {
     console.log(`  ~ ${dir.padEnd(12)}: ${n} files overridden`);
   }
 }
+
+/**
+ * Section GROUPS are data — which sections appear, in what order, with which
+ * settings — so a region may override them. Section .liquid files are code and
+ * may not be overridden: allowing that would let a region fork a component,
+ * which is exactly the duplication this architecture exists to remove.
+ */
+const regionSections = path.join(REGION_DIR, 'sections');
+if (fs.existsSync(regionSections)) {
+  const forked = fs.readdirSync(regionSections).filter(f => f.endsWith('.liquid'));
+  if (forked.length > 0) {
+    console.error(`\n❌ regions/${target}/sections/ may only contain .json section groups.`);
+    console.error(`   Found component code: ${forked.join(', ')}`);
+    console.error('   A region overrides section DATA, never section CODE.\n');
+    process.exit(1);
+  }
+  const n = copyTree(regionSections, path.join(DIST_DIR, 'sections'));
+  if (n > 0) {
+    overlaid.sections = n;
+    console.log(`  ~ ${'sections'.padEnd(12)}: ${n} section group(s) overridden`);
+  }
+}
+
 if (Object.keys(overlaid).length === 0) {
   console.log('  (no regional overrides present)');
 }
