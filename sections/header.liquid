@@ -155,6 +155,11 @@
       }
 
       /* Center logo on mobile */
+      /* Was an h3; this is the size the base h3 rule gave it. */
+      .menu-drawer-title {
+        font-size: calc(var(--font-heading-scale) * 1.7rem);
+      }
+
       .header__heading {
         text-align: center;
         width: 100%;
@@ -1681,7 +1686,7 @@
       color: #000000;
     }
 
-    .custom-section-header h3 {
+    .custom-section-header .search-recent-title {
       font-size: 14px;
       font-weight: 600;
       color: #000000;
@@ -2660,7 +2665,7 @@
     <!-- Mobile Menu Drawer - HARDCODED MENU STRUCTURE -->
     <div class="mobile-menu-drawer" id="mobileMenuDrawer">
       <div class="mobile-menu-header">
-        <h3 style="margin: 0; font-family: var(--font-body);">Menu</h3>
+        <div class="menu-drawer-title ui-label" style="margin: 0; font-family: var(--font-body);">Menu</div>
         <button class="mobile-menu-close" id="mobileMenuClose">
           <svg viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor">
             <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -2921,7 +2926,7 @@
                   <circle cx="12" cy="12" r="10"></circle>
                   <polyline points="12,6 12,12 16,14"></polyline>
                 </svg>
-                <h3>Recent Searches</h3>
+                <div class="search-recent-title ui-label">Recent Searches</div>
               </div>
             </div>
             <div class="custom-pill-container" id="customRecentSearches">

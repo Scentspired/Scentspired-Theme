@@ -1551,7 +1551,7 @@ first.parentNode.insertBefore(script, first);
     height: 24px;
     font-size: 14px;
   }
-  .sp-section-header h2 {
+  .sp-section-header .sp-section-title {
     font-size: 16px;
     font-weight: 700;
     margin: 0;
@@ -1778,10 +1778,11 @@ first.parentNode.insertBefore(script, first);
   .sp-recommendations-section {
     padding: 0 20px 20px;
   }
-  .sp-recommendations-section h3 {
+  .sp-recommendations-section .sp-recommendations-title {
     font-size: 16px;
     font-weight: 600;
-    margin-bottom: 16px;
+    /* Was an h3; 16px top came from the browser default margin. */
+    margin: 16px 0;
     color: #333;
   }
   .sp-recommended-products {
@@ -2096,7 +2097,7 @@ text-align: left;
       <!-- Empty Cart State - Full Drawer -->
       <div class="sp-empty-cart-full-container" id="sp-empty-cart-full-container">
         <div class="sp-empty-cart-content">
-          <h2 class="sp-empty-title">Oops...</h2>
+          <div class="sp-empty-title ui-label">Oops...</div>
           <p class="sp-empty-subtitle">You have no items in your bag.</p>
           <p class="sp-empty-help">Let us help!</p>
           <!-- Collections Grid -->
@@ -2199,7 +2200,7 @@ text-align: left;
         <div class="sp-cart-container">
           <div class="sp-cart-header-section">
             <div class="sp-section-number">1</div>
-            <h2 class="sp-cart-title">YOUR CART</h2>
+            <div class="sp-cart-title ui-label">YOUR CART</div>
           </div>
           <div class="sp-cart-items-list" id="sp-cart-items-list">
             
@@ -2215,7 +2216,7 @@ text-align: left;
         <div class="sp-summary-box">
           <div class="sp-section-header">
             <span class="sp-section-number">2</span>
-            <h2>ORDER SUMMARY</h2>
+            <div class="sp-section-title ui-label">ORDER SUMMARY</div>
           </div>
           <div class="sp-summary-details">
             <div class="sp-summary-line">
@@ -2248,7 +2249,7 @@ text-align: left;
       </div>
       <!-- You Might Like to Add Section -->
       <div class="sp-recommendations-section">
-        <h3>You might like to add</h3>
+        <div class="sp-recommendations-title ui-label">You might like to add</div>
         <div class="sp-recommended-products">
           
             
@@ -3203,6 +3204,10 @@ function initializeDossierCartTriggers() {
         display: none !important;
       }
       /* Center logo on mobile */
+      /* Was an h3; this is the size the base h3 rule gave it. */
+      .menu-drawer-title {
+        font-size: calc(var(--font-heading-scale) * 1.7rem);
+      }
       .header__heading {
         text-align: center;
         width: 100%;
@@ -4517,7 +4522,7 @@ function initializeDossierCartTriggers() {
       height: 16px;
       color: #000000;
     }
-    .custom-section-header h3 {
+    .custom-section-header .search-recent-title {
       font-size: 14px;
       font-weight: 600;
       color: #000000;
@@ -5196,7 +5201,7 @@ function initializeDossierCartTriggers() {
     <!-- Mobile Menu Drawer - HARDCODED MENU STRUCTURE -->
     <div class="mobile-menu-drawer" id="mobileMenuDrawer">
       <div class="mobile-menu-header">
-        <h3 style="margin: 0; font-family: var(--font-body);">Menu</h3>
+        <div class="menu-drawer-title ui-label" style="margin: 0; font-family: var(--font-body);">Menu</div>
         <button class="mobile-menu-close" id="mobileMenuClose">
           <svg viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor">
             <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -5434,7 +5439,7 @@ function initializeDossierCartTriggers() {
                   <circle cx="12" cy="12" r="10"></circle>
                   <polyline points="12,6 12,12 16,14"></polyline>
                 </svg>
-                <h3>Recent Searches</h3>
+                <div class="search-recent-title ui-label">Recent Searches</div>
               </div>
             </div>
             <div class="custom-pill-container" id="customRecentSearches">
