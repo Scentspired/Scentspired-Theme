@@ -128,6 +128,10 @@
     "dev_port": {
       "type": "number",
       "description": "Local port for npm run dev:<region>. Each region gets its own so several can run at once; without this they all fight over 9292."
+    },
+    "bundles": {
+      "type": "object",
+      "description": "Bundle pricing, which the storefronts deliberately differ on — USA is roughly double UK with a different discount split. { five_favourites, trio, discovery }, each carrying its own variant ids, prices, standard prices and savings. Taken from the live themes, where it was a runtime `if currency == USD` branch."
     }
   }
 }

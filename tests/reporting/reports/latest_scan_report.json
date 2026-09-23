@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-09-23 20:14:46",
+  "timestamp": "2026-09-23 20:29:51",
   "staticData": {
     "filesScanned": 245,
-    "linesScanned": 73858,
+    "linesScanned": 73891,
     "totalViolations": 54,
     "errors": 53,
     "warnings": 1,
@@ -65,7 +65,7 @@
       },
       {
         "file": "sections\\discovery.liquid",
-        "line": 658,
+        "line": 666,
         "rule": "no-unguarded-getElementById",
         "severity": "error",
         "message": "Unguarded getElementById('SelectionDrawer') — will crash with \"null is not an object\" if element doesn't exist",
@@ -73,7 +73,7 @@
       },
       {
         "file": "sections\\discovery.liquid",
-        "line": 669,
+        "line": 677,
         "rule": "no-unguarded-getElementById",
         "severity": "error",
         "message": "Unguarded getElementById('SelectionDrawer') — will crash with \"null is not an object\" if element doesn't exist",
@@ -81,7 +81,7 @@
       },
       {
         "file": "sections\\discovery.liquid",
-        "line": 675,
+        "line": 683,
         "rule": "no-unguarded-getElementById",
         "severity": "error",
         "message": "Unguarded getElementById('id') — will crash with \"null is not an object\" if element doesn't exist",
@@ -89,7 +89,7 @@
       },
       {
         "file": "sections\\discovery.liquid",
-        "line": 682,
+        "line": 690,
         "rule": "no-unguarded-getElementById",
         "severity": "error",
         "message": "Unguarded getElementById('DrawerHeadline') — will crash with \"null is not an object\" if element doesn't exist",
@@ -97,7 +97,7 @@
       },
       {
         "file": "sections\\discovery.liquid",
-        "line": 867,
+        "line": 875,
         "rule": "no-unguarded-getElementById",
         "severity": "error",
         "message": "Unguarded getElementById('BundleStatusText') — will crash with \"null is not an object\" if element doesn't exist",
@@ -105,7 +105,7 @@
       },
       {
         "file": "sections\\discovery.liquid",
-        "line": 872,
+        "line": 880,
         "rule": "no-unguarded-getElementById",
         "severity": "error",
         "message": "Unguarded getElementById('Marker-${i}') — will crash with \"null is not an object\" if element doesn't exist",
@@ -113,7 +113,7 @@
       },
       {
         "file": "sections\\discovery.liquid",
-        "line": 664,
+        "line": 672,
         "rule": "no-unguarded-querySelector",
         "severity": "error",
         "message": "Unguarded querySelector('unknown') — will crash with \"null is not an object\" if element doesn't exist",
@@ -121,7 +121,7 @@
       },
       {
         "file": "sections\\discovery.liquid",
-        "line": 698,
+        "line": 706,
         "rule": "no-unsafe-inline-onclick",
         "severity": "error",
         "message": "Unsafe inline onclick with dynamic string ${b.tag} — will crash if value contains apostrophe (e.g., \"Victoria's Secret\")",
@@ -129,7 +129,7 @@
       },
       {
         "file": "sections\\discovery.liquid",
-        "line": 697,
+        "line": 705,
         "rule": "no-unguarded-dom-variable",
         "severity": "error",
         "message": "Variable 'grid' from DOM lookup used without null check — will crash if element doesn't exist",
@@ -137,7 +137,7 @@
       },
       {
         "file": "sections\\discovery.liquid",
-        "line": 828,
+        "line": 836,
         "rule": "no-unguarded-dom-variable",
         "severity": "error",
         "message": "Variable 'el' from DOM lookup used without null check — will crash if element doesn't exist",
@@ -145,7 +145,7 @@
       },
       {
         "file": "sections\\discovery.liquid",
-        "line": 854,
+        "line": 862,
         "rule": "no-unguarded-dom-variable",
         "severity": "error",
         "message": "Variable 'mainBtn' from DOM lookup used without null check — will crash if element doesn't exist",
@@ -153,7 +153,7 @@
       },
       {
         "file": "sections\\discovery.liquid",
-        "line": 885,
+        "line": 893,
         "rule": "no-unguarded-dom-variable",
         "severity": "error",
         "message": "Variable 'btn' from DOM lookup used without null check — will crash if element doesn't exist",
@@ -161,7 +161,7 @@
       },
       {
         "file": "sections\\discovery.liquid",
-        "line": 766,
+        "line": 774,
         "rule": "bundle-inventory-availability-guard",
         "severity": "error",
         "message": "addProductToBundle does not verify variant availability — out-of-stock items could be selected into bundles",
@@ -169,7 +169,7 @@
       },
       {
         "file": "sections\\discovery.liquid",
-        "line": 584,
+        "line": 592,
         "rule": "no-hardcoded-shopify-variant-ids",
         "severity": "error",
         "message": "Hardcoded Shopify Variant ID (57083186217305) detected in JavaScript. All variant IDs must be dynamically queried via Liquid (e.g. {{ variant_id | json }}) or configured via Theme Settings to avoid multi-store desyncs.",

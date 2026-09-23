@@ -133,12 +133,25 @@ function renderSnippet(region, regionId) {
     })
     .join('\n');
 
-  // Nested objects are addressed with a dotted key, e.g. 'social.instagram'.
+  /*
+   * Nested objects are addressed with a dotted key, e.g. 'social.instagram'.
+   *
+   * This recurses to any depth. It used to stop after one level, which meant
+   * a two-level key like 'bundles.five_favourites.price_50' was never emitted
+   * and silently resolved to nothing — the caller got an empty string and no
+   * error. Bundle prices are two levels deep, so that shape has to work.
+   */
+  const flatten = (obj, prefix) =>
+    Object.entries(obj).flatMap(([k, v]) => {
+      const key = `${prefix}.${k}`;
+      if (v && typeof v === 'object' && !Array.isArray(v)) return flatten(v, key);
+      const out = Array.isArray(v) ? v.join(',') : v;
+      return [`    {%- when '${key}' -%}${esc(out)}`];
+    });
+
   const nested = Object.entries(region)
     .filter(([, v]) => v && typeof v === 'object' && !Array.isArray(v))
-    .flatMap(([group, obj]) =>
-      Object.entries(obj).map(([k, v]) => `    {%- when '${group}.${k}' -%}${esc(v)}`)
-    )
+    .flatMap(([group, obj]) => flatten(obj, group))
     .join('\n');
 
   return `{%- comment -%}

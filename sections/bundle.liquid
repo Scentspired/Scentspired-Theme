@@ -19,27 +19,52 @@
 </div>
 
 {% assign fb_parent = section.settings.bundle_product | default: all_products["the-five-favourites"] %}
-{% assign fb_50 = 57083185922393 %}
-{% assign fb_100 = 57083185955161 %}
-{% assign fb_price_50 = 64.99 %}
-{% assign fb_price_100 = 99.99 %}
-{% assign fb_std_50 = 99.95 %}
-{% assign fb_std_100 = 149.95 %}
-{% assign fb_saving_50 = 34.96 %}
-{% assign fb_saving_100 = 49.96 %}
-{%- capture fb_curr_sym -%}{%- render 'region--active', key: 'currency_symbol' -%}{%- endcapture -%}{%- assign fb_curr_sym = fb_curr_sym | strip -%}
+{%- comment -%}
+  Bundle pricing is a deliberate regional difference — the USA bundle is about
+  double the UK one, with a different discount split — so it is region data.
+  It used to be a runtime branch on cart.currency.iso_code here,
+  which shipped both regions' prices to every storefront and would need a new
+  arm per region. See regions/<id>/region.json -> bundles.five_favourites.
+{%- endcomment -%}
+{%- liquid
+  capture fb_50
+    render 'region--active', key: 'bundles.five_favourites.variant_50'
+  endcapture
+  capture fb_100
+    render 'region--active', key: 'bundles.five_favourites.variant_100'
+  endcapture
+  capture fb_price_50
+    render 'region--active', key: 'bundles.five_favourites.price_50'
+  endcapture
+  capture fb_price_100
+    render 'region--active', key: 'bundles.five_favourites.price_100'
+  endcapture
+  capture fb_std_50
+    render 'region--active', key: 'bundles.five_favourites.standard_50'
+  endcapture
+  capture fb_std_100
+    render 'region--active', key: 'bundles.five_favourites.standard_100'
+  endcapture
+  capture fb_saving_50
+    render 'region--active', key: 'bundles.five_favourites.saving_50'
+  endcapture
+  capture fb_saving_100
+    render 'region--active', key: 'bundles.five_favourites.saving_100'
+  endcapture
+  capture fb_curr_sym
+    render 'region--active', key: 'currency_symbol'
+  endcapture
 
-{% if cart.currency.iso_code == "USD" or shop.currency == "USD" %}
-  {% assign fb_50 = 45733941936311 %}
-  {% assign fb_100 = 45733941969079 %}
-  {% assign fb_price_50 = 129.99 %}
-  {% assign fb_price_100 = 179.99 %}
-  {% assign fb_std_50 = 199.95 %}
-  {% assign fb_std_100 = 249.95 %}
-  {% assign fb_saving_50 = 69.96 %}
-  {% assign fb_saving_100 = 69.96 %}
-  {% assign fb_curr_sym = "$" %}
-{% endif %}
+  assign fb_50 = fb_50 | strip | plus: 0
+  assign fb_100 = fb_100 | strip | plus: 0
+  assign fb_price_50 = fb_price_50 | strip | times: 1.0
+  assign fb_price_100 = fb_price_100 | strip | times: 1.0
+  assign fb_std_50 = fb_std_50 | strip | times: 1.0
+  assign fb_std_100 = fb_std_100 | strip | times: 1.0
+  assign fb_saving_50 = fb_saving_50 | strip | times: 1.0
+  assign fb_saving_100 = fb_saving_100 | strip | times: 1.0
+  assign fb_curr_sym = fb_curr_sym | strip
+-%}
 
 {% for variant in fb_parent.variants %}
   {% if variant.title contains "50" %}

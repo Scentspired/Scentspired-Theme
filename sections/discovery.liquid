@@ -5,6 +5,13 @@
     render 'region--active', key: 'currency_symbol'
   endcapture
   assign region_currency_symbol = region_currency_symbol | strip
+
+  # The discovery-set price is a deliberate regional difference: the live
+  # themes branched on currency to show £14.99 or $19.99. It is region data now.
+  capture region_discovery_price
+    render 'region--active', key: 'bundles.discovery.price_display'
+  endcapture
+  assign region_discovery_price = region_discovery_price | strip
 -%}
 {% comment %}
   Discovery Box Builder
@@ -580,6 +587,7 @@
 </div>
 
 <script>
+  const DISCOVERY_PRICE_DISPLAY = {{ region_discovery_price | json }};
 
   const DISCOVERY_SET_VARIANT_ID = 57083186217305; // Your single Discovery Set variant
 
@@ -855,7 +863,7 @@ mainBtn.disabled = count !== 5;
 
 /* Show price ONLY when bundle is complete */
 if (count === 5) {
-  totalDisplay.innerText = '£14.99';
+  totalDisplay.innerText = DISCOVERY_PRICE_DISPLAY;
   totalDisplay.style.visibility = 'visible';
 } else {
   totalDisplay.innerText = '';
@@ -947,7 +955,7 @@ async function handleCheckout() {
 
     // Reset button after 2 seconds
     setTimeout(() => {
-      priceSpan.innerText = '£14.99'; // default price
+      priceSpan.innerText = DISCOVERY_PRICE_DISPLAY; // default price
       window.isProcessingCartAction = false;
     }, 2000);
 
@@ -955,7 +963,7 @@ async function handleCheckout() {
     console.error('Add to cart error:', err);
     alert('Error adding Discovery Set to cart. Please try again.');
     btn.disabled = false;
-    priceSpan.innerText = '£14.99';
+    priceSpan.innerText = DISCOVERY_PRICE_DISPLAY;
     window.isProcessingCartAction = false;
   }
 }

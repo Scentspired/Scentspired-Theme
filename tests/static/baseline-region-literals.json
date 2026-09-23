@@ -1,9 +1,9 @@
 {
   "accepted": {
     "sections/discovery.liquid::R4": {
-      "count": 3,
+      "count": 2,
       "rule": "currency symbol printed next to an amount",
-      "reason": "Hardcoded bundle prices (14.99). The AMOUNT is region-specific, not just the symbol, and a price for another region is a merchant decision — not something to substitute. Needs real USA and UAE bundle prices.",
+      "reason": "Remaining hits are the $0 / ${{ symbol }} placeholders, not prices. The real discovery price moved to bundles.discovery.price_display.",
       "fix": "use the region's value: key 'currency_symbol', 'free_shipping_threshold_display' or 'shipping_cost_display'"
     },
     "sections/five-box.liquid::R4": {

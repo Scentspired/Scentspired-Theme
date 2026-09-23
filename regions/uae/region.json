@@ -1,5 +1,5 @@
 {
-  "$comment": "United Arab Emirates (experimental, not published). CARRIED OVER, NOT CHOSEN: support_email, returns_email, logo_url, hero_video_url, category_label_1 and category_label_2 below are the USA storefront values, inherited from the old USA-shaped _defaults.json and written down here only so the rendered output did not change — see TODO.md 0.11.",
+  "$comment": "United Arab Emirates (experimental, not published). CARRIED OVER, NOT CHOSEN: support_email, returns_email, logo_url, hero_video_url, category_label_1 and category_label_2 below are the USA storefront values, inherited from the old USA-shaped _defaults.json and written down here only so the rendered output did not change — see TODO.md 0.11. Also, bundles below are the UK numbers, carried over because that is what UAE renders today: its currency is AED, so the live USD branch never fired and it fell through to the UK defaults. Real UAE bundle pricing has to replace these.",
   "id": "uae",
   "code": "AE",
   "name": "United Arab Emirates",
@@ -32,5 +32,31 @@
     "enabled": false
   },
   "myshopify_domain": "scentspiredae.myshopify.com",
-  "dev_port": 9294
+  "dev_port": 9294,
+  "bundles": {
+    "five_favourites": {
+      "variant_50": 57083185922393,
+      "variant_100": 57083185955161,
+      "price_50": 64.99,
+      "price_100": 99.99,
+      "standard_50": 99.95,
+      "standard_100": 149.95,
+      "saving_50": 34.96,
+      "saving_100": 49.96
+    },
+    "trio": {
+      "variant_50": 57083186086233,
+      "variant_100": 57083186119001,
+      "price_50": 39.99,
+      "price_100": 59.99,
+      "standard_50": 59.97,
+      "standard_100": 89.97,
+      "saving_50": 19.98,
+      "saving_100": 29.98
+    },
+    "discovery": {
+      "variant_id": 57083186217305,
+      "price_display": "£14.99"
+    }
+  }
 }
