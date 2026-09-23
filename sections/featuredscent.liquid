@@ -426,107 +426,7 @@
     <div class="fragrance-layout" id="fragrance-carousel">
       {% assign products = collections[section.settings.collection].products %}
       {% for product in products limit: 4 %}
-        <div class="fragrance-item product-card" data-product-id="{{ product.id }}">
-          <!-- Badges -->
-          
-          <!-- Image with secondary image on hover -->
-          <a href="{{ product.url }}" style="text-decoration: none; color: inherit;">
-            <div class="fragrance-image-wrap">
-              <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title }}">
-              {% if product.images.size > 1 %}
-                <img class="secondary-image" src="{{ product.images[1] | image_url: width: 600 }}" alt="{{ product.title }}">
-              {% endif %}
-              <div class="product-badges">
-  {% for tag in product.tags %}
-    {% if tag == 'men' or tag == 'Men' %}
-      <span class="product-badge badge-men">Men</span>
-      {% break %}
-    {% elsif tag == 'women' or tag == 'Women' %}
-      <span class="product-badge badge-women">Women</span>
-      {% break %}
-    {% elsif tag == 'unisex' or tag == 'Unisex' %}
-      <span class="product-badge badge-unisex">Unisex</span>
-      {% break %}
-    {% endif %}
-  {% endfor %}
-</div>
-            </div>
-          </a>
-
-          <!-- Content section - grey background, NO hover effects -->
-          <div class="fragrance-info">
-            <!-- Coming Soon badge - shows when all variants are out of stock -->
-            {% assign all_variants_out_of_stock = true %}
-            {% for variant in product.variants %}
-              {% if variant.available and variant.inventory_quantity > 0 %}
-                {% assign all_variants_out_of_stock = false %}
-                {% break %}
-              {% endif %}
-            {% endfor %}
-            
-
-            <!-- Product Title -->
-            <a href="{{ product.url }}" style="text-decoration: none; color: inherit;">
-            <div class="fragrance-name">{{ product.title }}</div>
-             </a>
-            <!-- Inspired by (Vendor) -->
-            <div class="fragrance-brand">
-              {{ product.vendor }}
-            </div>
-
-            <!-- Price section with discount -->
-            <!-- Price section with discount -->
-<div class="price-section">
-  {% assign variant = product.variants.first %}
-  
-  <span class="product-price-display" data-price-display data-product-id="{{ product.id }}">
-    {{ variant.price | money }}
-  </span>
-  
-  {% if variant.compare_at_price and variant.compare_at_price > variant.price %}
-  <span class="original-price" data-compare-price>
-    {{ variant.compare_at_price | money }}
-  </span>
-  <span class="price-badge" data-sale-badge>Sale</span>
-{% endif %}
-</div>
-
-  <!-- Variant options -->
-  <form method="post" action="/cart/add" class="item-form" data-product-id="{{ product.id }}">
-  {% if product.variants.size > 1 %}
-  <div class="variant-options" data-variant-options>
-  {% for variant in product.variants %}
-  <!-- Added data-inventory attribute to track stock levels -->
-  <button
-  type="button"
-  class="variant-option-btn"
-  data-variant-id="{{ variant.id }}"
-  data-variant-price="{{ variant.price }}"
-  data-variant-compare="{{ variant.compare_at_price }}"
-  data-available="{{ variant.available }}"
-  data-inventory="{{ variant.inventory_quantity | default: 0 }}"
-  >
-  {{ variant.title }}
-  </button>
-  {% endfor %}
-  </div>
-                <!-- Store first available variant in hidden input for form submission -->
-                {% assign first_available_variant = product.selected_or_first_available_variant %}
-<input
-  type="hidden"
-  name="id"
-  class="variant-id-input"
-  value="{{ first_available_variant.id }}"
->
-              {% else %}
-                <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-              {% endif %}
-
-              <!-- Add to cart button -->
-              <button type="submit" class="cart-button">ADD TO CART</button>
-            </form>
-          </div>
-        </div>
+        {% render 'card--product-carousel', product: product %}
       {% endfor %}
     </div>
       <div class="fragrance-dots mobile-only">
@@ -623,7 +523,7 @@ document.addEventListener("DOMContentLoaded", () => {
           variantIdInput.value = btn.dataset.variantId;
         }
 
-        const variantPrice = parseInt(btn.dataset.variantPrice, 10);
+        const variantPrice = parseInt(btn.dataset.variantPriceRaw, 10);
         const comparePrice = parseInt(btn.dataset.variantCompare, 10);
 
         if (priceDisplay && variantPrice) {
@@ -664,7 +564,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       if (priceDisplay) {
-        const price = parseInt(firstAvailableBtn.dataset.variantPrice, 10);
+        const price = parseInt(firstAvailableBtn.dataset.variantPriceRaw, 10);
         const compare = parseInt(firstAvailableBtn.dataset.variantCompare, 10);
 
         priceDisplay.textContent = "£" + (price / 100).toFixed(2);
