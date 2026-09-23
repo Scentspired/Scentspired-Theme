@@ -57,7 +57,12 @@
     "dev:uk:live": "node scripts/guard-live-repos.cjs --store scentspireduk.myshopify.com --read && npm run compile:uk && shopify theme dev --path=dist/uk --store=scentspireduk.myshopify.com",
     "dev:usa:live": "node scripts/guard-live-repos.cjs --store scentspired-usa.myshopify.com --read && npm run compile:usa && shopify theme dev --path=dist/usa --store=scentspired-usa.myshopify.com",
     "shopify:logout": "shopify auth logout",
-    "shopify:whoami": "shopify theme list --store=scentspireduk.myshopify.com"
+    "shopify:whoami": "shopify theme list --store=scentspireduk.myshopify.com",
+    "fonts:baseline": "node scripts/font-inventory.cjs",
+    "fonts:check": "node scripts/font-inventory.cjs --check",
+    "fonts:report": "node scripts/font-inventory.cjs --report",
+    "parity:check": "node scripts/render-snapshot.cjs --check",
+    "parity:baseline": "node scripts/render-snapshot.cjs"
   },
   "devDependencies": {
     "@shopify/cli": "^3.94.0",
