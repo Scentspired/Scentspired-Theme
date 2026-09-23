@@ -1,0 +1,9 @@
+{
+  "accepted": {
+    "article": {
+      "h1": 0,
+      "ui": 0,
+      "reason": "All 19 article templates omit or disable main-article, so no article renders a title heading. Fixing it adds visible copy to 19 pages, which is a content decision — see TODO.md 0.13."
+    }
+  }
+}

@@ -258,6 +258,33 @@ const CORE_LAYERS = [
     ],
     failMsg: "Shared code names a region: a literal that ships the wrong value everywhere else",
   },
+  {
+    // Core-only: a compiled theme is the same code, and the setting shapes
+    // this checks for are authored here.
+    name: "Layer 16: Unguarded image_url Guard",
+    cmd: "node",
+    args: [
+      path.join(TESTS_DIR, "static", "guard--image-url.cjs"),
+      `--root=${GUARDIAN_ROOT}`,
+    ],
+    failMsg: "image_url used on a setting that may be blank: a cleared image renders a Liquid error instead of the page",
+  },
+  {
+    // Reads the captured parity pages: one H1 per page is a property of the
+    // composed output, not of any single section file.
+    name: "Layer 17: Heading Structure Guard",
+    cmd: "node",
+    args: [path.join(TESTS_DIR, "static", "guard--headings.cjs")],
+    failMsg: "Heading structure regressed: a page lost its single H1, or interface chrome re-entered the outline",
+  },
+  {
+    // The guards above are only worth their exit code if they have been seen
+    // to fail. Each fixture plants defects and asserts they are caught.
+    name: "Layer 18: Guard Fixtures (red/green verification)",
+    cmd: "node",
+    args: [path.join(TESTS_DIR, "static", "run-guard-fixtures.cjs")],
+    failMsg: "A guard no longer catches what it claims to catch",
+  },
 ];
 
 let totalPassed = 0;
