@@ -114,16 +114,22 @@ for (const file of files) {
     }
   }
 
-  // {% section 'name' %}
-  for (const m of src.matchAll(/\{%-?\s*section\s+'([^']+)'/g)) {
+  /*
+   * Liquid accepts single OR double quotes, and the theme uses both. Matching
+   * only one style made this guard report 37 renders when the real number is
+   * several times that — it walked straight past every
+   * {% render "blog--article--header" %} in editorial--article.liquid.
+   */
+  for (const m of src.matchAll(/\{%-?\s*section\s+['"]([^'"]+)['"]/g)) {
     checkedSections++;
     if (!sections.has(m[1]) && !BUILTIN.has(m[1])) {
       problems.push(`${rel}: {% section '${m[1]}' %} but sections/${m[1]}.liquid does not exist`);
     }
   }
 
-  // {% render 'name' %} — literal names only; a variable cannot be checked.
-  for (const m of src.matchAll(/\{%-?\s*render\s+'([^']+)'/g)) {
+  // {% render %} and the older {% include %}; literal names only, since a
+  // variable name cannot be resolved statically.
+  for (const m of src.matchAll(/\{%-?\s*(?:render|include)\s+['"]([^'"]+)['"]/g)) {
     const name = m[1];
     checkedSnippets++;
     if (!snippets.has(name)) {

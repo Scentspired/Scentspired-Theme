@@ -8,7 +8,7 @@
   - label: {String} Label text (default: "Tags")
 
   Usage:
-  {% render 'article-tags', article: article, blog: blog, label: "Filed under" %}
+  {% render 'blog--article--tags', article: article, blog: blog, label: "Filed under" %}
 {% endcomment %}
 
 {%- if article.tags.size > 0 -%}

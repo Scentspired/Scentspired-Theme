@@ -9,7 +9,7 @@
   - bio_text: {String} Biographical summary (optional)
 
   Usage:
-  {% render 'article-author-bio', article: article, show_avatar: true, avatar: block.settings.avatar, bio_text: block.settings.bio_text %}
+  {% render 'blog--article--author-bio', article: article, show_avatar: true, avatar: block.settings.avatar, bio_text: block.settings.bio_text %}
 {% endcomment %}
 
 {%- assign show_av = show_avatar | default: true -%}

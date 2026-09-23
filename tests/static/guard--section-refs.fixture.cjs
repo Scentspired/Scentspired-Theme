@@ -65,6 +65,16 @@ const CASES = [
     },
   },
   {
+    // Liquid takes either quote style and this theme uses both. A version
+    // that only matched single quotes saw 37 renders where there are 158.
+    name: 'a double-quoted render is still a reference',
+    shouldFail: true,
+    files: {
+      'sections/a.liquid': '{% render "missing-thing" %}',
+      'snippets/present.liquid': 'ok',
+    },
+  },
+  {
     name: 'block type nested in a section is not a section',
     shouldFail: false,
     files: {
