@@ -360,6 +360,59 @@ later: each is now reachable from one place.
 - **Suggested fix:** retry twice rather than once, and treat a `+0 bytes`
   delta as a retry signal rather than a failure, since a real markup edit
   essentially never lands on the same byte count.
+### 0.17 After a mass rename, the dev server does not upload the new files
+
+- **Status:** OPEN — operational, costs time every time it happens
+- **What:** Phase O renamed 86 sections. `shopify theme dev` uploaded the
+  templates and section groups that reference them, but not three of the
+  renamed `.liquid` files, so Shopify rejected the whole theme with:
+
+  ```
+  sections/header-group.json
+    Section type 'core--announcement-bar' does not refer to an existing section file
+  templates/page.contact.json
+    Section type 'editorial--rich-text' does not refer to an existing section file
+  templates/page.fragrance-finder.json
+    Section type 'media--hero' does not refer to an existing section file
+  ```
+
+  Every page then served a 5KB "Failed to Upload Theme Files" error, which the
+  parity harness read as pages losing ~850KB.
+- **What it is not:** the files existed in `dist/` with exactly those names,
+  the old names were gone, and the other 83 renamed sections uploaded fine —
+  so double hyphens in a section filename are not the problem. It is the
+  watcher missing the create half of a rename.
+- **What does not fix it:** `touch`. Changing only the mtime did not make the
+  dev server re-upload them.
+- **What does:** deleting the file and writing it back, which produces a
+  delete-then-create pair the watcher acts on. After that the upload errors
+  were gone.
+- **Better:** restart `npm run dev:<region>` after a rename batch. A fresh
+  start does a full upload and avoids the question entirely.
+- **Why it matters beyond this batch:** the failure is indistinguishable from
+  a broken rename until you read the error page, and the parity harness
+  reports it as enormous content loss. Anyone seeing "-864768 bytes" should
+  check for an upload error before believing a regression.
+
+### 0.18 The Shopify CLI session expires mid-session, repeatedly
+
+- **Status:** OPEN — environmental
+- **What:** both dev servers intermittently return an 87-byte body reading
+  "The access token provided is expired, revoked, malformed, or invalid for
+  other reasons." It has affected UK and USA at different times, sometimes
+  1 request in 5, sometimes every request.
+- **Why it matters:** the parity harness cannot tell that response from a page
+  that legitimately lost content. An early run reported `page-terms` and
+  `account-login` losing 257KB each; both were token errors. Re-baselining on
+  that would have written error pages into the baselines and silently
+  destroyed the harness.
+- **Rule of thumb:** before trusting any parity failure, check whether the
+  page is ~87 bytes or ~5KB with "Failed to Upload". Both mean the theme is
+  fine and the session or the sync is not.
+- **Possible fix worth trying:** have the harness detect both shapes and abort
+  with "dev server unhealthy" rather than reporting a diff.
+
+
 
 
 
