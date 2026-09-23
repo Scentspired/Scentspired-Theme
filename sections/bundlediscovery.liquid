@@ -282,6 +282,9 @@
   }
 {% endstylesheet %}
 
+{% render 'card--product' %}
+<script src="{{ 'card--product.js' | asset_url }}" defer="defer"></script>
+
 <section class="bs-section">
   <div class="bs-container">
     <div class="bs-grid">
@@ -409,13 +412,6 @@ function navigateProducts(direction) {
   }
 }
 
-function getBadgeHTML(tagsString) {
-  const tags = (tagsString || '').toLowerCase().split(',');
-  if (tags.includes('men')) return '<span class="product-badge badge-men">Men</span>';
-  if (tags.includes('women')) return '<span class="product-badge badge-women">Women</span>';
-  if (tags.includes('unisex')) return '<span class="product-badge badge-unisex">Unisex</span>';
-  return '';
-}
 
 function updateProductsDisplay() {
   const grid = document.getElementById('productsGrid');
@@ -423,42 +419,12 @@ function updateProductsDisplay() {
   const perPage = getPerPage();
   const productsToShow = allProducts.slice(currentIndex, currentIndex + perPage);
 
-  grid.innerHTML = '';
+  // Card markup lives in snippets/card--product.liquid.
+  grid.textContent = '';
   productsToShow.forEach(product => {
-    const badgeHTML = getBadgeHTML(product.tags);
-    const variantsHTML = product.variants && product.variants.length > 1 ? `
-      <div class="variant-options">
-        ${product.variants.map((v, i) => `
-          <button type="button" class="variant-option-btn ${i === 0 ? 'active' : ''}" data-variant-id="${v.id}" data-variant-price="${v.price}">
-            ${v.title}
-          </button>
-        `).join('')}
-      </div>` : '';
-
-    const firstPrice = product.variants && product.variants[0] ? product.variants[0].price : '';
-    const firstId = product.variants && product.variants[0] ? product.variants[0].id : '';
-
-    grid.innerHTML += `
-      <div class="fragrance-item" data-product-id="${product.id}">
-        <a href="${product.url}" style="text-decoration: none; color: inherit;">
-          <div class="fragrance-image-wrap">
-            <img src="${product.featured_image}" alt="${product.title}">
-            ${product.hover_image ? `<img class="secondary-image" src="${product.hover_image}" alt="${product.title}">` : ''}
-            <div class="product-badges">${badgeHTML}</div>
-          </div>
-        </a>
-        <div class="fragrance-info">
-          <div class="fragrance-rating">★★★★☆</div>
-          <div class="fragrance-name">${product.title}</div>
-          <div class="fragrance-brand">${product.vendor}</div>
-          <div class="product-price-display" data-price-display>${firstPrice}</div>
-          <form class="product-form" data-product-id="${product.id}">
-            <input type="hidden" name="id" class="selected-variant-id" value="${firstId}">
-            ${variantsHTML}
-            <button type="submit" class="cart-button">ADD TO CART</button>
-          </form>
-        </div>
-      </div>`;
+    grid.appendChild(
+      ScentspiredCard.render(product, { cartLabel: 'ADD TO CART' })
+    );
   });
 }
 
@@ -473,7 +439,7 @@ document.addEventListener('click', e => {
     btn.classList.add('active');
     const varInput = card.querySelector('.selected-variant-id');
     if (varInput && btn.dataset.variantId) varInput.value = btn.dataset.variantId;
-    const priceDisplay = card.querySelector('[data-price-display]');
+    const priceDisplay = card.querySelector('[data-current-price]');
     if (priceDisplay && btn.dataset.variantPrice) priceDisplay.textContent = btn.dataset.variantPrice;
   }
 });

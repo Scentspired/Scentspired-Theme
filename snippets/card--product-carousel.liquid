@@ -33,9 +33,16 @@
   `p.fragrance-brand`, only the bare class.
 
   Props:
-    product   optional. A Shopify product object for server mode; omit for
-              template mode.
-    index     optional. Written to data-product-index.
+    product       optional. A Shopify product object for server mode; omit for
+                  template mode.
+    index         optional. Written to data-product-index.
+    filter_price  optional. Written to data-price.
+    filter_tags   optional. Written to data-gender / data-type / data-ingredient.
+
+  filter_* exist because main-collection-product-grid filters client-side and
+  its JS reads those attributes from the card root, so a wrapper element would
+  not do. They are card-level metadata rather than arbitrary passthrough, and
+  are omitted entirely when not supplied.
   ============================================================================
 {%- endcomment -%}
 
@@ -72,6 +79,8 @@
   data-card-root
   {% if card_id != '' %}data-product-id="{{ card_id }}"{% endif %}
   {% if index %}data-product-index="{{ index }}"{% endif %}
+  {% if filter_price %}data-price="{{ filter_price }}"{% endif %}
+  {% if filter_tags %}data-gender="{{ filter_tags }}" data-type="{{ filter_tags }}" data-ingredient="{{ filter_tags }}"{% endif %}
 >
   <a class="fragrance-image-wrap" data-card-image-link {% if card_url != '' %}href="{{ card_url }}"{% endif %}>
     <img class="product-main-image" data-card-image alt="{{ card_title | escape }}" {% if main_image != '' %}src="{{ main_image }}"{% endif %}>

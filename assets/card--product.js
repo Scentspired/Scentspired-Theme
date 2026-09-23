@@ -149,6 +149,9 @@ window.ScentspiredCard = (function () {
       el.dataset.allVariants = JSON.stringify(
         (product.variants || []).map(v => ({ available: v.available, id: v.id }))
       );
+      // Sections differ in casing ("Add to Cart" vs "ADD TO CART"), which is
+      // visible text, so it stays configurable rather than being unified.
+      if (opts.cartLabel) el.textContent = opts.cartLabel;
       if (first.available === false) {
         el.classList.add('sold-out');
         el.textContent = 'Sold Out';

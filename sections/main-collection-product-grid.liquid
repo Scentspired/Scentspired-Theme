@@ -3118,146 +3118,7 @@
                   {% assign tags = product.tags | join: " " | downcase %}
 
                   {% comment %} Replaced old card structure with new fragrance-item design while keeping data attributes for filtering {% endcomment %}
-                  <div
-                    class="fragrance-item product-card"
-                    data-price="{{ price }}"
-                    data-gender="{{ tags }}"
-                    data-type="{{ tags }}"
-                    data-ingredient="{{ tags }}"
-                    data-product-id="{{ product.id }}">
-                    {% comment %} Image/Video Section {% endcomment %}
-                    <div class="fragrance-image-wrap">
-                      <a href="{{ product.url }}" style="text-decoration: none; color: inherit;">
-                        {% comment %} Added video autoplay logic to check for videos in any position, excluding specific packaging titles {% endcomment %}
-                        {% assign has_video = false %}
-                        {% for media in product.media %}
-                          {% if media.media_type == "video" %}
-                            {% assign video_title = media.alt | downcase %}
-                            {% unless video_title contains "packaging-men"
-                              or video_title contains "packaging-women"
-                              or video_title contains "packaging-unisex"
-                            %}
-                              {% assign has_video = true %}
-                              {% assign product_video = media %}
-                              {% break %}
-                            {% endunless %}
-                          {% endif %}
-                        {% endfor %}
-
-                        {% if has_video %}
-                          <div
-                            class="product-card-video-container"
-                            style="
-                              position: absolute;
-                              top: 0;
-                              left: 0;
-                              height: 100%;
-                              width: 100%;
-                              object-fit: cover;
-                              transition: opacity 0.4s ease;
-                            ">
-                            {{
-                              product_video
-                              | video_tag:
-                                autoplay: true,
-                                loop: true,
-                                muted: true,
-                                controls: false,
-                                playsinline: true,
-                                style: "position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;"
-                            }}
-                          </div>
-                        {% else %}
-                          <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title }}">
-                          {% if product.images.size > 1 %}
-                            <img
-                              class="secondary-image"
-                              src="{{ product.images[1] | image_url: width: 600 }}"
-                              alt="{{ product.title }}">
-                          {% endif %}
-                        {% endif %}
-                      </a>
-
-                      <div class="product-badges">
-                        {% for tag in product.tags %}
-                          {% assign tag_dc = tag | downcase %}
-                          {% if tag_dc == "men" %}
-                            <span class="product-badge badge-men">Men</span>{% break %}
-                          {% elsif tag_dc == "women" %}
-                            <span class="product-badge badge-women">Women</span>{% break %}
-                          {% elsif tag_dc == "unisex" %}
-                            <span class="product-badge badge-unisex">Unisex</span>{% break %}
-                          {% endif %}
-                        {% endfor %}
-                      </div>
-                    </div>
-
-                    {% comment %} Info Section {% endcomment %}
-                    <div class="fragrance-info">
-                      <a href="{{ product.url }}" style="text-decoration: none; color: inherit;">
-                        <div class="fragrance-name">{{ product.title }}</div>
-                      </a>
-                      <div class="fragrance-brand">{{ product.vendor }}</div>
-
-                      <!-- Price section with discount -->
-                      <div class="price-section">
-                        {% assign variant = product.variants.first %}
-
-                        <span class="product-price-display" data-price-display data-product-id="{{ product.id }}">
-                          {{ variant.price | money }}
-                        </span>
-
-                        <span
-                          class="original-price"
-                          data-compare-at-price-display
-                          {% if variant.compare_at_price and variant.compare_at_price > variant.price %}
-                            style="display: inline;"
-                          {% else %}
-                            style="display: none;"
-                          {% endif %}>
-                          {{ variant.compare_at_price | money }}
-                        </span>
-                        <span
-                          class="price-badge"
-                          data-price-badge
-                          {% if variant.compare_at_price and variant.compare_at_price > variant.price %}
-                            style="display: inline;"
-                          {% else %}
-                            style="display: none;"
-                          {% endif %}
-                          >SALE</span
-                        >
-                      </div>
-
-                      <form method="post" action="/cart/add" class="item-form" data-product-id="{{ product.id }}">
-                        {% if product.variants.size > 1 %}
-                          <div class="variant-options">
-                            {% for variant in product.variants %}
-                              <button
-                                type="button"
-                                class="variant-option-btn"
-                                data-variant-id="{{ variant.id }}"
-                                data-variant-price="{{ variant.price }}"
-                                data-variant-compare-at-price="{{ variant.compare_at_price }}"
-                                data-available="{{ variant.available }}"
-                                data-inventory="{{ variant.inventory_quantity | default: 0 }}">
-                                {{ variant.title }}
-                              </button>
-                            {% endfor %}
-                          </div>
-                          <input
-                            type="hidden"
-                            name="id"
-                            class="variant-id-input"
-                            value="{{ product.variants.first.id }}">
-                        {% else %}
-                          <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-                        {% endif %}
-
-                        <button type="submit" class="cart-button">ADD TO CART</button>
-                      </form>
-                    </div>
-                  </div>
+                    {% render 'card--product-carousel', product: product, filter_price: price, filter_tags: tags %}
                 {% endunless %}
               {% endunless %}
             {% endunless %}
@@ -3334,11 +3195,11 @@
           buttons.forEach(b => b.classList.remove('active'));
           firstAvailable.classList.add('active');
           if (input) input.value = firstAvailable.dataset.variantId;
-          if (priceEl) priceEl.textContent = currSym + (firstAvailable.dataset.variantPrice / 100).toFixed(2);
+          if (priceEl) priceEl.textContent = currSym + (firstAvailable.dataset.variantPriceRaw / 100).toFixed(2);
 
           // Update compare_at_price
           const compareAtPrice = firstAvailable.dataset.variantCompareAtPrice;
-          const currentPrice = parseInt(firstAvailable.dataset.variantPrice);
+          const currentPrice = parseInt(firstAvailable.dataset.variantPriceRaw);
 
           if (compareAtPrice && parseInt(compareAtPrice) > currentPrice) {
             if (compareAtPriceEl) {
@@ -3398,11 +3259,11 @@
       const input = card.querySelector('.variant-id-input');
 
       if (input) input.value = btn.dataset.variantId;
-      if (priceEl) priceEl.textContent = currSym + (btn.dataset.variantPrice / 100).toFixed(2);
+      if (priceEl) priceEl.textContent = currSym + (btn.dataset.variantPriceRaw / 100).toFixed(2);
 
       // Update compare_at_price
       const compareAtPrice = btn.dataset.variantCompareAtPrice;
-      const currentPrice = parseInt(btn.dataset.variantPrice);
+      const currentPrice = parseInt(btn.dataset.variantPriceRaw);
 
       if (compareAtPrice && parseInt(compareAtPrice) > currentPrice) {
         if (compareAtPriceEl) {
@@ -3447,7 +3308,7 @@
 
       variantButtons.forEach(function (btn) {
         btn.addEventListener('click', function () {
-          const newPrice = btn.getAttribute('data-variant-price');
+          const newPrice = btn.getAttribute('data-variant-price-raw');
 
           // Update the scent-price element when variant is selected
           if (priceElement && newPrice) {
@@ -3995,14 +3856,14 @@
               targetBtn.classList.add('active');
               const priceElement = card.querySelector('[data-price-display]');
               if (priceElement) {
-                priceElement.textContent = targetBtn.dataset.variantPrice ? currSym + (parseInt(targetBtn.dataset.variantPrice) / 100).toFixed(2) : priceElement.textContent;
+                priceElement.textContent = targetBtn.dataset.variantPriceRaw ? currSym + (parseInt(targetBtn.dataset.variantPriceRaw) / 100).toFixed(2) : priceElement.textContent;
               }
             }
           } else if (ranges.length > 0) {
             // If price range is selected, try to match the variant that falls within that range
             const selectedRange = ranges[0];
             let targetBtn = variantBtns.find(btn => {
-              const variantPrice = parseInt(btn.dataset.variantPrice);
+              const variantPrice = parseInt(btn.dataset.variantPriceRaw);
               return variantPrice >= selectedRange.min * 100 && variantPrice <= selectedRange.max * 100;
             });
 
@@ -4016,7 +3877,7 @@
               targetBtn.classList.add('active');
               const priceElement = card.querySelector('[data-price-display]');
               if (priceElement) {
-                priceElement.textContent = targetBtn.dataset.variantPrice ? currSym + (parseInt(targetBtn.dataset.variantPrice) / 100).toFixed(2) : priceElement.textContent;
+                priceElement.textContent = targetBtn.dataset.variantPriceRaw ? currSym + (parseInt(targetBtn.dataset.variantPriceRaw) / 100).toFixed(2) : priceElement.textContent;
               }
             }
           } else if (genders.length === 0 && types.length === 0 && ingredients.length === 0 && sizes.length === 0) {
@@ -4025,8 +3886,8 @@
                 variantBtns.forEach(btn => btn.classList.remove('active'));
                 variantBtns[0].classList.add('active');
                 const priceElement = card.querySelector('[data-price-display]');
-                if (priceElement && variantBtns[0].dataset.variantPrice) {
-                  priceElement.textContent = currSym + (parseInt(variantBtns[0].dataset.variantPrice) / 100).toFixed(2);
+                if (priceElement && variantBtns[0].dataset.variantPriceRaw) {
+                  priceElement.textContent = currSym + (parseInt(variantBtns[0].dataset.variantPriceRaw) / 100).toFixed(2);
                 }
               }
           } else {
@@ -4036,8 +3897,8 @@
                 variantBtns.forEach(btn => btn.classList.remove('active'));
                 variantBtns[0].classList.add('active');
                 const priceElement = card.querySelector('[data-price-display]');
-                if (priceElement && variantBtns[0].dataset.variantPrice) {
-                  priceElement.textContent = currSym + (parseInt(variantBtns[0].dataset.variantPrice) / 100).toFixed(2);
+                if (priceElement && variantBtns[0].dataset.variantPriceRaw) {
+                  priceElement.textContent = currSym + (parseInt(variantBtns[0].dataset.variantPriceRaw) / 100).toFixed(2);
                 }
               }
           }
