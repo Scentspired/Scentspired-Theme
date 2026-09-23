@@ -32,5 +32,6 @@
     "enabled": false,
     "url": "https://www.trustpilot.com/review/scentspired.com"
   },
-  "published": true
+  "published": true,
+  "myshopify_domain": "scentspireduk.myshopify.com"
 }

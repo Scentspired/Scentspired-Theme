@@ -32,9 +32,9 @@
     "compile:usa": "node scripts/compile-region.cjs usa",
     "compile:uae": "node scripts/compile-region.cjs uae",
     "compile:all": "node scripts/compile-all.cjs",
-    "dev:uk": "npm run compile:uk && shopify theme dev --path=dist/uk --store=scentspiredae.myshopify.com",
-    "dev:usa": "npm run compile:usa && shopify theme dev --path=dist/usa --store=scentspiredae.myshopify.com",
-    "dev:uae": "npm run compile:uae && shopify theme dev --path=dist/uae --store=scentspiredae.myshopify.com",
+    "dev:uk": "node scripts/dev-region.cjs uk",
+    "dev:usa": "node scripts/dev-region.cjs usa",
+    "dev:uae": "node scripts/dev-region.cjs uae",
     "check": "node tests/static/theme-check-runner.cjs",
     "check:theme": "node tests/static/theme-check-runner.cjs",
     "lint:css": "node tests/static/stylelint-runner.cjs",
@@ -54,8 +54,8 @@
     "sync:pull:uae": "node engine/sync-regions.cjs --pull --target=uae",
     "region:sync": "node scripts/region-engine.cjs --sync",
     "region:list": "node scripts/region-engine.cjs",
-    "dev:uk:live": "node scripts/guard-live-repos.cjs --store scentspireduk.myshopify.com --read && npm run compile:uk && shopify theme dev --path=dist/uk --store=scentspireduk.myshopify.com",
-    "dev:usa:live": "node scripts/guard-live-repos.cjs --store scentspired.myshopify.com --read && npm run compile:usa && shopify theme dev --path=dist/usa --store=scentspired.myshopify.com",
+    "dev:uk:live": "node scripts/dev-region.cjs uk",
+    "dev:usa:live": "node scripts/dev-region.cjs usa",
     "shopify:logout": "shopify auth logout",
     "shopify:whoami": "shopify theme list --store=scentspireduk.myshopify.com",
     "fonts:baseline": "node scripts/font-inventory.cjs",
@@ -70,7 +70,8 @@
     "guard:imageurl": "node tests/static/guard--image-url.cjs",
     "guard:headings": "node tests/static/guard--headings.cjs",
     "guard:all": "node tests/static/guard--region-literals.cjs && node tests/static/guard--image-url.cjs && node tests/static/guard--headings.cjs && node tests/static/run-guard-fixtures.cjs",
-    "stores:check": "node scripts/check-stores.cjs"
+    "stores:check": "node scripts/check-stores.cjs",
+    "dev": "node scripts/dev-region.cjs"
   },
   "devDependencies": {
     "@shopify/cli": "^3.94.0",
