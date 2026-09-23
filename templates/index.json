@@ -448,7 +448,7 @@
       "settings": {}
     },
     "instagram_section_m4ApUx": {
-      "type": "instagram-section",
+      "type": "social--instagram",
       "custom_css": [
         ".carousel-container {display: none;}",
         ".scent-header {margin-bottom: -50px;}",
@@ -489,7 +489,7 @@
       }
     },
     "instagram_feed_6XcCWT": {
-      "type": "instagram-feed",
+      "type": "social--instagram-feed",
       "custom_css": [
         ".carousel-container {display: none;}",
         ".scent-header {margin-bottom: -120px;}",
