@@ -313,6 +313,9 @@
 
 
 
+{% render 'card--product' %}
+<script src="{{ 'card--product.js' | asset_url }}" defer="defer"></script>
+
 <section class="bs-section">
     <div class="bs-container">
         <div class="bs-grid">
@@ -450,14 +453,6 @@ function navigateProducts(direction) {
 }
 
 // Get product badges
-function getBadgeHTML(tagsString) {
-  const tags = tagsString.toLowerCase().split(',');
-  if (tags.includes('men')) return '<span class="product-badge badge-men">Men</span>';
-  if (tags.includes('women')) return '<span class="product-badge badge-women">Women</span>';
-  if (tags.includes('unisex')) return '<span class="product-badge badge-unisex">Unisex</span>';
-  return '';
-}
-
 function updateVariantAvailability() {
   fetch('/cart.js')
     .then(res => res.json())
@@ -511,55 +506,11 @@ function updateProductsDisplay() {
   const perPage = getPerPage();
   const productsToShow = allProducts.slice(currentIndex, currentIndex + perPage);
 
+  // Card markup lives in snippets/card--product.liquid. This section supplies
+  // data only, so a card change is a one-file change there.
   grid.innerHTML = '';
   productsToShow.forEach(product => {
-    const badgeHTML = getBadgeHTML(product.tags);
-    const variantsHTML = product.variants.length > 1 ? `
-  <div class="variant-options">
-    ${product.variants.map(v => `
-      <button
-        type="button"
-        class="variant-option-btn ${v.available ? '' : 'disabled'}"
-        data-variant-id="${v.id}"
-        data-variant-price="${v.price}"
-        data-compare-price="${v.compareAtPrice || 0}"
-        data-inventory="${v.availableInventory}"
-        data-available="${v.available}">
-        ${v.title}
-      </button>
-    `).join('')}
-  </div>` : '';
-
-    grid.innerHTML += `
-      <div class="fragrance-item" data-product-id="${product.id}">
-        <a href="${product.url}" style="text-decoration: none; color: inherit;">
-          <div class="fragrance-image-wrap">
-            <img src="${product.featured_image}" alt="${product.title}">
-            ${product.hover_image ? `<img class="secondary-image" src="${product.hover_image}" alt="${product.title}">` : ''}
-            <div class="product-badges">${badgeHTML}</div>
-          </div>
-        </a>
-        <div class="fragrance-info">
-         <a href="${product.url}" style="text-decoration: none; color: inherit;">
-          <div class="fragrance-name">${product.title}</div>
-          </a>
-          <div class="fragrance-brand">${product.vendor}</div>
-          <div class="product-price-display" data-price-display>
-            <div class="price-wrapper">
-              <span data-current-price>${product.variants[0].price}</span>
-              ${product.variants[0].compareAtPrice > 0 ? `<span class="compare-price">${formatPrice(product.variants[0].compareAtPrice)}</span>` : ''}
-              ${product.variants[0].compareAtPrice > 0 ? '<span class="sale-badge">SALE</span>' : ''}
-            </div>
-          </div>
-
-          <!-- Shopify native cart form -->
-          <form method="post" action="/cart/add" class="product-form" data-product-id="${product.id}">
-            <input type="hidden" name="id" class="selected-variant-id" value="${product.variants[0].id}">
-            ${variantsHTML}
-            <button type="submit" class="cart-button" data-all-variants="${JSON.stringify(product.variants.map(v => ({ available: v.available, id: v.id })))}">Add to Cart</button>
-          </form>
-        </div>
-      </div>`;
+    grid.appendChild(ScentspiredCard.render(product, { formatPrice: formatPrice }));
   });
 
   // Auto-select first AVAILABLE variant per product

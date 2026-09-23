@@ -76,7 +76,23 @@ later: each is now reachable from one place.
 - **Verify with:** `npm run fonts:check -- --painted` plus a network check that
   each font file is requested once.
 
-### 0.6 Fallback chains were consolidated
+### 0.6 Two footer links 404 — including Terms & Conditions
+
+- **Status:** OPEN — content fix, not a theme change
+- **What:** the footer links to `/pages/terms-and-conditions` and
+  `/pages/scent-families`. Both return **404 on the live UK storefront**, from
+  every page on the site.
+- **Verified:** live `scentspired.co.uk` returns 404 for both, as does our build.
+  Pre-existing in production; not introduced by this work. `/pages/termsncondition`
+  and `/pages/terms` also 404, so no alternative handle exists.
+- **Why it matters:** Terms & Conditions is a legal page linked site-wide.
+- **Fix:** create the two pages in Shopify admin with handles
+  `terms-and-conditions` and `scent-families`. The theme already ships
+  `templates/page.termsncondition.json` and `templates/page.scent-families.json`,
+  so assign those templates once the pages exist. No code change needed.
+- **Checked by:** crawling all 85 internal links on the homepage — the other 83 resolve.
+
+### 0.7 Fallback chains were consolidated
 
 - **Status:** DONE, recorded for transparency
 - **What:** the same family was declared with differing fallbacks

@@ -1,15 +1,15 @@
 {
-  "timestamp": "2026-09-23 05:48:00",
+  "timestamp": "2026-09-23 06:01:09",
   "staticData": {
-    "filesScanned": 239,
-    "linesScanned": 73689,
-    "totalViolations": 55,
-    "errors": 54,
+    "filesScanned": 241,
+    "linesScanned": 73870,
+    "totalViolations": 54,
+    "errors": 53,
     "warnings": 1,
     "violations": [
       {
         "file": "sections\\best-sellers.liquid",
-        "line": 412,
+        "line": 415,
         "rule": "no-unguarded-getElementById",
         "severity": "error",
         "message": "Unguarded getElementById('totalPages') — will crash with \"null is not an object\" if element doesn't exist",
@@ -17,7 +17,7 @@
       },
       {
         "file": "sections\\best-sellers.liquid",
-        "line": 425,
+        "line": 428,
         "rule": "no-unguarded-getElementById",
         "severity": "error",
         "message": "Unguarded getElementById('totalPages') — will crash with \"null is not an object\" if element doesn't exist",
@@ -25,7 +25,7 @@
       },
       {
         "file": "sections\\best-sellers.liquid",
-        "line": 426,
+        "line": 429,
         "rule": "no-unguarded-getElementById",
         "severity": "error",
         "message": "Unguarded getElementById('currentPage') — will crash with \"null is not an object\" if element doesn't exist",
@@ -33,7 +33,7 @@
       },
       {
         "file": "sections\\best-sellers.liquid",
-        "line": 448,
+        "line": 451,
         "rule": "no-unguarded-getElementById",
         "severity": "error",
         "message": "Unguarded getElementById('currentPage') — will crash with \"null is not an object\" if element doesn't exist",
@@ -41,7 +41,7 @@
       },
       {
         "file": "sections\\best-sellers.liquid",
-        "line": 678,
+        "line": 629,
         "rule": "no-unguarded-querySelector",
         "severity": "error",
         "message": "Unguarded querySelector('.selected-variant-id') — will crash with \"null is not an object\" if element doesn't exist",
@@ -49,7 +49,7 @@
       },
       {
         "file": "sections\\best-sellers.liquid",
-        "line": 493,
+        "line": 488,
         "rule": "no-unguarded-dom-variable",
         "severity": "error",
         "message": "Variable 'cartBtn' from DOM lookup used without null check — will crash if element doesn't exist",
@@ -57,15 +57,7 @@
       },
       {
         "file": "sections\\best-sellers.liquid",
-        "line": 514,
-        "rule": "no-unguarded-dom-variable",
-        "severity": "error",
-        "message": "Variable 'grid' from DOM lookup used without null check — will crash if element doesn't exist",
-        "code": "grid.innerHTML = '';"
-      },
-      {
-        "file": "sections\\best-sellers.liquid",
-        "line": 704,
+        "line": 655,
         "rule": "no-unguarded-dom-variable",
         "severity": "error",
         "message": "Variable 'submitBtn' from DOM lookup used without null check — will crash if element doesn't exist",
