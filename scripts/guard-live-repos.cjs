@@ -16,6 +16,20 @@ const path = require('path');
 
 const LOCKED_REPOS = ['scentspired-uk', 'scentspired-usa'];
 
+/**
+ * Live storefronts. Writes are refused; reads need an explicit --read.
+ *
+ *   scentspired.myshopify.com     USA. Primary domain scentspired.com, and
+ *                                 www.scentspired.com. Confirmed against the
+ *                                 store's own domain settings.
+ *   scentspireduk.myshopify.com   United Kingdom, scentspired.co.uk.
+ *   scentspired-usa.myshopify.com does NOT exist — the handle 404s. Kept in
+ *                                 the list deliberately: it costs nothing and
+ *                                 refuses a plausible typo for the real USA
+ *                                 store above.
+ *
+ * Verify with: npm run stores:check
+ */
 const LOCKED_STORES = [
   'scentspired.myshopify.com',
   'scentspired-usa.myshopify.com',
