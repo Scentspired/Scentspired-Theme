@@ -134,93 +134,7 @@
             {% endif %}>
             {% if coll and coll.products_count > 0 %}
               {% for product in coll.products limit: 12 %}
-                <div class="fragrance-item product-card" data-product-id="{{ product.id }}">
-                  <!-- Badges -->
-
-                  <!-- Image with secondary image on hover -->
-                  <a href="{{ product.url }}" style="text-decoration: none; color: inherit;">
-                    <div class="fragrance-image-wrap">
-                      <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title }}">
-                      {% if product.images.size > 1 %}
-                        <img
-                          class="secondary-image"
-                          src="{{ product.images[1] | image_url: width: 600 }}"
-                          alt="{{ product.title }}">
-                      {% endif %}
-                      <div class="product-badges">
-                        {% for tag in product.tags %}
-                          {% if tag == "men" or tag == "Men" %}
-                            <span class="product-badge badge-men">Men</span>
-                            {% break %}
-                          {% elsif tag == "women" or tag == "Women" %}
-                            <span class="product-badge badge-women">Women</span>
-                            {% break %}
-                          {% elsif tag == "unisex" or tag == "Unisex" %}
-                            <span class="product-badge badge-unisex">Unisex</span>
-                            {% break %}
-                          {% endif %}
-                        {% endfor %}
-                      </div>
-                    </div>
-                  </a>
-
-                  <!-- Content section - grey background, NO hover effects -->
-                  <div class="fragrance-info">
-                    <!-- Stars -->
-                    <div class="fragrance-rating"></div>
-                    <a href="{{ product.url }}" style="text-decoration: none; color: inherit;">
-                      <!-- Product Title -->
-                      <div class="fragrance-name">{{ product.title }}</div>
-                    </a>
-
-                    <!-- Inspired by (Vendor) -->
-                    <div class="fragrance-brand">
-                      {{ product.vendor }}
-                    </div>
-
-                    <!-- Price section with discount -->
-                    <!-- Added unique ID to price display so it can be updated when variant changes -->
-                    <div class="price-section">
-                      <span class="product-price-display" data-price>
-                        {{ product.variants.first.price | money }}
-                      </span>
-
-                      {% if product.variants.first.compare_at_price > product.variants.first.price %}
-                        <span class="original-price" data-compare-price>
-                          {{ product.variants.first.compare_at_price | money }}
-                        </span>
-                        <span class="price-badge" data-sale-badge>Sale</span>
-                      {% endif %}
-                    </div>
-
-                    <!-- Variant options -->
-                    <form method="post" action="/cart/add" class="item-form" data-product-id="{{ product.id }}">
-                      {% if product.variants.size > 1 %}
-                        <div class="variant-options" data-variant-options>
-                          {% for variant in product.variants %}
-                            <button
-                              type="button"
-                              class="variant-option-btn"
-                              data-variant-id="{{ variant.id }}"
-                              data-variant-price="{{ variant.price }}"
-                              data-variant-compare="{{ variant.compare_at_price }}"
-                              data-available="{{ variant.available }}"
-                              data-inventory="{{ variant.inventory_quantity | default: 0 }}">
-                              {{ variant.title }}
-                            </button>
-                          {% endfor %}
-                        </div>
-                        <!-- Added hidden input to store selected variant ID -->
-                        <input type="hidden" name="id" class="variant-id-input" value="{{ product.variants.first.id }}">
-                      {% else %}
-                        <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-                      {% endif %}
-
-                      <!-- Add to cart button -->
-                      <button type="submit" class="cart-button">ADD TO CART</button>
-                    </form>
-                  </div>
-                </div>
+                {% render 'card--product-carousel', product: product %}
               {% endfor %}
             {% else %}
               <div class="mvps-fragrance-item empty">No products in this collection</div>
@@ -236,99 +150,7 @@
           <div class="mvps-fragrance-layout" data-collection="{{ collection_key }}" style="display:none;">
             {% if coll and coll.products_count > 0 %}
               {% for product in coll.products limit: 12 %}
-                <div class="fragrance-item product-card" data-product-id="{{ product.id }}">
-                  <!-- Badges -->
-
-                  <!-- Image with secondary image on hover -->
-                  <a href="{{ product.url }}" style="text-decoration: none; color: inherit;">
-                    <div class="fragrance-image-wrap">
-                      <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title }}">
-                      {% if product.images.size > 1 %}
-                        <img
-                          class="secondary-image"
-                          src="{{ product.images[1] | image_url: width: 600 }}"
-                          alt="{{ product.title }}">
-                      {% endif %}
-                      <div class="product-badges">
-                        {% for tag in product.tags %}
-                          {% if tag == "men" or tag == "Men" %}
-                            <span class="product-badge badge-men">Men</span>
-                            {% break %}
-                          {% elsif tag == "women" or tag == "Women" %}
-                            <span class="product-badge badge-women">Women</span>
-                            {% break %}
-                          {% elsif tag == "unisex" or tag == "Unisex" %}
-                            <span class="product-badge badge-unisex">Unisex</span>
-                            {% break %}
-                          {% endif %}
-                        {% endfor %}
-                      </div>
-                    </div>
-                  </a>
-
-                  <!-- Content section - grey background, NO hover effects -->
-                  <div class="fragrance-info">
-                    <!-- Stars -->
-                    <div class="fragrance-rating">
-                      <span class="rating-star filled">★</span>
-                      <span class="rating-star filled">★</span>
-                      <span class="rating-star filled">★</span>
-                      <span class="rating-star filled">★</span>
-                      <span class="rating-star">☆</span>
-                    </div>
-                    <a href="{{ product.url }}" style="text-decoration: none; color: inherit;">
-                      <!-- Product Title -->
-                      <div class="fragrance-name">{{ product.title }}</div>
-                    </a>
-
-                    <!-- Inspired by (Vendor) -->
-                    <div class="fragrance-brand">
-                      {{ product.vendor }}
-                    </div>
-
-                    <!-- Price section with discount -->
-                    <!-- Added unique ID to price display so it can be updated when variant changes -->
-                    <div class="price-section">
-                      <span class="product-price-display" data-price>
-                        {{ product.variants.first.price | money }}
-                      </span>
-
-                      {% if product.variants.first.compare_at_price > product.variants.first.price %}
-                        <span class="original-price" data-compare-price>
-                          {{ product.variants.first.compare_at_price | money }}
-                        </span>
-                        <span class="price-badge" data-sale-badge>Sale</span>
-                      {% endif %}
-                    </div>
-                    <!-- Variant options -->
-                    <form method="post" action="/cart/add" class="mvps-item-form" data-product-id="{{ product.id }}">
-                      {% if product.variants.size > 1 %}
-                        <div class="variant-options" data-variant-options>
-                          {% for variant in product.variants %}
-                            <button
-                              type="button"
-                              class="variant-option-btn"
-                              data-variant-id="{{ variant.id }}"
-                              data-variant-price="{{ variant.price }}"
-                              data-variant-compare="{{ variant.compare_at_price }}"
-                              data-available="{{ variant.available }}"
-                              data-inventory="{{ variant.inventory_quantity | default: 0 }}">
-                              {{ variant.title }}
-                            </button>
-                          {% endfor %}
-                        </div>
-                        <input type="hidden" name="id" class="variant-id-input" value="{{ product.variants.first.id }}">
-                      {% else %}
-                        <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-                      {% endif %}
-
-                      <!-- Force quantity to 1 -->
-                      <input type="hidden" name="quantity" value="1">
-
-                      <button type="submit" class="cart-button">ADD TO CART</button>
-                    </form>
-                  </div>
-                </div>
+                {% render 'card--product-carousel', product: product %}
               {% endfor %}
             {% else %}
               <div class="mvps-fragrance-item empty">No products in this collection</div>
@@ -957,7 +779,7 @@
                 variantBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 if (variantIdInput) variantIdInput.value = btn.dataset.variantId;
-                const price = parseInt(btn.dataset.variantPrice, 10);
+                const price = parseInt(btn.dataset.variantPriceRaw, 10);
                 const compare = parseInt(btn.dataset.variantCompare, 10) || null;
 
                 priceDisplay.textContent = currSym + (price / 100).toFixed(2);
@@ -997,7 +819,7 @@
             firstAvailable.classList.add('active');
             if (variantIdInput) variantIdInput.value = firstAvailable.dataset.variantId;
             if (priceDisplay)
-              priceDisplay.textContent = currSym + (parseInt(firstAvailable.dataset.variantPrice) / 100).toFixed(2);
+              priceDisplay.textContent = currSym + (parseInt(firstAvailable.dataset.variantPriceRaw) / 100).toFixed(2);
           }
 
           // Disable Add to Cart + Sold Out text handling
