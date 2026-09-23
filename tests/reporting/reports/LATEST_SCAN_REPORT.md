@@ -1,6 +1,6 @@
 # 🛡️ Theme Guardian — Automated Quality & Detection Report
 
-**Generated At:** `2026-09-23 20:36:56 UTC`  
+**Generated At:** `2026-09-23 20:46:54 UTC`  
 **Branch:** `develop`  
 **Target Codebase:** `Scentspired-UK`  
 
@@ -225,132 +225,29 @@
 
 ## 🚨 Detected Issues by File & Severity (Layer 1)
 
-### 📄 `sections\best-sellers.liquid` (7 findings)
+### 📄 `sections\bundle--discovery.liquid` (14 findings)
 
 | Line | Severity | Rule | Defect Summary |
 | :--- | :--- | :--- | :--- |
-| [Line 418](#sections\best-sellers-liquid-line-418) | 🔴 ERROR | `no-unguarded-getElementById` | Unguarded getElementById('totalPages') — will crash with "null is not an object" if element doesn't exist |
-| [Line 431](#sections\best-sellers-liquid-line-431) | 🔴 ERROR | `no-unguarded-getElementById` | Unguarded getElementById('totalPages') — will crash with "null is not an object" if element doesn't exist |
-| [Line 432](#sections\best-sellers-liquid-line-432) | 🔴 ERROR | `no-unguarded-getElementById` | Unguarded getElementById('currentPage') — will crash with "null is not an object" if element doesn't exist |
-| [Line 454](#sections\best-sellers-liquid-line-454) | 🔴 ERROR | `no-unguarded-getElementById` | Unguarded getElementById('currentPage') — will crash with "null is not an object" if element doesn't exist |
-| [Line 637](#sections\best-sellers-liquid-line-637) | 🔴 ERROR | `no-unguarded-querySelector` | Unguarded querySelector('.selected-variant-id') — will crash with "null is not an object" if element doesn't exist |
-| [Line 495](#sections\best-sellers-liquid-line-495) | 🔴 ERROR | `no-unguarded-dom-variable` | Variable 'cartBtn' from DOM lookup used without null check — will crash if element doesn't exist |
-| [Line 663](#sections\best-sellers-liquid-line-663) | 🔴 ERROR | `no-unguarded-dom-variable` | Variable 'submitBtn' from DOM lookup used without null check — will crash if element doesn't exist |
+| [Line 666](#sections\bundle--discovery-liquid-line-666) | 🔴 ERROR | `no-unguarded-getElementById` | Unguarded getElementById('SelectionDrawer') — will crash with "null is not an object" if element doesn't exist |
+| [Line 677](#sections\bundle--discovery-liquid-line-677) | 🔴 ERROR | `no-unguarded-getElementById` | Unguarded getElementById('SelectionDrawer') — will crash with "null is not an object" if element doesn't exist |
+| [Line 683](#sections\bundle--discovery-liquid-line-683) | 🔴 ERROR | `no-unguarded-getElementById` | Unguarded getElementById('id') — will crash with "null is not an object" if element doesn't exist |
+| [Line 690](#sections\bundle--discovery-liquid-line-690) | 🔴 ERROR | `no-unguarded-getElementById` | Unguarded getElementById('DrawerHeadline') — will crash with "null is not an object" if element doesn't exist |
+| [Line 875](#sections\bundle--discovery-liquid-line-875) | 🔴 ERROR | `no-unguarded-getElementById` | Unguarded getElementById('BundleStatusText') — will crash with "null is not an object" if element doesn't exist |
+| [Line 880](#sections\bundle--discovery-liquid-line-880) | 🔴 ERROR | `no-unguarded-getElementById` | Unguarded getElementById('Marker-${i}') — will crash with "null is not an object" if element doesn't exist |
+| [Line 672](#sections\bundle--discovery-liquid-line-672) | 🔴 ERROR | `no-unguarded-querySelector` | Unguarded querySelector('unknown') — will crash with "null is not an object" if element doesn't exist |
+| [Line 706](#sections\bundle--discovery-liquid-line-706) | 🔴 ERROR | `no-unsafe-inline-onclick` | Unsafe inline onclick with dynamic string ${b.tag} — will crash if value contains apostrophe (e.g., "Victoria's Secret") |
+| [Line 705](#sections\bundle--discovery-liquid-line-705) | 🔴 ERROR | `no-unguarded-dom-variable` | Variable 'grid' from DOM lookup used without null check — will crash if element doesn't exist |
+| [Line 836](#sections\bundle--discovery-liquid-line-836) | 🔴 ERROR | `no-unguarded-dom-variable` | Variable 'el' from DOM lookup used without null check — will crash if element doesn't exist |
+| [Line 862](#sections\bundle--discovery-liquid-line-862) | 🔴 ERROR | `no-unguarded-dom-variable` | Variable 'mainBtn' from DOM lookup used without null check — will crash if element doesn't exist |
+| [Line 893](#sections\bundle--discovery-liquid-line-893) | 🔴 ERROR | `no-unguarded-dom-variable` | Variable 'btn' from DOM lookup used without null check — will crash if element doesn't exist |
+| [Line 774](#sections\bundle--discovery-liquid-line-774) | 🔴 ERROR | `bundle-inventory-availability-guard` | addProductToBundle does not verify variant availability — out-of-stock items could be selected into bundles |
+| [Line 592](#sections\bundle--discovery-liquid-line-592) | 🔴 ERROR | `no-hardcoded-shopify-variant-ids` | Hardcoded Shopify Variant ID (57083186217305) detected in JavaScript. All variant IDs must be dynamically queried via Liquid (e.g. {{ variant_id \| json }}) or configured via Theme Settings to avoid multi-store desyncs. |
 
 <details open>
-<summary><b>🔍 View Code Snippets for <code>sections\best-sellers.liquid</code> (7 items)</b></summary>
+<summary><b>🔍 View Code Snippets for <code>sections\bundle--discovery.liquid</code> (14 items)</b></summary>
 
-<a id="sections\best-sellers-liquid-line-418"></a>
-#### 📍 Line 418 — `no-unguarded-getElementById` (🔴 ERROR)
-> **Technical Finding:** Unguarded getElementById('totalPages') — will crash with "null is not an object" if element doesn't exist
-
-```liquid
-     416 |   updatePageCalculation();
-     417 |   updateProductsDisplay();
->>   418 |   document.getElementById('totalPages').textContent = totalPages;
-     419 | 
-     420 |   updateVariantAvailability();
-```
-
-<a id="sections\best-sellers-liquid-line-431"></a>
-#### 📍 Line 431 — `no-unguarded-getElementById` (🔴 ERROR)
-> **Technical Finding:** Unguarded getElementById('totalPages') — will crash with "null is not an object" if element doesn't exist
-
-```liquid
-     429 |       updatePageCalculation();
-     430 |       updateProductsDisplay();
->>   431 |       document.getElementById('totalPages').textContent = totalPages;
-     432 |       document.getElementById('currentPage').textContent = 1;
-     433 |       updateVariantAvailability();
-```
-
-<a id="sections\best-sellers-liquid-line-432"></a>
-#### 📍 Line 432 — `no-unguarded-getElementById` (🔴 ERROR)
-> **Technical Finding:** Unguarded getElementById('currentPage') — will crash with "null is not an object" if element doesn't exist
-
-```liquid
-     430 |       updateProductsDisplay();
-     431 |       document.getElementById('totalPages').textContent = totalPages;
->>   432 |       document.getElementById('currentPage').textContent = 1;
-     433 |       updateVariantAvailability();
-     434 |     }
-```
-
-<a id="sections\best-sellers-liquid-line-454"></a>
-#### 📍 Line 454 — `no-unguarded-getElementById` (🔴 ERROR)
-> **Technical Finding:** Unguarded getElementById('currentPage') — will crash with "null is not an object" if element doesn't exist
-
-```liquid
-     452 | 
-     453 |   updateProductsDisplay();
->>   454 |   document.getElementById('currentPage').textContent =
-     455 |     Math.floor(currentIndex / perPage) + 1;
-     456 | }
-```
-
-<a id="sections\best-sellers-liquid-line-637"></a>
-#### 📍 Line 637 — `no-unguarded-querySelector` (🔴 ERROR)
-> **Technical Finding:** Unguarded querySelector('.selected-variant-id') — will crash with "null is not an object" if element doesn't exist
-
-```liquid
-     635 |       btn.classList.add('active');
-     636 | 
->>   637 |       card.querySelector('.selected-variant-id').value = btn.dataset.variantId;
-     638 |       
-     639 |       const comparePrice = parseFloat(btn.dataset.comparePrice) || 0;
-```
-
-<a id="sections\best-sellers-liquid-line-495"></a>
-#### 📍 Line 495 — `no-unguarded-dom-variable` (🔴 ERROR)
-> **Technical Finding:** Variable 'cartBtn' from DOM lookup used without null check — will crash if element doesn't exist
-
-```liquid
-     493 |         
-     494 |         if (availableVariants.length === 0) {
->>   495 |           cartBtn.classList.add('sold-out');
-     496 |           cartBtn.innerText = 'Sold Out';
-     497 |           cartBtn.disabled = true;
-```
-
-<a id="sections\best-sellers-liquid-line-663"></a>
-#### 📍 Line 663 — `no-unguarded-dom-variable` (🔴 ERROR)
-> **Technical Finding:** Variable 'submitBtn' from DOM lookup used without null check — will crash if element doesn't exist
-
-```liquid
-     661 |       const variantId = form.querySelector('.selected-variant-id').value;
-     662 |       const submitBtn = form.querySelector('.cart-button');
->>   663 |       const originalText = submitBtn.innerText;
-     664 | 
-     665 |       submitBtn.disabled = true;
-```
-
-</details>
-
----
-
-### 📄 `sections\discovery.liquid` (14 findings)
-
-| Line | Severity | Rule | Defect Summary |
-| :--- | :--- | :--- | :--- |
-| [Line 666](#sections\discovery-liquid-line-666) | 🔴 ERROR | `no-unguarded-getElementById` | Unguarded getElementById('SelectionDrawer') — will crash with "null is not an object" if element doesn't exist |
-| [Line 677](#sections\discovery-liquid-line-677) | 🔴 ERROR | `no-unguarded-getElementById` | Unguarded getElementById('SelectionDrawer') — will crash with "null is not an object" if element doesn't exist |
-| [Line 683](#sections\discovery-liquid-line-683) | 🔴 ERROR | `no-unguarded-getElementById` | Unguarded getElementById('id') — will crash with "null is not an object" if element doesn't exist |
-| [Line 690](#sections\discovery-liquid-line-690) | 🔴 ERROR | `no-unguarded-getElementById` | Unguarded getElementById('DrawerHeadline') — will crash with "null is not an object" if element doesn't exist |
-| [Line 875](#sections\discovery-liquid-line-875) | 🔴 ERROR | `no-unguarded-getElementById` | Unguarded getElementById('BundleStatusText') — will crash with "null is not an object" if element doesn't exist |
-| [Line 880](#sections\discovery-liquid-line-880) | 🔴 ERROR | `no-unguarded-getElementById` | Unguarded getElementById('Marker-${i}') — will crash with "null is not an object" if element doesn't exist |
-| [Line 672](#sections\discovery-liquid-line-672) | 🔴 ERROR | `no-unguarded-querySelector` | Unguarded querySelector('unknown') — will crash with "null is not an object" if element doesn't exist |
-| [Line 706](#sections\discovery-liquid-line-706) | 🔴 ERROR | `no-unsafe-inline-onclick` | Unsafe inline onclick with dynamic string ${b.tag} — will crash if value contains apostrophe (e.g., "Victoria's Secret") |
-| [Line 705](#sections\discovery-liquid-line-705) | 🔴 ERROR | `no-unguarded-dom-variable` | Variable 'grid' from DOM lookup used without null check — will crash if element doesn't exist |
-| [Line 836](#sections\discovery-liquid-line-836) | 🔴 ERROR | `no-unguarded-dom-variable` | Variable 'el' from DOM lookup used without null check — will crash if element doesn't exist |
-| [Line 862](#sections\discovery-liquid-line-862) | 🔴 ERROR | `no-unguarded-dom-variable` | Variable 'mainBtn' from DOM lookup used without null check — will crash if element doesn't exist |
-| [Line 893](#sections\discovery-liquid-line-893) | 🔴 ERROR | `no-unguarded-dom-variable` | Variable 'btn' from DOM lookup used without null check — will crash if element doesn't exist |
-| [Line 774](#sections\discovery-liquid-line-774) | 🔴 ERROR | `bundle-inventory-availability-guard` | addProductToBundle does not verify variant availability — out-of-stock items could be selected into bundles |
-| [Line 592](#sections\discovery-liquid-line-592) | 🔴 ERROR | `no-hardcoded-shopify-variant-ids` | Hardcoded Shopify Variant ID (57083186217305) detected in JavaScript. All variant IDs must be dynamically queried via Liquid (e.g. {{ variant_id \| json }}) or configured via Theme Settings to avoid multi-store desyncs. |
-
-<details open>
-<summary><b>🔍 View Code Snippets for <code>sections\discovery.liquid</code> (14 items)</b></summary>
-
-<a id="sections\discovery-liquid-line-666"></a>
+<a id="sections\bundle--discovery-liquid-line-666"></a>
 #### 📍 Line 666 — `no-unguarded-getElementById` (🔴 ERROR)
 > **Technical Finding:** Unguarded getElementById('SelectionDrawer') — will crash with "null is not an object" if element doesn't exist
 
@@ -362,7 +259,7 @@
      668 |   // 🔥 Directly open product step
 ```
 
-<a id="sections\discovery-liquid-line-677"></a>
+<a id="sections\bundle--discovery-liquid-line-677"></a>
 #### 📍 Line 677 — `no-unguarded-getElementById` (🔴 ERROR)
 > **Technical Finding:** Unguarded getElementById('SelectionDrawer') — will crash with "null is not an object" if element doesn't exist
 
@@ -374,7 +271,7 @@
      679 |   }
 ```
 
-<a id="sections\discovery-liquid-line-683"></a>
+<a id="sections\bundle--discovery-liquid-line-683"></a>
 #### 📍 Line 683 — `no-unguarded-getElementById` (🔴 ERROR)
 > **Technical Finding:** Unguarded getElementById('id') — will crash with "null is not an object" if element doesn't exist
 
@@ -386,7 +283,7 @@
      685 |   // ❌ No back button at all
 ```
 
-<a id="sections\discovery-liquid-line-690"></a>
+<a id="sections\bundle--discovery-liquid-line-690"></a>
 #### 📍 Line 690 — `no-unguarded-getElementById` (🔴 ERROR)
 > **Technical Finding:** Unguarded getElementById('DrawerHeadline') — will crash with "null is not an object" if element doesn't exist
 
@@ -398,7 +295,7 @@
      692 |     initSearchListener();
 ```
 
-<a id="sections\discovery-liquid-line-875"></a>
+<a id="sections\bundle--discovery-liquid-line-875"></a>
 #### 📍 Line 875 — `no-unguarded-getElementById` (🔴 ERROR)
 > **Technical Finding:** Unguarded getElementById('BundleStatusText') — will crash with "null is not an object" if element doesn't exist
 
@@ -410,7 +307,7 @@
      877 |     // Update progress markers
 ```
 
-<a id="sections\discovery-liquid-line-880"></a>
+<a id="sections\bundle--discovery-liquid-line-880"></a>
 #### 📍 Line 880 — `no-unguarded-getElementById` (🔴 ERROR)
 > **Technical Finding:** Unguarded getElementById('Marker-${i}') — will crash with "null is not an object" if element doesn't exist
 
@@ -422,7 +319,7 @@
      882 |     if (count >= 1) document.getElementById('Label-1').classList.add('active');
 ```
 
-<a id="sections\discovery-liquid-line-672"></a>
+<a id="sections\bundle--discovery-liquid-line-672"></a>
 #### 📍 Line 672 — `no-unguarded-querySelector` (🔴 ERROR)
 > **Technical Finding:** Unguarded querySelector('unknown') — will crash with "null is not an object" if element doesn't exist
 
@@ -434,7 +331,7 @@
      674 | 
 ```
 
-<a id="sections\discovery-liquid-line-706"></a>
+<a id="sections\bundle--discovery-liquid-line-706"></a>
 #### 📍 Line 706 — `no-unsafe-inline-onclick` (🔴 ERROR)
 > **Technical Finding:** Unsafe inline onclick with dynamic string ${b.tag} — will crash if value contains apostrophe (e.g., "Victoria's Secret")
 
@@ -446,7 +343,7 @@
      708 |       </div>
 ```
 
-<a id="sections\discovery-liquid-line-705"></a>
+<a id="sections\bundle--discovery-liquid-line-705"></a>
 #### 📍 Line 705 — `no-unguarded-dom-variable` (🔴 ERROR)
 > **Technical Finding:** Variable 'grid' from DOM lookup used without null check — will crash if element doesn't exist
 
@@ -458,7 +355,7 @@
      707 |         <span>${b.name}</span>
 ```
 
-<a id="sections\discovery-liquid-line-836"></a>
+<a id="sections\bundle--discovery-liquid-line-836"></a>
 #### 📍 Line 836 — `no-unguarded-dom-variable` (🔴 ERROR)
 > **Technical Finding:** Variable 'el' from DOM lookup used without null check — will crash if element doesn't exist
 
@@ -470,7 +367,7 @@
      838 |           <div class="slot-filled-content">
 ```
 
-<a id="sections\discovery-liquid-line-862"></a>
+<a id="sections\bundle--discovery-liquid-line-862"></a>
 #### 📍 Line 862 — `no-unguarded-dom-variable` (🔴 ERROR)
 > **Technical Finding:** Variable 'mainBtn' from DOM lookup used without null check — will crash if element doesn't exist
 
@@ -482,7 +379,7 @@
      864 | /* Show price ONLY when bundle is complete */
 ```
 
-<a id="sections\discovery-liquid-line-893"></a>
+<a id="sections\bundle--discovery-liquid-line-893"></a>
 #### 📍 Line 893 — `no-unguarded-dom-variable` (🔴 ERROR)
 > **Technical Finding:** Variable 'btn' from DOM lookup used without null check — will crash if element doesn't exist
 
@@ -494,7 +391,7 @@
      895 |   // Prevent double submission
 ```
 
-<a id="sections\discovery-liquid-line-774"></a>
+<a id="sections\bundle--discovery-liquid-line-774"></a>
 #### 📍 Line 774 — `bundle-inventory-availability-guard` (🔴 ERROR)
 > **Technical Finding:** addProductToBundle does not verify variant availability — out-of-stock items could be selected into bundles
 
@@ -506,7 +403,7 @@
      776 |     const variant = product.variants[0];
 ```
 
-<a id="sections\discovery-liquid-line-592"></a>
+<a id="sections\bundle--discovery-liquid-line-592"></a>
 #### 📍 Line 592 — `no-hardcoded-shopify-variant-ids` (🔴 ERROR)
 > **Technical Finding:** Hardcoded Shopify Variant ID (57083186217305) detected in JavaScript. All variant IDs must be dynamically queried via Liquid (e.g. {{ variant_id | json }}) or configured via Theme Settings to avoid multi-store desyncs.
 
@@ -522,29 +419,29 @@
 
 ---
 
-### 📄 `sections\five-box.liquid` (14 findings)
+### 📄 `sections\bundle--five-box.liquid` (14 findings)
 
 | Line | Severity | Rule | Defect Summary |
 | :--- | :--- | :--- | :--- |
-| [Line 746](#sections\five-box-liquid-line-746) | 🔴 ERROR | `no-unguarded-getElementById` | Unguarded getElementById('SelectionDrawer') — will crash with "null is not an object" if element doesn't exist |
-| [Line 761](#sections\five-box-liquid-line-761) | 🔴 ERROR | `no-unguarded-getElementById` | Unguarded getElementById('SelectionDrawer') — will crash with "null is not an object" if element doesn't exist |
-| [Line 767](#sections\five-box-liquid-line-767) | 🔴 ERROR | `no-unguarded-getElementById` | Unguarded getElementById('id') — will crash with "null is not an object" if element doesn't exist |
-| [Line 787](#sections\five-box-liquid-line-787) | 🔴 ERROR | `no-unguarded-getElementById` | Unguarded getElementById('DrawerHeadline') — will crash with "null is not an object" if element doesn't exist |
-| [Line 791](#sections\five-box-liquid-line-791) | 🔴 ERROR | `no-unguarded-getElementById` | Unguarded getElementById('DrawerHeadline') — will crash with "null is not an object" if element doesn't exist |
-| [Line 977](#sections\five-box-liquid-line-977) | 🔴 ERROR | `no-unguarded-getElementById` | Unguarded getElementById('BundleStatusText') — will crash with "null is not an object" if element doesn't exist |
-| [Line 981](#sections\five-box-liquid-line-981) | 🔴 ERROR | `no-unguarded-getElementById` | Unguarded getElementById('Marker-${i}') — will crash with "null is not an object" if element doesn't exist |
-| [Line 749](#sections\five-box-liquid-line-749) | 🔴 ERROR | `no-unguarded-querySelector` | Unguarded querySelector('unknown') — will crash with "null is not an object" if element doesn't exist |
-| [Line 967](#sections\five-box-liquid-line-967) | 🔴 ERROR | `no-unguarded-querySelector` | Unguarded querySelector('.savings-row .saving') — will crash with "null is not an object" if element doesn't exist |
-| [Line 968](#sections\five-box-liquid-line-968) | 🔴 ERROR | `no-unguarded-querySelector` | Unguarded querySelector('.save-row span') — will crash with "null is not an object" if element doesn't exist |
-| [Line 932](#sections\five-box-liquid-line-932) | 🔴 ERROR | `no-unguarded-dom-variable` | Variable 'el' from DOM lookup used without null check — will crash if element doesn't exist |
-| [Line 958](#sections\five-box-liquid-line-958) | 🔴 ERROR | `no-unguarded-dom-variable` | Variable 'mainBtn' from DOM lookup used without null check — will crash if element doesn't exist |
-| [Line 992](#sections\five-box-liquid-line-992) | 🔴 ERROR | `no-unguarded-dom-variable` | Variable 'btn' from DOM lookup used without null check — will crash if element doesn't exist |
-| [Line 870](#sections\five-box-liquid-line-870) | 🔴 ERROR | `bundle-inventory-availability-guard` | addProductToBundle does not verify variant availability — out-of-stock items could be selected into bundles |
+| [Line 746](#sections\bundle--five-box-liquid-line-746) | 🔴 ERROR | `no-unguarded-getElementById` | Unguarded getElementById('SelectionDrawer') — will crash with "null is not an object" if element doesn't exist |
+| [Line 761](#sections\bundle--five-box-liquid-line-761) | 🔴 ERROR | `no-unguarded-getElementById` | Unguarded getElementById('SelectionDrawer') — will crash with "null is not an object" if element doesn't exist |
+| [Line 767](#sections\bundle--five-box-liquid-line-767) | 🔴 ERROR | `no-unguarded-getElementById` | Unguarded getElementById('id') — will crash with "null is not an object" if element doesn't exist |
+| [Line 787](#sections\bundle--five-box-liquid-line-787) | 🔴 ERROR | `no-unguarded-getElementById` | Unguarded getElementById('DrawerHeadline') — will crash with "null is not an object" if element doesn't exist |
+| [Line 791](#sections\bundle--five-box-liquid-line-791) | 🔴 ERROR | `no-unguarded-getElementById` | Unguarded getElementById('DrawerHeadline') — will crash with "null is not an object" if element doesn't exist |
+| [Line 977](#sections\bundle--five-box-liquid-line-977) | 🔴 ERROR | `no-unguarded-getElementById` | Unguarded getElementById('BundleStatusText') — will crash with "null is not an object" if element doesn't exist |
+| [Line 981](#sections\bundle--five-box-liquid-line-981) | 🔴 ERROR | `no-unguarded-getElementById` | Unguarded getElementById('Marker-${i}') — will crash with "null is not an object" if element doesn't exist |
+| [Line 749](#sections\bundle--five-box-liquid-line-749) | 🔴 ERROR | `no-unguarded-querySelector` | Unguarded querySelector('unknown') — will crash with "null is not an object" if element doesn't exist |
+| [Line 967](#sections\bundle--five-box-liquid-line-967) | 🔴 ERROR | `no-unguarded-querySelector` | Unguarded querySelector('.savings-row .saving') — will crash with "null is not an object" if element doesn't exist |
+| [Line 968](#sections\bundle--five-box-liquid-line-968) | 🔴 ERROR | `no-unguarded-querySelector` | Unguarded querySelector('.save-row span') — will crash with "null is not an object" if element doesn't exist |
+| [Line 932](#sections\bundle--five-box-liquid-line-932) | 🔴 ERROR | `no-unguarded-dom-variable` | Variable 'el' from DOM lookup used without null check — will crash if element doesn't exist |
+| [Line 958](#sections\bundle--five-box-liquid-line-958) | 🔴 ERROR | `no-unguarded-dom-variable` | Variable 'mainBtn' from DOM lookup used without null check — will crash if element doesn't exist |
+| [Line 992](#sections\bundle--five-box-liquid-line-992) | 🔴 ERROR | `no-unguarded-dom-variable` | Variable 'btn' from DOM lookup used without null check — will crash if element doesn't exist |
+| [Line 870](#sections\bundle--five-box-liquid-line-870) | 🔴 ERROR | `bundle-inventory-availability-guard` | addProductToBundle does not verify variant availability — out-of-stock items could be selected into bundles |
 
 <details open>
-<summary><b>🔍 View Code Snippets for <code>sections\five-box.liquid</code> (14 items)</b></summary>
+<summary><b>🔍 View Code Snippets for <code>sections\bundle--five-box.liquid</code> (14 items)</b></summary>
 
-<a id="sections\five-box-liquid-line-746"></a>
+<a id="sections\bundle--five-box-liquid-line-746"></a>
 #### 📍 Line 746 — `no-unguarded-getElementById` (🔴 ERROR)
 > **Technical Finding:** Unguarded getElementById('SelectionDrawer') — will crash with "null is not an object" if element doesn't exist
 
@@ -556,7 +453,7 @@
      748 |   document.querySelectorAll('.slot-item').forEach(s => s.classList.remove('active'));
 ```
 
-<a id="sections\five-box-liquid-line-761"></a>
+<a id="sections\bundle--five-box-liquid-line-761"></a>
 #### 📍 Line 761 — `no-unguarded-getElementById` (🔴 ERROR)
 > **Technical Finding:** Unguarded getElementById('SelectionDrawer') — will crash with "null is not an object" if element doesn't exist
 
@@ -568,7 +465,7 @@
      763 |   }
 ```
 
-<a id="sections\five-box-liquid-line-767"></a>
+<a id="sections\bundle--five-box-liquid-line-767"></a>
 #### 📍 Line 767 — `no-unguarded-getElementById` (🔴 ERROR)
 > **Technical Finding:** Unguarded getElementById('id') — will crash with "null is not an object" if element doesn't exist
 
@@ -580,7 +477,7 @@
      769 |   currentStep = id;
 ```
 
-<a id="sections\five-box-liquid-line-787"></a>
+<a id="sections\bundle--five-box-liquid-line-787"></a>
 #### 📍 Line 787 — `no-unguarded-getElementById` (🔴 ERROR)
 > **Technical Finding:** Unguarded getElementById('DrawerHeadline') — will crash with "null is not an object" if element doesn't exist
 
@@ -592,7 +489,7 @@
      789 | 
 ```
 
-<a id="sections\five-box-liquid-line-791"></a>
+<a id="sections\bundle--five-box-liquid-line-791"></a>
 #### 📍 Line 791 — `no-unguarded-getElementById` (🔴 ERROR)
 > **Technical Finding:** Unguarded getElementById('DrawerHeadline') — will crash with "null is not an object" if element doesn't exist
 
@@ -604,7 +501,7 @@
      793 |   initSearchListener();
 ```
 
-<a id="sections\five-box-liquid-line-977"></a>
+<a id="sections\bundle--five-box-liquid-line-977"></a>
 #### 📍 Line 977 — `no-unguarded-getElementById` (🔴 ERROR)
 > **Technical Finding:** Unguarded getElementById('BundleStatusText') — will crash with "null is not an object" if element doesn't exist
 
@@ -616,7 +513,7 @@
      979 |     document.querySelectorAll('.progress-marker, .progress-label').forEach(el => el.classList.remove('active'));
 ```
 
-<a id="sections\five-box-liquid-line-981"></a>
+<a id="sections\bundle--five-box-liquid-line-981"></a>
 #### 📍 Line 981 — `no-unguarded-getElementById` (🔴 ERROR)
 > **Technical Finding:** Unguarded getElementById('Marker-${i}') — will crash with "null is not an object" if element doesn't exist
 
@@ -628,7 +525,7 @@
      983 |     if (count >= 1) document.getElementById('Label-1').classList.add('active');
 ```
 
-<a id="sections\five-box-liquid-line-749"></a>
+<a id="sections\bundle--five-box-liquid-line-749"></a>
 #### 📍 Line 749 — `no-unguarded-querySelector` (🔴 ERROR)
 > **Technical Finding:** Unguarded querySelector('unknown') — will crash with "null is not an object" if element doesn't exist
 
@@ -640,7 +537,7 @@
      751 |   if (activeSize) {
 ```
 
-<a id="sections\five-box-liquid-line-967"></a>
+<a id="sections\bundle--five-box-liquid-line-967"></a>
 #### 📍 Line 967 — `no-unguarded-querySelector` (🔴 ERROR)
 > **Technical Finding:** Unguarded querySelector('.savings-row .saving') — will crash with "null is not an object" if element doesn't exist
 
@@ -652,7 +549,7 @@
      969 | } else {
 ```
 
-<a id="sections\five-box-liquid-line-968"></a>
+<a id="sections\bundle--five-box-liquid-line-968"></a>
 #### 📍 Line 968 — `no-unguarded-querySelector` (🔴 ERROR)
 > **Technical Finding:** Unguarded querySelector('.save-row span') — will crash with "null is not an object" if element doesn't exist
 
@@ -664,7 +561,7 @@
      970 |   totalDisplay.innerText = '';
 ```
 
-<a id="sections\five-box-liquid-line-932"></a>
+<a id="sections\bundle--five-box-liquid-line-932"></a>
 #### 📍 Line 932 — `no-unguarded-dom-variable` (🔴 ERROR)
 > **Technical Finding:** Variable 'el' from DOM lookup used without null check — will crash if element doesn't exist
 
@@ -676,7 +573,7 @@
      934 |           <div class="slot-filled-content">
 ```
 
-<a id="sections\five-box-liquid-line-958"></a>
+<a id="sections\bundle--five-box-liquid-line-958"></a>
 #### 📍 Line 958 — `no-unguarded-dom-variable` (🔴 ERROR)
 > **Technical Finding:** Variable 'mainBtn' from DOM lookup used without null check — will crash if element doesn't exist
 
@@ -688,7 +585,7 @@
      960 | /* Show price ONLY when bundle is complete */
 ```
 
-<a id="sections\five-box-liquid-line-992"></a>
+<a id="sections\bundle--five-box-liquid-line-992"></a>
 #### 📍 Line 992 — `no-unguarded-dom-variable` (🔴 ERROR)
 > **Technical Finding:** Variable 'btn' from DOM lookup used without null check — will crash if element doesn't exist
 
@@ -700,7 +597,7 @@
      994 |   // Prevent double submission
 ```
 
-<a id="sections\five-box-liquid-line-870"></a>
+<a id="sections\bundle--five-box-liquid-line-870"></a>
 #### 📍 Line 870 — `bundle-inventory-availability-guard` (🔴 ERROR)
 > **Technical Finding:** addProductToBundle does not verify variant availability — out-of-stock items could be selected into bundles
 
@@ -716,94 +613,30 @@
 
 ---
 
-### 📄 `sections\product-custom.liquid` (4 findings)
+### 📄 `sections\bundle--trio-set.liquid` (15 findings)
 
 | Line | Severity | Rule | Defect Summary |
 | :--- | :--- | :--- | :--- |
-| [Line 1058](#sections\product-custom-liquid-line-1058) | 🔴 ERROR | `no-unguarded-getElementById` | Unguarded getElementById('psModalVideo') — will crash with "null is not an object" if element doesn't exist |
-| [Line 877](#sections\product-custom-liquid-line-877) | 🟡 WARN | `fetch-must-have-catch` | fetch() without .catch() or try/catch — unhandled network errors will leave UI in broken state |
-| [Line 1047](#sections\product-custom-liquid-line-1047) | 🔴 ERROR | `no-unguarded-dom-variable` | Variable 'modal' from DOM lookup used without null check — will crash if element doesn't exist |
-| [Line 1088](#sections\product-custom-liquid-line-1088) | 🔴 ERROR | `no-unguarded-dom-variable` | Variable 'dotsContainer' from DOM lookup used without null check — will crash if element doesn't exist |
+| [Line 735](#sections\bundle--trio-set-liquid-line-735) | 🔴 ERROR | `no-unguarded-getElementById` | Unguarded getElementById('SelectionDrawer') — will crash with "null is not an object" if element doesn't exist |
+| [Line 759](#sections\bundle--trio-set-liquid-line-759) | 🔴 ERROR | `no-unguarded-getElementById` | Unguarded getElementById('id') — will crash with "null is not an object" if element doesn't exist |
+| [Line 770](#sections\bundle--trio-set-liquid-line-770) | 🔴 ERROR | `no-unguarded-getElementById` | Unguarded getElementById('DrawerHeadline') — will crash with "null is not an object" if element doesn't exist |
+| [Line 778](#sections\bundle--trio-set-liquid-line-778) | 🔴 ERROR | `no-unguarded-getElementById` | Unguarded getElementById('DrawerHeadline') — will crash with "null is not an object" if element doesn't exist |
+| [Line 984](#sections\bundle--trio-set-liquid-line-984) | 🔴 ERROR | `no-unguarded-getElementById` | Unguarded getElementById('BundleStatusText') — will crash with "null is not an object" if element doesn't exist |
+| [Line 989](#sections\bundle--trio-set-liquid-line-989) | 🔴 ERROR | `no-unguarded-getElementById` | Unguarded getElementById('Marker-${i}') — will crash with "null is not an object" if element doesn't exist |
+| [Line 738](#sections\bundle--trio-set-liquid-line-738) | 🔴 ERROR | `no-unguarded-querySelector` | Unguarded querySelector('unknown') — will crash with "null is not an object" if element doesn't exist |
+| [Line 974](#sections\bundle--trio-set-liquid-line-974) | 🔴 ERROR | `no-unguarded-querySelector` | Unguarded querySelector('.savings-row .saving') — will crash with "null is not an object" if element doesn't exist |
+| [Line 975](#sections\bundle--trio-set-liquid-line-975) | 🔴 ERROR | `no-unguarded-querySelector` | Unguarded querySelector('.save-row span') — will crash with "null is not an object" if element doesn't exist |
+| [Line 808](#sections\bundle--trio-set-liquid-line-808) | 🔴 ERROR | `no-unsafe-inline-onclick` | Unsafe inline onclick with dynamic string ${b.tag} — will crash if value contains apostrophe (e.g., "Victoria's Secret") |
+| [Line 807](#sections\bundle--trio-set-liquid-line-807) | 🔴 ERROR | `no-unguarded-dom-variable` | Variable 'grid' from DOM lookup used without null check — will crash if element doesn't exist |
+| [Line 939](#sections\bundle--trio-set-liquid-line-939) | 🔴 ERROR | `no-unguarded-dom-variable` | Variable 'el' from DOM lookup used without null check — will crash if element doesn't exist |
+| [Line 965](#sections\bundle--trio-set-liquid-line-965) | 🔴 ERROR | `no-unguarded-dom-variable` | Variable 'mainBtn' from DOM lookup used without null check — will crash if element doesn't exist |
+| [Line 1003](#sections\bundle--trio-set-liquid-line-1003) | 🔴 ERROR | `no-unguarded-dom-variable` | Variable 'btn' from DOM lookup used without null check — will crash if element doesn't exist |
+| [Line 883](#sections\bundle--trio-set-liquid-line-883) | 🔴 ERROR | `bundle-inventory-availability-guard` | addProductToBundle does not verify variant availability — out-of-stock items could be selected into bundles |
 
 <details open>
-<summary><b>🔍 View Code Snippets for <code>sections\product-custom.liquid</code> (4 items)</b></summary>
+<summary><b>🔍 View Code Snippets for <code>sections\bundle--trio-set.liquid</code> (15 items)</b></summary>
 
-<a id="sections\product-custom-liquid-line-1058"></a>
-#### 📍 Line 1058 — `no-unguarded-getElementById` (🔴 ERROR)
-> **Technical Finding:** Unguarded getElementById('psModalVideo') — will crash with "null is not an object" if element doesn't exist
-
-```liquid
-    1056 |       if (video) {
-    1057 |         modalImage.style.display = 'none';
->>  1058 |         document.getElementById('psModalVideo').style.display = 'block';
-    1059 | 
-    1060 |         document.getElementById('psModalVideo').src = video.currentSrc || video.querySelector('source')?.src;
-```
-
-<a id="sections\product-custom-liquid-line-877"></a>
-#### 📍 Line 877 — `fetch-must-have-catch` (🟡 WARN)
-> **Technical Finding:** fetch() without .catch() or try/catch — unhandled network errors will leave UI in broken state
-
-```liquid
-     875 | 
-     876 |   async function getCartQtyForVariant(variantId) {
->>   877 |     const res = await fetch('/cart.js');
-     878 |     const cart = await res.json();
-     879 |     const item = cart.items.find(i => i.variant_id == variantId);
-```
-
-<a id="sections\product-custom-liquid-line-1047"></a>
-#### 📍 Line 1047 — `no-unguarded-dom-variable` (🔴 ERROR)
-> **Technical Finding:** Variable 'modal' from DOM lookup used without null check — will crash if element doesn't exist
-
-```liquid
-    1045 |   const modal = document.getElementById('psImageModal');
-    1046 |   const modalImage = document.getElementById('psModalImage');
->>  1047 |   const modalClose = document.querySelector('.ps-modal-close');
-    1048 | 
-    1049 |   document.querySelectorAll('.ps-gallery-item').forEach(item => {
-```
-
-<a id="sections\product-custom-liquid-line-1088"></a>
-#### 📍 Line 1088 — `no-unguarded-dom-variable` (🔴 ERROR)
-> **Technical Finding:** Variable 'dotsContainer' from DOM lookup used without null check — will crash if element doesn't exist
-
-```liquid
-    1086 |     if (window.innerWidth > 1080) return; // Only on mobile
-    1087 |     
->>  1088 |     dotsContainer.innerHTML = '';
-    1089 |     const itemCount = document.querySelectorAll('.ps-gallery-item').length;
-    1090 |     
-```
-
-</details>
-
----
-
-### 📄 `sections\trio-set.liquid` (15 findings)
-
-| Line | Severity | Rule | Defect Summary |
-| :--- | :--- | :--- | :--- |
-| [Line 735](#sections\trio-set-liquid-line-735) | 🔴 ERROR | `no-unguarded-getElementById` | Unguarded getElementById('SelectionDrawer') — will crash with "null is not an object" if element doesn't exist |
-| [Line 759](#sections\trio-set-liquid-line-759) | 🔴 ERROR | `no-unguarded-getElementById` | Unguarded getElementById('id') — will crash with "null is not an object" if element doesn't exist |
-| [Line 770](#sections\trio-set-liquid-line-770) | 🔴 ERROR | `no-unguarded-getElementById` | Unguarded getElementById('DrawerHeadline') — will crash with "null is not an object" if element doesn't exist |
-| [Line 778](#sections\trio-set-liquid-line-778) | 🔴 ERROR | `no-unguarded-getElementById` | Unguarded getElementById('DrawerHeadline') — will crash with "null is not an object" if element doesn't exist |
-| [Line 984](#sections\trio-set-liquid-line-984) | 🔴 ERROR | `no-unguarded-getElementById` | Unguarded getElementById('BundleStatusText') — will crash with "null is not an object" if element doesn't exist |
-| [Line 989](#sections\trio-set-liquid-line-989) | 🔴 ERROR | `no-unguarded-getElementById` | Unguarded getElementById('Marker-${i}') — will crash with "null is not an object" if element doesn't exist |
-| [Line 738](#sections\trio-set-liquid-line-738) | 🔴 ERROR | `no-unguarded-querySelector` | Unguarded querySelector('unknown') — will crash with "null is not an object" if element doesn't exist |
-| [Line 974](#sections\trio-set-liquid-line-974) | 🔴 ERROR | `no-unguarded-querySelector` | Unguarded querySelector('.savings-row .saving') — will crash with "null is not an object" if element doesn't exist |
-| [Line 975](#sections\trio-set-liquid-line-975) | 🔴 ERROR | `no-unguarded-querySelector` | Unguarded querySelector('.save-row span') — will crash with "null is not an object" if element doesn't exist |
-| [Line 808](#sections\trio-set-liquid-line-808) | 🔴 ERROR | `no-unsafe-inline-onclick` | Unsafe inline onclick with dynamic string ${b.tag} — will crash if value contains apostrophe (e.g., "Victoria's Secret") |
-| [Line 807](#sections\trio-set-liquid-line-807) | 🔴 ERROR | `no-unguarded-dom-variable` | Variable 'grid' from DOM lookup used without null check — will crash if element doesn't exist |
-| [Line 939](#sections\trio-set-liquid-line-939) | 🔴 ERROR | `no-unguarded-dom-variable` | Variable 'el' from DOM lookup used without null check — will crash if element doesn't exist |
-| [Line 965](#sections\trio-set-liquid-line-965) | 🔴 ERROR | `no-unguarded-dom-variable` | Variable 'mainBtn' from DOM lookup used without null check — will crash if element doesn't exist |
-| [Line 1003](#sections\trio-set-liquid-line-1003) | 🔴 ERROR | `no-unguarded-dom-variable` | Variable 'btn' from DOM lookup used without null check — will crash if element doesn't exist |
-| [Line 883](#sections\trio-set-liquid-line-883) | 🔴 ERROR | `bundle-inventory-availability-guard` | addProductToBundle does not verify variant availability — out-of-stock items could be selected into bundles |
-
-<details open>
-<summary><b>🔍 View Code Snippets for <code>sections\trio-set.liquid</code> (15 items)</b></summary>
-
-<a id="sections\trio-set-liquid-line-735"></a>
+<a id="sections\bundle--trio-set-liquid-line-735"></a>
 #### 📍 Line 735 — `no-unguarded-getElementById` (🔴 ERROR)
 > **Technical Finding:** Unguarded getElementById('SelectionDrawer') — will crash with "null is not an object" if element doesn't exist
 
@@ -815,7 +648,7 @@
      737 |   document.querySelectorAll('.slot-item').forEach(s => s.classList.remove('active'));
 ```
 
-<a id="sections\trio-set-liquid-line-759"></a>
+<a id="sections\bundle--trio-set-liquid-line-759"></a>
 #### 📍 Line 759 — `no-unguarded-getElementById` (🔴 ERROR)
 > **Technical Finding:** Unguarded getElementById('id') — will crash with "null is not an object" if element doesn't exist
 
@@ -827,7 +660,7 @@
      761 |   currentStep = id;
 ```
 
-<a id="sections\trio-set-liquid-line-770"></a>
+<a id="sections\bundle--trio-set-liquid-line-770"></a>
 #### 📍 Line 770 — `no-unguarded-getElementById` (🔴 ERROR)
 > **Technical Finding:** Unguarded getElementById('DrawerHeadline') — will crash with "null is not an object" if element doesn't exist
 
@@ -839,7 +672,7 @@
      772 |   }
 ```
 
-<a id="sections\trio-set-liquid-line-778"></a>
+<a id="sections\bundle--trio-set-liquid-line-778"></a>
 #### 📍 Line 778 — `no-unguarded-getElementById` (🔴 ERROR)
 > **Technical Finding:** Unguarded getElementById('DrawerHeadline') — will crash with "null is not an object" if element doesn't exist
 
@@ -851,7 +684,7 @@
      780 |     // ✅ Show back arrow ONLY before first product
 ```
 
-<a id="sections\trio-set-liquid-line-984"></a>
+<a id="sections\bundle--trio-set-liquid-line-984"></a>
 #### 📍 Line 984 — `no-unguarded-getElementById` (🔴 ERROR)
 > **Technical Finding:** Unguarded getElementById('BundleStatusText') — will crash with "null is not an object" if element doesn't exist
 
@@ -863,7 +696,7 @@
      986 |     // Update progress markers
 ```
 
-<a id="sections\trio-set-liquid-line-989"></a>
+<a id="sections\bundle--trio-set-liquid-line-989"></a>
 #### 📍 Line 989 — `no-unguarded-getElementById` (🔴 ERROR)
 > **Technical Finding:** Unguarded getElementById('Marker-${i}') — will crash with "null is not an object" if element doesn't exist
 
@@ -875,7 +708,7 @@
      991 |     if (count >= 1) document.getElementById('Label-1').classList.add('active');
 ```
 
-<a id="sections\trio-set-liquid-line-738"></a>
+<a id="sections\bundle--trio-set-liquid-line-738"></a>
 #### 📍 Line 738 — `no-unguarded-querySelector` (🔴 ERROR)
 > **Technical Finding:** Unguarded querySelector('unknown') — will crash with "null is not an object" if element doesn't exist
 
@@ -887,7 +720,7 @@
      740 |   if (activeSize) {
 ```
 
-<a id="sections\trio-set-liquid-line-974"></a>
+<a id="sections\bundle--trio-set-liquid-line-974"></a>
 #### 📍 Line 974 — `no-unguarded-querySelector` (🔴 ERROR)
 > **Technical Finding:** Unguarded querySelector('.savings-row .saving') — will crash with "null is not an object" if element doesn't exist
 
@@ -899,7 +732,7 @@
      976 | } else {
 ```
 
-<a id="sections\trio-set-liquid-line-975"></a>
+<a id="sections\bundle--trio-set-liquid-line-975"></a>
 #### 📍 Line 975 — `no-unguarded-querySelector` (🔴 ERROR)
 > **Technical Finding:** Unguarded querySelector('.save-row span') — will crash with "null is not an object" if element doesn't exist
 
@@ -911,7 +744,7 @@
      977 |   totalDisplay.innerText = '';
 ```
 
-<a id="sections\trio-set-liquid-line-808"></a>
+<a id="sections\bundle--trio-set-liquid-line-808"></a>
 #### 📍 Line 808 — `no-unsafe-inline-onclick` (🔴 ERROR)
 > **Technical Finding:** Unsafe inline onclick with dynamic string ${b.tag} — will crash if value contains apostrophe (e.g., "Victoria's Secret")
 
@@ -923,7 +756,7 @@
      810 |       </div>
 ```
 
-<a id="sections\trio-set-liquid-line-807"></a>
+<a id="sections\bundle--trio-set-liquid-line-807"></a>
 #### 📍 Line 807 — `no-unguarded-dom-variable` (🔴 ERROR)
 > **Technical Finding:** Variable 'grid' from DOM lookup used without null check — will crash if element doesn't exist
 
@@ -935,7 +768,7 @@
      809 |         <span>${b.name}</span>
 ```
 
-<a id="sections\trio-set-liquid-line-939"></a>
+<a id="sections\bundle--trio-set-liquid-line-939"></a>
 #### 📍 Line 939 — `no-unguarded-dom-variable` (🔴 ERROR)
 > **Technical Finding:** Variable 'el' from DOM lookup used without null check — will crash if element doesn't exist
 
@@ -947,7 +780,7 @@
      941 |           <div class="slot-filled-content">
 ```
 
-<a id="sections\trio-set-liquid-line-965"></a>
+<a id="sections\bundle--trio-set-liquid-line-965"></a>
 #### 📍 Line 965 — `no-unguarded-dom-variable` (🔴 ERROR)
 > **Technical Finding:** Variable 'mainBtn' from DOM lookup used without null check — will crash if element doesn't exist
 
@@ -959,7 +792,7 @@
      967 | /* Show price ONLY when bundle is complete */
 ```
 
-<a id="sections\trio-set-liquid-line-1003"></a>
+<a id="sections\bundle--trio-set-liquid-line-1003"></a>
 #### 📍 Line 1003 — `no-unguarded-dom-variable` (🔴 ERROR)
 > **Technical Finding:** Variable 'btn' from DOM lookup used without null check — will crash if element doesn't exist
 
@@ -971,7 +804,7 @@
     1005 |   if (window.isProcessingCartAction) {
 ```
 
-<a id="sections\trio-set-liquid-line-883"></a>
+<a id="sections\bundle--trio-set-liquid-line-883"></a>
 #### 📍 Line 883 — `bundle-inventory-availability-guard` (🔴 ERROR)
 > **Technical Finding:** addProductToBundle does not verify variant availability — out-of-stock items could be selected into bundles
 
@@ -981,6 +814,173 @@
 >>   883 | function addProductToBundle(id, size) {
      884 |   const product = PRODUCTS_BY_SIZE[size].find(p => p.id === id);
      885 |   if (!product) return alert('Product not found');
+```
+
+</details>
+
+---
+
+### 📄 `sections\catalog--best-sellers.liquid` (7 findings)
+
+| Line | Severity | Rule | Defect Summary |
+| :--- | :--- | :--- | :--- |
+| [Line 418](#sections\catalog--best-sellers-liquid-line-418) | 🔴 ERROR | `no-unguarded-getElementById` | Unguarded getElementById('totalPages') — will crash with "null is not an object" if element doesn't exist |
+| [Line 431](#sections\catalog--best-sellers-liquid-line-431) | 🔴 ERROR | `no-unguarded-getElementById` | Unguarded getElementById('totalPages') — will crash with "null is not an object" if element doesn't exist |
+| [Line 432](#sections\catalog--best-sellers-liquid-line-432) | 🔴 ERROR | `no-unguarded-getElementById` | Unguarded getElementById('currentPage') — will crash with "null is not an object" if element doesn't exist |
+| [Line 454](#sections\catalog--best-sellers-liquid-line-454) | 🔴 ERROR | `no-unguarded-getElementById` | Unguarded getElementById('currentPage') — will crash with "null is not an object" if element doesn't exist |
+| [Line 637](#sections\catalog--best-sellers-liquid-line-637) | 🔴 ERROR | `no-unguarded-querySelector` | Unguarded querySelector('.selected-variant-id') — will crash with "null is not an object" if element doesn't exist |
+| [Line 495](#sections\catalog--best-sellers-liquid-line-495) | 🔴 ERROR | `no-unguarded-dom-variable` | Variable 'cartBtn' from DOM lookup used without null check — will crash if element doesn't exist |
+| [Line 663](#sections\catalog--best-sellers-liquid-line-663) | 🔴 ERROR | `no-unguarded-dom-variable` | Variable 'submitBtn' from DOM lookup used without null check — will crash if element doesn't exist |
+
+<details open>
+<summary><b>🔍 View Code Snippets for <code>sections\catalog--best-sellers.liquid</code> (7 items)</b></summary>
+
+<a id="sections\catalog--best-sellers-liquid-line-418"></a>
+#### 📍 Line 418 — `no-unguarded-getElementById` (🔴 ERROR)
+> **Technical Finding:** Unguarded getElementById('totalPages') — will crash with "null is not an object" if element doesn't exist
+
+```liquid
+     416 |   updatePageCalculation();
+     417 |   updateProductsDisplay();
+>>   418 |   document.getElementById('totalPages').textContent = totalPages;
+     419 | 
+     420 |   updateVariantAvailability();
+```
+
+<a id="sections\catalog--best-sellers-liquid-line-431"></a>
+#### 📍 Line 431 — `no-unguarded-getElementById` (🔴 ERROR)
+> **Technical Finding:** Unguarded getElementById('totalPages') — will crash with "null is not an object" if element doesn't exist
+
+```liquid
+     429 |       updatePageCalculation();
+     430 |       updateProductsDisplay();
+>>   431 |       document.getElementById('totalPages').textContent = totalPages;
+     432 |       document.getElementById('currentPage').textContent = 1;
+     433 |       updateVariantAvailability();
+```
+
+<a id="sections\catalog--best-sellers-liquid-line-432"></a>
+#### 📍 Line 432 — `no-unguarded-getElementById` (🔴 ERROR)
+> **Technical Finding:** Unguarded getElementById('currentPage') — will crash with "null is not an object" if element doesn't exist
+
+```liquid
+     430 |       updateProductsDisplay();
+     431 |       document.getElementById('totalPages').textContent = totalPages;
+>>   432 |       document.getElementById('currentPage').textContent = 1;
+     433 |       updateVariantAvailability();
+     434 |     }
+```
+
+<a id="sections\catalog--best-sellers-liquid-line-454"></a>
+#### 📍 Line 454 — `no-unguarded-getElementById` (🔴 ERROR)
+> **Technical Finding:** Unguarded getElementById('currentPage') — will crash with "null is not an object" if element doesn't exist
+
+```liquid
+     452 | 
+     453 |   updateProductsDisplay();
+>>   454 |   document.getElementById('currentPage').textContent =
+     455 |     Math.floor(currentIndex / perPage) + 1;
+     456 | }
+```
+
+<a id="sections\catalog--best-sellers-liquid-line-637"></a>
+#### 📍 Line 637 — `no-unguarded-querySelector` (🔴 ERROR)
+> **Technical Finding:** Unguarded querySelector('.selected-variant-id') — will crash with "null is not an object" if element doesn't exist
+
+```liquid
+     635 |       btn.classList.add('active');
+     636 | 
+>>   637 |       card.querySelector('.selected-variant-id').value = btn.dataset.variantId;
+     638 |       
+     639 |       const comparePrice = parseFloat(btn.dataset.comparePrice) || 0;
+```
+
+<a id="sections\catalog--best-sellers-liquid-line-495"></a>
+#### 📍 Line 495 — `no-unguarded-dom-variable` (🔴 ERROR)
+> **Technical Finding:** Variable 'cartBtn' from DOM lookup used without null check — will crash if element doesn't exist
+
+```liquid
+     493 |         
+     494 |         if (availableVariants.length === 0) {
+>>   495 |           cartBtn.classList.add('sold-out');
+     496 |           cartBtn.innerText = 'Sold Out';
+     497 |           cartBtn.disabled = true;
+```
+
+<a id="sections\catalog--best-sellers-liquid-line-663"></a>
+#### 📍 Line 663 — `no-unguarded-dom-variable` (🔴 ERROR)
+> **Technical Finding:** Variable 'submitBtn' from DOM lookup used without null check — will crash if element doesn't exist
+
+```liquid
+     661 |       const variantId = form.querySelector('.selected-variant-id').value;
+     662 |       const submitBtn = form.querySelector('.cart-button');
+>>   663 |       const originalText = submitBtn.innerText;
+     664 | 
+     665 |       submitBtn.disabled = true;
+```
+
+</details>
+
+---
+
+### 📄 `sections\catalog--product-custom.liquid` (4 findings)
+
+| Line | Severity | Rule | Defect Summary |
+| :--- | :--- | :--- | :--- |
+| [Line 1058](#sections\catalog--product-custom-liquid-line-1058) | 🔴 ERROR | `no-unguarded-getElementById` | Unguarded getElementById('psModalVideo') — will crash with "null is not an object" if element doesn't exist |
+| [Line 877](#sections\catalog--product-custom-liquid-line-877) | 🟡 WARN | `fetch-must-have-catch` | fetch() without .catch() or try/catch — unhandled network errors will leave UI in broken state |
+| [Line 1047](#sections\catalog--product-custom-liquid-line-1047) | 🔴 ERROR | `no-unguarded-dom-variable` | Variable 'modal' from DOM lookup used without null check — will crash if element doesn't exist |
+| [Line 1088](#sections\catalog--product-custom-liquid-line-1088) | 🔴 ERROR | `no-unguarded-dom-variable` | Variable 'dotsContainer' from DOM lookup used without null check — will crash if element doesn't exist |
+
+<details open>
+<summary><b>🔍 View Code Snippets for <code>sections\catalog--product-custom.liquid</code> (4 items)</b></summary>
+
+<a id="sections\catalog--product-custom-liquid-line-1058"></a>
+#### 📍 Line 1058 — `no-unguarded-getElementById` (🔴 ERROR)
+> **Technical Finding:** Unguarded getElementById('psModalVideo') — will crash with "null is not an object" if element doesn't exist
+
+```liquid
+    1056 |       if (video) {
+    1057 |         modalImage.style.display = 'none';
+>>  1058 |         document.getElementById('psModalVideo').style.display = 'block';
+    1059 | 
+    1060 |         document.getElementById('psModalVideo').src = video.currentSrc || video.querySelector('source')?.src;
+```
+
+<a id="sections\catalog--product-custom-liquid-line-877"></a>
+#### 📍 Line 877 — `fetch-must-have-catch` (🟡 WARN)
+> **Technical Finding:** fetch() without .catch() or try/catch — unhandled network errors will leave UI in broken state
+
+```liquid
+     875 | 
+     876 |   async function getCartQtyForVariant(variantId) {
+>>   877 |     const res = await fetch('/cart.js');
+     878 |     const cart = await res.json();
+     879 |     const item = cart.items.find(i => i.variant_id == variantId);
+```
+
+<a id="sections\catalog--product-custom-liquid-line-1047"></a>
+#### 📍 Line 1047 — `no-unguarded-dom-variable` (🔴 ERROR)
+> **Technical Finding:** Variable 'modal' from DOM lookup used without null check — will crash if element doesn't exist
+
+```liquid
+    1045 |   const modal = document.getElementById('psImageModal');
+    1046 |   const modalImage = document.getElementById('psModalImage');
+>>  1047 |   const modalClose = document.querySelector('.ps-modal-close');
+    1048 | 
+    1049 |   document.querySelectorAll('.ps-gallery-item').forEach(item => {
+```
+
+<a id="sections\catalog--product-custom-liquid-line-1088"></a>
+#### 📍 Line 1088 — `no-unguarded-dom-variable` (🔴 ERROR)
+> **Technical Finding:** Variable 'dotsContainer' from DOM lookup used without null check — will crash if element doesn't exist
+
+```liquid
+    1086 |     if (window.innerWidth > 1080) return; // Only on mobile
+    1087 |     
+>>  1088 |     dotsContainer.innerHTML = '';
+    1089 |     const itemCount = document.querySelectorAll('.ps-gallery-item').length;
+    1090 |     
 ```
 
 </details>

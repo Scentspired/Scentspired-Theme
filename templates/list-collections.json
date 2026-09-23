@@ -10,7 +10,7 @@
 {
   "sections": {
     "main": {
-      "type": "main-list-collections",
+      "type": "catalog--collection-list",
       "settings": {
         "title": "Collections",
         "sort": "alphabetical",

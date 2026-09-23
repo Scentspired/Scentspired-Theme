@@ -42,7 +42,7 @@
       "settings": {}
     },
     "blogtextliquid_mhjAhH": {
-      "type": "blogtextliquid",
+      "type": "editorial--blog-text-liquid",
       "custom_css": [
         ".shopify-hardcoded-text-section-content {font-size: 16px; margin-left: 0px; text-align: left;}",
         "@media screen and (max-width: 1024px) {.shopify-hardcoded-text-section-wrapper {min-height: 200px; padding: 16px !important; }}"
@@ -129,7 +129,7 @@
       "settings": {}
     },
     "blogtextliquid_QTgBYH": {
-      "type": "blogtextliquid",
+      "type": "editorial--blog-text-liquid",
       "custom_css": [
         ".shopify-hardcoded-text-section-content {font-size: 16px; margin-left: 0px; text-align: left;}",
         "@media screen and (max-width: 1024px) {.shopify-hardcoded-text-section-wrapper {min-height: 200px; padding: 16px !important; }}",

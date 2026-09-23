@@ -1,7 +1,7 @@
 {
   "sections": {
     "image_banner_bqAp3f": {
-      "type": "image-banner",
+      "type": "media--image-banner",
       "blocks": {
         "heading_kjrnRQ": {
           "type": "heading",
@@ -45,7 +45,7 @@
       }
     },
     "image_banner_iWpd34": {
-      "type": "image-banner",
+      "type": "media--image-banner",
       "blocks": {
         "heading_LMpdEE": {
           "type": "heading",
@@ -90,7 +90,7 @@
       }
     },
     "banner": {
-      "type": "main-collection-banner",
+      "type": "catalog--collection-banner",
       "disabled": true,
       "settings": {
         "show_collection_description": false,
@@ -99,7 +99,7 @@
       }
     },
     "product-grid": {
-      "type": "main-collection-product-grid",
+      "type": "catalog--collection-grid",
       "custom_css": [
         "@media only screen and (max-width: 1023px) {.collection-title {font-family: Unbounded; font-size: 26px; font-weight: 500; margin: 30px 0 10px; text-align: center; } .scent-grid {gap: 10px !important; width: 100%; }}",
         "@media only screen and (min-width: 1024px) {.collection-title {font-size: 35px; margin: 10px 0 10px; text-align: left; margin-left: 300px; }}",
@@ -116,7 +116,7 @@
       }
     },
     "newsletter_banner_nbnazx": {
-      "type": "newsletter-banner",
+      "type": "marketing--newsletter-banner",
       "custom_css": [
         "@media only screen and (min-width: 1024px) and (max-width: 1439px) {.newsletter-banner .newsletter-content {margin-right: 0px !important; }}",
         "@media (max-width: 1023px) {.newsletter-banner button {width: 240px; height: 48px; margin-left: -323px; margin-top: 90px; } .newsletter-banner small {display: block; margin-top: 150px; font-size: 12px; color: #000; text-align: center; font-family: \"PPMori Regular\", sans-serif; line-height: 120%; } .newsletter-banner {height: 790px; } .newsletter-banner .newsletter-content {margin-bottom: 175px !important; }}"
@@ -130,7 +130,7 @@
       }
     },
     "featuredscent_cUHiJf": {
-      "type": "featuredscent",
+      "type": "catalog--featured-scent",
       "custom_css": [
         ".fragrance-item:hover .fragrance-info {transform: none; color: black;}",
         ".product-badge {color: #fff !important;}",

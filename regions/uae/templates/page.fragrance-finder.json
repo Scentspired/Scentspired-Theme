@@ -1,7 +1,7 @@
 {
   "sections": {
     "main": {
-      "type": "main-page",
+      "type": "content--page",
       "disabled": true,
       "settings": {
         "padding_top": 28,
@@ -9,7 +9,7 @@
       }
     },
     "hero_section_hxEDH3": {
-      "type": "hero-section",
+      "type": "media--hero",
       "custom_css": [
         ".hero-bottom-nav {display: none;}",
         ".hero-section {margin-top: 120px;}",

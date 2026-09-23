@@ -105,11 +105,18 @@ let totalRefs = 0;
 const touched = new Set();
 
 for (const { from, to } of pairs) {
-  const patterns = [
-    // Shopify writes both `"type": "x"` and `"type":"x"`.
-    { re: new RegExp('("type"\\s*:\\s*")' + esc(from) + '(")', 'g'), sub: `$1${to}$2` },
-    { re: new RegExp("(\\{%-?\\s*section\\s+')" + esc(from) + "(')", 'g'), sub: `$1${to}$2` },
-  ];
+  /*
+   * `"type"` is not only a section type. Inside a {% schema %} it is a SETTING
+   * type, and several of Shopify's — page, video, product, blog, article,
+   * collection — are ordinary words that collide with section names. Renaming
+   * `page` rewrote three page-picker settings into `"type":
+   * "content--page-legacy"`, which is a schema Shopify would reject.
+   *
+   * So: in .json files only `sections.<id>.type` is a section type, read
+   * structurally. In .liquid files `"type"` is never rewritten at all — the
+   * only section reference there is {% section 'name' %}.
+   */
+  const sectionTag = new RegExp("(\\{%-?\\s*section\\s+')" + esc(from) + "(')", 'g');
 
   let refs = 0;
   // Re-read the file list each pair: an earlier rename in this same batch has
@@ -118,12 +125,37 @@ for (const { from, to } of pairs) {
   for (const file of collect()) {
     if (file.endsWith(path.join('sections', from + '.liquid'))) continue;
     if (!fs.existsSync(file)) continue;
-    let src = fs.readFileSync(file, 'utf8');
-    const before = src;
-    for (const p of patterns) src = src.replace(p.re, p.sub);
-    if (src === before) continue;
 
-    const n = (before.match(patterns[0].re) || []).length + (before.match(patterns[1].re) || []).length;
+    const before = fs.readFileSync(file, 'utf8');
+    let src = before;
+    let n = 0;
+
+    if (file.endsWith('.json')) {
+      const lead = (src.match(/^\s*\/\*[\s\S]*?\*\/\s*/) || [''])[0];
+      let parsed;
+      try {
+        parsed = JSON.parse(src.slice(lead.length));
+      } catch {
+        parsed = null;
+      }
+      if (parsed && parsed.sections && typeof parsed.sections === 'object') {
+        for (const sec of Object.values(parsed.sections)) {
+          if (sec && sec.type === from) {
+            sec.type = to;
+            n++;
+          }
+        }
+        if (n) src = lead + JSON.stringify(parsed, null, 2) + '\n';
+      }
+    } else {
+      const m = src.match(sectionTag);
+      if (m) {
+        n = m.length;
+        src = src.replace(sectionTag, `$1${to}$2`);
+      }
+    }
+
+    if (!n) continue;
     refs += n;
     touched.add(path.relative(THEME_ROOT, file).replace(/\\/g, '/'));
     if (!DRY) fs.writeFileSync(file, src);
@@ -145,10 +177,23 @@ if (!DRY) {
   const after = collect();
   const stragglers = [];
   for (const { from } of pairs) {
-    const re = new RegExp('("type"\\s*:\\s*"' + esc(from) + '")|(\\{%-?\\s*section\\s+\'' + esc(from) + "')", 'g');
+    // Narrowed the same way as the rewrite: a `"type"` inside a {% schema %}
+    // is a setting type, not a section, and reporting those as leftovers sent
+    // the first version chasing a rename it should never have made.
+    const tagRe = new RegExp("\\{%-?\\s*section\\s+'" + esc(from) + "'", 'g');
     for (const f of after) {
-      const m = fs.readFileSync(f, 'utf8').match(re);
-      if (m) stragglers.push(`${path.relative(THEME_ROOT, f).replace(/\\/g, '/')}: ${m.length}x "${from}"`);
+      const rel = path.relative(THEME_ROOT, f).replace(/\\/g, '/');
+      const src = fs.readFileSync(f, 'utf8');
+
+      const tags = src.match(tagRe);
+      if (tags) stragglers.push(`${rel}: ${tags.length}x {% section '${from}' %}`);
+
+      if (!f.endsWith('.json')) continue;
+      try {
+        const parsed = JSON.parse(src.replace(/^\s*\/\*[\s\S]*?\*\//, ''));
+        const n = Object.values(parsed.sections || {}).filter((s) => s && s.type === from).length;
+        if (n) stragglers.push(`${rel}: ${n}x section type "${from}"`);
+      } catch { /* not a template */ }
     }
   }
   if (stragglers.length) {

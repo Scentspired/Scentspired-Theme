@@ -9,7 +9,7 @@
       }
     },
     "cart-footer": {
-      "type": "main-cart-footer",
+      "type": "cart--footer",
       "blocks": {
         "subtotal": {
           "type": "subtotal",

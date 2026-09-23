@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-09-23 20:36:56",
+  "timestamp": "2026-09-23 20:46:54",
   "staticData": {
     "filesScanned": 245,
     "linesScanned": 73891,
@@ -8,63 +8,7 @@
     "warnings": 1,
     "violations": [
       {
-        "file": "sections\\best-sellers.liquid",
-        "line": 418,
-        "rule": "no-unguarded-getElementById",
-        "severity": "error",
-        "message": "Unguarded getElementById('totalPages') — will crash with \"null is not an object\" if element doesn't exist",
-        "code": "document.getElementById('totalPages').textContent = totalPages;"
-      },
-      {
-        "file": "sections\\best-sellers.liquid",
-        "line": 431,
-        "rule": "no-unguarded-getElementById",
-        "severity": "error",
-        "message": "Unguarded getElementById('totalPages') — will crash with \"null is not an object\" if element doesn't exist",
-        "code": "document.getElementById('totalPages').textContent = totalPages;"
-      },
-      {
-        "file": "sections\\best-sellers.liquid",
-        "line": 432,
-        "rule": "no-unguarded-getElementById",
-        "severity": "error",
-        "message": "Unguarded getElementById('currentPage') — will crash with \"null is not an object\" if element doesn't exist",
-        "code": "document.getElementById('currentPage').textContent = 1;"
-      },
-      {
-        "file": "sections\\best-sellers.liquid",
-        "line": 454,
-        "rule": "no-unguarded-getElementById",
-        "severity": "error",
-        "message": "Unguarded getElementById('currentPage') — will crash with \"null is not an object\" if element doesn't exist",
-        "code": "document.getElementById('currentPage').textContent ="
-      },
-      {
-        "file": "sections\\best-sellers.liquid",
-        "line": 637,
-        "rule": "no-unguarded-querySelector",
-        "severity": "error",
-        "message": "Unguarded querySelector('.selected-variant-id') — will crash with \"null is not an object\" if element doesn't exist",
-        "code": "card.querySelector('.selected-variant-id').value = btn.dataset.variantId;"
-      },
-      {
-        "file": "sections\\best-sellers.liquid",
-        "line": 495,
-        "rule": "no-unguarded-dom-variable",
-        "severity": "error",
-        "message": "Variable 'cartBtn' from DOM lookup used without null check — will crash if element doesn't exist",
-        "code": "cartBtn.classList.add('sold-out');"
-      },
-      {
-        "file": "sections\\best-sellers.liquid",
-        "line": 663,
-        "rule": "no-unguarded-dom-variable",
-        "severity": "error",
-        "message": "Variable 'submitBtn' from DOM lookup used without null check — will crash if element doesn't exist",
-        "code": "const originalText = submitBtn.innerText;"
-      },
-      {
-        "file": "sections\\discovery.liquid",
+        "file": "sections\\bundle--discovery.liquid",
         "line": 666,
         "rule": "no-unguarded-getElementById",
         "severity": "error",
@@ -72,7 +16,7 @@
         "code": "document.getElementById('SelectionDrawer').classList.add('visible');"
       },
       {
-        "file": "sections\\discovery.liquid",
+        "file": "sections\\bundle--discovery.liquid",
         "line": 677,
         "rule": "no-unguarded-getElementById",
         "severity": "error",
@@ -80,7 +24,7 @@
         "code": "document.getElementById('SelectionDrawer').classList.remove('visible');"
       },
       {
-        "file": "sections\\discovery.liquid",
+        "file": "sections\\bundle--discovery.liquid",
         "line": 683,
         "rule": "no-unguarded-getElementById",
         "severity": "error",
@@ -88,7 +32,7 @@
         "code": "document.getElementById(id).style.display = 'block';"
       },
       {
-        "file": "sections\\discovery.liquid",
+        "file": "sections\\bundle--discovery.liquid",
         "line": 690,
         "rule": "no-unguarded-getElementById",
         "severity": "error",
@@ -96,7 +40,7 @@
         "code": "document.getElementById('DrawerHeadline').innerText = 'Select Product';"
       },
       {
-        "file": "sections\\discovery.liquid",
+        "file": "sections\\bundle--discovery.liquid",
         "line": 875,
         "rule": "no-unguarded-getElementById",
         "severity": "error",
@@ -104,7 +48,7 @@
         "code": "document.getElementById('BundleStatusText').innerText = statusText;"
       },
       {
-        "file": "sections\\discovery.liquid",
+        "file": "sections\\bundle--discovery.liquid",
         "line": 880,
         "rule": "no-unguarded-getElementById",
         "severity": "error",
@@ -112,7 +56,7 @@
         "code": "if (document.getElementById(`Marker-${i}`)) document.getElementById(`Marker-${i}`).classList.add('active');"
       },
       {
-        "file": "sections\\discovery.liquid",
+        "file": "sections\\bundle--discovery.liquid",
         "line": 672,
         "rule": "no-unguarded-querySelector",
         "severity": "error",
@@ -120,7 +64,7 @@
         "code": "document.querySelector(`.slot-item[data-index=\"${index}\"]`).classList.add('active');"
       },
       {
-        "file": "sections\\discovery.liquid",
+        "file": "sections\\bundle--discovery.liquid",
         "line": 706,
         "rule": "no-unsafe-inline-onclick",
         "severity": "error",
@@ -128,7 +72,7 @@
         "code": "<div class=\"option-item\" onclick=\"selectBrand('${b.tag}')\">"
       },
       {
-        "file": "sections\\discovery.liquid",
+        "file": "sections\\bundle--discovery.liquid",
         "line": 705,
         "rule": "no-unguarded-dom-variable",
         "severity": "error",
@@ -136,7 +80,7 @@
         "code": "grid.innerHTML = brands.map(b => `"
       },
       {
-        "file": "sections\\discovery.liquid",
+        "file": "sections\\bundle--discovery.liquid",
         "line": 836,
         "rule": "no-unguarded-dom-variable",
         "severity": "error",
@@ -144,7 +88,7 @@
         "code": "el.classList.remove('empty');"
       },
       {
-        "file": "sections\\discovery.liquid",
+        "file": "sections\\bundle--discovery.liquid",
         "line": 862,
         "rule": "no-unguarded-dom-variable",
         "severity": "error",
@@ -152,7 +96,7 @@
         "code": "mainBtn.disabled = count !== 5;"
       },
       {
-        "file": "sections\\discovery.liquid",
+        "file": "sections\\bundle--discovery.liquid",
         "line": 893,
         "rule": "no-unguarded-dom-variable",
         "severity": "error",
@@ -160,7 +104,7 @@
         "code": "const priceSpan = btn.querySelector('span:nth-child(2)');"
       },
       {
-        "file": "sections\\discovery.liquid",
+        "file": "sections\\bundle--discovery.liquid",
         "line": 774,
         "rule": "bundle-inventory-availability-guard",
         "severity": "error",
@@ -168,7 +112,7 @@
         "code": "function addProductToBundle(id) {"
       },
       {
-        "file": "sections\\discovery.liquid",
+        "file": "sections\\bundle--discovery.liquid",
         "line": 592,
         "rule": "no-hardcoded-shopify-variant-ids",
         "severity": "error",
@@ -176,7 +120,7 @@
         "code": "const DISCOVERY_SET_VARIANT_ID = 57083186217305; // Your single Discovery Set variant"
       },
       {
-        "file": "sections\\five-box.liquid",
+        "file": "sections\\bundle--five-box.liquid",
         "line": 746,
         "rule": "no-unguarded-getElementById",
         "severity": "error",
@@ -184,7 +128,7 @@
         "code": "document.getElementById('SelectionDrawer').classList.add('visible');"
       },
       {
-        "file": "sections\\five-box.liquid",
+        "file": "sections\\bundle--five-box.liquid",
         "line": 761,
         "rule": "no-unguarded-getElementById",
         "severity": "error",
@@ -192,7 +136,7 @@
         "code": "document.getElementById('SelectionDrawer').classList.remove('visible');"
       },
       {
-        "file": "sections\\five-box.liquid",
+        "file": "sections\\bundle--five-box.liquid",
         "line": 767,
         "rule": "no-unguarded-getElementById",
         "severity": "error",
@@ -200,7 +144,7 @@
         "code": "document.getElementById(id).style.display = 'block';"
       },
       {
-        "file": "sections\\five-box.liquid",
+        "file": "sections\\bundle--five-box.liquid",
         "line": 787,
         "rule": "no-unguarded-getElementById",
         "severity": "error",
@@ -208,7 +152,7 @@
         "code": "document.getElementById('DrawerHeadline').innerText = 'Select Size';"
       },
       {
-        "file": "sections\\five-box.liquid",
+        "file": "sections\\bundle--five-box.liquid",
         "line": 791,
         "rule": "no-unguarded-getElementById",
         "severity": "error",
@@ -216,7 +160,7 @@
         "code": "document.getElementById('DrawerHeadline').innerText = 'Select Product';"
       },
       {
-        "file": "sections\\five-box.liquid",
+        "file": "sections\\bundle--five-box.liquid",
         "line": 977,
         "rule": "no-unguarded-getElementById",
         "severity": "error",
@@ -224,7 +168,7 @@
         "code": "document.getElementById('BundleStatusText').innerText = statusText;"
       },
       {
-        "file": "sections\\five-box.liquid",
+        "file": "sections\\bundle--five-box.liquid",
         "line": 981,
         "rule": "no-unguarded-getElementById",
         "severity": "error",
@@ -232,7 +176,7 @@
         "code": "if (document.getElementById(`Marker-${i}`)) document.getElementById(`Marker-${i}`).classList.add('active');"
       },
       {
-        "file": "sections\\five-box.liquid",
+        "file": "sections\\bundle--five-box.liquid",
         "line": 749,
         "rule": "no-unguarded-querySelector",
         "severity": "error",
@@ -240,7 +184,7 @@
         "code": "document.querySelector(`.slot-item[data-index=\"${index}\"]`).classList.add('active');"
       },
       {
-        "file": "sections\\five-box.liquid",
+        "file": "sections\\bundle--five-box.liquid",
         "line": 967,
         "rule": "no-unguarded-querySelector",
         "severity": "error",
@@ -248,7 +192,7 @@
         "code": "document.querySelector('.savings-row .saving').innerText = `${currSym} ${pricing.standard}`;"
       },
       {
-        "file": "sections\\five-box.liquid",
+        "file": "sections\\bundle--five-box.liquid",
         "line": 968,
         "rule": "no-unguarded-querySelector",
         "severity": "error",
@@ -256,7 +200,7 @@
         "code": "document.querySelector('.save-row span').innerText = `${currSym} ${pricing.saving}`;"
       },
       {
-        "file": "sections\\five-box.liquid",
+        "file": "sections\\bundle--five-box.liquid",
         "line": 932,
         "rule": "no-unguarded-dom-variable",
         "severity": "error",
@@ -264,7 +208,7 @@
         "code": "el.classList.remove('empty');"
       },
       {
-        "file": "sections\\five-box.liquid",
+        "file": "sections\\bundle--five-box.liquid",
         "line": 958,
         "rule": "no-unguarded-dom-variable",
         "severity": "error",
@@ -272,7 +216,7 @@
         "code": "mainBtn.disabled = count !== 5;"
       },
       {
-        "file": "sections\\five-box.liquid",
+        "file": "sections\\bundle--five-box.liquid",
         "line": 992,
         "rule": "no-unguarded-dom-variable",
         "severity": "error",
@@ -280,7 +224,7 @@
         "code": "const priceSpan = btn.querySelector('span:nth-child(2)');"
       },
       {
-        "file": "sections\\five-box.liquid",
+        "file": "sections\\bundle--five-box.liquid",
         "line": 870,
         "rule": "bundle-inventory-availability-guard",
         "severity": "error",
@@ -288,39 +232,7 @@
         "code": "function addProductToBundle(id, size) {"
       },
       {
-        "file": "sections\\product-custom.liquid",
-        "line": 1058,
-        "rule": "no-unguarded-getElementById",
-        "severity": "error",
-        "message": "Unguarded getElementById('psModalVideo') — will crash with \"null is not an object\" if element doesn't exist",
-        "code": "document.getElementById('psModalVideo').style.display = 'block';"
-      },
-      {
-        "file": "sections\\product-custom.liquid",
-        "line": 877,
-        "rule": "fetch-must-have-catch",
-        "severity": "warning",
-        "message": "fetch() without .catch() or try/catch — unhandled network errors will leave UI in broken state",
-        "code": "const res = await fetch('/cart.js');"
-      },
-      {
-        "file": "sections\\product-custom.liquid",
-        "line": 1047,
-        "rule": "no-unguarded-dom-variable",
-        "severity": "error",
-        "message": "Variable 'modal' from DOM lookup used without null check — will crash if element doesn't exist",
-        "code": "const modalClose = document.querySelector('.ps-modal-close');"
-      },
-      {
-        "file": "sections\\product-custom.liquid",
-        "line": 1088,
-        "rule": "no-unguarded-dom-variable",
-        "severity": "error",
-        "message": "Variable 'dotsContainer' from DOM lookup used without null check — will crash if element doesn't exist",
-        "code": "dotsContainer.innerHTML = '';"
-      },
-      {
-        "file": "sections\\trio-set.liquid",
+        "file": "sections\\bundle--trio-set.liquid",
         "line": 735,
         "rule": "no-unguarded-getElementById",
         "severity": "error",
@@ -328,7 +240,7 @@
         "code": "document.getElementById('SelectionDrawer').classList.add('visible');"
       },
       {
-        "file": "sections\\trio-set.liquid",
+        "file": "sections\\bundle--trio-set.liquid",
         "line": 759,
         "rule": "no-unguarded-getElementById",
         "severity": "error",
@@ -336,7 +248,7 @@
         "code": "document.getElementById(id).style.display = 'block';"
       },
       {
-        "file": "sections\\trio-set.liquid",
+        "file": "sections\\bundle--trio-set.liquid",
         "line": 770,
         "rule": "no-unguarded-getElementById",
         "severity": "error",
@@ -344,7 +256,7 @@
         "code": "document.getElementById('DrawerHeadline').innerText = 'Select Size';"
       },
       {
-        "file": "sections\\trio-set.liquid",
+        "file": "sections\\bundle--trio-set.liquid",
         "line": 778,
         "rule": "no-unguarded-getElementById",
         "severity": "error",
@@ -352,7 +264,7 @@
         "code": "document.getElementById('DrawerHeadline').innerText = 'Select Product';"
       },
       {
-        "file": "sections\\trio-set.liquid",
+        "file": "sections\\bundle--trio-set.liquid",
         "line": 984,
         "rule": "no-unguarded-getElementById",
         "severity": "error",
@@ -360,7 +272,7 @@
         "code": "document.getElementById('BundleStatusText').innerText = statusText;"
       },
       {
-        "file": "sections\\trio-set.liquid",
+        "file": "sections\\bundle--trio-set.liquid",
         "line": 989,
         "rule": "no-unguarded-getElementById",
         "severity": "error",
@@ -368,7 +280,7 @@
         "code": "if (document.getElementById(`Marker-${i}`)) document.getElementById(`Marker-${i}`).classList.add('active');"
       },
       {
-        "file": "sections\\trio-set.liquid",
+        "file": "sections\\bundle--trio-set.liquid",
         "line": 738,
         "rule": "no-unguarded-querySelector",
         "severity": "error",
@@ -376,7 +288,7 @@
         "code": "document.querySelector(`.slot-item[data-index=\"${index}\"]`).classList.add('active');"
       },
       {
-        "file": "sections\\trio-set.liquid",
+        "file": "sections\\bundle--trio-set.liquid",
         "line": 974,
         "rule": "no-unguarded-querySelector",
         "severity": "error",
@@ -384,7 +296,7 @@
         "code": "document.querySelector('.savings-row .saving').innerText = `${currSym} ${pricing.standard}`;"
       },
       {
-        "file": "sections\\trio-set.liquid",
+        "file": "sections\\bundle--trio-set.liquid",
         "line": 975,
         "rule": "no-unguarded-querySelector",
         "severity": "error",
@@ -392,7 +304,7 @@
         "code": "document.querySelector('.save-row span').innerText = `${currSym} ${pricing.saving}`;"
       },
       {
-        "file": "sections\\trio-set.liquid",
+        "file": "sections\\bundle--trio-set.liquid",
         "line": 808,
         "rule": "no-unsafe-inline-onclick",
         "severity": "error",
@@ -400,7 +312,7 @@
         "code": "<div class=\"option-item\" onclick=\"selectBrand('${b.tag}')\">"
       },
       {
-        "file": "sections\\trio-set.liquid",
+        "file": "sections\\bundle--trio-set.liquid",
         "line": 807,
         "rule": "no-unguarded-dom-variable",
         "severity": "error",
@@ -408,7 +320,7 @@
         "code": "grid.innerHTML = brands.map(b => `"
       },
       {
-        "file": "sections\\trio-set.liquid",
+        "file": "sections\\bundle--trio-set.liquid",
         "line": 939,
         "rule": "no-unguarded-dom-variable",
         "severity": "error",
@@ -416,7 +328,7 @@
         "code": "el.classList.remove('empty');"
       },
       {
-        "file": "sections\\trio-set.liquid",
+        "file": "sections\\bundle--trio-set.liquid",
         "line": 965,
         "rule": "no-unguarded-dom-variable",
         "severity": "error",
@@ -424,7 +336,7 @@
         "code": "mainBtn.disabled = count !== 3;"
       },
       {
-        "file": "sections\\trio-set.liquid",
+        "file": "sections\\bundle--trio-set.liquid",
         "line": 1003,
         "rule": "no-unguarded-dom-variable",
         "severity": "error",
@@ -432,12 +344,100 @@
         "code": "const priceSpan = btn.querySelector('span:nth-child(2)');"
       },
       {
-        "file": "sections\\trio-set.liquid",
+        "file": "sections\\bundle--trio-set.liquid",
         "line": 883,
         "rule": "bundle-inventory-availability-guard",
         "severity": "error",
         "message": "addProductToBundle does not verify variant availability — out-of-stock items could be selected into bundles",
         "code": "function addProductToBundle(id, size) {"
+      },
+      {
+        "file": "sections\\catalog--best-sellers.liquid",
+        "line": 418,
+        "rule": "no-unguarded-getElementById",
+        "severity": "error",
+        "message": "Unguarded getElementById('totalPages') — will crash with \"null is not an object\" if element doesn't exist",
+        "code": "document.getElementById('totalPages').textContent = totalPages;"
+      },
+      {
+        "file": "sections\\catalog--best-sellers.liquid",
+        "line": 431,
+        "rule": "no-unguarded-getElementById",
+        "severity": "error",
+        "message": "Unguarded getElementById('totalPages') — will crash with \"null is not an object\" if element doesn't exist",
+        "code": "document.getElementById('totalPages').textContent = totalPages;"
+      },
+      {
+        "file": "sections\\catalog--best-sellers.liquid",
+        "line": 432,
+        "rule": "no-unguarded-getElementById",
+        "severity": "error",
+        "message": "Unguarded getElementById('currentPage') — will crash with \"null is not an object\" if element doesn't exist",
+        "code": "document.getElementById('currentPage').textContent = 1;"
+      },
+      {
+        "file": "sections\\catalog--best-sellers.liquid",
+        "line": 454,
+        "rule": "no-unguarded-getElementById",
+        "severity": "error",
+        "message": "Unguarded getElementById('currentPage') — will crash with \"null is not an object\" if element doesn't exist",
+        "code": "document.getElementById('currentPage').textContent ="
+      },
+      {
+        "file": "sections\\catalog--best-sellers.liquid",
+        "line": 637,
+        "rule": "no-unguarded-querySelector",
+        "severity": "error",
+        "message": "Unguarded querySelector('.selected-variant-id') — will crash with \"null is not an object\" if element doesn't exist",
+        "code": "card.querySelector('.selected-variant-id').value = btn.dataset.variantId;"
+      },
+      {
+        "file": "sections\\catalog--best-sellers.liquid",
+        "line": 495,
+        "rule": "no-unguarded-dom-variable",
+        "severity": "error",
+        "message": "Variable 'cartBtn' from DOM lookup used without null check — will crash if element doesn't exist",
+        "code": "cartBtn.classList.add('sold-out');"
+      },
+      {
+        "file": "sections\\catalog--best-sellers.liquid",
+        "line": 663,
+        "rule": "no-unguarded-dom-variable",
+        "severity": "error",
+        "message": "Variable 'submitBtn' from DOM lookup used without null check — will crash if element doesn't exist",
+        "code": "const originalText = submitBtn.innerText;"
+      },
+      {
+        "file": "sections\\catalog--product-custom.liquid",
+        "line": 1058,
+        "rule": "no-unguarded-getElementById",
+        "severity": "error",
+        "message": "Unguarded getElementById('psModalVideo') — will crash with \"null is not an object\" if element doesn't exist",
+        "code": "document.getElementById('psModalVideo').style.display = 'block';"
+      },
+      {
+        "file": "sections\\catalog--product-custom.liquid",
+        "line": 877,
+        "rule": "fetch-must-have-catch",
+        "severity": "warning",
+        "message": "fetch() without .catch() or try/catch — unhandled network errors will leave UI in broken state",
+        "code": "const res = await fetch('/cart.js');"
+      },
+      {
+        "file": "sections\\catalog--product-custom.liquid",
+        "line": 1047,
+        "rule": "no-unguarded-dom-variable",
+        "severity": "error",
+        "message": "Variable 'modal' from DOM lookup used without null check — will crash if element doesn't exist",
+        "code": "const modalClose = document.querySelector('.ps-modal-close');"
+      },
+      {
+        "file": "sections\\catalog--product-custom.liquid",
+        "line": 1088,
+        "rule": "no-unguarded-dom-variable",
+        "severity": "error",
+        "message": "Variable 'dotsContainer' from DOM lookup used without null check — will crash if element doesn't exist",
+        "code": "dotsContainer.innerHTML = '';"
       }
     ]
   },

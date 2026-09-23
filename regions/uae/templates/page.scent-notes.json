@@ -1,7 +1,7 @@
 {
   "sections": {
     "main": {
-      "type": "main-page",
+      "type": "content--page",
       "disabled": true,
       "settings": {
         "padding_top": 28,
@@ -9,7 +9,7 @@
       }
     },
     "image_banner_fG88rc": {
-      "type": "image-banner",
+      "type": "media--image-banner",
       "blocks": {
         "heading_mpUpxC": {
           "type": "heading",
@@ -54,7 +54,7 @@
       }
     },
     "image_banner_itCbat": {
-      "type": "image-banner",
+      "type": "media--image-banner",
       "blocks": {
         "heading_KFwh4r": {
           "type": "heading",
@@ -122,7 +122,7 @@
       "settings": {}
     },
     "rich_text_byXQ48": {
-      "type": "rich-text",
+      "type": "editorial--rich-text",
       "blocks": {
         "heading_jypAef": {
           "type": "heading",
@@ -149,7 +149,7 @@
       }
     },
     "featured_collections_mJBFpk": {
-      "type": "featured-collections",
+      "type": "catalog--featured-collections",
       "blocks": {
         "collection_block_b3Grrf": {
           "type": "collection_block",

@@ -1,7 +1,7 @@
 {
   "sections": {
     "bundlescomingsoon_UwKF44": {
-      "type": "bundlescomingsoon",
+      "type": "bundle--coming-soon",
       "name": "Bundle Coming Soon",
       "settings": {
         "enable_overlay": false,
@@ -10,7 +10,7 @@
       }
     },
     "image_banner_V8niWG": {
-      "type": "image-banner",
+      "type": "media--image-banner",
       "blocks": {
         "heading_qHmUCw": {
           "type": "heading",
@@ -55,7 +55,7 @@
       }
     },
     "image_banner_dKh8Ch": {
-      "type": "image-banner",
+      "type": "media--image-banner",
       "blocks": {
         "heading_fzmUgP": {
           "type": "heading",
@@ -100,7 +100,7 @@
       }
     },
     "image_banner_DpWmep": {
-      "type": "image-banner",
+      "type": "media--image-banner",
       "blocks": {
         "heading_CyWijF": {
           "type": "heading",
@@ -152,7 +152,7 @@
       }
     },
     "main": {
-      "type": "main-page",
+      "type": "content--page",
       "disabled": true,
       "custom_css": [
         ".bundle-builder-section {margin-top: 100px;}",
@@ -166,14 +166,14 @@
       }
     },
     "bundle_tDywUt": {
-      "type": "bundle",
+      "type": "bundle--five-favourites",
       "disabled": true,
       "custom_css": [],
       "name": "Bundle Builder",
       "settings": {}
     },
     "trio_set_8igDY7": {
-      "type": "trio-set",
+      "type": "bundle--trio-set",
       "custom_css": [
         ".savings-row {padding: 4px 0 20px 0px; text-align: center; font-size: 14px; color: #666; background: #f3f3f3;}"
       ],
@@ -181,7 +181,7 @@
       "settings": {}
     },
     "newsletter_banner_4nyEBG": {
-      "type": "newsletter-banner",
+      "type": "marketing--newsletter-banner",
       "custom_css": [
         "@media only screen and (min-width: 1024px) and (max-width: 1439px) {.newsletter-banner .newsletter-content {margin-right: 0px !important; }}",
         "@media (max-width: 1023px) {.newsletter-banner button {width: 240px; height: 48px; margin-left: -323px; margin-top: 90px; } .newsletter-banner small {display: block; margin-top: 150px; font-size: 12px; color: #000; text-align: center; font-family: \"PPMori Regular\", sans-serif; line-height: 120%; } .newsletter-banner {height: 790px; } .newsletter-banner .newsletter-content {margin-bottom: 175px !important; }}"

@@ -1,7 +1,7 @@
 {
   "sections": {
     "image_banner_kFQUD7": {
-      "type": "image-banner",
+      "type": "media--image-banner",
       "blocks": {
         "heading_6TaHJX": {
           "type": "heading",
@@ -51,7 +51,7 @@
       }
     },
     "image_banner_d68XJW": {
-      "type": "image-banner",
+      "type": "media--image-banner",
       "blocks": {
         "heading_HrUaq9": {
           "type": "heading",
@@ -102,7 +102,7 @@
       }
     },
     "video_banner_UijrkX": {
-      "type": "video-banner",
+      "type": "media--video-banner",
       "custom_css": [
         ".video-container {margin-top: 0px; padding-bottom: 50px;}",
         "@media screen and (min-width: 1024px) and (max-width: 1439px) {.curved-line {position: absolute; top: 58%; left: 72%; transform: translateY(-50%); z-index: 1; } .video-button-rounded {margin-top: 20px; }}",
@@ -123,7 +123,7 @@
       }
     },
     "running_text_X9j7b7": {
-      "type": "running-text",
+      "type": "media--running-text",
       "custom_css": [
         "@media only screen and (min-width: 768px) and (max-width: 1439px) {.running-text-content {display: flex; align-items: center; white-space: nowrap; font-style: italic; font-weight: 400 !important; font-size: 40px; color: #000; }}",
         ".running-text-content {font-weight: 400 !important;}",
@@ -138,7 +138,7 @@
       }
     },
     "featured_collections_bQ8wqc": {
-      "type": "featured-collections",
+      "type": "catalog--featured-collections",
       "blocks": {
         "collection_block_xAzKH9": {
           "type": "collection_block",
@@ -184,7 +184,7 @@
       "settings": {}
     },
     "scent_stories_collection_dXw6Vf": {
-      "type": "scent-stories-collection",
+      "type": "editorial--scent-stories",
       "disabled": true,
       "custom_css": [],
       "name": "Scent Stories Section",
@@ -194,7 +194,7 @@
       }
     },
     "featuredscent_8M3b4w": {
-      "type": "featuredscent",
+      "type": "catalog--featured-scent",
       "custom_css": [
         ".fragrance-item:hover .fragrance-info {transform: none; color: black;}",
         ".product-badge {color: #fff !important;}",
@@ -211,7 +211,7 @@
       }
     },
     "running_text_YJKmUL": {
-      "type": "running-text",
+      "type": "media--running-text",
       "custom_css": [
         "@media only screen and (min-width: 1024px) and (max-width: 1439px) {.running-text-content {display: flex; align-items: center; white-space: nowrap; font-style: italic; font-weight: 400; font-size: 60px; color: #000; }}",
         ".running-text-content {font-weight: 400 !important;}",
@@ -226,7 +226,7 @@
       }
     },
     "video_banner1_QerXbX": {
-      "type": "Video-banner1",
+      "type": "media--scent-filter-banner",
       "custom_css": [
         "@media only screen and (min-width: 1024px) and (max-width: 1439px) {.scent-right {margin-right: 0px; } .product-nav {top: 40%; width: calc(100% + 138px); left: -86px; } .scent-left {margin-left: 0px; margin-bottom: -125px; } .product-nav {width: calc(100% + 138px); left: -86px; } .scent-heading {font-size: 68px !important; }}",
         ".fragrance-image-wrap:hover .product-hover-image {opacity: 1;}",
@@ -275,7 +275,7 @@
       }
     },
     "mobile_video_banner_3Bc3Wj": {
-      "type": "mobile-video-banner",
+      "type": "media--mobile-video-banner",
       "custom_css": [
         "@media screen and (min-width: 1024px) {.mvps-section {display: none; }}",
         ".fragrance-item:hover .fragrance-info {transform: none;}",
@@ -312,7 +312,7 @@
       }
     },
     "best_sellers_DQtBQy": {
-      "type": "best-sellers",
+      "type": "catalog--best-sellers",
       "custom_css": [
         "@media only screen and (min-width: 1024px) {.bs-featured-image {height: 900px !important; }}",
         ".bs-image-side {height: auto; padding-top: 0px;}",
@@ -334,7 +334,7 @@
       }
     },
     "bundle_heading_wRwayJ": {
-      "type": "bundle-heading",
+      "type": "bundle--heading",
       "custom_css": [
         ".carousel-container {display: none;}",
         ".scent-header {margin-bottom: -50px;}",
@@ -345,7 +345,7 @@
       "settings": {}
     },
     "bundle_collection_dNJFpE": {
-      "type": "bundle-collection",
+      "type": "bundle--collection",
       "disabled": true,
       "blocks": {
         "collection_block_7VGMEN": {
@@ -483,7 +483,7 @@
       "settings": {}
     },
     "newsletter_banner_AMNnyi": {
-      "type": "newsletter-banner",
+      "type": "marketing--newsletter-banner",
       "custom_css": [
         "@media only screen and (min-width: 1024px) and (max-width: 1439px) {.newsletter-banner .newsletter-content {margin-right: 0px !important; }}",
         "@media (max-width: 1023px) {.newsletter-banner button {width: 240px; height: 48px; margin-left: -323px; margin-top: 90px; } .newsletter-banner small {display: block; margin-top: 150px; font-size: 12px; color: #000; text-align: center; font-family: \"PPMori Regular\", sans-serif; line-height: 120%; } .newsletter-banner {height: 790px; } .newsletter-banner .newsletter-content {margin-bottom: 175px !important; }}"

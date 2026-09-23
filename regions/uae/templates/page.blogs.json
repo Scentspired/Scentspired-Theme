@@ -1,7 +1,7 @@
 {
   "sections": {
     "main": {
-      "type": "main-page",
+      "type": "content--page",
       "disabled": true,
       "settings": {
         "padding_top": 28,
@@ -9,7 +9,7 @@
       }
     },
     "image_banner_a83WhY": {
-      "type": "image-banner",
+      "type": "media--image-banner",
       "blocks": {
         "heading_TJagL6": {
           "type": "heading",
@@ -59,7 +59,7 @@
       }
     },
     "blog_section_4VLNh8": {
-      "type": "blog-section",
+      "type": "editorial--blog-section",
       "blocks": {
         "blog_item_nNRxck": {
           "type": "blog_item",

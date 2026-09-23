@@ -10,7 +10,7 @@
 {
   "sections": {
     "main": {
-      "type": "main-article",
+      "type": "editorial--article",
       "blocks": {
         "breadcrumb": {
           "type": "breadcrumb",

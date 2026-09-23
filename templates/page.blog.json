@@ -10,7 +10,7 @@
 {
   "sections": {
     "image_banner_JEHqic": {
-      "type": "image-banner",
+      "type": "media--image-banner",
       "blocks": {
         "heading_Ncbi7m": {
           "type": "heading",
@@ -62,7 +62,7 @@
       }
     },
     "main": {
-      "type": "main-page",
+      "type": "content--page",
       "disabled": true,
       "settings": {
         "padding_top": 28,
@@ -70,7 +70,7 @@
       }
     },
     "zigzag_blog_mXUTrf": {
-      "type": "zigzag-blog",
+      "type": "editorial--zigzag-blog",
       "blocks": {
         "blog_item_MV4zeT": {
           "type": "blog_item",

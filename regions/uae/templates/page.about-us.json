@@ -1,7 +1,7 @@
 {
   "sections": {
     "main": {
-      "type": "main-page",
+      "type": "content--page",
       "disabled": true,
       "settings": {
         "padding_top": 100,
@@ -9,7 +9,7 @@
       }
     },
     "image_banner_AJECVx": {
-      "type": "image-banner",
+      "type": "media--image-banner",
       "blocks": {
         "heading_LnNWBM": {
           "type": "heading",
@@ -46,7 +46,7 @@
       }
     },
     "image_banner_jaFHwQ": {
-      "type": "image-banner",
+      "type": "media--image-banner",
       "blocks": {
         "heading_rfzEzt": {
           "type": "heading",
@@ -83,7 +83,7 @@
       }
     },
     "rich_text_9wYnHb": {
-      "type": "rich-text",
+      "type": "editorial--rich-text",
       "blocks": {
         "heading_ktcrpP": {
           "type": "heading",
@@ -108,7 +108,7 @@
       }
     },
     "text_section_LbVkMh": {
-      "type": "text-section",
+      "type": "editorial--text-section",
       "custom_css": [
         "@media screen and (min-width: 1024px) {.shopify-hardcoded-text-section-content {font-size: 20px !important; max-width: 800px !important; margin-left: 0px !important; } .shopify-hardcoded-text-section-wrapper {margin-bottom: -80px; }}",
         ".shopify-hardcoded-text-section-content {font-size: 16px; margin-left: 0px; text-align: left;}",
@@ -118,7 +118,7 @@
       "settings": {}
     },
     "video_text_Tmprbb": {
-      "type": "video-text",
+      "type": "media--video-text",
       "custom_css": [
         "@media screen and (min-width: 1441px) {.video-text-section .text-box {margin-top: -190px !important; }}",
         "h1,.h1 {margin-bottom: 22px;}"
@@ -130,7 +130,7 @@
       }
     },
     "image_split_content_hG4Hwe": {
-      "type": "image-split-content",
+      "type": "media--image-split",
       "custom_css": [
         ".content-section.content-right {justify-content: flex-end; padding-right: 50px; padding-left: 40px;}",
         ".image-content-split {margin-top: 20px; margin-bottom: 0px !important;}",
@@ -153,7 +153,7 @@
       }
     },
     "image_split_content_VxLmLH": {
-      "type": "image-split-content",
+      "type": "media--image-split",
       "custom_css": [
         "@media screen and (min-width: 1441px) {.content-section.content-right {justify-content: flex-end; padding-right: 50px; padding-left: 40px; }}",
         ".image-content-split {margin-top: 0px; margin-bottom: 50px;}",
@@ -176,7 +176,7 @@
       }
     },
     "image_split_content_7Rprcz": {
-      "type": "image-split-content",
+      "type": "media--image-split",
       "custom_css": [
         "@media screen and (min-width: 1441px) {.content-section.content-right {justify-content: flex-end; padding-right: 50px; padding-left: 40px; }}",
         ".image-content-split {margin-top: -50px; margin-bottom: 0px;}",
@@ -199,7 +199,7 @@
       }
     },
     "image_with_text_Pq6E9n": {
-      "type": "image-with-text",
+      "type": "media--image-with-text",
       "blocks": {
         "heading_P4KPY6": {
           "type": "heading",
@@ -247,7 +247,7 @@
       }
     },
     "scentspired_story_XTX7CD": {
-      "type": "scentspired-story",
+      "type": "editorial--brand-story",
       "disabled": true,
       "custom_css": [
         "@media screen and (min-width: 1024px) {.lines-desktop {margin-left: -100px; } .story-text {margin-left: 50px; } .story-icon {margin-top: 70px; } .story-heading {font-size: 21px !important; width: 600px !important; font-weight: 600; font-family: \"PP Mori\", sans-serif; } .story-description {font-size: 17px !important; font-family: \"PP Mori\", sans-serif; width: 700px; }}",
@@ -282,7 +282,7 @@
       }
     },
     "dual_slider_kFyAp8": {
-      "type": "dual-slider",
+      "type": "media--dual-slider",
       "disabled": true,
       "custom_css": [
         ".mobile-slider {width: 128%; margin-left: -30px;}",
@@ -297,7 +297,7 @@
       }
     },
     "running_text_kFfHH3": {
-      "type": "running-text",
+      "type": "media--running-text",
       "disabled": true,
       "custom_css": [
         "@media only screen and (min-width: 1024px) and (max-width: 1439px) {.running-text-content {display: flex; align-items: center; white-space: nowrap; font-style: italic; font-weight: 400; font-size: 60px; color: #000; }}",
@@ -312,7 +312,7 @@
       }
     },
     "running_text_CMKw3c": {
-      "type": "running-text",
+      "type": "media--running-text",
       "disabled": true,
       "custom_css": [
         "@media only screen and (min-width: 1024px) and (max-width: 1439px) {.running-text-content {display: flex; align-items: center; white-space: nowrap; font-style: italic; font-weight: 400; font-size: 60px; color: #000; }}"
@@ -326,7 +326,7 @@
       }
     },
     "running_text_ADMwyA": {
-      "type": "running-text",
+      "type": "media--running-text",
       "disabled": true,
       "custom_css": [
         ".running-text-content {font-weight: 400;}"
@@ -340,7 +340,7 @@
       }
     },
     "perfume_story_section_cBwpyY": {
-      "type": "perfume-story-section",
+      "type": "editorial--perfume-story",
       "custom_css": [
         "@media screen and (min-width: 1024px) and (max-width: 1440px) {.perfume-story-image {height: 100%; width: 100% !important; order: 2; } .perfume-story-content {padding: 60px 0px 60px 35px; order: 1; }}",
         "@media screen and (max-width: 767px) {.shop-button {max-width: 310px; } .story-text {max-width: 320px; } .main-headline {width: 350px; margin-bottom: 40px; }}",

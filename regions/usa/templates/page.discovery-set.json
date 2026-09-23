@@ -10,7 +10,7 @@
 {
   "sections": {
     "image_banner_K3tzTP": {
-      "type": "image-banner",
+      "type": "media--image-banner",
       "blocks": {
         "heading_3cKEmE": {
           "type": "heading",
@@ -67,7 +67,7 @@
       }
     },
     "image_banner_dwTVpg": {
-      "type": "image-banner",
+      "type": "media--image-banner",
       "blocks": {
         "heading_wABAgz": {
           "type": "heading",
@@ -148,7 +148,7 @@
       "settings": {}
     },
     "main": {
-      "type": "main-page",
+      "type": "content--page",
       "disabled": true,
       "custom_css": [
         ".bundle-builder-section {margin-top: 100px;}",
@@ -162,7 +162,7 @@
       }
     },
     "bundle_tDywUt": {
-      "type": "bundle",
+      "type": "bundle--five-favourites",
       "disabled": true,
       "custom_css": [
         ".bundle-builder-section {margin-top: 100px;}",
@@ -174,13 +174,13 @@
       "settings": {}
     },
     "discovery_we6EM7": {
-      "type": "discovery",
+      "type": "bundle--discovery",
       "custom_css": [],
       "name": "Discovery",
       "settings": {}
     },
     "newsletter_banner_jKFrVt": {
-      "type": "newsletter-banner",
+      "type": "marketing--newsletter-banner",
       "custom_css": [
         "@media only screen and (min-width: 1024px) and (max-width: 1439px) {.newsletter-banner .newsletter-content {margin-right: 0px !important; }}",
         "@media (max-width: 1023px) {.newsletter-banner button {width: 240px; height: 48px; margin-left: -323px; margin-top: 90px; } .newsletter-banner small {display: block; margin-top: 150px; font-size: 12px; color: #000; text-align: center; font-family: \"PPMori Regular\", sans-serif; line-height: 120%; } .newsletter-banner {height: 790px; } .newsletter-banner .newsletter-content {margin-bottom: 175px !important; }}"

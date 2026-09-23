@@ -10,7 +10,7 @@
 {
   "sections": {
     "custom_liquid_fQJx8x": {
-      "type": "custom-liquid",
+      "type": "content--custom-liquid",
       "disabled": true,
       "name": "t:sections.custom-liquid.presets.name",
       "settings": {
@@ -21,7 +21,7 @@
       }
     },
     "main": {
-      "type": "product-custom",
+      "type": "catalog--product-custom",
       "custom_css": [
         ".price {font-size: 24px; font-weight: 600;}",
         ".price-container {margin-bottom: 40px;}",
@@ -32,7 +32,7 @@
       "settings": {}
     },
     "related-products": {
-      "type": "related-products",
+      "type": "catalog--related-products",
       "disabled": true,
       "settings": {
         "heading": "You may also like",
@@ -51,7 +51,7 @@
       }
     },
     "product_info_tab_g9n4Qx": {
-      "type": "product-info-tab",
+      "type": "catalog--product-info-tab",
       "blocks": {
         "faq_wCTUC3": {
           "type": "faq",
@@ -202,7 +202,7 @@
       }
     },
     "scent_stories_collection_rG6xTg": {
-      "type": "scent-stories-collection",
+      "type": "editorial--scent-stories",
       "disabled": true,
       "custom_css": [
         "@media only screen and (min-width: 1024px) and (max-width: 1439px) {.fragrance-layout {grid-template-columns: repeat(3, 1fr); gap: 20px; } .fragrance-item {height: 500px; width: 330px; } .fragrance-name {margin-left: 30px !important; width: 80%; } .fragrance-cost {top: 20px; } .fragrance-layout {display: grid; grid-template-columns: repeat(3, 1fr) !important; gap: 30px; margin-top: 40px; }}"
@@ -214,7 +214,7 @@
       }
     },
     "review_slider_mDAzfY": {
-      "type": "review-slider",
+      "type": "media--review-slider",
       "blocks": {
         "review_tkNeEA": {
           "type": "review",
@@ -370,7 +370,7 @@
       }
     },
     "featuredscent_jJNzkg": {
-      "type": "featuredscent",
+      "type": "catalog--featured-scent",
       "custom_css": [
         ".fragrance-item:hover .fragrance-info {transform: none; color: black;}",
         ".product-badge {color: #fff !important;}",
@@ -388,7 +388,7 @@
       }
     },
     "newsletter_banner_BxBq7B": {
-      "type": "newsletter-banner",
+      "type": "marketing--newsletter-banner",
       "custom_css": [
         "@media only screen and (min-width: 1024px) and (max-width: 1439px) {.newsletter-banner .newsletter-content {margin-right: 0px !important; }}",
         "@media (max-width: 1023px) {.newsletter-banner button {width: 240px; height: 48px; margin-left: -323px; margin-top: 90px; } .newsletter-banner small {display: block; margin-top: 150px; font-size: 12px; color: #000; text-align: center; font-family: \"PPMori Regular\", sans-serif; line-height: 120%; } .newsletter-banner {height: 790px; } .newsletter-banner .newsletter-content {margin-bottom: 175px !important; }}"
@@ -402,7 +402,7 @@
       }
     },
     "newsletter_banner_aeW7Xg": {
-      "type": "newsletter-banner",
+      "type": "marketing--newsletter-banner",
       "disabled": true,
       "custom_css": [
         "@media only screen and (min-width: 1024px) and (max-width: 1439px) {.newsletter-banner .newsletter-content {margin-right: 0px !important; }}",

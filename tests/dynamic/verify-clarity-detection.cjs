@@ -40,40 +40,40 @@ const clarityBugs = [
   },
   {
     name: "table.querySelectorAll — ingredientsTable (40 sessions)",
-    file: "product-info-tab.liquid",
+    file: "catalog--product-info-tab.liquid",
     pattern: "queryselectorall",
   },
   {
     name: "selected-variant-id.value — best-sellers (19+13 sessions)",
-    file: "best-sellers.liquid",
+    file: "catalog--best-sellers.liquid",
     pattern: "selected-variant-id",
   },
   {
     name: "selected-variant-id.value — bundlediscovery (19+13 sessions)",
-    file: "bundlediscovery.liquid",
+    file: "bundle--discovery-legacy.liquid",
     pattern: "selected-variant-id",
   },
   {
     name: "onclick selectBrand apostrophe — five-box (12+5 sessions)",
-    file: "five-box.liquid",
+    file: "bundle--five-box.liquid",
     pattern: "selectbrand",
   },
   {
     name: "onclick selectBrand apostrophe — trio-set (12+5 sessions)",
-    file: "trio-set.liquid",
+    file: "bundle--trio-set.liquid",
     pattern: "selectbrand",
   },
   {
     name: "onclick selectBrand apostrophe — bundle (12+5 sessions)",
-    file: "bundle.liquid",
+    file: "bundle--five-favourites.liquid",
     pattern: "selectbrand",
   },
   {
     name: "onclick selectBrand apostrophe — discovery (12+5 sessions)",
-    file: "discovery.liquid",
+    file: "bundle--discovery.liquid",
     pattern: "selectbrand",
   },
-  { name: "null.style — bundle showStep (5 sessions)", file: "bundle.liquid", pattern: "style" },
+  { name: "null.style — bundle showStep (5 sessions)", file: "bundle--five-favourites.liquid", pattern: "style" },
   {
     name: "ReferenceError: MobileNavigation is not defined",
     file: "header.liquid",
@@ -81,17 +81,17 @@ const clarityBugs = [
   },
   {
     name: "ReferenceError: rebindProductEvents is not defined",
-    file: "best-sellers.liquid",
+    file: "catalog--best-sellers.liquid",
     pattern: "rebindproductevents",
   },
   {
     name: "SyntaxError: Duplicate totalDisplay identifier — five-box",
-    file: "five-box.liquid",
+    file: "bundle--five-box.liquid",
     pattern: "totaldisplay",
   },
   {
     name: "SyntaxError: Duplicate totalDisplay identifier — trio-set",
-    file: "trio-set.liquid",
+    file: "bundle--trio-set.liquid",
     pattern: "totaldisplay",
   },
   {

@@ -51,7 +51,7 @@
       "settings": {}
     },
     "blogtextliquid_LBJgtB": {
-      "type": "blogtextliquid",
+      "type": "editorial--blog-text-liquid",
       "custom_css": [],
       "name": "Blog Text Liquid",
       "settings": {
@@ -91,7 +91,7 @@
       "settings": {}
     },
     "blogtextliquid_ra7Awx": {
-      "type": "blogtextliquid",
+      "type": "editorial--blog-text-liquid",
       "custom_css": [],
       "name": "Blog Text Liquid",
       "settings": {
