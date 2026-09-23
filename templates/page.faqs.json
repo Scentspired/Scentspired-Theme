@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "main": {
@@ -44,7 +35,248 @@
         "link_7_url": "",
         "link_8_text": "",
         "link_8_url": ""
-      }
+      },
+      "blocks": {
+        "category_1": {
+          "type": "category",
+          "settings": {
+            "title": "ABOUT FRAGRANCES"
+          }
+        },
+        "question_1": {
+          "type": "question",
+          "settings": {
+            "question": "I’m unsure about which scent to choose — can I try samples first?",
+            "answer": "Yes. We offer discovery set options so you can explore different scents before committing to a full-size bottle. It’s the best way to find what truly suits you."
+          }
+        },
+        "question_2": {
+          "type": "question",
+          "settings": {
+            "question": "How strong or concentrated are your perfumes?",
+            "answer": "Our perfumes are crafted as Extrait de Parfum, with a high fragrance oil concentration of up to 35%, designed for depth, richness, and long-lasting performance."
+          }
+        },
+        "question_3": {
+          "type": "question",
+          "settings": {
+            "question": "Are your perfumes made entirely from natural ingredients?",
+            "answer": "Our fragrances are made using a carefully balanced blend of natural and safe synthetic ingredients. This approach ensures consistency, longevity, and skin safety while preserving the character of each scent."
+          }
+        },
+        "question_4": {
+          "type": "question",
+          "settings": {
+            "question": "Why is there sediment or cloudiness in my perfume?",
+            "answer": "This can occasionally occur due to the high concentration of fragrance oils or changes in temperature. It’s completely normal and does not affect the quality or performance of the fragrance."
+          }
+        },
+        "question_5": {
+          "type": "question",
+          "settings": {
+            "question": "How can I extend the wear time of my perfume?",
+            "answer": "Apply your fragrance to pulse points such as the wrists, neck, and behind the ears. Applying on moisturised skin and avoiding rubbing can also help the scent last longer."
+          }
+        },
+        "question_6": {
+          "type": "question",
+          "settings": {
+            "question": "Do your fragrances contain alcohol?",
+            "answer": "Yes. Our perfumes contain cosmetic-grade alcohol, which helps the fragrance project properly and ensures a smooth, even application."
+          }
+        },
+        "question_7": {
+          "type": "question",
+          "settings": {
+            "question": "Are your fragrances gluten-free?",
+            "answer": "Our fragrances do not intentionally contain gluten-based ingredients. However, if you have specific sensitivities, we recommend consulting a medical professional before use."
+          }
+        },
+        "question_8": {
+          "type": "question",
+          "settings": {
+            "question": "Do your perfumes contain harmful chemicals like BPA or parabens?",
+            "answer": "No. Our perfumes are formulated without BPA or parabens and are created in compliance with international cosmetic safety standards."
+          }
+        },
+        "question_9": {
+          "type": "question",
+          "settings": {
+            "question": "What is the shelf life of your perfumes?",
+            "answer": "When stored properly, away from direct sunlight and heat, our perfumes typically have a shelf life of around 2 years, and often longer due to their high oil concentration."
+          }
+        },
+        "question_10": {
+          "type": "question",
+          "settings": {
+            "question": "Are these real brand fragrances?",
+            "answer": "No. Scentspired fragrances are independent creations inspired by iconic scent profiles. We are not affiliated with, endorsed by, or associated with any designer or luxury brands."
+          }
+        },
+        "question_11": {
+          "type": "question",
+          "settings": {
+            "question": "Why are they so affordable? Do they have the same quality as brand perfumes?",
+            "answer": "Our focus is on craft and composition, not excessive branding or mark-ups. By working directly with premium fragrance oils and producing efficiently, we’re able to offer high-quality Extrait de Parfum at a more considered price point."
+          }
+        },
+        "question_12": {
+          "type": "question",
+          "settings": {
+            "question": "Are these fragrances long-lasting?",
+            "answer": "Yes. Our fragrances are crafted as Extrait de Parfum with up to 35% oil concentration, designed to provide long-lasting wear, depth, and strong presence throughout the day."
+          }
+        },
+        "question_13": {
+          "type": "question",
+          "settings": {
+            "question": "How long will the fragrance bottle last?",
+            "answer": "This depends on usage, but with regular wear, a 50ml bottle typically lasts several months. A little goes a long way due to the high concentration."
+          }
+        },
+        "question_14": {
+          "type": "question",
+          "settings": {
+            "question": "Are the fragrances tested on animals?",
+            "answer": "No. Our fragrances are not tested on animals."
+          }
+        },
+        "question_15": {
+          "type": "question",
+          "settings": {
+            "question": "Do you also provide a sample with the 50ml bottle?",
+            "answer": "Yes. Every 50ml and 100ml bottle includes a complimentary 5ml sample. This sample is a different fragrance from your full-size bottle, curated to help you explore more scents from our collection. It’s a simple way to experience new profiles and discover your next favorite before committing to another full size."
+          }
+        },
+        "question_16": {
+          "type": "question",
+          "settings": {
+            "question": "When do I get charged?",
+            "answer": "You are charged at the time of checkout once your order is confirmed."
+          }
+        },
+        "question_17": {
+          "type": "question",
+          "settings": {
+            "question": "I have a question about fragrances, can I talk to you about it?",
+            "answer": "We’ve got people who love chatting about all things fragrance related, email us at [support_email] to get a quick, personal reply. Don’t worry—we check it constantly."
+          }
+        },
+        "category_2": {
+          "type": "category",
+          "settings": {
+            "title": "Orders & Shipping"
+          }
+        },
+        "question_18": {
+          "type": "question",
+          "settings": {
+            "question": "How can I track my order status?",
+            "answer": "Once your order ships, you'll receive an email with a tracking link to follow your package in real-time."
+          }
+        },
+        "question_19": {
+          "type": "question",
+          "settings": {
+            "question": "Can I change my order or shipping address after placing it?",
+            "answer": "If you need to update your order or shipping address after placing it, please email us at [support_email] as soon as possible and we will be happy to assist you. Make sure to include your order number and the correct shipping details. Changes can only be made before the order has been processed or shipped."
+          }
+        },
+        "question_20": {
+          "type": "question",
+          "settings": {
+            "question": "What if my package is lost or delivered incorrectly?",
+            "answer": "Please contact our team with your order number, and we'll work with the courier to resolve the issue promptly."
+          }
+        },
+        "question_21": {
+          "type": "question",
+          "settings": {
+            "question": "What are your shipping charges, and do you offer free shipping?",
+            "answer": "We offer free shipping on qualifying orders. Exact shipping rates and free-shipping thresholds are shown at checkout."
+          }
+        },
+        "question_22": {
+          "type": "question",
+          "settings": {
+            "question": "How long will it take to receive my order?",
+            "answer": "Delivery typically takes 3–7 business days depending on your location and shipping method."
+          }
+        },
+        "question_23": {
+          "type": "question",
+          "settings": {
+            "question": "How do I cancel my order?",
+            "answer": "If you have changed your mind on your order, email us at [support_email] as soon as possible and we will be happy to assist you. Please ensure to include your order number."
+          }
+        },
+        "question_24": {
+          "type": "question",
+          "settings": {
+            "question": "Why is my tracking number not working?",
+            "answer": "All packages take up to 24 hours to update, as the carrier needs to receive, process the package, and update it in their system."
+          }
+        },
+        "question_25": {
+          "type": "question",
+          "settings": {
+            "question": "Why was my order cancelled?",
+            "answer": "Although this rarely takes place, occasionally orders will be canceled under the suspicion of fraud. We have metrics in place that protect our customers, and if flags are raised an order cancellation may be necessary. If this occurs, we will email you immediately with an explanation."
+          }
+        },
+        "category_3": {
+          "type": "category",
+          "settings": {
+            "title": "Returns & Exchanges"
+          }
+        },
+        "question_26": {
+          "type": "question",
+          "settings": {
+            "question": "How can I return or exchange my order?",
+            "answer": "To initiate a refund or exchange, please email us at [returns_email] with your order number and the items you wish to return or exchange. We gladly accept returns and exchanges within 30 days of purchase. Unfortunately, if more than 30 days have passed, we are unable to offer a refund or exchange. To be eligible, items must be unused, in the same condition as received, and returned in their original packaging. Proof of purchase is required to complete your return. Once your return is received and inspected, we will notify you via email. You will also be informed whether your refund has been approved or rejected. If approved, your refund will be processed and credited back to your original payment method within 3–7 business days, depending on your bank. If you haven’t received your refund yet, please first check your bank account. Then contact your credit card provider, as it may take some time for the refund to be officially posted. If needed, reach out to your bank as well. If you’ve completed all these steps and still haven’t received your refund, please contact us at [support_email] . Return shipping costs are the customer’s responsibility and are non-refundable. Delivery times for exchanged items may vary based on location. For items valued over $70, we recommend using a trackable shipping service or purchasing shipping insurance, as we cannot guarantee receipt of returned items."
+          }
+        },
+        "question_27": {
+          "type": "question",
+          "settings": {
+            "question": "What should I do if my product arrives damaged?",
+            "answer": "<p> All of our products are carefully packaged, and we take every precaution to ensure your order arrives safely and on time. However, in rare cases, damage may occur during transit. If this happens, please contact us at [returns_email] and include the following details: </p> <ul> <li>Clear photos of the damaged product and packaging</li> <li>The quantity of items that arrived damaged</li> <li>Your order number</li> </ul> <p> Once we receive your email with the required information, we will review it and arrange a replacement shipment as quickly as possible. </p>"
+          }
+        }
+      },
+      "block_order": [
+        "category_1",
+        "question_1",
+        "question_2",
+        "question_3",
+        "question_4",
+        "question_5",
+        "question_6",
+        "question_7",
+        "question_8",
+        "question_9",
+        "question_10",
+        "question_11",
+        "question_12",
+        "question_13",
+        "question_14",
+        "question_15",
+        "question_16",
+        "question_17",
+        "category_2",
+        "question_18",
+        "question_19",
+        "question_20",
+        "question_21",
+        "question_22",
+        "question_23",
+        "question_24",
+        "question_25",
+        "category_3",
+        "question_26",
+        "question_27"
+      ]
     },
     "newsletter_banner_LTEX3c": {
       "type": "newsletter-banner",
