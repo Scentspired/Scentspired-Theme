@@ -83,6 +83,33 @@ const RULES = [
     pattern: /["'](?:en-(?:gb|us|ae)|en_(?:GB|US|AE))["']/g,
     fix: "resolve it: {% render 'region--active', key: 'hreflang' %}",
   },
+  {
+    id: 'R4',
+    label: 'currency symbol printed next to an amount',
+    /*
+     * R2 only matches JavaScript concatenation, so it walked straight past
+     * fourteen literal pound signs sitting in markup — "Free Shipping over
+     * £35", "£4.99 Shipping", "£{{ product.price }}" — which is how the USA
+     * cart drawer came to quote British prices.
+     *
+     * Matches a symbol immediately followed by an amount or a Liquid output.
+     * A symbol on its own is left alone: CSS content, a legend, prose.
+     *
+     * `$` is treated more strictly than the others because `$1` and `$2` are
+     * regex backreferences and `${` is a template literal — a first pass
+     * flagged `'_200x$1'` in an image resize. So a dollar amount has to look
+     * like money: a decimal, or two or more digits.
+     */
+    /*
+     * A first version of this missed three more: `£ 0` with a space between
+     * symbol and amount, and `{% assign fb_curr_sym = "£" %}` — a symbol held
+     * in a variable, which never sits next to a digit at all. Both shapes are
+     * matched now.
+     */
+    pattern:
+      /(?:£|€|AED)\s?(?:\d|\{\{)|\$(?:\d+\.\d{2}|\d{2,}(?!\d*[a-z_])|\{\{)|["'](?:£|€)["']/gi,
+    fix: "use the region's value: key 'currency_symbol', 'free_shipping_threshold_display' or 'shipping_cost_display'",
+  },
 ];
 
 /**
@@ -123,6 +150,9 @@ for (const dir of SCAN_DIRS) {
   for (const file of walk(path.join(ROOT, dir))) {
     const rel = toPosix(path.relative(ROOT, file));
     if (GENERATED.test(rel)) continue;
+    // A section GROUP is merchant data, not code — regions overlay it whole,
+    // the same way they overlay templates. Only section .liquid is code.
+    if (rel.startsWith('sections/') && rel.endsWith('.json')) continue;
 
     const lines = stripSchema(fs.readFileSync(file, 'utf8')).split('\n');
 

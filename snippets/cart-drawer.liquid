@@ -4,6 +4,24 @@
     render 'region--active', key: 'logo_url'
   endcapture
   assign region_logo_url = region_logo_url | strip
+
+  # The recommendation prices below were written with a literal pound sign, so
+  # the USA storefront printed pound signs on dollar products.
+  capture region_currency_symbol
+    render 'region--active', key: 'currency_symbol'
+  endcapture
+  assign region_currency_symbol = region_currency_symbol | strip
+
+  # Shipping thresholds were hardcoded to the UK's, in the copy and in the JS
+  # below, so every other storefront quoted British prices and limits.
+  capture region_free_shipping
+    render 'region--active', key: 'free_shipping_threshold_display'
+  endcapture
+  assign region_free_shipping = region_free_shipping | strip
+  capture region_shipping_cost
+    render 'region--active', key: 'shipping_cost_display'
+  endcapture
+  assign region_shipping_cost = region_shipping_cost | strip
 -%}
 <style>
   .sp-bundle-container{
@@ -1507,7 +1525,7 @@ text-align: left;
           </a>
 
           <!-- Free Shipping Text -->
-          <p class="sp-free-shipping-text">Free Shipping over £35 </p>
+          <p class="sp-free-shipping-text">Free Shipping over {{ region_free_shipping }} </p>
         </div>
       </div>
 
@@ -1541,11 +1559,11 @@ text-align: left;
           <!-- Updated bundle tiers from 3 to 5 tiers with new discount and shipping structure -->
           <div class="sp-bundle-tiers">
             <div class="sp-tier" data-items="1">
-              <div class="sp-tier-items">Below £35</div>
-              <div class="sp-tier-discount">£4.99 Shipping</div>
+              <div class="sp-tier-items">Below {{ region_free_shipping }}</div>
+              <div class="sp-tier-discount">{{ region_shipping_cost }} Shipping</div>
             </div>
             <div class="sp-tier" data-items="2">
-              <div class="sp-tier-items">£35+</div>
+              <div class="sp-tier-items">{{ region_free_shipping }}+</div>
               <div class="sp-tier-discount">FreeShipping</div>
             </div>
           </div>
@@ -1557,7 +1575,7 @@ text-align: left;
                 <circle cx="8" cy="8" r="3" fill="#666"/>
               </svg>
             </div>
-            <span><strong>FREE</strong> shipping on orders over £35 | £4.99 shipping under £35</span>
+            <span><strong>FREE</strong> shipping on orders over {{ region_free_shipping }} | {{ region_shipping_cost }} shipping under {{ region_free_shipping }}</span>
           </div>
         </div>
       </div>
@@ -1614,7 +1632,7 @@ text-align: left;
                       {% assign total_discounted_line_price = original_price_per_item | times: item.quantity %}
 
                       <span class="sp-discounted-price">
-                        £<span class="price-value" data-single-price="{{ original_price_per_item | money_without_currency }}" data-original-single="{{ original_price_per_item | money_without_currency }}" data-discount="0">{{ total_discounted_line_price | money_without_currency }}</span>
+                        {{ region_currency_symbol }}<span class="price-value" data-single-price="{{ original_price_per_item | money_without_currency }}" data-original-single="{{ original_price_per_item | money_without_currency }}" data-discount="0">{{ total_discounted_line_price | money_without_currency }}</span>
                       </span>
 
                     </div>
@@ -1678,17 +1696,17 @@ text-align: left;
           <div class="sp-summary-details">
             <div class="sp-summary-line">
               <span class="sp-summary-label"> Cart Subtotal </span>
-              <span class="sp-summary-price" id="summary-initial-price">£0.00</span>
+              <span class="sp-summary-price" id="summary-initial-price">{{ region_currency_symbol }}0.00</span>
             </div>
 
             <div class="sp-summary-line">
               <span class="sp-summary-label">Shipping</span>
-              <span class="sp-summary-price" id="sp-shipping-cost">£4.99</span>
+              <span class="sp-summary-price" id="sp-shipping-cost">{{ region_shipping_cost }}</span>
             </div>
 
             <div class="sp-summary-line sp-member-discount-line" id="member-discount-line" style="display: none;">
               <span>d<sup>+</sup> Discount: 10% OFF</span>
-              <span id="summary-member-discount">-£0.00</span>
+              <span id="summary-member-discount">-{{ region_currency_symbol }}0.00</span>
             </div>
 
             <div class="sp-tax-note" style="display: none;">
@@ -1741,7 +1759,7 @@ text-align: left;
                   {% if product.metafields.custom.inspired_by %}
                     <p class="sp-rec-inspired">Inspired by {{ product.metafields.custom.inspired_by }}</p>
                   {% endif %}
-                  <div class="sp-rec-price">£{{ product.price | money_without_currency }}</div>
+                  <div class="sp-rec-price">{{ region_currency_symbol }}{{ product.price | money_without_currency }}</div>
                 </a>
                   <button class="sp-add-to-cart-btn" onclick="addDossierRecommended('{{ product.variants.first.id }}', '{{ product.title | escape }}', '{{ product.featured_image | img_url: '120x120' }}', {{ product.price }}, {{ product.compare_at_price | default: product.price }})">
                     ADD TO CART
@@ -1764,7 +1782,7 @@ text-align: left;
               <div class="sp-rec-details">
                 <h4>DISCOVERY SET</h4>
                 <p class="sp-rec-vendor">Dossier Perfumes</p>
-                <div class="sp-rec-price">£99</div>
+                <div class="sp-rec-price">{{ region_currency_symbol }}99</div>
                 <button class="sp-add-to-cart-btn" onclick="addDossierRecommended('discovery-set')">
                   ADD TO CART
                 </button>
@@ -1781,7 +1799,7 @@ text-align: left;
                 <h4>WOODY SAGE</h4>
                 <p class="sp-rec-vendor">Inspired by</p>
                 <p class="sp-rec-inspired">Jo Malone's Wood Sage & Sea Salt</p>
-                <div class="sp-rec-price">£29</div>
+                <div class="sp-rec-price">{{ region_currency_symbol }}29</div>
                 <button class="sp-add-to-cart-btn" onclick="addDossierRecommended('woody-sage')">
                   ADD TO CART
                 </button>
@@ -1798,7 +1816,7 @@ text-align: left;
                 <h4>FLORA LAVENDER</h4>
                 <p class="sp-rec-vendor">Inspired by</p>
                 <p class="sp-rec-inspired">YSL's Libre</p>
-                <div class="sp-rec-price">£29</div>
+                <div class="sp-rec-price">{{ region_currency_symbol }}29</div>
                 <button class="sp-add-to-cart-btn" onclick="addDossierRecommended('flora-lavender')">
                   ADD TO CART
                 </button>
@@ -1812,7 +1830,7 @@ text-align: left;
       <div class="sp-checkout-section">
         <button class="sp-checkout-btn" onclick="proceedToDossierCheckout()">
           GO TO CHECKOUT
-          <span class="sp-checkout-total" id="checkout-total">£0.00</span>
+          <span class="sp-checkout-total" id="checkout-total">{{ region_currency_symbol }}0.00</span>
         </button>
 
 
@@ -1866,7 +1884,7 @@ function generateCartItemHtml(item) {
   </h3>
   <div class="sp-product-pricing">
     <span class="sp-discounted-price">
-      £<span class="price-value"
+      {{ region_currency_symbol }}<span class="price-value"
         data-single-price="${(originalPricePerItem / 100).toFixed(2)}"
         data-original-single="${(originalPricePerItem / 100).toFixed(2)}"
         data-discount="0">${(totalDiscountedLinePrice / 100).toFixed(2)}
@@ -2235,18 +2253,21 @@ function updateAllDossierDynamicElements(cart) {
   const tiers = document.querySelectorAll('.sp-tier');
   tiers.forEach(tier => tier.classList.remove('sp-tier-active'));
 
-  if (subtotal >= 3500) { // £70 or more
+  const freeShippingThreshold = (window.__STORE_CONFIG && window.__STORE_CONFIG.freeShippingThreshold) || 0;
+  const flatShippingCost = (window.__STORE_CONFIG && window.__STORE_CONFIG.shippingCost) || 0;
+
+  if (subtotal >= freeShippingThreshold) { // region's free-shipping threshold
     const tier2 = document.querySelector('[data-items="2"]');
     if (tier2) tier2.classList.add('sp-tier-active');
-  } else { // Less than $70
+  } else { // below it
     const tier1 = document.querySelector('[data-items="1"]');
     if (tier1) tier1.classList.add('sp-tier-active');
   }
 
   // 3. Update Pricing Display
   let shipping = 0;
-  if (subtotal < 3500) {
-    shipping = 499; // £7.99
+  if (subtotal < freeShippingThreshold) {
+    shipping = flatShippingCost;
   } else {
     shipping = 0; // FREE
   }

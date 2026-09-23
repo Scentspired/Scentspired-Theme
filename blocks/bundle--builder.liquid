@@ -1,3 +1,11 @@
+{%- liquid
+  # Prices below used to be prefixed with a hardcoded currency symbol, which
+  # shipped one region's currency to every storefront.
+  capture region_currency_symbol
+    render 'region--active', key: 'currency_symbol'
+  endcapture
+  assign region_currency_symbol = region_currency_symbol | strip
+-%}
 {% comment %}
   Bundle Builder Section - Hardcoded Collection Display
   Shows all products from a specific collection
@@ -122,7 +130,7 @@
               </div>
 
               <!-- Price -->
-              <div class="product-price-overlay">${{ product.price | money_without_currency }}</div>
+              <div class="product-price-overlay">{{ region_currency_symbol }}{{ product.price | money_without_currency }}</div>
 
               <!-- Product Info -->
               <div class="product-info-overlay">

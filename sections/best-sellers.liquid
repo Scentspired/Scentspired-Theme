@@ -470,7 +470,11 @@ function updateVariantAvailability() {
         const inventory = parseInt(btn.dataset.inventory) || 0;
         const cartQty = variantQtyMap[variantId] || 0;
 
-        if (inventory <= 0 || inventory <= cartQty) {
+        const available = btn.dataset.available === 'true';
+        // Stop the shopper exceeding stock, but only where stock is tracked:
+        // inventory 0 also means "not tracked", and those variants are buyable.
+        const tracked = inventory > 0;
+        if (!available || (tracked && inventory <= cartQty)) {
           btn.classList.add('disabled');
           btn.style.opacity = '0.5';
           btn.style.cursor = 'not-allowed';
@@ -530,8 +534,9 @@ function updateProductsDisplay() {
       const available = btn.dataset.available === 'true';
       const inventory = parseInt(btn.dataset.inventory) || 0;
       
-      // Check if variant has stock and is available
-      if (!available || inventory === 0) {
+      // available is Shopify's answer to "can this be bought". inventory 0
+      // also means "not tracked", so it must not disable on its own.
+      if (!available) {
         btn.classList.add('disabled');
         return;
       }

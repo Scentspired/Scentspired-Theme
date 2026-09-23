@@ -27,7 +27,7 @@
 {% assign fb_std_100 = 149.95 %}
 {% assign fb_saving_50 = 34.96 %}
 {% assign fb_saving_100 = 49.96 %}
-{% assign fb_curr_sym = "£" %}
+{%- capture fb_curr_sym -%}{%- render 'region--active', key: 'currency_symbol' -%}{%- endcapture -%}{%- assign fb_curr_sym = fb_curr_sym | strip -%}
 
 {% if cart.currency.iso_code == "USD" or shop.currency == "USD" %}
   {% assign fb_50 = 45733941936311 %}

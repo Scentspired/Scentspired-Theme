@@ -1,10 +1,40 @@
 {
   "accepted": {
+    "sections/discovery.liquid::R4": {
+      "count": 3,
+      "rule": "currency symbol printed next to an amount",
+      "reason": "Hardcoded bundle prices (14.99). The AMOUNT is region-specific, not just the symbol, and a price for another region is a merchant decision — not something to substitute. Needs real USA and UAE bundle prices.",
+      "fix": "use the region's value: key 'currency_symbol', 'free_shipping_threshold_display' or 'shipping_cost_display'"
+    },
+    "sections/five-box.liquid::R4": {
+      "count": 4,
+      "rule": "currency symbol printed next to an amount",
+      "reason": "Hardcoded bundle prices (29.99/49.99). Same as discovery: the amounts need to come from the merchant. This page also 404s today — see TODO 0.10.",
+      "fix": "use the region's value: key 'currency_symbol', 'free_shipping_threshold_display' or 'shipping_cost_display'"
+    },
+    "sections/text-blog.liquid::R4": {
+      "count": 2,
+      "rule": "currency symbol printed next to an amount",
+      "reason": "Not a bug: $150 and $400 appear in editorial prose about what designer fragrance costs. Article copy, not a price the theme renders.",
+      "fix": "use the region's value: key 'currency_symbol', 'free_shipping_threshold_display' or 'shipping_cost_display'"
+    },
+    "sections/trio-set.liquid::R4": {
+      "count": 3,
+      "rule": "currency symbol printed next to an amount",
+      "reason": "Hardcoded bundle prices (44.99/79.99). Same as five-box, and the page 404s today — see TODO 0.10.",
+      "fix": "use the region's value: key 'currency_symbol', 'free_shipping_threshold_display' or 'shipping_cost_display'"
+    },
     "blocks/catalog--aroma-notes.liquid::R1c": {
       "count": 60,
       "rule": "CDN asset URL",
       "reason": "Hardcoded product imagery. These absolute CDN URLs load from any origin, so no region renders a broken image today. The real fix is moving this imagery onto product metafields, which is a content migration rather than a refactor — tracked in TODO.md 0.8.",
       "fix": "move the image to a setting, a metafield, or a region key"
+    },
+    "blocks/media--scent-video-banner.liquid::R4": {
+      "count": 1,
+      "rule": "currency symbol printed next to an amount",
+      "reason": "Not a bug: placeholder card shown when no products are configured — \"Sample Brand\", \"Sample Product\", \"$29.99\". Dummy content, never a real price.",
+      "fix": "use the region's value: key 'currency_symbol', 'free_shipping_threshold_display' or 'shipping_cost_display'"
     }
   }
 }

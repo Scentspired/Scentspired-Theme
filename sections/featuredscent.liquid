@@ -456,7 +456,7 @@
 
 <script>
 // Currency symbol comes from the region resolved at build time. It used to be
-// a literal "£", which shipped pound signs to every storefront.
+    // a hardcoded symbol, which shipped one region's currency to every storefront.
 const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '{{ cart.currency.symbol }}' || '$';
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -471,8 +471,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const isAvailable = btn.dataset.available === "true"
         const inventory = parseInt(btn.dataset.inventory || "0", 10)
         
-        // Disable only based on Shopify backend inventory, not cart
-        const shouldDisable = !isAvailable || inventory <= 0
+        // variant.available is Shopify's own answer to 'can this be bought' and
+        // already accounts for stock and policy. Do not also require inventory > 0:
+        // an UNTRACKED variant reports 0 while being perfectly buyable.
+        const shouldDisable = !isAvailable
 
         if (shouldDisable) {
           btn.classList.add("disabled")
@@ -514,8 +516,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const isAvailable = btn.dataset.available === "true";
       const inventory = parseInt(btn.dataset.inventory || "0", 10);
       
-      // Disable based on Shopify backend inventory only
-      const shouldDisable = !isAvailable || inventory <= 0;
+      // See above: available is authoritative, and inventory 0 also means
+      // "not tracked", which is not the same as out of stock.
+      const shouldDisable = !isAvailable;
 
       if (shouldDisable) {
         btn.classList.add("disabled");

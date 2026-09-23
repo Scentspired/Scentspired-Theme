@@ -1,3 +1,11 @@
+{%- liquid
+  # Prices below used to be prefixed with a hardcoded currency symbol, which
+  # shipped one region's currency to every storefront.
+  capture region_currency_symbol
+    render 'region--active', key: 'currency_symbol'
+  endcapture
+  assign region_currency_symbol = region_currency_symbol | strip
+-%}
 {% schema %}
 {
   "name": "Custom Product Section",
@@ -69,12 +77,12 @@
   <div class="ps-price-container">
     {% assign variant = product.selected_or_first_available_variant %}
     <span class="ps-price" id="psPriceDisplay" data-price>
-      £{{ variant.price | divided_by: 100.0 | round: 2 }}
+      {{ region_currency_symbol }}{{ variant.price | divided_by: 100.0 | round: 2 }}
     </span>
 
     {% if variant.compare_at_price and variant.compare_at_price > variant.price %}
       <span class="ps-original-price" data-compare-price>
-        £{{ variant.compare_at_price | divided_by: 100.0 | round: 2 }}
+        {{ region_currency_symbol }}{{ variant.compare_at_price | divided_by: 100.0 | round: 2 }}
       </span>
       <span class="ps-price-badge" data-sale-badge>Sale</span>
     {% endif %}
