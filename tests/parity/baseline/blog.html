@@ -2776,17 +2776,19 @@ function updateAllDossierDynamicElements(cart) {
   // 2. Update Bundle Tier
   const tiers = document.querySelectorAll('.sp-tier');
   tiers.forEach(tier => tier.classList.remove('sp-tier-active'));
-  if (subtotal >= 3500) { // £70 or more
+  const freeShippingThreshold = (window.__STORE_CONFIG && window.__STORE_CONFIG.freeShippingThreshold) || 0;
+  const flatShippingCost = (window.__STORE_CONFIG && window.__STORE_CONFIG.shippingCost) || 0;
+  if (subtotal >= freeShippingThreshold) { // region's free-shipping threshold
     const tier2 = document.querySelector('[data-items="2"]');
     if (tier2) tier2.classList.add('sp-tier-active');
-  } else { // Less than $70
+  } else { // below it
     const tier1 = document.querySelector('[data-items="1"]');
     if (tier1) tier1.classList.add('sp-tier-active');
   }
   // 3. Update Pricing Display
   let shipping = 0;
-  if (subtotal < 3500) {
-    shipping = 499; // £7.99
+  if (subtotal < freeShippingThreshold) {
+    shipping = flatShippingCost;
   } else {
     shipping = 0; // FREE
   }

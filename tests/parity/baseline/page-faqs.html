@@ -2773,17 +2773,19 @@ function updateAllDossierDynamicElements(cart) {
   // 2. Update Bundle Tier
   const tiers = document.querySelectorAll('.sp-tier');
   tiers.forEach(tier => tier.classList.remove('sp-tier-active'));
-  if (subtotal >= 3500) { // £70 or more
+  const freeShippingThreshold = (window.__STORE_CONFIG && window.__STORE_CONFIG.freeShippingThreshold) || 0;
+  const flatShippingCost = (window.__STORE_CONFIG && window.__STORE_CONFIG.shippingCost) || 0;
+  if (subtotal >= freeShippingThreshold) { // region's free-shipping threshold
     const tier2 = document.querySelector('[data-items="2"]');
     if (tier2) tier2.classList.add('sp-tier-active');
-  } else { // Less than $70
+  } else { // below it
     const tier1 = document.querySelector('[data-items="1"]');
     if (tier1) tier1.classList.add('sp-tier-active');
   }
   // 3. Update Pricing Display
   let shipping = 0;
-  if (subtotal < 3500) {
-    shipping = 499; // £7.99
+  if (subtotal < freeShippingThreshold) {
+    shipping = flatShippingCost;
   } else {
     shipping = 0; // FREE
   }
@@ -5946,14 +5948,14 @@ function initializeDossierCartTriggers() {
                 <div class="faq-answer">You are charged at the time of checkout once your order is confirmed.</div>
               </div><div class="faq-item">
                 <button class="faq-question" onclick="toggleFaq(this)">I have a question about fragrances, can I talk to you about it?</button>
-                <div class="faq-answer">We’ve got people who love chatting about all things fragrance related, email us at support@scentspired.com to get a quick, personal reply. Don’t worry—we check it constantly.</div>
+                <div class="faq-answer">We’ve got people who love chatting about all things fragrance related, email us at support@scentspired.co.uk to get a quick, personal reply. Don’t worry—we check it constantly.</div>
               </div></div><div class="faq-category">
                 <h2 class="faq-category-title">Orders & Shipping</h2><div class="faq-item">
                 <button class="faq-question" onclick="toggleFaq(this)">How can I track my order status?</button>
                 <div class="faq-answer">Once your order ships, you'll receive an email with a tracking link to follow your package in real-time.</div>
               </div><div class="faq-item">
                 <button class="faq-question" onclick="toggleFaq(this)">Can I change my order or shipping address after placing it?</button>
-                <div class="faq-answer">If you need to update your order or shipping address after placing it, please email us at support@scentspired.com as soon as possible and we will be happy to assist you. Make sure to include your order number and the correct shipping details. Changes can only be made before the order has been processed or shipped.</div>
+                <div class="faq-answer">If you need to update your order or shipping address after placing it, please email us at support@scentspired.co.uk as soon as possible and we will be happy to assist you. Make sure to include your order number and the correct shipping details. Changes can only be made before the order has been processed or shipped.</div>
               </div><div class="faq-item">
                 <button class="faq-question" onclick="toggleFaq(this)">What if my package is lost or delivered incorrectly?</button>
                 <div class="faq-answer">Please contact our team with your order number, and we'll work with the courier to resolve the issue promptly.</div>
@@ -5965,7 +5967,7 @@ function initializeDossierCartTriggers() {
                 <div class="faq-answer">Delivery typically takes 3–7 business days depending on your location and shipping method.</div>
               </div><div class="faq-item">
                 <button class="faq-question" onclick="toggleFaq(this)">How do I cancel my order?</button>
-                <div class="faq-answer">If you have changed your mind on your order, email us at support@scentspired.com as soon as possible and we will be happy to assist you. Please ensure to include your order number.</div>
+                <div class="faq-answer">If you have changed your mind on your order, email us at support@scentspired.co.uk as soon as possible and we will be happy to assist you. Please ensure to include your order number.</div>
               </div><div class="faq-item">
                 <button class="faq-question" onclick="toggleFaq(this)">Why is my tracking number not working?</button>
                 <div class="faq-answer">All packages take up to 24 hours to update, as the carrier needs to receive, process the package, and update it in their system.</div>
@@ -5975,10 +5977,10 @@ function initializeDossierCartTriggers() {
               </div></div><div class="faq-category">
                 <h2 class="faq-category-title">Returns & Exchanges</h2><div class="faq-item">
                 <button class="faq-question" onclick="toggleFaq(this)">How can I return or exchange my order?</button>
-                <div class="faq-answer">To initiate a refund or exchange, please email us at returns@scentspired.com with your order number and the items you wish to return or exchange. We gladly accept returns and exchanges within 30 days of purchase. Unfortunately, if more than 30 days have passed, we are unable to offer a refund or exchange. To be eligible, items must be unused, in the same condition as received, and returned in their original packaging. Proof of purchase is required to complete your return. Once your return is received and inspected, we will notify you via email. You will also be informed whether your refund has been approved or rejected. If approved, your refund will be processed and credited back to your original payment method within 3–7 business days, depending on your bank. If you haven’t received your refund yet, please first check your bank account. Then contact your credit card provider, as it may take some time for the refund to be officially posted. If needed, reach out to your bank as well. If you’ve completed all these steps and still haven’t received your refund, please contact us at support@scentspired.com . Return shipping costs are the customer’s responsibility and are non-refundable. Delivery times for exchanged items may vary based on location. For items valued over $70, we recommend using a trackable shipping service or purchasing shipping insurance, as we cannot guarantee receipt of returned items.</div>
+                <div class="faq-answer">To initiate a refund or exchange, please email us at returns@scentspired.co.uk with your order number and the items you wish to return or exchange. We gladly accept returns and exchanges within 30 days of purchase. Unfortunately, if more than 30 days have passed, we are unable to offer a refund or exchange. To be eligible, items must be unused, in the same condition as received, and returned in their original packaging. Proof of purchase is required to complete your return. Once your return is received and inspected, we will notify you via email. You will also be informed whether your refund has been approved or rejected. If approved, your refund will be processed and credited back to your original payment method within 3–7 business days, depending on your bank. If you haven’t received your refund yet, please first check your bank account. Then contact your credit card provider, as it may take some time for the refund to be officially posted. If needed, reach out to your bank as well. If you’ve completed all these steps and still haven’t received your refund, please contact us at support@scentspired.co.uk . Return shipping costs are the customer’s responsibility and are non-refundable. Delivery times for exchanged items may vary based on location. For items valued over $70, we recommend using a trackable shipping service or purchasing shipping insurance, as we cannot guarantee receipt of returned items.</div>
               </div><div class="faq-item">
                 <button class="faq-question" onclick="toggleFaq(this)">What should I do if my product arrives damaged?</button>
-                <div class="faq-answer"><p> All of our products are carefully packaged, and we take every precaution to ensure your order arrives safely and on time. However, in rare cases, damage may occur during transit. If this happens, please contact us at returns@scentspired.com and include the following details: </p> <ul> <li>Clear photos of the damaged product and packaging</li> <li>The quantity of items that arrived damaged</li> <li>Your order number</li> </ul> <p> Once we receive your email with the required information, we will review it and arrange a replacement shipment as quickly as possible. </p></div>
+                <div class="faq-answer"><p> All of our products are carefully packaged, and we take every precaution to ensure your order arrives safely and on time. However, in rare cases, damage may occur during transit. If this happens, please contact us at returns@scentspired.co.uk and include the following details: </p> <ul> <li>Clear photos of the damaged product and packaging</li> <li>The quantity of items that arrived damaged</li> <li>Your order number</li> </ul> <p> Once we receive your email with the required information, we will review it and arrange a replacement shipment as quickly as possible. </p></div>
               </div></div></main>
     </div>
   </div>

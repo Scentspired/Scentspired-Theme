@@ -2780,17 +2780,19 @@ function updateAllDossierDynamicElements(cart) {
   // 2. Update Bundle Tier
   const tiers = document.querySelectorAll('.sp-tier');
   tiers.forEach(tier => tier.classList.remove('sp-tier-active'));
-  if (subtotal >= 3500) { // £70 or more
+  const freeShippingThreshold = (window.__STORE_CONFIG && window.__STORE_CONFIG.freeShippingThreshold) || 0;
+  const flatShippingCost = (window.__STORE_CONFIG && window.__STORE_CONFIG.shippingCost) || 0;
+  if (subtotal >= freeShippingThreshold) { // region's free-shipping threshold
     const tier2 = document.querySelector('[data-items="2"]');
     if (tier2) tier2.classList.add('sp-tier-active');
-  } else { // Less than $70
+  } else { // below it
     const tier1 = document.querySelector('[data-items="1"]');
     if (tier1) tier1.classList.add('sp-tier-active');
   }
   // 3. Update Pricing Display
   let shipping = 0;
-  if (subtotal < 3500) {
-    shipping = 499; // £7.99
+  if (subtotal < freeShippingThreshold) {
+    shipping = flatShippingCost;
   } else {
     shipping = 0; // FREE
   }
@@ -10759,7 +10761,7 @@ function initializeDossierCartTriggers() {
 </div>
 <script>
 // Currency symbol comes from the region resolved at build time. It used to be
-// a literal "£", which shipped pound signs to every storefront.
+    // a hardcoded symbol, which shipped one region's currency to every storefront.
 const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '£' || '$';
 document.addEventListener("DOMContentLoaded", () => {
   function updateVariantAvailability() {
@@ -10771,8 +10773,10 @@ document.addEventListener("DOMContentLoaded", () => {
       variantBtns.forEach((btn) => {
         const isAvailable = btn.dataset.available === "true"
         const inventory = parseInt(btn.dataset.inventory || "0", 10)
-        // Disable only based on Shopify backend inventory, not cart
-        const shouldDisable = !isAvailable || inventory <= 0
+        // variant.available is Shopify's own answer to 'can this be bought' and
+        // already accounts for stock and policy. Do not also require inventory > 0:
+        // an UNTRACKED variant reports 0 while being perfectly buyable.
+        const shouldDisable = !isAvailable
         if (shouldDisable) {
           btn.classList.add("disabled")
         } else {
@@ -10806,8 +10810,9 @@ document.addEventListener("DOMContentLoaded", () => {
     variantBtns.forEach((btn) => {
       const isAvailable = btn.dataset.available === "true";
       const inventory = parseInt(btn.dataset.inventory || "0", 10);
-      // Disable based on Shopify backend inventory only
-      const shouldDisable = !isAvailable || inventory <= 0;
+      // See above: available is authoritative, and inventory 0 also means
+      // "not tracked", which is not the same as out of stock.
+      const shouldDisable = !isAvailable;
       if (shouldDisable) {
         btn.classList.add("disabled");
         return;
