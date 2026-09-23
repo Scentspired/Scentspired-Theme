@@ -69,9 +69,10 @@
     "guard:fixtures": "node tests/static/run-guard-fixtures.cjs",
     "guard:imageurl": "node tests/static/guard--image-url.cjs",
     "guard:headings": "node tests/static/guard--headings.cjs",
-    "guard:all": "node tests/static/guard--region-literals.cjs && node tests/static/guard--image-url.cjs && node tests/static/guard--headings.cjs && node tests/static/run-guard-fixtures.cjs",
+    "guard:all": "node tests/static/guard--region-literals.cjs && node tests/static/guard--image-url.cjs && node tests/static/guard--headings.cjs && node tests/static/guard--section-refs.cjs && node tests/static/run-guard-fixtures.cjs",
     "stores:check": "node scripts/check-stores.cjs",
-    "dev": "node scripts/dev-region.cjs"
+    "dev": "node scripts/dev-region.cjs",
+    "guard:refs": "node tests/static/guard--section-refs.cjs"
   },
   "devDependencies": {
     "@shopify/cli": "^3.94.0",

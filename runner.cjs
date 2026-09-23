@@ -278,9 +278,21 @@ const CORE_LAYERS = [
     failMsg: "Heading structure regressed: a page lost its single H1, or interface chrome re-entered the outline",
   },
   {
+    // Renaming safety net. A section type that no longer matches a file does
+    // not error — Shopify renders the page with that section simply missing,
+    // which is how the block rename lost three references. Core-only.
+    name: "Layer 18: Section & Snippet Reference Guard",
+    cmd: "node",
+    args: [
+      path.join(TESTS_DIR, "static", "guard--section-refs.cjs"),
+      `--root=${GUARDIAN_ROOT}`,
+    ],
+    failMsg: "A section or snippet reference points at a file that does not exist",
+  },
+  {
     // The guards above are only worth their exit code if they have been seen
     // to fail. Each fixture plants defects and asserts they are caught.
-    name: "Layer 18: Guard Fixtures (red/green verification)",
+    name: "Layer 19: Guard Fixtures (red/green verification)",
     cmd: "node",
     args: [path.join(TESTS_DIR, "static", "run-guard-fixtures.cjs")],
     failMsg: "A guard no longer catches what it claims to catch",
