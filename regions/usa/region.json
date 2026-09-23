@@ -37,5 +37,6 @@
   },
   "is_default": true,
   "published": true,
-  "myshopify_domain": "scentspired.myshopify.com"
+  "myshopify_domain": "scentspired.myshopify.com",
+  "dev_port": 9293
 }

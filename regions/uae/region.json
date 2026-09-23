@@ -31,5 +31,6 @@
   "trustpilot": {
     "enabled": false
   },
-  "myshopify_domain": "scentspiredae.myshopify.com"
+  "myshopify_domain": "scentspiredae.myshopify.com",
+  "dev_port": 9294
 }

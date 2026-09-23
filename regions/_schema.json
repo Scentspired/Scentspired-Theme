@@ -124,6 +124,10 @@
     "myshopify_domain": {
       "type": "string",
       "description": "The Shopify store that serves this region, e.g. scentspired.myshopify.com. Used by npm run dev:<region> so each region previews against its own store."
+    },
+    "dev_port": {
+      "type": "number",
+      "description": "Local port for npm run dev:<region>. Each region gets its own so several can run at once; without this they all fight over 9292."
     }
   }
 }
