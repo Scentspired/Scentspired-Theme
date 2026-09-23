@@ -308,6 +308,60 @@ later: each is now reachable from one place.
   as `h3`/`h4`. Left deliberately: those are content rather than chrome, and a
   product name is a defensible heading. Worth revisiting only if an audit still
   reads the outline badly.
+### 0.15 Written content: what comes from region data and what still does not
+
+- **Status:** FAQ DONE; four sections still hold copy
+- **Already regional, and working:** `templates/*.json` (64 files for USA, 65
+  for UAE), `locales/*.json` (51 each), `config/` (3 each), section groups, and
+  the typed keys in `region.json`. This is why the privacy policy reads "As a
+  UK-based company" on UK and "USA-based" on USA, with the right address on
+  each.
+- **Fixed here:** `sections/faq-section.liquid` held 748 words as markup and
+  had no blocks at all, so no region could change an answer without forking the
+  file. Its 3 categories and 27 questions are now blocks in
+  `templates/page.faqs.json`, seeded into both regional overlays.
+  - Answers carry `[support_email]` / `[returns_email]`, resolved from
+    `region.json` at render time, so the address stays defined once even though
+    the sentence around it is template data.
+  - Verified: rendered text character-for-character identical at 7,414 chars;
+    the whole page identical once whitespace collapses, bar three HTML
+    comments; and rewriting one UAE answer produced a divergent `dist/uae` with
+    no code file touched.
+- **Still holding copy in shared code**, in descending order:
+
+  | words | file |
+  | ---: | :--- |
+  | 248 | `sections/product-info-tab.liquid` |
+  | 144 | `sections/header.liquid` |
+  | 115 | `sections/text-blog.liquid` |
+  | 92 | `sections/dual-slider.liquid` |
+
+  None is currently wrong for any region — the copy is written
+  region-neutrally. They are the same conversion as the FAQ when you want them.
+- **Two Shopify constraints worth knowing before doing the next one:**
+  `max_blocks` defaults to **16**, so any section carrying more needs it set
+  explicitly; and the section's schema must reach the theme *before* the
+  template that references its block types, or the upload is rejected with
+  "Type must be defined in schema".
+
+### 0.16 The parity harness occasionally reports a same-length change
+
+- **Status:** OPEN — a harness flake, not a theme defect
+- **What:** roughly one run in five, a page reports `CHANGED (+0 bytes)` and
+  passes on the next run. Seen on `search`, then `home` and
+  `collection-unisex`.
+- **Cause:** same byte count with different content means a reorder, not an
+  edit — Shopify reshuffling app blocks or rotating a recommendations carousel.
+  The harness already normalises app-extension tags and retries once; the flake
+  is when the retry catches the same shuffled state.
+- **Why it is not simply normalised away:** widening the normaliser to ignore
+  product order would also hide a real change to a product grid, which is one
+  of the things this harness exists to catch.
+- **Suggested fix:** retry twice rather than once, and treat a `+0 bytes`
+  delta as a retry signal rather than a failure, since a real markup edit
+  essentially never lands on the same byte count.
+
+
 
 ---
 
