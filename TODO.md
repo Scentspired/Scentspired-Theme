@@ -4,6 +4,89 @@ This document tracks identified architectural mismatches, regional divergence po
 
 ---
 
+## 0. Deliberately deferred during the typography refactor
+
+Found while tokenising fonts. Each is **live behaviour today**, so changing it
+would alter the rendering — which the refactor explicitly forbids. Recorded
+here rather than silently fixed. None requires shotgun surgery to resolve
+later: each is now reachable from one place.
+
+### 0.1 Shopify's font picker (`Assistant`) paints most of the page
+
+- **Status:** DEFERRED — needs a design decision, not a refactor
+- **What:** `settings.type_body_font` / `type_header_font` resolve to `Assistant`,
+  which paints **223 of 430** element signatures. It is not a brand font.
+- **Why deferred:** switching it to a brand PP font is a site-wide visual change.
+- **Cost to fix later:** one line. It now resolves through `--font-theme-body` /
+  `--font-heading-family` in `snippets/token--typography.liquid`, so changing the
+  token (or the theme setting) reaches every surface. No file hunt.
+
+### 0.2 Three font families are referenced but never loaded
+
+- **Status:** DEFERRED — fixing changes rendering
+- **What:** `PPMori SemiBold` (10 signatures), `PPEditorial New Ultrabold` (3) and
+  `PPEditorialNew Ultralight` have **no `@font-face` anywhere**. They silently
+  fall back today.
+- **Why deferred:** adding the `@font-face` would make them suddenly render in the
+  intended face — a real visual change.
+- **Cost to fix later:** add the `@font-face` next to the others in
+  `layout/theme.liquid`; the tokens already exist.
+
+### 0.3 `font-family: "object-fit: contain"`
+
+- **Status:** DEFERRED — cosmetic defect, zero visual effect
+- **Where:** `assets/component-predictive-search.css:232`
+- **What:** a botched edit left a layout property inside a `font-family` value. It
+  is an invalid family name, so the browser ignores it and falls through.
+- **Why deferred:** harmless, and removing it is unrelated to typography tokens.
+
+### 0.4 Bare `PPMori` is not a real family
+
+- **Status:** INTENTIONALLY NOT MIGRATED
+- **Where:** `sections/discovery-set.liquid` — `font-family: 'PPMori', -apple-system, …`
+- **What:** no `@font-face` declares `PPMori` (without `Regular`), so this element
+  paints in the system font. It is deliberately excluded from the token map: pointing
+  it at `--font-body` would start rendering PPMori Regular, a real visual change.
+  The exclusion is commented in `scripts/migrate-fonts.cjs` so it cannot be
+  reintroduced by accident.
+
+### 0.5 Fonts are loaded 46 times from 19 files, in two formats
+
+- **Status:** DEFERRED — highest-value remaining typography work
+- **What:** the theme contains **46 `@font-face` blocks across 19 files**. Sections
+  re-declare the fonts the layout already loads, and they point at different
+  files:
+
+  | file | `@font-face` declarations |
+  | :--- | ---: |
+  | `PPMori-Regular.otf` | 15 |
+  | `PPEditorialNew-Italic-….otf` | 12 |
+  | `PPMori-Extralight.otf` | 4 |
+  | the `.woff2` equivalents in `layout/theme.liquid` | 1 each |
+
+- **Why it matters:** the same typeface is declared from both `.otf` and `.woff2`.
+  OTF is far larger than WOFF2, so the page can pull megabytes it does not need,
+  and which declaration wins depends on source order.
+- **Why deferred:** consolidating changes *which file* the browser loads. The
+  typeface is the same, but this is a loading change and the refactor forbids
+  behavioural changes without separate sign-off.
+- **Cost to fix later:** delete the 45 duplicate blocks and keep the `@font-face`
+  set in `layout/theme.liquid` (or move it into `snippets/token--typography.liquid`
+  beside the tokens). The token layer already means no component names a file.
+- **Verify with:** `npm run fonts:check -- --painted` plus a network check that
+  each font file is requested once.
+
+### 0.6 Fallback chains were consolidated
+
+- **Status:** DONE, recorded for transparency
+- **What:** the same family was declared with differing fallbacks
+  (`'PPMori Regular'` alone, `…, sans-serif`, `…, Arial, sans-serif`,
+  `…, -apple-system, …`). All now resolve to one canonical stack per family.
+- **Effect:** none while the webfont loads. The chains differ only if a webfont
+  fails, where three files no longer fall back to Arial. Approved explicitly.
+
+---
+
 ## 1. UK Free Shipping Threshold vs Cart Drawer Tier Mismatch
 
 - **Status:** ✅ RESOLVED & IMPLEMENTED

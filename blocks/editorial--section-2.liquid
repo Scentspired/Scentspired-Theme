@@ -18,7 +18,7 @@
     HEADING STYLE:
     
     Font family:
-    font-family: 'PP Editorial New', serif;
+    font-family: var(--font-display);
     Italic styling.
     Font size approximately 58–68px.
     Font weight light/thin.
@@ -131,7 +131,7 @@
   }
 
   .ai-editorial-heading-{{ ai_gen_id }} {
-    font-family: 'PPEditorialNew Ultralight Italic';
+    font-family: var(--font-display-ultralight-italic);
     font-weight: {{ block.settings.heading_font.weight }};
     font-style: {{ block.settings.heading_font.style }};
     font-size: {{ block.settings.heading_size }}px;
@@ -188,7 +188,7 @@
   }
 
   .ai-editorial-text-{{ ai_gen_id }} {
-    font-family: 'PPMori Regular';
+    font-family: var(--font-body);
     font-weight: 500;
     font-size: {{ block.settings.body_size }}px;
     color: {{ block.settings.body_color }};

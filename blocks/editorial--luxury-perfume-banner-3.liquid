@@ -106,7 +106,7 @@
     position: absolute;
     top: {{ block.settings.line1_top }}%;
     left: {{ block.settings.line1_left }}%;
-    font-family: 'PP Editorial New', serif;
+    font-family: var(--font-display);
     font-style: italic;
     font-weight: 300;
     /* 
@@ -147,7 +147,7 @@
     font-weight: 300;
   }
   .lux-line2-italic-{{ ai_gen_id }} {
-    font-family: 'PPEditorialNew Ultralight Italic';
+    font-family: var(--font-display-ultralight-italic);
     font-style: italic;
     font-weight: 300;
   }
@@ -163,7 +163,7 @@
     position: absolute;
     top: {{ block.settings.line3_top }}%;
     left: {{ block.settings.line3_left }}%;
-    font-family: 'PP Editorial New', serif;
+    font-family: var(--font-display);
     font-style: italic;
     font-weight: 300;
     font-size: clamp(18px, 7.3vw, 73px);

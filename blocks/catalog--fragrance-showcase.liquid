@@ -75,14 +75,14 @@
       margin-bottom: 20px !important;
     }
     .fragrance-heading {
-      font-family: 'PPMori Extralight', sans-serif;
+      font-family: var(--font-body-light);
       font-size: 46px;
       font-weight: 200;
       color: #808080;
       margin-bottom: 20px;
     }
     .fragrance-subtitle {
-      font-family: 'PPEditorialNew Italic', serif;
+      font-family: var(--font-display-italic);
       font-weight: 500;
       font-size: 45px;
       font-style: italic;
@@ -112,7 +112,7 @@
       position: relative;
       overflow: hidden;
       border-radius: 18px;
-      font-family: 'PPMori Regular', sans-serif;
+      font-family: var(--font-body);
       height: 610px;
       width: 337px;
     }
@@ -148,7 +148,7 @@
       font-size: 16px;
       color: #000;
       z-index: 2;
-      font-family: 'PPMori Regular', sans-serif;
+      font-family: var(--font-body);
       font-weight: 300 !important;
       transition: color 0.3s ease;
       z-index: 2;
@@ -199,7 +199,7 @@
       font-size: 17px;
       font-weight: 400;
       margin: 0 0 2px 0;
-      font-family: 'PPMori Regular', sans-serif;
+      font-family: var(--font-body);
       width: 70%;
       white-space: normal;
       line-height: 1.3;
@@ -213,7 +213,7 @@
     .fragrance-brand {
       margin: 0 0 3px 0;
       font-size: 15px;
-      font-family: 'PPMori Regular', sans-serif;
+      font-family: var(--font-body);
       font-weight: 400;
       display: block;
       transition: color 0.3s ease;
@@ -251,7 +251,7 @@
       cursor: pointer;
       border: none;
       width: 80%;
-      font-family: 'PPMori Regular', sans-serif;
+      font-family: var(--font-body);
     }
     .show-all-btn {
       display: inline-block;
@@ -263,7 +263,7 @@
       font-size: 14px;
       border-radius: 999px;
       transition: background 0.3s ease;
-      font-family: 'PPMori Regular', sans-serif;
+      font-family: var(--font-body);
       text-transform: uppercase;
       width: 359px;
       height: 67px;
@@ -308,7 +308,7 @@
   hover */ }
 
   /* Mobile Price - always visible at top right, changes color on hover */ .fragrance-cost { position: absolute; top:
-  20px; right: 20px; font-size: 16px; color: #000; z-index: 3; font-family: 'PP MORI', sans-serif; /* Font from
+  20px; right: 20px; font-size: 16px; color: #000; z-index: 3; font-family: var(--font-mori-alt); /* Font from
   reference image */ font-weight: normal !important; transition: color 0.3s ease; /* Enable color transition on hover */
   } .fragrance-item:hover .fragrance-cost { color: #ffffff; /* Change to white on hover for mobile */ }
 
@@ -320,11 +320,11 @@
   white; /* Ensure name/brand also turn white on hover */ }
 
   .fragrance-name { font-size: 16px; /* Adjusted font size for mobile */ font-weight: 400; margin: 0 auto 4px auto; /*
-  Center and adjust margin */ font-family: 'PPMori Regular', sans-serif; /* Reverted to desktop font */ width: 90%; /*
+  Center and adjust margin */ font-family: var(--font-body); /* Reverted to desktop font */ width: 90%; /*
   Adjust width for mobile */ white-space: normal; line-height: 1.3; text-transform: uppercase; display: block;
   text-align: center; margin-left: auto !important; /* Override desktop margin */ transition: color 0.3s ease; /* Enable
   color transition */ z-index: 2px; } this is also mobile css, .fragrance-brand { margin: 0 auto 8px auto; /* Center and
-  adjust margin */ font-size: 12px; /* Adjusted font size for mobile */ font-family: 'PPMori Regular', sans-serif; /*
+  adjust margin */ font-size: 12px; /* Adjusted font size for mobile */ font-family: var(--font-body); /*
   Reverted to desktop font */ font-weight: 400; display: block; transition: color 0.3s ease; /* Enable color transition
   */ z-index: 2px; } .fragrance-rating { margin: 0; /* Remove margin */ font-size: 18px; /* Adjusted font size for
   mobile */ color: #cbdd00; z-index: 2px; } .rating-star { margin-right: 0px; /* Adjust spacing */ }
@@ -340,7 +340,7 @@
   center; display: block; /* Ensure it's not hidden by desktop-exclusive */ } .fragrance-item:hover .fragrance-hover {
   transform: translateY(0); /* Visible on hover */ } .cart-button { /* Re-using existing cart-button class */
   margin-top: 12px; background: #f4ff41; color: #000; font-weight: 600; font-size: 12px; padding: 13px 50px;
-  border-radius: 999px; cursor: pointer; border: none; width: 80%; font-family: 'PPMori Regular', sans-serif; }
+  border-radius: 999px; cursor: pointer; border: none; width: 80%; font-family: var(--font-body); }
 
   .show-all-btn { padding: 22px 40px; width: auto; height: auto; font-size: 13px; margin-top: 40px; margin-left: 0;
   display: flex; align-items: center; /* Vertical alignment */ justify-content: center; /* Horizontal alignment */
@@ -403,7 +403,7 @@
   }
 
   .ai-fragrance-heading-{{ ai_gen_id }} {
-    font-family: 'PPMori Extralight', sans-serif;
+    font-family: var(--font-body-light);
     font-size: 46px;
     font-weight: 200;
     color: #808080;
@@ -412,7 +412,7 @@
   }
 
   .ai-fragrance-subtitle-{{ ai_gen_id }} {
-    font-family: 'PPEditorialNew Italic', serif;
+    font-family: var(--font-display-italic);
     font-weight: 500;
     font-size: 45px;
     font-style: italic;
@@ -455,7 +455,7 @@
     position: relative;
     overflow: hidden;
     border-radius: 18px;
-    font-family: 'PPMori Regular', sans-serif;
+    font-family: var(--font-body);
     height: 610px;
     flex-shrink: 0;
   }
@@ -501,7 +501,7 @@
     font-size: 16px;
     color: #000;
     z-index: 3;
-    font-family: 'PPMori Regular', sans-serif;
+    font-family: var(--font-body);
     font-weight: 300;
     transition: color 0.3s ease;
   }
@@ -530,7 +530,7 @@
     font-size: 17px;
     font-weight: 400;
     margin: 0 0 2px 0;
-    font-family: 'PPMori Regular', sans-serif;
+    font-family: var(--font-body);
     width: 70%;
     white-space: normal;
     line-height: 1.3;
@@ -544,7 +544,7 @@
   .ai-fragrance-brand-{{ ai_gen_id }} {
     margin: 0 0 3px 0;
     font-size: 15px;
-    font-family: 'PPMori Regular', sans-serif;
+    font-family: var(--font-body);
     font-weight: 400;
     display: block;
     transition: color 0.3s ease;
@@ -593,7 +593,7 @@
     cursor: pointer;
     border: none;
     width: 80%;
-    font-family: 'PPMori Regular', sans-serif;
+    font-family: var(--font-body);
     transition: background 0.3s ease;
   }
 
@@ -668,7 +668,7 @@
     font-size: 14px;
     border-radius: 999px;
     transition: background 0.3s ease;
-    font-family: 'PPMori Regular', sans-serif;
+    font-family: var(--font-body);
     text-transform: uppercase;
     width: 359px;
     height: 67px;
@@ -785,7 +785,7 @@
 
     .ai-fragrance-cost-{{ ai_gen_id }} {
       top: 20px;
-      font-family: 'PP MORI', sans-serif;
+      font-family: var(--font-mori-alt);
       font-weight: normal;
     }
 

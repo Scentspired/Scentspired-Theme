@@ -22,7 +22,7 @@
     }
 
     .ai-editorial-section__heading-{{ ai_gen_id }} {
-      font-family: 'PPEditorialNew Italic', 'PP Editorial New', Georgia, serif;
+      font-family: var(--font-display-italic);
       font-style: italic;
       font-size: clamp(28px, 3.2vw, {{ block.settings.heading_size }}px);
       color: {{ block.settings.heading_color }};
@@ -53,7 +53,7 @@
     }
 
     .ai-editorial-section__box-text-{{ ai_gen_id }} {
-      font-family: 'PPMori Regular', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: var(--font-body);
       font-size: {{ block.settings.box_text_size }}px;
       color: {{ block.settings.box_text_color }};
       line-height: {{ block.settings.box_text_line_height }};
@@ -83,7 +83,7 @@
     }
 
     .ai-editorial-section__subheading-{{ ai_gen_id }} {
-      font-family: 'PPEditorialNew Italic', 'PP Editorial New', Georgia, serif;
+      font-family: var(--font-display-italic);
       font-style: italic;
       font-size: clamp(28px, 3.2vw, {{ block.settings.subheading_size }}px);
       color: {{ block.settings.subheading_color }};
@@ -94,7 +94,7 @@
     }
 
     .ai-editorial-section__bottom-text-{{ ai_gen_id }} {
-      font-family: 'PPMori Regular', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: var(--font-body);
       font-size: {{ block.settings.bottom_text_size }}px;
       color: {{ block.settings.bottom_text_color }};
       line-height: 1.85;

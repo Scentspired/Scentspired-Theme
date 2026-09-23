@@ -1,0 +1,62 @@
+{%- comment -%}
+  ============================================================================
+  SCENTSPIRED — Typography Tokens
+  ============================================================================
+  The single place that names a font. Components reference a token; nothing
+  else spells out a family.
+
+  Every value here is EXACTLY what the theme already rendered when these tokens
+  were introduced — this file changed where the value lives, never the value.
+  Verify with `npm run fonts:check` (declarations) and
+  `npm run fonts:check -- --painted` (what actually paints).
+
+  Adding a region or a component never edits this file. Changing the brand font
+  is one line here and reaches every surface: no shotgun surgery.
+
+  Notes on individual tokens, kept here rather than in the CSS so they do not
+  ship to every page:
+
+  --font-body
+      Consolidated from five declarations that differed only in fallback
+      ('PPMori Regular' alone, '…, sans-serif', '…, Arial, sans-serif',
+      '…, -apple-system, …'). Identical whenever the webfont loads.
+
+  --font-body-semibold, --font-display-ultrabold
+      Referenced across the theme but NO @font-face declares them, so they have
+      always fallen back. Kept as-is deliberately: loading them would change the
+      rendering. See TODO.md 0.2.
+
+  --font-mori-alt
+      A separate @font-face from 'PPMori Regular' — different file, different
+      family. Must not be merged with --font-body.
+
+  --font-theme-body / --font-theme-heading
+      Shopify's font picker, currently resolving to Assistant, which paints most
+      of the page and is not a brand font. Left exactly as it is; routing it
+      through a token means swapping it later is a change here, not a hunt.
+      See TODO.md 0.1.
+
+  Deliberately absent: bare 'PPMori' (no 'Regular') has no @font-face and paints
+  as the system font. It is excluded from the token map on purpose — see
+  TODO.md 0.4.
+  ============================================================================
+{%- endcomment -%}
+
+{%- style -%}
+  :root {
+    --font-body: 'PPMori Regular', sans-serif;
+    --font-body-light: 'PPMori Extralight', sans-serif;
+    --font-body-semibold: 'PPMori SemiBold', sans-serif;
+    --font-mori-alt: 'PP Mori', sans-serif;
+
+    --font-display: 'PP Editorial New', serif;
+    --font-display-italic: 'PPEditorialNew Italic', serif;
+    --font-display-ultralight-italic: 'PPEditorialNew Ultralight Italic', serif;
+    --font-display-ultrabold: 'PPEditorial New Ultrabold', serif;
+
+    --font-system: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+    --font-theme-body: var(--font-body-family);
+    --font-theme-heading: var(--font-heading-family);
+  }
+{%- endstyle -%}

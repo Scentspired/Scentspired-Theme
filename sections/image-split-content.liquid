@@ -112,7 +112,7 @@
     justify-content: center;
     color: #999;
     font-size: 18px;
-    font-family: 'PPMori Regular', Arial, sans-serif;
+    font-family: var(--font-body);
   }
 
   .content-section {
@@ -144,7 +144,7 @@
   }
 
   .eyebrow-text {
-    font-family: 'PPMori Regular', Arial, sans-serif;
+    font-family: var(--font-body);
     font-size: 12px;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -154,7 +154,7 @@
   }
 
   .main-heading {
-    font-family: 'PPEditorialNew Italic', Georgia, serif;
+    font-family: var(--font-display-italic);
     font-size: 48px;
     font-weight: 900;
     font-style: italic;
@@ -168,7 +168,7 @@
     text-underline-offset: 2px;
   }
   .description {
-    font-family: 'PPMori Regular', Arial, sans-serif;
+    font-family: var(--font-body);
     font-size: 16px;
     line-height: 1.6;
     color: {{ section.settings.text_color | default: '#666' }};
@@ -185,7 +185,7 @@
   }
 
   .cta-button {
-    font-family: 'PPMori Regular', Arial, sans-serif;
+    font-family: var(--font-body);
     display: inline-block;
     padding: 15px 35px;
     border: none;

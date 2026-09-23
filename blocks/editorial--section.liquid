@@ -17,7 +17,7 @@
     HEADING STYLE:
 
     Font family:
-    font-family: 'PP Editorial New', serif;
+    font-family: var(--font-display);
     Italic styling.
     Font size approximately 58–68px.
     Font weight light/thin.
@@ -132,7 +132,7 @@
   }
 
   .ai-editorial-heading-{{ ai_gen_id }} {
-    font-family: 'PPEditorialNew Italic', 'PP Editorial New', Georgia, serif;
+    font-family: var(--font-display-italic);
     font-style: italic;
     font-size: clamp(28px, 3.2vw, {{ block.settings.heading_size }}px);
     color: {{ block.settings.heading_color }};
@@ -197,7 +197,7 @@
   }
 
   .ai-editorial-text-{{ ai_gen_id }} {
-    font-family: 'PPMori Regular', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: var(--font-body);
     font-weight: 350;
     font-size: {{ block.settings.body_size }}px;
     color: {{ block.settings.body_color }};

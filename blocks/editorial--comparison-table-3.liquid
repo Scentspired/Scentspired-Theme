@@ -32,7 +32,7 @@
     color: {{ block.settings.header_text_color }};
     font-weight: 600;
     font-size: {{ block.settings.header_font_size }}px;
-        font-family: 'PPMori Regular', Arial, sans-serif;
+        font-family: var(--font-body);
   }
 
   .ai-comparison-table-element-{{ ai_gen_id }} thead th:first-child {
@@ -46,7 +46,7 @@
   .ai-comparison-table-element-{{ ai_gen_id }} tbody td {
     color: {{ block.settings.body_text_color }};
     font-size: {{ block.settings.body_font_size }}px;
-        font-family: 'PPMori Regular', Arial, sans-serif;
+        font-family: var(--font-body);
   }
 
   .ai-comparison-table-element-{{ ai_gen_id }} tbody tr:nth-child(even) {

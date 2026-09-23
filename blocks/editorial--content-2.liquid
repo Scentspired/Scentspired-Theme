@@ -22,7 +22,7 @@
   }
 
   .ai-editorial-section__heading-{{ ai_gen_id }} {
-    font-family: 'PPEditorialNew Ultralight Italic';
+    font-family: var(--font-display-ultralight-italic);
     font-size: {{ block.settings.heading_size }}px;
     color: {{ block.settings.heading_color }};
     margin: 0 0 -34px 0;
@@ -37,7 +37,7 @@
   }
 
   .ai-editorial-section__box-text-{{ ai_gen_id }} {
-    font-family: 'PPMori Regular', Arial, sans-serif;
+    font-family: var(--font-body);
     font-size: {{ block.settings.box_text_size }}px;
     color: {{ block.settings.box_text_color }};
     line-height: {{ block.settings.box_text_line_height }};
@@ -49,7 +49,7 @@
   }
 
   .ai-editorial-section__subheading-{{ ai_gen_id }} {
-    font-family: 'PPEditorialNew Ultralight Italic';
+    font-family: var(--font-display-ultralight-italic);
     font-style: italic;
     font-size: {{ block.settings.subheading_size }}px;
     color: {{ block.settings.subheading_color }};
@@ -58,7 +58,7 @@
   }
 
   .ai-editorial-section__bottom-text-{{ ai_gen_id }} {
-    font-family: 'PPMori Regular', Arial, sans-serif;
+    font-family: var(--font-body);
     font-size: {{ block.settings.bottom_text_size }}px;
     color: {{ block.settings.bottom_text_color }};
     line-height: {{ block.settings.bottom_text_line_height }};

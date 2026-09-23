@@ -26,6 +26,13 @@ const BASELINE = path.join(THEME_ROOT, 'tests/parity/font-inventory.json');
 const args = process.argv.slice(2);
 const isCheck = args.includes('--check');
 const isReport = args.includes('--report');
+/**
+ * --painted compares only the FIRST family in each stack — the one the browser
+ * actually paints when the webfont loads. Consolidating fallbacks changes the
+ * declaration but not the painted result, so this is the mode that answers
+ * "did anything visibly move?".
+ */
+const isPainted = args.includes('--painted');
 
 const PROPS = ['font-family', 'font-size', 'font-weight', 'line-height', 'letter-spacing'];
 
@@ -75,9 +82,27 @@ const normalize = v =>
     .trim()
     .toLowerCase();
 
+/**
+ * Tokens are defined in one file and used in many, so resolution needs a
+ * global map as well as the per-file one. Without it, migrating a rule to
+ * var(--font-body) would look like the declaration vanished.
+ */
+function globalVars() {
+  const map = new Map();
+  for (const file of ['snippets/token--typography.liquid', 'layout/theme.liquid', 'assets/base.css']) {
+    const full = path.join(THEME_ROOT, file);
+    if (!fs.existsSync(full)) continue;
+    for (const [k, v] of buildVarMap(fs.readFileSync(full, 'utf8'))) {
+      if (!map.has(k)) map.set(k, v);
+    }
+  }
+  return map;
+}
+
 function collect() {
   const inventory = {};
   const fontsInUse = new Map();
+  const globals = globalVars();
 
   for (const file of sources()) {
     const raw = fs.readFileSync(path.join(THEME_ROOT, file), 'utf8');
@@ -86,7 +111,7 @@ function collect() {
       .replace(/\{%-?\s*(comment|doc)[\s\S]*?end\1\s*-?%\}/g, '')
       .replace(/\{%-?\s*schema\s*-?%\}[\s\S]*?\{%-?\s*endschema\s*-?%\}/g, '');
 
-    const vars = buildVarMap(text);
+    const vars = new Map([...globals, ...buildVarMap(text)]);
     const entries = [];
 
     // selector { ... } blocks, plus inline style="..." attributes
@@ -158,9 +183,17 @@ if (!fs.existsSync(BASELINE)) {
 const before = JSON.parse(fs.readFileSync(BASELINE, 'utf8'));
 const changes = [];
 
+/** Reduce "sel { font-family: a, b, c }" to "sel { font-family: a }". */
+const toPainted = entry =>
+  entry.replace(/(\{\s*font-family:\s*)([^}]+)(\})/, (all, head, value, tail) => head + value.split(',')[0].trim() + ' ' + tail);
+
 for (const file of new Set([...Object.keys(before), ...Object.keys(inventory)])) {
-  const a = before[file] || [];
-  const b = inventory[file] || [];
+  let a = before[file] || [];
+  let b = inventory[file] || [];
+  if (isPainted) {
+    a = a.map(toPainted);
+    b = b.map(toPainted);
+  }
   const countOf = list => list.reduce((m, e) => m.set(e, (m.get(e) || 0) + 1), new Map());
   const ca = countOf(a);
   const cb = countOf(b);
@@ -176,7 +209,11 @@ for (const file of new Set([...Object.keys(before), ...Object.keys(inventory)]))
 
 console.log(`\n  Typography declarations: ${totalDeclarations}`);
 if (changes.length === 0) {
-  console.log('  ✅ Every resolved typography value is unchanged.\n');
+  console.log(
+    isPainted
+      ? '  ✅ No painted font changed — only fallback chains differ.\n'
+      : '  ✅ Every resolved typography value is unchanged.\n'
+  );
   process.exit(0);
 }
 

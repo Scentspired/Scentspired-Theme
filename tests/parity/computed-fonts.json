@@ -1,28 +1,34 @@
 {
-  "$comment": "Computed-style fingerprint of the rendered homepage, captured from a real browser against the UK store. This is the tripwire for typography work: tokenising must not move any of it. If `hash` changes, something in the cascade moved and must be explained before the change is accepted. Recapture with the snippet in scripts/README-style-check.md.",
+  "$comment": "Computed-style fingerprint of the rendered homepage, captured from a real browser against the UK store. Keyed by PAINTED font — the first family in each computed stack, which is what the browser actually draws when the webfont loads. Recapture with the snippet in scripts/README-style-check.md.",
   "capturedAt": "2026-09-23",
+  "capturedAfter": "typography token migration (411 declarations -> 9 tokens)",
   "page": "/",
   "store": "scentspireduk.myshopify.com",
-  "elements": 4420,
   "signatures": 430,
-  "hash": 744275401,
-  "distinctComputedFonts": 18,
-  "census": [
-    ["Assistant, sans-serif", 199],
-    ["-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif", 66],
-    ["\"PP Editorial New\", serif", 40],
-    ["\"PPMori Regular\", sans-serif", 34],
-    ["\"Libre Baskerville\", serif", 26],
-    ["Arial", 25],
-    ["\"PPMori SemiBold\", sans-serif", 9],
-    ["\"Times New Roman\"", 6],
-    ["Inter, sans-serif", 5],
-    ["\"PPEditorialNew Italic\", serif", 5]
+  "distinctPaintedFonts": 17,
+  "paintedCensus": [
+    ["Assistant", 223],
+    ["-apple-system", 71],
+    ["PP Editorial New", 47],
+    ["PPMori Regular", 38],
+    ["Arial", 29],
+    ["Libre Baskerville", 26],
+    ["PPMori SemiBold", 10],
+    ["Inter", 7],
+    ["Times New Roman", 6],
+    ["PPEditorialNew Italic", 5],
+    ["PPEditorialNew Ultralight Italic", 4],
+    ["PPMori Extralight", 3],
+    ["PPEditorial New Ultrabold", 3],
+    ["Playfair Display", 2],
+    ["PP Mori", 1],
+    ["GTStandard-M", 1]
   ],
   "notes": [
-    "Assistant is Shopify's font_picker output and dominates the page (199 of 430 signatures). It is NOT one of the brand PP fonts.",
-    "Arial renders on 25 signatures and must stay Arial.",
-    "Libre Baskerville and Times New Roman appear unintentionally but are live behaviour — they are recorded, not corrected.",
-    "The theme declares 32 distinct font stacks (see: npm run fonts:report) but only 18 actually compute, because several stacks name the same family with different fallbacks."
+    "430 signatures before and after the token migration — the page structure did not move.",
+    "Arial paints on 29 signatures and must stay Arial.",
+    "Assistant is Shopify's font_picker output and paints the majority of the page. It is NOT a brand font. Deliberately left alone; it now resolves through --font-theme-body so changing it later is one edit rather than a hunt. Tracked in TODO.md.",
+    "PPMori SemiBold, PPEditorial New Ultrabold and PPEditorialNew Ultralight are named in CSS but have NO @font-face anywhere, so they silently fall back today. Left as-is, since loading them would change rendering. Tracked in TODO.md.",
+    "Methodology: the authoritative before/after proof is `npm run fonts:check -- --painted`, which diffs declarations. This census corroborates at the cascade level and is the baseline for future comparisons."
   ]
 }

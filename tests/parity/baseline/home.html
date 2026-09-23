@@ -231,7 +231,7 @@ Shopify.SignInWithShop.User.recognized = false;</script>
 <script>window.ShopifyPaypalV4VisibilityTracking = true;</script>
 <script id="captcha-bootstrap">!function(){'use strict';const t='contact',e='account',n='new_comment',o=[[t,t],['blogs',n],['comments',n],[t,'customer']],c=[[e,'customer_login'],[e,'guest_login'],[e,'recover_customer_password'],[e,'create_customer']],r=t=>t.map((([t,e])=>`form[action*='/${t}']:not([data-nocaptcha='true']) input[name='form_type'][value='${e}']`)).join(','),a=t=>()=>t?[...document.querySelectorAll(t)].map((t=>t.form)):[];function s(){const t=[...o],e=r(t);return a(e)}const i='password',u='form_key',d=['recaptcha-v3-token','g-recaptcha-response','h-captcha-response',i],f=()=>{try{return window.sessionStorage}catch{return}},m='__shopify_v',_=t=>t.elements[u];function p(t,e,n=!1){try{const o=window.sessionStorage,c=JSON.parse(o.getItem(e)),{data:r}=function(t){const{data:e,action:n}=t;return t[m]||n?{data:e,action:n}:{data:t,action:n}}(c);for(const[e,n]of Object.entries(r))t.elements[e]&&(t.elements[e].value=n);n&&o.removeItem(e)}catch(o){console.error('form repopulation failed',{error:o})}}const l='form_type',E='cptcha';function T(t){t.dataset[E]=!0}const w=window,h=w.document,L='Shopify',v='ce_forms',y='captcha';let A=!1;((t,e)=>{const n=(g='UUID',I='https://cdn.shopify.com/shopifycloud/storefront-forms-hcaptcha/ce_storefront_forms_captcha_hcaptcha.v1.5.3.iife.js',D={infoText:'Protected by hCaptcha',privacyText:'Privacy',termsText:'Terms'},(t,e,n)=>{const o=w[L][v],c=o.bindForm;if(c)return c(t,g,e,D).then(n);var r;o.q.push([[t,g,e,D],n]),r=I,A||(h.body.append(Object.assign(h.createElement('script'),{id:'captcha-provider',async:!0,src:r})),A=!0)});var g,I,D;w[L]=w[L]||{},w[L][v]=w[L][v]||{},w[L][v].q=[],w[L][y]=w[L][y]||{},w[L][y].protect=function(t,e){n(t,void 0,e),T(t)},Object.freeze(w[L][y]),function(t,e,n,w,h,L){const[v,y,A,g]=function(t,e,n){const i=e?o:[],u=t?c:[],d=[...i,...u],f=r(d),m=r(i),_=r(d.filter((([t,e])=>n.includes(e))));return[a(f),a(m),a(_),s()]}(w,h,L),I=t=>{const e=t.target;return e instanceof HTMLFormElement?e:e&&e.form},D=t=>v().includes(t);t.addEventListener('submit',(t=>{const e=I(t);if(!e)return;const n=D(e)&&!e.dataset.hcaptchaBound&&!e.dataset.recaptchaBound,o=_(e),c=g().includes(e)&&(!o||!o.value);(n||c)&&t.preventDefault(),c&&!n&&(function(t){try{if(!f())return;!function(t){const e=f();if(!e)return;const n=_(t);if(!n)return;const o=n.value;o&&e.removeItem(o)}(t);const e=Array.from(Array(32),(()=>Math.random().toString(36)[2])).join('');!function(t,e){_(t)||t.append(Object.assign(document.createElement('input'),{type:'hidden',name:u})),t.elements[u].value=e}(t,e),function(t,e){const n=f();if(!n)return;const o=[...t.querySelectorAll(`input[type='${i}']`)].map((({name:t})=>t)),c=[...d,...o],r={};for(const[a,s]of new FormData(t).entries())c.includes(a)||(r[a]=s);n.setItem(e,JSON.stringify({[m]:1,action:t.action,data:r}))}(t,e)}catch(e){console.error('failed to persist form',e)}}(e),e.submit())}));const S=(t,e)=>{t&&!t.dataset[E]&&(n(t,e.some((e=>e===t))),T(t))};for(const o of['focusin','change'])t.addEventListener(o,(t=>{const e=I(t);D(e)&&S(e,y())}));const B=e.get('form_key'),M=e.get(l),P=B&&M;t.addEventListener('DOMContentLoaded',(()=>{const t=y();if(P)for(const e of t)e.elements[l].value===M&&p(e,B);[...new Set([...A(),...v().filter((t=>'true'===t.dataset.shopifyCaptcha))])].forEach((e=>S(e,t)))}))}(h,new URLSearchParams(w.location.search),n,t,e,['guest_login'])})(!0,!0)}();</script>
 <script integrity="sha256-JjoPp5ZfB1sSAs5SQaol1x1GgvveM+BgmRzyDexInEQ=" data-source-attribution="shopify.loadfeatures" defer="defer" src="/cdn/shopifycloud/storefront/assets/storefront/load_feature-1bd60354.js" crossorigin="anonymous"></script>
-<script>(function () {var userAgent = navigator.userAgent;var platform = navigator.platform;var maxTouchPoints = navigator.maxTouchPoints || 0;var isIOS = /iPad|iPhone|iPod/.test(platform) || (platform === 'MacIntel' && maxTouchPoints > 1);var isMacSafari = platform.indexOf('Mac') === 0 && /Safari/.test(userAgent) && !/Chrome|Chromium|CriOS|FxiOS|Edg|OPR|Android/.test(userAgent);var isAppleSafari = isIOS || isMacSafari;if (isAppleSafari) {fetch('/sf_private_access_tokens' + location.search).catch(function () {});}function browserMajorVersion(pattern) {var match = userAgent.match(pattern);return match ? parseInt(match[1], 10) : null;}function shouldLoadAutosizesPolyfill() {if (!window.PerformanceObserver?.supportedEntryTypes?.includes('paint')) {return false;}var chromeVersion = browserMajorVersion(/Chrome\/(\d+)/);if (chromeVersion !== null) {return chromeVersion < 126;}var firefoxVersion = browserMajorVersion(/Firefox\/(\d+)/);if (firefoxVersion !== null) {return firefoxVersion < 150;}var safariVersion = isAppleSafari ? browserMajorVersion(/Version\/(\d+).*Safari\//) : null;if (safariVersion !== null) {return safariVersion < 27;}return true;}if (shouldLoadAutosizesPolyfill()) {var autosizesScript = document.createElement('script');autosizesScript.async = true;autosizesScript.crossOrigin = 'anonymous';autosizesScript.src = "/cdn/shopifycloud/storefront/assets/storefront/autosizes-84416378.js";(document.head || document.documentElement).appendChild(autosizesScript);}window.ShopifyAnalytics = window.ShopifyAnalytics || {};window.ShopifyAnalytics.performance = window.ShopifyAnalytics.performance || {};(function () {var LONG_FRAME_THRESHOLD = 50;var longAnimationFrames = [];var activeRafId = null;function collectLongFrames() {var previousTime = null;function rafMonitor(now) {if (activeRafId === null) {return;}var delta = now - previousTime;if (delta > LONG_FRAME_THRESHOLD) {longAnimationFrames.push({startTime: previousTime,endTime: now,});}previousTime = now;activeRafId = requestAnimationFrame(rafMonitor);}previousTime = performance.now();activeRafId = requestAnimationFrame(rafMonitor);}if (!window.PerformanceObserver?.supportedEntryTypes?.includes('long-animation-frame')) {collectLongFrames();var timeoutId = setTimeout(function () {cancelAnimationFrame(activeRafId);}, 10000);window.ShopifyAnalytics.performance.getLongAnimationFrames = function (stopCollection) {if (stopCollection === undefined) {stopCollection = false;}if (stopCollection) {clearTimeout(timeoutId);cancelAnimationFrame(activeRafId);}return longAnimationFrames;};}})();})();</script><script crossorigin="anonymous" defer="defer" src="/cdn/shopifycloud/storefront/assets/shopify_pay/storefront-bf1cdb70.js?v=X"></script>
+<script>(function () {var userAgent = navigator.userAgent;var platform = navigator.platform;var maxTouchPoints = navigator.maxTouchPoints || 0;var isIOS = /iPad|iPhone|iPod/.test(platform) || (platform === 'MacIntel' && maxTouchPoints > 1);var isMacSafari = platform.indexOf('Mac') === 0 && /Safari/.test(userAgent) && !/Chrome|Chromium|CriOS|FxiOS|Edg|OPR|Android/.test(userAgent);var isAppleSafari = isIOS || isMacSafari;if (isAppleSafari) {fetch('/sf_private_access_tokens' + location.search).catch(function () {});}function browserMajorVersion(pattern) {var match = userAgent.match(pattern);return match ? parseInt(match[1], 10) : null;}function shouldLoadAutosizesPolyfill() {if (!window.PerformanceObserver?.supportedEntryTypes?.includes('paint')) {return false;}var chromeVersion = browserMajorVersion(/Chrome\/(\d+)/);if (chromeVersion !== null) {return chromeVersion < 126;}var firefoxVersion = browserMajorVersion(/Firefox\/(\d+)/);if (firefoxVersion !== null) {return firefoxVersion < 150;}var safariVersion = isAppleSafari ? browserMajorVersion(/Version\/(\d+).*Safari\//) : null;if (safariVersion !== null) {return safariVersion < 27;}return true;}if (shouldLoadAutosizesPolyfill()) {var autosizesScript = document.createElement('script');autosizesScript.async = true;autosizesScript.crossOrigin = 'anonymous';autosizesScript.src = "/cdn/shopifycloud/storefront/assets/storefront/autosizes-84416378.js";(document.head || document.documentElement).appendChild(autosizesScript);}window.ShopifyAnalytics = window.ShopifyAnalytics || {};window.ShopifyAnalytics.performance = window.ShopifyAnalytics.performance || {};(function () {var LONG_FRAME_THRESHOLD = 50;var longAnimationFrames = [];var activeRafId = null;function collectLongFrames() {var previousTime = null;function rafMonitor(now) {if (activeRafId === null) {return;}var delta = now - previousTime;if (delta > LONG_FRAME_THRESHOLD) {longAnimationFrames.push({startTime: previousTime,endTime: now,});}previousTime = now;activeRafId = requestAnimationFrame(rafMonitor);}previousTime = performance.now();activeRafId = requestAnimationFrame(rafMonitor);}if (!window.PerformanceObserver?.supportedEntryTypes?.includes('long-animation-frame')) {collectLongFrames();var timeoutId = setTimeout(function () {cancelAnimationFrame(activeRafId);}, 10000);window.ShopifyAnalytics.performance.getLongAnimationFrames = function (stopCollection) {if (stopCollection === undefined) {stopCollection = false;}if (stopCollection) {clearTimeout(timeoutId);cancelAnimationFrame(activeRafId);}return longAnimationFrames;};}})();})();</script><script crossorigin="anonymous" defer="defer" src="/cdn/shopifycloud/storefront/assets/shopify_pay/storefront-a8c02437.js?v=X"></script>
 <script id="shopify-origin-trials" async="async" integrity="sha256-qJbe/jEZBHtr5W/BlA2cKAz3vkXu6vJQyLjgvgCC86g=" src="//cdn.shopify.com/shopifycloud/storefront/assets/storefront/origin_trials-318ab40a.js" crossorigin="anonymous" onload="window.__shopifyOriginTrialsDone = true" onerror="window.__shopifyOriginTrialsDone = true"></script>
 <script>
   window.Shopify = window.Shopify || {};
@@ -241,7 +241,7 @@ Shopify.SignInWithShop.User.recognized = false;</script>
   window.Shopify.MCP.mcpEndpoint = "https:\/\/scentspireduk.myshopify.com\/api\/mcp";
   window.Shopify.MCP.tools = [{"name":"search_shop_policies_and_faqs","description":"Used to get facts about the stores policies, products, or services.\nSome examples of questions you can ask are:\n  - What is your return policy?\n  - What is your shipping policy?\n  - What is your phone number?\n  - What are your hours of operation?\"\n","inputSchema":{"$schema":"https:\/\/json-schema.org\/draft\/2020-12\/schema","type":"object","properties":{"query":{"type":"string","description":"A natural language query."},"context":{"type":"string","description":"Additional information about the request such as user demographics, mood, location, or other relevant details that could help in tailoring the response appropriately."}},"required":["query"]}}];
 </script>
-<script>(()=>{var d="shopify:webmcp_adapter_loaded",n=Symbol.for("shopify.webmcp_adapter_loading");function s(c,a,{win:r=window,doc:o=document}={}){function p(){try{return r.localStorage.getItem(d)==="true"}catch{return!1}}function l(){try{r.localStorage.setItem(d,"true")}catch{}}function u(){return typeof(o.modelContext||r.navigator?.modelContext)?.registerTool=="function"}function f(){if(r[n]||!u())return;let t=o.head||o.getElementsByTagName("head")[0];if(!t)return;let e=o.createElement("script");e.type="module",e.crossOrigin="anonymous",a&&(e.integrity=a),e.src=c,e.addEventListener("load",l,{once:!0}),e.addEventListener("error",()=>{r[n]=!1},{once:!0}),t.appendChild(e),r[n]=!0}function _(t){let e=o.getElementById("shopify-origin-trials");if(!e||r.__shopifyOriginTrialsDone){t();return}e.addEventListener("load",t,{once:!0}),e.addEventListener("error",t,{once:!0})}function i(){_(()=>r.setTimeout(f,0))}function m(){o.addEventListener("DOMContentLoaded",i,{once:!0})}p()?i():m()}s("\/\/scentspireduk.myshopify.com\/cdn\/shopifycloud\/storefront\/assets\/storefront\/webmcp-be5c57f6.js","sha256-dhWtEgtgh3kTN0MZoHRLIet4bcWHAYegv46Ks3++L3A=");})();
+<script>(()=>{var d="shopify:webmcp_adapter_loaded",n=Symbol.for("shopify.webmcp_adapter_loading");function s(c,a,{win:r=window,doc:o=document}={}){function p(){try{return r.localStorage.getItem(d)==="true"}catch{return!1}}function l(){try{r.localStorage.setItem(d,"true")}catch{}}function u(){return typeof(o.modelContext||r.navigator?.modelContext)?.registerTool=="function"}function f(){if(r[n]||!u())return;let t=o.head||o.getElementsByTagName("head")[0];if(!t)return;let e=o.createElement("script");e.type="module",e.crossOrigin="anonymous",a&&(e.integrity=a),e.src=c,e.addEventListener("load",l,{once:!0}),e.addEventListener("error",()=>{r[n]=!1},{once:!0}),t.appendChild(e),r[n]=!0}function _(t){let e=o.getElementById("shopify-origin-trials");if(!e||r.__shopifyOriginTrialsDone){t();return}e.addEventListener("load",t,{once:!0}),e.addEventListener("error",t,{once:!0})}function i(){_(()=>r.setTimeout(f,0))}function m(){o.addEventListener("DOMContentLoaded",i,{once:!0})}p()?i():m()}s("\/\/scentspireduk.myshopify.com\/cdn\/shopifycloud\/storefront\/assets\/storefront\/webmcp-1cd8a9f0.js","sha256-XZc2ncvBM3mUWrISssNcBKQRBNjoZTstORUzCx7zbC0=");})();
 </script>
 <script data-source-attribution="shopify.dynamic_checkout.dynamic.init">var Shopify=Shopify||{};Shopify.PaymentButton=Shopify.PaymentButton||{isStorefrontPortableWallets:!0,init:function(){window.Shopify.PaymentButton.init=function(){};var t=document.createElement("script");t.src="/cdn/shopifycloud/portable-wallets/latest/portable-wallets.en.js",t.type="module",document.head.appendChild(t)}};
 </script>
@@ -531,6 +531,19 @@ Shopify.SignInWithShop.User.recognized = false;</script>
         }
       }
     </style>
+<style data-shopify>:root {
+    --font-body: 'PPMori Regular', sans-serif;
+    --font-body-light: 'PPMori Extralight', sans-serif;
+    --font-body-semibold: 'PPMori SemiBold', sans-serif;
+    --font-mori-alt: 'PP Mori', sans-serif;
+    --font-display: 'PP Editorial New', serif;
+    --font-display-italic: 'PPEditorialNew Italic', serif;
+    --font-display-ultralight-italic: 'PPEditorialNew Ultralight Italic', serif;
+    --font-display-ultrabold: 'PPEditorial New Ultrabold', serif;
+    --font-system: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-theme-body: var(--font-body-family);
+    --font-theme-heading: var(--font-heading-family);
+  }</style>
     <link href="/cdn/shop/t/14/assets/base.css?v=X" rel="stylesheet" type="text/css" media="all" />
 <link rel="stylesheet" href="/cdn/shop/t/14/assets/component-cart-items.css?v=X" media="print" onload="this.media='all'"><link href="/cdn/shop/t/14/assets/component-cart-drawer.css?v=X" rel="stylesheet" type="text/css" media="all" />
       <link href="/cdn/shop/t/14/assets/component-cart.css?v=X" rel="stylesheet" type="text/css" media="all" />
@@ -642,7 +655,7 @@ Shopify.SignInWithShop.User.recognized = false;</script>
 <script>
   window.__TREKKIE_SHIM_QUEUE = window.__TREKKIE_SHIM_QUEUE || [];
 </script>
-<script>(function(){var wpmLoader=function(){"use strict";var e=/Googlebot|Storebot-Google|bingbot|Baiduspider|YandexBot|DuckDuckBot|Slurp|facebookexternalhit|Twitterbot|LinkedInBot|Applebot|AdsBot-Google|Mediapartners-Google|APIs-Google|PetalBot|SemrushBot|AhrefsBot|MJ12bot|DotBot|Acunetix|PerplexityBot|Perplexity-User/i,t=/bytedance/i;function i(){try{var e=document.cookie;if(!e||"string"!=typeof e)return;for(var t=0,i=e.split(";");t<i.length;t++){var n=i[t],r=n.indexOf("=");if(-1!==r){var o=n.slice(0,r).trim();if(o){var a=void 0;try{a=decodeURIComponent(o)}catch(e){a=o}if("_shopify_s"===a){var d=n.slice(r+1).trim();try{return decodeURIComponent(d)}catch(e){return d}}}}}return}catch(e){return}}function n(e){try{"undefined"!=typeof console&&"function"==typeof console.warn&&console.warn(e)}catch(e){}}function r(e,t){return"string"==typeof e&&e.length>0&&e.length<=t?e:void 0}function o(e){var t;switch(null==(t=null==e?void 0:e.navigation)?void 0:t.type){case 0:return"navigate";case 1:return"reload";case 2:return"back_forward";default:return}}function a(){var e,t,i;try{var n=null==(i=null==(t=null==(e=self.ShopifyAnalytics)?void 0:e.lib)?void 0:t.trekkie)?void 0:i.state;return"awaiting-consent"===n||"initialized"===n?n:void 0}catch(e){return}}return function(d,s,u,l){var c=arguments.length>4&&void 0!==arguments[4]?arguments[4]:{};try{var p=c.trekkieShim;!0!==p&&"true"!==p||null!=window.__TREKKIE_SHIM_QUEUE||(window.__TREKKIE_SHIM_QUEUE=[])}catch(e){}var f,v,h,y,g=(v=(f={modern:/Edge?\/(1{2}[4-9]|1[2-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|Firefox\/(1{2}[4-9]|1[2-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|Chrom(ium|e)\/(9{2}|\d{3,})\.\d+(\.\d+|)|(Maci|X1{2}).+ Version\/(15\.\d+|(1[6-9]|[2-9]\d|\d{3,})\.\d+)([,.]\d+|)( \(\w+\)|)( Mobile\/\w+|) Safari\/|Chrome.+OPR\/(9{2}|\d{3,})\.\d+\.\d+|(CPU[ +]OS|iPhone[ +]OS|CPU[ +]iPhone|CPU IPhone OS|CPU iPad OS)[ +]+(15[._]\d+|(1[6-9]|[2-9]\d|\d{3,})[._]\d+)([._]\d+|)|Android:?[ /-](14[89]|1[5-9]\d|[2-9]\d{2}|\d{4,})(\.\d+|)(\.\d+|)|Android.+Firefox\/(15\d|1[6-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|Android.+Chrom(ium|e)\/(14[89]|1[5-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|SamsungBrowser\/([2-9]\d|\d{3,})\.\d+/,legacy:/Edge?\/(1[6-9]|[2-9]\d|\d{3,})\.\d+(\.\d+|)|Firefox\/(5[4-9]|[6-9]\d|\d{3,})\.\d+(\.\d+|)|Chrom(ium|e)\/(5[1-9]|[6-9]\d|\d{3,})\.\d+(\.\d+|)([\d.]+$|.*Safari\/(?![\d.]+ Edge\/[\d.]+$))|(Maci|X1{2}).+ Version\/(10\.\d+|(1[1-9]|[2-9]\d|\d{3,})\.\d+)([,.]\d+|)( \(\w+\)|)( Mobile\/\w+|) Safari\/|Chrome.+OPR\/(3[89]|[4-9]\d|\d{3,})\.\d+\.\d+|(CPU[ +]OS|iPhone[ +]OS|CPU[ +]iPhone|CPU IPhone OS|CPU iPad OS)[ +]+(10[._]\d+|(1[1-9]|[2-9]\d|\d{3,})[._]\d+)([._]\d+|)|Android:?[ /-](14[89]|1[5-9]\d|[2-9]\d{2}|\d{4,})(\.\d+|)(\.\d+|)|Mobile Safari.+OPR\/([89]\d|\d{3,})\.\d+\.\d+|Android.+Firefox\/(15\d|1[6-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|Android.+Chrom(ium|e)\/(14[89]|1[5-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|Android.+(UC? ?Browser|UCWEB|U3)[ /]?(15\.([5-9]|\d{2,})|(1[6-9]|[2-9]\d|\d{3,})\.\d+)\.\d+|SamsungBrowser\/(5\.\d+|([6-9]|\d{2,})\.\d+)|Android.+MQ{2}Browser\/(14(\.(9|\d{2,})|)|(1[5-9]|[2-9]\d|\d{3,})(\.\d+|))(\.\d+|)|K[Aa][Ii]OS\/(3\.\d+|([4-9]|\d{2,})\.\d+)(\.\d+|)/}).modern,h=f.legacy,(y=navigator.userAgent).match(e)?"bot":y.match(v)?"modern":y.match(h)?"legacy":y.match(t)?"bot":"unknown"),m=function(e){var t,i,n=r(e,128);try{var a=window.performance,d=null==(t=null==a?void 0:a.getEntriesByType)?void 0:t.call(a,"navigation")[0];if(!d)return{requestId:n,navigationType:o(a)};var s="type"in d?r(d.type,64):void 0,u="serverTiming"in d&&Array.isArray(d.serverTiming)?d.serverTiming:[];return{requestId:null!=n?n:r(null==(i=u.find(function(e){return"requestID"===e.name}))?void 0:i.description,128),navigationType:s}}catch(e){return{requestId:n}}}(c.requestId),w=function(e){var t=e.version,r=e.browserTarget,o=e.surface,a=e.shopId,d=e.monorailEndpoint,s=window.location.href;return{emit:function(e){var u=e.status,l=e.errorMsg,c=e.failureReason,p=e.useKeepaliveFallback,f=void 0!==p&&p,v=e.navigationType,h=e.pagehidePersisted,y=e.requestId,g=e.trekkieState;if(d){var m,w;try{var b=(new Date).getTime();m=JSON.stringify({metadata:{event_sent_at_ms:b},events:[{schema_id:"web_pixels_manager_load/3.3",payload:{version:t,bundle_target:r,page_url:s,status:u,surface:o,error_msg:l,failure_reason:c,navigation_type:v,pagehide_persisted:h,request_id:y,trekkie_state:g,shop_id:a,visit_token:i()},metadata:{event_created_at_ms:b}}]})}catch(e){return}try{if("function"==typeof window.navigator.sendBeacon&&-1===(w=window.navigator.userAgent).indexOf("iPhone; CPU iPhone OS 12_")&&-1===w.indexOf("iPad; CPU OS 12_")&&-1===w.indexOf("iPod touch; CPU iPhone OS 12_")&&window.navigator.sendBeacon.bind(window.navigator)(d,m))return}catch(e){}if(f)try{"function"==typeof window.fetch&&window.fetch(d,{method:"POST",headers:{"Content-Type":"text/plain"},body:m,keepalive:!0}).catch(function(){})}catch(e){}else try{var _=new XMLHttpRequest;_.open("POST",d,!0),_.setRequestHeader("Content-Type","text/plain"),_.send(m)}catch(e){n("[Web Pixels Manager] Got an unhandled error while logging to Monorail.")}}else n("[Web Pixels Manager] No Monorail endpoint provided, skipping logging.")}}}({version:u,browserTarget:g,surface:d.surface,shopId:d.shopId,monorailEndpoint:d.monorailEndpoint});if(Boolean(null==(_=null==(b=window.Shopify)?void 0:b.analytics)?void 0:_.replayQueue))w.emit({status:"setup-skipped",errorMsg:"replay queue already initialized."});else{var b,_;w.emit({status:"setup-started"}),window.Shopify=window.Shopify||{};var S=window.Shopify;S.analytics=S.analytics||{};var P=S.analytics;P.replayQueue=[],P.publish=function(e,t,i){return P.replayQueue.push([e,t,i]),!0};try{self.performance.mark("wpm:start")}catch(e){}var k,C="modern"===g?"modern":"legacy",E=(null!=l?l:{modern:"",legacy:""})[C],I=[(k={baseUrl:s,hashVersion:u,buildTarget:C}).baseUrl,"/wpm","/b",k.hashVersion,"modern"===k.buildTarget?"m":"l",".js"].join(""),O=!1,T=!1;try{c.browserTarget=g,function(){O=!0;try{window.addEventListener("pagehide",M)}catch(e){O=!1}}(),R(function(){try{R(x)}catch(e){D(e)}}),w.emit({status:"loading",requestId:m.requestId,navigationType:m.navigationType,trekkieState:a()})}catch(e){D(e)}}function U(){var e;if(q(),!function(){var e,t;return Boolean(null==(t=null==(e=window.Shopify)?void 0:e.analytics)?void 0:t.initialized)}()){var t,i,n;try{if("function"!=typeof(null==(e=window.webPixelsManager)?void 0:e.init))return void A();if(!(null!==(n=i=t=window.webPixelsManager.init(d))&&"function"!=typeof n&&Object(n)===n&&"publish"in i&&"function"==typeof i.publish&&"publishCustomEvent"in i&&"function"==typeof i.publishCustomEvent&&"visitor"in i&&"function"==typeof i.visitor))return void A()}catch(e){return void A(e)}var r=window.Shopify.analytics;r.replayQueue.forEach(function(e){var i=e[0],n=e[1],r=e[2];t.publishCustomEvent(i,n,r)}),r.replayQueue=[],r.publish=t.publishCustomEvent,r.visitor=t.visitor,r.initialized=!0}}function A(e){B("manager_api_unavailable",void 0===e?void 0:Q(e))}function x(){B("script_load_failed","".concat(I," has failed to load"))}function B(e,t){T||(T=!0,q(),w.emit({status:"failed",errorMsg:t,failureReason:e,requestId:m.requestId,navigationType:m.navigationType,trekkieState:a()}))}function M(e){O&&(q(),w.emit({status:"pagehide-while-loading",useKeepaliveFallback:!0,pagehidePersisted:e.persisted,requestId:m.requestId,navigationType:m.navigationType,trekkieState:a()}))}function q(){O=!1;try{window.removeEventListener("pagehide",M)}catch(e){}}function R(e){var t;!function(e){var t=e.src,i=e.async,n=void 0===i||i,r=e.onload,o=e.onerror,a=e.sri,d=e.scriptDataAttributes,s=void 0===d?{}:d,u=document.createElement("script"),l=document.querySelector("head"),c=document.querySelector("body");if(u.async=n,u.src=t,a&&(u.integrity=a,u.crossOrigin="anonymous"),s)for(var p in s)if(Object.prototype.hasOwnProperty.call(s,p))try{u.dataset[p]=String(s[p])}catch(e){}if(r&&u.addEventListener("load",r),o&&u.addEventListener("error",o),l)l.appendChild(u);else{if(!c)throw new Error("Did not find a head or body element to append the script");c.appendChild(u)}}({src:I,async:!0,onload:U,onerror:e,sri:(t=E,"string"==typeof t&&/^sha384-[A-Za-z0-9+/=]+$/.test(t)?E:""),scriptDataAttributes:c})}function D(e){B("script_append_failed",Q(e))}function Q(e){return e instanceof Error?e.message:"Unknown error"}}}();wpmLoader({shopId: 99737141593,storefrontBaseUrl: "https://scentspired.co.uk",extensionsBaseUrl: "https://extensions.shopifycdn.com/cdn/shopifycloud/web-pixels-manager",monorailEndpoint: "https://scentspireduk.myshopify.com/.well-known/shopify/monorail/unstable/produce_batch",surface: "storefront-renderer",enabledBetaFlags: ["0fa89373","873d0e44","16072cab"],webPixelsConfigList: [{"id":"4441997657","configuration":"{\"myshopifyDomain\":\"scentspireduk.myshopify.com\"}","eventPayloadVersion":"v1","runtimeContext":"STRICT","scriptVersion":"23b97d18e2aa74363140dc29c9284e87","type":"APP","apiClientId":2775569,"privacyPurposes":["ANALYTICS","MARKETING","SALE_OF_DATA"],"dataSharingAdjustments":{"protectedCustomerApprovalScopes":["read_customer_address","read_customer_email","read_customer_name","read_customer_phone","read_customer_personal_data"],"dataSharingControls":["share_all_events"]},"dataSharingState":"optimized"},{"id":"4128342361","configuration":"{\"webPixelName\":\"Judge.me\"}","eventPayloadVersion":"v1","runtimeContext":"STRICT","scriptVersion":"8acc938b1a30dc7624e304493ca567d7","type":"APP","apiClientId":683015,"privacyPurposes":["ANALYTICS"],"dataSharingAdjustments":{"protectedCustomerApprovalScopes":["read_customer_email","read_customer_name","read_customer_personal_data","read_customer_phone"],"dataSharingControls":["share_all_events"]},"dataSharingState":"unrestricted"},{"id":"4091806041","configuration":"{\"accountID\":\"1848772\"}","eventPayloadVersion":"v1","runtimeContext":"STRICT","scriptVersion":"c67c427e35bed2216d156eaeeacde779","type":"APP","apiClientId":4870017,"privacyPurposes":["ANALYTICS","MARKETING","SALE_OF_DATA"],"dataSharingAdjustments":{"protectedCustomerApprovalScopes":["read_customer_email","read_customer_personal_data"],"dataSharingControls":["share_all_events"]},"dataSharingState":"optimized"},{"id":"3993665881","configuration":"{\"projectId\":\"vb6luqqm3k\"}","eventPayloadVersion":"v1","runtimeContext":"STRICT","scriptVersion":"d8a2bb2ccbb513dc8e8b6937f4b8033e","type":"APP","apiClientId":240074326017,"privacyPurposes":[],"capabilities":["advanced_dom_events"],"dataSharingAdjustments":{"protectedCustomerApprovalScopes":["read_customer_personal_data"],"dataSharingControls":["share_all_events"]},"dataSharingState":"unrestricted"},{"id":"3735912793","configuration":"{\"config\":\"{\\\"google_tag_ids\\\":[\\\"AW-17838417885\\\",\\\"GT-5RF9HJ5S\\\"],\\\"target_country\\\":\\\"ZZ\\\",\\\"gtag_events\\\":[{\\\"type\\\":\\\"begin_checkout\\\",\\\"action_label\\\":\\\"AW-17838417885\\\/bqZsCPWWoPsbEN3PgrpC\\\"},{\\\"type\\\":\\\"search\\\",\\\"action_label\\\":\\\"AW-17838417885\\\/cvnkCO6ervsbEN3PgrpC\\\"},{\\\"type\\\":\\\"view_item\\\",\\\"action_label\\\":[\\\"AW-17838417885\\\/InymCOuervsbEN3PgrpC\\\",\\\"MC-1HP81P7EDN\\\"]},{\\\"type\\\":\\\"purchase\\\",\\\"action_label\\\":[\\\"AW-17838417885\\\/9C_ECPKWoPsbEN3PgrpC\\\",\\\"MC-1HP81P7EDN\\\"]},{\\\"type\\\":\\\"page_view\\\",\\\"action_label\\\":[\\\"AW-17838417885\\\/KLUhCOiervsbEN3PgrpC\\\",\\\"MC-1HP81P7EDN\\\"]},{\\\"type\\\":\\\"add_payment_info\\\",\\\"action_label\\\":\\\"AW-17838417885\\\/cLzMCPGervsbEN3PgrpC\\\"},{\\\"type\\\":\\\"add_to_cart\\\",\\\"action_label\\\":\\\"AW-17838417885\\\/S9KkCOWervsbEN3PgrpC\\\"}],\\\"enable_monitoring_mode\\\":false}\"}","eventPayloadVersion":"v1","runtimeContext":"OPEN","scriptVersion":"a3321ca85cf5aaf6b57585fcd8d67b3a","type":"APP","apiClientId":1780363,"privacyPurposes":[],"dataSharingAdjustments":{"protectedCustomerApprovalScopes":["read_customer_address","read_customer_email","read_customer_name","read_customer_personal_data","read_customer_phone"],"dataSharingControls":["share_all_events"]},"dataSharingState":"optimized","enabledFlags":["9a3ed68a"]},{"id":"3735519577","configuration":"{\"pixel_id\":\"4112973102349662\",\"pixel_type\":\"facebook_pixel\"}","eventPayloadVersion":"v1","runtimeContext":"OPEN","scriptVersion":"96420dbe9ea96c426a1b7f364f977719","type":"APP","apiClientId":2329312,"privacyPurposes":["ANALYTICS","MARKETING","SALE_OF_DATA"],"dataSharingAdjustments":{"protectedCustomerApprovalScopes":["read_customer_address","read_customer_email","read_customer_name","read_customer_personal_data","read_customer_phone"],"dataSharingControls":["share_all_events"]},"dataSharingState":"optimized","enabledFlags":["9a3ed68a"]},{"id":"shopify-app-pixel","configuration":"{}","eventPayloadVersion":"v1","runtimeContext":"STRICT","scriptVersion":"0530","apiClientId":"shopify-pixel","type":"APP","privacyPurposes":["ANALYTICS","MARKETING"]},{"id":"shopify-custom-pixel","eventPayloadVersion":"v1","runtimeContext":"LAX","scriptVersion":"0530","apiClientId":"shopify-pixel","type":"CUSTOM","privacyPurposes":["ANALYTICS","MARKETING"]}],isMerchantRequest: true,initData: {"shop":{"name":"Scentspired UK","paymentSettings":{"currencyCode":"GBP"},"myshopifyDomain":"scentspireduk.myshopify.com","countryCode":"GB","storefrontUrl":"https:\/\/scentspired.co.uk"},"customer":null,"cart":null,"checkout":null,"productVariants":[],"products":[{"id":"15995028963673","handle":"invictor","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863920587097","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995028832601","handle":"pink-whisper","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863920324953","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995029193049","handle":"addiction","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863920783705","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995028668761","handle":"supreme-power","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863919866201","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995028537689","handle":"timeless-grace","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863919735129","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995027718489","handle":"majesty","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863917801817","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995021164889","handle":"luminous-wonder","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863904137561","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995025424729","handle":"rosy-dawn","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863912427865","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995028046169","handle":"fate","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863918489945","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995026637145","handle":"visionary","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863914983769","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995027194201","handle":"marine","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863916523865","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995024605529","handle":"panthera","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863911084377","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995028341081","handle":"cool-alpine","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863919276377","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995027554649","handle":"eternal-verde","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863917637977","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995027849561","handle":"mirage","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863918293337","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995021590873","handle":"iconic-desire","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863904760153","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995027030361","handle":"wanderer","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863915868505","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995024736601","handle":"three-peaks","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863911313753","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995023655257","handle":"noir-hashish","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863909151065","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995022344537","handle":"maverick","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863906234713","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995026800985","handle":"liberty","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863915540825","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995020345689","handle":"deep-attraction","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863903121753","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995025588569","handle":"ocean-drift","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863912788313","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995022704985","handle":"fresh-mist","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863907021145","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995021984089","handle":"l-infini","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863905087833","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995021361497","handle":"silk-odyssey","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863904465241","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995028177241","handle":"black-poison","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863918817625","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995027358041","handle":"fierce","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863916949849","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995020771673","handle":"steely-temptation","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863903711577","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995021787481","handle":"feminine-fancy","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863904923993","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995021001049","handle":"sheer-grace","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863903940953","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995025785177","handle":"millionaire","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863913050457","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995026473305","handle":"heavens-pour","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863914525017","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995020116313","handle":"smoky-leather","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863902826841","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995024507225","handle":"sinful-desire","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863910920537","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995025097049","handle":"wild-innocence","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863911674201","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995024376153","handle":"herora","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863910723929","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995024048473","handle":"on-high","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863910199641","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995024277849","handle":"sun-soaked","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863910560089","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995020607833","handle":"illusion-cove","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863903449433","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995026309465","handle":"ano-13","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863914328409","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995024146777","handle":"earthbound","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863910363481","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995024671065","handle":"extreme","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863911182681","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995023458649","handle":"sensual","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863908888921","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995022180697","handle":"pure-light","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863905251673","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995025260889","handle":"floral-whisper","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863912067417","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995024900441","handle":"active-pulse","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863911477593","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995026145625","handle":"ocean-di-vita","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863913836889","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995024572761","handle":"azure-charm","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863911018841","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995025949017","handle":"silent-dunes","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863913378137","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995019886937","handle":"classic-attire","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863902597465","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995022541145","handle":"exotic-night","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863906660697","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995019657561","handle":"amber-vale","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863902400857","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995024310617","handle":"black-spice","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863910625625","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995019526489","handle":"intense-ardour","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863902073177","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995024212313","handle":"britannia","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863910461785","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995022901593","handle":"divine-her","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863907512665","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995023851865","handle":"forbidden-love","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863909708121","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995023229273","handle":"dark-illusion","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863908495705","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995023065433","handle":"biting-temptation","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863908233561","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]}],"purchasingCompany":null},},"https://scentspireduk.myshopify.com/cdn","0717081aw18228a65p9e6fbe92m697c756b",{"modern":"","legacy":""},{"trekkieShim":true,"agentContext":true,"apiClientId":"580111","facebookCapiEnabled":"true","themeId":"207036023129","themePublished":"false","eventMetadataId":"UUID","pageType":"home","shopId":"99737141593","storefrontBaseUrl":"https:\/\/scentspired.co.uk","extensionBaseUrl":"https:\/\/extensions.shopifycdn.com\/cdn\/shopifycloud\/web-pixels-manager","surface":"storefront-renderer","enabledBetaFlags":"[\"0fa89373\", \"873d0e44\", \"16072cab\"]","isMerchantRequest":"true","hashVersion":"0717081aw18228a65p9e6fbe92m697c756b","publish":"custom","events":"[[\"page_viewed\",{}]]"});})();</script><script>
+<script>(function(){var wpmLoader=function(){"use strict";var e=/Googlebot|Storebot-Google|bingbot|Baiduspider|YandexBot|DuckDuckBot|Slurp|facebookexternalhit|Twitterbot|LinkedInBot|Applebot|AdsBot-Google|Mediapartners-Google|APIs-Google|PetalBot|SemrushBot|AhrefsBot|MJ12bot|DotBot|Acunetix|PerplexityBot|Perplexity-User/i,t=/bytedance/i;function i(){try{var e=document.cookie;if(!e||"string"!=typeof e)return;for(var t=0,i=e.split(";");t<i.length;t++){var n=i[t],r=n.indexOf("=");if(-1!==r){var o=n.slice(0,r).trim();if(o){var a=void 0;try{a=decodeURIComponent(o)}catch(e){a=o}if("_shopify_s"===a){var d=n.slice(r+1).trim();try{return decodeURIComponent(d)}catch(e){return d}}}}}return}catch(e){return}}function n(e){try{"undefined"!=typeof console&&"function"==typeof console.warn&&console.warn(e)}catch(e){}}function r(e,t){return"string"==typeof e&&e.length>0&&e.length<=t?e:void 0}function o(e){var t;switch(null==(t=null==e?void 0:e.navigation)?void 0:t.type){case 0:return"navigate";case 1:return"reload";case 2:return"back_forward";default:return}}function a(){var e,t,i;try{var n=null==(i=null==(t=null==(e=self.ShopifyAnalytics)?void 0:e.lib)?void 0:t.trekkie)?void 0:i.state;return"awaiting-consent"===n||"initialized"===n?n:void 0}catch(e){return}}return function(d,s,u,l){var c=arguments.length>4&&void 0!==arguments[4]?arguments[4]:{};try{var p=c.trekkieShim;!0!==p&&"true"!==p||null!=window.__TREKKIE_SHIM_QUEUE||(window.__TREKKIE_SHIM_QUEUE=[])}catch(e){}var f,v,h,y,g=(v=(f={modern:/Edge?\/(1{2}[4-9]|1[2-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|Firefox\/(1{2}[4-9]|1[2-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|Chrom(ium|e)\/(9{2}|\d{3,})\.\d+(\.\d+|)|(Maci|X1{2}).+ Version\/(15\.\d+|(1[6-9]|[2-9]\d|\d{3,})\.\d+)([,.]\d+|)( \(\w+\)|)( Mobile\/\w+|) Safari\/|Chrome.+OPR\/(9{2}|\d{3,})\.\d+\.\d+|(CPU[ +]OS|iPhone[ +]OS|CPU[ +]iPhone|CPU IPhone OS|CPU iPad OS)[ +]+(15[._]\d+|(1[6-9]|[2-9]\d|\d{3,})[._]\d+)([._]\d+|)|Android:?[ /-](14[89]|1[5-9]\d|[2-9]\d{2}|\d{4,})(\.\d+|)(\.\d+|)|Android.+Firefox\/(15\d|1[6-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|Android.+Chrom(ium|e)\/(14[89]|1[5-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|SamsungBrowser\/([2-9]\d|\d{3,})\.\d+/,legacy:/Edge?\/(1[6-9]|[2-9]\d|\d{3,})\.\d+(\.\d+|)|Firefox\/(5[4-9]|[6-9]\d|\d{3,})\.\d+(\.\d+|)|Chrom(ium|e)\/(5[1-9]|[6-9]\d|\d{3,})\.\d+(\.\d+|)([\d.]+$|.*Safari\/(?![\d.]+ Edge\/[\d.]+$))|(Maci|X1{2}).+ Version\/(10\.\d+|(1[1-9]|[2-9]\d|\d{3,})\.\d+)([,.]\d+|)( \(\w+\)|)( Mobile\/\w+|) Safari\/|Chrome.+OPR\/(3[89]|[4-9]\d|\d{3,})\.\d+\.\d+|(CPU[ +]OS|iPhone[ +]OS|CPU[ +]iPhone|CPU IPhone OS|CPU iPad OS)[ +]+(10[._]\d+|(1[1-9]|[2-9]\d|\d{3,})[._]\d+)([._]\d+|)|Android:?[ /-](14[89]|1[5-9]\d|[2-9]\d{2}|\d{4,})(\.\d+|)(\.\d+|)|Mobile Safari.+OPR\/([89]\d|\d{3,})\.\d+\.\d+|Android.+Firefox\/(15\d|1[6-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|Android.+Chrom(ium|e)\/(14[89]|1[5-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|Android.+(UC? ?Browser|UCWEB|U3)[ /]?(15\.([5-9]|\d{2,})|(1[6-9]|[2-9]\d|\d{3,})\.\d+)\.\d+|SamsungBrowser\/(5\.\d+|([6-9]|\d{2,})\.\d+)|Android.+MQ{2}Browser\/(14(\.(9|\d{2,})|)|(1[5-9]|[2-9]\d|\d{3,})(\.\d+|))(\.\d+|)|K[Aa][Ii]OS\/(3\.\d+|([4-9]|\d{2,})\.\d+)(\.\d+|)/}).modern,h=f.legacy,(y=navigator.userAgent).match(e)?"bot":y.match(v)?"modern":y.match(h)?"legacy":y.match(t)?"bot":"unknown"),m=function(e){var t,i,n=r(e,128);try{var a=window.performance,d=null==(t=null==a?void 0:a.getEntriesByType)?void 0:t.call(a,"navigation")[0];if(!d)return{requestId:n,navigationType:o(a)};var s="type"in d?r(d.type,64):void 0,u="serverTiming"in d&&Array.isArray(d.serverTiming)?d.serverTiming:[];return{requestId:null!=n?n:r(null==(i=u.find(function(e){return"requestID"===e.name}))?void 0:i.description,128),navigationType:s}}catch(e){return{requestId:n}}}(c.requestId),w=function(e){var t=e.version,r=e.browserTarget,o=e.surface,a=e.shopId,d=e.monorailEndpoint,s=window.location.href;return{emit:function(e){var u=e.status,l=e.errorMsg,c=e.failureReason,p=e.useKeepaliveFallback,f=void 0!==p&&p,v=e.navigationType,h=e.pagehidePersisted,y=e.requestId,g=e.trekkieState;if(d){var m,w;try{var b=(new Date).getTime();m=JSON.stringify({metadata:{event_sent_at_ms:b},events:[{schema_id:"web_pixels_manager_load/3.3",payload:{version:t,bundle_target:r,page_url:s,status:u,surface:o,error_msg:l,failure_reason:c,navigation_type:v,pagehide_persisted:h,request_id:y,trekkie_state:g,shop_id:a,visit_token:i()},metadata:{event_created_at_ms:b}}]})}catch(e){return}try{if("function"==typeof window.navigator.sendBeacon&&-1===(w=window.navigator.userAgent).indexOf("iPhone; CPU iPhone OS 12_")&&-1===w.indexOf("iPad; CPU OS 12_")&&-1===w.indexOf("iPod touch; CPU iPhone OS 12_")&&window.navigator.sendBeacon.bind(window.navigator)(d,m))return}catch(e){}if(f)try{"function"==typeof window.fetch&&window.fetch(d,{method:"POST",headers:{"Content-Type":"text/plain"},body:m,keepalive:!0}).catch(function(){})}catch(e){}else try{var _=new XMLHttpRequest;_.open("POST",d,!0),_.setRequestHeader("Content-Type","text/plain"),_.send(m)}catch(e){n("[Web Pixels Manager] Got an unhandled error while logging to Monorail.")}}else n("[Web Pixels Manager] No Monorail endpoint provided, skipping logging.")}}}({version:u,browserTarget:g,surface:d.surface,shopId:d.shopId,monorailEndpoint:d.monorailEndpoint});if(Boolean(null==(_=null==(b=window.Shopify)?void 0:b.analytics)?void 0:_.replayQueue))w.emit({status:"setup-skipped",errorMsg:"replay queue already initialized."});else{var b,_;w.emit({status:"setup-started"}),window.Shopify=window.Shopify||{};var S=window.Shopify;S.analytics=S.analytics||{};var P=S.analytics;P.replayQueue=[],P.publish=function(e,t,i){return P.replayQueue.push([e,t,i]),!0};try{self.performance.mark("wpm:start")}catch(e){}var k,C="modern"===g?"modern":"legacy",E=(null!=l?l:{modern:"",legacy:""})[C],I=[(k={baseUrl:s,hashVersion:u,buildTarget:C}).baseUrl,"/wpm","/b",k.hashVersion,"modern"===k.buildTarget?"m":"l",".js"].join(""),O=!1,T=!1;try{c.browserTarget=g,function(){O=!0;try{window.addEventListener("pagehide",M)}catch(e){O=!1}}(),R(function(){try{R(x)}catch(e){D(e)}}),w.emit({status:"loading",requestId:m.requestId,navigationType:m.navigationType,trekkieState:a()})}catch(e){D(e)}}function U(){var e;if(q(),!function(){var e,t;return Boolean(null==(t=null==(e=window.Shopify)?void 0:e.analytics)?void 0:t.initialized)}()){var t,i,n;try{if("function"!=typeof(null==(e=window.webPixelsManager)?void 0:e.init))return void A();if(!(null!==(n=i=t=window.webPixelsManager.init(d))&&"function"!=typeof n&&Object(n)===n&&"publish"in i&&"function"==typeof i.publish&&"publishCustomEvent"in i&&"function"==typeof i.publishCustomEvent&&"visitor"in i&&"function"==typeof i.visitor))return void A()}catch(e){return void A(e)}var r=window.Shopify.analytics;r.replayQueue.forEach(function(e){var i=e[0],n=e[1],r=e[2];t.publishCustomEvent(i,n,r)}),r.replayQueue=[],r.publish=t.publishCustomEvent,r.visitor=t.visitor,r.initialized=!0}}function A(e){B("manager_api_unavailable",void 0===e?void 0:Q(e))}function x(){B("script_load_failed","".concat(I," has failed to load"))}function B(e,t){T||(T=!0,q(),w.emit({status:"failed",errorMsg:t,failureReason:e,requestId:m.requestId,navigationType:m.navigationType,trekkieState:a()}))}function M(e){O&&(q(),w.emit({status:"pagehide-while-loading",useKeepaliveFallback:!0,pagehidePersisted:e.persisted,requestId:m.requestId,navigationType:m.navigationType,trekkieState:a()}))}function q(){O=!1;try{window.removeEventListener("pagehide",M)}catch(e){}}function R(e){var t;!function(e){var t=e.src,i=e.async,n=void 0===i||i,r=e.onload,o=e.onerror,a=e.sri,d=e.scriptDataAttributes,s=void 0===d?{}:d,u=document.createElement("script"),l=document.querySelector("head"),c=document.querySelector("body");if(u.async=n,u.src=t,a&&(u.integrity=a,u.crossOrigin="anonymous"),s)for(var p in s)if(Object.prototype.hasOwnProperty.call(s,p))try{u.dataset[p]=String(s[p])}catch(e){}if(r&&u.addEventListener("load",r),o&&u.addEventListener("error",o),l)l.appendChild(u);else{if(!c)throw new Error("Did not find a head or body element to append the script");c.appendChild(u)}}({src:I,async:!0,onload:U,onerror:e,sri:(t=E,"string"==typeof t&&/^sha384-[A-Za-z0-9+/=]+$/.test(t)?E:""),scriptDataAttributes:c})}function D(e){B("script_append_failed",Q(e))}function Q(e){return e instanceof Error?e.message:"Unknown error"}}}();wpmLoader({shopId: 99737141593,storefrontBaseUrl: "https://scentspired.co.uk",extensionsBaseUrl: "https://extensions.shopifycdn.com/cdn/shopifycloud/web-pixels-manager",monorailEndpoint: "https://scentspireduk.myshopify.com/.well-known/shopify/monorail/unstable/produce_batch",surface: "storefront-renderer",enabledBetaFlags: ["0fa89373","16072cab","8450a54b"],webPixelsConfigList: [{"id":"4441997657","configuration":"{\"myshopifyDomain\":\"scentspireduk.myshopify.com\"}","eventPayloadVersion":"v1","runtimeContext":"STRICT","scriptVersion":"23b97d18e2aa74363140dc29c9284e87","type":"APP","apiClientId":2775569,"privacyPurposes":["ANALYTICS","MARKETING","SALE_OF_DATA"],"dataSharingAdjustments":{"protectedCustomerApprovalScopes":["read_customer_address","read_customer_email","read_customer_name","read_customer_phone","read_customer_personal_data"],"dataSharingControls":["share_all_events"]},"dataSharingState":"optimized"},{"id":"4128342361","configuration":"{\"webPixelName\":\"Judge.me\"}","eventPayloadVersion":"v1","runtimeContext":"STRICT","scriptVersion":"8acc938b1a30dc7624e304493ca567d7","type":"APP","apiClientId":683015,"privacyPurposes":["ANALYTICS"],"dataSharingAdjustments":{"protectedCustomerApprovalScopes":["read_customer_email","read_customer_name","read_customer_personal_data","read_customer_phone"],"dataSharingControls":["share_all_events"]},"dataSharingState":"unrestricted"},{"id":"4091806041","configuration":"{\"accountID\":\"1848772\"}","eventPayloadVersion":"v1","runtimeContext":"STRICT","scriptVersion":"c67c427e35bed2216d156eaeeacde779","type":"APP","apiClientId":4870017,"privacyPurposes":["ANALYTICS","MARKETING","SALE_OF_DATA"],"dataSharingAdjustments":{"protectedCustomerApprovalScopes":["read_customer_email","read_customer_personal_data"],"dataSharingControls":["share_all_events"]},"dataSharingState":"optimized"},{"id":"3993665881","configuration":"{\"projectId\":\"vb6luqqm3k\"}","eventPayloadVersion":"v1","runtimeContext":"STRICT","scriptVersion":"d8a2bb2ccbb513dc8e8b6937f4b8033e","type":"APP","apiClientId":240074326017,"privacyPurposes":[],"capabilities":["advanced_dom_events"],"dataSharingAdjustments":{"protectedCustomerApprovalScopes":["read_customer_personal_data"],"dataSharingControls":["share_all_events"]},"dataSharingState":"unrestricted"},{"id":"3735912793","configuration":"{\"config\":\"{\\\"google_tag_ids\\\":[\\\"AW-17838417885\\\",\\\"GT-5RF9HJ5S\\\"],\\\"target_country\\\":\\\"ZZ\\\",\\\"gtag_events\\\":[{\\\"type\\\":\\\"begin_checkout\\\",\\\"action_label\\\":\\\"AW-17838417885\\\/bqZsCPWWoPsbEN3PgrpC\\\"},{\\\"type\\\":\\\"search\\\",\\\"action_label\\\":\\\"AW-17838417885\\\/cvnkCO6ervsbEN3PgrpC\\\"},{\\\"type\\\":\\\"view_item\\\",\\\"action_label\\\":[\\\"AW-17838417885\\\/InymCOuervsbEN3PgrpC\\\",\\\"MC-1HP81P7EDN\\\"]},{\\\"type\\\":\\\"purchase\\\",\\\"action_label\\\":[\\\"AW-17838417885\\\/9C_ECPKWoPsbEN3PgrpC\\\",\\\"MC-1HP81P7EDN\\\"]},{\\\"type\\\":\\\"page_view\\\",\\\"action_label\\\":[\\\"AW-17838417885\\\/KLUhCOiervsbEN3PgrpC\\\",\\\"MC-1HP81P7EDN\\\"]},{\\\"type\\\":\\\"add_payment_info\\\",\\\"action_label\\\":\\\"AW-17838417885\\\/cLzMCPGervsbEN3PgrpC\\\"},{\\\"type\\\":\\\"add_to_cart\\\",\\\"action_label\\\":\\\"AW-17838417885\\\/S9KkCOWervsbEN3PgrpC\\\"}],\\\"enable_monitoring_mode\\\":false}\"}","eventPayloadVersion":"v1","runtimeContext":"OPEN","scriptVersion":"a3321ca85cf5aaf6b57585fcd8d67b3a","type":"APP","apiClientId":1780363,"privacyPurposes":[],"dataSharingAdjustments":{"protectedCustomerApprovalScopes":["read_customer_address","read_customer_email","read_customer_name","read_customer_personal_data","read_customer_phone"],"dataSharingControls":["share_all_events"]},"dataSharingState":"optimized","enabledFlags":["9a3ed68a"]},{"id":"3735519577","configuration":"{\"pixel_id\":\"4112973102349662\",\"pixel_type\":\"facebook_pixel\"}","eventPayloadVersion":"v1","runtimeContext":"OPEN","scriptVersion":"96420dbe9ea96c426a1b7f364f977719","type":"APP","apiClientId":2329312,"privacyPurposes":["ANALYTICS","MARKETING","SALE_OF_DATA"],"dataSharingAdjustments":{"protectedCustomerApprovalScopes":["read_customer_address","read_customer_email","read_customer_name","read_customer_personal_data","read_customer_phone"],"dataSharingControls":["share_all_events"]},"dataSharingState":"optimized","enabledFlags":["9a3ed68a"]},{"id":"shopify-app-pixel","configuration":"{}","eventPayloadVersion":"v1","runtimeContext":"STRICT","scriptVersion":"0530","apiClientId":"shopify-pixel","type":"APP","privacyPurposes":["ANALYTICS","MARKETING"]},{"id":"shopify-custom-pixel","eventPayloadVersion":"v1","runtimeContext":"LAX","scriptVersion":"0530","apiClientId":"shopify-pixel","type":"CUSTOM","privacyPurposes":["ANALYTICS","MARKETING"]}],isMerchantRequest: true,initData: {"shop":{"name":"Scentspired UK","paymentSettings":{"currencyCode":"GBP"},"myshopifyDomain":"scentspireduk.myshopify.com","countryCode":"GB","storefrontUrl":"https:\/\/scentspired.co.uk"},"customer":null,"cart":null,"checkout":null,"productVariants":[],"products":[{"id":"15995028963673","handle":"invictor","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863920587097","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995028832601","handle":"pink-whisper","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863920324953","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995029193049","handle":"addiction","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863920783705","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995028668761","handle":"supreme-power","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863919866201","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995028537689","handle":"timeless-grace","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863919735129","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995027718489","handle":"majesty","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863917801817","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995021164889","handle":"luminous-wonder","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863904137561","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995025424729","handle":"rosy-dawn","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863912427865","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995028046169","handle":"fate","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863918489945","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995026637145","handle":"visionary","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863914983769","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995027194201","handle":"marine","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863916523865","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995024605529","handle":"panthera","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863911084377","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995028341081","handle":"cool-alpine","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863919276377","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995027554649","handle":"eternal-verde","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863917637977","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995027849561","handle":"mirage","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863918293337","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995021590873","handle":"iconic-desire","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863904760153","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995027030361","handle":"wanderer","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863915868505","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995024736601","handle":"three-peaks","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863911313753","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995023655257","handle":"noir-hashish","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863909151065","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995022344537","handle":"maverick","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863906234713","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995026800985","handle":"liberty","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863915540825","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995020345689","handle":"deep-attraction","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863903121753","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995025588569","handle":"ocean-drift","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863912788313","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995022704985","handle":"fresh-mist","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863907021145","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995021984089","handle":"l-infini","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863905087833","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995021361497","handle":"silk-odyssey","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863904465241","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995028177241","handle":"black-poison","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863918817625","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995027358041","handle":"fierce","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863916949849","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995020771673","handle":"steely-temptation","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863903711577","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995021787481","handle":"feminine-fancy","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863904923993","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995021001049","handle":"sheer-grace","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863903940953","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995025785177","handle":"millionaire","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863913050457","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995026473305","handle":"heavens-pour","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863914525017","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995020116313","handle":"smoky-leather","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863902826841","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995024507225","handle":"sinful-desire","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863910920537","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995025097049","handle":"wild-innocence","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863911674201","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995024376153","handle":"herora","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863910723929","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995024048473","handle":"on-high","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863910199641","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995024277849","handle":"sun-soaked","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863910560089","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995020607833","handle":"illusion-cove","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863903449433","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995026309465","handle":"ano-13","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863914328409","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995024146777","handle":"earthbound","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863910363481","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995024671065","handle":"extreme","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863911182681","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995023458649","handle":"sensual","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863908888921","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995022180697","handle":"pure-light","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863905251673","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995025260889","handle":"floral-whisper","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863912067417","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995024900441","handle":"active-pulse","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863911477593","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995026145625","handle":"ocean-di-vita","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863913836889","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995024572761","handle":"azure-charm","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863911018841","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995025949017","handle":"silent-dunes","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863913378137","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995019886937","handle":"classic-attire","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863902597465","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995022541145","handle":"exotic-night","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863906660697","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995019657561","handle":"amber-vale","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863902400857","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995024310617","handle":"black-spice","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863910625625","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995019526489","handle":"intense-ardour","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863902073177","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995024212313","handle":"britannia","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863910461785","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995022901593","handle":"divine-her","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863907512665","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995023851865","handle":"forbidden-love","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863909708121","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995023229273","handle":"dark-illusion","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863908495705","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995023065433","handle":"biting-temptation","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863908233561","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]}],"purchasingCompany":null},},"https://scentspireduk.myshopify.com/cdn","c8540278we853e1abpb62b2c4amde256306",{"modern":"","legacy":""},{"trekkieShim":true,"agentContext":true,"apiClientId":"580111","facebookCapiEnabled":"true","themeId":"207036023129","themePublished":"false","eventMetadataId":"UUID","pageType":"home","shopId":"99737141593","storefrontBaseUrl":"https:\/\/scentspired.co.uk","extensionBaseUrl":"https:\/\/extensions.shopifycdn.com\/cdn\/shopifycloud\/web-pixels-manager","surface":"storefront-renderer","enabledBetaFlags":"[\"0fa89373\", \"16072cab\", \"8450a54b\"]","isMerchantRequest":"true","hashVersion":"c8540278we853e1abpb62b2c4amde256306","publish":"custom","events":"[[\"page_viewed\",{}]]"});})();</script><script>
   window.ShopifyAnalytics = window.ShopifyAnalytics || {};
   window.ShopifyAnalytics.meta = window.ShopifyAnalytics.meta || {};
   window.ShopifyAnalytics.meta.currency = 'GBP';
@@ -695,8 +708,11 @@ Shopify.SignInWithShop.User.recognized = false;</script>
         var args = Array.prototype.slice.call(arguments);
         args.unshift(method);
         trekkie.push(args);
-        if (window.__TREKKIE_SHIM_QUEUE && (method == 'track' || method == 'page')) {
+        if (method == 'track' || method == 'page') {
           try {
+            if (window.__TREKKIE_SHIM_QUEUE == null) {
+              window.__TREKKIE_SHIM_QUEUE = [];
+            }
             window.__TREKKIE_SHIM_QUEUE.push({
               from: 'trekkie-stub',
               method: method,
@@ -777,7 +793,7 @@ script.src = '/cdn/s/trekkie.storefront.X.min.js';
 first.parentNode.insertBefore(script, first);
     };
     trekkie.load(
-      {"Trekkie":{"appName":"storefront","development":false,"defaultAttributes":{"shopId":99737141593,"isMerchantRequest":null,"themeId":207036023129,"themeCityHash":"X","contentLanguage":"en","currency":"GBP","eventMetadataId":"UUID"},"isServerSideCookieWritingEnabled":true,"monorailRegion":"shop_domain"},"Session Attribution":{},"S2S":{"facebookCapiEnabled":true,"source":"trekkie-storefront-renderer","apiClientId":580111}}
+      {"Trekkie":{"appName":"storefront","development":false,"defaultAttributes":{"shopId":99737141593,"isMerchantRequest":null,"themeId":207036023129,"themeCityHash":"X","contentLanguage":"en","currency":"GBP","eventMetadataId":"UUID"},"isServerSideCookieWritingEnabled":true,"monorailRegion":"shop_domain","enabledBetaFlags":["764d78cb","8450a54b"]},"Session Attribution":{},"S2S":{"facebookCapiEnabled":true,"source":"trekkie-storefront-renderer","apiClientId":580111}}
     );
     var loaded = false;
     trekkie.ready(function() {
@@ -917,7 +933,7 @@ first.parentNode.insertBefore(script, first);
     transform: translateX(100%);
     transition: transform 0.3s ease;
     overflow-y: auto;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: var(--font-system);
     display: none;
   }
   .sp-cart-drawer.sp-active {
@@ -3347,7 +3363,7 @@ function initializeDossierCartTriggers() {
         color: #000;
         text-decoration: none;
         font-size: 18px;
-        font-family: 'PPMori Regular', sans-serif;
+        font-family: var(--font-body);
         flex: 1;
         padding: 0;
         margin: 0;
@@ -3436,7 +3452,7 @@ function initializeDossierCartTriggers() {
         letter-spacing: 0.8px;
         margin: 20px 0 10px 0;
         padding-left: 0;
-        font-family: 'PPMori Regular', sans-serif;
+        font-family: var(--font-body);
       }
       .mobile-submenu-section-title:first-child {
         margin-top: 0;
@@ -3460,7 +3476,7 @@ function initializeDossierCartTriggers() {
         font-weight: 500;
         transition: color 0.2s ease;
         position: relative;
-        font-family: 'PPMori Regular', sans-serif;
+        font-family: var(--font-body);
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
       }
       .mobile-submenu-item:last-child {
@@ -3496,7 +3512,7 @@ function initializeDossierCartTriggers() {
         border-radius: 10px;
         margin-left: auto;
         text-transform: uppercase;
-        font-family: 'PPMori Regular', sans-serif;
+        font-family: var(--font-body);
       }
       /* Prevent body scroll when drawer is open */
       body.drawer-open {
@@ -3523,14 +3539,14 @@ function initializeDossierCartTriggers() {
       }
       .header, .header__heading, .header__inline-menu a, .header__menu-item {
         font-size: 13px;
-        font-family: "PPMori Regular", sans-serif;
+        font-family: var(--font-body);
       }
       .search-icon-with-text {
         display: flex;
         align-items: center;
         gap: 1px;
         margin-left: -120px;
-        font-family: 'PPMori Regular', sans-serif;
+        font-family: var(--font-body);
         text-decoration: none !important;
         margin-top: 9px !important;
       }
@@ -3689,7 +3705,7 @@ function initializeDossierCartTriggers() {
     visibility: hidden;
     transform: translateY(-10px);
     transition: opacity 0.3s ease, transform 0.3s ease;
-    font-family: 'PPMori Regular', sans-serif;
+    font-family: var(--font-body);
     padding: 0;
     display: block !important;
     /* 🔥 CRITICAL FIX */
@@ -3753,7 +3769,7 @@ function initializeDossierCartTriggers() {
         margin-bottom: 8px;
         margin-top: 20px;
         padding-left: 0;
-        font-family: 'PPMori Regular', sans-serif;
+        font-family: var(--font-body);
       }
       .dropdown-section-title:first-child {
         margin-top: 0;
@@ -3785,7 +3801,7 @@ function initializeDossierCartTriggers() {
         font-weight: 500;
         transition: color 0.2s ease;
         position: relative;
-        font-family: 'PPMori Regular', sans-serif;
+        font-family: var(--font-body);
       }
       .dropdown-item:hover {
         color: #e5ff00;
@@ -3818,7 +3834,7 @@ function initializeDossierCartTriggers() {
         font-weight: 500;
         color: #000;
         margin: 0;
-        font-family: 'PPMori Regular', sans-serif;
+        font-family: var(--font-body);
       }
       .dropdown-item-arrow {
         width: 16px;
@@ -3840,7 +3856,7 @@ function initializeDossierCartTriggers() {
         border-radius: 10px;
         margin-left: 8px;
         text-transform: uppercase;
-        font-family: 'PPMori Regular', sans-serif;
+        font-family: var(--font-body);
       }
       .dropdown-badge.new {
         background: #ef4444;
@@ -4965,7 +4981,7 @@ function initializeDossierCartTriggers() {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-family: 'PPMori Regular', sans-serif;
+    font-family: var(--font-body);
     white-space: nowrap; /* prevents line break */
   }</style><script src="/cdn/shop/t/14/assets/cart-notification.js?v=X" defer="defer"></script>
 <sticky-header
@@ -5178,7 +5194,7 @@ function initializeDossierCartTriggers() {
     <!-- Mobile Menu Drawer - HARDCODED MENU STRUCTURE -->
     <div class="mobile-menu-drawer" id="mobileMenuDrawer">
       <div class="mobile-menu-header">
-        <h3 style="margin: 0; font-family: 'PPMori Regular', sans-serif;">Menu</h3>
+        <h3 style="margin: 0; font-family: var(--font-body);">Menu</h3>
         <button class="mobile-menu-close" id="mobileMenuClose">
           <svg viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor">
             <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -6119,7 +6135,7 @@ function initializeDossierCartTriggers() {
     display: flex;
     align-items: center;
     white-space: nowrap;
-    font-family: 'PPEditorialNew Ultralight Italic', serif;
+    font-family: var(--font-display-ultralight-italic);
     font-style: italic;
     font-weight: 600;
     font-size: 60px;
@@ -6182,7 +6198,7 @@ function initializeDossierCartTriggers() {
   .featured-collections-section {
     padding: 60px 0px;
     background: #fff;
-    font-family: 'PPMori SemiBold', sans-serif;
+    font-family: var(--font-body-semibold);
     position: relative;
     overflow: hidden;
     padding-left: 5rem;
@@ -6250,7 +6266,7 @@ function initializeDossierCartTriggers() {
     padding: 0;
     margin-bottom: 50px;
     margin-left: 40px;
-    font-family: 'PPMori Regular', sans-serif;
+    font-family: var(--font-body);
   }
   .collection-button:hover {
     opacity: 0.9;
@@ -6452,14 +6468,14 @@ function initializeDossierCartTriggers() {
   padding-bottom: 25px;
 }
 .fragrance-heading {
-  font-family: 'PPMori Extralight', sans-serif;
+  font-family: var(--font-body-light);
   font-size: 46px;
   font-weight: 200;
   color: #808080;
   margin-bottom: 0px;
 }
 .fragrance-subtitle {
-  font-family: 'PPEditorialNew Italic', serif;
+  font-family: var(--font-display-italic);
   font-weight: 500;
   font-size: 45px;
   font-style: italic;
@@ -6528,7 +6544,7 @@ function initializeDossierCartTriggers() {
 /* Single badge */
 .product-badge {
   color: #fff !important;
-  font-family: 'PPMori Regular', sans-serif;
+  font-family: var(--font-body);
   font-weight: 400;
   font-size: 12px;
   padding: 4px 18px;
@@ -6584,7 +6600,7 @@ function initializeDossierCartTriggers() {
   font-size: 16px;
   font-weight: 600;
   margin: 0;
-  font-family: 'PPMori Regular', sans-serif;
+  font-family: var(--font-body);
   text-transform: uppercase;
   text-align: left;
   line-height: 1.3;
@@ -6595,7 +6611,7 @@ function initializeDossierCartTriggers() {
 .fragrance-brand {
   margin: 0;
   font-size: 12px;
-  font-family: 'PPMori Regular', sans-serif;
+  font-family: var(--font-body);
   font-weight: 400;
   text-align: left;
   color: #666;
@@ -6611,7 +6627,7 @@ function initializeDossierCartTriggers() {
   font-size: 18px;
   font-weight: 600!important;
   color: #000;
-  font-family: 'PPMori Regular', sans-serif;
+  font-family: var(--font-body);
 }
 .price-badge {
   background-color: #fa0000ff;
@@ -6620,13 +6636,13 @@ function initializeDossierCartTriggers() {
   font-weight: 600;
   padding: 2px 8px;
   border-radius: 3px;
-  font-family: 'PPMori Regular', sans-serif;
+  font-family: var(--font-body);
 }
 .original-price {
   font-size: 12px;
   color: #000 !important;
   text-decoration: line-through;
-  font-family: 'PPMori Regular', sans-serif;
+  font-family: var(--font-body);
   font-weight: 400;
 }
 /* Variant options */
@@ -6643,7 +6659,7 @@ function initializeDossierCartTriggers() {
   border-radius: 20px;
   font-size: 11px !important;
   cursor: pointer;
-  font-family: 'PPMori Regular', sans-serif;
+  font-family: var(--font-body);
   transition: all 0.2s ease;
   color: #000;
   font-weight: 400;
@@ -6673,7 +6689,7 @@ function initializeDossierCartTriggers() {
   cursor: pointer;
   border: none;
   width: 100%;
-  font-family: 'PPMori Regular', sans-serif;
+  font-family: var(--font-body);
   transition: background 0.2s ease;
 }
 .cart-button:hover {
@@ -6700,7 +6716,7 @@ function initializeDossierCartTriggers() {
   margin-top: 60px;
   text-decoration: none;
   text-align: center;
-  font-family: 'PPMORI REGULAR';
+  font-family: var(--font-body);
 }
 .show-all-btn:hover {
   background: #e0ea36;
@@ -6802,7 +6818,7 @@ function initializeDossierCartTriggers() {
   .fragrance-brand {
     margin: 0;
     font-size: 14px;
-    font-family: 'PPMori Regular', sans-serif;
+    font-family: var(--font-body);
     font-weight: 400;
     text-align: left;
     color: #666;
@@ -7661,7 +7677,7 @@ document.addEventListener("DOMContentLoaded", () => {
                   "price": "£15.99",
                   "priceRaw": 1599,
                   "compareAtPrice": 2599,
-                  "available": false,
+                  "available": true,
                   "availableInventory: N
                 },
                 {
@@ -10318,7 +10334,7 @@ document.addEventListener("DOMContentLoaded", () => {
     margin-bottom: 30px;
   }
   .main-heading {
-    font-family: 'PP Editorial New', serif;
+    font-family: var(--font-display);
     font-style: italic;
     font-weight: 400;
     font-size: 45px;
@@ -10335,7 +10351,7 @@ document.addEventListener("DOMContentLoaded", () => {
     font-weight: 700;
   }
   .scent-heading {
-    font-family: 'PP Editorial New', serif;
+    font-family: var(--font-display);
     font-style: italic;
     font-weight: 400 !important;
     font-size: 120px !important;
@@ -10373,7 +10389,7 @@ document.addEventListener("DOMContentLoaded", () => {
   .product-badge {
     background-color: #ffffff;
     color: #000000 !important;
-    font-family: 'PPMori Regular', sans-serif;
+    font-family: var(--font-body);
     font-weight: 400 !important;
     font-size: 12px !important;
     padding: 2px 20px !important;
@@ -10475,7 +10491,7 @@ document.addEventListener("DOMContentLoaded", () => {
     font-size: 17px;
     font-weight: bold;
     color: #000;
-    font-family: 'PPMori Regular', sans-serif;
+    font-family: var(--font-body);
     font-weight: 500;
   }
   .original-price {
@@ -10483,7 +10499,7 @@ document.addEventListener("DOMContentLoaded", () => {
     color: #999;
     text-decoration: line-through;
     margin-left: 8px;
-    font-family: 'PPMori Regular', sans-serif;
+    font-family: var(--font-body);
   }
   .price-badge {
     background-color: #ff0000ff;
@@ -10493,7 +10509,7 @@ document.addEventListener("DOMContentLoaded", () => {
     border-radius: 4px;
     margin-left: 8px;
     font-weight: 600;
-    font-family: 'PPMori Regular', sans-serif;
+    font-family: var(--font-body);
     text-transform: uppercase;
     display: inline-block;
   }
@@ -10512,7 +10528,7 @@ document.addEventListener("DOMContentLoaded", () => {
     z-index: 3;
     padding: 4px 8px;
     border-radius: 8px;
-    font-family: 'PPMori Regular', sans-serif;
+    font-family: var(--font-body);
     font-weight: 500;
   }
   .product-image-wrapper {
@@ -10555,7 +10571,7 @@ document.addEventListener("DOMContentLoaded", () => {
     font-size: 14px;
     font-weight: 300;
     margin: 0;
-    font-family: 'PPMori Regular', sans-serif;
+    font-family: var(--font-body);
     text-transform: uppercase;
     max-width: 60%;
     white-space: normal;
@@ -10566,7 +10582,7 @@ document.addEventListener("DOMContentLoaded", () => {
   .product-vendor {
     margin-top: -13px;
     font-size: 15px;
-    font-family: 'PPMori Regular', sans-serif;
+    font-family: var(--font-body);
     font-weight: 400;
     margin-bottom: -10px !important;
   }
@@ -10609,7 +10625,7 @@ document.addEventListener("DOMContentLoaded", () => {
     display: inline-block;
     transition: background 0.3s ease;
     text-transform: uppercase;
-    font-family: 'PPMori Regular', sans-serif;
+    font-family: var(--font-body);
     width: 240px;
     height: 48px;
     margin-top: 50px;
@@ -11673,7 +11689,7 @@ document.addEventListener("DOMContentLoaded", () => {
                               data-variant-id="56863918489945"
                               data-variant-price="1599"
                               data-variant-compare="2599"
-                              data-available="false"
+                              data-available="true"
                               data-inventory="N">
                               50ml
                             </button>
@@ -20328,7 +20344,7 @@ document.addEventListener("DOMContentLoaded", () => {
                               data-variant-id="56863918489945"
                               data-variant-price="1599"
                               data-variant-compare="2599"
-                              data-available="false"
+                              data-available="true"
                               data-inventory="N">
                               50ml
                             </button>
@@ -21485,7 +21501,7 @@ document.addEventListener("DOMContentLoaded", () => {
       overflow: visible;
       background: #2e2e2e;
       color: #fff;
-      font-family: 'PP Editorial New', serif;
+      font-family: var(--font-display);
     }
     .mvps-video-wrap {
       position: absolute;
@@ -21555,7 +21571,7 @@ document.addEventListener("DOMContentLoaded", () => {
       border: 0;
       background: transparent;
       color: #fff;
-      font-family: 'PP Editorial New', serif;
+      font-family: var(--font-display);
       font-size: 48px;
       font-weight: 400;
       font-style: italic;
@@ -21651,7 +21667,7 @@ document.addEventListener("DOMContentLoaded", () => {
       padding: 16px 20px;
       border-radius: 12px;
       font-size: 18px;
-      font-family: 'PP Editorial New', serif;
+      font-family: var(--font-display);
       font-style: italic;
       cursor: pointer;
       transition: all 0.3s ease;
@@ -22122,7 +22138,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                         
                     <div style="text-align: center; margin-top: 0px;">
-                        <a href="/collections/bestsellers" class="view-all-button" style="display: inline-block; padding: 16px 80px; background: #f4ff41; border-radius: 999px; text-decoration: none; color: #000; font-family: 'PPMori Regular', sans-serif; font-weight: 500; text-transform: uppercase;">
+                        <a href="/collections/bestsellers" class="view-all-button" style="display: inline-block; padding: 16px 80px; background: #f4ff41; border-radius: 999px; text-decoration: none; color: #000; font-family: var(--font-body); font-weight: 500; text-transform: uppercase;">
                             View All Products
                         </a>
                     </div>
@@ -22514,7 +22530,7 @@ document.addEventListener('DOMContentLoaded', function () {
         price: "£15.99",
         priceRaw: 1599,
         compareAtPrice: 2599,
-        available: false,
+        available: true,
         availableInventory: N
       },
       {
@@ -23118,7 +23134,7 @@ function rebindProductEvents() {
     width: 100%;
     background: white;
     overflow: hidden;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: var(--font-system);
   }
   .scent-header {
     text-align: center;
@@ -23132,7 +23148,7 @@ function rebindProductEvents() {
     letter-spacing: 0.05em;
     text-align: center;
     margin: 0 auto;
-    font-family: 'PPMori Extralight', sans-serif;
+    font-family: var(--font-body-light);
     display: block;
   }
   .scent-sub {
@@ -23142,7 +23158,7 @@ function rebindProductEvents() {
     font-style: italic;
     letter-spacing: 0.05em;
     margin-top: -10px !important;
-    font-family: 'PPEditorialNew Italic', serif;
+    font-family: var(--font-display-italic);
   }
   .carousel-container {
     position: relative;
@@ -23172,7 +23188,7 @@ function rebindProductEvents() {
     color: black;
     white-space: nowrap;
     transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    font-family: 'PPMori SemiBold', sans-serif;
+    font-family: var(--font-body-semibold);
     opacity: 0;
   }
   .carousel-track {
@@ -23553,7 +23569,7 @@ function rebindProductEvents() {
   .featured-collections-section {
     padding: 60px 0px;
     background: #fff;
-    font-family: 'PPMori SemiBold', sans-serif;
+    font-family: var(--font-body-semibold);
     position: relative;
     overflow: hidden;
     padding-left: 5rem;
@@ -23621,7 +23637,7 @@ function rebindProductEvents() {
     padding: 0;
     margin-bottom: 50px;
     margin-left: 40px;
-    font-family: 'PPMori Regular', sans-serif;
+    font-family: var(--font-body);
   }
   .collection-button:hover {
     opacity: 0.9;
@@ -23839,7 +23855,7 @@ function rebindProductEvents() {
     width: 100%;
     background: white;
     overflow: hidden;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: var(--font-system);
   }
   .scent-header {
     text-align: center;
@@ -23853,7 +23869,7 @@ function rebindProductEvents() {
     letter-spacing: 0.05em;
     text-align: center;
     margin: 0 auto;
-    font-family: 'PPMori Extralight', sans-serif;
+    font-family: var(--font-body-light);
     display: block;
   }
   .scent-sub {
@@ -23863,7 +23879,7 @@ function rebindProductEvents() {
     font-style: italic;
     letter-spacing: 0.05em;
     margin-top: -10px !important;
-    font-family: 'PPEditorialNew Italic', serif;
+    font-family: var(--font-display-italic);
   }
   .carousel-container {
     position: relative;
@@ -23893,7 +23909,7 @@ function rebindProductEvents() {
     color: black;
     white-space: nowrap;
     transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    font-family: 'PPMori SemiBold', sans-serif;
+    font-family: var(--font-body-semibold);
     opacity: 0;
   }
   .carousel-track {
@@ -24075,7 +24091,7 @@ function rebindProductEvents() {
     width: 100%;
     background: white;
     overflow: hidden;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: var(--font-system);
   }
   .scent-header {
     text-align: center;
@@ -24089,7 +24105,7 @@ function rebindProductEvents() {
     letter-spacing: 0.05em;
     text-align: center;
     margin: 0 auto;
-    font-family: 'PPMori Extralight', sans-serif;
+    font-family: var(--font-body-light);
     display: block;
   }
   .scent-subtitle {
@@ -24099,7 +24115,7 @@ function rebindProductEvents() {
     font-style: italic;
     letter-spacing: 0.05em;
     margin-top: -10px !important;
-    font-family: 'PPEditorialNew Italic', serif;
+    font-family: var(--font-display-italic);
   }
   .carousel-container {
     position: relative;
@@ -24129,7 +24145,7 @@ function rebindProductEvents() {
     color: black;
     white-space: nowrap;
     transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    font-family: 'PPMori SemiBold', sans-serif;
+    font-family: var(--font-body-semibold);
     opacity: 0;
   }
   .carousel-track {
@@ -24762,10 +24778,10 @@ function rebindProductEvents() {
       color: #808080;
        text-align: center;
       font-weight: 100;
-      font-family: 'PPMori Extralight', sans-serif;
+      font-family: var(--font-body-light);
     }
     .newsletter-banner .newsletter-content h3 {
-       font-family: 'PPEditorialNew Italic', serif;
+       font-family: var(--font-display-italic);
       font-size: 32px;
       font-style: italic;
       text-decoration: underline;
@@ -24783,7 +24799,7 @@ function rebindProductEvents() {
     color: #000;
     text-align: center;
     width: 280px;
-    font-family: 'PPMori Regular', sans-serif;
+    font-family: var(--font-body);
   }
     .newsletter-banner form {
       display: flex;
@@ -24802,7 +24818,7 @@ function rebindProductEvents() {
       padding: 20px 20px;
       font-size: 13px;
       background-color: transparent;
-      font-family: 'PPMori Regular', sans-serif;
+      font-family: var(--font-body);
     }
     .newsletter-banner button {
       background-color: #EFFC00;
@@ -24815,7 +24831,7 @@ function rebindProductEvents() {
       text-align: center;
       margin-left: 110px;
       margin-top: 25px;
-      font-family: 'PPMori Regular', sans-serif;
+      font-family: var(--font-body);
       width: 240px;
       height: 48px;
       line-height: 1 !important;
@@ -24827,7 +24843,7 @@ function rebindProductEvents() {
       font-size: 16px;
       color: #000;
       text-align: center;
-      font-family: 'PPMori Regular', sans-serif;
+      font-family: var(--font-body);
       line-height: 120%;
     }
     @media screen and (max-width: 1024px) {
@@ -24875,7 +24891,7 @@ function rebindProductEvents() {
       padding: auto;
       font-size: 12px;
       background-color: transparent;
-      font-family: 'PPMori Regular', sans-serif;
+      font-family: var(--font-body);
        }
      .newsletter-banner button {
       background-color: #EFFC00;
@@ -24888,7 +24904,7 @@ function rebindProductEvents() {
       text-align: center;
       margin-left: auto;
       margin-top: auto;
-      font-family: 'PPMori Regular', sans-serif;
+      font-family: var(--font-body);
       width: auto;
       height: auto;
       line-height: 1 !important;
@@ -24904,7 +24920,7 @@ function rebindProductEvents() {
     font-size: 14px;
     text-align: center;
     color: #000;
-    font-family: 'PPMori Regular', sans-serif;
+    font-family: var(--font-body);
   }
 </style>
 <section
@@ -25258,7 +25274,7 @@ function rebindProductEvents() {
   z-index: 1;
   line-height: 0.8;
   margin-left: -120px;
-  font-family: 'PPEditorial New Ultrabold', serif;
+  font-family: var(--font-display-ultrabold);
   margin-top: -140px;
   font-weight: 600;
 }
@@ -25291,7 +25307,7 @@ function rebindProductEvents() {
   z-index: 1;
   line-height: 0.8;
   margin-left: -120px;
-  font-family: 'PPEditorial New Ultrabold', serif;
+  font-family: var(--font-display-ultrabold);
   margin-top: -140px !important;
   font-weight: 600;
   margin-bottom: 90px;
@@ -25312,7 +25328,7 @@ function rebindProductEvents() {
         z-index: 1;
         line-height: 0.8;
         margin-left: -120px;
-        font-family: 'PPEditorial New Ultrabold', serif;
+        font-family: var(--font-display-ultrabold);
         margin-top: -140px !important;
         font-weight: 600;
         margin-bottom: 90px;
@@ -25333,7 +25349,7 @@ function rebindProductEvents() {
         z-index: 1;
         line-height: 0.8;
         margin-left: -120px;
-        font-family: 'PPEditorial New Ultrabold', serif;
+        font-family: var(--font-display-ultrabold);
         margin-top: -140px !important;
         font-weight: 600;
         margin-bottom: 90px;

@@ -18,7 +18,7 @@
   }
 
   .ai-editorial-heading-{{ ai_gen_id }} {
-    font-family: 'PPEditorialNew Italic', Georgia, serif;
+    font-family: var(--font-display-italic);
     font-style: italic;
     font-size: {{ block.settings.heading_size }}px;
     line-height: {{ block.settings.heading_line_height }};
@@ -35,7 +35,7 @@
   }
 
   .ai-editorial-column-{{ ai_gen_id }} {
-    font-family: 'PPMori Regular', Arial, sans-serif;
+    font-family: var(--font-body);
     font-size: {{ block.settings.body_size }}px;
     line-height: {{ block.settings.body_line_height }};
     color: {{ block.settings.body_color }};

@@ -24,7 +24,7 @@
   }
 
   .ai-staggered-typography-line-1-{{ ai_gen_id }} {
-    font-family: 'PPEditorialNew Italic', Georgia, serif;
+    font-family: var(--font-display-italic);
     font-style: italic;
     font-size: {{ block.settings.line_1_size }}px;
     text-align: {{ block.settings.line_1_alignment }};
@@ -36,7 +36,7 @@
   }
 
   .ai-staggered-typography-line-2-{{ ai_gen_id }} {
-    font-family: 'PP Editorial New', Georgia, serif;
+    font-family: var(--font-display);
     font-style: normal;
     font-weight: 400;
     font-size: {{ block.settings.line_2_size }}px;
@@ -48,7 +48,7 @@
   }
 
   .ai-staggered-typography-line-3-{{ ai_gen_id }} {
-    font-family: 'PPEditorialNew Italic', Georgia, serif;
+    font-family: var(--font-display-italic);
     font-style: italic;
     font-size: {{ block.settings.line_3_size }}px;
     text-align: {{ block.settings.line_3_alignment }};
@@ -59,7 +59,7 @@
   }
 
   .ai-staggered-typography-body-{{ ai_gen_id }} {
-    font-family: 'PPMori Regular', Arial, sans-serif;
+    font-family: var(--font-body);
     font-weight: 400;
     font-size: {{ block.settings.body_size }}px;
     line-height: 1.6;

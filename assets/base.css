@@ -2605,7 +2605,7 @@ input[type="checkbox"] {
     align-items: center;
     gap: 1px;
     margin-left: -120px;
-    font-family: "PPMori Regular", sans-serif;
+    font-family: var(--font-body);
     text-decoration: none !important;
     margin-top: 2px !important;
   }
@@ -4229,7 +4229,7 @@ body:not(.homepage) .announcement-bar-section {
     text-transform: uppercase;
     letter-spacing: 0.5px;
     color: #333;
-    font-family: "PPMori Regular", sans-serif;
+    font-family: var(--font-body);
     display: inline-block; /* Make it inline-block to wrap content */
     border-bottom: 2px solid #fadb95; /* Add the underline */
     padding-bottom: 2px; /* Adjust spacing between text and underline */

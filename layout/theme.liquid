@@ -353,6 +353,12 @@
       }
     {% endstyle %}
 
+    {%- comment -%}
+      Typography tokens. Rendered after the settings-derived font variables
+      above, because the theme tokens alias them.
+    {%- endcomment -%}
+    {% render 'token--typography' %}
+
     {{ "base.css" | asset_url | stylesheet_tag }}
     {%- if template contains 'article' or template contains 'blog' -%}
       {{ "blog--typography.css" | asset_url | stylesheet_tag }}
