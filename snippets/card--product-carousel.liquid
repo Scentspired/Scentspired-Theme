@@ -3,62 +3,121 @@
   SCENTSPIRED — Product Card (carousel variant)
   ============================================================================
   The single definition of the carousel card markup, used by Video-banner1,
-  featuredscent, main-collection-product-grid and mobile-video-banner. Each of
-  those previously carried its own copy inside a JavaScript template literal.
+  featuredscent, main-collection-product-grid and mobile-video-banner.
 
-  Why this exists separately from card--product:
+  Two render modes, ONE copy of the markup:
+
+    {% render 'card--product-carousel', product: product %}
+        server-renders a real card. Used by sections that build their grid in
+        Liquid, which keeps product links in the HTML for crawlers.
+
+    {% render 'card--product-carousel' %}
+        emits the same markup as an inert <template> with empty slots, which
+        assets/card--product.js clones for sections that build their grid in
+        JavaScript.
+
+  The markup below is written once; whether it is wrapped in <template>
+  is the only difference. That is what stops the two modes drifting apart.
+
+  Why this is separate from card--product:
 
     card--product           .product-form / .selected-variant-id
-                            .compare-price / .sale-badge          (43 CSS rules)
+                            .compare-price / .sale-badge       (43 CSS rules)
     card--product-carousel  .item-form / .variant-id-input
-                            .original-price / .price-badge        (2 CSS rules)
+                            .original-price / .price-badge     (2 CSS rules)
 
-  The two families use different class hooks and those hooks are styled
-  differently, so merging them means a CSS change, not just a markup change.
-  Kept apart deliberately; see TODO.md for the eventual merge.
+  Those hooks are styled differently, so merging the families is a CSS change,
+  not a markup change. Kept apart deliberately; see TODO.md.
 
-  Element tags were safe to unify — no CSS anywhere targets `h3.fragrance-name`
-  or `p.fragrance-brand`, only the bare class.
+  Element tags were safe to unify — no CSS targets `h3.fragrance-name` or
+  `p.fragrance-brand`, only the bare class.
 
-  Markup is the superset of the four consumers. Sections that do not use the
-  compare price or sale badge simply leave those fields off the product object
-  and the renderer removes them.
-
-  Usage:
-      {% render 'card--product-carousel' %}
-      <script src="{{ 'card--product.js' | asset_url }}" defer></script>
-      ...
-      wrap.appendChild(ScentspiredCard.renderCarousel(product, { index: i }));
+  Props:
+    product   optional. A Shopify product object for server mode; omit for
+              template mode.
+    index     optional. Written to data-product-index.
   ============================================================================
 {%- endcomment -%}
 
-<template id="card--product-carousel">
-  <div class="fragrance-item product-card" data-card-root>
-    <a class="fragrance-image-wrap" data-card-image-link>
-      <img class="product-main-image" data-card-image alt="">
-      <img class="product-hover-image" data-card-hover-image alt="" hidden>
-      <div class="product-badges" data-card-badges></div>
+{%- liquid
+  assign is_template = false
+  if product == blank
+    assign is_template = true
+  endif
+
+  assign card_url = product.url | default: ''
+  assign card_title = product.title | default: ''
+  assign card_vendor = product.vendor | default: ''
+  assign card_id = product.id | default: ''
+
+  assign main_image = ''
+  assign hover_image = ''
+  if product != blank and product.featured_image != blank
+    assign main_image = product.featured_image | image_url: width: 600
+  endif
+  if product != blank and product.images.size > 1
+    assign hover_image = product.images[1] | image_url: width: 600
+  endif
+
+  assign first_variant = product.variants | first
+  assign card_price = first_variant.price | default: 0 | money
+  if product == blank
+    assign card_price = ''
+  endif
+-%}
+
+{%- if is_template -%}<template id="card--product-carousel">{%- endif -%}
+<div
+  class="fragrance-item product-card"
+  data-card-root
+  {% if card_id != '' %}data-product-id="{{ card_id }}"{% endif %}
+  {% if index %}data-product-index="{{ index }}"{% endif %}
+>
+  <a class="fragrance-image-wrap" data-card-image-link {% if card_url != '' %}href="{{ card_url }}"{% endif %}>
+    <img class="product-main-image" data-card-image alt="{{ card_title | escape }}" {% if main_image != '' %}src="{{ main_image }}"{% endif %}>
+    <img class="product-hover-image" data-card-hover-image alt="{{ card_title | escape }}" {% if hover_image != '' %}src="{{ hover_image }}"{% else %}hidden{% endif %}>
+    <div class="product-badges" data-card-badges>
+      {%- if product != blank -%}
+        {%- render 'card--product-badge', tags: product.tags -%}
+      {%- endif -%}
+    </div>
+  </a>
+
+  <div class="fragrance-info">
+    <a style="text-decoration: none;" data-card-title-link {% if card_url != '' %}href="{{ card_url }}"{% endif %}>
+      <div class="fragrance-name" data-card-title>{{ card_title }}</div>
     </a>
 
-    <div class="fragrance-info">
-      <a style="text-decoration: none;" data-card-title-link>
-        <div class="fragrance-name" data-card-title></div>
-      </a>
+    <div class="fragrance-brand" data-card-vendor>{{ card_vendor }}</div>
 
-      <div class="fragrance-brand" data-card-vendor></div>
-
-      <div class="price-section">
-        <span class="product-price-display" data-price-display></span>
-        <span class="original-price" data-compare-at-price-display style="display: none;"></span>
-        <span class="price-badge" data-price-badge style="display: none;">Sale</span>
-      </div>
-
-      <form class="item-form" method="post" action="/cart/add" data-card-form>
-        <div class="variant-options" data-card-variants hidden></div>
-        <input type="hidden" name="id" class="variant-id-input">
-        <input type="hidden" name="quantity" value="1">
-        <button type="submit" class="cart-button" data-card-submit>ADD TO CART</button>
-      </form>
+    <div class="price-section">
+      <span class="product-price-display" data-price-display {% if card_id != '' %}data-product-id="{{ card_id }}"{% endif %}>{{ card_price }}</span>
+      <span class="original-price" data-compare-at-price-display data-compare-price style="display: none;"></span>
+      <span class="price-badge" data-price-badge data-sale-badge style="display: none;">Sale</span>
     </div>
+
+    <form class="item-form" method="post" action="/cart/add" data-card-form {% if card_id != '' %}data-product-id="{{ card_id }}"{% endif %}>
+      <div class="variant-options" data-card-variants data-variant-options {% if product == blank %}hidden{% endif %}>
+        {%- if product != blank and product.variants.size > 1 -%}
+          {%- for v in product.variants -%}
+            <button
+              type="button"
+              class="variant-option-btn{% unless v.available %} disabled{% endunless %}"
+              data-variant-id="{{ v.id }}"
+              data-variant-price="{{ v.price | money }}"
+              data-variant-price-raw="{{ v.price }}"
+              data-variant-compare-at-price="{{ v.compare_at_price | default: 0 }}"
+              data-variant-compare="{{ v.compare_at_price }}"
+              data-available="{{ v.available }}"
+              data-inventory="{{ v.inventory_quantity | default: 0 }}"
+            >{{ v.title }}</button>
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+      <input type="hidden" name="id" class="variant-id-input" value="{{ first_variant.id | default: '' }}">
+      <input type="hidden" name="quantity" value="1">
+      <button type="submit" class="cart-button" data-card-submit {% if card_title != '' %}data-product-title="{{ card_title | escape }}"{% endif %}>ADD TO CART</button>
+    </form>
   </div>
-</template>
+</div>
+{%- if is_template -%}</template>{%- endif -%}

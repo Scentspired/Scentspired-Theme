@@ -76,6 +76,39 @@ later: each is now reachable from one place.
 - **Verify with:** `npm run fonts:check -- --painted` plus a network check that
   each font file is requested once.
 
+### 0.5b Four sections still build their own product card
+
+- **Status:** IN PROGRESS — 2 of 6 converted
+- **Converted:** `best-sellers` (→ `card--product`), `Video-banner1`
+  (→ `card--product-carousel`). Both verified in the browser: cards render and
+  variant switching updates price and variant id.
+- **Remaining:** `featuredscent`, `main-collection-product-grid`,
+  `bundlediscovery`, `mobile-video-banner`.
+- **Why the remaining four are not a simple markup swap.** They are not copies
+  of one card. They share CSS class names but each has its own JS contract:
+
+  | section | form | variant input | compare / badge hooks | `data-variant-price` |
+  | :--- | :--- | :--- | :--- | :--- |
+  | best-sellers | `.product-form` | `.selected-variant-id` | `.compare-price` / `.sale-badge` | formatted |
+  | bundlediscovery | `.product-form` | `.selected-variant-id` | none | formatted |
+  | Video-banner1 | `.item-form` | `.variant-id-input` | `data-compare-at-price-display` | formatted |
+  | featuredscent | `.item-form` | `.variant-id-input` | `data-compare-price` / `data-sale-badge` | **raw cents** |
+  | main-collection-product-grid | `.item-form` | `.variant-id-input` | `data-compare-at-price-display` | tbc |
+  | mobile-video-banner | `.item-form` | `.variant-id-input` | none | tbc |
+
+  The shared template already carries both hook spellings, since extra
+  attributes are harmless. The blocker is `data-variant-price`: Video-banner1's
+  JS expects a formatted string, featuredscent's expects raw cents. Converting
+  featuredscent therefore requires editing its JS, not just its markup.
+- **Next step per section:** convert the markup to
+  `{% render 'card--product-carousel', product: product %}`, then reconcile that
+  section's variant-click handler to read `data-variant-price-raw` for cents and
+  `data-variant-price` for display. Verify in the browser that the price and
+  variant id still update.
+- **Also worth noting:** `.product-form` carries 43 CSS rules against
+  `.item-form`'s 2, so the two families cannot be merged without CSS work. That
+  merge is the step after all six are converted.
+
 ### 0.6 Two footer links 404 — including Terms & Conditions
 
 - **Status:** OPEN — content fix, not a theme change

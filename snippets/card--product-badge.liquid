@@ -1,0 +1,42 @@
+{%- comment -%}
+  ============================================================================
+  SCENTSPIRED — Product Badge
+  ============================================================================
+  Tag -> badge, in Liquid. The same mapping exists in assets/card--product.js
+  for client-rendered cards; both are driven by the same three tags, and this
+  is the only place the Liquid side spells them out.
+
+  Several sections previously inlined this same for/elsif chain, so adding a
+  badge meant editing each one.
+
+  Props:
+    tags   required. product.tags
+  ============================================================================
+{%- endcomment -%}
+
+{%- liquid
+  assign badge_label = ''
+  assign badge_modifier = ''
+
+  for tag in tags
+    assign lower = tag | downcase
+    case lower
+      when 'men'
+        assign badge_label = 'Men'
+        assign badge_modifier = 'badge-men'
+        break
+      when 'women'
+        assign badge_label = 'Women'
+        assign badge_modifier = 'badge-women'
+        break
+      when 'unisex'
+        assign badge_label = 'Unisex'
+        assign badge_modifier = 'badge-unisex'
+        break
+    endcase
+  endfor
+-%}
+
+{%- if badge_label != '' -%}
+  <span class="product-badge {{ badge_modifier }}">{{ badge_label }}</span>
+{%- endif -%}

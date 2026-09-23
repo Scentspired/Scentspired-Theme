@@ -1,6 +1,6 @@
 # 🛡️ Theme Guardian — Automated Quality & Detection Report
 
-**Generated At:** `2026-09-23 06:01:09 UTC`  
+**Generated At:** `2026-09-23 06:08:04 UTC`  
 **Branch:** `develop`  
 **Target Codebase:** `Scentspired-UK`  
 
@@ -10,8 +10,8 @@
 
 | Metric | Value | Status |
 | :--- | :--- | :--- |
-| **Files Scanned** | `241` Liquid & JS files | 🔍 Complete |
-| **Total Lines Inspected** | `73,870` lines | 🔍 Complete |
+| **Files Scanned** | `243` Liquid & JS files | 🔍 Complete |
+| **Total Lines Inspected** | `74,059` lines | 🔍 Complete |
 | **Active Rules Evaluated** | `12 Rules` | 🛡️ Active |
 | **Errors (Blockers)** | `53` errors | ❌ **Blocking Deploy** |
 | **Warnings** | `1` warnings | ⚠️ Review |

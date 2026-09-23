@@ -7405,32 +7405,34 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 </script>
 <style> #shopify-section-X__featuredscent_8M3b4w .fragrance-item:hover .fragrance-info {transform: none; color: black;} #shopify-section-X__featuredscent_8M3b4w .product-badge {color: #fff !important;} #shopify-section-X__featuredscent_8M3b4w .mobile-only {display: flex !important;} #shopify-section-X__featuredscent_8M3b4w .fragrance-rating {margin-left: -3px;} @media (min-width: 800px) and (max-width: 1024px) {#shopify-section-X__featuredscent_8M3b4w .fragrance-item {width: 100% !important; }} </style></div><div id="shopify-section-X__video_banner1_QerXbX" class="shopify-section">
-<template id="card--product-carousel">
-  <div class="fragrance-item product-card" data-card-root>
-    <a class="fragrance-image-wrap" data-card-image-link>
-      <img class="product-main-image" data-card-image alt="">
-      <img class="product-hover-image" data-card-hover-image alt="" hidden>
-      <div class="product-badges" data-card-badges></div>
+<template id="card--product-carousel"><div
+  class="fragrance-item product-card"
+  data-card-root
+  
+>
+  <a class="fragrance-image-wrap" data-card-image-link >
+    <img class="product-main-image" data-card-image alt="" >
+    <img class="product-hover-image" data-card-hover-image alt="" hidden>
+    <div class="product-badges" data-card-badges></div>
+  </a>
+  <div class="fragrance-info">
+    <a style="text-decoration: none;" data-card-title-link >
+      <div class="fragrance-name" data-card-title></div>
     </a>
-    <div class="fragrance-info">
-      <a style="text-decoration: none;" data-card-title-link>
-        <div class="fragrance-name" data-card-title></div>
-      </a>
-      <div class="fragrance-brand" data-card-vendor></div>
-      <div class="price-section">
-        <span class="product-price-display" data-price-display></span>
-        <span class="original-price" data-compare-at-price-display style="display: none;"></span>
-        <span class="price-badge" data-price-badge style="display: none;">Sale</span>
-      </div>
-      <form class="item-form" method="post" action="/cart/add" data-card-form>
-        <div class="variant-options" data-card-variants hidden></div>
-        <input type="hidden" name="id" class="variant-id-input">
-        <input type="hidden" name="quantity" value="1">
-        <button type="submit" class="cart-button" data-card-submit>ADD TO CART</button>
-      </form>
+    <div class="fragrance-brand" data-card-vendor></div>
+    <div class="price-section">
+      <span class="product-price-display" data-price-display ></span>
+      <span class="original-price" data-compare-at-price-display data-compare-price style="display: none;"></span>
+      <span class="price-badge" data-price-badge data-sale-badge style="display: none;">Sale</span>
     </div>
+    <form class="item-form" method="post" action="/cart/add" data-card-form >
+      <div class="variant-options" data-card-variants data-variant-options hidden></div>
+      <input type="hidden" name="id" class="variant-id-input" value="">
+      <input type="hidden" name="quantity" value="1">
+      <button type="submit" class="cart-button" data-card-submit >ADD TO CART</button>
+    </form>
   </div>
-</template>
+</div></template>
 <script src="/cdn/shop/t/14/assets/card--product.js?v=X" defer="defer"></script>
 <div class="scent-video-banner" id="scent-video-banner">
   <div class="video-container">
