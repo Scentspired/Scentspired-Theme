@@ -177,11 +177,23 @@ async function fetchPage(route) {
       // Shopify occasionally injects an extra app fragment on one request and
       // not the next. A real regression reproduces every time, so a single
       // mismatch is retried before it is believed.
-      if (before !== current) {
+      /*
+       * Shopify does not always return a collection's products in the same
+       * order: ties on the sort key rotate between requests, so two adjacent
+       * cards swap and the page differs by a handful of bytes with nothing
+       * changed. Diagnosed by diffing a failure — "Deep Attraction" and
+       * "Ocean Drift" had simply traded places.
+       *
+       * Retry a few times and accept the first attempt that matches. This
+       * narrows the flake without widening the normaliser: sorting product
+       * cards before comparing would also hide a real change to a grid, which
+       * is one of the things this harness exists to catch.
+       */
+      for (let attempt = 0; attempt < 3 && before !== current; attempt++) {
         await new Promise(r => setTimeout(r, 1200));
         try {
           current = normalize((await fetchPage(route)).html);
-        } catch { /* keep the first result */ }
+        } catch { /* keep the previous result */ }
       }
 
       if (before === current) {
