@@ -76,7 +76,24 @@ later: each is now reachable from one place.
 - **Verify with:** `npm run fonts:check -- --painted` plus a network check that
   each font file is requested once.
 
-### 0.5b Four sections still build their own product card
+### 0.5b Product card — all six sections converted
+
+- **Status:** ✅ DONE. Six sections now render from two card definitions.
+- **Remaining follow-up:** merge the two families into one. `card--product` uses
+  `.product-form` / `.selected-variant-id` / `.compare-price` / `.sale-badge`;
+  `card--product-carousel` uses `.item-form` / `.variant-id-input` /
+  `.original-price` / `.price-badge`. `.product-form` carries **43 CSS rules**
+  against `.item-form`'s 2, so merging is a CSS change and needs its own visual
+  verification pass — do not fold them together as part of a markup edit.
+- **Also outstanding:** `bundlediscovery` was converted but could not be
+  verified in a browser, because no template references that section — it only
+  exists as a theme-editor preset. Worth deciding whether to keep it at all.
+- **Contract note for future edits:** `data-variant-price` is the formatted
+  string, `data-variant-price-raw` is cents. Four sections parsed the former as
+  cents and had to be corrected during conversion; that produced a visible
+  "£NaN" on the collection page until fixed.
+
+<details><summary>Original analysis (kept for context)</summary>
 
 - **Status:** IN PROGRESS — 2 of 6 converted
 - **Converted:** `best-sellers` (→ `card--product`), `Video-banner1`
@@ -108,6 +125,8 @@ later: each is now reachable from one place.
 - **Also worth noting:** `.product-form` carries 43 CSS rules against
   `.item-form`'s 2, so the two families cannot be merged without CSS work. That
   merge is the step after all six are converted.
+
+</details>
 
 ### 0.6 Two footer links 404 — including Terms & Conditions
 
