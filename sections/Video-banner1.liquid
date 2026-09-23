@@ -219,6 +219,9 @@
   assign default_cat2 = default_cat2 | strip
 -%}
 
+{% render 'card--product-carousel' %}
+<script src="{{ 'card--product.js' | asset_url }}" defer="defer"></script>
+
 <div class="scent-video-banner" id="scent-video-banner">
   <div class="video-container">
     <video id="main-video" autoplay muted loop playsinline style="filter: brightness(40%);">
@@ -675,85 +678,13 @@
         productsDisplay.classList.remove('single-product');
       }
 
-      productsDisplay.innerHTML = visibleProducts
-        .map((product, pIdx) => {
-          const variants = product.variants || [];
-          const genderTag = product.tags?.find(t => ['men', 'women', 'unisex'].includes(t.toLowerCase())) || 'Unisex';
-
-          return `
-        <div class="fragrance-item product-card" data-product-id="${product.id}" data-product-index="${pIdx}">
-          <a href="${product.url}" class="fragrance-image-wrap">
-            <img src="${product.image}" alt="${product.title}" class="product-main-image">
-            ${product.hover_image ? `<img class="product-hover-image" src="${product.hover_image}" alt="${product.title}">` : ''}  
-            <div class="product-badges">
-              <span class="product-badge badge-${genderTag.toLowerCase()}">${genderTag}</span>
-            </div>
-          </a>
-          <div class="fragrance-info">
-          <a href="${product.url}" style= "text-decoration: none;">
-            <h3 class="fragrance-name">${product.title}</h3>
-            </a>
-            <p class="fragrance-brand">${product.vendor}</p>
-            <div class="price-section">
-  ${
-    variants.length > 0
-      ? (() => {
-          const firstAvailable =
-            variants.find(v => v.available && v.availableInventory > 0) ||
-            variants.find(v => v.available) ||
-            variants[0];
-          const hasDiscount = firstAvailable.compareAtPrice && firstAvailable.compareAtPrice > firstAvailable.priceRaw;
-          const displayStyle = hasDiscount ? 'style="display: inline;"' : 'style="display: none;"';
-          return `
-      <span class="product-price-display" data-price-display>
-        ${firstAvailable.price}
-      </span>
-      
-      <span class="original-price" data-compare-at-price-display ${displayStyle}>
-        $${(firstAvailable.compareAtPrice / 100).toFixed(2)}
-      </span>
-      <span class="price-badge" data-price-badge ${displayStyle}>Sale</span>
-    `;
-        })()
-      : ''
-  }
-</div>
-            <form class="item-form" method="post" action="/cart/add">
-              ${
-                variants.length > 1
-                  ? `
-                <div class="variant-options">
-                  ${variants
-                    .map(
-                      v => `
-  <button
-    type="button"
-    class="variant-option-btn ${v.availableInventory === 0 ? 'disabled' : ''}"
-    data-variant-id="${v.id}"
-    data-variant-price="${v.price}"
-    data-variant-price-raw="${v.priceRaw}"
-    data-variant-compare-at-price="${v.compareAtPrice}"
-    data-available="${v.available}"
-    data-inventory="${v.availableInventory}">
-    ${v.title}
-  </button>
-`
-                    )
-                    .join('')}
-
-                </div>
-              `
-                  : ''
-              }
-              <input type="hidden" name="id" class="variant-id-input">
-              <input type="hidden" name="quantity" value="1">
-              <button type="submit" class="cart-button" data-product-title="${product.title}">ADD TO CART</button>
-            </form>
-          </div>
-        </div>
-      `;
-        })
-        .join('');
+      // Card markup lives in snippets/card--product-carousel.liquid.
+      productsDisplay.textContent = '';
+      visibleProducts.forEach((product, pIdx) => {
+        productsDisplay.appendChild(
+          ScentspiredCard.renderCarousel(product, { index: pIdx })
+        );
+      });
 
       productsDisplay.querySelectorAll('.product-card').forEach(card => {
         const variantBtns = card.querySelectorAll('.variant-option-btn');

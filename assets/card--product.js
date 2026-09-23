@@ -158,5 +158,96 @@ window.ScentspiredCard = (function () {
     return node;
   }
 
-  return { render, badgesFromTags };
+  /**
+   * The carousel card. Same data contract, different class hooks — see
+   * snippets/card--product-carousel.liquid for why the two are separate.
+   *
+   * Extra options:
+   *   index        written to data-product-index (Video-banner1 reads it)
+   *   formatMoney  formats compareAtPrice, which arrives in cents here
+   */
+  function renderCarousel(product, options) {
+    const tpl = document.getElementById('card--product-carousel');
+    if (!tpl) {
+      console.warn('[card--product-carousel] template missing');
+      return document.createDocumentFragment();
+    }
+
+    const opts = options || {};
+    const node = tpl.content.firstElementChild.cloneNode(true);
+    const variants = product.variants || [];
+
+    // Match the original behaviour: prefer an in-stock variant, then any
+    // available one, then simply the first.
+    const chosen =
+      variants.find(v => v.available && v.availableInventory > 0) ||
+      variants.find(v => v.available) ||
+      variants[0] || {};
+
+    node.dataset.productId = product.id;
+    if (opts.index != null) node.dataset.productIndex = opts.index;
+
+    set(node, 'image-link', el => { el.href = product.url; });
+    set(node, 'title-link', el => { el.href = product.url; });
+    set(node, 'title', el => { el.textContent = product.title; });
+    set(node, 'vendor', el => { el.textContent = product.vendor || ''; });
+
+    set(node, 'image', el => {
+      el.src = product.image || product.featured_image;
+      el.alt = product.title;
+    });
+    set(node, 'hover-image', el => {
+      if (product.hover_image) {
+        el.src = product.hover_image;
+        el.alt = product.title;
+        el.hidden = false;
+      } else {
+        el.remove();
+      }
+    });
+
+    set(node, 'badges', el => renderBadges(el, product.badges || badgesFromTags(product.tags)));
+
+    const price = node.querySelector('[data-price-display]');
+    if (price) price.textContent = chosen.price != null ? chosen.price : '';
+
+    const hasDiscount = chosen.compareAtPrice && chosen.compareAtPrice > chosen.priceRaw;
+    const compare = node.querySelector('[data-compare-at-price-display]');
+    const badge = node.querySelector('[data-price-badge]');
+    if (compare) {
+      compare.textContent = opts.formatMoney
+        ? opts.formatMoney(chosen.compareAtPrice)
+        : '$' + (chosen.compareAtPrice / 100).toFixed(2);
+      compare.style.display = hasDiscount ? 'inline' : 'none';
+    }
+    if (badge) badge.style.display = hasDiscount ? 'inline' : 'none';
+
+    set(node, 'variants', el => {
+      el.textContent = '';
+      if (variants.length < 2) {
+        el.hidden = true;
+        return;
+      }
+      el.hidden = false;
+      variants.forEach(v => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'variant-option-btn' + (v.availableInventory === 0 ? ' disabled' : '');
+        btn.dataset.variantId = v.id;
+        btn.dataset.variantPrice = v.price;
+        btn.dataset.variantPriceRaw = v.priceRaw;
+        btn.dataset.variantCompareAtPrice = v.compareAtPrice;
+        btn.dataset.available = v.available;
+        btn.dataset.inventory = v.availableInventory != null ? v.availableInventory : 0;
+        btn.textContent = v.title;
+        el.appendChild(btn);
+      });
+    });
+
+    set(node, 'submit', el => { el.dataset.productTitle = product.title; });
+
+    return node;
+  }
+
+  return { render, renderCarousel, badgesFromTags };
 })();

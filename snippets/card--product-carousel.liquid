@@ -1,0 +1,64 @@
+{%- comment -%}
+  ============================================================================
+  SCENTSPIRED — Product Card (carousel variant)
+  ============================================================================
+  The single definition of the carousel card markup, used by Video-banner1,
+  featuredscent, main-collection-product-grid and mobile-video-banner. Each of
+  those previously carried its own copy inside a JavaScript template literal.
+
+  Why this exists separately from card--product:
+
+    card--product           .product-form / .selected-variant-id
+                            .compare-price / .sale-badge          (43 CSS rules)
+    card--product-carousel  .item-form / .variant-id-input
+                            .original-price / .price-badge        (2 CSS rules)
+
+  The two families use different class hooks and those hooks are styled
+  differently, so merging them means a CSS change, not just a markup change.
+  Kept apart deliberately; see TODO.md for the eventual merge.
+
+  Element tags were safe to unify — no CSS anywhere targets `h3.fragrance-name`
+  or `p.fragrance-brand`, only the bare class.
+
+  Markup is the superset of the four consumers. Sections that do not use the
+  compare price or sale badge simply leave those fields off the product object
+  and the renderer removes them.
+
+  Usage:
+      {% render 'card--product-carousel' %}
+      <script src="{{ 'card--product.js' | asset_url }}" defer></script>
+      ...
+      wrap.appendChild(ScentspiredCard.renderCarousel(product, { index: i }));
+  ============================================================================
+{%- endcomment -%}
+
+<template id="card--product-carousel">
+  <div class="fragrance-item product-card" data-card-root>
+    <a class="fragrance-image-wrap" data-card-image-link>
+      <img class="product-main-image" data-card-image alt="">
+      <img class="product-hover-image" data-card-hover-image alt="" hidden>
+      <div class="product-badges" data-card-badges></div>
+    </a>
+
+    <div class="fragrance-info">
+      <a style="text-decoration: none;" data-card-title-link>
+        <div class="fragrance-name" data-card-title></div>
+      </a>
+
+      <div class="fragrance-brand" data-card-vendor></div>
+
+      <div class="price-section">
+        <span class="product-price-display" data-price-display></span>
+        <span class="original-price" data-compare-at-price-display style="display: none;"></span>
+        <span class="price-badge" data-price-badge style="display: none;">Sale</span>
+      </div>
+
+      <form class="item-form" method="post" action="/cart/add" data-card-form>
+        <div class="variant-options" data-card-variants hidden></div>
+        <input type="hidden" name="id" class="variant-id-input">
+        <input type="hidden" name="quantity" value="1">
+        <button type="submit" class="cart-button" data-card-submit>ADD TO CART</button>
+      </form>
+    </div>
+  </div>
+</template>

@@ -7405,6 +7405,33 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 </script>
 <style> #shopify-section-X__featuredscent_8M3b4w .fragrance-item:hover .fragrance-info {transform: none; color: black;} #shopify-section-X__featuredscent_8M3b4w .product-badge {color: #fff !important;} #shopify-section-X__featuredscent_8M3b4w .mobile-only {display: flex !important;} #shopify-section-X__featuredscent_8M3b4w .fragrance-rating {margin-left: -3px;} @media (min-width: 800px) and (max-width: 1024px) {#shopify-section-X__featuredscent_8M3b4w .fragrance-item {width: 100% !important; }} </style></div><div id="shopify-section-X__video_banner1_QerXbX" class="shopify-section">
+<template id="card--product-carousel">
+  <div class="fragrance-item product-card" data-card-root>
+    <a class="fragrance-image-wrap" data-card-image-link>
+      <img class="product-main-image" data-card-image alt="">
+      <img class="product-hover-image" data-card-hover-image alt="" hidden>
+      <div class="product-badges" data-card-badges></div>
+    </a>
+    <div class="fragrance-info">
+      <a style="text-decoration: none;" data-card-title-link>
+        <div class="fragrance-name" data-card-title></div>
+      </a>
+      <div class="fragrance-brand" data-card-vendor></div>
+      <div class="price-section">
+        <span class="product-price-display" data-price-display></span>
+        <span class="original-price" data-compare-at-price-display style="display: none;"></span>
+        <span class="price-badge" data-price-badge style="display: none;">Sale</span>
+      </div>
+      <form class="item-form" method="post" action="/cart/add" data-card-form>
+        <div class="variant-options" data-card-variants hidden></div>
+        <input type="hidden" name="id" class="variant-id-input">
+        <input type="hidden" name="quantity" value="1">
+        <button type="submit" class="cart-button" data-card-submit>ADD TO CART</button>
+      </form>
+    </div>
+  </div>
+</template>
+<script src="/cdn/shop/t/14/assets/card--product.js?v=X" defer="defer"></script>
 <div class="scent-video-banner" id="scent-video-banner">
   <div class="video-container">
     <video id="main-video" autoplay muted loop playsinline style="filter: brightness(40%);">
@@ -9943,82 +9970,13 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         productsDisplay.classList.remove('single-product');
       }
-      productsDisplay.innerHTML = visibleProducts
-        .map((product, pIdx) => {
-          const variants = product.variants || [];
-          const genderTag = product.tags?.find(t => ['men', 'women', 'unisex'].includes(t.toLowerCase())) || 'Unisex';
-          return `
-        <div class="fragrance-item product-card" data-product-id="${product.id}" data-product-index="${pIdx}">
-          <a href="${product.url}" class="fragrance-image-wrap">
-            <img src="${product.image}" alt="${product.title}" class="product-main-image">
-            ${product.hover_image ? `<img class="product-hover-image" src="${product.hover_image}" alt="${product.title}">` : ''}  
-            <div class="product-badges">
-              <span class="product-badge badge-${genderTag.toLowerCase()}">${genderTag}</span>
-            </div>
-          </a>
-          <div class="fragrance-info">
-          <a href="${product.url}" style= "text-decoration: none;">
-            <h3 class="fragrance-name">${product.title}</h3>
-            </a>
-            <p class="fragrance-brand">${product.vendor}</p>
-            <div class="price-section">
-  ${
-    variants.length > 0
-      ? (() => {
-          const firstAvailable =
-            variants.find(v => v.available && v.availableInventory > 0) ||
-            variants.find(v => v.available) ||
-            variants[0];
-          const hasDiscount = firstAvailable.compareAtPrice && firstAvailable.compareAtPrice > firstAvailable.priceRaw;
-          const displayStyle = hasDiscount ? 'style="display: inline;"' : 'style="display: none;"';
-          return `
-      <span class="product-price-display" data-price-display>
-        ${firstAvailable.price}
-      </span>
-      <span class="original-price" data-compare-at-price-display ${displayStyle}>
-        $${(firstAvailable.compareAtPrice / 100).toFixed(2)}
-      </span>
-      <span class="price-badge" data-price-badge ${displayStyle}>Sale</span>
-    `;
-        })()
-      : ''
-  }
-</div>
-            <form class="item-form" method="post" action="/cart/add">
-              ${
-                variants.length > 1
-                  ? `
-                <div class="variant-options">
-                  ${variants
-                    .map(
-                      v => `
-  <button
-    type="button"
-    class="variant-option-btn ${v.availableInventory === 0 ? 'disabled' : ''}"
-    data-variant-id="${v.id}"
-    data-variant-price="${v.price}"
-    data-variant-price-raw="${v.priceRaw}"
-    data-variant-compare-at-price="${v.compareAtPrice}"
-    data-available="${v.available}"
-    data-inventory="${v.availableInventory}">
-    ${v.title}
-  </button>
-`
-                    )
-                    .join('')}
-                </div>
-              `
-                  : ''
-              }
-              <input type="hidden" name="id" class="variant-id-input">
-              <input type="hidden" name="quantity" value="1">
-              <button type="submit" class="cart-button" data-product-title="${product.title}">ADD TO CART</button>
-            </form>
-          </div>
-        </div>
-      `;
-        })
-        .join('');
+      // Card markup lives in snippets/card--product-carousel.liquid.
+      productsDisplay.textContent = '';
+      visibleProducts.forEach((product, pIdx) => {
+        productsDisplay.appendChild(
+          ScentspiredCard.renderCarousel(product, { index: pIdx })
+        );
+      });
       productsDisplay.querySelectorAll('.product-card').forEach(card => {
         const variantBtns = card.querySelectorAll('.variant-option-btn');
         const idInput = card.querySelector('.variant-id-input');
