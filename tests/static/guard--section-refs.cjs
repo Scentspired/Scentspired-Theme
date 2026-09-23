@@ -136,6 +136,27 @@ for (const file of files) {
       problems.push(`${rel}: {% render '${name}' %} but snippets/${name}.liquid does not exist`);
     }
   }
+
+  /*
+   * Inside a {% liquid %} block the tag braces are dropped, so a render looks
+   * like a bare `render "header-drawer"` on its own line. Missing this shape
+   * is how the mobile menu drawer silently vanished from every page after a
+   * snippet rename: header.liquid calls it from inside {% liquid %}, the
+   * rename did not rewrite it, and this guard reported zero unresolved
+   * references while the drawer was gone. Parity caught it; the guard should
+   * have.
+   */
+  for (const block of src.matchAll(/\{%-?\s*liquid\b([\s\S]*?)-?%\}/g)) {
+    for (const m of block[1].matchAll(/^\s*(?:render|include)\s+['"]([^'"]+)['"]/gm)) {
+      const name = m[1];
+      checkedSnippets++;
+      if (!snippets.has(name)) {
+        problems.push(
+          `${rel}: render '${name}' inside {% liquid %} but snippets/${name}.liquid does not exist`
+        );
+      }
+    }
+  }
 }
 
 console.log('');

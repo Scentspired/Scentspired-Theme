@@ -75,6 +75,21 @@ const CASES = [
     },
   },
   {
+    /*
+     * The shape that actually bit. Inside {% liquid %} there are no tag
+     * braces, so a render is a bare word on its own line. A guard blind to
+     * this reported zero unresolved references while the mobile menu drawer
+     * was missing from every page.
+     */
+    name: 'a braceless render inside {% liquid %} is still a reference',
+    shouldFail: true,
+    files: {
+      'sections/header.liquid':
+        '{%- liquid\n  if section.settings.menu != blank\n    render "header--drawer"\n  endif\n-%}',
+      'snippets/other.liquid': 'ok',
+    },
+  },
+  {
     name: 'block type nested in a section is not a section',
     shouldFail: false,
     files: {

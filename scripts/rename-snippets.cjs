@@ -81,20 +81,37 @@ const touched = new Set();
 
 for (const { from, to } of pairs) {
   // Either quote style, render or include.
-  const re = new RegExp(
-    `(\\{%-?\\s*(?:render|include)\\s+)(['"])${esc(from)}\\2`,
-    'g'
-  );
+  const tagRe = new RegExp(`(\\{%-?\\s*(?:render|include)\\s+)(['"])${esc(from)}\\2`, 'g');
+
+  /*
+   * And the same call with no braces at all. Inside a {% liquid %} block the
+   * tag syntax is dropped, so it reads `render "header-drawer"` on its own
+   * line. The first version of this renamer only matched the braced form and
+   * left seven of those behind — the mobile menu drawer, header search, mega
+   * menu, share button and product media modal all stopped rendering, with
+   * every guard still green. Parity caught it.
+   */
+  const bareRe = new RegExp(`(^[ \\t]*(?:render|include)[ \\t]+)(['"])${esc(from)}\\2`, 'gm');
 
   let refs = 0;
   for (const file of collect()) {
     if (!fs.existsSync(file)) continue;
     const before = fs.readFileSync(file, 'utf8');
-    const m = before.match(re);
-    if (!m) continue;
-    refs += m.length;
+
+    let src = before.replace(tagRe, `$1$2${to}$2`);
+    let n = (before.match(tagRe) || []).length;
+
+    src = src.replace(/(\{%-?\s*liquid\b)([\s\S]*?)(-?%\})/g, (full, open, body, close) => {
+      const hits = (body.match(bareRe) || []).length;
+      if (!hits) return full;
+      n += hits;
+      return open + body.replace(bareRe, `$1$2${to}$2`) + close;
+    });
+
+    if (!n) continue;
+    refs += n;
     touched.add(path.relative(THEME_ROOT, file).replace(/\\/g, '/'));
-    if (!DRY) fs.writeFileSync(file, before.replace(re, `$1$2${to}$2`));
+    if (!DRY) fs.writeFileSync(file, src);
   }
 
   if (!DRY) {
