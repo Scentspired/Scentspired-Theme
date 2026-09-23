@@ -19,7 +19,20 @@ const fs = require('fs');
 const path = require('path');
 
 const THEME_ROOT = path.resolve(__dirname, '..');
-const BASELINE_DIR = path.join(THEME_ROOT, 'tests/parity/baseline');
+/**
+ * Which baseline set to read or write. UK lives in tests/parity/baseline; a
+ * second region needs its own, because the same page legitimately differs
+ * between storefronts — different prices, different products, different
+ * Trustpilot. Comparing one region against another's baseline is meaningless.
+ *
+ *   --region=usa  ->  tests/parity/baseline-usa
+ */
+const regionArg = process.argv.find((a) => a.startsWith('--region='));
+const REGION = regionArg ? regionArg.slice('--region='.length) : '';
+const BASELINE_DIR = path.join(
+  THEME_ROOT,
+  REGION && REGION !== 'uk' ? `tests/parity/baseline-${REGION}` : 'tests/parity/baseline'
+);
 
 const args = process.argv.slice(2);
 const isCheck = args.includes('--check');
