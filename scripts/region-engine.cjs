@@ -49,7 +49,33 @@ function deepMerge(base, override) {
   return out;
 }
 
-function validate(region, schema, regionId) {
+/**
+ * Keys a region must declare in its OWN file, never inherit.
+ *
+ * These are storefront identity. Validating them against the merged object
+ * only proves *someone* supplied them — which is how _defaults.json, itself a
+ * copy of the USA storefront, came to hand its domain, locale, currency and
+ * contact addresses to every region that forgot to set them. UK and UAE both
+ * shipped USA's support address for exactly that reason.
+ *
+ * Requiring them per-file means region #101 fails loudly on a missing domain
+ * instead of quietly going live as the United States.
+ */
+const MUST_DECLARE = [
+  'id',
+  'code',
+  'name',
+  'domain',
+  'home_url',
+  'hreflang',
+  'geo_countries',
+  'currency_code',
+  'currency_symbol',
+  'support_email',
+  'returns_email',
+];
+
+function validate(region, schema, regionId, own) {
   const errors = [];
   const props = schema.properties || {};
 
@@ -57,6 +83,18 @@ function validate(region, schema, regionId) {
     const value = region[key];
     if (value === undefined || value === null || value === '') {
       errors.push(`missing required key "${key}"`);
+    }
+  }
+
+  if (own) {
+    for (const key of MUST_DECLARE) {
+      const value = own[key];
+      if (value === undefined || value === null || value === '') {
+        errors.push(
+          `"${key}" must be declared in regions/${regionId}/region.json, not inherited — ` +
+            'it identifies this storefront'
+        );
+      }
     }
   }
 
@@ -142,8 +180,9 @@ function resolveRegion(regionId) {
     throw err;
   }
 
-  const region = deepMerge(defaults, stripComments(readJson(regionFile)));
-  validate(region, schema, regionId);
+  const own = stripComments(readJson(regionFile));
+  const region = deepMerge(defaults, own);
+  validate(region, schema, regionId, own);
   return region;
 }
 

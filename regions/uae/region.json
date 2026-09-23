@@ -1,27 +1,35 @@
 {
+  "$comment": "United Arab Emirates (experimental, not published). CARRIED OVER, NOT CHOSEN: support_email, returns_email, logo_url, hero_video_url, category_label_1 and category_label_2 below are the USA storefront values, inherited from the old USA-shaped _defaults.json and written down here only so the rendered output did not change — see TODO.md 0.11.",
   "id": "uae",
   "code": "AE",
   "name": "United Arab Emirates",
-
   "domain": "scentspired.ae",
   "home_url": "https://scentspired.ae",
   "hreflang": "en-ae",
-  "geo_countries": ["AE"],
+  "geo_countries": [
+    "AE"
+  ],
   "is_default": false,
   "published": false,
-
   "currency_code": "AED",
   "currency_symbol": "AED",
-
   "free_shipping_threshold_cents": 25000,
   "free_shipping_threshold_display": "AED 250",
   "shipping_cost_cents": 2500,
   "shipping_cost_display": "AED 25",
-
   "seo_title": "Inspired Designer Perfumes for Men & Women | Scentspired UAE",
   "seo_description": "Shop long-lasting inspired perfumes for men, women & unisex. Premium extrait de parfum oils, luxury quality, honest prices. Free delivery on orders over AED 250.",
-
   "social": {
     "instagram": "https://www.instagram.com/scentspired/"
+  },
+  "support_email": "support@scentspired.com",
+  "returns_email": "returns@scentspired.com",
+  "logo_url": "https://scentspired.com/cdn/shop/files/Scentspired_logo.png?v=1758619291",
+  "hero_video_url": "https://cdn.shopify.com/videos/c/o/v/fbfe40c4c4c744f5b13cfbe4d843fe31.mp4",
+  "category_label_1": "ICONS",
+  "category_label_2": "VIBES",
+  "trustpilot": {
+    "enabled": false,
+    "url": "https://www.trustpilot.com/review/scentspired.com"
   }
 }
