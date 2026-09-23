@@ -236,6 +236,69 @@ later: each is now reachable from one place.
   practice — saved template data overrides presets — and the guard exempts
   schema blocks for this reason. The `[Your Company Address], USA` placeholder
   that sat beside it was removed.
+### 0.13 No article on the site has an H1
+
+- **Status:** OPEN — needs one decision from you, then it is 19 data edits
+- **What:** all 19 article templates either omit the `main` (main-article)
+  section or ship it `disabled: true`. That section is what would render the
+  article's title, so every article page has **zero H1s**. The first heading a
+  crawler meets is an `h2` from an editorial block.
+- **Why it was not simply fixed:** the articles are hand-built from editorial
+  blocks and deliberately do not show the Shopify article title. Enabling the
+  title block would put a new visible heading at the top of all 19 articles —
+  a content change, and the brief was zero visual change.
+- **What is now in place:** `blocks/editorial--section*.liquid` take a
+  `heading_level` setting, exactly like `featuredscent`. Default is `h2`, so
+  nothing renders differently today. The generated
+  `.ai-editorial-heading-<id>` class sets font-family, font-size, line-height
+  and margin, so the tag carries no styling — h1 and h2 look identical.
+- **To resolve:** in each `templates/article.blog-*.json`, set
+  `"heading_level": "h1"` on the first editorial block. One key per article,
+  no code change, no visual change.
+- **Alternative:** re-enable `main` with only its `title` block, which shows
+  the real article title as the H1. Better for SEO, but it adds a visible
+  heading to every article — your call.
+
+### 0.14 Heading structure: what changed and what is left
+
+- **Status:** DONE for H1s, PARTIAL for the rest
+- **Measured before:** 8 of 20 pages carried two H1s, 3 carried none.
+- **Measured after:** 19 of 20 carry exactly one. Only articles remain (0.13).
+- **Changes made, all verified as visually identical:**
+  - `featuredscent` — h1 to a `heading_level` setting, default h2; the
+    homepage placement sets h1. Fixed home, 4 collections and product.
+  - `header` — the logo was an h1 on the homepage; now a div.
+    `.header__heading` already set `margin: 0` and `line-height: 0`, and the
+    logo is an image.
+  - `main-cart-items` — the empty-cart message was a second h1; now an h2.
+    It had no font-size of its own and was inheriting the global h1 size, so
+    that size is now pinned on `.cart__empty-text` in `component-cart.css`.
+    **Verified in the browser at both breakpoints: 30px/39px and 40px, the
+    same values a bare h1 computes to.**
+  - `contact-section` — a second, permanently empty h1; now an h2.
+    `.contact-main-heading` sets its own font-size.
+  - `hero-section` — the fragrance-finder page had no h1; its hero h2 is now
+    the h1. `.hero-heading` sets its own size and spacing.
+  - `discovery` — same, for the discovery-set page. This one had a
+    tag-coupled selector (`.sidebar-header h2`), so the selector was widened
+    to cover h1 rather than the markup being left alone. **Verified in the
+    browser: 22px, weight 600, margin 0 0 10px — the old h2 values exactly.**
+- **Still open — UI labels marked up as headings.** The cart drawer, mobile
+  menu and search filters put `h2`/`h3`/`h4` on chrome: `YOUR CART`,
+  `ORDER SUMMARY`, `Menu`, `Recent Searches`, `Gender`, `Inspired By`,
+  `Scent Families`, `Scent Notes`, `Most Popular Products`, `Shop By Season`,
+  `Oops...`. These sit early in the DOM, so they dominate the outline on every
+  page before any real content heading.
+  - Not yet done because several are tag-coupled — `.sidebar-header h2`,
+    `.sp-recommendations-section h3`, `.sp-rec-details h4`, `.mobile-header h2`
+    and `.custom-collections-section h3` all style by tag, so each needs its
+    selector moved to a class before the tag can change. That is the same
+    shotgun-surgery pattern as 0.13 and wants doing as one deliberate pass,
+    not piecemeal.
+- **Still open — `Video-banner1` renders `<p class="main-heading">`** where a
+  real heading belongs. Classes would stay; only the tag changes.
+
+
 
 ---
 

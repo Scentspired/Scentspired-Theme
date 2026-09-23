@@ -246,7 +246,8 @@
     <div class="ai-editorial-grid-{{ ai_gen_id }}">
       <div class="ai-editorial-left-{{ ai_gen_id }}">
         {% if block.settings.heading != blank %}
-          <h2 class="ai-editorial-heading-{{ ai_gen_id }}">{{ block.settings.heading }}</h2>
+          {%- assign editorial_heading_level = block.settings.heading_level | default: 'h2' -%}
+          <{{ editorial_heading_level }} class="ai-editorial-heading-{{ ai_gen_id }}">{{ block.settings.heading }}</{{ editorial_heading_level }}>
         {% endif %}
 
         <div class="ai-editorial-image-wrapper-{{ ai_gen_id }}">
@@ -360,6 +361,18 @@
       "id": "heading",
       "label": "Heading",
       "default": "What We Make"
+    },
+    {
+      "type": "select",
+      "id": "heading_level",
+      "label": "Heading level",
+      "info": "Use H1 only where this block carries the page's main heading. A page must have exactly one H1.",
+      "options": [
+        { "value": "h1", "label": "H1 — the page's main heading" },
+        { "value": "h2", "label": "H2 — a section heading" },
+        { "value": "h3", "label": "H3 — a sub-section heading" }
+      ],
+      "default": "h2"
     },
     {
       "type": "font_picker",

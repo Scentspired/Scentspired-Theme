@@ -35,8 +35,22 @@ cart-items.is-empty .title-wrapper-with-link,
   padding: 3rem 0 1rem;
 }
 
+/*
+ * The empty-cart message is a state message, not the page's heading, so it is
+ * an h2 rather than a second h1. It had no font-size of its own and was
+ * inheriting the global h1 size, so that size is pinned here explicitly —
+ * the element renders exactly as before, it just no longer claims to be the
+ * page's main heading. Mirrors the h1 rules in base.css.
+ */
 .cart__empty-text {
   margin: 4.5rem 0 2rem;
+  font-size: calc(var(--font-heading-scale) * 3rem);
+}
+
+@media only screen and (min-width: 1200px) {
+  .cart__empty-text {
+    font-size: calc(var(--font-heading-scale) * 4rem);
+  }
 }
 
 .cart__contents > * + * {

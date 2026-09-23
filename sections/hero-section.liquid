@@ -14,7 +14,12 @@
       </div>
       <div class="hero-text-container">
         <p class="fragrance-finder-text">Fragrance Finder</p>
-        <h2 class="hero-heading">Discover the Scent That Defines You — Scentspired</h2>
+        {%- comment -%}
+          This is the page's main heading and the page had no h1 at all.
+          .hero-heading sets its own font-size, weight, colour and spacing, so
+          the tag change is semantic only.
+        {%- endcomment -%}
+        <h1 class="hero-heading">Discover the Scent That Defines You — Scentspired</h1>
         <button id="quiz-trigger-btn" class="show-all-btn">START THE QUIZ</button>
       </div>
     </div>

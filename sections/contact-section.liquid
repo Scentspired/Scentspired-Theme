@@ -374,7 +374,13 @@
       </aside>
       <main class="faq-main">
         <div class="contact-form-wrapper">
-          <h1 class="contact-main-heading">{{ section.settings.main_heading | default: "" }}</h1>
+          {%- comment -%}
+            "CONTACT US" above is this page's heading. This one sits beneath it
+            and ships empty in every region, so as an h1 it was a second, blank
+            main heading. As an h2 it is a subheading, and .contact-main-heading
+            sets its own font-size, so nothing about it renders differently.
+          {%- endcomment -%}
+          <h2 class="contact-main-heading">{{ section.settings.main_heading | default: "" }}</h2>
           <div class="contact-description">
             {{ section.settings.main_description }}
           </div>
