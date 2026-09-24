@@ -59,9 +59,14 @@ function themeFiles() {
 
 function count(src, isJs) {
   const c = { text: 0, 'js-text': 0, media: 0, links: 0, fallback: 0, ids: 0 };
+  // {% javascript %} is script too (Shopify bundles it); counting it as markup
+  // read every `<` comparison in the header's 2,300 lines of code as page text.
   const scripts = isJs
     ? [src]
-    : [...src.matchAll(/<script(?![^>]*\bsrc=)[^>]*>([\s\S]*?)<\/script>/g)].map((m) => m[1]);
+    : [
+        ...[...src.matchAll(/<script(?![^>]*\bsrc=)[^>]*>([\s\S]*?)<\/script>/g)].map((m) => m[1]),
+        ...[...src.matchAll(/\{%-?\s*javascript\s*-?%\}([\s\S]*?)\{%-?\s*endjavascript\s*-?%\}/g)].map((m) => m[1]),
+      ];
   const noSchema = src.replace(/\{%-?\s*schema\s*-?%\}[\s\S]*?\{%-?\s*endschema\s*-?%\}/g, '');
 
   if (!isJs) {
@@ -70,6 +75,7 @@ function count(src, isJs) {
       .replace(/<style[^>]*>[\s\S]*?<\/style>/g, '')
       .replace(/\{%-?\s*style\s*-?%\}[\s\S]*?\{%-?\s*endstyle\s*-?%\}/g, '')
       .replace(/<script[\s\S]*?<\/script>/g, '')
+      .replace(/\{%-?\s*javascript\s*-?%\}[\s\S]*?\{%-?\s*endjavascript\s*-?%\}/g, '')
       .replace(/<!--[\s\S]*?-->/g, '');
     c.text += markup
       // JSON keys ("name": …) in a snippet that emits data are structure, not

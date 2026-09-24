@@ -297,9 +297,9 @@
     "ids": 0
   },
   "sections/header.liquid": {
-    "total": 98,
-    "text": 65,
-    "js-text": 0,
+    "total": 153,
+    "text": 17,
+    "js-text": 103,
     "media": 16,
     "links": 17,
     "fallback": 0,
