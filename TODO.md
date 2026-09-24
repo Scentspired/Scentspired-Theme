@@ -412,6 +412,39 @@ later: each is now reachable from one place.
 - **Possible fix worth trying:** have the harness detect both shapes and abort
   with "dev server unhealthy" rather than reporting a diff.
 
+### 0.19 Retire `/pages/bundle-1`, the old Five Favourites builder
+
+- **Status:** PENDING — needs a change on the live stores first; do not start
+  the code part before that is done
+- **What:** `/pages/bundle-1` is live on both stores (scentspired.co.uk and
+  scentspired.com). It renders an older copy of the Five Favourites box builder
+  (`sections/bundle--five-favourites.liquid`, template `page.bundle.json`),
+  left over from before `/pages/five-favourites`. Nothing on the site links to
+  it — not the menus, and its homepage card was switched off — but it can be
+  reached by its address or from Google.
+- **Why it matters:** its prices are typed into `region.json`
+  (`bundles.five_favourites`) instead of coming from Shopify, and are out of
+  date: UK 50ml shows £64.99, while the cart adds the same Shopify product,
+  which costs £72.99. A shopper sees one price and is charged another.
+- **Decided (2026-09-24):** retire it. Five Favourites is served by the box
+  system (`regions/<id>/content/boxes.json` → `/pages/five-favourites`).
+- **Order matters — store first, code second:**
+  1. **Store (the owner does this, on each store):** delete or hide the
+     "bundle-1" page, then add a URL redirect `/pages/bundle-1` →
+     `/pages/five-favourites` (Online Store → Navigation → URL Redirects).
+     Shopify only applies a redirect once the page no longer exists.
+  2. **Code (after 1 is done and checked):** delete
+     `sections/bundle--five-favourites.liquid`, `regions/*/templates/page.bundle.json`,
+     `bundles.five_favourites` in each `regions/*/region.json` (then the empty
+     `bundles` key), and the two crash-history entries for that file in
+     `tests/dynamic/verify-clarity-detection.cjs`. Also delete what only it uses —
+     **check each first**: `snippets/bundle--sidebar.liquid` (rendered 3× by
+     it) and `regions/*/data/bundle-brands.json` (read by it through
+     `region--data`).
+- **Why it waits:** removing the template while the live page still points at
+  it would change what that page shows the day this theme is published. The
+  store step comes first so nothing live breaks.
+
 
 
 
