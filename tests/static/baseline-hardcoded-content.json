@@ -45,27 +45,27 @@
     "ids": 0
   },
   "sections/bundle--discovery.liquid": {
-    "total": 39,
+    "total": 17,
     "text": 8,
-    "js-text": 30,
+    "js-text": 8,
     "media": 0,
     "links": 0,
     "fallback": 0,
     "ids": 1
   },
   "sections/bundle--five-box.liquid": {
-    "total": 46,
-    "text": 12,
-    "js-text": 32,
+    "total": 7,
+    "text": 0,
+    "js-text": 5,
     "media": 0,
     "links": 0,
     "fallback": 0,
     "ids": 2
   },
   "sections/bundle--five-favourites.liquid": {
-    "total": 36,
+    "total": 14,
     "text": 0,
-    "js-text": 34,
+    "js-text": 12,
     "media": 0,
     "links": 0,
     "fallback": 2,
@@ -81,9 +81,9 @@
     "ids": 1
   },
   "sections/bundle--trio-set.liquid": {
-    "total": 46,
-    "text": 12,
-    "js-text": 32,
+    "total": 7,
+    "text": 0,
+    "js-text": 5,
     "media": 0,
     "links": 0,
     "fallback": 0,

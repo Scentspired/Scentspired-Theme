@@ -24,8 +24,8 @@
     <!-- LEFT SIDEBAR: BUNDLE STATUS -->
     <div class="bundle-sidebar">
       <div class="sidebar-header">
-        <h2>Build Your Own Five Favourites</h2>
-        <p id="BundleStatusText">Add 5 items to complete your five favourites</p>
+        <h2>{% render 'region--content', key: 'fivebox.builder.title' %}</h2>
+        <p id="BundleStatusText">{% render 'region--content', key: 'fivebox.builder.subtitle' %}</p>
       </div>
 
       <div class="slots-wrapper">
@@ -48,8 +48,8 @@
             <div class="slot-item empty" data-index="{{ forloop.index0 }}" onclick="openSelector({{ forloop.index0 }})">
               <div class="slot-placeholder-icon">+</div>
               <div class="slot-placeholder-text">
-                <span class="primary">Select a product</span>
-                <span class="unlock"> {{ 5 | minus: forloop.index | plus: 1 }} Selections Remaining</span>
+                <span class="primary">{% render 'region--content', key: 'fivebox.builder.slot_placeholder' %}</span>
+                <span class="unlock"> {{ 5 | minus: forloop.index | plus: 1 }} {% render 'region--content', key: 'fivebox.builder.selections_remaining' %}</span>
               </div>
             </div>
           {% endfor %}
@@ -59,15 +59,15 @@
       <div class="sidebar-footer">
       <div class="cart">
 <button class="add-to-cart-btn" id="MainActionBtn" disabled onclick="handleCheckout()">
-          <span>Add to cart</span>
+          <span>{% render 'region--content', key: 'fivebox.builder.add_to_cart' %}</span>
           <span id="TotalDisplay">{{ region_currency_symbol }} 0</span>
         </button>
       </div>
       <div class="savings-row">
-         Standard Price: <span class="saving">{{ region_currency_symbol }}0</span>
+         {% render 'region--content', key: 'fivebox.builder.standard_price' %} <span class="saving">{{ region_currency_symbol }}0</span>
         </div>
         <div class="save-row">
-         Total Saving <span>{{ region_currency_symbol }}0</span>
+         {% render 'region--content', key: 'fivebox.builder.total_saving' %} <span>{{ region_currency_symbol }}0</span>
         </div>
       </div>
     </div>
@@ -76,12 +76,12 @@
     <div class="selection-drawer" id="SelectionDrawer">
       <div class="drawer-title">
         <div class="drawer-title-content">
-        <button onclick="goBackToStep()" class="back-arrow-btn" id="BackArrowBtn" title="Go back">
+        <button onclick="goBackToStep()" class="back-arrow-btn" id="BackArrowBtn" title="{% render 'region--content', key: 'fivebox.builder.back_button_title' %}">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="15 18 9 12 15 6"></polyline>
             </svg>
           </button>
-        <span class="drawer-title-text" id="DrawerHeadline">Select Brand</span>
+        <span class="drawer-title-text" id="DrawerHeadline">{% render 'region--content', key: 'fivebox.builder.select_brand' %}</span>
         </div>
         <button onclick="closeSelector()" style="background: none; border: none; cursor: pointer; font-size: 25px;">×</button>
       </div>
@@ -89,10 +89,10 @@
       <div id="Step-Size" class="step-container">
         <div class="option-list">
           <div class="option-item" onclick="selectSize('50ml')">
-            <span>50ml</span>
+            <span>{% render 'region--content', key: 'fivebox.builder.sizes.small' %}</span>
           </div>
           <div class="option-item" onclick="selectSize('100ml')">
-            <span>100ml</span>
+            <span>{% render 'region--content', key: 'fivebox.builder.sizes.large' %}</span>
           </div>
         </div>
       </div>
@@ -106,7 +106,7 @@
       <div id="Step-Product" class="step-container" style="display: none;">
         <div class="search-bar-wrapper">
           <div class="search-input-container">
-            <input type="text" id="ProductSearch" placeholder="Search" />
+            <input type="text" id="ProductSearch" placeholder="{% render 'region--content', key: 'fivebox.builder.search_placeholder' %}" />
             <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="11" cy="11" r="8"></circle>
               <path d="m21 21-4.35-4.35"></path>
@@ -206,34 +206,7 @@ variants: [
 
 
  
-  const brands = [
-    { tag: "tomford", name: "Tom Ford" },
-    { tag: "chanel", name: "Chanel" },
-    { tag: "lv", name: "Louis Vuitton" },
-    { tag: "bykillian", name: "By Killian" },
-    { tag: "byredo", name: "Byredo" },
-    { tag: "dior", name: "Dior" },
-    { tag: "maisoncrivelli", name: "Maison Crivelli" },
-    { tag: "creed", name: "Creed" },
-    { tag: "lelabo", name: "Le Labo" },
-    { tag: "ysl", name: "YSL" },
-    { tag: "burberry", name: "Burberry" },
-    { tag: "exnihilos", name: "Ex Nihilo's" },
-    { tag: "parfums", name: "Parfums" },
-    { tag: "bvlgari", name: "Bvlgari" },
-    { tag: "carolinaherrera", name: "Carolina Herrera" },
-    { tag: "diptyque", name: "Diptyque" },
-    { tag: "giorgioarmani", name: "Giorgio Armani" },
-    { tag: "gucci", name: "Gucci" },
-    { tag: "herm", name: "Hermès" },
-    { tag: "initio", name: "Initio" },
-    { tag: "lancôme", name: "Lancôme" },
-    { tag: "mfk", name: "MFK" },
-    { tag: "narciso", name: "Narciso" },
-    { tag: "nasomattos", name: "Nasomatto's" },
-    { tag: "nishane", name: "Nishane" },
-    { tag: "pacorabanne", name: "Paco Rabanne" }
-  ];
+  const brands = {% render 'region--data', name: 'bundle-brands' %};
 
   let bundle = [null, null, null, null, null];
   let currentSlot = null;
@@ -291,11 +264,11 @@ else if (id === 'Step-Product') {
 
   // ---- HEADINGS + RENDER ----
   if (id === 'Step-Size') {
-  document.getElementById('DrawerHeadline').innerText = 'Select Size';
+  document.getElementById('DrawerHeadline').innerText = '{% render 'region--content', key: 'fivebox.builder.steps.select_size', js: true %}';
 }
 
 if (id === 'Step-Product') {
-  document.getElementById('DrawerHeadline').innerText = 'Select Product';
+  document.getElementById('DrawerHeadline').innerText = '{% render 'region--content', key: 'fivebox.builder.steps.select_product', js: true %}';
   renderProducts();
   initSearchListener();
 }
@@ -359,7 +332,7 @@ function renderProducts(searchQuery = '') {
   }
 
   if (displayProducts.length === 0) {
-    grid.innerHTML = '<div class="no-results-message">No products found matching your search.</div>';
+    grid.innerHTML = '<div class="no-results-message">{% render 'region--content', key: 'fivebox.builder.no_results', js: true %}</div>';
     return;
   }
 
@@ -376,7 +349,7 @@ function renderProducts(searchQuery = '') {
 // Add product to bundle
 function addProductToBundle(id, size) {
   const product = PRODUCTS_BY_SIZE[size].find(p => p.id === id);
-  if (!product) return alert('Product not found');
+  if (!product) return alert('{% render 'region--content', key: 'fivebox.builder.alerts.product_not_found', js: true %}');
 
   // Find variant matching the selected size (if variant title contains size)
   const variant = product.variants.find(v => v.title.toLowerCase().includes(size.toLowerCase())) || product.variants[0];
@@ -451,7 +424,7 @@ function addProductToBundle(id, size) {
         el.innerHTML = `
           <div class="slot-placeholder-icon">+</div>
           <div class="slot-placeholder-text">
-            <span class="primary">Select a product</span>
+            <span class="primary">{% render 'region--content', key: 'fivebox.builder.slot_placeholder', js: true %}</span>
             <span class="unlock"> ${5 - i} Selections Remaining</span>
           </div>
         `;
@@ -497,6 +470,10 @@ const statusText = count < 5 ? `Add ${5 - count} more items to complete your Fiv
   async function handleCheckout() {
   const btn = document.getElementById('MainActionBtn');
   const priceSpan = btn.querySelector('span:nth-child(2)');
+  // What the button said before Adding.../ADDED!. A region that leaves its
+  // reset price empty in content/fivebox.json gets this back; UK and USA
+  // keep their fixed reset text, as the live stores do.
+  const originalPrice = priceSpan ? priceSpan.innerText : '';
 
   // Prevent double submission
   if (window.isProcessingCartAction) {
@@ -506,20 +483,20 @@ const statusText = count < 5 ? `Add ${5 - count} more items to complete your Fiv
 
   // Safety check
   if (!activeSize || bundle.filter(x => x).length !== 5) {
-    alert('Please complete your Five Box.');
+    alert('{% render 'region--content', key: 'fivebox.builder.alerts.incomplete', js: true %}');
     return;
   }
 
   // Get correct Discovery Box variant
   const variantId = DISCOVERY_SET_VARIANT[activeSize];
   if (!variantId) {
-    alert('Discovery Box variant not found.');
+    alert('{% render 'region--content', key: 'fivebox.builder.alerts.variant_not_found', js: true %}');
     return;
   }
 
   window.isProcessingCartAction = true;
   btn.disabled = true;
-  priceSpan.innerText = "Adding...";
+  priceSpan.innerText = "{% render 'region--content', key: 'fivebox.builder.button.adding', js: true %}";
 
   // Build line item properties
 const properties = {};
@@ -557,7 +534,7 @@ bundle.forEach((item, index) => {
 
     // Update button text
     btn.disabled = false;
-    priceSpan.innerText = "ADDED!";
+    priceSpan.innerText = "{% render 'region--content', key: 'fivebox.builder.button.added', js: true %}";
 
     // Fetch updated cart and update UI
     const cartResponse = await fetch('/cart.js');
@@ -568,15 +545,15 @@ bundle.forEach((item, index) => {
 
     // Reset button after 2 seconds
     setTimeout(() => {
-      priceSpan.innerText = activeSize === '50ml' ? '$29.99' : '$49.99';
+      priceSpan.innerText = (activeSize === '50ml' ? '{% render 'region--content', key: 'fivebox.builder.button.reset_price_50ml', js: true %}' : '{% render 'region--content', key: 'fivebox.builder.button.reset_price_100ml', js: true %}') || originalPrice;
       window.isProcessingCartAction = false;
     }, 2000);
 
   } catch (err) {
     console.error('Add to cart error:', err);
-    alert('Failed to add Discovery Box.');
+    alert('{% render 'region--content', key: 'fivebox.builder.alerts.add_failed', js: true %}');
     btn.disabled = false;
-    priceSpan.innerText = activeSize === '50ml' ? '$29.99' : '$49.99';
+    priceSpan.innerText = (activeSize === '50ml' ? '{% render 'region--content', key: 'fivebox.builder.button.reset_price_50ml', js: true %}' : '{% render 'region--content', key: 'fivebox.builder.button.reset_price_100ml', js: true %}') || originalPrice;
     window.isProcessingCartAction = false;
   }
 }
