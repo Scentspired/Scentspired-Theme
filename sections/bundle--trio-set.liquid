@@ -44,8 +44,8 @@
             <div class="slot-item empty" data-index="{{ forloop.index0 }}" onclick="openSelector({{ forloop.index0 }})">
               <div class="slot-placeholder-icon">+</div>
               <div class="slot-placeholder-text">
-                <span class="primary">{% render 'region--content', key: 'trio-box.builder.slot_placeholder' %}</span>
-                <span class="unlock"> {{ 3 | minus: forloop.index | plus: 1 }} {% render 'region--content', key: 'trio-box.builder.selections_remaining' %}</span>
+                <span class="primary">Select a product</span>
+                <span class="unlock"> {{ 3 | minus: forloop.index | plus: 1 }} Selections Remaining</span>
               </div>
             </div>
           {% endfor %}
@@ -55,15 +55,15 @@
       <div class="sidebar-footer">
       <div class="cart">
 <button class="add-to-cart-btn" id="MainActionBtn" disabled onclick="handleCheckout()">
-          <span>{% render 'region--content', key: 'trio-box.builder.add_to_cart' %}</span>
+          <span>Add to Cart</span>
           <span id="TotalDisplay">{{ region_currency_symbol }} 0</span>
         </button>
       </div>
       <div class="savings-row">
-         {% render 'region--content', key: 'trio-box.builder.standard_price' %} <span class="saving">{{ region_currency_symbol }}0</span>
+         Standard Price: <span class="saving">{{ region_currency_symbol }}0</span>
       </div>
       <div class="save-row">
-        {% render 'region--content', key: 'trio-box.builder.total_saving' %} <span>{{ region_currency_symbol }}0</span>
+        Total Saving <span>{{ region_currency_symbol }}0</span>
       </div>
       </div>
     </div>
@@ -72,12 +72,12 @@
     <div class="selection-drawer" id="SelectionDrawer">
       <div class="drawer-title">
         <div class="drawer-title-content">
-        <button onclick="goBackToStep()" class="back-arrow-btn" id="BackArrowBtn" title="{% render 'region--content', key: 'trio-box.builder.back_button_title' %}">
+        <button onclick="goBackToStep()" class="back-arrow-btn" id="BackArrowBtn" title="Go back">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="15 18 9 12 15 6"></polyline>
             </svg>
           </button>
-        <span class="drawer-title-text" id="DrawerHeadline">{% render 'region--content', key: 'trio-box.builder.select_brand' %}</span>
+        <span class="drawer-title-text" id="DrawerHeadline">Select Brand</span>
         </div>
         <button onclick="closeSelector()" style="background: none; border: none; cursor: pointer; font-size: 25px;">×</button>
        </div>
@@ -102,7 +102,7 @@
       <div id="Step-Product" class="step-container" style="display: none;">
         <div class="search-bar-wrapper">
           <div class="search-input-container">
-            <input type="text" id="ProductSearch" placeholder="{% render 'region--content', key: 'trio-box.builder.search_placeholder' %}" />
+            <input type="text" id="ProductSearch" placeholder="Search" />
             <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="11" cy="11" r="8"></circle>
               <path d="m21 21-4.35-4.35"></path>
@@ -253,7 +253,7 @@ function showStep(id) {
      STEP: SIZE
   ============================ */
   if (id === 'Step-Size') {
-    document.getElementById('DrawerHeadline').innerText = '{% render 'region--content', key: 'trio-box.builder.steps.select_size', js: true %}';
+    document.getElementById('DrawerHeadline').innerText = 'Select Size';
     backArrowBtn.style.display = 'none';
   }
 
@@ -261,7 +261,7 @@ function showStep(id) {
      STEP: PRODUCT
   ============================ */
   if (id === 'Step-Product') {
-    document.getElementById('DrawerHeadline').innerText = '{% render 'region--content', key: 'trio-box.builder.steps.select_product', js: true %}';
+    document.getElementById('DrawerHeadline').innerText = 'Select Product';
 
     // ✅ Show back arrow ONLY before first product
     backArrowBtn.style.display = hasAddedFirstProduct ? 'none' : 'flex';
@@ -335,7 +335,7 @@ function renderProducts(searchQuery = '') {
   }
 
   if (displayProducts.length === 0) {
-    grid.innerHTML = '<div class="no-results-message">{% render 'region--content', key: 'trio-box.builder.no_results', js: true %}</div>';
+    grid.innerHTML = '<div class="no-results-message">No products found matching your search.</div>';
     return;
   }
 
@@ -368,7 +368,7 @@ function renderProducts(searchQuery = '') {
 // Add product to bundle
 function addProductToBundle(id, size) {
   const product = PRODUCTS_BY_SIZE[size].find(p => p.id === id);
-  if (!product) return alert('{% render 'region--content', key: 'trio-box.builder.alerts.product_not_found', js: true %}');
+  if (!product) return alert('Product not found');
 
   const variant = product.variants.find(v => v.title.toLowerCase().includes(size.toLowerCase())) || product.variants[0];
 
@@ -437,7 +437,7 @@ function addProductToBundle(id, size) {
         el.innerHTML = `
           <div class="slot-placeholder-icon">+</div>
           <div class="slot-placeholder-text">
-            <span class="primary">{% render 'region--content', key: 'trio-box.builder.slot_placeholder', js: true %}</span>
+            <span class="primary">Select a product</span>
             <span class="unlock"> ${3 - i} Selections Remaining</span>
           </div>
         `;
@@ -487,9 +487,9 @@ if (count === 3 && activeSize) {
 async function handleCheckout() {
   const btn = document.getElementById('MainActionBtn');
   const priceSpan = btn.querySelector('span:nth-child(2)');
-  // What the button said before Adding.../ADDED!. A region that leaves its
-  // reset price empty in content/trio-box.json gets this back; UK and USA
-  // keep their fixed reset text, as the live stores do.
+  // The price the button showed before Adding.../ADDED!, which is rendered
+  // from the product's real price. It used to reset to a typed "$29.99" /
+  // "$44.99" whatever the storefront's currency and price.
   const originalPrice = priceSpan ? priceSpan.innerText : '';
 
   if (window.isProcessingCartAction) {
@@ -498,19 +498,19 @@ async function handleCheckout() {
   }
 
   if (!activeSize) {
-    alert('{% render 'region--content', key: 'trio-box.builder.alerts.select_size', js: true %}');
+    alert('Please select a size first.');
     return;
   }
 
   const variantId = TRIO_SET_VARIANT[activeSize];
   if (!variantId) {
-    alert('{% render 'region--content', key: 'trio-box.builder.alerts.variant_not_found', js: true %}');
+    alert('Variant not found.');
     return;
   }
 
   window.isProcessingCartAction = true;
   btn.disabled = true;
-  priceSpan.innerText = "{% render 'region--content', key: 'trio-box.builder.button.adding', js: true %}";
+  priceSpan.innerText = "Adding...";
 
   // Build line item properties
 const properties = {};
@@ -552,7 +552,7 @@ bundle.forEach((item, index) => {
     openSelector(0);
 
     btn.disabled = false;
-    priceSpan.innerText = "{% render 'region--content', key: 'trio-box.builder.button.added', js: true %}";
+    priceSpan.innerText = "ADDED!";
 
     const cartResponse = await fetch('/cart.js');
     const cart = await cartResponse.json();
@@ -561,15 +561,15 @@ bundle.forEach((item, index) => {
     if (typeof openDossierCart === 'function') openDossierCart();
 
     setTimeout(() => {
-      priceSpan.innerText = '{% render 'region--content', key: 'trio-box.builder.button.reset_price_50ml', js: true %}' || originalPrice; // default display, can adjust based on selection later
+      priceSpan.innerText = originalPrice;
       window.isProcessingCartAction = false;
     }, 2000);
 
   } catch (err) {
     console.error('Add to cart error:', err);
-    alert('{% render 'region--content', key: 'trio-box.builder.alerts.add_failed', js: true %}');
+    alert('Error adding Trio set to cart. Please try again.');
     btn.disabled = false;
-    priceSpan.innerText = (activeSize === '50ml' ? '{% render 'region--content', key: 'trio-box.builder.button.reset_price_50ml', js: true %}' : '{% render 'region--content', key: 'trio-box.builder.button.reset_price_100ml', js: true %}') || originalPrice;
+    priceSpan.innerText = originalPrice;
     window.isProcessingCartAction = false;
   }
 }

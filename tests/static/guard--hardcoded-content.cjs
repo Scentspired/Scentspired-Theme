@@ -5,11 +5,14 @@
  * SCENTSPIRED THEME GUARDIAN — Hardcoded Content Ratchet
  * ============================================================================
  *
- * The goal: the theme is a thin template. Liquid, HTML, CSS and JS give
- * structure; every word, image, link and product a shopper sees comes from the
- * region's JSON (regions/<id>/templates, sections, region.json, data/).
+ * The rule: regional copy — titles, descriptions, offers, menu items, the
+ * images, links and prices that go with them — comes from the region's JSON.
+ * Standard UI wording ("Add to cart", "Go back", alerts, labels), layout and
+ * styling belong in the theme, the same everywhere.
  *
- * This counts what is still written into theme code, per file, by kind:
+ * A counter cannot tell those apart, so this does not judge. It counts text
+ * written into theme code, per file, by kind, and stops any increase from
+ * slipping in unnoticed — a person then decides which it is:
  *
  *   text      visible text in markup, and alt / title / placeholder / aria-label
  *   js-text   sentences and labels inside JavaScript
@@ -18,9 +21,9 @@
  *   fallback  Liquid fallback text — | default: '…'
  *   ids       product and variant IDs
  *
- * It is a RATCHET: a file may not gain hardcoded content, and a new file may
- * not have any. The recorded counts are debt to pay down, not permission; when
- * a file improves, re-record so the gain is locked in:
+ * It is a RATCHET: a file may not gain text unnoticed, and a new file starts
+ * at zero. Regional copy found in the theme is moved out; standard UI wording
+ * is accepted by re-recording:
  *
  *   node tests/static/guard--hardcoded-content.cjs            check
  *   node tests/static/guard--hardcoded-content.cjs --list     show every file's debt
@@ -161,8 +164,11 @@ if (repaid.length) {
   console.log('     Re-record to lock it in: node tests/static/guard--hardcoded-content.cjs --update\n');
 }
 if (grew.length) {
-  console.log('  ❌ Hardcoded content was ADDED to the theme. Put it in region JSON instead');
-  console.log('     (a section setting in the page JSON, region.json, or regions/<id>/data/):\n');
+  console.log('  ❌ New text was written into theme code. Decide what it is:');
+  console.log('     - regional copy (titles, descriptions, offers, menu items, images, links, prices)');
+  console.log('       -> regions/<id>/content/<page>.json, read with region--content');
+  console.log('     - standard UI wording (Add to cart, Go back, alerts, labels) -> it belongs in');
+  console.log('       the theme: accept it with --update\n');
   for (const g of grew) console.log(`     ${g}`);
   console.log('');
   process.exit(1);

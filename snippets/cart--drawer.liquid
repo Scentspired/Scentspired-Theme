@@ -43,7 +43,7 @@
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
           <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        {% render 'region--content', key: 'global.cart_drawer.back_button' %}
+        Back
       </button>
     </div>
 
@@ -51,15 +51,15 @@
       <!-- Empty Cart State - Full Drawer -->
       <div class="sp-empty-cart-full-container" id="sp-empty-cart-full-container">
         <div class="sp-empty-cart-content">
-          <div class="sp-empty-title ui-label">{% render 'region--content', key: 'global.cart_drawer.empty.heading' %}</div>
-          <p class="sp-empty-subtitle">{% render 'region--content', key: 'global.cart_drawer.empty.message' %}</p>
-          <p class="sp-empty-help">{% render 'region--content', key: 'global.cart_drawer.empty.help' %}</p>
+          <div class="sp-empty-title ui-label">Oops...</div>
+          <p class="sp-empty-subtitle">You have no items in your bag.</p>
+          <p class="sp-empty-help">Let us help!</p>
 
           <!-- Collections Grid -->
           <div class="sp-collections-grid">
-            {% comment %} The collections offered in an empty cart: regions/<id>/content/global.json › cart_drawer.empty.collections {% endcomment %}
-            {% capture collection_handles %}{% render 'region--content', key: 'global.cart_drawer.empty.collections.handles' %}{% endcapture %}
-            {% capture collection_names %}{% render 'region--content', key: 'global.cart_drawer.empty.collections.names' %}{% endcapture %}
+            {% comment %} The collections offered in an empty cart: regions/<id>/content/global.json › cart_drawer.empty_cart.featured_collections {% endcomment %}
+            {% capture collection_handles %}{% render 'region--content', key: 'global.cart_drawer.empty_cart.featured_collections.0.handle' %},{% render 'region--content', key: 'global.cart_drawer.empty_cart.featured_collections.1.handle' %},{% render 'region--content', key: 'global.cart_drawer.empty_cart.featured_collections.2.handle' %},{% render 'region--content', key: 'global.cart_drawer.empty_cart.featured_collections.3.handle' %}{% endcapture %}
+            {% capture collection_names %}{% render 'region--content', key: 'global.cart_drawer.empty_cart.featured_collections.0.name' %},{% render 'region--content', key: 'global.cart_drawer.empty_cart.featured_collections.1.name' %},{% render 'region--content', key: 'global.cart_drawer.empty_cart.featured_collections.2.name' %},{% render 'region--content', key: 'global.cart_drawer.empty_cart.featured_collections.3.name' %}{% endcapture %}
             {% assign collection_handles = collection_handles | split: ',' %}
             {% assign collection_names = collection_names | split: ',' %}
 
@@ -109,12 +109,12 @@
             every other storefront to the USA store.
           {%- endcomment %}
           <!-- Shop All Button -->
-          <a href="{{ routes.collections_url }}/{% render 'region--content', key: 'global.cart_drawer.empty.button.collection' %}" class="sp-shop-all-btn" onclick="closeDossierCart()">
-            {% render 'region--content', key: 'global.cart_drawer.empty.button.label' %}
+          <a href="{{ routes.collections_url }}/{% render 'region--content', key: 'global.cart_drawer.empty_cart.shop_all_collection' %}" class="sp-shop-all-btn" onclick="closeDossierCart()">
+            SHOP ALL PERFUMES
           </a>
 
           <!-- Free Shipping Text -->
-          <p class="sp-free-shipping-text">{% render 'region--content', key: 'global.cart_drawer.empty.free_shipping' %} {{ region_free_shipping }} </p>
+          <p class="sp-free-shipping-text">Free Shipping over {{ region_free_shipping }} </p>
         </div>
       </div>
 
@@ -132,7 +132,7 @@
           <div class="sp-bundle-header">
 <img 
   src="{{ region_logo_url }}&width=200" 
-  alt="{% render 'region--content', key: 'global.cart_drawer.logo_alt' %}" 
+  alt="Scentspired" 
   class="sp-logo-image"
 />
 
@@ -148,12 +148,12 @@
           <!-- Updated bundle tiers from 3 to 5 tiers with new discount and shipping structure -->
           <div class="sp-bundle-tiers">
             <div class="sp-tier" data-items="1">
-              <div class="sp-tier-items">{% render 'region--content', key: 'global.cart_drawer.shipping.below' %} {{ region_free_shipping }}</div>
-              <div class="sp-tier-discount">{{ region_shipping_cost }} {% render 'region--content', key: 'global.cart_drawer.shipping.label' %}</div>
+              <div class="sp-tier-items">Below {{ region_free_shipping }}</div>
+              <div class="sp-tier-discount">{{ region_shipping_cost }} Shipping</div>
             </div>
             <div class="sp-tier" data-items="2">
               <div class="sp-tier-items">{{ region_free_shipping }}+</div>
-              <div class="sp-tier-discount">{% render 'region--content', key: 'global.cart_drawer.shipping.free_shipping' %}</div>
+              <div class="sp-tier-discount">FreeShipping</div>
             </div>
           </div>
           <!-- Free Shipping Threshold -->
@@ -164,7 +164,7 @@
                 <circle cx="8" cy="8" r="3" fill="#666"/>
               </svg>
             </div>
-            <span><strong>{% render 'region--content', key: 'global.cart_drawer.shipping.free' %}</strong> {% render 'region--content', key: 'global.cart_drawer.shipping.on_orders_over' %} {{ region_free_shipping }} | {{ region_shipping_cost }} {% render 'region--content', key: 'global.cart_drawer.shipping.under' %} {{ region_free_shipping }}</span>
+            <span><strong>FREE</strong> shipping on orders over {{ region_free_shipping }} | {{ region_shipping_cost }} shipping under {{ region_free_shipping }}</span>
           </div>
         </div>
       </div>
@@ -173,16 +173,16 @@
       <div class="sp-login-section">
   <div class="sp-login-header">
     <button class="sp-go-to-summary" onclick="scrollToOrderSummary()">
-      <span>{% render 'region--content', key: 'global.cart_drawer.order_summary_link' %}</span>
+      <span>Go to Order Summary</span>
       <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
         <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </button>
 
     {% if customer %}
-      <a href="{% render 'region--content', key: 'global.cart_drawer.account.view.link' %}" class="sp-login-link">{% render 'region--content', key: 'global.cart_drawer.account.view.label' %}</a>
+      <a href="/account" class="sp-login-link">View Account</a>
     {% else %}
-      <a href="{% render 'region--content', key: 'global.cart_drawer.account.login.link' %}" class="sp-login-link">{% render 'region--content', key: 'global.cart_drawer.account.login.label' %}</a>
+      <a href="/account/login" class="sp-login-link">Login</a>
     {% endif %}
   </div>
 </div>
@@ -192,7 +192,7 @@
         <div class="sp-cart-container">
           <div class="sp-cart-header-section">
             <div class="sp-section-number">1</div>
-            <div class="sp-cart-title ui-label">{% render 'region--content', key: 'global.cart_drawer.title' %}</div>
+            <div class="sp-cart-title ui-label">YOUR CART</div>
           </div>
 
           <div class="sp-cart-items-list" id="sp-cart-items-list">
@@ -237,11 +237,11 @@
 
                   <div class="sp-product-vendor">
                     {% if item.product.metafields.custom.inspired_by != blank %}
-                      {% render 'region--content', key: 'global.cart_drawer.product.inspired_by' %} {{ item.product.metafields.custom.inspired_by }}
+                      Inspired by {{ item.product.metafields.custom.inspired_by }}
                     {% elsif item.vendor != blank and item.vendor != 'Your Store' %}
                       {{ item.vendor }}
                     {% else %}
-                      {% render 'region--content', key: 'global.cart_drawer.product.brand_fallback' %}
+                      Dossier Perfumes
                     {% endif %}
                   </div>
 
@@ -279,27 +279,27 @@
         <div class="sp-summary-box">
           <div class="sp-section-header">
             <span class="sp-section-number">2</span>
-            <div class="sp-section-title ui-label">{% render 'region--content', key: 'global.cart_drawer.summary.title' %}</div>
+            <div class="sp-section-title ui-label">ORDER SUMMARY</div>
           </div>
 
           <div class="sp-summary-details">
             <div class="sp-summary-line">
-              <span class="sp-summary-label"> {% render 'region--content', key: 'global.cart_drawer.summary.subtotal' %} </span>
+              <span class="sp-summary-label"> Cart Subtotal </span>
               <span class="sp-summary-price" id="summary-initial-price">{{ region_currency_symbol }}0.00</span>
             </div>
 
             <div class="sp-summary-line">
-              <span class="sp-summary-label">{% render 'region--content', key: 'global.cart_drawer.shipping.label' %}</span>
+              <span class="sp-summary-label">Shipping</span>
               <span class="sp-summary-price" id="sp-shipping-cost">{{ region_shipping_cost }}</span>
             </div>
 
             <div class="sp-summary-line sp-member-discount-line" id="member-discount-line" style="display: none;">
-              <span>d<sup>+</sup> {% render 'region--content', key: 'global.cart_drawer.summary.discount' %}</span>
+              <span>d<sup>+</sup> {% render 'region--content', key: 'global.cart_drawer.offer.label' %}</span>
               <span id="summary-member-discount">-{{ region_currency_symbol }}0.00</span>
             </div>
 
             <div class="sp-tax-note" style="display: none;">
-              <span>{% render 'region--content', key: 'global.cart_drawer.summary.tax_note' %}</span>
+              <span>Tax is calculated at next step</span>
             </div>
           </div>
         </div>
@@ -312,13 +312,13 @@
               <path d="M4.5 8l2.5 2.5 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
-          <span>{% render 'region--content', key: 'global.cart_drawer.summary.discount_note' %}</span>
+          <span>{% render 'region--content', key: 'global.cart_drawer.offer.note' %}</span>
         </div>
       </div>
 
       <!-- You Might Like to Add Section -->
       <div class="sp-recommendations-section">
-        <div class="sp-recommendations-title ui-label">{% render 'region--content', key: 'global.cart_drawer.recommendations.title' %}</div>
+        <div class="sp-recommendations-title ui-label">You might like to add</div>
 
         <div class="sp-recommended-products">
           {% comment %} Get products from most-popular collection {% endcomment %}
@@ -342,16 +342,16 @@
                     {% if product.vendor and product.vendor != 'Your Store' %}
                       {{ product.vendor }}
                     {% else %}
-                      {% render 'region--content', key: 'global.cart_drawer.product.brand_fallback' %}
+                      Dossier Perfumes
                     {% endif %}
                   </p>
                   {% if product.metafields.custom.inspired_by %}
-                    <p class="sp-rec-inspired">{% render 'region--content', key: 'global.cart_drawer.product.inspired_by' %} {{ product.metafields.custom.inspired_by }}</p>
+                    <p class="sp-rec-inspired">Inspired by {{ product.metafields.custom.inspired_by }}</p>
                   {% endif %}
                   <div class="sp-rec-price">{{ region_currency_symbol }}{{ product.price | money_without_currency }}</div>
                 </a>
                   <button class="sp-add-to-cart-btn" onclick="addDossierRecommended('{{ product.variants.first.id }}', '{{ product.title | escape }}', '{{ product.featured_image | img_url: '120x120' }}', {{ product.price }}, {{ product.compare_at_price | default: product.price }})">
-                    {% render 'region--content', key: 'global.cart_drawer.recommendations.add_to_cart' %}
+                    ADD TO CART
                   </button>
                 </div>
               </div>
@@ -370,10 +370,10 @@
               </div>
               <div class="sp-rec-details">
                 <h4>DISCOVERY SET</h4>
-                <p class="sp-rec-vendor">{% render 'region--content', key: 'global.cart_drawer.product.brand_fallback' %}</p>
+                <p class="sp-rec-vendor">Dossier Perfumes</p>
                 <div class="sp-rec-price">{{ region_currency_symbol }}99</div>
                 <button class="sp-add-to-cart-btn" onclick="addDossierRecommended('discovery-set')">
-                  {% render 'region--content', key: 'global.cart_drawer.recommendations.add_to_cart' %}
+                  ADD TO CART
                 </button>
               </div>
             </div>
@@ -386,11 +386,11 @@
               </div>
               <div class="sp-rec-details">
                 <h4>WOODY SAGE</h4>
-                <p class="sp-rec-vendor">{% render 'region--content', key: 'global.cart_drawer.product.inspired_by' %}</p>
+                <p class="sp-rec-vendor">Inspired by</p>
                 <p class="sp-rec-inspired">Jo Malone's Wood Sage & Sea Salt</p>
                 <div class="sp-rec-price">{{ region_currency_symbol }}29</div>
                 <button class="sp-add-to-cart-btn" onclick="addDossierRecommended('woody-sage')">
-                  {% render 'region--content', key: 'global.cart_drawer.recommendations.add_to_cart' %}
+                  ADD TO CART
                 </button>
               </div>
             </div>
@@ -403,11 +403,11 @@
               </div>
               <div class="sp-rec-details">
                 <h4>FLORA LAVENDER</h4>
-                <p class="sp-rec-vendor">{% render 'region--content', key: 'global.cart_drawer.product.inspired_by' %}</p>
+                <p class="sp-rec-vendor">Inspired by</p>
                 <p class="sp-rec-inspired">YSL's Libre</p>
                 <div class="sp-rec-price">{{ region_currency_symbol }}29</div>
                 <button class="sp-add-to-cart-btn" onclick="addDossierRecommended('flora-lavender')">
-                  {% render 'region--content', key: 'global.cart_drawer.recommendations.add_to_cart' %}
+                  ADD TO CART
                 </button>
               </div>
             </div>
@@ -418,7 +418,7 @@
       <!-- Checkout Button -->
       <div class="sp-checkout-section">
         <button class="sp-checkout-btn" onclick="proceedToDossierCheckout()">
-          {% render 'region--content', key: 'global.cart_drawer.checkout_button' %}
+          GO TO CHECKOUT
           <span class="sp-checkout-total" id="checkout-total">{{ region_currency_symbol }}0.00</span>
         </button>
 
@@ -446,7 +446,7 @@ function generateCartItemHtml(item) {
 
   const categoryBadge = 'Unisex';
   const description = `Eau de Parfum, Size: ${item.variant_options[0] || '50ml'} / 1.7oz`;
-  const vendor = item.vendor && item.vendor !== 'Your Store' ? item.vendor : '{% render 'region--content', key: 'global.cart_drawer.product.brand_fallback', js: true %}';
+  const vendor = item.vendor && item.vendor !== 'Your Store' ? item.vendor : 'Dossier Perfumes';
 
   return `
     <div class="sp-product-item" data-key="${item.key}" data-variant-id="${item.variant_id}" data-inventory="${item.variant_inventory_quantity || 999}">
@@ -789,7 +789,7 @@ function selectShopMethod(method) {
   // If user is not logged in and tries to select sp+, redirect to login
   if (method === 'sp-plus' && !isUserLoggedIn) {
     alert('Please log in to your account to access Sp+ benefits and get an additional 10% off.');
-    window.location.href = '{% render 'region--content', key: 'global.cart_drawer.account.login.link', js: true %}';
+    window.location.href = '/account/login';
     return;
   }
 
@@ -886,7 +886,7 @@ function updateOrderSummary(subtotal, shipping) {
   const shippingCost = document.getElementById('sp-shipping-cost');
   if (shippingCost) {
     shippingCost.textContent = shipping === 0
-      ? '{% render 'region--content', key: 'global.cart_drawer.shipping.free', js: true %}'
+      ? 'FREE'
       : `${currSym}${(shipping / 100).toFixed(2)}`;
   }
 

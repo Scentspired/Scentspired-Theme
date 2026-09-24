@@ -54,9 +54,9 @@
     "ids": 1
   },
   "sections/bundle--five-box.liquid": {
-    "total": 7,
-    "text": 0,
-    "js-text": 5,
+    "total": 20,
+    "text": 8,
+    "js-text": 10,
     "media": 0,
     "links": 0,
     "fallback": 0,
@@ -81,9 +81,9 @@
     "ids": 1
   },
   "sections/bundle--trio-set.liquid": {
-    "total": 7,
-    "text": 0,
-    "js-text": 5,
+    "total": 20,
+    "text": 8,
+    "js-text": 10,
     "media": 0,
     "links": 0,
     "fallback": 0,
@@ -297,10 +297,10 @@
     "ids": 0
   },
   "sections/header.liquid": {
-    "total": 153,
-    "text": 17,
+    "total": 171,
+    "text": 32,
     "js-text": 103,
-    "media": 16,
+    "media": 19,
     "links": 17,
     "fallback": 0,
     "ids": 0
@@ -639,11 +639,11 @@
     "ids": 0
   },
   "snippets/cart--drawer.liquid": {
-    "total": 19,
-    "text": 7,
-    "js-text": 9,
+    "total": 55,
+    "text": 41,
+    "js-text": 10,
     "media": 0,
-    "links": 1,
+    "links": 2,
     "fallback": 2,
     "ids": 0
   },

@@ -448,8 +448,8 @@
       <div class="mobile-nav-item">
         <div class="mobile-nav-ic" id="mobileMenuTrigger">
           <img
-            src="{% render 'region--content', key: 'global.header.mobile_bar.menu.icon' %}"
-            alt="{% render 'region--content', key: 'global.header.mobile_bar.menu.alt' %}"
+            src="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/hd-black-menu-burger-icon-transparent-background-701751695037028szh5wywnpo-removebg-preview.png?v=1770049325"
+            alt="Menu"
             class="nav-ic-img">
         </div>
       </div>
@@ -457,8 +457,8 @@
       <div class="mobile-nav-item">
         <div class="mobile-nav-icon" id="mobileAccountTrigger">
           <img
-            src="{% render 'region--content', key: 'global.header.mobile_bar.account.icon' %}"
-            alt="{% render 'region--content', key: 'global.header.mobile_bar.account.alt' %}"
+            src="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Vector_1.svg?v=1764053807"
+            alt="Account"
             class="nav-icon-img">
         </div>
       </div>
@@ -466,8 +466,8 @@
       <div class="mobile-nav-item">
         <div class="mobile-nav-icon" id="mobileSearchTrigger">
           <img
-            src="{% render 'region--content', key: 'global.header.mobile_bar.search.icon' %}"
-            alt="{% render 'region--content', key: 'global.header.mobile_bar.search.alt' %}"
+            src="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Vector_5.png?v=1767880379"
+            alt="Search"
             class="nav-icon-img">
         </div>
       </div>
@@ -518,7 +518,7 @@
     <!-- Mobile Menu Drawer - HARDCODED MENU STRUCTURE -->
     <div class="mobile-menu-drawer" id="mobileMenuDrawer">
       <div class="mobile-menu-header">
-        <div class="menu-drawer-title ui-label" style="margin: 0; font-family: var(--font-body);">{% render 'region--content', key: 'global.header.mobile_menu.title' %}</div>
+        <div class="menu-drawer-title ui-label" style="margin: 0; font-family: var(--font-body);">Menu</div>
         <button class="mobile-menu-close" id="mobileMenuClose">
           <svg viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor">
             <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -727,7 +727,7 @@
         <input
           type="text"
           id="customSearchInput"
-          placeholder="{% render 'region--content', key: 'global.header.search.placeholder' %}"
+          placeholder="Search scents, brands, ingredients"
           class="custom-search-input">
         <button id="customCloseBtn" class="custom-close-btn">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -751,7 +751,7 @@
       <div id="customSearchResults" class="custom-search-results">
         <div class="custom-search-results-header">
           <div class="custom-search-results-count" id="searchResultsCount">
-            {% render 'region--content', key: 'global.header.search.see_all_results' %} "<span id="searchTerm"></span>" (0)
+            See All Results for "<span id="searchTerm"></span>" (0)
           </div>
         </div>
         <div class="custom-search-results-grid" id="searchResultsGrid"></div>
@@ -759,12 +759,12 @@
 
       <!-- Loading State -->
       <div id="customSearchLoading" class="custom-search-loading">
-        <p>{% render 'region--content', key: 'global.header.search.searching' %}</p>
+        <p>Searching...</p>
       </div>
 
       <!-- No Results State -->
       <div id="customSearchNoResults" class="custom-search-no-results">
-        <p>{% render 'region--content', key: 'global.header.search.no_results' %}</p>
+        <p>No products found. Try a different search term.</p>
       </div>
 
       <!-- Main Content -->
@@ -779,12 +779,12 @@
                   <circle cx="12" cy="12" r="10"></circle>
                   <polyline points="12,6 12,12 16,14"></polyline>
                 </svg>
-                <div class="search-recent-title ui-label">{% render 'region--content', key: 'global.header.search.recent_title' %}</div>
+                <div class="search-recent-title ui-label">Recent Searches</div>
               </div>
             </div>
             <div class="custom-pill-container" id="customRecentSearches">
-              <button class="custom-pill" onclick="customSearchOverlay.handlePillClick('{% render 'region--content', key: 'global.header.search.suggested_pills.first', js: true %}')">{% render 'region--content', key: 'global.header.search.suggested_pills.first' %}</button>
-              <button class="custom-pill" onclick="customSearchOverlay.handlePillClick('{% render 'region--content', key: 'global.header.search.suggested_pills.second', js: true %}')">{% render 'region--content', key: 'global.header.search.suggested_pills.second' %}</button>
+              <button class="custom-pill" onclick="customSearchOverlay.handlePillClick('{% render 'region--content', key: 'global.header.suggested_searches.0', js: true %}')">{% render 'region--content', key: 'global.header.suggested_searches.0' %}</button>
+              <button class="custom-pill" onclick="customSearchOverlay.handlePillClick('{% render 'region--content', key: 'global.header.suggested_searches.1', js: true %}')">{% render 'region--content', key: 'global.header.suggested_searches.1' %}</button>
             </div>
           </div>
 
@@ -799,7 +799,7 @@
                   <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
                   <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                 </svg>
-                <h3>{% render 'region--content', key: 'global.header.search.filters.gender' %}</h3>
+                <h3>Gender</h3>
               </div>
               <div class="custom-nav-arrows" style="display:none !important;">
                 <button class="custom-nav-arrow" id="customGenderPrev">
@@ -825,7 +825,7 @@
                   <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
                   <line x1="7" y1="7" x2="7.01" y2="7"></line>
                 </svg>
-                <h3>{% render 'region--content', key: 'global.header.search.filters.inspired_by' %}</h3>
+                <h3>Inspired By</h3>
               </div>
               <div class="custom-nav-arrows">
                 <button class="custom-nav-arrow" id="customBrandsPrev">
@@ -851,7 +851,7 @@
                   <polyline points="23,6 13.5,15.5 8.5,10.5 1,18"></polyline>
                   <polyline points="17,6 23,6 23,12"></polyline>
                 </svg>
-                <h3>{% render 'region--content', key: 'global.header.search.filters.scent_families' %}</h3>
+                <h3>Scent Families</h3>
               </div>
               <div class="custom-nav-arrows" style="display:none !important;">
                 <button class="custom-nav-arrow" id="customTrendingPrev">
@@ -879,7 +879,7 @@
                   <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
                   <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                 </svg>
-                <h3>{% render 'region--content', key: 'global.header.search.filters.scent_notes' %}</h3>
+                <h3>Scent Notes</h3>
               </div>
               <div class="custom-nav-arrows">
                 <button class="custom-nav-arrow" id="customScentNotesPrev">
@@ -907,7 +907,7 @@
                 <svg class="custom-section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon>
                 </svg>
-                <h3>{% render 'region--content', key: 'global.header.search.popular_products_title' %}</h3>
+                <h3>Most Popular Products</h3>
               </div>
               <div class="custom-nav-arrows">
                 <button class="custom-nav-arrow" id="customProductsPrev">
@@ -933,7 +933,7 @@
 
       <!-- Collections Section - Full Width -->
       <div class="custom-collections-section" id="customCollectionsSection">
-        <h3>{% render 'region--content', key: 'global.header.search.shop_by_season_title' %}</h3>
+        <h3>Shop By Season</h3>
         <div class="custom-collections-grid" id="customCollectionsGrid"></div>
       </div>
     </div>

@@ -2,34 +2,9 @@
   "builder": {
     "title": "Build Your Own Signature Trio Set",
     "subtitle": "Add 3 items to complete your Signature Trio Set",
-    "slot_placeholder": "Select a product",
-    "selections_remaining": "Selections Remaining",
-    "add_to_cart": "Add to Cart",
-    "standard_price": "Standard Price:",
-    "total_saving": "Total Saving",
-    "back_button_title": "Go back",
-    "select_brand": "Select Brand",
     "sizes": {
       "small": "50ml",
       "large": "100ml"
-    },
-    "search_placeholder": "Search",
-    "steps": {
-      "select_size": "Select Size",
-      "select_product": "Select Product"
-    },
-    "no_results": "No products found matching your search.",
-    "button": {
-      "adding": "Adding...",
-      "added": "ADDED!",
-      "reset_price_50ml": "$44.99",
-      "reset_price_100ml": "$79.99"
-    },
-    "alerts": {
-      "product_not_found": "Product not found",
-      "select_size": "Please select a size first.",
-      "variant_not_found": "Variant not found.",
-      "add_failed": "Error adding Trio set to cart. Please try again."
     }
   }
 }
