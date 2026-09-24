@@ -19,8 +19,9 @@ const fs = require('fs');
 const path = require('path');
 
 const THEME_ROOT = path.resolve(__dirname, '..');
+const { readRegionFile, CORE_REGION } = require('./region-engine.cjs');
 /**
- * Which baseline set to read or write. UK lives in tests/parity/baseline; a
+ * Which baseline set to read or write. The core region lives in tests/parity/baseline; a
  * second region needs its own, because the same page legitimately differs
  * between storefronts — different prices, different products, different
  * Trustpilot. Comparing one region against another's baseline is meaningless.
@@ -31,7 +32,7 @@ const regionArg = process.argv.find((a) => a.startsWith('--region='));
 const REGION = regionArg ? regionArg.slice('--region='.length) : '';
 const BASELINE_DIR = path.join(
   THEME_ROOT,
-  REGION && REGION !== 'uk' ? `tests/parity/baseline-${REGION}` : 'tests/parity/baseline'
+  REGION && REGION !== CORE_REGION ? `tests/parity/baseline-${REGION}` : 'tests/parity/baseline'
 );
 
 const args = process.argv.slice(2);
@@ -43,11 +44,8 @@ const isCheck = args.includes('--check');
  * 9292 whatever the region, which reported every USA page as changed — the
  * harness comparing one storefront against another's baseline.
  */
-const REGION_FILE = path.join(THEME_ROOT, 'regions', REGION || 'uk', 'region.json');
-const regionData = fs.existsSync(REGION_FILE)
-  ? JSON.parse(fs.readFileSync(REGION_FILE, 'utf8'))
-  : {};
-if (REGION && !fs.existsSync(REGION_FILE)) {
+const regionData = readRegionFile(REGION || CORE_REGION) || {};
+if (REGION && !readRegionFile(REGION)) {
   console.error(`\n  ✗ No regions/${REGION}/region.json — unknown region.\n`);
   process.exit(1);
 }
@@ -190,6 +188,7 @@ async function fetchPage(route) {
   const empties = [];
   let captured = 0;
   const refused = [];
+  const pending = [];
 
   for (const [name, route] of Object.entries(PAGES)) {
     let result;
@@ -259,27 +258,40 @@ async function fetchPage(route) {
        * against an error and reports enormous changes, or worse, matches
        * another error and reports success. This has already happened twice.
        */
-      const bad =
-        normalized.length < 2000 ||
-        /Failed to Upload Theme Files/.test(normalized) ||
-        /access token provided is expired/.test(normalized) ||
-        /Failed to render storefront with status/.test(normalized);
+      /*
+       * Recognising error pages one by one kept missing the next kind: a
+       * 10,704-byte page from a USA server whose session had just expired had
+       * none of the markers below and was written as three baselines. So the
+       * check is also POSITIVE: every page in the set renders through
+       * layout/theme.liquid, which always emits window.__STORE_CONFIG; no
+       * error page from the CLI or Shopify does. And a real page does not lose
+       * half its bytes between captures.
+       */
+      const previous = fs.existsSync(file) ? fs.readFileSync(file, 'utf8').length : 0;
+      const why =
+        normalized.length < 2000
+          ? `only ${normalized.length} bytes`
+          : /Failed to Upload Theme Files/.test(normalized)
+            ? 'a theme upload error'
+            : /access token provided is expired/.test(normalized)
+              ? 'an expired session'
+              : /Failed to render storefront with status/.test(normalized)
+                ? 'a Shopify 5xx'
+                : !/window\.__STORE_CONFIG\s*=/.test(normalized)
+                  ? `not rendered by this theme's layout (${normalized.length} bytes, no __STORE_CONFIG)`
+                  : previous && normalized.length < previous / 2
+                    ? `shrank from ${previous} to ${normalized.length} bytes`
+                    : null;
 
-      if (bad) {
-        const why = /Failed to Upload/.test(normalized)
-          ? 'a theme upload error'
-          : /access token/.test(normalized)
-            ? 'an expired session'
-            : /Failed to render storefront/.test(normalized)
-              ? 'a Shopify 5xx'
-              : `only ${normalized.length} bytes`;
+      if (why) {
         console.error(`  ! ${name.padEnd(20)} REFUSED — ${why}`);
         refused.push(`${name}: ${why}`);
         continue;
       }
 
-      fs.writeFileSync(file, normalized);
-      captured++;
+      // Held until every page is known good: a baseline set must come from
+      // one healthy server, never a mix of before and after a failure.
+      pending.push([file, normalized]);
       console.log(`  + ${name.padEnd(20)} ${normalized.length} bytes`);
     }
   }
@@ -295,9 +307,15 @@ async function fetchPage(route) {
     console.error(`
   ❌ ${refused.length} page(s) REFUSED — the dev server was unhealthy:`);
     for (const r of refused) console.error(`     ${r}`);
-    console.error(`  Those baselines were left untouched. Fix the server and re-run.
+    console.error(`  No baseline was written — not even the pages that looked healthy.
+  Fix the server and re-run.
 `);
     process.exit(1);
+  }
+
+  for (const [file, body] of pending) {
+    fs.writeFileSync(file, body);
+    captured++;
   }
 
   // Report where it actually wrote. Hardcoding the UK path here meant a USA

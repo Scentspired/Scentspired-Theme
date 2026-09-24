@@ -38,6 +38,9 @@ for (const arg of args) {
     targetDir = args[args.indexOf(arg) + 1];
   } else if (arg.startsWith("--scope=")) {
     scope = arg.split("=")[1].toLowerCase();
+  } else if (arg === "--scope" && args[args.indexOf(arg) + 1]) {
+    // `npm run test:region -- usa` arrives as `--scope usa`
+    scope = args[args.indexOf(arg) + 1].toLowerCase();
   }
 }
 
@@ -48,17 +51,17 @@ if (!targetDir) {
 
 const resolvedTarget = path.resolve(targetDir);
 
-// Auto-detect scope if not explicitly passed
+// Regions are discovered from regions/<id>/region.json, never listed here, so
+// region #101 is tested without editing this file.
+const { listRegions } = require("./scripts/region-engine.cjs");
+const REGIONS = listRegions();
+
+// Auto-detect scope if not explicitly passed: a target of dist/<id> is region
+// <id>. Matching on path segments, not substrings — "uk" is inside plenty of
+// words, and the old substring test would have read a region "ukraine" as UK.
 if (!scope) {
-  if (resolvedTarget.toLowerCase().includes("usa")) {
-    scope = "usa";
-  } else if (resolvedTarget.toLowerCase().includes("uk")) {
-    scope = "uk";
-  } else if (resolvedTarget.toLowerCase().includes("uae")) {
-    scope = "uae";
-  } else {
-    scope = "core";
-  }
+  const segments = resolvedTarget.toLowerCase().split(/[\\/]/);
+  scope = REGIONS.find(id => segments.includes(id)) || "core";
 }
 
 if (!fs.existsSync(resolvedTarget)) {
@@ -125,23 +128,17 @@ console.log(`  Scope        : ${scope.toUpperCase()}`);
 console.log(`  Timestamp    : ${new Date().toISOString()}`);
 console.log("────────────────────────────────────────────────────────────────");
 
-// Regional Scope Fast-Path
-if (scope === "usa") {
-  const usaSuite = path.join(TESTS_DIR, "regions", "usa", "regional-test-suite.cjs");
-  const res = spawnSync("node", [usaSuite], { stdio: "inherit", cwd: GUARDIAN_ROOT });
+// Regional scope: one suite, parameterised by region id.
+const REGIONAL_SUITE = path.join(TESTS_DIR, "regions", "regional-test-suite.cjs");
+
+if (REGIONS.includes(scope)) {
+  const res = spawnSync("node", [REGIONAL_SUITE, scope], { stdio: "inherit", cwd: GUARDIAN_ROOT });
   process.exit(res.status);
 }
 
-if (scope === "uk") {
-  const ukSuite = path.join(TESTS_DIR, "regions", "uk", "regional-test-suite.cjs");
-  const res = spawnSync("node", [ukSuite], { stdio: "inherit", cwd: GUARDIAN_ROOT });
-  process.exit(res.status);
-}
-
-if (scope === "uae") {
-  const uaeSuite = path.join(TESTS_DIR, "regions", "uae", "regional-test-suite.cjs");
-  const res = spawnSync("node", [uaeSuite], { stdio: "inherit", cwd: GUARDIAN_ROOT });
-  process.exit(res.status);
+if (!["core", "all"].includes(scope)) {
+  console.error(`\n[FATAL] Unknown scope "${scope}". Use core, all, or a region: ${REGIONS.join(", ")}\n`);
+  process.exit(1);
 }
 
 // Core Engine Layers
@@ -302,9 +299,19 @@ const CORE_LAYERS = [
     failMsg: "Two files declare the same top-level const/let: the second throws and its script stops",
   },
   {
+    // Adding a region must be one folder under regions/ and nothing else: no
+    // code or tooling branches on a region, a scaffolded region compiles from
+    // its region.json alone without another region's identity, and no region
+    // holds frozen copies of core. Builds a probe region in a temp directory.
+    name: "Layer 20: Region Onboarding Guard",
+    cmd: "node",
+    args: [path.join(TESTS_DIR, "static", "guard--region-onboarding.cjs")],
+    failMsg: "Adding a region would need edits outside regions/<id>/",
+  },
+  {
     // The guards above are only worth their exit code if they have been seen
     // to fail. Each fixture plants defects and asserts they are caught.
-    name: "Layer 20: Guard Fixtures (red/green verification)",
+    name: "Layer 21: Guard Fixtures (red/green verification)",
     cmd: "node",
     args: [path.join(TESTS_DIR, "static", "run-guard-fixtures.cjs")],
     failMsg: "A guard no longer catches what it claims to catch",
@@ -345,29 +352,15 @@ for (let i = 0; i < CORE_LAYERS.length; i++) {
   }
 }
 
-// If scope is ALL, also run USA and UK suites
+// If scope is ALL, also run every region's suite.
 if (totalFailed === 0 && scope === "all") {
   console.log("\n==================================================================");
-  console.log("   🌐 RUNNING REGIONAL TEST SUITES (USA, UK & UAE)");
+  console.log(`   🌐 RUNNING REGIONAL TEST SUITES (${REGIONS.join(", ")})`);
   console.log("==================================================================");
 
-  const usaSuite = path.join(TESTS_DIR, "regions", "usa", "regional-test-suite.cjs");
-  const ukSuite = path.join(TESTS_DIR, "regions", "uk", "regional-test-suite.cjs");
-  const uaeSuite = path.join(TESTS_DIR, "regions", "uae", "regional-test-suite.cjs");
-
-  const usaRes = spawnSync("node", [usaSuite], { stdio: "inherit", cwd: GUARDIAN_ROOT });
-  if (usaRes.status !== 0) {
-    totalFailed++;
-  }
-
-  const ukRes = spawnSync("node", [ukSuite], { stdio: "inherit", cwd: GUARDIAN_ROOT });
-  if (ukRes.status !== 0) {
-    totalFailed++;
-  }
-
-  const uaeRes = spawnSync("node", [uaeSuite], { stdio: "inherit", cwd: GUARDIAN_ROOT });
-  if (uaeRes.status !== 0) {
-    totalFailed++;
+  for (const id of REGIONS) {
+    const res = spawnSync("node", [REGIONAL_SUITE, id], { stdio: "inherit", cwd: GUARDIAN_ROOT });
+    if (res.status !== 0) totalFailed++;
   }
 }
 

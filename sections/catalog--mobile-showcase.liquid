@@ -174,9 +174,12 @@
         productCard.className = 'product-card';
 
         const imageUrl = product.images[0] ? product.images[0].src : '';
-        const price = new Intl.NumberFormat('en-US', {
+        // Region locale and currency, not a hardcoded US-dollar format that
+        // showed dollar prices on every storefront.
+        const store = window.__STORE_CONFIG || {};
+        const price = new Intl.NumberFormat(store.locale || undefined, {
           style: 'currency',
-          currency: 'USD',
+          currency: store.currencyCode,
         }).format(product.variants[0].price / 100);
 
         productCard.innerHTML = `

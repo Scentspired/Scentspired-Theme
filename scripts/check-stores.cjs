@@ -28,12 +28,34 @@
 const https = require('https');
 const { spawnSync } = require('child_process');
 
-const STORES = [
-  { handle: 'scentspired.myshopify.com', note: 'USA live — scentspired.com', locked: true },
-  { handle: 'scentspireduk.myshopify.com', note: 'UK live — scentspired.co.uk', locked: true },
-  { handle: 'scentspiredae.myshopify.com', note: 'UAE dev store — the one npm run dev:* uses', locked: false },
-  { handle: 'scentspired-usa.myshopify.com', note: 'not a real store; kept locked as a typo guard', locked: true },
-];
+const { listRegions, readRegionFile } = require('./region-engine.cjs');
+const { LOCKED_STORES } = require('./guard-live-repos.cjs');
+
+/**
+ * Every store a region declares, plus any locked handle no region claims (the
+ * lockdown's typo guards). Read from regions/, so a new region is checked
+ * without editing this file.
+ */
+const STORES = (() => {
+  const rows = listRegions()
+    .map((id) => ({ id, ...readRegionFile(id) }))
+    .filter((r) => r.myshopify_domain)
+    .map((r) => {
+      const handle = r.myshopify_domain.toLowerCase();
+      const locked = LOCKED_STORES.includes(handle);
+      return {
+        handle,
+        locked,
+        note: `${r.name || r.id} ${locked ? 'live' : 'dev store'} — ${r.domain || 'no domain'}`,
+      };
+    });
+  for (const handle of LOCKED_STORES) {
+    if (!rows.some((r) => r.handle === handle)) {
+      rows.push({ handle, locked: true, note: 'claimed by no region; kept locked as a typo guard' });
+    }
+  }
+  return rows;
+})();
 
 const withAuth = process.argv.includes('--auth');
 

@@ -14,10 +14,13 @@
 
 const https = require('https');
 
-const STORE_DOMAINS = [
-  { name: 'Scentspired USA', domain: 'scentspired.myshopify.com' },
-  { name: 'Scentspired UK', domain: 'scentspireduk.myshopify.com' }
-];
+// Every live region, read from regions/<id>/region.json ("published": true),
+// so a region that goes live is probed without editing this file.
+const { listRegions, readRegionFile } = require('../../scripts/region-engine.cjs');
+const STORE_DOMAINS = listRegions()
+  .map((id) => readRegionFile(id))
+  .filter((r) => r.published === true && r.myshopify_domain)
+  .map((r) => ({ name: `Scentspired ${r.name || r.id}`, domain: r.myshopify_domain }));
 
 const REQUIRED_COLLECTIONS = [
   'discovery',

@@ -86,8 +86,20 @@
       capture homepage_seo_description
         render 'region--active', key: 'seo_description'
       endcapture
+      capture store_locale
+        render 'region--active', key: 'hreflang'
+      endcapture
+      capture store_currency_code
+        render 'region--active', key: 'currency_code'
+      endcapture
+      capture store_country
+        render 'region--active', key: 'geo_countries'
+      endcapture
 
       assign store_region = store_region | strip
+      assign store_locale = store_locale | strip
+      assign store_currency_code = store_currency_code | strip
+      assign store_country = store_country | strip | split: ',' | first
       assign store_currency_symbol = store_currency_symbol | strip
       assign homepage_seo_title = homepage_seo_title | strip
       assign homepage_seo_description = homepage_seo_description | strip
@@ -115,6 +127,7 @@
     <script>
       window.__STORE_CONFIG = {
         region: {{ store_region | json }},
+        locale: {{ store_locale | json }},
         currencySymbol: {{ store_currency_symbol | json }},
         currencyCode: {{ cart.currency.iso_code | default: shop.currency | json }},
         freeShippingThreshold: {{ store_free_shipping_threshold | json }},
@@ -477,19 +490,28 @@
       })();
     </script>
 
-    <!-- Google Search Console Verification UK Site -->
-    <meta name="google-site-verification" content="google2d3d4ccd9457489c.html" />
+    {%- comment -%}
+      Search Console and GA4 come from region data (analytics.*), so a region
+      points at its own property by editing its region.json, not this file.
+      An empty value renders no tag.
+    {%- endcomment -%}
+    {%- capture site_verification -%}{%- render 'region--active', key: 'analytics.google_site_verification' -%}{%- endcapture -%}
+    {%- capture ga4_id -%}{%- render 'region--active', key: 'analytics.ga4_id' -%}{%- endcapture -%}
+    {%- if site_verification != blank %}
+    <meta name="google-site-verification" content="{{ site_verification }}" />
+    {%- endif %}
+    {%- if ga4_id != blank %}
 
-    <!-- Google Analytics GA4 UK -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7G717SKL2C"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ ga4_id }}"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);
       }
       gtag('js', new Date());
-      gtag('config', 'G-7G717SKL2C');
+      gtag('config', '{{ ga4_id }}');
     </script>
+    {%- endif %}
     {% if template contains "product" %}
       <script type="application/ld+json" id="product-schema-{{ product.id }}">
         {
@@ -510,7 +532,7 @@
           "offers": {
           "@type": "Offer",
           "url": "{{ shop.url }}{{ product.url }}",
-          "priceCurrency": "GBP",
+          "priceCurrency": "{{ store_currency_code }}",
           "price": "{{ product.selected_or_first_available_variant.price | money_without_currency }}",
           "availability": "{% if product.available %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}",
           "itemCondition": "https://schema.org/NewCondition",
@@ -518,12 +540,12 @@
             "@type": "OfferShippingDetails",
             "shippingRate": {
               "@type": "MonetaryAmount",
-              "value": "{% if product.selected_or_first_available_variant.price >= 7000 %}0{% else %}7.99{% endif %}",
-              "currency": "GBP"
+              "value": "{% if product.selected_or_first_available_variant.price >= store_free_shipping_threshold %}0{% else %}{{ store_shipping_cost | divided_by: 100.0 }}{% endif %}",
+              "currency": "{{ store_currency_code }}"
             },
             "shippingDestination": {
               "@type": "DefinedRegion",
-              "addressCountry": "GB"
+              "addressCountry": "{{ store_country }}"
             },
             "deliveryTime": {
               "@type": "ShippingDeliveryTime",
@@ -537,15 +559,15 @@
           },
           "hasMerchantReturnPolicy": {
             "@type": "MerchantReturnPolicy",
-            "applicableCountry": "GB",
+            "applicableCountry": "{{ store_country }}",
             "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
             "merchantReturnDays": "30",
             "returnMethod": "https://schema.org/ReturnByMail",
             "returnFees": "https://schema.org/ReturnShippingFees",
             "returnShippingFeesAmount": {
               "@type": "MonetaryAmount",
-              "value": "4.99",
-              "currency": "GBP"
+              "value": "{% render 'region--active', key: 'return_shipping_fee' %}",
+              "currency": "{{ store_currency_code }}"
             }
           }
         }{% if product.metafields.reviews.rating %}

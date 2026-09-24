@@ -5,5 +5,10 @@
   "company_address": "",
   "trustpilot": {
     "enabled": false
+  },
+  "analytics": {
+    "ga4_id": "G-7G717SKL2C",
+    "ga4_password_page_id": "G-4F3W122LG8",
+    "google_site_verification": "google2d3d4ccd9457489c.html"
   }
 }

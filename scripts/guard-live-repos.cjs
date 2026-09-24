@@ -4,7 +4,8 @@
  *
  * Single source of truth for what this repository is forbidden to touch.
  * Scentspired-UK and Scentspired-USA are live storefronts kept as read-only
- * reference. UAE is the only region that may ever receive a deployment.
+ * reference. Only a region that is not published may receive a deployment,
+ * and only as a development theme.
  *
  * Usable as a module or directly as a CLI gate:
  *   node scripts/guard-live-repos.cjs --remote <url>
@@ -30,13 +31,50 @@ const LOCKED_REPOS = ['scentspired-uk', 'scentspired-usa'];
  *
  * Verify with: npm run stores:check
  */
-const LOCKED_STORES = [
+const LOCKED_STORE_FLOOR = [
   'scentspired.myshopify.com',
   'scentspired-usa.myshopify.com',
   'scentspireduk.myshopify.com',
 ];
 
-const ALLOWED_STORE = 'scentspiredae.myshopify.com';
+/**
+ * A region that goes live locks itself: any region.json with
+ * "published": true adds its store here, so region #101 needs no edit to this
+ * file to be protected.
+ *
+ * Data can only ADD locks. The floor above is hardcoded on purpose and is not
+ * read from regions/ — flipping UK to "published": false by mistake must not
+ * make the UK store writable.
+ */
+function regionsWithStores() {
+  // Required lazily: region-engine must stay loadable even if this guard is
+  // used from a context where regions/ is absent.
+  try {
+    const { listRegions, readRegionFile } = require('./region-engine.cjs');
+    return listRegions()
+      .map((id) => ({ id, ...readRegionFile(id) }))
+      .filter((r) => r.myshopify_domain);
+  } catch {
+    return [];
+  }
+}
+
+const LOCKED_STORES = [
+  ...new Set([
+    ...LOCKED_STORE_FLOOR,
+    ...regionsWithStores()
+      .filter((r) => r.published === true)
+      .map((r) => r.myshopify_domain.toLowerCase()),
+  ]),
+];
+
+/** Stores of regions that are not live. The only ones a write may target. */
+const ALLOWED_STORES = regionsWithStores()
+  .filter((r) => r.published !== true)
+  .map((r) => r.myshopify_domain.toLowerCase())
+  .filter((s) => !LOCKED_STORES.includes(s));
+
+const ALLOWED_STORE = ALLOWED_STORES.join(', ') || '(none — no unpublished region declares a store)';
 
 function fail(lines) {
   console.error('');
@@ -81,7 +119,7 @@ function assertStoreAllowed(store, mode = 'write') {
     fail([
       'No --store was supplied to a Shopify CLI operation.',
       'Unpinned commands inherit whatever store the CLI is logged into,',
-      `which may be live. Pin it explicitly: --store=${ALLOWED_STORE}`,
+      `which may be live. Pin it explicitly: --store=<one of: ${ALLOWED_STORE}>`,
     ]);
   }
 
@@ -94,7 +132,7 @@ function assertStoreAllowed(store, mode = 'write') {
       `Store is a LOCKED live storefront: ${store}`,
       '',
       'Writing to a live storefront is never permitted from here.',
-      `The only deployable store is ${ALLOWED_STORE} (UAE, development themes only).`,
+      `Deployable stores (unpublished regions, development themes only): ${ALLOWED_STORE}`,
     ]);
   }
 
@@ -122,6 +160,8 @@ function assertCwdNotLocked(cwd = process.cwd()) {
 module.exports = {
   LOCKED_REPOS,
   LOCKED_STORES,
+  LOCKED_STORE_FLOOR,
+  ALLOWED_STORES,
   ALLOWED_STORE,
   assertRemoteAllowed,
   assertStoreAllowed,

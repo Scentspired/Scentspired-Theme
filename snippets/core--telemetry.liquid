@@ -23,7 +23,7 @@
     customerEmail: {% if customer %}{{ customer.email | json }}{% else %}null{% endif %},
     cartItemCount: {{ cart.item_count | default: 0 }},
     cartTotalPrice: {{ cart.total_price | default: 0 }},
-    currency: {{ cart.currency.iso_code | default: 'USD' | json }},
+    currency: {{ cart.currency.iso_code | default: shop.currency | json }},
     themeId: {{ theme.id | json }},
     storeUrl: {{ shop.permanent_domain | json }}
   };
@@ -77,7 +77,7 @@
       window.Sentry.setContext('Shopify', {
         template: {{ template.name | default: 'unknown' | json }},
         cartItemCount: {{ cart.item_count | default: 0 }},
-        currency: {{ cart.currency.iso_code | default: 'USD' | json }}
+        currency: {{ cart.currency.iso_code | default: shop.currency | json }}
       });
     });
   }

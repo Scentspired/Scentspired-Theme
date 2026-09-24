@@ -21,7 +21,30 @@ const fs = require('fs');
 const path = require('path');
 
 const THEME_ROOT = path.resolve(__dirname, '..');
-const REGIONS_DIR = path.join(THEME_ROOT, 'regions');
+
+/**
+ * Where regions are read from. Overridable only so the onboarding probe
+ * (tests/static/guard--region-onboarding.cjs) can build a synthetic region in a
+ * temp directory without writing into the repository.
+ */
+const REGIONS_DIR = process.env.SCENTSPIRED_REGIONS_DIR
+  ? path.resolve(process.env.SCENTSPIRED_REGIONS_DIR)
+  : path.join(THEME_ROOT, 'regions');
+
+/**
+ * The region the shared core already IS. Core is the live UK theme, so a UK
+ * build overlays nothing and the UK parity baseline is the unsuffixed one.
+ *
+ * This is the only place tooling may name a region. Everything else discovers
+ * regions from regions/<id>/region.json — adding region #101 edits no script.
+ */
+const CORE_REGION = 'uk';
+
+/** The region.json of one region, or null. Tooling reads data from here, never a hardcoded table. */
+function readRegionFile(id) {
+  const file = path.join(REGIONS_DIR, id, 'region.json');
+  return fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')) : null;
+}
 
 const readJson = file => JSON.parse(fs.readFileSync(file, 'utf8'));
 
@@ -75,6 +98,9 @@ const MUST_DECLARE = [
   'returns_email',
 ];
 
+const TODO = 'TODO';
+const isTodo = (s) => s === TODO || s.startsWith(`${TODO}:`);
+
 function validate(region, schema, regionId, own) {
   const errors = [];
   const props = schema.properties || {};
@@ -98,12 +124,27 @@ function validate(region, schema, regionId, own) {
     }
   }
 
+  // `npm run region:new` scaffolds every value a region must supply as "TODO".
+  // Name each one still unfilled, so the scaffold is a checklist that cannot
+  // ship half-done — rather than a string rendering on the storefront.
+  const todos = [];
+  const scanTodo = (v, k) => {
+    if (typeof v === 'string' && isTodo(v)) todos.push(k);
+    else if (Array.isArray(v)) v.forEach((x, i) => scanTodo(x, `${k}[${i}]`));
+    else if (v && typeof v === 'object') for (const [kk, vv] of Object.entries(v)) scanTodo(vv, `${k}.${kk}`);
+  };
+  for (const [key, value] of Object.entries(region)) scanTodo(value, key);
+  if (todos.length) {
+    errors.push(`${todos.length} value(s) are still the TODO placeholder: ${todos.join(', ')}`);
+  }
+
   for (const [key, value] of Object.entries(region)) {
     const spec = props[key];
     if (!spec) {
       errors.push(`unknown key "${key}" — add it to regions/_schema.json first`);
       continue;
     }
+    if (typeof value === 'string' && isTodo(value)) continue; // reported above
     const actual = Array.isArray(value) ? 'array' : typeof value;
     if (spec.type && actual !== spec.type) {
       errors.push(`key "${key}" should be ${spec.type}, got ${actual}`);
@@ -252,9 +293,20 @@ ${geoMap}
 `;
 }
 
-/** Resolve every region and write the shared registry into a compiled theme. */
+/**
+ * Only published regions reach the registry, so only they are resolved here.
+ * Resolving every region meant one half-onboarded region — a scaffold still
+ * holding TODOs — failed validation inside every OTHER region's build.
+ */
+function publishedRegions() {
+  return listRegions()
+    .filter((id) => (readRegionFile(id) || {}).published === true)
+    .map(resolveRegion);
+}
+
+/** Write the shared registry (published regions only) into a compiled theme. */
 function emitRegistrySnippet(distDir) {
-  const regions = listRegions().map(resolveRegion);
+  const regions = publishedRegions();
   const target = path.join(distDir, 'snippets', 'region--registry.liquid');
   fs.mkdirSync(path.dirname(target), { recursive: true });
   fs.writeFileSync(target, renderRegistry(regions));
@@ -269,7 +321,11 @@ function emitRegistrySnippet(distDir) {
  * untouched. Regenerate with `npm run region:sync`.
  */
 function syncCoreStubs() {
-  const defaults = resolveRegion(readJson(path.join(REGIONS_DIR, '_defaults.json')).id);
+  // Core is the CORE_REGION theme, so its stub resolves that region. This read
+  // _defaults.json's id, which stopped existing when _defaults became neutral —
+  // leaving the command broken and core's stub frozen on the USA values
+  // _defaults used to impersonate.
+  const defaults = resolveRegion(CORE_REGION);
   const snippetsDir = path.join(THEME_ROOT, 'snippets');
   fs.writeFileSync(
     path.join(snippetsDir, 'region--active.liquid'),
@@ -277,9 +333,78 @@ function syncCoreStubs() {
   );
   fs.writeFileSync(
     path.join(snippetsDir, 'region--registry.liquid'),
-    renderRegistry(listRegions().map(resolveRegion))
+    renderRegistry(publishedRegions())
   );
   return defaults.id;
+}
+
+/**
+ * Every region key shared code reads, mapped to the files that read it.
+ * Found by scanning for {% render 'region--active', key: '<key>' %}, so a new
+ * consumer is picked up with no registration anywhere.
+ */
+function consumedKeys() {
+  const out = new Map();
+  for (const dir of ['sections', 'snippets', 'blocks', 'layout']) {
+    const abs = path.join(THEME_ROOT, dir);
+    if (!fs.existsSync(abs)) continue;
+    for (const f of fs.readdirSync(abs)) {
+      if (!f.endsWith('.liquid') || f.startsWith('region--')) continue;
+      const src = fs.readFileSync(path.join(abs, f), 'utf8');
+      for (const m of src.matchAll(/render\s+['"]region--active['"]\s*,\s*key:\s*['"]([^'"]+)['"]/g)) {
+        if (!out.has(m[1])) out.set(m[1], new Set());
+        out.get(m[1]).add(`${dir}/${f}`);
+      }
+    }
+  }
+  return out;
+}
+
+const getPath = (obj, key) => key.split('.').reduce((v, p) => (v == null ? undefined : v[p]), obj);
+
+/**
+ * Consumed keys this resolved region cannot supply. A key under a feature
+ * whose `enabled` is false is exempt: the code reading it never renders.
+ */
+function unresolvedKeys(region) {
+  const disabled = (key) => {
+    const parts = key.split('.');
+    for (let i = parts.length - 1; i > 0; i--) {
+      const parent = getPath(region, parts.slice(0, i).join('.'));
+      if (parent && parent.enabled === false) return true;
+    }
+    return false;
+  };
+  return [...consumedKeys().entries()].filter(([key]) => getPath(region, key) == null && !disabled(key));
+}
+
+/**
+ * What a new region must put in its region.json — the single answer to "what
+ * do I need to add a region". Used by the compiler's check, the onboarding
+ * probe and `npm run region:new`, so they can never disagree.
+ *
+ *   identity   keys a region must declare itself, never inherit (MUST_DECLARE)
+ *   required   keys the schema requires, from _defaults or the region
+ *   consumed   keys shared code renders that _defaults does not supply
+ */
+function regionContract() {
+  const schema = readJson(path.join(REGIONS_DIR, '_schema.json'));
+  const defaults = stripComments(readJson(path.join(REGIONS_DIR, '_defaults.json')));
+  const consumed = [...consumedKeys().keys()].filter((k) => {
+    if (getPath(defaults, k) != null) return false;
+    // exempt when _defaults switches the feature off
+    const parts = k.split('.');
+    for (let i = parts.length - 1; i > 0; i--) {
+      const parent = getPath(defaults, parts.slice(0, i).join('.'));
+      if (parent && parent.enabled === false) return false;
+    }
+    return true;
+  });
+  return {
+    identity: [...MUST_DECLARE],
+    required: (schema.required || []).filter((k) => getPath(defaults, k) == null),
+    consumed,
+  };
 }
 
 /** Every region folder that carries a region.json. */
@@ -292,7 +417,20 @@ function listRegions() {
     .sort();
 }
 
-module.exports = { resolveRegion, emitRegionSnippet, emitRegistrySnippet, syncCoreStubs, listRegions, deepMerge };
+module.exports = {
+  resolveRegion,
+  emitRegionSnippet,
+  emitRegistrySnippet,
+  syncCoreStubs,
+  listRegions,
+  readRegionFile,
+  consumedKeys,
+  unresolvedKeys,
+  regionContract,
+  deepMerge,
+  CORE_REGION,
+  REGIONS_DIR,
+};
 
 if (require.main === module) {
   const target = process.argv[2];

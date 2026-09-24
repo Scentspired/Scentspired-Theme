@@ -19,32 +19,16 @@ const path = require("path");
 const { execSync } = require("child_process");
 
 const ROOT = path.resolve(__dirname, "../..");
-const PKG_PATH = path.join(ROOT, "package.json");
 const REPORT_JSON = path.join(__dirname, "reports/latest_scan_report.json");
 const OUTPUT_DOC = path.join(ROOT, "docs/MASTER_DEFECT_AND_IMPACT_CATALOG.md");
 
-// 1. Detect store context
-let storeName = "Scentspired UK";
-let storeDomain = "scentspireduk.myshopify.com";
-let repoUrl = "https://github.com/Scentspired/Scentspired-UK.git";
-let currencySymbol = "£";
-
-if (fs.existsSync(PKG_PATH)) {
-  try {
-    const pkg = JSON.parse(fs.readFileSync(PKG_PATH, "utf8"));
-    if (pkg.name && pkg.name.includes("usa")) {
-      storeName = "Scentspired USA";
-      storeDomain = "scentspired.myshopify.com";
-      repoUrl = "https://github.com/Scentspired/Scentspired-USA.git";
-      currencySymbol = "$";
-    } else if (pkg.name && pkg.name.includes("theme")) {
-      storeName = "Scentspired Global Core Theme Engine";
-      storeDomain = "theme.scentspired.com";
-      repoUrl = "https://github.com/Scentspired/Scentspired-Theme.git";
-      currencySymbol = "$ / £";
-    }
-  } catch (e) {}
-}
+// 1. Store context. This report describes the shared core, which serves every
+// region; it used to sniff package.json for "usa" to relabel itself, a branch
+// copied from the live repos that could never run here.
+const storeName = "Scentspired Global Core Theme Engine";
+const storeDomain = "theme.scentspired.com";
+const repoUrl = "https://github.com/Scentspired/Scentspired-Theme.git";
+const currencySymbol = "$ / £";
 
 // 2. Self-healing data acquisition (Run static analysis if missing)
 let violations = [];

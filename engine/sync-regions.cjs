@@ -8,7 +8,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { execSync } = require('child_process');
+const { execSync, spawnSync } = require('child_process');
 
 const SCRIPT_DIR = __dirname;
 const THEME_ROOT = path.resolve(SCRIPT_DIR, '..');
@@ -18,6 +18,17 @@ const CONFIG_PATH = path.join(SCRIPT_DIR, 'sync-config.json');
 const args = process.argv.slice(2);
 const isDryRun = args.includes('--dry-run');
 const isPull = args.includes('--pull');
+
+/** A live region locks itself; see scripts/guard-live-repos.cjs. */
+function isPublishedRegion(id) {
+  try {
+    const { readRegionFile } = require('../scripts/region-engine.cjs');
+    const r = readRegionFile(id);
+    return Boolean(r && r.published === true);
+  } catch {
+    return true; // region data unreadable: fail closed
+  }
+}
 const skipPush = args.includes('--skip-push');
 const skipTests = args.includes('--skip-tests');
 const targetArg = args.find(a => a.startsWith('--target='));
@@ -220,6 +231,15 @@ if (isPull) {
     });
   }
 
+  // A pull copies whole files from a live repo, most of them identical to core.
+  // Left in place they are frozen forks that stop tracking core, so reduce every
+  // region to what actually differs. Compiled output is unchanged by this.
+  if (!isDryRun) {
+    spawnSync('node', [path.join(__dirname, '..', 'scripts', 'prune-region-overlays.cjs')], {
+      stdio: 'inherit',
+    });
+  }
+
   console.log('==================================================================');
   console.log('   🎉 REGIONAL PULL COMPLETE');
   console.log('==================================================================');
@@ -274,7 +294,9 @@ for (const target of targets) {
   }
 
   // 🔒 HARD LOCKDOWN ENFORCEMENT: Never write or push to locked/read-only targets in push mode
-  if (!isPull && (target.locked || target.readOnly || target.pushDisabled || target.id === 'uk' || target.id === 'usa')) {
+  // uk/usa stay named here as a floor no data change can lift; any region
+  // marked "published": true in its region.json is locked on top of that.
+  if (!isPull && (target.locked || target.readOnly || target.pushDisabled || target.id === 'uk' || target.id === 'usa' || isPublishedRegion(target.id))) {
     if (!skipPush && !isDryRun) {
       console.log(`\n🔒 [LOCKED] ${target.name} is in strict READ-ONLY lockdown. Zero-push policy enforced.`);
       summary.push({

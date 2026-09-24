@@ -101,8 +101,13 @@
             {% endfor %}
           </div>
 
+          {%- comment -%}
+            Relative, so it stays on the current storefront. It was an absolute
+            link to the USA store's myshopify domain, which sent shoppers on
+            every other storefront to the USA store.
+          {%- endcomment %}
           <!-- Shop All Button -->
-          <a href="https://scentspired.myshopify.com/collections/shop" class="sp-shop-all-btn" onclick="closeDossierCart()">
+          <a href="{{ routes.collections_url }}/shop" class="sp-shop-all-btn" onclick="closeDossierCart()">
             SHOP ALL PERFUMES
           </a>
 

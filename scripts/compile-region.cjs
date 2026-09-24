@@ -15,14 +15,27 @@ const fs = require('fs');
 const path = require('path');
 const { spawnSync } = require('child_process');
 const { assertCwdNotLocked } = require('./guard-live-repos.cjs');
-const { emitRegionSnippet, emitRegistrySnippet } = require('./region-engine.cjs');
+const {
+  emitRegionSnippet,
+  emitRegistrySnippet,
+  deepMerge,
+  consumedKeys,
+  unresolvedKeys,
+  CORE_REGION,
+  REGIONS_DIR,
+} = require('./region-engine.cjs');
 
 assertCwdNotLocked();
 
 const THEME_ROOT = path.resolve(__dirname, '..');
-const target = (process.argv[2] || 'uk').toLowerCase();
-const DIST_DIR = path.join(THEME_ROOT, 'dist', target);
-const REGION_DIR = path.join(THEME_ROOT, 'regions', target);
+const target = (process.argv[2] || CORE_REGION).toLowerCase();
+// Both roots are overridable only for the onboarding probe, which builds a
+// synthetic region in a temp directory. See tests/static/guard--region-onboarding.cjs.
+const DIST_DIR = path.join(
+  process.env.SCENTSPIRED_DIST_ROOT ? path.resolve(process.env.SCENTSPIRED_DIST_ROOT) : path.join(THEME_ROOT, 'dist'),
+  target
+);
+const REGION_DIR = path.join(REGIONS_DIR, target);
 
 // Core theme directories shared by every region.
 const CORE_DIRS = ['assets', 'blocks', 'config', 'layout', 'locales', 'sections', 'snippets', 'templates'];
@@ -104,10 +117,47 @@ for (const dir of CORE_DIRS) {
   console.log(`  + ${dir.padEnd(12)}: ${stats[dir]} files`);
 }
 
+/**
+ * Locales MERGE rather than replace. A region's locale file carries only the
+ * keys whose text differs; every other key comes from core.
+ *
+ * Replacing the whole file meant a region's copy silently dropped any key core
+ * added after the copy was taken — dist/usa was missing four keys that
+ * layout/ecom.liquid renders, and dist/uae 961. It also meant every region
+ * held 51 full copies of core's translations, so one new core string had to be
+ * pasted into every region folder. Now a new key reaches every region with no
+ * edit anywhere else.
+ */
+const stripJsonComments = (s) =>
+  (s.charCodeAt(0) === 0xfeff ? s.slice(1) : s).replace(/\/\*[\s\S]*?\*\//g, '');
+
+function mergeLocales(src, dest) {
+  if (!fs.existsSync(src)) return 0;
+  let count = 0;
+  for (const entry of fs.readdirSync(src, { withFileTypes: true })) {
+    if (!entry.isFile() || !entry.name.endsWith('.json')) continue;
+    const from = path.join(src, entry.name);
+    const to = path.join(dest, entry.name);
+    const coreFile = path.join(THEME_ROOT, 'locales', entry.name);
+    const regional = JSON.parse(stripJsonComments(fs.readFileSync(from, 'utf8')));
+    const merged = fs.existsSync(coreFile)
+      ? deepMerge(JSON.parse(stripJsonComments(fs.readFileSync(coreFile, 'utf8'))), regional)
+      : regional;
+    const next = JSON.stringify(merged, null, 2) + '\n';
+    if (!fs.existsSync(to) || fs.readFileSync(to, 'utf8') !== next) fs.writeFileSync(to, next);
+    emitted.add(path.relative(DIST_DIR, to).replace(/\\/g, '/'));
+    count++;
+  }
+  return count;
+}
+
 console.log(`\n>>> [2/6] Overlaying ${target.toUpperCase()} data payload...`);
 const overlaid = {};
 for (const dir of OVERLAY_DIRS) {
-  const n = copyTree(path.join(REGION_DIR, dir), path.join(DIST_DIR, dir));
+  const n =
+    dir === 'locales'
+      ? mergeLocales(path.join(REGION_DIR, dir), path.join(DIST_DIR, dir))
+      : copyTree(path.join(REGION_DIR, dir), path.join(DIST_DIR, dir));
   if (n > 0) {
     overlaid[dir] = n;
     console.log(`  ~ ${dir.padEnd(12)}: ${n} files overridden`);
@@ -164,6 +214,27 @@ try {
   process.exit(1);
 }
 emitted.add('snippets/region--active.liquid');
+
+/**
+ * Every key shared code reads must resolve for this region. An unresolved key
+ * renders as an empty string — a bundle with no price, a link with no href —
+ * and nothing errors. Failing here turns onboarding a region into a checklist
+ * the compiler prints, rather than a hunt through the storefront.
+ *
+ * A key may be absent only when its feature is switched off: trustpilot.url is
+ * irrelevant while trustpilot.enabled is false, because the code reading it is
+ * never rendered.
+ */
+{
+  const missing = unresolvedKeys(resolvedRegion);
+  if (missing.length) {
+    console.error(`\n❌ regions/${target}/region.json does not define ${missing.length} key(s) shared code renders:\n`);
+    for (const [key, files] of missing) console.error(`   ${key.padEnd(40)} read by ${[...files].join(', ')}`);
+    console.error('\n   Add them to the region (or to regions/_defaults.json if every region shares them).\n');
+    process.exit(1);
+  }
+  console.log(`  ✓ all ${consumedKeys().size} region keys read by shared code resolve`);
+}
 console.log(
   `  + snippets/region--active.liquid  (${resolvedRegion.currency_code} ${resolvedRegion.currency_symbol}, ${resolvedRegion.home_url})`
 );

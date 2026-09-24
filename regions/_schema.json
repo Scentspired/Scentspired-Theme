@@ -132,6 +132,14 @@
     "bundles": {
       "type": "object",
       "description": "Bundle pricing, which the storefronts deliberately differ on — USA is roughly double UK with a different discount split. { five_favourites, trio, discovery }, each carrying its own variant ids, prices, standard prices and savings. Taken from the live themes, where it was a runtime `if currency == USD` branch."
+    },
+    "analytics": {
+      "type": "object",
+      "description": "Per-region Google tags. { ga4_id, ga4_password_page_id, google_site_verification }. An empty string renders no tag at all. _defaults.json carries the IDs every storefront used at the time of extraction (UK, USA and UAE all shared them), so a new region keeps reporting until it declares its own property."
+    },
+    "return_shipping_fee": {
+      "type": "number",
+      "description": "Return shipping fee in major units of this region's currency, published in the product structured data (MerchantReturnPolicy). 4.99 was carried over from the shared template for every region; no returns page states a fee, so confirm it per region."
     }
   }
 }

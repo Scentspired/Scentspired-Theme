@@ -78,7 +78,7 @@
         template: context.template || null,
         customerId: context.customerId || null,
         cartItemCount: context.cartItemCount || 0,
-        currency: context.currency || "USD",
+        currency: context.currency || (window.__STORE_CONFIG || {}).currencyCode,
         themeId: context.themeId || null,
       },
       breadcrumbs: [...breadcrumbs],
