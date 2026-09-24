@@ -51,7 +51,10 @@ const DEFAULT_REGION = 'uk';
  * live in each region's folder (scripts/prune-region-overlays.cjs keeps it so).
  */
 const isContentFile = (rel) =>
-  /^templates\//.test(rel) || /^sections\/[^/]+\.json$/.test(rel) || rel === 'config/settings_data.json';
+  /^templates\//.test(rel) ||
+  /^sections\/[^/]+\.json$/.test(rel) ||
+  /^data\/[^/]+\.json$/.test(rel) ||
+  rel === 'config/settings_data.json';
 
 /** Every content file a region folder holds, as paths relative to the folder. */
 function regionContentFiles(id) {
@@ -347,6 +350,92 @@ function emitRegistrySnippet(distDir) {
  * compile. The build overwrites them per region in dist/, leaving core
  * untouched. Regenerate with `npm run region:sync`.
  */
+/**
+ * Structured content — catalogues, lists, tables — lives in
+ * regions/<id>/data/<name>.json and reaches code through one generated snippet:
+ *
+ *   const perfumes = {% render 'region--data', name: 'hero-perfumes' %};
+ *
+ * It used to be JavaScript literals inside sections: the same perfume
+ * catalogue three times over, in media--hero, catalog--aroma-selector and
+ * catalog--aroma-notes, so one corrected note meant three edits, and no region
+ * could change a word of it.
+ */
+function readRegionData(regionId) {
+  const dir = path.join(REGIONS_DIR, regionId, 'data');
+  if (!fs.existsSync(dir)) return {};
+  const out = {};
+  for (const f of fs.readdirSync(dir).filter((f) => f.endsWith('.json')).sort()) {
+    out[f.replace(/\.json$/, '')] = readJson(path.join(dir, f));
+  }
+  return out;
+}
+
+/**
+ * JSON safe to drop inside a <script> through Liquid: `</` cannot close the
+ * script, and U+2028/9 cannot end a JS string. A value containing Liquid
+ * delimiters is refused rather than altered — Liquid would execute it.
+ */
+function dataLiteral(name, value) {
+  const json = JSON.stringify(value)
+    .replace(/<\//g, '<\\/')
+    // U+2028 / U+2029 end a JS string literal, so escape them. Built from char
+    // codes: no raw separator character may sit in this source file.
+    .split(String.fromCharCode(0x2028)).join('\\u2028')
+    .split(String.fromCharCode(0x2029)).join('\\u2029');
+  if (/\{\{|\{%/.test(json)) {
+    const err = new Error(`data/${name}.json contains "{{" or "{%" — Liquid would execute it`);
+    err.handled = true;
+    console.error(`\n❌ ${err.message}\n`);
+    throw err;
+  }
+  return json;
+}
+
+function renderDataSnippet(data, regionId) {
+  const cases = Object.entries(data)
+    .map(([name, value]) => `  {%- when '${name}' -%}${dataLiteral(name, value)}`)
+    .join('\n');
+  const source = regionId
+    ? `Region: ${regionId}. Source: regions/${regionId}/data/*.json`
+    : "Empty on purpose: the theme holds no data. Each region's build generates this from regions/<id>/data/*.json";
+  return `{%- comment -%}
+  GENERATED — do not edit. ${source}
+  Usage: render 'region--data' with name set to a data file's name, without .json
+{%- endcomment -%}
+{%- case name -%}
+${cases}
+  {%- else -%}null
+{%- endcase -%}
+`;
+}
+
+function emitDataSnippet(regionId, distDir) {
+  const data = readRegionData(regionId);
+  const target = path.join(distDir, 'snippets', 'region--data.liquid');
+  fs.mkdirSync(path.dirname(target), { recursive: true });
+  fs.writeFileSync(target, renderDataSnippet(data, regionId));
+  return Object.keys(data);
+}
+
+/** Every data set shared code reads, mapped to the files that read it. */
+function consumedDataNames() {
+  const out = new Map();
+  for (const dir of ['sections', 'snippets', 'blocks', 'layout']) {
+    const abs = path.join(THEME_ROOT, dir);
+    if (!fs.existsSync(abs)) continue;
+    for (const f of fs.readdirSync(abs)) {
+      if (!f.endsWith('.liquid') || f.startsWith('region--')) continue;
+      const src = fs.readFileSync(path.join(abs, f), 'utf8');
+      for (const m of src.matchAll(/render\s+['"]region--data['"]\s*,\s*name:\s*['"]([^'"]+)['"]/g)) {
+        if (!out.has(m[1])) out.set(m[1], new Set());
+        out.get(m[1]).add(`${dir}/${f}`);
+      }
+    }
+  }
+  return out;
+}
+
 function syncCoreStubs() {
   // Core is the DEFAULT_REGION theme, so its stub resolves that region. This read
   // _defaults.json's id, which stopped existing when _defaults became neutral —
@@ -357,6 +446,12 @@ function syncCoreStubs() {
   fs.writeFileSync(
     path.join(snippetsDir, 'region--active.liquid'),
     renderSnippet(defaults, defaults.id)
+  );
+  // The theme holds no content, so its data stub is empty: every region's
+  // build generates the real one from regions/<id>/data/.
+  fs.writeFileSync(
+    path.join(snippetsDir, 'region--data.liquid'),
+    renderDataSnippet({}, null)
   );
   fs.writeFileSync(
     path.join(snippetsDir, 'region--registry.liquid'),
@@ -455,6 +550,9 @@ module.exports = {
   regionContentFiles,
   consumedKeys,
   unresolvedKeys,
+  readRegionData,
+  emitDataSnippet,
+  consumedDataNames,
   regionContract,
   deepMerge,
   DEFAULT_REGION,

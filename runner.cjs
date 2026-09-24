@@ -309,9 +309,18 @@ const CORE_LAYERS = [
     failMsg: "Adding a region would need edits outside regions/<id>/",
   },
   {
+    // The theme is a thin template: every word, image, link and product a
+    // shopper sees comes from region JSON. A ratchet — no file may gain
+    // hardcoded content, a new file may have none, and the debt only falls.
+    name: "Layer 21: Hardcoded Content Ratchet",
+    cmd: "node",
+    args: [path.join(TESTS_DIR, "static", "guard--hardcoded-content.cjs")],
+    failMsg: "Hardcoded content was added to theme code — it belongs in region JSON",
+  },
+  {
     // The guards above are only worth their exit code if they have been seen
     // to fail. Each fixture plants defects and asserts they are caught.
-    name: "Layer 21: Guard Fixtures (red/green verification)",
+    name: "Layer 22: Guard Fixtures (red/green verification)",
     cmd: "node",
     args: [path.join(TESTS_DIR, "static", "run-guard-fixtures.cjs")],
     failMsg: "A guard no longer catches what it claims to catch",

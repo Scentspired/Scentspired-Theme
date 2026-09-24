@@ -135,6 +135,11 @@ function normalize(html) {
       // Shopify's own platform assets and session state, which change when
       // Shopify ships, not when we do
       .replace(/trekkie\.storefront\.[0-9a-f]+\.min\.js/g, 'trekkie.storefront.X.min.js')
+      // …and Shopify's other platform scripts under /cdn/shopifycloud/, whose
+      // file hash and integrity digest change whenever Shopify ships one
+      // (webmcp-f1e1e155.js became webmcp-c6b62ece.js between two captures).
+      .replace(/(shopifycloud\\?\/[^"'\s]*?-)[0-9a-f]{8}(\.(?:js|css))/g, '$1X$2')
+      .replace(/"sha(?:256|384|512)-[A-Za-z0-9+/\\=]+"/g, '"sha-X"')
       // Shopify injects its event-observer bootstrap on some requests only —
       // this was the intermittent ~1155 byte fragment
       .replace(/<script data-source-attribution="shopify\.event_observer\.bootstrap">[\s\S]*?<\/script>/g, '')

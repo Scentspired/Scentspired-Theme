@@ -1,0 +1,1127 @@
+{
+  "sections/account--dashboard.liquid": {
+    "total": 18,
+    "text": 18,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "sections/account--register.liquid": {
+    "total": 1,
+    "text": 1,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "sections/bundle--coming-soon.liquid": {
+    "total": 2,
+    "text": 1,
+    "js-text": 1,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "sections/bundle--discovery-legacy.liquid": {
+    "total": 6,
+    "text": 2,
+    "js-text": 4,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "sections/bundle--discovery-set.liquid": {
+    "total": 18,
+    "text": 14,
+    "js-text": 1,
+    "media": 0,
+    "links": 0,
+    "fallback": 3,
+    "ids": 0
+  },
+  "sections/bundle--discovery.liquid": {
+    "total": 39,
+    "text": 8,
+    "js-text": 30,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 1
+  },
+  "sections/bundle--five-box.liquid": {
+    "total": 46,
+    "text": 12,
+    "js-text": 32,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 2
+  },
+  "sections/bundle--five-favourites.liquid": {
+    "total": 36,
+    "text": 0,
+    "js-text": 34,
+    "media": 0,
+    "links": 0,
+    "fallback": 2,
+    "ids": 0
+  },
+  "sections/bundle--heading.liquid": {
+    "total": 33,
+    "text": 20,
+    "js-text": 4,
+    "media": 8,
+    "links": 0,
+    "fallback": 0,
+    "ids": 1
+  },
+  "sections/bundle--trio-set.liquid": {
+    "total": 46,
+    "text": 12,
+    "js-text": 32,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 2
+  },
+  "sections/catalog--aroma-selector.liquid": {
+    "total": 31,
+    "text": 17,
+    "js-text": 14,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "sections/catalog--best-sellers.liquid": {
+    "total": 12,
+    "text": 2,
+    "js-text": 10,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "sections/catalog--collection-grid.liquid": {
+    "total": 231,
+    "text": 216,
+    "js-text": 9,
+    "media": 0,
+    "links": 6,
+    "fallback": 0,
+    "ids": 0
+  },
+  "sections/catalog--custom-collection.liquid": {
+    "total": 2,
+    "text": 0,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 2,
+    "ids": 0
+  },
+  "sections/catalog--featured-scent.liquid": {
+    "total": 8,
+    "text": 1,
+    "js-text": 7,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "sections/catalog--luxury-showcase.liquid": {
+    "total": 4,
+    "text": 2,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 2,
+    "ids": 0
+  },
+  "sections/catalog--mobile-showcase.liquid": {
+    "total": 10,
+    "text": 4,
+    "js-text": 2,
+    "media": 0,
+    "links": 0,
+    "fallback": 4,
+    "ids": 0
+  },
+  "sections/catalog--product-custom.liquid": {
+    "total": 18,
+    "text": 7,
+    "js-text": 7,
+    "media": 2,
+    "links": 2,
+    "fallback": 0,
+    "ids": 0
+  },
+  "sections/catalog--product-info-tab.liquid": {
+    "total": 92,
+    "text": 85,
+    "js-text": 3,
+    "media": 4,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "sections/catalog--product.liquid": {
+    "total": 1,
+    "text": 0,
+    "js-text": 0,
+    "media": 0,
+    "links": 1,
+    "fallback": 0,
+    "ids": 0
+  },
+  "sections/content--collapsible.liquid": {
+    "total": 5,
+    "text": 5,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "sections/content--contact.liquid": {
+    "total": 10,
+    "text": 9,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 1,
+    "ids": 0
+  },
+  "sections/content--faq.liquid": {
+    "total": 1,
+    "text": 0,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 1,
+    "ids": 0
+  },
+  "sections/content--privacy-policy.liquid": {
+    "total": 1,
+    "text": 0,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 1,
+    "ids": 0
+  },
+  "sections/editorial--blog-section.liquid": {
+    "total": 2,
+    "text": 1,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 1,
+    "ids": 0
+  },
+  "sections/editorial--blog-text.liquid": {
+    "total": 3,
+    "text": 0,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 3,
+    "ids": 0
+  },
+  "sections/editorial--brand-story.liquid": {
+    "total": 3,
+    "text": 2,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 1,
+    "ids": 0
+  },
+  "sections/editorial--perfume-story.liquid": {
+    "total": 7,
+    "text": 1,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 6,
+    "ids": 0
+  },
+  "sections/editorial--text-blog.liquid": {
+    "total": 4,
+    "text": 4,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "sections/editorial--text-section.liquid": {
+    "total": 3,
+    "text": 3,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "sections/editorial--zigzag-blog.liquid": {
+    "total": 2,
+    "text": 1,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 1,
+    "ids": 0
+  },
+  "sections/featured-product.liquid": {
+    "total": 1,
+    "text": 0,
+    "js-text": 0,
+    "media": 0,
+    "links": 1,
+    "fallback": 0,
+    "ids": 0
+  },
+  "sections/footer.liquid": {
+    "total": 8,
+    "text": 7,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 1,
+    "ids": 0
+  },
+  "sections/header.liquid": {
+    "total": 176,
+    "text": 113,
+    "js-text": 0,
+    "media": 30,
+    "links": 33,
+    "fallback": 0,
+    "ids": 0
+  },
+  "sections/main-cart-items.liquid": {
+    "total": 3,
+    "text": 1,
+    "js-text": 2,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "sections/main-password-footer.liquid": {
+    "total": 1,
+    "text": 1,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "sections/main-password-header.liquid": {
+    "total": 3,
+    "text": 3,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "sections/marketing--newsletter-banner.liquid": {
+    "total": 8,
+    "text": 3,
+    "js-text": 5,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "sections/media--collage.liquid": {
+    "total": 25,
+    "text": 25,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "sections/media--dual-slider.liquid": {
+    "total": 6,
+    "text": 6,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "sections/media--hero.liquid": {
+    "total": 69,
+    "text": 53,
+    "js-text": 15,
+    "media": 1,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "sections/media--image-banner.liquid": {
+    "total": 2,
+    "text": 0,
+    "js-text": 1,
+    "media": 0,
+    "links": 0,
+    "fallback": 1,
+    "ids": 0
+  },
+  "sections/media--image-split.liquid": {
+    "total": 3,
+    "text": 1,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 2,
+    "ids": 0
+  },
+  "sections/media--image-with-text.liquid": {
+    "total": 6,
+    "text": 6,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "sections/media--mobile-video-banner.liquid": {
+    "total": 12,
+    "text": 7,
+    "js-text": 4,
+    "media": 1,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "sections/media--multicolumn.liquid": {
+    "total": 6,
+    "text": 6,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "sections/media--multirow.liquid": {
+    "total": 3,
+    "text": 3,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "sections/media--review-slider.liquid": {
+    "total": 5,
+    "text": 5,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "sections/media--running-text.liquid": {
+    "total": 3,
+    "text": 3,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "sections/media--scent-filter-banner.liquid": {
+    "total": 12,
+    "text": 2,
+    "js-text": 10,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "sections/media--video-banner.liquid": {
+    "total": 7,
+    "text": 4,
+    "js-text": 0,
+    "media": 3,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "sections/media--video-text.liquid": {
+    "total": 2,
+    "text": 2,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "sections/media--video.liquid": {
+    "total": 4,
+    "text": 4,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "sections/search--results.liquid": {
+    "total": 2,
+    "text": 2,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "sections/social--instagram-feed.liquid": {
+    "total": 33,
+    "text": 20,
+    "js-text": 4,
+    "media": 8,
+    "links": 0,
+    "fallback": 0,
+    "ids": 1
+  },
+  "sections/social--instagram-heading.liquid": {
+    "total": 2,
+    "text": 2,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "sections/social--instagram.liquid": {
+    "total": 2,
+    "text": 2,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "snippets/blog--article--author-bio.liquid": {
+    "total": 1,
+    "text": 0,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 1,
+    "ids": 0
+  },
+  "snippets/blog--article--breadcrumb.liquid": {
+    "total": 2,
+    "text": 2,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "snippets/blog--article--header.liquid": {
+    "total": 1,
+    "text": 1,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "snippets/blog--article--newsletter-cta.liquid": {
+    "total": 11,
+    "text": 0,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 11,
+    "ids": 0
+  },
+  "snippets/blog--article--related-posts.liquid": {
+    "total": 1,
+    "text": 0,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 1,
+    "ids": 0
+  },
+  "snippets/blog--article--related-products.liquid": {
+    "total": 1,
+    "text": 0,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 1,
+    "ids": 0
+  },
+  "snippets/blog--article--share.liquid": {
+    "total": 6,
+    "text": 5,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 1,
+    "ids": 0
+  },
+  "snippets/blog--article--tags.liquid": {
+    "total": 2,
+    "text": 0,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 2,
+    "ids": 0
+  },
+  "snippets/blog--listing--card.liquid": {
+    "total": 1,
+    "text": 1,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "snippets/blog--listing--category-filter.liquid": {
+    "total": 2,
+    "text": 2,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "snippets/bundle--product-grid.liquid": {
+    "total": 5,
+    "text": 5,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "snippets/bundle--sidebar.liquid": {
+    "total": 5,
+    "text": 5,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "snippets/card--product-carousel.liquid": {
+    "total": 2,
+    "text": 2,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "snippets/card--product.liquid": {
+    "total": 2,
+    "text": 2,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "snippets/cart--drawer.liquid": {
+    "total": 57,
+    "text": 43,
+    "js-text": 10,
+    "media": 0,
+    "links": 2,
+    "fallback": 2,
+    "ids": 0
+  },
+  "snippets/catalog--product-media-gallery.liquid": {
+    "total": 6,
+    "text": 6,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "snippets/catalog--product-media.liquid": {
+    "total": 1,
+    "text": 1,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "snippets/catalog--product-thumbnail.liquid": {
+    "total": 5,
+    "text": 5,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "snippets/catalog--variant-options.liquid": {
+    "total": 2,
+    "text": 2,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "snippets/component-badge.liquid": {
+    "total": 3,
+    "text": 0,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 3,
+    "ids": 0
+  },
+  "snippets/core--llms.liquid": {
+    "total": 1,
+    "text": 1,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "snippets/core--telemetry.liquid": {
+    "total": 7,
+    "text": 0,
+    "js-text": 5,
+    "media": 0,
+    "links": 0,
+    "fallback": 2,
+    "ids": 0
+  },
+  "snippets/facets.liquid": {
+    "total": 6,
+    "text": 6,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "snippets/header--logo.liquid": {
+    "total": 1,
+    "text": 0,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 1,
+    "ids": 0
+  },
+  "snippets/header--search.liquid": {
+    "total": 1,
+    "text": 1,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "snippets/pf-password-css.liquid": {
+    "total": 1,
+    "text": 0,
+    "js-text": 0,
+    "media": 0,
+    "links": 1,
+    "fallback": 0,
+    "ids": 0
+  },
+  "snippets/swatch-input.liquid": {
+    "total": 1,
+    "text": 0,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 1,
+    "ids": 0
+  },
+  "snippets/widget--trustpilot-embed.liquid": {
+    "total": 2,
+    "text": 1,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 1,
+    "ids": 0
+  },
+  "snippets/widget--trustpilot.liquid": {
+    "total": 1,
+    "text": 0,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 1,
+    "ids": 0
+  },
+  "blocks/bundle--builder.liquid": {
+    "total": 19,
+    "text": 13,
+    "js-text": 5,
+    "media": 0,
+    "links": 1,
+    "fallback": 0,
+    "ids": 0
+  },
+  "blocks/catalog--aroma-notes.liquid": {
+    "total": 26,
+    "text": 17,
+    "js-text": 9,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "blocks/catalog--fragrance-guide-2.liquid": {
+    "total": 6,
+    "text": 6,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "blocks/catalog--fragrance-guide.liquid": {
+    "total": 6,
+    "text": 6,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "blocks/catalog--fragrance-showcase.liquid": {
+    "total": 10,
+    "text": 10,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "blocks/catalog--product-collection-grid-2.liquid": {
+    "total": 4,
+    "text": 4,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "blocks/catalog--product-collection-grid.liquid": {
+    "total": 4,
+    "text": 4,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "blocks/catalog--tabbed-collections.liquid": {
+    "total": 13,
+    "text": 7,
+    "js-text": 6,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "blocks/editorial--banner-2.liquid": {
+    "total": 3,
+    "text": 3,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "blocks/editorial--banner-3.liquid": {
+    "total": 5,
+    "text": 5,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "blocks/editorial--banner-4.liquid": {
+    "total": 5,
+    "text": 5,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "blocks/editorial--banner.liquid": {
+    "total": 6,
+    "text": 6,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "blocks/editorial--coming-soon-2.liquid": {
+    "total": 5,
+    "text": 5,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "blocks/editorial--coming-soon.liquid": {
+    "total": 9,
+    "text": 9,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "blocks/editorial--content-2.liquid": {
+    "total": 1,
+    "text": 1,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "blocks/editorial--content.liquid": {
+    "total": 1,
+    "text": 1,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "blocks/editorial--luxury-perfume-banner-2.liquid": {
+    "total": 2,
+    "text": 2,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "blocks/editorial--luxury-perfume-banner-3.liquid": {
+    "total": 2,
+    "text": 2,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "blocks/editorial--luxury-perfume-banner-4.liquid": {
+    "total": 3,
+    "text": 2,
+    "js-text": 1,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "blocks/editorial--luxury-perfume-banner.liquid": {
+    "total": 3,
+    "text": 2,
+    "js-text": 1,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "blocks/editorial--section-2.liquid": {
+    "total": 2,
+    "text": 2,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "blocks/editorial--section-3.liquid": {
+    "total": 2,
+    "text": 2,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "blocks/editorial--section.liquid": {
+    "total": 2,
+    "text": 2,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "blocks/editorial--split-text.liquid": {
+    "total": 1,
+    "text": 1,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "blocks/editorial--staggered-typography-2.liquid": {
+    "total": 1,
+    "text": 1,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "blocks/editorial--text-section-2.liquid": {
+    "total": 1,
+    "text": 1,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "blocks/footer--copyright.liquid": {
+    "total": 6,
+    "text": 3,
+    "js-text": 0,
+    "media": 0,
+    "links": 1,
+    "fallback": 2,
+    "ids": 0
+  },
+  "blocks/media--scent-video-banner.liquid": {
+    "total": 14,
+    "text": 11,
+    "js-text": 1,
+    "media": 2,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "blocks/social--instagram-feed-2.liquid": {
+    "total": 5,
+    "text": 4,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 1,
+    "ids": 0
+  },
+  "blocks/social--instagram-feed.liquid": {
+    "total": 7,
+    "text": 7,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "blocks/social--instagram-gallery.liquid": {
+    "total": 3,
+    "text": 3,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "blocks/social--instagram-grid.liquid": {
+    "total": 2,
+    "text": 2,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "layout/password.liquid": {
+    "total": 1,
+    "text": 0,
+    "js-text": 0,
+    "media": 0,
+    "links": 1,
+    "fallback": 0,
+    "ids": 0
+  },
+  "layout/theme.liquid": {
+    "total": 16,
+    "text": 2,
+    "js-text": 8,
+    "media": 0,
+    "links": 5,
+    "fallback": 0,
+    "ids": 1
+  },
+  "layout/theme.pagefly.liquid": {
+    "total": 4,
+    "text": 2,
+    "js-text": 0,
+    "media": 0,
+    "links": 2,
+    "fallback": 0,
+    "ids": 0
+  },
+  "assets/card--product.js": {
+    "total": 4,
+    "text": 0,
+    "js-text": 4,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "assets/quantity-popover.js": {
+    "total": 1,
+    "text": 0,
+    "js-text": 1,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "assets/quick-order-list.js": {
+    "total": 4,
+    "text": 0,
+    "js-text": 4,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "assets/scentspired-telemetry.js": {
+    "total": 11,
+    "text": 0,
+    "js-text": 11,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  }
+}

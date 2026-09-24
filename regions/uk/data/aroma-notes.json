@@ -1,0 +1,686 @@
+{
+  "citrus": [
+    {
+      "productName": "ADDICTION",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Addiction_-_5_Card_Lifestyle_Image_6bdf93f7-0dca-4ffd-9bc1-d722f327a917.jpg?v=1765436707&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Saffron.png?v=1766131997",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Saffron.png?v=1766131997",
+      "topNote": "Saffron, Jasmine",
+      "heartNote": "Amberwood, Ambergris",
+      "baseNote": "Fir Resin, Cedar",
+      "moodDescription": "Inspired by one of the world’s most celebrated scents, Addiction captures opulence in simplicity. Its sweet, resinous trail lingers like a memory you can’t forget — bold, radiant, and beautifully balanced. This luxury unisex perfume is confidence bottled — addictive, refined, and impossible to ignore.",
+      "productUrl": "/products/addiction"
+    },
+    {
+      "productName": "SUPREME POWER",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Supreme_Power_-_2_Card_Second_Image.jpg?v=1765466005&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Saffron.png?v=1766131997",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Saffron.png?v=1766131997",
+      "topNote": "Saffron, Nutmeg, Lavender",
+      "heartNote": "Agarwood (Oud)",
+      "baseNote": "Patchouli, Musk",
+      "moodDescription": "Crafted for those who command attention through quiet power, Supreme Power is strength turned graceful. It’s bold yet meditative — a fragrance that defines presence without force. Elegant and enduring, it resonates long after you’ve left the room.",
+      "productUrl": "/products/supreme-power"
+    },
+    {
+      "productName": "MIRAGE",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Mirage_-_5_Card_Second_Image.jpg?v=1764929630&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Saffron.png?v=1766131997",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Saffron.png?v=1766131997",
+      "topNote": "Passionfruit, Fruity Notes, Saffron, Turkish Rose",
+      "heartNote": "Agarwood (Oud), Benzoin, Indonesian Patchouli Leaf",
+      "baseNote": "Leather, Akigalawood, Amber, Vanilla, Labdanum",
+      "moodDescription": "This scent redefines sensuality — luminous yet shadowed, modern yet timeless. Mirage feels like a dream between dusk and dawn, where warmth meets wonder. An irresistible unisex perfume that transforms every moment into a work of art.",
+      "productUrl": "/products/mirage"
+    },
+    {
+      "productName": "BLACK SPICE",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Black_Spice_-_2_Card_Second_Image.jpg?v=1765437016&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Saffron.png?v=1766131997",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Saffron.png?v=1766131997",
+      "topNote": "Saffron, Juniper Berries, Black Violet",
+      "heartNote": "Leather, Crystal Rose",
+      "baseNote": "Raspberry, Cashmeran, Vetiver",
+      "moodDescription": "Crafted for those who stand out without effort, Black Spice is daring yet graceful. It moves between strength and sensuality with ease, leaving a darkly elegant trail that lingers long after you’ve gone. A bold, luxurious unisex fragrance that commands attention through confidence, not volume.",
+      "productUrl": "/products/black-spice"
+    },
+    {
+      "productName": "MAVERICK",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Maverick_-_2_Card_Second_Image.jpg?v=1765458641&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Saffron.png?v=1766131997",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Saffron.png?v=1766131997",
+      "topNote": "Agarwood (Oud), Nutmeg, Saffron",
+      "heartNote": "Agarwood (Oud), Styrax, Cedar",
+      "baseNote": "Agarwood (Oud), Leather, Patchouli, Castoreum, Vanilla, Labdanum",
+      "moodDescription": "For the unconventional achiever, Maverick is individuality personified. It’s bold but balanced — daring without shouting. A fragrance that embodies quiet power and sophistication, leaving a lasting impression wherever it goes.",
+      "productUrl": "/products/maverick"
+    }
+  ],
+  "green": [
+    {
+      "productName": "Black Poison",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/BlackPoison-5_CardLifestyleImage.jpg?v=1765436983&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Vanilla.png?v=1766131997",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Vanilla.png?v=1766131997",
+      "topNote": "Pear, Pink Pepper, Orange Blossom",
+      "heartNote": "Coffee, Jasmine, Bitter Almond, Licorice",
+      "baseNote": "Vanilla, Patchouli, Cashmere Wood, Cedar",
+      "moodDescription": "Crafted for women who define their own rules, Black Poison is dark, daring, and unapologetically sensual. Its intoxicating trail evokes mystery and allure — perfect for evenings that linger beyond midnight. This luxury women’s perfume turns confidence into temptation and elegance into an unforgettable statement.",
+      "productUrl": "/products/black-poison"
+    },
+    {
+      "productName": "Feminine Fancy",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Feminine_Fancy_-_2_Card_Second_Image.jpg?v=1765437578&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Vanilla.png?v=1766131997",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Vanilla.png?v=1766131997",
+      "topNote": "Almond, Coffee, Bergamot, Lemon",
+      "heartNote": "Tuberose, Jasmine Sambac, Orange Blossom, Bulgarian Rose, Orris",
+      "baseNote": "Tonka Bean, Cacao, Vanilla, Praline, Sandalwood, Cinnamon, Cedar",
+      "moodDescription": "Created for the woman who balances power and grace, Feminine Fancy captures allure in its purest form. Every note feels magnetic — sensual yet refined, bold yet beautifully balanced. It’s a fragrance that commands attention softly, making every entrance unforgettable.",
+      "productUrl": "/products/feminine-fancy"
+    },
+    {
+      "productName": "Sheer Grace",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Sheer_Grace_-_2_Card_Second_Image.jpg?v=1765465508&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Vanilla.png?v=1766131997",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Vanilla.png?v=1766131997",
+      "topNote": "Black Currant, Pear",
+      "heartNote": "Iris, Jasmine, Orange Blossom",
+      "baseNote": "Patchouli, Tonka Bean, Vanilla, Praline",
+      "moodDescription": "For women who see beauty in joy, Sheer Grace is the essence of happiness bottled. Its floral-gourmand charm feels radiant and uplifting — the perfect balance of sweetness and sophistication. It’s not just a fragrance; it’s a reminder to find grace in every moment.",
+      "productUrl": "/products/sheer-grace"
+    },
+    {
+      "productName": "Smoky Leather",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Smoky_Leather_-_2_Card_Second_Image.jpg?v=1765465835&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Vanilla.png?v=1766131997",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Vanilla.png?v=1766131997",
+      "topNote": "Tobacco Leaf, Spicy Notes",
+      "heartNote": "Tonka Bean, Tobacco Blossom, Vanilla, Cacao",
+      "baseNote": "Dried Fruits, Woody Notes",
+      "moodDescription": "This fragrance is the definition of understated seduction. Smoky Leather celebrates confidence and sophistication, capturing the energy of late-night elegance. A truly timeless composition for those who embody passion and power.",
+      "productUrl": "/products/smoky-leather"
+    },
+    {
+      "productName": "Biting Temptation",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Biting_Temp_-_2_Card_Second_Image.jpg?v=1765436916&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Vanilla.png?v=1766131997",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Vanilla.png?v=1766131997",
+      "topNote": "Peach, Blood Orange, Cardamom, Heliotrope",
+      "heartNote": "Rum, Cognac, Davana, Jasmine",
+      "baseNote": "Patchouli, Vanilla, Sandalwood, Tonka Bean, Cashmeran",
+      "moodDescription": "This fragrance captures temptation at its most elegant. Biting Temptation feels playful yet refined — a dance between sweetness and sophistication. It’s made for the confident soul who enjoys life’s pleasures unapologetically, leaving behind an irresistibly magnetic trail.",
+      "productUrl": "/products/biting-temptation"
+    }
+  ],
+  "water": [
+    {
+      "productName": "ADDICTION",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Addiction_-_5_Card_Lifestyle_Image_6bdf93f7-0dca-4ffd-9bc1-d722f327a917.jpg?v=1765436707&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Jasmine.png?v=1766131998",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Jasmine.png?v=1766131998",
+      "topNote": "Saffron, Jasmine",
+      "heartNote": "Amberwood, Ambergris",
+      "baseNote": "Fir Resin, Cedar",
+      "moodDescription": "Inspired by one of the world’s most celebrated scents, Addiction captures opulence in simplicity. Its sweet, resinous trail lingers like a memory you can’t forget — bold, radiant, and beautifully balanced. This luxury unisex perfume is confidence bottled — addictive, refined, and impossible to ignore.",
+      "productUrl": "/products/addiction"
+    },
+    {
+      "productName": "Timeless Grace",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Timeless_Grace_-_2_Card_Second_Image.jpg?v=1765466146&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Jasmine.png?v=1766131998",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Jasmine.png?v=1766131998",
+      "topNote": "Orange, Mandarin Orange, Bergamot, Orange Blossom",
+      "heartNote": "Turkish Rose, Jasmine, Mimosa, Ylang-Ylang",
+      "baseNote": "Patchouli, White Musk, Vanilla, Vetiver, Tonka Bean, Opoponax",
+      "moodDescription": "This fragrance was created for women who embody refinement and strength. Timeless Grace feels like confidence woven in silk — fresh yet profound, bold yet feminine. Its elegant trail enhances every moment with charm and composure. The kind of scent that leaves admiration in your wake — graceful, golden, unforgettable.",
+      "productUrl": "/products/timeless-grace"
+    },
+    {
+      "productName": "Rosy Dawn",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/RosyDawn-2_CardSecondImage.jpg?v=1765465378&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Jasmine.png?v=1766131998",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Jasmine.png?v=1766131998",
+      "topNote": "Pink Pepper, Mandarin Orange, Calabrian bergamot, Lemon",
+      "heartNote": "Rose de Grasse, Damask Rose, Jasmine Leaf",
+      "baseNote": "Patchouli, Palisander Rosewood, Ambroxan, White Musk",
+      "moodDescription": "This scent was created for women who turn ordinary mornings into something beautiful. Rosy Dawn is feminine, optimistic, and effortlessly graceful — a fragrance that feels like sunlight through silk curtains. Every note radiates renewal and quiet confidence.",
+      "productUrl": "/products/rosy-dawn"
+    },
+    {
+      "productName": "Sinful Desire",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Sinful_Desire_-_2_Card_Second_Image.jpg?v=1765465718&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Jasmine.png?v=1766131998",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Jasmine.png?v=1766131998",
+      "topNote": "Sour Cherry, Bitter Almond, Liquor",
+      "heartNote": "Sour Cherry, Plum, Turkish Rose, Jasmine Sambac",
+      "baseNote": "Peru Balsam, Tonka Bean, Sandalwood, Vetiver, Cedar, Vanilla",
+      "moodDescription": "Inspired by one of the world’s most celebrated scents, Addiction captures opulence in simplicity. Its sweet, resinous trail lingers like a memory you can’t forget — bold, radiant, and beautifully balanced. This luxury unisex perfume is confidence bottled — addictive, refined, and impossible to ignore.",
+      "productUrl": "/products/sinful-desire"
+    },
+    {
+      "productName": "On High",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/On_High_-_5.jpg?v=1765458952&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Jasmine.png?v=1766131998",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Jasmine.png?v=1766131998",
+      "topNote": "Bergamot, Litchi, Peach",
+      "heartNote": "Peony, Jasmine, Orange Blossom, Petalia",
+      "baseNote": "Woody Notes, Musk, Moss",
+      "moodDescription": "It’s the fragrance of pure optimism — weightless yet magnetic. On High was created for those who lead with quiet brilliance. Its soft floral energy and luminous citrus notes rise effortlessly, leaving behind a clean, confident trail. Modern, gentle, and endlessly fresh.",
+      "productUrl": "/products/on-high"
+    }
+  ],
+  "musk": [
+    {
+      "productName": "Invictor",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Invictor_-_2.jpg?v=1764929566&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Cedar_Wood.png?v=1766131998",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Cedar_Wood.png?v=1766131998",
+      "topNote": "Bergamot, Black Currant, Apple, Lemon, Pink Pepper",
+      "heartNote": "Pineapple, Patchouli, Moroccan Jasmine",
+      "baseNote": "Birch, Musk, Oakmoss, Cedarwood, Ambroxan",
+      "moodDescription": "Inspired by a world-renowned fragrance of triumph, Invictor redefines strength through elegance. It evolves from crisp brightness to a smooth, woody base, leaving behind a lasting aura of success. Crafted for achievers, this luxury men’s perfume is bold, confident, and built to conquer every challenge.",
+      "productUrl": "/products/invictor"
+    },
+    {
+      "productName": "Cool Alpine",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Cool_Alpine_-_5.jpg?v=1765437174&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Cedar_Wood.png?v=1766131998",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Cedar_Wood.png?v=1766131998",
+      "topNote": "Bergamot, Mandarin Orange",
+      "heartNote": "Green Tea, Black Currant",
+      "baseNote": "Musk, Sandalwood, Petitgrain, Galbanum",
+      "moodDescription": "Inspired by nature’s purest moments, Cool Alpine captures the serenity of mountain air meeting polished modernity. It’s an effortlessly elegant fragrance — subtle yet unforgettable. Designed for every season, it embodies cool confidence and ageless charm.Inspired by nature’s purest moments, Cool Alpine captures the serenity of mountain air meeting polished modernity. It’s an effortlessly elegant fragrance — subtle yet unforgettable. Designed for every season, it embodies cool confidence and ageless charm.",
+      "productUrl": "/products/cool-alpine"
+    },
+    {
+      "productName": "Visionary",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Visionary_-_3.jpg?v=1764929689&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Cedar_Wood.png?v=1766131998",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Cedar_Wood.png?v=1766131998",
+      "topNote": "Citron, Calabrian bergamot, Sicilian Orange",
+      "heartNote": "Tunisian Neroli, Nigerian Ginger, Ceylon Cinnamon",
+      "baseNote": "Chinese Black Tea, Ambroxan, Guaiac Wood, Olibanum",
+      "moodDescription": "Crafted for thinkers, dreamers, and innovators, Visionary reflects ambition turned into reality. The fragrance evolves with a confident, intelligent balance — refined yet bold. With its clean finish and lingering warmth, Visionary is the signature scent of leadership, intellect, and inspiration.",
+      "productUrl": "/products/visionary"
+    },
+    {
+      "productName": "Floral Whisper",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Floral_Whisper_-_5.jpg?v=1765437745&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Cedar_Wood.png?v=1766131998",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Cedar_Wood.png?v=1766131998",
+      "topNote": "Green Notes",
+      "heartNote": "Tuberose, Jasmine, Honeysuckle",
+      "baseNote": "Orris Root, Sandalwood, Vanilla",
+      "moodDescription": "Floral Whisper embodies femininity at its purest — tender, romantic, and full of life. It’s a fragrance for dreamers and believers, those who find beauty in simplicity. Delicate yet captivating, it’s your invitation to carry a garden wherever you go.",
+      "productUrl": "/products/floral-whisper"
+    },
+    {
+      "productName": "Exotic Night",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Exotic_Night_-_5.jpg?v=1765438652&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Cedar_Wood.png?v=1766131998",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Cedar_Wood.png?v=1766131998",
+      "topNote": "Jasmine, Gardenia, Lemon, Bergamot, Orange, Ylang-Ylang, Truffle",
+      "heartNote": "Orchid, Spices, Gardenia, Fruity Notes, Ylang-Ylang, Jasmine, Lotus",
+      "baseNote": "Mexican Chocolate, Patchouli, Vanilla, Incense, Amber, Sandalwood",
+      "moodDescription": "For the woman who turns every glance into intrigue, Exotic Night is power in perfume form. Bold yet sophisticated, it’s a fragrance that thrives in candlelight and conversation. Seductive, luxurious, and unforgettable — it transforms night into pure enchantment.",
+      "productUrl": "/products/exotic-night"
+    }
+  ],
+  "fruit": [
+    {
+      "productName": "Fierce",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Fierece_-_5.jpg?v=1765437674&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Amber_Resin.png?v=1766131998",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Amber_Resin.png?v=1766131998",
+      "topNote": "Bergamot, Mandarin Orange, Elemi",
+      "heartNote": "Sandalwood",
+      "baseNote": "Olibanum, Tonka Bean, Vanilla",
+      "moodDescription": "Designed for men who lead fearlessly, Fierce radiates self-assurance and charm. It transitions from citrus fire to warm sensuality, adapting beautifully to day or night. Confident, daring, and undeniably magnetic, Fierce is the scent of a man who owns his power — effortlessly.",
+      "productUrl": "/products/fierce"
+    },
+    {
+      "productName": "Wanderer",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Wanderer_-_2_Card_Second_Image.jpg?v=1765466216&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Amber_Resin.png?v=1766131998",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Amber_Resin.png?v=1766131998",
+      "topNote": "Agarwood (Oud), Incense",
+      "heartNote": "Rose, Raspberry, Saffron, Birch",
+      "baseNote": "Amber, Benzoin, Geranium",
+      "moodDescription": "Made for explorers of mind and spirit, Wanderer embodies freedom and introspection. Each note unfolds like a journey — bold, soulful, and captivating. A luxury unisex perfume, it captures the art of movement and the peace of self-discovery.",
+      "productUrl": "/products/wanderer"
+    },
+    {
+      "productName": "Heaven’s Pour",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Heaven_s_Pour_-_5.jpg?v=1765456307&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Amber_Resin.png?v=1766131998",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Amber_Resin.png?v=1766131998",
+      "topNote": "Cognac",
+      "heartNote": "Cinnamon, Tonka Bean, Oak",
+      "baseNote": "Vanilla, Praline, Sandalwood",
+      "moodDescription": "This fragrance is comfort and luxury intertwined. Heaven’s Pour evokes quiet evenings, glowing light, and timeless indulgence. It’s a scent of sophistication that wraps you like velvet — a celebration of warmth, connection, and quiet pleasure.",
+      "productUrl": "/products/heavens-pour"
+    },
+    {
+      "productName": "Azure Charm",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Azure_Charm_-_5.jpg?v=1765436850&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Amber_Resin.png?v=1766131998",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Amber_Resin.png?v=1766131998",
+      "topNote": "Bergamot, Ginger, Mandarin Orange",
+      "heartNote": "Pear, Georgywood, Rose",
+      "baseNote": "Ambroxan, Musk, Sandalwood",
+      "moodDescription": "Made for those who exude quiet charisma, Azure Charm radiates calm allure. It’s as refreshing as a breeze yet as lasting as a memory — a sophisticated unisex perfume that redefines subtlety through brilliance.",
+      "productUrl": "/products/azure-charm"
+    },
+    {
+      "productName": "Deep Attraction",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Deep_Attraction_-_5.jpg?v=1765437275&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Amber_Resin.png?v=1766131998",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Amber_Resin.png?v=1766131998",
+      "topNote": "Fig, Bay Leaf, Bergamot",
+      "heartNote": "Cedar, Vetiver, Musk",
+      "baseNote": "Tobacco, Hay",
+      "moodDescription": "Crafted for those who draw attention without trying, Deep Attraction embodies depth and confidence. It’s warm but sophisticated, mysterious yet soothing. A modern unisex fragrance that’s as intriguing as the person who wears it.",
+      "productUrl": "/products/deep-attraction"
+    }
+  ],
+  "floral": [
+    {
+      "productName": "Pink Whisper",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Pink_Whisper_-_2_Card_Second_Image.jpg?v=1765465263&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Musk.png?v=1766131997",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Musk.png?v=1766131997",
+      "topNote": "Litchi, Rhubarb, Bergamot, Nutmeg",
+      "heartNote": "Turkish Rose, Peony, Musk, Petalia, Vanilla",
+      "baseNote": "Cashmeran, Incense, Cedar, Haitian Vetiver",
+      "moodDescription": "Inspired by a world-adored fragrance of timeless beauty, Pink Whisper celebrates the woman who embraces confidence with tenderness. Its blend of fruity brightness and velvety florals feels modern yet eternal — a scent that blooms with sophistication and lingers with poise. It’s your everyday luxury, bottled in pure femininity.",
+      "productUrl": "/products/pink-whisper"
+    },
+    {
+      "productName": "Luminous Wonder",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Luminous_Wonder_-_4.jpg?v=1764928973&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Musk.png?v=1766131997",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Musk.png?v=1766131997",
+      "topNote": "Ylang-Ylang, Pear, Melon, Magnolia, Peach, Orange, Bergamot",
+      "heartNote": "Jasmine, Lily, Tuberose, Freesia, Rose, Orchid, Violet, Plum",
+      "baseNote": "Musk, Vanilla, Blackberry, Cedar",
+      "moodDescription": "Inspired by timeless elegance, Luminous Wonder is made for women who shine without trying. It captures the feeling of soft light against skin — radiant, feminine, and deeply comforting. This luxury floral fragrance turns everyday moments into memories touched by gold.",
+      "productUrl": "/products/luminous-wonder"
+    },
+    {
+      "productName": "Anō 13",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Ano13_-_3.jpg?v=1765436803&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Musk.png?v=1766131997",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Musk.png?v=1766131997",
+      "topNote": "Pear, Apple, Citruses",
+      "heartNote": "Ambrette (Musk Mallow), Amyl Salicylate, Moss, Jasmine",
+      "baseNote": "Iso E Super, Cetalox, Helvetolide, Ambrettolide",
+      "moodDescription": "Created for those who appreciate subtlety, Anô 13 is effortlessly elegant. Its delicate warmth evolves uniquely on every wearer, blending seamlessly with natural skin scent. This modern unisex perfume embodies purity, serenity, and sophistication in perfect harmony.",
+      "productUrl": "/products/ano-13"
+    },
+    {
+      "productName": "Pure Light",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Pure_Light_-_5.jpg?v=1765465323&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Musk.png?v=1766131997",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Musk.png?v=1766131997",
+      "topNote": "White Rose, Pink Pepper, Aldehydes",
+      "heartNote": "Violet, Neroli, Peony",
+      "baseNote": "Blonde Woods, Sandalwood, Musk",
+      "moodDescription": "This perfume is serenity reimagined — fresh, elegant, and timeless. Pure Light celebrates simplicity and purity, evoking the calm confidence of morning light. It’s a modern, minimalist fragrance designed to uplift, soothe, and inspire.",
+      "productUrl": "/products/pure-light"
+    },
+    {
+      "productName": "Sun Soaked",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Sun_Soaked_-_2_Card_Second_Image.jpg?v=1765465925&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Musk.png?v=1766131997",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Musk.png?v=1766131997",
+      "topNote": "Sicilian Orange, Calabrian bergamot, Mandarin Orange",
+      "heartNote": "Ginger",
+      "baseNote": "Ambroxan",
+      "moodDescription": "Made for free spirits and optimists, Sun Soaked is the fragrance of endless summer. It evokes laughter, salt air, and glowing skin — an expression of joy that feels as natural as the sun itself. Radiant and full of life, it’s a scent that never fades into the background.",
+      "productUrl": "/products/sun-soaked"
+    }
+  ],
+  "spice": [
+    {
+      "productName": "Timeless Grace",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Timeless_Grace_-_2_Card_Second_Image.jpg?v=1765466146&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_PAtchouli.png?v=1766131997",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_PAtchouli.png?v=1766131997",
+      "topNote": "Orange, Mandarin Orange, Bergamot, Orange Blossom",
+      "heartNote": "Turkish Rose, Jasmine, Mimosa, Ylang-Ylang",
+      "baseNote": "Patchouli, White Musk, Vanilla, Vetiver, Tonka Bean, Opoponax",
+      "moodDescription": "This fragrance was created for women who embody refinement and strength. Timeless Grace feels like confidence woven in silk — fresh yet profound, bold yet feminine. Its elegant trail enhances every moment with charm and composure. The kind of scent that leaves admiration in your wake — graceful, golden, unforgettable.",
+      "productUrl": "/products/timeless-grace"
+    },
+    {
+      "productName": "Pink Whisper",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Pink_Whisper_-_2_Card_Second_Image.jpg?v=1765465263&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_PAtchouli.png?v=1766131997",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_PAtchouli.png?v=1766131997",
+      "topNote": "Litchi, Rhubarb, Bergamot, Nutmeg",
+      "heartNote": "Turkish Rose, Peony, Musk, Petalia, Vanilla",
+      "baseNote": "Cashmeran, Incense, Cedar, Haitian Vetiver",
+      "moodDescription": "Inspired by a world-adored fragrance of timeless beauty, Pink Whisper celebrates the woman who embraces confidence with tenderness. Its blend of fruity brightness and velvety florals feels modern yet eternal — a scent that blooms with sophistication and lingers with poise. It’s your everyday luxury, bottled in pure femininity.",
+      "productUrl": "/products/pink-whisper"
+    },
+    {
+      "productName": "Sheer Grace",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Sheer_Grace_-_2_Card_Second_Image.jpg?v=1765465508&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_PAtchouli.png?v=1766131997",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_PAtchouli.png?v=1766131997",
+      "topNote": "Black Currant, Pear",
+      "heartNote": "Iris, Jasmine, Orange Blossom",
+      "baseNote": "Patchouli, Tonka Bean, Vanilla, Praline",
+      "moodDescription": "For women who see beauty in joy, Sheer Grace is the essence of happiness bottled. Its floral-gourmand charm feels radiant and uplifting — the perfect balance of sweetness and sophistication. It’s not just a fragrance; it’s a reminder to find grace in every moment.",
+      "productUrl": "/products/sheer-grace"
+    },
+    {
+      "productName": " Silk Odyssey",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Silk_Odyssey_-_2_Card_Second_Image.jpg?v=1765465672&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_PAtchouli.png?v=1766131997",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_PAtchouli.png?v=1766131997",
+      "topNote": "Bulgarian Rose, Violet, Strawberry",
+      "heartNote": "Turkish Rose, Benzoin",
+      "baseNote": "Agarwood (Oud), Vanilla, Amber, Caramel, Cedar",
+      "moodDescription": "Crafted for the free spirit with refined taste, Silk Odyssey feels like traveling through layers of silk and amber light. The scent evolves with sophistication and warmth — elegant by day, alluring by night. A true modern classic.",
+      "productUrl": "/products/silk-odyssey"
+    },
+    {
+      "productName": "Amber Vale",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Amber_Vale_-_4_93bcd84c-ba0d-4b4e-aa83-789de48d3288.jpg?v=1765456221&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_PAtchouli.png?v=1766131997",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_PAtchouli.png?v=1766131997",
+      "topNote": "Apple, Lavender, Mandarin Orange, Bergamot",
+      "heartNote": "Geranium, Violet, Jasmine",
+      "baseNote": "Vanilla, Cardamom, Sandalwood, Pepper, Guaiac Wood, Patchouli",
+      "moodDescription": "This fragrance redefines balance — bright yet sensual, fresh yet grounded. Amber Vale embodies understated elegance and confidence, making it a versatile companion for every season. It’s the scent of quiet charisma — timeless, comforting, and irresistibly refined.",
+      "productUrl": "/products/amber-vale"
+    }
+  ],
+  "wood": [
+    {
+      "productName": "Fierce",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Fierece_-_5.jpg?v=1765437674&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Tonka.png?v=1766131998",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Tonka.png?v=1766131998",
+      "topNote": "Bergamot, Mandarin Orange, Elemi",
+      "heartNote": "Sandalwood",
+      "baseNote": "Olibanum, Tonka Bean, Vanilla",
+      "moodDescription": "Designed for men who lead fearlessly, Fierce radiates self-assurance and charm. It transitions from citrus fire to warm sensuality, adapting beautifully to day or night. Confident, daring, and undeniably magnetic, Fierce is the scent of a man who owns his power — effortlessly.",
+      "productUrl": "/products/fierce"
+    },
+    {
+      "productName": "Feminine Fancy",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Feminine_Fancy_-_2_Card_Second_Image.jpg?v=1765437578&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Tonka.png?v=1766131998",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Tonka.png?v=1766131998",
+      "topNote": "Almond, Coffee, Bergamot, Lemon",
+      "heartNote": "Tuberose, Jasmine Sambac, Orange Blossom, Bulgarian Rose, Orris",
+      "baseNote": "Tonka Bean, Cacao, Vanilla, Praline, Sandalwood, Cinnamon, Cedar",
+      "moodDescription": "Created for the woman who balances power and grace, Feminine Fancy captures allure in its purest form. Every note feels magnetic — sensual yet refined, bold yet beautifully balanced. It’s a fragrance that commands attention softly, making every entrance unforgettable.",
+      "productUrl": "/products/feminine-fancy"
+    },
+    {
+      "productName": "Dark Illusion",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Dark_Illusion_-_2_Card_Second_Image.jpg?v=1765438512&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Tonka.png?v=1766131998",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Tonka.png?v=1766131998",
+      "topNote": "Rum, Sugar Cane",
+      "heartNote": "Dark Chocolate, Coffee, Caramel",
+      "baseNote": "Sandalwood, Heliotrope",
+      "moodDescription": "A gourmand masterpiece, Dark Illusion is sophistication dipped in temptation. It’s made for evenings that blur time — elegant, inviting, and addictive. A luxury unisex fragrance that turns comfort into allure and darkness into something divine.",
+      "productUrl": "/products/dark-illusion"
+    },
+    {
+      "productName": "Intense Ardour",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Intense_Ardour_-_5.jpg?v=1765456556&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Tonka.png?v=1766131998",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Tonka.png?v=1766131998",
+      "topNote": "Clary Sage, Lavender",
+      "heartNote": "Bitter Almond, Vanilla, Leather, Orris",
+      "baseNote": "Tonka Bean, Leather, Cashmeran, White Woods, Amber",
+      "moodDescription": "For those who live and love with intensity, Intense Ardour embodies passion refined through elegance. It’s daring yet polished — a scent that expresses strength without losing softness. Powerful, timeless, and deeply captivating, it’s made to leave hearts and memories stirred.",
+      "productUrl": "/products/intense-ardour"
+    },
+    {
+      "productName": "Classic Attire",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Classic_Attire_-_5.jpg?v=1765437132&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Tonka.png?v=1766131998",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Tonka.png?v=1766131998",
+      "topNote": "Violet Leaf, Coriander, Bergamot",
+      "heartNote": "Rose, Black Pepper, Lily-of-the-Valley",
+      "baseNote": "Vanilla, Patchouli, Ambroxan, Black Pepper",
+      "moodDescription": "For those who prefer sophistication in simplicity, Classic Attire is the perfect fit. It’s confident without being loud — a refined scent for every occasion. Like a perfectly tailored suit, it never goes out of style.",
+      "productUrl": "/products/classic-attire"
+    }
+  ],
+  "amber": [
+    {
+      "productName": "Pink Whisper",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Pink_Whisper_-_2_Card_Second_Image.jpg?v=1765465263&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Rose.png?v=1766131997",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Rose.png?v=1766131997",
+      "topNote": "Litchi, Rhubarb, Bergamot, Nutmeg",
+      "heartNote": "Turkish Rose, Peony, Musk, Petalia, Vanilla",
+      "baseNote": "Cashmeran, Incense, Cedar, Haitian Vetiver",
+      "moodDescription": "Inspired by a world-adored fragrance of timeless beauty, Pink Whisper celebrates the woman who embraces confidence with tenderness. Its blend of fruity brightness and velvety florals feels modern yet eternal — a scent that blooms with sophistication and lingers with poise. It’s your everyday luxury, bottled in pure femininity.",
+      "productUrl": "/products/pink-whisper"
+    },
+    {
+      "productName": " Silk Odyssey",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Silk_Odyssey_-_2_Card_Second_Image.jpg?v=1765465672&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Rose.png?v=1766131997",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Rose.png?v=1766131997",
+      "topNote": "Bulgarian Rose, Violet, Strawberry",
+      "heartNote": "Turkish Rose, Benzoin",
+      "baseNote": "Agarwood (Oud), Vanilla, Amber, Caramel, Cedar",
+      "moodDescription": "Crafted for the free spirit with refined taste, Silk Odyssey feels like traveling through layers of silk and amber light. The scent evolves with sophistication and warmth — elegant by day, alluring by night. A true modern classic.",
+      "productUrl": "/products/silk-odyssey"
+    },
+    {
+      "productName": "Rosy Dawn",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/RosyDawn-2_CardSecondImage.jpg?v=1765465378&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Rose.png?v=1766131997",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Rose.png?v=1766131997",
+      "topNote": "Pink Pepper, Mandarin Orange, Calabrian bergamot, Lemon",
+      "heartNote": "Rose de Grasse, Damask Rose, Jasmine Leaf",
+      "baseNote": "Patchouli, Palisander Rosewood, Ambroxan, White Musk",
+      "moodDescription": "This scent was created for women who turn ordinary mornings into something beautiful. Rosy Dawn is feminine, optimistic, and effortlessly graceful — a fragrance that feels like sunlight through silk curtains. Every note radiates renewal and quiet confidence.",
+      "productUrl": "/products/rosy-dawn"
+    },
+    {
+      "productName": "Sinful Desire",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Sinful_Desire_-_2_Card_Second_Image.jpg?v=1765465718&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Rose.png?v=1766131997",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Rose.png?v=1766131997",
+      "topNote": "Sour Cherry, Bitter Almond, Liquor",
+      "heartNote": "Sour Cherry, Plum, Turkish Rose, Jasmine Sambac",
+      "baseNote": "Peru Balsam, Tonka Bean, Sandalwood, Vetiver, Cedar, Vanilla",
+      "moodDescription": "Inspired by one of the world’s most celebrated scents, Addiction captures opulence in simplicity. Its sweet, resinous trail lingers like a memory you can’t forget — bold, radiant, and beautifully balanced. This luxury unisex perfume is confidence bottled — addictive, refined, and impossible to ignore.",
+      "productUrl": "/products/sinful-desire"
+    },
+    {
+      "productName": "Ocean Drift",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Ocean_Drift_-_5.jpg?v=1765458894&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Rose.png?v=1766131997",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Rose.png?v=1766131997",
+      "topNote": "Citron, Mint, Orange, Lemon, Black Currant, Coriander",
+      "heartNote": "Apricot, Basil, Carrot Seeds, May Rose",
+      "baseNote": "Fig, Dates, Ambrette",
+      "moodDescription": "This fragrance captures the essence of wind, water, and freedom. Ocean Drift was designed for the open-minded — those who seek clarity and movement. Crisp and optimistic, it’s a refreshing statement of purity, strength, and balance.",
+      "productUrl": "/products/ocean-drift"
+    }
+  ],
+  "gourmand": [
+    {
+      "productName": "Invictor",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Invictor_-_2.jpg?v=1764929566&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_bergamot.png?v=1766131997",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_bergamot.png?v=1766131997",
+      "topNote": "Bergamot, Black Currant, Apple, Lemon, Pink Pepper",
+      "heartNote": "Pineapple, Patchouli, Moroccan Jasmine",
+      "baseNote": "Birch, Musk, Oakmoss, Cedarwood, Ambroxan",
+      "moodDescription": "Inspired by a world-renowned fragrance of triumph, Invictor redefines strength through elegance. It evolves from crisp brightness to a smooth, woody base, leaving behind a lasting aura of success. Crafted for achievers, this luxury men’s perfume is bold, confident, and built to conquer every challenge.",
+      "productUrl": "/products/invictor"
+    },
+    {
+      "productName": "Cool Alpine",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Cool_Alpine_-_5.jpg?v=1765437174&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_bergamot.png?v=1766131997",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_bergamot.png?v=1766131997",
+      "topNote": "Bergamot, Mandarin Orange",
+      "heartNote": "Green Tea, Black Currant",
+      "baseNote": "Musk, Sandalwood, Petitgrain, Galbanum",
+      "moodDescription": "Inspired by nature’s purest moments, Cool Alpine captures the serenity of mountain air meeting polished modernity. It’s an effortlessly elegant fragrance — subtle yet unforgettable. Designed for every season, it embodies cool confidence and ageless charm.Inspired by nature’s purest moments, Cool Alpine captures the serenity of mountain air meeting polished modernity. It’s an effortlessly elegant fragrance — subtle yet unforgettable. Designed for every season, it embodies cool confidence and ageless charm.",
+      "productUrl": "/products/cool-alpine"
+    },
+    {
+      "productName": "Illusion Cove",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Illusion_Cove_-_5.jpg?v=1765456402&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_bergamot.png?v=1766131997",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_bergamot.png?v=1766131997",
+      "topNote": "Bergamot, Mandarin Orange, Lemon,Orange, Lavender, Rosemary",
+      "heartNote": "African Orange Flower, Neroli, Jasmine, Pitosporum",
+      "baseNote": "Amber, Angelica, Ambrette (Musk Mallow)",
+      "moodDescription": "This scent captures coastal sophistication — sunlight over sea breeze and salt air turned elegant. Illusion Cove feels modern and confident, the perfect fragrance for those who value purity and poise. Refreshing yet refined, it’s luxury in its lightest, most natural form.",
+      "productUrl": "/products/illusion-cove"
+    },
+    {
+      "productName": "Mythic Moves",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Mythic_Moves_-_5.jpg?v=1765458733&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_bergamot.png?v=1766131997",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_bergamot.png?v=1766131997",
+      "topNote": "African Marigold, Bergamot, Bucchu",
+      "heartNote": "Violet, Jasmine, Cyclamen",
+      "baseNote": "Black Amber, Musk, Vetiver, Moroccan Cedarwood",
+      "moodDescription": "Inspired by global spirit and artistic energy, Mythic Moves celebrates individuality. It’s the scent of movement, creativity, and effortless charm. Smooth, versatile, and beautifully composed — this is modern sophistication in motion.",
+      "productUrl": "/products/mythic-moves"
+    },
+    {
+      "productName": "Visionary",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Visionary_-_3.jpg?v=1764929689&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_bergamot.png?v=17661319971",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_bergamot.png?v=1766131997",
+      "topNote": "Citron, Calabrian bergamot, Sicilian Orange",
+      "heartNote": "Tunisian Neroli, Nigerian Ginger, Ceylon Cinnamon",
+      "baseNote": "Chinese Black Tea, Ambroxan, Guaiac Wood, Olibanum",
+      "moodDescription": "Crafted for thinkers, dreamers, and innovators, Visionary reflects ambition turned into reality. The fragrance evolves with a confident, intelligent balance — refined yet bold. With its clean finish and lingering warmth, Visionary is the signature scent of leadership, intellect, and inspiration.",
+      "productUrl": "/products/visionary"
+    }
+  ],
+  "leather": [
+    {
+      "productName": "ADDICTION",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Addiction_-_5_Card_Lifestyle_Image_6bdf93f7-0dca-4ffd-9bc1-d722f327a917.jpg?v=1765436707&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Ambergris.png?v=1766131997",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Ambergris.png?v=1766131997",
+      "topNote": "Saffron, Jasmine",
+      "heartNote": "Amberwood, Ambergris",
+      "baseNote": "Fir Resin, Cedar",
+      "moodDescription": "Inspired by one of the world’s most celebrated scents, Addiction captures opulence in simplicity. Its sweet, resinous trail lingers like a memory you can’t forget — bold, radiant, and beautifully balanced. This luxury unisex perfume is confidence bottled — addictive, refined, and impossible to ignore.",
+      "productUrl": "/products/addiction"
+    },
+    {
+      "productName": "Liberty",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Liberty_-_5.jpg?v=1765458279&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Ambergris.png?v=1766131997",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Ambergris.png?v=1766131997",
+      "topNote": "Lavender, Mandarin Orange, Black Currant, Petitgrain",
+      "heartNote": "Lavender, Orange Blossom, Jasmine",
+      "baseNote": "Madagascar Vanilla, Musk, Cedar, Ambergris",
+      "moodDescription": "It’s the scent of women who live without limits. Liberty celebrates independence, confidence, and modern sophistication — a fearless blend of strength and softness. Its signature trail embodies liberation and allure, defining a spirit that is wild, elegant, and forever free.",
+      "productUrl": "/products/liberty"
+    },
+    {
+      "productName": "Mythic Moves",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Mythic_Moves_-_5.jpg?v=1765458733&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Ambergris.png?v=1766131997",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Ambergris.png?v=1766131997",
+      "topNote": "African Marigold, Bergamot, Bucchu",
+      "heartNote": "Violet, Jasmine, Cyclamen",
+      "baseNote": "Black Amber, Musk, Vetiver, Moroccan Cedarwood",
+      "moodDescription": "Inspired by global spirit and artistic energy, Mythic Moves celebrates individuality. It’s the scent of movement, creativity, and effortless charm. Smooth, versatile, and beautifully composed — this is modern sophistication in motion.",
+      "productUrl": "/products/mythic-moves"
+    },
+    {
+      "productName": "Anō 13",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Ano13_-_3.jpg?v=1765436803&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Ambergris.png?v=1766131997",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Ambergris.png?v=1766131997",
+      "topNote": "Pear, Apple, Citruses",
+      "heartNote": "Ambrette (Musk Mallow), Amyl Salicylate, Moss, Jasmine",
+      "baseNote": "Iso E Super, Cetalox, Helvetolide, Ambrettolide",
+      "moodDescription": "Created for those who appreciate subtlety, Anô 13 is effortlessly elegant. Its delicate warmth evolves uniquely on every wearer, blending seamlessly with natural skin scent. This modern unisex perfume embodies purity, serenity, and sophistication in perfect harmony.",
+      "productUrl": "/products/ano-13"
+    },
+    {
+      "productName": "Iconic Desire",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Iconic_Desire_-_4_636c1814-29e0-45f2-86b0-cc989e8e0671.jpg?v=1765439013&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Ambergris.png?v=1766131997",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Ambergris.png?v=1766131997",
+      "topNote": "Violet, Cardamom",
+      "heartNote": "Iris, Papyrus",
+      "baseNote": "Ambroxan, Sandalwood, Cedar, Leather, Spicy Notes",
+      "moodDescription": "Created for modern romantics, Iconic Desire is a whisper of luxury on the skin. It’s graceful and magnetic — a scent that stays close yet never goes unnoticed. Perfectly balanced between warmth and purity, it captures the beauty of understatement.",
+      "productUrl": "/products/iconic-desire"
+    }
+  ],
+  "Orange": [
+    {
+      "productName": "Black Poison",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/BlackPoison-5_CardLifestyleImage.jpg?v=1765436983&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Orange_Blossom.png?v=1766131997",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Orange_Blossom.png?v=1766131997",
+      "topNote": "Pear, Pink Pepper, Orange Blossom",
+      "heartNote": "Coffee, Jasmine, Bitter Almond, Licorice",
+      "baseNote": "Vanilla, Patchouli, Cashmere Wood, Cedar",
+      "moodDescription": "Crafted for women who define their own rules, Black Poison is dark, daring, and unapologetically sensual. Its intoxicating trail evokes mystery and allure — perfect for evenings that linger beyond midnight. This luxury women’s perfume turns confidence into temptation and elegance into an unforgettable statement.",
+      "productUrl": "/products/black-poison"
+    },
+    {
+      "productName": "Timeless Grace",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Timeless_Grace_-_2_Card_Second_Image.jpg?v=1765466146&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Orange_Blossom.png?v=1766131997",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Orange_Blossom.png?v=1766131997",
+      "topNote": "Orange, Mandarin Orange, Bergamot, Orange Blossom",
+      "heartNote": "Turkish Rose, Jasmine, Mimosa, Ylang-Ylang",
+      "baseNote": "Patchouli, White Musk, Vanilla, Vetiver, Tonka Bean, Opoponax",
+      "moodDescription": "This fragrance was created for women who embody refinement and strength. Timeless Grace feels like confidence woven in silk — fresh yet profound, bold yet feminine. Its elegant trail enhances every moment with charm and composure. The kind of scent that leaves admiration in your wake — graceful, golden, unforgettable.",
+      "productUrl": "/products/timeless-grace"
+    },
+    {
+      "productName": "Luminous Wonder",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Luminous_Wonder_-_4.jpg?v=1764928973&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Orange_Blossom.png?v=1766131997",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Orange_Blossom.png?v=1766131997",
+      "topNote": "Ylang-Ylang, Pear, Melon, Magnolia, Peach, Orange, Bergamot",
+      "heartNote": "Jasmine, Lily, Tuberose, Freesia, Rose, Orchid, Violet, Plum",
+      "baseNote": "Musk, Vanilla, Blackberry, Cedar",
+      "moodDescription": "Inspired by timeless elegance, Luminous Wonder is made for women who shine without trying. It captures the feeling of soft light against skin — radiant, feminine, and deeply comforting. This luxury floral fragrance turns everyday moments into memories touched by gold.",
+      "productUrl": "/products/luminous-wonder"
+    },
+    {
+      "productName": "On High",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/On_High_-_5.jpg?v=1765458952&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Orange_Blossom.png?v=1766131997",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Orange_Blossom.png?v=1766131997",
+      "topNote": "Bergamot, Litchi, Peach",
+      "heartNote": "Peony, Jasmine, Orange Blossom, Petalia",
+      "baseNote": "Woody Notes, Musk, Moss",
+      "moodDescription": "It’s the fragrance of pure optimism — weightless yet magnetic. On High was created for those who lead with quiet brilliance. Its soft floral energy and luminous citrus notes rise effortlessly, leaving behind a clean, confident trail. Modern, gentle, and endlessly fresh.",
+      "productUrl": "/products/on-high"
+    },
+    {
+      "productName": "Forbidden Love",
+      "productImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Forbidden_Love_-_5.jpg?v=1765437875&width=1000",
+      "categoryImage": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Orange_Blossom.png?v=1766131997",
+      "categoryImageMobile": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_02_-_Orange_Blossom.png?v=1766131997",
+      "topNote": "Neroli, Bergamot, Pink Pepper, Coriander",
+      "heartNote": "Iris, Jasmine, Honeysuckle, Orange Blossom, Rose",
+      "baseNote": "Marshmallow, Vanilla, Caramel, Sugar, Labdanum, Musk, Civet",
+      "moodDescription": "Crafted for women unafraid to express desire, Forbidden Love is both innocent and daring. Its gourmand sweetness meets deep emotion, leaving an unforgettable trail. This perfume turns attraction into art — warm, romantic, and passionately feminine.",
+      "productUrl": "/products/forbidden-love"
+    }
+  ]
+}

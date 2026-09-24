@@ -58,6 +58,11 @@ function sanitizeLiquidForSyntaxCheck(scriptContent) {
   // - Unquoted: const id = {{ product.id }}; -> const id = liquid_val; (Valid Expression)
   js = js.replace(/\{\{\s*[\s\S]*?\s*\}\}/g, " liquid_val ");
 
+  // 4b. {% render %} and {% include %} OUTPUT a value, like {{ }}. Region data
+  // is read that way — const perfumes = {% render 'region--data', name: 'x' %};
+  // — so they become an expression, not a comment (which left `const x = ;`).
+  js = js.replace(/\{%-?\s*(?:render|include)\s[\s\S]*?-?%\}/g, " liquid_val ");
+
   // 5. Replace all remaining Liquid control tags {% ... %} with block comments /* liquid */
   js = js.replace(/\{%\s*[\s\S]*?\s*%\}/g, " /* liquid */ ");
 

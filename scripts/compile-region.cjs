@@ -21,6 +21,8 @@ const {
   deepMerge,
   consumedKeys,
   unresolvedKeys,
+  emitDataSnippet,
+  consumedDataNames,
   listRegions,
   regionContentFiles,
   DEFAULT_REGION,
@@ -239,6 +241,29 @@ try {
   process.exit(1);
 }
 emitted.add('snippets/region--active.liquid');
+
+// Structured content (catalogues, lists) from regions/<id>/data/*.json, read by
+// code through {% render 'region--data', name: '…' %}. A data set the code
+// reads but the region lacks would render `null` and break the component, so
+// it is a build failure, named.
+{
+  let names;
+  try {
+    names = emitDataSnippet(target, DIST_DIR);
+  } catch (err) {
+    if (!err.handled) throw err;
+    process.exit(1);
+  }
+  emitted.add('snippets/region--data.liquid');
+  const missing = [...consumedDataNames().entries()].filter(([name]) => !names.includes(name));
+  if (missing.length) {
+    console.error(`\n❌ regions/${target}/data/ lacks ${missing.length} data file(s) shared code reads:\n`);
+    for (const [name, files] of missing) console.error(`   ${(name + '.json').padEnd(32)} read by ${[...files].join(', ')}`);
+    console.error('');
+    process.exit(1);
+  }
+  console.log(`  + snippets/region--data.liquid    (${names.length} data file(s): ${names.join(', ') || 'none'})`);
+}
 
 /**
  * Every key shared code reads must resolve for this region. An unresolved key
