@@ -2174,10 +2174,10 @@
   ".text-item { font-size: clamp(2rem, 4vw, 4rem) }",
   ".text-item { font-weight: 600 }"
  ],
- "snippets\\bundle-product-grid.liquid": [
+ "snippets\\bundle--product-grid.liquid": [
   "[inline] { font-size: 25px }"
  ],
- "snippets\\cart-drawer.liquid": [
+ "snippets\\cart--drawer.liquid": [
   ".bundle-restrict { font-size: 13px }",
   ".sp-add-to-cart-btn { font-size: 10px }",
   ".sp-add-to-cart-btn { font-weight: 600 }",
@@ -2288,6 +2288,11 @@
   ".sp-tier-items { font-size: 10px }",
   ".sp-tier-items { font-weight: 500 }"
  ],
+ "snippets\\catalog--variant-hover.liquid": [
+  ".hover-variant-btn { font-family: ppmori regular, sans-serif }",
+  ".hover-variant-btn { font-size: 12px }",
+  ".hover-variant-btn.active { font-weight: 600 }"
+ ],
  "snippets\\ecom_theme_helper.liquid": [
   "#ecom-toast { font-size: 17px }"
  ],
@@ -2316,10 +2321,5 @@
   ".bgYgRc label { font-size: 16px }",
   ".fLWima { font-size: 14px }",
   ".glvfXg { font-family: inherit }"
- ],
- "snippets\\product-variant-hover.liquid": [
-  ".hover-variant-btn { font-family: ppmori regular, sans-serif }",
-  ".hover-variant-btn { font-size: 12px }",
-  ".hover-variant-btn.active { font-weight: 600 }"
  ]
 }

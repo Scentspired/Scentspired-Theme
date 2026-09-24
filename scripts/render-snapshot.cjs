@@ -113,6 +113,17 @@ function normalize(html) {
       // Shopify re-numbers section instance ids on every theme upload
       .replace(/shopify-section-(?:template|sections)--\d+__/g, 'shopify-section-X__')
       .replace(/(?:template|sections)--\d+__/g, 'X__')
+      /*
+       * Restarting `shopify theme dev` creates a NEW development theme, so the
+       * theme id changes in every asset path and in Shopify.theme, and Shopify
+       * regenerates the ai_gen_id hash on AI-generated blocks. That made all 20
+       * pages differ by ~25 bytes after a restart — environment, not markup,
+       * and exactly the kind of noise that teaches you to ignore a red harness.
+       */
+      .replace(/\/cdn\/shop\/t\/\d+\//g, '/cdn/shop/t/X/')
+      .replace(/Shopify\.theme\s*=\s*\{[\s\S]*?\};/g, 'Shopify.theme = {X};')
+      .replace(/"theme_store_id":\s*(?:null|\d+)/g, '"theme_store_id":X')
+      .replace(/a[a-z0-9]{17,}aigenblock/g, 'AIGEN_aigenblock')
       // per-request security and session values
       .replace(/nonce="[^"]*"/g, 'nonce="X"')
       .replace(/"token":"[^"]*"/g, '"token":"X"')
