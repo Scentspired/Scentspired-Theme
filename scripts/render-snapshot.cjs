@@ -36,8 +36,26 @@ const BASELINE_DIR = path.join(
 
 const args = process.argv.slice(2);
 const isCheck = args.includes('--check');
+
+/**
+ * The server and market default to the region's own data, so `--region=usa`
+ * alone cannot be checked against the UK dev server. It used to default to
+ * 9292 whatever the region, which reported every USA page as changed — the
+ * harness comparing one storefront against another's baseline.
+ */
+const REGION_FILE = path.join(THEME_ROOT, 'regions', REGION || 'uk', 'region.json');
+const regionData = fs.existsSync(REGION_FILE)
+  ? JSON.parse(fs.readFileSync(REGION_FILE, 'utf8'))
+  : {};
+if (REGION && !fs.existsSync(REGION_FILE)) {
+  console.error(`\n  ✗ No regions/${REGION}/region.json — unknown region.\n`);
+  process.exit(1);
+}
+
 const urlArg = args.find(a => a.startsWith('--url='));
-const BASE_URL = (urlArg ? urlArg.split('=')[1] : 'http://127.0.0.1:9292').replace(/\/$/, '');
+const BASE_URL = (
+  urlArg ? urlArg.split('=')[1] : `http://127.0.0.1:${regionData.dev_port || 9292}`
+).replace(/\/$/, '');
 
 /**
  * Shopify picks the market from the request, and `shopify theme dev` serves the
@@ -47,7 +65,9 @@ const BASE_URL = (urlArg ? urlArg.split('=')[1] : 'http://127.0.0.1:9292').repla
  * makes snapshots reproducible from any location.
  */
 const countryArg = args.find(a => a.startsWith('--country='));
-const COUNTRY = countryArg ? countryArg.split('=')[1] : 'GB';
+const COUNTRY = countryArg
+  ? countryArg.split('=')[1]
+  : (regionData.geo_countries && regionData.geo_countries[0]) || 'GB';
 
 // The page set. Every surface whose markup we intend to keep stable.
 const PAGES = {
@@ -169,6 +189,7 @@ async function fetchPage(route) {
   const failures = [];
   const empties = [];
   let captured = 0;
+  const refused = [];
 
   for (const [name, route] of Object.entries(PAGES)) {
     let result;
@@ -228,6 +249,35 @@ async function fetchPage(route) {
         console.log(`  ✗ ${name.padEnd(20)} CHANGED (${delta >= 0 ? '+' : ''}${delta} bytes)`);
       }
     } else {
+      /*
+       * Never record an error page as a baseline.
+       *
+       * The dev server produces three failure bodies that are not the theme:
+       * an 87-byte expired-token message, a ~5KB "Failed to Upload Theme
+       * Files" page, and Shopify's own 502. Writing one into the baseline
+       * poisons the harness silently — every later run then diffs a real page
+       * against an error and reports enormous changes, or worse, matches
+       * another error and reports success. This has already happened twice.
+       */
+      const bad =
+        normalized.length < 2000 ||
+        /Failed to Upload Theme Files/.test(normalized) ||
+        /access token provided is expired/.test(normalized) ||
+        /Failed to render storefront with status/.test(normalized);
+
+      if (bad) {
+        const why = /Failed to Upload/.test(normalized)
+          ? 'a theme upload error'
+          : /access token/.test(normalized)
+            ? 'an expired session'
+            : /Failed to render storefront/.test(normalized)
+              ? 'a Shopify 5xx'
+              : `only ${normalized.length} bytes`;
+        console.error(`  ! ${name.padEnd(20)} REFUSED — ${why}`);
+        refused.push(`${name}: ${why}`);
+        continue;
+      }
+
       fs.writeFileSync(file, normalized);
       captured++;
       console.log(`  + ${name.padEnd(20)} ${normalized.length} bytes`);
@@ -241,7 +291,20 @@ async function fetchPage(route) {
   }
 
   if (!isCheck) {
-    console.log(`  Baseline captured: ${captured} page(s) in tests/parity/baseline/\n`);
+    if (refused.length) {
+    console.error(`
+  ❌ ${refused.length} page(s) REFUSED — the dev server was unhealthy:`);
+    for (const r of refused) console.error(`     ${r}`);
+    console.error(`  Those baselines were left untouched. Fix the server and re-run.
+`);
+    process.exit(1);
+  }
+
+  // Report where it actually wrote. Hardcoding the UK path here meant a USA
+  // capture claimed to have written the UK baseline, which is a bad thing to
+  // read back later when you are trying to work out what got overwritten.
+  const where = path.relative(THEME_ROOT, BASELINE_DIR).replace(/\\/g, '/');
+  console.log(`  Baseline captured: ${captured} page(s) in ${where}/\n`);
     process.exit(empties.length > 0 ? 1 : 0);
   }
 

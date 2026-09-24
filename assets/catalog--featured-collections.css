@@ -1,0 +1,202 @@
+/* Extracted from sections/catalog--featured-collections.liquid.
+ * Inline CSS is re-downloaded with the HTML on every page that renders
+ * that file and can never be cached. Edit this file, not the .liquid.
+ * Blocks still in the .liquid are the ones that contain Liquid. */
+
+  .featured-collections-section {
+    padding: 60px 0px;
+    background: #fff;
+    font-family: var(--font-body-semibold);
+    position: relative;
+    overflow: hidden;
+    padding-left: 5rem;
+    padding-right: 5rem;
+    max-width: 2100px;
+    width: 100%;
+    margin: 0 auto !important;
+  }
+
+  .featured-collections-wrapper {
+    display: flex;
+    gap: 20px;
+    scroll-snap-type: x mandatory;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .featured-collections-wrapper::-webkit-scrollbar {
+    display: none;
+  }
+
+  .collection-card {
+    position: relative;
+    flex: 0 0 100%;
+    max-width: 100%;
+    border-radius: 15px;
+    overflow: hidden;
+    scroll-snap-align: start;
+  }
+
+  .collection-card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+    border-radius: 15px;
+  }
+
+  .collection-content {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: #fff;
+    font-size: 36px;
+    font-weight: 700;
+    z-index: 2;
+  }
+
+  .collection-button {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background: #f4ff41;
+    color: black;
+    border: none;
+    width: 200px;
+    height: 48px;
+    font-weight: 200;
+    font-size: 13px;
+    border-radius: 40px;
+    z-index: 2;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin-bottom: 50px;
+    margin-left: 40px;
+    font-family: var(--font-body);
+  }
+
+  .collection-button:hover {
+    opacity: 0.9;
+  }
+
+  /* Mobile Layout */
+  @media (max-width: 1023px) {
+    .featured-collections-section {
+      padding: 20px 10px;
+    }
+
+    .featured-collections-wrapper {
+      flex-direction: column;
+      gap: 15px;
+      overflow: visible;
+      scroll-snap-type: none;
+      padding: 0 10px; /* Add equal padding on both sides */
+    }
+
+    .collection-card {
+      flex: none;
+      width: 100%;
+      max-width: 392px;
+      height: 240px;
+      margin: 0 auto;
+    }
+
+    .collection-card img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+    }
+
+    .collection-content {
+      top: 20px;
+      left: 20px;
+      font-size: 24px;
+    }
+
+    .collection-button {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 240px;
+      height: 40px;
+      margin: 0;
+      font-size: 12px;
+    }
+
+    .mobile-arrows {
+      display: none !important;
+    }
+  }
+
+  /* Desktop Layout */
+  @media (min-width: 1024px) {
+    .featured-collections-wrapper {
+      overflow: visible;
+      flex-wrap: nowrap;
+    }
+
+    .collection-card {
+      flex: 1 1 calc(33.333% - 13.33px);
+      max-width: calc(33.333% - 13.33px);
+    }
+
+    .mobile-arrows {
+      display: none !important;
+    }
+  }
+
+  /* Mobile Arrows - Hidden on mobile now */
+  .mobile-arrows {
+    display: none;
+  }
+
+  .arrow-btn {
+    background: #e5ff00;
+    border: none;
+    border-radius: 50%;
+    font-size: 20px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: auto;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+
+  @media screen and (min-width: 760px) and (max-width: 770px) {
+    .featured-collections-section {
+      margin-top: -360px !important;
+    }
+    .collection-button {
+      left: -27px !important;
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .desktop-only {
+      display: none !important;
+    }
+    .mobile-only {
+      display: block !important;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .mobile-only {
+      display: none !important;
+    }
+    .desktop-only {
+      display: block !important;
+    }
+  }

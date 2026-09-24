@@ -1,0 +1,427 @@
+/* Extracted from sections/media--mobile-video-banner.liquid.
+ * Inline CSS is re-downloaded with the HTML on every page that renders
+ * that file and can never be cached. Edit this file, not the .liquid.
+ * Blocks still in the .liquid are the ones that contain Liquid. */
+
+    .mvps-section {
+      position: relative;
+      overflow: visible;
+      background: #2e2e2e;
+      color: #fff;
+      font-family: var(--font-display);
+    }
+    .mvps-video-wrap {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .mvps-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      min-height: 480px;
+      pointer-events: none;
+    }
+    .mvps-desktop {
+      display: block;
+    }
+    .mvps-mobile {
+      display: none;
+    }
+
+    .mvps-overlay {
+      position: relative;
+      z-index: 2;
+      flex-direction: column;
+      align-items: center;
+      padding: 18px 12px 40px;
+      min-height: 480px;
+    }
+
+    .mvps-top {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      margin-top: 14px;
+    }
+    .mvps-subtitle {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 8px;
+      text-align: left;
+      padding-left: 20px;
+    }
+
+    /* Dual dropdown styling */
+    .mvps-dropdowns-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      width: 100%;
+      padding: 0 20px;
+    }
+
+    .mvps-dropdown-group {
+      position: relative;
+    }
+
+    .mvps-heading-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      border-radius: 8px;
+      transition: border-color 0.3s ease;
+    }
+
+    .mvps-dropdown-btn {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      color: #fff;
+      font-family: var(--font-display);
+      font-size: 48px;
+      font-weight: 400;
+      font-style: italic;
+      text-align: left;
+      padding: 8px 0;
+      outline: none;
+      cursor: pointer;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .mvps-dropdown-btn:focus {
+      outline: none;
+    }
+
+    .mvps-dropdown-text {
+      flex: 1;
+      text-align: left;
+    }
+
+    .mvps-chevron {
+      pointer-events: none;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+
+    .mvps-dropdown-btn.active .mvps-chevron {
+      transform: rotate(180deg);
+    }
+
+    /* Popup with very high z-index and full viewport coverage */
+    .mvps-popup {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 9999 !important;
+
+      display: flex;
+      align-items: flex-end;
+
+      overflow: hidden;
+    }
+
+    /* Animate ONLY the content, not the wrapper */
+    @keyframes slideUp {
+      from {
+        transform: translateY(100%);
+      }
+      to {
+        transform: translateY(0);
+      }
+    }
+
+    .mvps-popup-content {
+      background: #1a1a1a;
+      width: 100%;
+      border-radius: 20px 20px 0 0;
+
+      padding: 24px 20px;
+      padding-bottom: calc(24px + env(safe-area-inset-bottom));
+
+      /* FLEX SCROLL FIX */
+      max-height: 100%;
+      min-height: 0;
+
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+
+      box-sizing: border-box;
+      position: relative;
+      z-index: 10000;
+
+      animation: slideUp 0.3s ease;
+    }
+
+    .mvps-popup-close {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 32px;
+      cursor: pointer;
+      padding: 0;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mvps-popup-items {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .mvps-popup-item {
+      background: transparent;
+      border: 2px solid #666;
+      color: #fff;
+      padding: 16px 20px;
+      border-radius: 12px;
+      font-size: 18px;
+      font-family: var(--font-display);
+      font-style: italic;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: left;
+    }
+
+    .mvps-popup-item:hover {
+      border-color: #fff;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .mvps-popup-item.active {
+      background: #f4ff41;
+      color: #000;
+      border-color: #f4ff41;
+    }
+
+    .mvps-fragrance-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 28px 18px;
+    }
+    .mvps-fragrance-layout {
+      display: flex;
+      gap: 18px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding: 12px 18px;
+      -webkit-overflow-scrolling: touch;
+      touch-action: manipulation;
+      overscroll-behavior-x: contain;
+    }
+    .mvps-fragrance-layout::-webkit-scrollbar {
+      display: none;
+    }
+
+    .mvps-fragrance-item {
+      flex: 0 0 283px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 18px;
+      height: 470px;
+      background: #f8f8f8;
+      scroll-snap-align: center;
+    }
+    .mvps-fragrance-item img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      transition: opacity 0.4s;
+      z-index: 1;
+    }
+    .mvps-fragrance-item .secondary-image {
+      opacity: 0;
+      transition: opacity 0.4s;
+      z-index: 2;
+    }
+    .mvps-fragrance-item:hover .secondary-image {
+      opacity: 1;
+    }
+    .mvps-fragrance-cost {
+      position: absolute;
+      top: 20px;
+      right: 18px;
+      font-size: 16px;
+      color: #000;
+      z-index: 2;
+    }
+    .mvps-fragrance-info {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      z-index: 2;
+      color: black;
+      text-align: center;
+      transition: 0.3s;
+    }
+    .mvps-fragrance-item:hover .fragrance-info {
+      transform: translateY(-40px);
+      color: white;
+    }
+    .mvps-fragrance-name {
+      font-size: 16px;
+      font-weight: 400;
+      margin: 0;
+      text-transform: uppercase;
+    }
+    .mvps-fragrance-brand {
+      margin: 0;
+      font-size: 13px;
+    }
+    .mvps-fragrance-rating {
+      margin: 3px 0;
+      font-size: 18px;
+      color: #cbdd00;
+    }
+    .mvps-cart-button {
+      margin-top: 12px;
+      background: #f4ff41;
+      color: #000;
+      font-weight: 600;
+      font-size: 12px;
+      padding: 12px 36px;
+      border-radius: 999px;
+      cursor: pointer;
+      border: none;
+      width: 80%;
+    }
+
+    /* Hide mobile bottom nav when popup is open */
+    body.mvps-popup-open .mobile-bottom-nav {
+      display: none !important;
+      visibility: hidden !important;
+    }
+    @media (max-width: 1024px) {
+      .mvps-video {
+        min-height: 360px;
+      }
+      .mvps-desktop {
+        display: none;
+      }
+      .mvps-mobile {
+        display: block;
+      }
+    }
+    @media (min-width: 800px) and (max-width: 1024px) {
+      .mvps-fragrance-layout {
+        display: flex;
+        gap: 18px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding: 12px 210px;
+        -webkit-overflow-scrolling: touch;
+        touch-action: pan-x;
+        overscroll-behavior-x: contain;
+      }
+      .fragrance-item {
+        flex: 0 0 50% !important; /* roughly half of the row */
+        width: 50% !important; /* match flex-basis */
+        max-width: 100%;
+        scroll-snap-align: start !important; /* optional: align items at start */
+        border-radius: 12px;
+        margin-bottom: 16px !important; /* spacing between rows */
+        box-sizing: border-box;
+      }
+    }
+
+    @media (max-width: 990px) {
+      .mvps-video {
+        min-height: 360px;
+      }
+      .mvps-desktop {
+        display: none;
+      }
+      .mvps-mobile {
+        display: block;
+      }
+      .mvps-dropdown-btn {
+        font-size: 32px;
+      }
+      .mvps-subtitle {
+        font-size: 11px;
+        padding-left: 20px;
+      }
+      .fragrance-layout {
+        gap: 0;
+        padding: 0;
+      }
+      .fragrance-item {
+        flex: 0 0 100%;
+        width: 100%;
+        max-width: 100%;
+        scroll-snap-align: center;
+        border-radius: 12px;
+      }
+    }
+    @media screen and (min-width: 1025px) {
+      .mvps-section {
+        display: none;
+      }
+    }
+    .visually-hidden {
+      position: absolute !important;
+      height: 1px;
+      width: 1px;
+      overflow: hidden;
+      clip: rect(1px, 1px, 1px, 1px);
+    }
+
+    <!-- Add pagination dots styling -- > .mvps-dots-wrapper {
+      display: flex;
+      justify-content: center;
+      padding: 16px 0;
+      background: #2e2e2e;
+      position: relative;
+      z-index: 1;
+    }
+
+    .mvps-dots-container {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .mvps-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.4);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .mvps-dot.active {
+      background: #f4ff41;
+      width: 24px;
+      border-radius: 4px;
+    }
+
+    .mvps-dot:hover {
+      background: rgba(255, 255, 255, 0.6);
+    }

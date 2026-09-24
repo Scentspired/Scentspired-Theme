@@ -1,0 +1,423 @@
+/* Extracted from sections/catalog--featured-scent.liquid.
+ * Inline CSS is re-downloaded with the HTML on every page that renders
+ * that file and can never be cached. Edit this file, not the .liquid.
+ * Blocks still in the .liquid are the ones that contain Liquid. */
+
+
+/* Container */
+.fragrance-container {
+  max-width: 2100px;
+  margin: 0 auto;
+  padding: 0px 5rem;
+  padding-bottom: 25px;
+}
+
+.fragrance-heading {
+  font-family: var(--font-body-light);
+  font-size: 46px;
+  font-weight: 200;
+  color: #808080;
+  margin-bottom: 0px;
+}
+
+.fragrance-subtitle {
+  font-family: var(--font-display-italic);
+  font-weight: 500;
+  font-size: 45px;
+  font-style: italic;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 15px;
+  text-decoration: underline !important;
+  text-decoration-color: #fadb95 !important;
+  text-decoration-thickness: 2px !important;
+  text-underline-offset: 2px !important;
+}
+
+/* Grid layout with 4 products per row, flexible sizing */
+.fragrance-layout {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 40px;
+  width: 100%;
+}
+
+/* Product card using flexbox column - NO absolute positioning */
+.fragrance-item {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #F5F5F5;
+}
+
+/* Image wrapper - only this has hover effect */
+.fragrance-image-wrap {
+  position: relative;
+  height: 390px !important;
+  width: 100%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.fragrance-image-wrap img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  transition: opacity 0.4s ease;
+}
+
+.fragrance-image-wrap .secondary-image {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+/* Only image changes on hover - content stays static */
+.fragrance-image-wrap:hover .secondary-image {
+  opacity: 1;
+}
+
+/* Badges - positioned on image only */
+.product-badges {
+  position: relative !important;
+  top: 12px;
+  left: 12px;
+  z-index: 0 !important;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  pointer-events: none;
+}
+
+/* Single badge */
+.product-badge {
+  color: #fff !important;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 12px;
+  padding: 4px 18px;
+  border-radius: 20px;
+  width: fit-content;
+  white-space: nowrap;
+  background: transparent; /* reset */
+}
+
+/* Men */
+.product-badge.badge-men {
+  background-color: #363745 !important;
+}
+
+/* Women */
+.product-badge.badge-women {
+  background-color: #79242f !important;
+}
+
+/* Unisex */
+.product-badge.badge-unisex {
+  background-color: #4e4a33 !important;
+}
+
+/* Coming Soon - Red with white text */
+.product-badge.badge-coming-soon {
+  background-color: #ff0000 !important;
+  color: #fff !important;
+}
+
+
+/* Content section - grey background, flows naturally below image */
+.fragrance-info {
+  background-color: #F5F5F5;
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  flex: 1;
+}
+
+/* Stars - left aligned, NO hover effects */
+.fragrance-rating {
+  font-size: 24px;
+  color: #cbdd00;
+  letter-spacing: -2px;
+  margin: 0;
+  text-align: left;
+  margin-top: -20px;
+}
+
+.rating-star.filled {
+  color: #cbdd00;
+}
+
+.rating-star:not(.filled) {
+  color: #E0E0E0;
+}
+
+/* Product title - left aligned, NO hover effects */
+.fragrance-name {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  font-family: var(--font-body);
+  text-transform: uppercase;
+  text-align: left;
+  line-height: 1.3;
+  color: #000;
+  margin-top: -10px;
+}
+
+/* Vendor text - left aligned, NO hover effects */
+.fragrance-brand {
+  margin: 0;
+  font-size: 12px;
+  font-family: var(--font-body);
+  font-weight: 400;
+  text-align: left;
+  color: #666;
+}
+
+/* Price section */
+.price-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.product-price-display {
+  font-size: 18px;
+  font-weight: 600!important;
+  color: #000;
+  font-family: var(--font-body);
+}
+
+.price-badge {
+  background-color: #fa0000ff;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-family: var(--font-body);
+}
+
+.original-price {
+  font-size: 12px;
+  color: #000 !important;
+  text-decoration: line-through;
+  font-family: var(--font-body);
+  font-weight: 400;
+}
+
+/* Variant options */
+.variant-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 4px 0 0 0;
+}
+
+.variant-option-btn {
+  padding: 6px 16px !important;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  font-size: 11px !important;
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: all 0.2s ease;
+  color: #000;
+  font-weight: 400;
+}
+
+.variant-option-btn.active {
+  background-color: #f4ff41 !important;
+  color: #000 !important;
+  border-color: #000 !important;
+}
+.variant-option-btn.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  text-decoration: line-through;
+  pointer-events: none;
+  background-color: #f5f5f5;
+  border-color: #ccc;
+}
+
+
+/* Add to cart button */
+.cart-button {
+  margin-top: 8px;
+  background: #f4ff41;
+  color: #000;
+  font-weight: 600;
+  font-size: 12px !important;
+  padding: 16px 16px !important;
+  border-radius: 20px !important;
+  cursor: pointer;
+  border: none;
+  width: 100%;
+  font-family: var(--font-body);
+  transition: background 0.2s ease;
+}
+
+.cart-button:hover {
+  background: #e0ea36;
+}
+
+.cart-button:disabled,
+.cart-button.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: #f4ff41 !important;
+  color: #000 !important;
+  text-transform: uppercase;
+}
+
+/* View All Button */
+.show-all-btn {
+  display: inline-block;
+  padding: 16px 94px;
+  background: #f4ff41;
+  color: #000;
+  font-weight: 500;
+  font-size: 15px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  margin-top: 60px;
+  text-decoration: none;
+  text-align: center;
+  font-family: var(--font-body);
+}
+
+.show-all-btn:hover {
+  background: #e0ea36;
+}
+
+/* Mobile Styles - 2 products per row */
+@media screen and (max-width: 990px) {
+  .fragrance-container {
+    margin: 0;
+    padding: 0px 20px;
+    padding-bottom: 25px;
+  }
+
+  .fragrance-heading {
+    font-size: 32px;
+    text-align: left;
+    margin-bottom: 0px;
+  }
+
+  .fragrance-subtitle {
+    font-size: 32px;
+    text-align: left;
+    display: block;
+  }
+  .product-badges {
+    top: 5px;
+    left: 5px;
+  }
+  /* 2 columns for mobile */
+  .fragrance-layout {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 10px;
+    gap: 10px !important;
+  }
+
+  /* Hide scrollbar */
+  .fragrance-layout::-webkit-scrollbar {
+    display: none;
+  }
+  .fragrance-layout {
+    scrollbar-width: none;
+  }
+
+  /* Each product card width */
+  .fragrance-item {
+    min-width: 85%;
+    scroll-snap-align: start;
+    flex-shrink: 0;
+  }
+  .mobile-only {
+    display: flex !important;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 16px;
+  }
+
+  .fragrance-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #dcdcdc;
+    transition: background 0.3s ease;
+  }
+
+  .fragrance-dot.active {
+    background: #f4ff41;
+  }
+
+  .fragrance-image-wrap {
+    height: 280px;
+  }
+
+  .fragrance-info {
+    padding: 12px 10px;
+    gap: 6px;
+  }
+
+  .fragrance-name {
+    font-size: 13px;
+  }
+
+  .fragrance-brand {
+    font-size: 12px;
+  }
+
+  .product-price-display {
+    font-size: 14px;
+  }
+
+  .variant-options {
+    gap: 5px;
+  }
+
+  .variant-option-btn {
+    padding: 5px 10px;
+    font-size: 10px;
+  }
+
+  .cart-button {
+    font-size: 12px;
+    padding: 10px 12px;
+  }
+
+  .show-all-btn {
+    padding: 16px 40px;
+    font-size: 13px;
+    margin-top: 40px;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .fragrance-brand {
+    margin: 0;
+    font-size: 14px;
+    font-family: var(--font-body);
+    font-weight: 400;
+    text-align: left;
+    color: #666;
+  }
+  .fragrance-layout {
+    padding: 0px 180px !important;
+  }
+}

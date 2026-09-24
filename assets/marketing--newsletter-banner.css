@@ -1,0 +1,206 @@
+/* Extracted from sections/marketing--newsletter-banner.liquid.
+ * Inline CSS is re-downloaded with the HTML on every page that renders
+ * that file and can never be cached. Edit this file, not the .liquid.
+ * Blocks still in the .liquid are the ones that contain Liquid. */
+
+  @media (max-width: 1024px) {
+    .newsletter-banner {
+      width: 100% !important;
+      max-width: 100% !important;
+      overflow-x: hidden !important;
+    }
+
+    .newsletter-banner {
+      max-width: 100% !important;
+      overflow-x: hidden !important;
+    }
+  }
+
+
+    .newsletter-banner {
+      position: relative;
+      width: 100%;
+      min-height: 800px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      padding: 40px;
+    }
+
+    .newsletter-banner .newsletter-content {
+      background-color: #F9F7EE;
+      padding: 40px;
+      max-width: 563px;
+      border-radius: 0px;
+      height: 633px;
+      margin-right: 230px;
+    }
+
+    .newsletter-banner .newsletter-content h2 {
+      font-size: 32px;
+      margin: 0;
+      color: #808080;
+       text-align: center;
+      font-weight: 100;
+      font-family: var(--font-body-light);
+    }
+
+    .newsletter-banner .newsletter-content h3 {
+       font-family: var(--font-display-italic);
+      font-size: 32px;
+      font-style: italic;
+      text-decoration: underline;
+      text-decoration-color: #FADB95 !important; /* Change underline color */
+      margin: 0 0 20px 0;
+      color: #000;
+      text-align: center;
+      font-weight: 500;
+      margin-top: -12px;
+
+    }
+
+    .newsletter-banner .newsletter-content p {
+    margin: 45px auto 30px; /* top, auto (center), bottom */
+    font-size: 16px;
+    line-height: 1.5;
+    color: #000;
+    text-align: center;
+    width: 280px;
+    font-family: var(--font-body);
+  }
+
+
+    .newsletter-banner form {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      width: 467px;
+      height: 70px !important;
+      margin-left: 10px;
+      margin-top: 25px;
+      margin-top: 45px !important;
+    }
+
+    .newsletter-banner input[type="email"] {
+      flex: 1 1 auto;
+      border: 1px solid #ccc;
+      border-radius: 30px;
+      padding: 20px 20px;
+      font-size: 13px;
+      background-color: transparent;
+      font-family: var(--font-body);
+    }
+
+    .newsletter-banner button {
+      background-color: #EFFC00;
+      border: none;
+      border-radius: 30px;
+      padding: 15px 60px;
+      font-weight: 300;
+      font-size: 14px;
+      cursor: pointer;
+      text-align: center;
+      margin-left: 110px;
+      margin-top: 25px;
+      font-family: var(--font-body);
+      width: 240px;
+      height: 48px;
+      line-height: 1 !important;
+      c                /* Remove extra vertical spacing */
+
+    }
+
+    .newsletter-banner small {
+      display: block;
+      margin-top: 180px;
+      font-size: 16px;
+      color: #000;
+      text-align: center;
+      font-family: var(--font-body);
+      line-height: 120%;
+    }
+
+
+    @media screen and (max-width: 1024px) {
+      .newsletter-banner {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+        min-height: auto;
+        padding-left: 130px;
+        padding-right: -500px;
+
+      }
+      .newsletter-banner .newsletter-content p {
+      margin: auto;
+      font-size: 13px;
+      line-height: 1.5;
+      color: #000;
+      text-align: center;
+      width: auto;
+      margin-left: auto;
+    }
+      .newsletter-banner .newsletter-content {
+        max-width: 140%;
+        margin-top: 20px;
+        padding: 20px;
+        margin-right: 0px;
+        height: 450px;
+        width: 300px;
+      }
+
+      .newsletter-banner form {
+        flex-direction: column;
+        gap: 10px;
+      flex-wrap: wrap;
+      width: 396px;
+      margin-left: 1px;
+          height: 53px !important;
+      }
+
+      .newsletter-banner input[type="email"],
+      .newsletter-banner button {
+        width: 65%;
+      }
+
+      .newsletter-banner input[type="email"] {
+      flex: 1 1 auto;
+      border: 1px solid #ccc;
+      border-radius: 30px;
+      padding: auto;
+      font-size: 12px;
+      background-color: transparent;
+      font-family: var(--font-body);
+       }
+     .newsletter-banner button {
+      background-color: #EFFC00;
+      border: none;
+      border-radius: 30px;
+      padding: auto;
+      font-weight: 300;
+      font-size: 14px;
+      cursor: pointer;
+      text-align: center;
+      margin-left: auto;
+      margin-top: auto;
+      font-family: var(--font-body);
+      width: auto;
+      height: auto;
+      line-height: 1 !important;
+      color: #000;
+  }
+  .newsletter-banner {
+    padding: 0px;
+     padding-left: 0px;
+  }
+  }
+  .newsletter-message {
+    margin-top: 15px;
+    font-size: 14px;
+    text-align: center;
+    color: #000;
+    font-family: var(--font-body);
+  }

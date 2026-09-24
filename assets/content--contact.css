@@ -1,0 +1,320 @@
+/* Extracted from sections/content--contact.liquid.
+ * Inline CSS is re-downloaded with the HTML on every page that renders
+ * that file and can never be cached. Edit this file, not the .liquid.
+ * Blocks still in the .liquid are the ones that contain Liquid. */
+
+  /* Custom Fonts */
+  @font-face {
+    font-family: 'PPMori Regular';
+    src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPMori-Regular.otf?v=1751621372')
+      format('opentype');
+    font-weight: 400;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'PPEditorialNew Italic';
+    src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPEditorialNew-Italic-BF644b214fb0c0a.otf?v=1751620955')
+      format('opentype');
+    font-weight: 900;
+    font-style: italic;
+  }
+  /* Base Styles */
+  .faq-section {
+    font-family: var(--font-body);
+    background-color: #fff;
+    padding: 40px 0;
+    margin-top: 100px;
+    margin-bottom: 0px;
+  }
+  .contact-main-heading {
+    font-family: var(--font-display-italic);
+    font-size: 42px;
+    font-weight: 400;
+    margin-bottom: 30px;
+    color: #000;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+  .contact-description {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 40px;
+    max-width: 1100px;
+  }
+  .faq-main::after {
+    left: 298px !important;
+  }
+  .contact-description p {
+    margin-bottom: 1.5em;
+  }
+  .contact-form-wrapper {
+    max-width: 1100px;
+  }
+  .contact-form-field {
+    margin-bottom: 25px;
+  }
+  .contact-form-field label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: #333;
+  }
+  .contact-form-field input,
+  .contact-form-field textarea {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    background-color: #f4f4f4;
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: #333;
+    border-radius: 0;
+  }
+  .contact-form-field textarea {
+    min-height: 200px;
+    resize: vertical;
+  }
+  .contact-form-field input::placeholder,
+  .contact-form-field textarea::placeholder {
+    color: #bfbec0;
+  }
+  .contact-submit-btn {
+    background-color: #f4ff41;
+    color: #000;
+    font-family: var(--font-body);
+    border: none;
+    padding: 12px 150px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: opacity 0.3s ease;
+    border-radius: 20px;
+  }
+  .contact-submit-btn:hover {
+    opacity: 0.9;
+  }
+  .faq-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 10px;
+  }
+  .faq-header {
+    margin-bottom: 40px;
+    border-top: 1px solid #bfbec0;
+    padding-top: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+  .faq-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: -30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #333;
+    font-family: var(--font-display-italic);
+    flex-shrink: 0;
+  }
+  .faq-title-line {
+    flex-grow: 1;
+    height: 1px;
+    background-color: #bfbec0;
+    display: none;
+  }
+  .faq-content {
+    display: grid;
+    grid-template-columns: 239px 1fr 115px;
+    gap: 0;
+    position: relative;
+    border-top: 1px solid #bfbec0;
+    overflow: hidden;
+  }
+  .faq-sidebar {
+    padding-right: 0;
+    position: sticky;
+    top: 20px;
+    height: fit-content;
+  }
+  .faq-sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .faq-sidebar li {
+    margin-bottom: 15px;
+  }
+  .faq-sidebar a {
+    color: #666;
+    text-decoration: none;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition:
+      color 0.3s ease,
+      background-color 0.3s ease;
+    display: block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-family: var(--font-body);
+  }
+  .faq-sidebar a:hover {
+    color: #000;
+    background-color: #efff31;
+  }
+  .faq-sidebar a.active {
+    color: #000;
+    background-color: #efff31;
+  }
+  .faq-main {
+    padding-left: 40px;
+  }
+  .faq-category {
+    margin-bottom: 40px;
+  }
+  .faq-category:last-child {
+    margin-bottom: 0;
+  }
+  .faq-category-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #333;
+    font-family: var(--font-body);
+  }
+  .privacy-policy-content {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #000;
+    font-family: var(--font-body);
+  }
+  .privacy-policy-content p {
+    margin-bottom: 1em;
+  }
+  .privacy-policy-content ul {
+    list-style: disc;
+    margin-left: 20px;
+    margin-bottom: 1em;
+  }
+  .privacy-policy-content li {
+    margin-bottom: 0.5em;
+  }
+  .privacy-policy-content h3 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    color: #333;
+  }
+  .privacy-policy-content strong {
+    font-weight: 600;
+    font-size: 16px;
+    text-decoration: underline;
+    text-decoration-color: #fadb95;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 2px;
+  }
+  .faq-image-column {
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding-left: 20px;
+  }
+  .faq-image-column img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media (max-width: 768px) {
+    .faq-content {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+    .faq-sidebar {
+      position: static;
+      order: 1;
+      overflow-x: auto;
+      padding-bottom: 10px;
+      padding-top: 20px;
+    }
+    .faq-sidebar ul {
+      display: flex;
+      gap: 20px;
+      white-space: nowrap;
+      padding-bottom: 10px;
+    }
+    .faq-sidebar li {
+      margin-bottom: 0;
+      flex-shrink: 0;
+    }
+    .faq-main {
+      padding-left: 0;
+      order: 2;
+      padding-right: 0;
+    }
+    .faq-title {
+      font-size: 20px;
+    }
+    .faq-category-title {
+      font-size: 14px;
+    }
+    .privacy-policy-content {
+      font-size: 12px;
+    }
+    .faq-image-column {
+      display: block;
+      order: 3;
+      width: 100%;
+      padding: 0 !important;
+    }
+    .faq-image-column img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+  }
+
+  .faq-sidebar::-webkit-scrollbar {
+    height: 3px;
+  }
+  .faq-sidebar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  .faq-sidebar::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 3px;
+  }
+  .faq-sidebar::-webkit-scrollbar-thumb:hover {
+    background: #999;
+  }
+
+  @media screen and (min-width: 1441px) {
+    .faq-container {
+      max-width: 1900px;
+      margin: 0 auto;
+      padding: 0 5px;
+    }
+    .faq-main {
+      padding-left: 240px !important;
+    }
+  }
+  @media screen and (min-width: 1024px) and (max-width: 1440px) {
+    .faq-main {
+      padding-left: 100px !important;
+    }
+    .faq-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 10px;
+    }
+  }

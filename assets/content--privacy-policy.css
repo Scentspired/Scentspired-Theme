@@ -1,0 +1,246 @@
+/* Extracted from sections/content--privacy-policy.liquid.
+ * Inline CSS is re-downloaded with the HTML on every page that renders
+ * that file and can never be cached. Edit this file, not the .liquid.
+ * Blocks still in the .liquid are the ones that contain Liquid. */
+
+  /* Custom Fonts */
+  @font-face {
+    font-family: 'PPMori Regular';
+    src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPMori-Regular.otf?v=1751621372')
+      format('opentype');
+    font-weight: 400;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'PPEditorialNew Italic';
+    src: url('https://cdn.shopify.com/s/files/1/0698/9398/0343/files/PPEditorialNew-Italic-BF644b214fb0c0a.otf?v=1751620955')
+      format('opentype');
+    font-weight: 900;
+    font-style: italic;
+  }
+  /* Base Styles */
+  .faq-section {
+    font-family: var(--font-body);
+    background-color: white;
+    padding: 40px 0;
+    margin-top: 100px; /* Added from your global CSS */
+  }
+  .faq-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 10px;
+  }
+  .faq-header {
+    margin-bottom: 40px;
+    border-top: 1px solid #bfbec0; /* Moved border-top here to span full width */
+    padding-top: 3px; /* Space between border and title */
+  }
+  .faq-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: -30px !important; /* Adjusted for positive space below title */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #333;
+    /* border-top: 1px solid #bfbec0; */ /* Removed from here */
+    /* margin-left: 2px; */ /* Removed for centering */
+    text-align: center; /* Centered the heading */
+    font-family: var(--font-display-italic);
+  }
+  .faq-content {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 0;
+    position: relative;
+    border-top: 1px solid #bfbec0 !important;
+  }
+  .faq-content::after {
+    content: '';
+    position: absolute;
+    left: 600px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background-color: #e5e5e5;
+  }
+  .faq-sidebar {
+    padding-right: 0;
+    position: sticky;
+    margin-top: 20px;
+    height: fit-content;
+  }
+  .faq-sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .faq-sidebar li {
+    margin-bottom: 15px;
+  }
+  .faq-sidebar a {
+    color: #666;
+    text-decoration: none;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition:
+      color 0.3s ease,
+      background-color 0.3s ease; /* Added background-color to transition */
+    display: block; /* Ensures the background covers the full width */
+    padding: 4px 8px; /* Adds padding around the text within the block */
+    border-radius: 4px; /* Adds slight rounded corners to the background */
+    font-family: var(--font-body);
+  }
+  .faq-sidebar a:hover {
+    color: #000;
+    background-color: #efff31; /* Yellow background on hover */
+  }
+  .faq-sidebar a.active {
+    color: #000;
+    background-color: #efff31; /* Yellow background for active state */
+  }
+  .faq-main {
+    padding-left: 40px;
+    padding-right: 20px; /* Add some padding to the right of the content */
+  }
+  .faq-category {
+    margin-bottom: 40px; /* Spacing between policy sections */
+  }
+  .faq-category:last-child {
+    margin-bottom: 0;
+  }
+  .faq-category-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #333;
+    font-family: var(--font-body);
+  }
+  .privacy-policy-content {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #000;
+    font-family: var(--font-body);
+  }
+  .privacy-policy-content p {
+    margin-bottom: 1em; /* Spacing between paragraphs */
+  }
+  .privacy-policy-content ul {
+    list-style: disc;
+    margin-left: 20px;
+    margin-bottom: 1em;
+  }
+  .privacy-policy-content li {
+    margin-bottom: 0.5em;
+  }
+  .privacy-policy-content h3 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    color: #333;
+  }
+  /* Styling for bold text within rich text */
+  .privacy-policy-content strong {
+    font-weight: 600; /* Ensure strong text is bold */
+    font-size: 16px; /* Set font size to 16px */
+    text-decoration: underline;
+    text-decoration-color: #fadb95; /* Underline color */
+    text-decoration-thickness: 2px; /* Adjust thickness if needed */
+    text-underline-offset: 2px; /* Adjust offset if needed */
+  }
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .faq-content {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+    .faq-content::after {
+      display: none;
+    }
+    .faq-sidebar {
+      position: static;
+      order: 1;
+      overflow-x: auto;
+      padding-bottom: 10px;
+    }
+    .faq-sidebar ul {
+      display: flex;
+      gap: 20px;
+      white-space: nowrap;
+      padding-bottom: 10px;
+    }
+    .faq-sidebar li {
+      margin-bottom: 0;
+      flex-shrink: 0;
+    }
+    .faq-main {
+      padding-left: 0;
+      order: 2;
+      border-right: none; /* Remove right border on mobile */
+      padding-right: 0;
+    }
+    .faq-title {
+      font-size: 20px;
+    }
+    .faq-category-title {
+      font-size: 14px;
+    }
+    .privacy-policy-content {
+      font-size: 12px;
+    }
+  }
+  /* Custom scrollbar for mobile sidebar */
+  .faq-sidebar::-webkit-scrollbar {
+    height: 3px;
+  }
+  .faq-sidebar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  .faq-sidebar::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 3px;
+  }
+  .faq-sidebar::-webkit-scrollbar-thumb:hover {
+    background: #999;
+  }
+  /* Your additional global CSS for padding */
+  @media screen and (min-width: 1441px) {
+    .faq-container {
+      max-width: 1900px;
+      margin: 0 auto;
+      padding: 0 5px;
+    }
+    .faq-main {
+      padding-left: 240px;
+    }
+    .faq-content::after {
+      left: 433px;
+    }
+  }
+  @media screen and (min-width: 1024px) and (max-width: 1440px) {
+    .faq-main {
+      padding-left: 100px;
+    }
+    .faq-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 10px;
+    }
+    .faq-content::after {
+      left: 298px;
+    }
+  }
+  @media screen and (min-width: 700px) and (max-width: 1024px) {
+    .faq-content::after {
+      content: '';
+      position: absolute;
+      left: 200px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background-color: #e5e5e5;
+    }
+  }
