@@ -227,14 +227,8 @@
               # More Ways to Shop
               echo '<div class="dropdown-section-title">MORE WAYS TO SHOP</div>'
               echo '<div class="dropdown-section">'
-              echo '<a href="/pages/discovery-set" class="dropdown-item">'
-              echo '<div class="dropdown-item-icon">'
-              echo '<img src="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Website_-_Discovery_Box_01_5b146efd-da46-4977-bcd6-6981f4948e94.png?v=1767011253" alt="New Arrivals">'
-              echo "</div>"
-              echo '<div class="dropdown-item-content">'
-              echo '<div class="dropdown-item-title">Discovery Box</div>'
-              echo "</div>"
-              echo "</a>"
+              # Boxes: from regions/<id>/content/boxes.json (menu.shown_in)
+              render 'header--box-menu-items', place: 'shop_menu_more_ways_to_shop', style: 'desktop'
               echo '<a href="/collections/bestsellers" class="dropdown-item">'
               echo '<div class="dropdown-item-icon">'
               echo '<img src="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Website_-_Shop_All_799328f0-a349-4bba-a2e8-b9860554638b.png?v=1767011119" alt="Bestsellers">'
@@ -255,22 +249,8 @@
 
               echo '<div class="dropdown-section-title">Bundles</div>'
               echo '<div class="dropdown-section">'
-              echo '<a href="/pages/trio" class="dropdown-item">'
-              echo '<div class="dropdown-item-icon">'
-              echo '<img src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/M5_92c2ac96-d4db-4220-b8e5-3e2f35a80548.webp?v=1772712198" alt="New Arrivals">'
-              echo "</div>"
-              echo '<div class="dropdown-item-content">'
-              echo '<div class="dropdown-item-title">The Signature Trio</div>'
-              echo "</div>"
-              echo "</a>"
-              echo '<a href="/pages/fifer-box" class="dropdown-item">'
-              echo '<div class="dropdown-item-icon">'
-              echo '<img src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/2_00a7c831-c9bc-4568-af98-4c674e4fc4e8.webp?v=1772712250" alt="Bestsellers">'
-              echo "</div>"
-              echo '<div class="dropdown-item-content">'
-              echo '<div class="dropdown-item-title">The Five Favorites</div>'
-              echo "</div>"
-              echo "</a>"
+              # Boxes: from regions/<id>/content/boxes.json (menu.shown_in)
+              render 'header--box-menu-items', place: 'shop_menu_bundles', style: 'desktop'
 
               echo "</div>"
 
@@ -290,23 +270,8 @@
               echo '<div class="dropdown-section-title"></div>'
               echo '<div class="dropdown-section">'
 
-              echo '<a href="/pages/trio" class="dropdown-item">'
-              echo '<div class="dropdown-item-icon">'
-              echo '<img src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/M5_1.webp?v=1772712427" alt="Item 2">'
-              echo "</div>"
-              echo '<div class="dropdown-item-content">'
-              echo '<div class="dropdown-item-title">The Signature Trio</div>'
-              echo "</div>"
-              echo "</a>"
-
-              echo '<a href="/pages/fifer-box" class="dropdown-item">'
-              echo '<div class="dropdown-item-icon">'
-              echo '<img src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/2_1ae5ba53-2d4a-4517-8adc-50a5facd4758_1.webp?v=1772712481" alt="Item 3">'
-              echo "</div>"
-              echo '<div class="dropdown-item-content">'
-              echo '<div class="dropdown-item-title">The Five Favourites</div>'
-              echo "</div>"
-              echo "</a>"
+              # Boxes: from regions/<id>/content/boxes.json (menu.shown_in)
+              render 'header--box-menu-items', place: 'bundles_menu', style: 'desktop'
 
               echo "</div>"
 
@@ -588,14 +553,8 @@
             <!-- More Ways to Shop Section -->
             <div class="mobile-submenu-section-title">{% render 'region--content', key: 'global.header.mobile_menu.shop.more_ways.title' %}</div>
             <div class="mobile-submenu-section">
-              <a href="{% render 'region--content', key: 'global.header.mobile_menu.shop.more_ways.discovery_box.link' %}" class="mobile-submenu-item">
-                <div class="mobile-submenu-icon">
-                  <img
-                    src="{% render 'region--content', key: 'global.header.mobile_menu.shop.more_ways.discovery_box.image' %}"
-                    alt="{% render 'region--content', key: 'global.header.mobile_menu.shop.more_ways.discovery_box.image_alt' %}">
-                </div>
-                <span>{% render 'region--content', key: 'global.header.mobile_menu.shop.more_ways.discovery_box.label' %}</span>
-              </a>
+              {%- comment -%} Boxes: from regions/<id>/content/boxes.json (menu.shown_in) {%- endcomment -%}
+              {%- render 'header--box-menu-items', place: 'shop_menu_more_ways_to_shop', style: 'mobile' -%}
               <a href="{% render 'region--content', key: 'global.header.mobile_menu.shop.more_ways.bestsellers.link' %}" class="mobile-submenu-item">
                 <div class="mobile-submenu-icon">
                   <img
@@ -616,22 +575,8 @@
 
             <div class="mobile-submenu-section-title">{% render 'region--content', key: 'global.header.mobile_menu.shop.bundles.title' %}</div>
             <div class="mobile-submenu-section">
-              <a href="{% render 'region--content', key: 'global.header.mobile_menu.shop.bundles.signature_trio.link' %}" class="mobile-submenu-item">
-                <div class="mobile-submenu-icon">
-                  <img
-                    src="{% render 'region--content', key: 'global.header.mobile_menu.shop.bundles.signature_trio.image' %}"
-                    alt="{% render 'region--content', key: 'global.header.mobile_menu.shop.bundles.signature_trio.image_alt' %}">
-                </div>
-                <span>{% render 'region--content', key: 'global.header.mobile_menu.shop.bundles.signature_trio.label' %}</span>
-              </a>
-              <a href="{% render 'region--content', key: 'global.header.mobile_menu.shop.bundles.five_favourites.link' %}" class="mobile-submenu-item">
-                <div class="mobile-submenu-icon">
-                  <img
-                    src="{% render 'region--content', key: 'global.header.mobile_menu.shop.bundles.five_favourites.image' %}"
-                    alt="{% render 'region--content', key: 'global.header.mobile_menu.shop.bundles.five_favourites.image_alt' %}">
-                </div>
-                <span>{% render 'region--content', key: 'global.header.mobile_menu.shop.bundles.five_favourites.label' %}</span>
-              </a>
+              {%- comment -%} Boxes: from regions/<id>/content/boxes.json (menu.shown_in) {%- endcomment -%}
+              {%- render 'header--box-menu-items', place: 'shop_menu_bundles', style: 'mobile' -%}
             </div>
           </div>
         </div>
@@ -657,11 +602,8 @@
           </div>
         </div>
 
-        <div class="mobile-menu-item-wrapper">
-          <div class="mobile-menu-item-header">
-            <a href="{% render 'region--content', key: 'global.header.mobile_menu.discovery_box.link' %}" class="mobile-menu-item">{% render 'region--content', key: 'global.header.mobile_menu.discovery_box.label' %}</a>
-          </div>
-        </div>
+        {%- comment -%} Boxes: from regions/<id>/content/boxes.json (menu.shown_in) {%- endcomment -%}
+        {%- render 'header--box-menu-items', place: 'mobile_menu_own_link', style: 'mobile_top_level' -%}
 
         <div class="mobile-menu-item-wrapper">
           <div class="mobile-menu-item-header">
@@ -681,22 +623,8 @@
           <div class="mobile-submenu">
             <!-- Shop All Section -->
             <div class="mobile-submenu-section">
-              <a href="{% render 'region--content', key: 'global.header.mobile_menu.bundles.signature_trio.link' %}" class="mobile-submenu-item">
-                <div class="mobile-submenu-icon">
-                  <img
-                    src="{% render 'region--content', key: 'global.header.mobile_menu.bundles.signature_trio.image' %}"
-                    alt="{% render 'region--content', key: 'global.header.mobile_menu.bundles.signature_trio.image_alt' %}">
-                </div>
-                <span>{% render 'region--content', key: 'global.header.mobile_menu.bundles.signature_trio.label' %}</span>
-              </a>
-              <a href="{% render 'region--content', key: 'global.header.mobile_menu.bundles.five_favourites.link' %}" class="mobile-submenu-item">
-                <div class="mobile-submenu-icon">
-                  <img
-                    src="{% render 'region--content', key: 'global.header.mobile_menu.bundles.five_favourites.image' %}"
-                    alt="{% render 'region--content', key: 'global.header.mobile_menu.bundles.five_favourites.image_alt' %}">
-                </div>
-                <span>{% render 'region--content', key: 'global.header.mobile_menu.bundles.five_favourites.label' %}</span>
-              </a>
+              {%- comment -%} Boxes: from regions/<id>/content/boxes.json (menu.shown_in) {%- endcomment -%}
+              {%- render 'header--box-menu-items', place: 'bundles_menu', style: 'mobile' -%}
             </div>
           </div>
         </div>

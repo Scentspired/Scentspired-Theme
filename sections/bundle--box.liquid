@@ -6,7 +6,9 @@
 
   Each box is one entry in regions/<id>/content/boxes.json. The page around it
   (banners, newsletter) is page-layouts/box.json, and the build writes one page
-  per entry. The fields this section reads:
+  per entry. Its other fields: page_template, page_url and banner (the page),
+  menu (the header menus: snippets/header--box-menu-items.liquid). The fields
+  this section reads:
 
     "signature_trio": {
       "builder_heading":  "Build Your Own Signature Trio Set",  this section's H1

@@ -1,0 +1,94 @@
+{%- comment -%}
+  The boxes a menu lists, from regions/<id>/content/boxes.json: every box whose
+  "menu" -> "shown_in" names this place, in the file's order. A new box shows
+  up in the menus by its entry alone; a box without "menu" is in none.
+
+  place (where in the header):
+    shop_menu_more_ways_to_shop   SHOP menu, under "More ways to shop" (desktop and mobile)
+    shop_menu_bundles             SHOP menu, under "Bundles"            (desktop and mobile)
+    bundles_menu                  the BUNDLES menu                      (desktop and mobile)
+    mobile_menu_own_link          its own link in the mobile menu's top level
+
+  style (the markup that place uses): desktop | mobile | mobile_top_level
+
+  The link is the box's page_url; the label, image and image_alt are its "menu".
+{%- endcomment -%}
+{%- liquid
+  capture box_ids
+    render 'region--content', key: 'boxes.__keys'
+  endcapture
+  assign box_ids = box_ids | strip | split: ','
+
+  for box_id in box_ids
+    assign box_key = 'boxes.' | append: box_id | append: '.'
+
+    assign k = box_key | append: 'menu.shown_in.__keys'
+    capture shown_in_positions
+      render 'region--content', key: k
+    endcapture
+    assign shown_in_positions = shown_in_positions | strip | split: ','
+    assign listed_here = false
+    for position in shown_in_positions
+      assign k = box_key | append: 'menu.shown_in.' | append: position
+      capture shown_in_place
+        render 'region--content', key: k
+      endcapture
+      assign shown_in_place = shown_in_place | strip
+      if shown_in_place == place
+        assign listed_here = true
+        break
+      endif
+    endfor
+    unless listed_here
+      continue
+    endunless
+
+    assign k = box_key | append: 'page_url'
+    capture box_link
+      render 'region--content', key: k
+    endcapture
+    assign k = box_key | append: 'menu.label'
+    capture box_label
+      render 'region--content', key: k
+    endcapture
+    assign k = box_key | append: 'menu.image'
+    capture box_image
+      render 'region--content', key: k
+    endcapture
+    assign k = box_key | append: 'menu.image_alt'
+    capture box_image_alt
+      render 'region--content', key: k
+    endcapture
+    assign box_link = box_link | strip | escape
+    assign box_label_capitals = box_label | strip | upcase | escape
+    assign box_label = box_label | strip | escape
+    assign box_image = box_image | strip | escape
+    assign box_image_alt = box_image_alt | strip | escape
+
+    case style
+      when 'desktop'
+        echo '<a href="' | append: box_link | append: '" class="dropdown-item">'
+        echo '<div class="dropdown-item-icon">'
+        echo '<img src="' | append: box_image | append: '" alt="' | append: box_image_alt | append: '">'
+        echo '</div>'
+        echo '<div class="dropdown-item-content">'
+        echo '<div class="dropdown-item-title">' | append: box_label | append: '</div>'
+        echo '</div>'
+        echo '</a>'
+      when 'mobile'
+        echo '<a href="' | append: box_link | append: '" class="mobile-submenu-item">'
+        echo '<div class="mobile-submenu-icon">'
+        echo '<img src="' | append: box_image | append: '" alt="' | append: box_image_alt | append: '">'
+        echo '</div>'
+        echo '<span>' | append: box_label | append: '</span>'
+        echo '</a>'
+      when 'mobile_top_level'
+        # The mobile menu's top-level links are all capitals.
+        echo '<div class="mobile-menu-item-wrapper">'
+        echo '<div class="mobile-menu-item-header">'
+        echo '<a href="' | append: box_link | append: '" class="mobile-menu-item">' | append: box_label_capitals | append: '</a>'
+        echo '</div>'
+        echo '</div>'
+    endcase
+  endfor
+-%}

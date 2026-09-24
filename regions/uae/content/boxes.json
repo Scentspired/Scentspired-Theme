@@ -1,22 +1,4 @@
 {
-  "five_favourites": {
-    "page_template": "fivebox",
-    "page_url": "/pages/five-favourites",
-    "banner": {
-      "heading": "The Five Favourites",
-      "subheading": "Five best-loved scents, one added advantage",
-      "image_desktop": "shopify://shop_images/1920_X_700.jpg",
-      "image_mobile": "shopify://shop_images/2_1ae5ba53-2d4a-4517-8adc-50a5facd4758.jpg"
-    },
-    "builder_heading": "Build Your Own Five Favourites",
-    "box_name": "Five Favourites",
-    "product_handle": "the-five-favourites",
-    "perfumes_per_box": 5,
-    "perfume_collection_per_size": {
-      "50ml": "bundle-50ml",
-      "100ml": "bundle-100ml"
-    }
-  },
   "signature_trio": {
     "page_template": "trio-box",
     "page_url": "/pages/trio",
@@ -33,6 +15,42 @@
     "perfume_collection_per_size": {
       "50ml": "bundle-50ml",
       "100ml": "bundle-100ml"
+    },
+    "menu": {
+      "label": "The Signature Trio",
+      "image": "https://cdn.shopify.com/s/files/1/0997/3714/1593/files/M5_2.webp?v=1772788511",
+      "image_alt": "The Signature Trio",
+      "shown_in": [
+        "shop_menu_bundles",
+        "bundles_menu"
+      ]
+    }
+  },
+  "five_favourites": {
+    "page_template": "fivebox",
+    "page_url": "/pages/five-favourites",
+    "banner": {
+      "heading": "The Five Favourites",
+      "subheading": "Five best-loved scents, one added advantage",
+      "image_desktop": "shopify://shop_images/1920_X_700.jpg",
+      "image_mobile": "shopify://shop_images/2_1ae5ba53-2d4a-4517-8adc-50a5facd4758.jpg"
+    },
+    "builder_heading": "Build Your Own Five Favourites",
+    "box_name": "Five Favourites",
+    "product_handle": "the-five-favourites",
+    "perfumes_per_box": 5,
+    "perfume_collection_per_size": {
+      "50ml": "bundle-50ml",
+      "100ml": "bundle-100ml"
+    },
+    "menu": {
+      "label": "The Five Favourites",
+      "image": "https://cdn.shopify.com/s/files/1/0997/3714/1593/files/2_1ae5ba53-2d4a-4517-8adc-50a5facd4758_2.webp?v=1772788554",
+      "image_alt": "The Five Favourites",
+      "shown_in": [
+        "shop_menu_bundles",
+        "bundles_menu"
+      ]
     }
   },
   "discovery_set": {
@@ -48,6 +66,15 @@
     "box_name": "Discovery Box",
     "product_handle": "discovery-set",
     "perfumes_per_box": 5,
-    "perfume_collection": "discovery"
+    "perfume_collection": "discovery",
+    "menu": {
+      "label": "Discovery Box",
+      "image": "https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Website_-_Discovery_Box_01_a3d7863e-bec1-458b-babe-cdbb1f2973a5.webp?v=1772788327",
+      "image_alt": "Discovery Box",
+      "shown_in": [
+        "shop_menu_more_ways_to_shop",
+        "mobile_menu_own_link"
+      ]
+    }
   }
 }

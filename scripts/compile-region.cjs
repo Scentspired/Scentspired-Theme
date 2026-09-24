@@ -354,6 +354,20 @@ emitted.add('snippets/region--active.liquid');
     if (!oneCollection === !perSize) {
       boxErrors.push(`${where}: needs "perfume_collection" (one for every size) or "perfume_collection_per_size" — one of them`);
     }
+    // "menu" is optional: a box without it is in no menu. With it, every place
+    // it names must be one the header has (snippets/header--box-menu-items.liquid).
+    if (box.menu !== undefined) {
+      const menuPlaces = ['shop_menu_more_ways_to_shop', 'shop_menu_bundles', 'bundles_menu', 'mobile_menu_own_link'];
+      for (const field of ['label', 'image', 'image_alt']) {
+        if (typeof (box.menu || {})[field] !== 'string' || !box.menu[field].trim()) boxErrors.push(`${where}: "menu" needs "${field}"`);
+      }
+      const shownIn = (box.menu || {}).shown_in;
+      if (!Array.isArray(shownIn) || !shownIn.length) {
+        boxErrors.push(`${where}: "menu"."shown_in" lists where the box appears: ${menuPlaces.join(', ')}`);
+      } else {
+        for (const p of shownIn) if (!menuPlaces.includes(p)) boxErrors.push(`${where}: "menu"."shown_in" has "${p}" — the header has ${menuPlaces.join(', ')}`);
+      }
+    }
     if (typeof box.page_url === 'string' && !box.page_url.startsWith('/')) {
       boxErrors.push(`${where}: "page_url" is the page's address on the store, e.g. "/pages/trio"`);
     }

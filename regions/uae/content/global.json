@@ -60,12 +60,6 @@
         },
         "more_ways": {
           "title": "MORE WAYS TO SHOP",
-          "discovery_box": {
-            "label": "Discovery Box",
-            "link": "/pages/discovery-set",
-            "image": "https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Website_-_Discovery_Box_01_a3d7863e-bec1-458b-babe-cdbb1f2973a5.webp?v=1772788327",
-            "image_alt": "New Arrivals"
-          },
           "bestsellers": {
             "label": "Bestsellers",
             "link": "/collections/bestsellers",
@@ -80,19 +74,7 @@
           }
         },
         "bundles": {
-          "title": "BUNDLES",
-          "signature_trio": {
-            "label": "The Signature Trio",
-            "link": "/pages/trio",
-            "image": "https://cdn.shopify.com/s/files/1/0997/3714/1593/files/M5_2.webp?v=1772788511",
-            "image_alt": "All Perfumes"
-          },
-          "five_favourites": {
-            "label": "The Five Favourites",
-            "link": "/pages/fifer-box",
-            "image": "https://cdn.shopify.com/s/files/1/0997/3714/1593/files/2_1ae5ba53-2d4a-4517-8adc-50a5facd4758_2.webp?v=1772788554",
-            "image_alt": "All Perfumes"
-          }
+          "title": "BUNDLES"
         }
       },
       "find_your_scent": {
@@ -107,24 +89,8 @@
         "label": "SCENT NOTES",
         "link": "/pages/scent-notes"
       },
-      "discovery_box": {
-        "label": "DISCOVERY BOX",
-        "link": "/pages/discovery-set"
-      },
       "bundles": {
-        "label": "BUNDLES",
-        "signature_trio": {
-          "label": "The Signature Trio",
-          "link": "/pages/trio",
-          "image": "https://cdn.shopify.com/s/files/1/0997/3714/1593/files/M5_2.webp?v=1772788511",
-          "image_alt": "All Perfumes"
-        },
-        "five_favourites": {
-          "label": "The Five Favourites",
-          "link": "/pages/fifer-box",
-          "image": "https://cdn.shopify.com/s/files/1/0997/3714/1593/files/2_1ae5ba53-2d4a-4517-8adc-50a5facd4758_2.webp?v=1772788554",
-          "image_alt": "All Perfumes"
-        }
+        "label": "BUNDLES"
       }
     },
     "suggested_searches": [

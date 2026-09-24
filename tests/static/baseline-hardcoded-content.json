@@ -279,11 +279,11 @@
     "ids": 0
   },
   "sections/header.liquid": {
-    "total": 171,
-    "text": 32,
+    "total": 156,
+    "text": 27,
     "js-text": 103,
-    "media": 19,
-    "links": 17,
+    "media": 14,
+    "links": 12,
     "fallback": 0,
     "ids": 0
   },
@@ -695,6 +695,15 @@
   "snippets/facets.liquid": {
     "total": 6,
     "text": 6,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "snippets/header--box-menu-items.liquid": {
+    "total": 2,
+    "text": 2,
     "js-text": 0,
     "media": 0,
     "links": 0,
