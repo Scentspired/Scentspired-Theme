@@ -1,0 +1,48 @@
+{%- comment -%}
+  The fragrance finder's catalogue, read LIVE from this store's products.
+
+  Used by a region that has no regions/<id>/data/hero-perfumes.json (UAE).
+  A region that keeps the file (UK, USA today) never renders this.
+
+  Each perfume, in the same shape as the data file so the finder is unchanged:
+
+    name          product title
+    handle, url   the product's real address, not one guessed from its name
+    available     live stock; the finder never recommends a sold-out perfume
+    originalName  metafield custom.inspired_by
+    category      metafield custom.gender          (else: a tag, see below)
+    scent_family  metafield custom.scent_family    (else: a tag, see below)
+    head_notes    metafield custom.top_notes    — text or a list
+    heart_notes   metafield custom.heart_notes
+    base_notes    metafield custom.base_notes
+    tags          the product's tags
+
+  Where the gender or scent-family metafield is not set yet, the finder takes
+  the tag that matches one of its own quiz answers (Men, Warm, …). A product
+  with neither is not a finder perfume and is skipped there.
+
+  Accepts:
+    collection  the collection to read (the section's `finder_collection`
+                setting, set in the region's page JSON). Blank = all products.
+{%- endcomment -%}
+{%- liquid
+  assign source = collection
+  if source == blank
+    assign source = collections.all
+  endif
+  assign sep = ''
+-%}
+[
+{%- paginate source.products by 250 -%}
+  {%- for p in source.products -%}
+    {%- liquid
+      assign mf = p.metafields.custom
+      assign top = mf.top_notes.value | join: ', '
+      assign heart = mf.heart_notes.value | join: ', '
+      assign base = mf.base_notes.value | join: ', '
+    -%}
+    {{- sep -}}{"name":{{ p.title | json }},"handle":{{ p.handle | json }},"url":{{ p.url | json }},"available":{{ p.available | json }},"originalName":{{ mf.inspired_by.value | default: '' | json }},"category":{{ mf.gender.value | default: '' | json }},"scent_family":{{ mf.scent_family.value | default: '' | json }},"head_notes":{{ top | json }},"heart_notes":{{ heart | json }},"base_notes":{{ base | json }},"tags":{{ p.tags | json }}}
+    {%- assign sep = ',' -%}
+  {%- endfor -%}
+{%- endpaginate -%}
+]

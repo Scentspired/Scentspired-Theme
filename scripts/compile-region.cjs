@@ -163,7 +163,9 @@ function mergeLocales(src, dest) {
  * pages of its own (USA's robots.txt, UAE's waitlist).
  */
 if (target !== DEFAULT_REGION && listRegions().includes(DEFAULT_REGION)) {
-  const standard = regionContentFiles(DEFAULT_REGION);
+  // data/ is excluded: a region without a data file reads that data live from
+  // its store instead (UAE's finder), which is a choice, not a gap.
+  const standard = regionContentFiles(DEFAULT_REGION).filter((f) => !f.startsWith('data/'));
   const mine = new Set(regionContentFiles(target));
   const missing = standard.filter((f) => !mine.has(f));
   {
@@ -255,14 +257,17 @@ emitted.add('snippets/region--active.liquid');
     process.exit(1);
   }
   emitted.add('snippets/region--data.liquid');
-  const missing = [...consumedDataNames().entries()].filter(([name]) => !names.includes(name));
+  const consumed = [...consumedDataNames().entries()];
+  const missing = consumed.filter(([name, e]) => !names.includes(name) && !e.optional);
   if (missing.length) {
     console.error(`\n❌ regions/${target}/data/ lacks ${missing.length} data file(s) shared code reads:\n`);
-    for (const [name, files] of missing) console.error(`   ${(name + '.json').padEnd(32)} read by ${[...files].join(', ')}`);
+    for (const [name, e] of missing) console.error(`   ${(name + '.json').padEnd(32)} read by ${[...e.files].join(', ')}`);
     console.error('');
     process.exit(1);
   }
+  const live = consumed.filter(([name, e]) => !names.includes(name) && e.optional).map(([name]) => name);
   console.log(`  + snippets/region--data.liquid    (${names.length} data file(s): ${names.join(', ') || 'none'})`);
+  if (live.length) console.log(`  ~ read live from the store (no data file): ${live.join(', ')}`);
 }
 
 /**

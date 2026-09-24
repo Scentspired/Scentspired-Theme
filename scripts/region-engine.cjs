@@ -418,7 +418,18 @@ function emitDataSnippet(regionId, distDir) {
   return Object.keys(data);
 }
 
-/** Every data set shared code reads, mapped to the files that read it. */
+/**
+ * Every data set shared code reads, mapped to the files that read it.
+ *
+ * A read marked `optional: true` has a live fallback: when the region has no
+ * data file, the component reads the store instead. That is how a region
+ * chooses its source without any region-name condition in code —
+ *
+ *   regions/uk/data/hero-perfumes.json  present  -> the finder uses the file
+ *   regions/uae/data/hero-perfumes.json absent   -> the finder reads the store
+ *
+ * and moving a region to live data later is deleting one file.
+ */
 function consumedDataNames() {
   const out = new Map();
   for (const dir of ['sections', 'snippets', 'blocks', 'layout']) {
@@ -427,9 +438,12 @@ function consumedDataNames() {
     for (const f of fs.readdirSync(abs)) {
       if (!f.endsWith('.liquid') || f.startsWith('region--')) continue;
       const src = fs.readFileSync(path.join(abs, f), 'utf8');
-      for (const m of src.matchAll(/render\s+['"]region--data['"]\s*,\s*name:\s*['"]([^'"]+)['"]/g)) {
-        if (!out.has(m[1])) out.set(m[1], new Set());
-        out.get(m[1]).add(`${dir}/${f}`);
+      for (const m of src.matchAll(/render\s+['"]region--data['"]\s*,\s*name:\s*['"]([^'"]+)['"]([^%]*)%\}/g)) {
+        if (!out.has(m[1])) out.set(m[1], { files: new Set(), optional: true });
+        const entry = out.get(m[1]);
+        entry.files.add(`${dir}/${f}`);
+        // required as soon as any reader lacks a fallback
+        if (!/optional:\s*true/.test(m[2])) entry.optional = false;
       }
     }
   }

@@ -261,9 +261,41 @@
 
 {{ 'media--hero.css' | asset_url | stylesheet_tag }}
 
+{%- comment -%}
+  Where the finder's perfumes come from is the region's choice, made by data:
+    regions/<id>/data/hero-perfumes.json present -> that file (UK, USA today)
+    absent                                       -> this store's live products (UAE)
+  The live path knows stock and each product's real address; see
+  snippets/catalog--finder-products.liquid.
+{%- endcomment -%}
+{%- capture perfume_data -%}{%- render 'region--data', name: 'hero-perfumes', optional: true -%}{%- endcapture -%}
+{%- if perfume_data == 'null' -%}
+  {%- capture perfume_data -%}{%- render 'catalog--finder-products', collection: section.settings.finder_collection -%}{%- endcapture -%}
+{%- endif -%}
 <script>
-  // ... existing code ... COMPLETE PERFUME DATABASE (50+ entries unchanged)
-  const perfumeDatabase = {% render 'region--data', name: 'hero-perfumes' %};
+  const perfumeDatabase = {{ perfume_data }};
+
+  /*
+   * Live store data (a region without a hero-perfumes data file): gender and
+   * scent family come from metafields where set, otherwise from the tag that
+   * matches one of this quiz's own answers. Sold-out perfumes, and products
+   * that are not finder perfumes (no scent family), are left out.
+   * For a data file this changes nothing: every entry already has both, and
+   * none carries `available`.
+   */
+  (function useLiveCatalogue() {
+    const answers = (step) =>
+      [...document.querySelectorAll(`.quiz-step[data-step="${step}"] [data-answer]`)].map((b) => b.dataset.answer);
+    const genders = answers(1);
+    const families = answers(2);
+    for (let i = perfumeDatabase.length - 1; i >= 0; i--) {
+      const p = perfumeDatabase[i];
+      const tags = p.tags || [];
+      if (!p.category) p.category = genders.find((g) => tags.includes(g)) || '';
+      if (!p.scent_family) p.scent_family = families.find((f) => tags.includes(f)) || '';
+      if (p.available === false || !p.scent_family) perfumeDatabase.splice(i, 1);
+    }
+  })();
 
   // <CHANGE> UPDATED QUIZ LOGIC - Name input + personalized results
   let quizAnswers = {
@@ -411,7 +443,7 @@
     const pName = document.getElementById('result-perfume-name');
     if (pName) pName.textContent = perfume.name;
     const pInsp = document.getElementById('result-inspired-by');
-    if (pInsp) pInsp.textContent = `Inspired by: ${perfume.originalName}`;
+    if (pInsp) pInsp.textContent = perfume.originalName ? `Inspired by: ${perfume.originalName}` : '';
     const pHead = document.getElementById('result-head-notes');
     if (pHead) pHead.textContent = perfume.head_notes;
     const pHeart = document.getElementById('result-heart-notes');
@@ -426,8 +458,11 @@
     }
 
     if (viewProductBtn) {
+      // The live catalogue carries each product's real address. The data file
+      // does not, so its link is still derived from the name — which is why
+      // "Heaven's Pour" and "L'Infini" 404 there and not on the live path.
       const productHandle = (perfume.name || '').toLowerCase().replace(/\s+/g, '-');
-      viewProductBtn.href = `/products/${productHandle}`;
+      viewProductBtn.href = perfume.url || `/products/${productHandle}`;
     }
 
     showStep('results');
@@ -452,6 +487,12 @@
       "type": "image_picker",
       "id": "image",
       "label": "Hero Image"
+    },
+    {
+      "type": "collection",
+      "id": "finder_collection",
+      "label": "Fragrance finder: products",
+      "info": "Used only when the region has no hero-perfumes data file, so the finder reads the store live. Pick the collection of main perfume products (not bundle or sample listings). Blank = all products."
     },
     {
       "type": "text",

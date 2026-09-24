@@ -72,6 +72,9 @@ function count(src, isJs) {
       .replace(/<script[\s\S]*?<\/script>/g, '')
       .replace(/<!--[\s\S]*?-->/g, '');
     c.text += markup
+      // JSON keys ("name": …) in a snippet that emits data are structure, not
+      // words a shopper reads — snippets/catalog--finder-products.liquid.
+      .replace(/"[A-Za-z_][A-Za-z0-9_]*"\s*:/g, '')
       .replace(/\{\{[\s\S]*?\}\}/g, '\u0000')
       .replace(/\{%[\s\S]*?%\}/g, '\u0000')
       .split(/<[^>]*>/)
