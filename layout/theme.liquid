@@ -669,23 +669,40 @@
       {% endif %}
     {% endif %}
 
-    {% if template contains "product" %}
-      <script>
-        var handle = '{{ product.handle }}';
-
-        if (handle === 'the-five-favourites') {
-          window.location.href = '/pages/five-favourites';
-        }
-
-        if (handle === 'discovery-set') {
-          window.location.href = '/pages/discovery-set';
-        }
-
-        if (handle === 'the-signature-trio') {
-          window.location.href = '/pages/trio';
-        }
-      </script>
-    {% endif %}
+    {%- comment -%}
+      A box product is bought on its box's page, not its product page: send the
+      shopper there. Every box in the region's content/boxes.json, so a new box
+      is covered by its entry alone.
+    {%- endcomment -%}
+    {%- if template contains 'product' -%}
+      {%- liquid
+        capture box_ids
+          render 'region--content', key: 'boxes.__keys'
+        endcapture
+        assign box_ids = box_ids | strip | split: ','
+        assign box_page_url = blank
+        for box_id in box_ids
+          assign k = 'boxes.' | append: box_id | append: '.product_handle'
+          capture box_product_handle
+            render 'region--content', key: k
+          endcapture
+          assign box_product_handle = box_product_handle | strip
+          if product.handle == box_product_handle
+            assign k = 'boxes.' | append: box_id | append: '.page_url'
+            capture box_page_url
+              render 'region--content', key: k
+            endcapture
+            assign box_page_url = box_page_url | strip
+            break
+          endif
+        endfor
+      -%}
+      {%- if box_page_url != blank -%}
+        <script>
+          window.location.href = {{ box_page_url | json }};
+        </script>
+      {%- endif -%}
+    {%- endif -%}
 
     <script src="https://analytics.ahrefs.com/analytics.js" data-key="VwQqpLi0JY7J65Y0OLlFfw" async></script>
   </head>

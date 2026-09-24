@@ -4,57 +4,62 @@
   bundle--five-box, bundle--trio-set and bundle--discovery, three copies of the
   same builder that typed their prices and variant IDs into the code.
 
-  The page layout (theme-level) says WHICH box, in the `box` setting. The box
-  itself is defined once per region in regions/<id>/content/boxes.json:
+  Each box is one entry in regions/<id>/content/boxes.json. The page around it
+  (banners, newsletter) is page-layouts/box.json, and the build writes one page
+  per entry. The fields this section reads:
 
     "signature_trio": {
-      "heading":  "Build Your Own Signature Trio Set",   the page's heading (its H1)
-      "name":     "Signature Trio Set",                  used in the messages
-      "product":  "the-signature-trio",                  the Shopify product sold
-      "capacity": 3,                                     how many perfumes it holds
-      "choices":  { "50ml": "bundle-50ml", … }           size -> collection to choose from
+      "builder_heading":  "Build Your Own Signature Trio Set",  this section's H1
+      "box_name":         "Signature Trio Set",                 in "Add 3 items to complete your …"
+      "product_handle":   "the-signature-trio",                 the Shopify product added to the cart
+      "perfumes_per_box": 3,                                    how many perfumes the shopper picks
+      "perfume_collection_per_size": {                          per size of that product: the
+        "50ml":  "bundle-50ml",                                 collection the perfumes come from
+        "100ml": "bundle-100ml"
+      },
+      "standard_price_per_size": { "50ml": 77.97, … }           optional, see below
     }
 
-  "choices" may instead be one collection for every size ("choices": "discovery").
+  Sizes are the product's own variants: "50ml" must be the variant's name in
+  Shopify. A box sold in one size has no size step. When every size draws on
+  the same collection, "perfume_collection": "discovery" replaces the map.
 
-  Everything else is read from the store, never typed: the sizes are the
-  product's own variants (one size: no size step), and each size's variant ID
-  and price come from that variant, formatted by the store. The standard price
-  a saving is shown against is the variant's compare-at price; until the store
-  sets one, a region may state it as "reference_price": { "50ml": 77.97 }.
-  With neither, no saving is shown. `capacity` drives the slots, the progress
-  markers, the messages and the logic — change it and all of them follow.
+  Read from the store, never typed: each size's variant ID and price, formatted
+  by the store. The standard price a saving is shown against is the variant's
+  compare-at price; until the store sets one, "standard_price_per_size" states
+  it. With neither, no saving is shown. "perfumes_per_box" drives the slots,
+  the progress markers, the messages and the logic — change it and all follow.
 {%- endcomment -%}
 {%- liquid
   assign box_prefix = 'boxes.' | append: section.settings.box | append: '.'
-  assign k = box_prefix | append: 'heading'
+  assign k = box_prefix | append: 'builder_heading'
   capture box_heading
     render 'region--content', key: k
   endcapture
-  assign k = box_prefix | append: 'name'
+  assign k = box_prefix | append: 'box_name'
   capture box_name
     render 'region--content', key: k
   endcapture
-  assign k = box_prefix | append: 'product'
-  capture box_product_handle
+  assign k = box_prefix | append: 'product_handle'
+  capture product_handle
     render 'region--content', key: k
   endcapture
-  assign k = box_prefix | append: 'capacity'
-  capture box_capacity
+  assign k = box_prefix | append: 'perfumes_per_box'
+  capture perfumes_per_box
     render 'region--content', key: k
   endcapture
   assign box_name = box_name | strip
-  assign box_product_handle = box_product_handle | strip
-  assign box_product = all_products[box_product_handle]
-  assign box_capacity = box_capacity | strip | plus: 0
-  assign last_marker = box_capacity | minus: 1
+  assign product_handle = product_handle | strip
+  assign box_product = all_products[product_handle]
+  assign perfumes_per_box = perfumes_per_box | strip | plus: 0
+  assign last_marker = perfumes_per_box | minus: 1
 
-  # One collection for every size, when "choices" names one rather than a map.
-  assign k = box_prefix | append: 'choices'
-  capture choices_for_every_size
+  # One collection for every size, when the box names one rather than one per size.
+  assign k = box_prefix | append: 'perfume_collection'
+  capture perfume_collection
     render 'region--content', key: k
   endcapture
-  assign choices_for_every_size = choices_for_every_size | strip
+  assign perfume_collection = perfume_collection | strip
 
   # Per size: the price the store charges and, where one exists, the standard
   # price a saving is measured against (see above). Formatted by the store, so
@@ -63,7 +68,7 @@
   assign has_standard = false
   capture box_variants_js
     for variant in box_product.variants
-      assign k = box_prefix | append: 'reference_price.' | append: variant.title
+      assign k = box_prefix | append: 'standard_price_per_size.' | append: variant.title
       capture reference_price
         render 'region--content', key: k
       endcapture
@@ -108,7 +113,7 @@
       <div class="sidebar-header">
         {%- comment -%} The page's one H1: the banners above it are H2s. {%- endcomment -%}
         <h1>{{ box_heading }}</h1>
-        <p id="BundleStatusText">Add {{ box_capacity }} items to complete your {{ box_name }}</p>
+        <p id="BundleStatusText">Add {{ perfumes_per_box }} items to complete your {{ box_name }}</p>
       </div>
 
       <div class="slots-wrapper">
@@ -116,7 +121,7 @@
           <div class="progress-line"></div>
           {%- for i in (0..last_marker) -%}
             {%- liquid
-              if forloop.last and box_capacity > 1
+              if forloop.last and perfumes_per_box > 1
                 assign top = 98
               elsif last_marker > 0
                 assign top = i | times: 100 | divided_by: last_marker
@@ -130,12 +135,12 @@
         </div>
 
         <div class="slot-list" id="BundleSlots">
-          {% for i in (1..box_capacity) %}
+          {% for i in (1..perfumes_per_box) %}
             <div class="slot-item empty" data-index="{{ forloop.index0 }}" onclick="openSelector({{ forloop.index0 }})">
               <div class="slot-placeholder-icon">+</div>
               <div class="slot-placeholder-text">
                 <span class="primary">Select a product</span>
-                <span class="unlock"> {{ box_capacity | minus: forloop.index | plus: 1 }} Selections Remaining</span>
+                <span class="unlock"> {{ perfumes_per_box | minus: forloop.index | plus: 1 }} Selections Remaining</span>
               </div>
             </div>
           {% endfor %}
@@ -206,10 +211,10 @@
 </div>
 
 <script>
-  // The box: its size (capacity), its name, and — per size — the variant of the
+  // The box: how many perfumes it holds, its name, and — per size — the variant of the
   // box product that is added to the cart, the price the store charges for it,
   // and the standard price and saving where one exists (see the top of this file).
-  const CAPACITY = {{ box_capacity }};
+  const PERFUMES_PER_BOX = {{ perfumes_per_box }};
   const BOX_NAME = {{ box_name | json }};
   const BOX_VARIANTS = { {{ box_variants_js }} };
 
@@ -217,16 +222,16 @@
   const PRODUCTS_BY_SIZE = {
     {%- for variant in box_product.variants %}
       {%- liquid
-        assign k = box_prefix | append: 'choices.' | append: variant.title
-        capture choices_handle
+        assign k = box_prefix | append: 'perfume_collection_per_size.' | append: variant.title
+        capture size_collection_handle
           render 'region--content', key: k
         endcapture
-        assign choices_handle = choices_handle | strip | default: choices_for_every_size
-        assign choices = collections[choices_handle]
+        assign size_collection_handle = size_collection_handle | strip | default: perfume_collection
+        assign size_collection = collections[size_collection_handle]
       %}
     {{ variant.title | json }}: [
-      {% paginate choices.products by 100 %}
-        {% for product in choices.products %}
+      {% paginate size_collection.products by 100 %}
+        {% for product in size_collection.products %}
           {
             id: {{ product.id }},
             title: {{ product.title | json }},
@@ -251,7 +256,7 @@
   let activeSize = ONE_SIZE;
   let currentStep = ONE_SIZE ? 'Step-Product' : 'Step-Size';
   let hasAddedFirstProduct = false;
-  let bundle = new Array(CAPACITY).fill(null);
+  let bundle = new Array(PERFUMES_PER_BOX).fill(null);
   let currentSlot = null;
 
   function isDesktop() {
@@ -416,7 +421,7 @@
           <div class="slot-placeholder-icon">+</div>
           <div class="slot-placeholder-text">
             <span class="primary">Select a product</span>
-            <span class="unlock"> ${CAPACITY - i} Selections Remaining</span>
+            <span class="unlock"> ${PERFUMES_PER_BOX - i} Selections Remaining</span>
           </div>
         `;
       }
@@ -424,12 +429,12 @@
 
     const totalDisplay = document.getElementById('TotalDisplay');
     const mainBtn = document.getElementById('MainActionBtn');
-    mainBtn.disabled = count !== CAPACITY;
+    mainBtn.disabled = count !== PERFUMES_PER_BOX;
 
     // The price shows once the box is full: what the store charges for the box
     // in this size, and — only where a standard price exists — the saving.
     const boxVariant = activeSize && BOX_VARIANTS[activeSize];
-    if (count === CAPACITY && boxVariant) {
+    if (count === PERFUMES_PER_BOX && boxVariant) {
       totalDisplay.innerText = boxVariant.price;
       totalDisplay.style.visibility = 'visible';
       const hasStandard = boxVariant.standard !== null;
@@ -445,8 +450,8 @@
     }
 
     document.getElementById('BundleStatusText').innerText =
-      count < CAPACITY
-        ? `Add ${CAPACITY - count} more items to complete your ${BOX_NAME}`
+      count < PERFUMES_PER_BOX
+        ? `Add ${PERFUMES_PER_BOX - count} more items to complete your ${BOX_NAME}`
         : `Your ${BOX_NAME} is complete!`;
 
     document.querySelectorAll('.progress-marker, .progress-label').forEach((el) => el.classList.remove('active'));
@@ -534,7 +539,7 @@
       "type": "text",
       "id": "box",
       "label": "Box",
-      "info": "Which box this page builds: a key in the region's content/boxes.json, e.g. five_favourites or signature_trio. Its heading, product, capacity and choices are set there."
+      "info": "Which box this builds, from the region's content/boxes.json. The build turns this into a list of that region's boxes; everything about a box is set in its entry there."
     }
   ],
   "presets": [{ "name": "Box builder" }]

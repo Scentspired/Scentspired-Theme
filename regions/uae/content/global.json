@@ -131,5 +131,11 @@
       "Amber",
       "Women"
     ]
+  },
+  "newsletter_banner": {
+    "background_image": "shopify://shop_images/ScentSpired_-_Scent_Notes_06_-_Banner.png",
+    "heading": "Join the",
+    "subheading": "inner circle",
+    "description": "New launches, exclusive edits, and first access, straight to your inbox."
   }
 }

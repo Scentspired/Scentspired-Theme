@@ -1,29 +1,53 @@
 {
   "five_favourites": {
-    "heading": "Build Your Own Five Favourites",
-    "name": "Five Favourites",
-    "product": "the-five-favourites",
-    "capacity": 5,
-    "choices": {
+    "page_template": "fivebox",
+    "page_url": "/pages/five-favourites",
+    "banner": {
+      "heading": "The Five Favourites",
+      "subheading": "Five best-loved scents, one added advantage",
+      "image_desktop": "shopify://shop_images/1920_X_700.jpg",
+      "image_mobile": "shopify://shop_images/2_1ae5ba53-2d4a-4517-8adc-50a5facd4758.jpg"
+    },
+    "builder_heading": "Build Your Own Five Favourites",
+    "box_name": "Five Favourites",
+    "product_handle": "the-five-favourites",
+    "perfumes_per_box": 5,
+    "perfume_collection_per_size": {
       "50ml": "bundle-50ml",
       "100ml": "bundle-100ml"
     }
   },
   "signature_trio": {
-    "heading": "Build Your Own Signature Trio Set",
-    "name": "Signature Trio Set",
-    "product": "the-signature-trio",
-    "capacity": 3,
-    "choices": {
+    "page_template": "trio-box",
+    "page_url": "/pages/trio",
+    "banner": {
+      "heading": "The Signature Trio",
+      "subheading": "Three curated scents, priced with an advantage",
+      "image_desktop": "shopify://shop_images/Website---BundleBannerDesktop.png",
+      "image_mobile": "shopify://shop_images/M5.jpg"
+    },
+    "builder_heading": "Build Your Own Signature Trio Set",
+    "box_name": "Signature Trio Set",
+    "product_handle": "the-signature-trio",
+    "perfumes_per_box": 3,
+    "perfume_collection_per_size": {
       "50ml": "bundle-50ml",
       "100ml": "bundle-100ml"
     }
   },
   "discovery_set": {
-    "heading": "Your Fragrance Discovery Starts Here",
-    "name": "Discovery Box",
-    "product": "discovery-set",
-    "capacity": 5,
-    "choices": "discovery"
+    "page_template": "discovery-set",
+    "page_url": "/pages/discovery-set",
+    "banner": {
+      "heading": "Discovery Box",
+      "subheading": "Explore more before you commit",
+      "image_desktop": "shopify://shop_images/DBox_1400_x_510.jpg",
+      "image_mobile": "shopify://shop_images/M1.jpg"
+    },
+    "builder_heading": "Your Fragrance Discovery Starts Here",
+    "box_name": "Discovery Box",
+    "product_handle": "discovery-set",
+    "perfumes_per_box": 5,
+    "perfume_collection": "discovery"
   }
 }

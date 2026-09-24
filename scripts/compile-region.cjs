@@ -25,6 +25,7 @@ const {
   consumedDataNames,
   emitContentSnippet,
   consumedContentKeys,
+  readRegionContent,
   listRegions,
   regionContentFiles,
   DEFAULT_REGION,
@@ -299,43 +300,119 @@ emitted.add('snippets/region--active.liquid');
   const pages = [...new Set(Object.keys(flat).map((k) => k.split('.')[0]))];
   console.log(`  + snippets/region--content.liquid (${Object.keys(flat).length} value(s) in ${pages.length} page file(s))`);
 
-  // The box builder reads its box by a key the page layout names
-  // (settings.box), which the check above cannot see. So check each box a
-  // page names: it must exist in content/boxes.json with every field.
+  /*
+   * One page per box. Every entry in content/boxes.json becomes
+   * templates/page.<page_template>.json, laid out by page-layouts/box.json —
+   * so a new box is a new entry, and its template appears in Shopify's list
+   * for a page to use, with no file added to the theme.
+   */
+  const boxes = readRegionContent(target).boxes || {};
   const boxErrors = [];
-  const tplDir = path.join(DIST_DIR, 'templates');
-  const strip = (s) => (s.charCodeAt(0) === 0xfeff ? s.slice(1) : s).replace(/^\s*\/\*[\s\S]*?\*\//, '');
-  for (const f of fs.existsSync(tplDir) ? fs.readdirSync(tplDir).filter((x) => x.endsWith('.json')) : []) {
-    let doc;
-    try {
-      doc = JSON.parse(strip(fs.readFileSync(path.join(tplDir, f), 'utf8')));
-    } catch {
+  const boxLayoutFile = path.join(THEME_ROOT, 'page-layouts', 'box.json');
+  const boxLayout = JSON.parse(stripJsonComments(fs.readFileSync(boxLayoutFile, 'utf8')));
+  const templatesDir = path.join(DIST_DIR, 'templates');
+  const fieldOf = (obj, dotted) => dotted.split('.').reduce((v, k) => (v == null ? v : v[k]), obj);
+
+  // "@box", "@box.<field>" and "@content:<path>" in a layout become the
+  // values they name. One that names nothing fails the build, naming it —
+  // a page is never shipped with a blank heading or a missing image.
+  function fillLayout(node, box, boxId, where, errors) {
+    if (Array.isArray(node)) return node.map((x) => fillLayout(x, box, boxId, where, errors));
+    if (node && typeof node === 'object') {
+      const out = {};
+      for (const [k, v] of Object.entries(node)) out[k] = fillLayout(v, box, boxId, where, errors);
+      return out;
+    }
+    // Only these three forms are references; anything else starting with "@"
+    // (a CSS @media rule) is kept as written.
+    if (typeof node !== 'string' || !/^@(box$|box\.|content:)/.test(node)) return node;
+    if (node === '@box') return boxId;
+    const value = node.startsWith('@box.')
+      ? fieldOf(box, node.slice('@box.'.length))
+      : node.startsWith('@content:')
+        ? flat[node.slice('@content:'.length)]
+        : undefined;
+    if (value === undefined || value === null || value === '' || typeof value === 'object') {
+      errors.push(`${where}: ${node} has no value`);
+      return '';
+    }
+    return value;
+  }
+
+  const requiredText = ['page_template', 'page_url', 'builder_heading', 'box_name', 'product_handle'];
+  const templatesUsed = new Map();
+  for (const [boxId, box] of Object.entries(boxes)) {
+    const where = `boxes.json "${boxId}"`;
+    for (const field of requiredText) {
+      if (typeof box[field] !== 'string' || !box[field].trim()) boxErrors.push(`${where}: needs "${field}"`);
+    }
+    if (!(Number.isInteger(box.perfumes_per_box) && box.perfumes_per_box >= 1)) {
+      boxErrors.push(`${where}: "perfumes_per_box" must be a whole number, 1 or more`);
+    }
+    const oneCollection = typeof box.perfume_collection === 'string' && box.perfume_collection.trim();
+    const perSize = box.perfume_collection_per_size && typeof box.perfume_collection_per_size === 'object';
+    if (!oneCollection === !perSize) {
+      boxErrors.push(`${where}: needs "perfume_collection" (one for every size) or "perfume_collection_per_size" — one of them`);
+    }
+    if (typeof box.page_url === 'string' && !box.page_url.startsWith('/')) {
+      boxErrors.push(`${where}: "page_url" is the page's address on the store, e.g. "/pages/trio"`);
+    }
+    if (typeof box.page_template !== 'string' || !/^[a-z0-9][a-z0-9_-]*$/.test(box.page_template)) {
+      if (typeof box.page_template === 'string') {
+        boxErrors.push(`${where}: "page_template" may use only a-z, 0-9, - and _ (it becomes a file name)`);
+      }
       continue;
     }
-    for (const s of Object.values(doc.sections || {})) {
-      if (s.type !== 'bundle--box' || s.disabled) continue;
-      const box = (s.settings || {}).box;
-      if (!box) {
-        boxErrors.push(`templates/${f}: a box builder names no box`);
-        continue;
-      }
-      const at = (field) => flat[`boxes.${box}.${field}`];
-      for (const field of ['heading', 'name', 'product']) {
-        if (!at(field)) boxErrors.push(`templates/${f}: box "${box}" has no ${field}`);
-      }
-      if (!(Number(at('capacity')) >= 1)) boxErrors.push(`templates/${f}: box "${box}" needs a capacity of 1 or more`);
-      // One collection for every size ("choices": "discovery"), or one per size.
-      if (!at('choices') && !Object.keys(flat).some((k) => k.startsWith(`boxes.${box}.choices.`))) {
-        boxErrors.push(`templates/${f}: box "${box}" names no choices (a collection, or size -> collection)`);
-      }
+    if (templatesUsed.has(box.page_template)) {
+      boxErrors.push(`${where}: "page_template" "${box.page_template}" is already used by "${templatesUsed.get(box.page_template)}"`);
+      continue;
     }
+    templatesUsed.set(box.page_template, boxId);
+
+    const file = `page.${box.page_template}.json`;
+    if (fs.existsSync(path.join(REGION_DIR, 'templates', file))) {
+      boxErrors.push(`${where}: regions/${target}/templates/${file} also exists — the box page is generated; remove that file`);
+      continue;
+    }
+    const page = fillLayout(boxLayout, box, boxId, where, boxErrors);
+    const header =
+      `/*\n * GENERATED — do not edit. The "${boxId}" box page: page-layouts/box.json\n` +
+      ` * filled from regions/${target}/content/boxes.json. Edit those instead.\n */\n`;
+    const out = header + JSON.stringify(page, null, 2) + '\n';
+    const to = path.join(templatesDir, file);
+    fs.mkdirSync(templatesDir, { recursive: true });
+    if (!fs.existsSync(to) || fs.readFileSync(to, 'utf8') !== out) fs.writeFileSync(to, out);
+    emitted.add(`templates/${file}`);
   }
+
+  // The builder's "Box" setting becomes a list of this region's boxes, so the
+  // theme editor offers every box in boxes.json, and only those.
+  const builderFile = path.join(DIST_DIR, 'sections', 'bundle--box.liquid');
+  if (fs.existsSync(builderFile) && Object.keys(boxes).length) {
+    const src = fs.readFileSync(builderFile, 'utf8');
+    const m = src.match(/(\{%-?\s*schema\s*-?%\})([\s\S]*?)(\{%-?\s*endschema\s*-?%\})/);
+    const schema = JSON.parse(m[2]);
+    const setting = schema.settings.find((s) => s.id === 'box');
+    Object.assign(setting, {
+      type: 'select',
+      options: Object.entries(boxes).map(([value, b]) => ({ value, label: b.box_name || value })),
+      default: Object.keys(boxes)[0],
+      info: "The boxes in this region's content/boxes.json.",
+    });
+    const next = src.replace(m[0], `${m[1]}\n${JSON.stringify(schema, null, 2)}\n${m[3]}`);
+    if (next !== src) fs.writeFileSync(builderFile, next);
+  }
+
   if (boxErrors.length) {
-    console.error(`\n❌ regions/${target}/content/boxes.json does not define what the pages use:\n`);
+    console.error(`\n❌ regions/${target}/content/boxes.json:\n`);
     for (const e of boxErrors) console.error(`   ${e}`);
     console.error('');
     process.exit(1);
   }
+  console.log(
+    `  + ${templatesUsed.size} box page(s) from boxes.json: ` +
+      [...templatesUsed].map(([t, id]) => `page.${t} (${id})`).join(', ')
+  );
 }
 
 /**

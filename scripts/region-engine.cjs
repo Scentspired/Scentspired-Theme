@@ -489,6 +489,28 @@ function flattenContent(content) {
   return out;
 }
 
+/**
+ * For every object and list in the content, '<path>.__keys' lists its entries,
+ * comma-separated: 'boxes.__keys' -> 'five_favourites,signature_trio,discovery_set'.
+ * Theme code loops over that list, so adding an entry to a file (a box, a menu
+ * item) reaches every place that lists them, with no code change:
+ *
+ *   capture ids
+ *     render 'region--content', key: 'boxes.__keys'
+ *   endcapture
+ *   for id in ids | strip | split: ','  …
+ */
+function listContentKeys(content) {
+  const out = {};
+  const walk = (v, key) => {
+    if (!v || typeof v !== 'object') return;
+    if (key) out[`${key}.__keys`] = Object.keys(v).join(',');
+    for (const [k, x] of Object.entries(v)) walk(x, key ? `${key}.${k}` : k);
+  };
+  for (const [page, v] of Object.entries(content)) walk(v, page);
+  return out;
+}
+
 /** A value made safe to sit inside a JavaScript string literal, either quote. */
 const jsEscape = (s) =>
   s
@@ -499,7 +521,7 @@ const jsEscape = (s) =>
     .replace(/<\//g, '<\\/');
 
 function renderContentSnippet(content, regionId) {
-  const flat = flattenContent(content);
+  const flat = { ...flattenContent(content), ...listContentKeys(content) };
   for (const [key, value] of Object.entries(flat)) {
     if (/\{\{|\{%/.test(value)) {
       const err = new Error(`content "${key}" contains "{{" or "{%" — Liquid would execute it`);
@@ -545,7 +567,7 @@ function emitContentSnippet(regionId, distDir) {
   const target = path.join(distDir, 'snippets', 'region--content.liquid');
   fs.mkdirSync(path.dirname(target), { recursive: true });
   fs.writeFileSync(target, renderContentSnippet(content, regionId));
-  return flattenContent(content);
+  return { ...flattenContent(content), ...listContentKeys(content) };
 }
 
 /** Every content path the theme reads, mapped to the files that read it. */

@@ -1053,11 +1053,11 @@
     "ids": 0
   },
   "layout/theme.liquid": {
-    "total": 16,
+    "total": 13,
     "text": 2,
     "js-text": 8,
     "media": 0,
-    "links": 5,
+    "links": 2,
     "fallback": 0,
     "ids": 1
   },
