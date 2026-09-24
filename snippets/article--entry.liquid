@@ -1,0 +1,43 @@
+{%- comment -%}
+  Outputs the key of this article's entry in regions/<id>/content/articles.json,
+  or nothing when it has none (it then shows as a plain Shopify article).
+
+  An entry names its article in one of two ways:
+    "article_handle":   the article's address after /blogs/<blog>/
+    "article_template": the template the article is assigned in Shopify
+                        (Online Store > Blog posts > the post > Theme template)
+
+  Params: handle (article.handle), template_suffix (article.template_suffix)
+
+  Shopify's article.handle carries the blog too ("news/why-we-started-…"); an
+  entry names only the article's own part.
+{%- endcomment -%}
+{%- liquid
+  assign handle = handle | split: '/' | last
+  capture entry_ids
+    render 'region--content', key: 'articles.__keys'
+  endcapture
+  assign entry_ids = entry_ids | strip | split: ','
+  for entry_id in entry_ids
+    assign k = 'articles.' | append: entry_id | append: '.article_handle'
+    capture entry_handle
+      render 'region--content', key: k
+    endcapture
+    assign entry_handle = entry_handle | strip
+    if entry_handle != blank and entry_handle == handle
+      echo entry_id
+      break
+    endif
+    if template_suffix != blank
+      assign k = 'articles.' | append: entry_id | append: '.article_template'
+      capture entry_template
+        render 'region--content', key: k
+      endcapture
+      assign entry_template = entry_template | strip
+      if entry_template == template_suffix
+        echo entry_id
+        break
+      endif
+    endif
+  endfor
+-%}

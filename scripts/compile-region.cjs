@@ -280,12 +280,14 @@ emitted.add('snippets/region--active.liquid');
 {
   let flat;
   try {
-    flat = emitContentSnippet(target, DIST_DIR);
+    const written = emitContentSnippet(target, DIST_DIR);
+    flat = written.flat;
+    // region--content, plus a chunk per large page (see renderContentSnippets)
+    for (const f of written.snippets) emitted.add(f);
   } catch (err) {
     if (!err.handled) throw err;
     process.exit(1);
   }
-  emitted.add('snippets/region--content.liquid');
   const missing = [...consumedContentKeys().entries()].filter(([key]) => !(key in flat));
   if (missing.length) {
     console.error(`\n❌ regions/${target}/content/ lacks ${missing.length} value(s) the theme shows:\n`);
@@ -427,6 +429,42 @@ emitted.add('snippets/region--active.liquid');
     const next = src.replace(m[0], `${m[1]}\n${JSON.stringify(schema, null, 2)}\n${m[3]}`);
     if (next !== src) fs.writeFileSync(builderFile, next);
   }
+
+  // Articles: each entry names its Shopify article and lists parts the theme
+  // draws (sections/article--parts.liquid). A part of an unknown kind would be
+  // silently skipped on the page, so it fails here instead.
+  const ARTICLE_PARTS = ['hero_banner', 'text', 'feature_banner', 'two_columns', 'content_box', 'comparison_table', 'callout', 'staggered_heading', 'closing', 'products', 'image_banner', 'fragrance_guide'];
+  const articleErrors = [];
+  const articleHandles = new Map();
+  for (const [entryId, entry] of Object.entries(readRegionContent(target).articles || {})) {
+    const where = `articles.json "${entryId}"`;
+    // The article is named by its address, or by the template it is assigned in Shopify.
+    const handle = (entry || {}).article_handle;
+    const tpl = (entry || {}).article_template;
+    const by = handle !== undefined ? ['article_handle', handle] : tpl !== undefined ? ['article_template', tpl] : null;
+    if (!by) {
+      articleErrors.push(`${where}: needs "article_handle" (its address after /blogs/<blog>/) or "article_template" (the template it is assigned in Shopify)`);
+    } else if (typeof by[1] !== 'string' || !/^[a-z0-9][a-z0-9_-]*$/.test(by[1])) {
+      articleErrors.push(`${where}: "${by[0]}" "${by[1]}" is not an address or template name`);
+    } else if (articleHandles.has(by.join(':'))) {
+      articleErrors.push(`${where}: "${by[0]}" "${by[1]}" is already used by "${articleHandles.get(by.join(':'))}"`);
+    } else articleHandles.set(by.join(':'), entryId);
+    const parts = (entry || {}).parts;
+    if (!Array.isArray(parts) || !parts.length) {
+      articleErrors.push(`${where}: "parts" lists the article's parts, in order`);
+      continue;
+    }
+    parts.forEach((p, i) => {
+      if (!ARTICLE_PARTS.includes((p || {}).part)) articleErrors.push(`${where}: part ${i + 1} is "${(p || {}).part}" — the parts are ${ARTICLE_PARTS.join(', ')}`);
+    });
+  }
+  if (articleErrors.length) {
+    console.error(`\n❌ regions/${target}/content/articles.json:\n`);
+    for (const e of articleErrors) console.error(`   ${e}`);
+    console.error('');
+    process.exit(1);
+  }
+  if (articleHandles.size) console.log(`  + ${articleHandles.size} article(s) from articles.json, drawn by sections/article--parts.liquid`);
 
   if (boxErrors.length) {
     console.error(`\n❌ regions/${target}/content/boxes.json:\n`);

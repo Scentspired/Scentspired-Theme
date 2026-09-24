@@ -56,6 +56,10 @@ function sanitizeLiquidForSyntaxCheck(scriptContent) {
   // Using an alphanumeric identifier 'liquid_val' ensures:
   // - Inside quotes: "prefix-{{ id }}" -> "prefix-liquid_val" (Valid String)
   // - Unquoted: const id = {{ product.id }}; -> const id = liquid_val; (Valid Expression)
+  // - Glued to a name: class Table{{ id }} extends … -> class Tableliquid_val …
+  //   Liquid output there becomes part of one identifier, so the placeholder
+  //   must too; spacing it out split the name and read as a syntax error.
+  js = js.replace(/(\w)\{\{[\s\S]*?\}\}/g, "$1liquid_val");
   js = js.replace(/\{\{\s*[\s\S]*?\s*\}\}/g, " liquid_val ");
 
   // 4b. {% render %} and {% include %} OUTPUT a value, like {{ }}. Region data

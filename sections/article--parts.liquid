@@ -1,0 +1,81 @@
+{%- comment -%}
+  An article, drawn from its entry in regions/<id>/content/articles.json: the
+  entry lists the article's parts in order, and each part is drawn by its
+  snippet, snippets/article--part-<kind>.liquid, where its design lives.
+
+  Every article uses this one template. What differs between articles — their
+  words, images, links, and which parts they have in which order — is in the
+  JSON; how a part looks is here, the same for every article. An article with
+  no entry renders nothing here, and shows as a plain Shopify article instead
+  (sections/editorial--article.liquid).
+{%- endcomment -%}
+{%- liquid
+  capture entry_id
+    render 'article--entry', handle: article.handle, template_suffix: article.template_suffix
+  endcapture
+  assign entry_id = entry_id | strip
+-%}
+{%- if entry_id != blank -%}
+  {%- liquid
+    assign parts_key = 'articles.' | append: entry_id | append: '.parts.'
+    assign k = parts_key | append: '__keys'
+    capture positions
+      render 'region--content', key: k
+    endcapture
+    assign positions = positions | strip | split: ','
+    # Class names carry the part's id, so each part's styles stay its own.
+    assign id_base = section.id | replace: '_', '' | replace: '-', '' | downcase
+  -%}
+  <div class="article-parts">
+    {%- for position in positions -%}
+      {%- liquid
+        assign content_key = parts_key | append: position | append: '.'
+        assign k = content_key | append: 'part'
+        capture kind
+          render 'region--content', key: k
+        endcapture
+        assign kind = kind | strip
+        assign part_id = id_base | append: 'p' | append: position
+        case kind
+          when 'hero_banner'
+            render 'article--part-hero-banner', content_key: content_key, part_id: part_id
+          when 'text'
+            render 'article--part-text', content_key: content_key, part_id: part_id
+          when 'feature_banner'
+            render 'article--part-feature-banner', content_key: content_key, part_id: part_id
+          when 'two_columns'
+            render 'article--part-two-columns', content_key: content_key, part_id: part_id
+          when 'content_box'
+            render 'article--part-content-box', content_key: content_key, part_id: part_id
+          when 'comparison_table'
+            render 'article--part-comparison-table', content_key: content_key, part_id: part_id
+          when 'callout'
+            render 'article--part-callout', content_key: content_key, part_id: part_id
+          when 'staggered_heading'
+            render 'article--part-staggered-heading', content_key: content_key, part_id: part_id
+          when 'closing'
+            render 'article--part-closing', content_key: content_key, part_id: part_id
+          when 'products'
+            render 'article--part-products', content_key: content_key, part_id: part_id
+          when 'image_banner'
+            render 'article--part-image-banner', content_key: content_key, part_id: part_id
+          when 'fragrance_guide'
+            render 'article--part-fragrance-guide', content_key: content_key, part_id: part_id
+        endcase
+      -%}
+    {%- endfor -%}
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Article parts",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "The article's parts come from the region's content/articles.json, found by the article's handle. Articles without an entry show as plain articles."
+    }
+  ],
+  "presets": [{ "name": "Article parts" }]
+}
+{% endschema %}

@@ -520,7 +520,19 @@ const jsEscape = (s) =>
     .replace(/\r?\n/g, '\\n')
     .replace(/<\//g, '<\\/');
 
-function renderContentSnippet(content, regionId) {
+/*
+ * Shopify refuses a Liquid file over 256 KB, and a page file of long content
+ * (every article's text) passes that on its own. So a page whose lookup would
+ * be large is split by its entries (each article, each box) into chunk
+ * snippets — region--content--<page>-<n>.liquid, at most CHUNK_BYTES each —
+ * and region--content forwards to the right one. Callers never see it: they
+ * render 'region--content' with the same keys either way.
+ */
+const INLINE_BYTES = 40 * 1024;
+const CHUNK_BYTES = 100 * 1024;
+const LIQUID_FILE_LIMIT = 256 * 1024;
+
+function renderContentSnippets(content, regionId) {
   const flat = { ...flattenContent(content), ...listContentKeys(content) };
   for (const [key, value] of Object.entries(flat)) {
     if (/\{\{|\{%/.test(value)) {
@@ -530,28 +542,59 @@ function renderContentSnippet(content, regionId) {
       throw err;
     }
   }
+  const whenLine = (key, v) => {
+    const js = jsEscape(v);
+    const out = js === v ? v : `{%- if js -%}${js}{%- else -%}${v}{%- endif -%}`;
+    return `      {%- when '${key}' -%}${out}`;
+  };
   // Dispatch on the page first, so each lookup scans one page's keys.
   const pages = {};
   for (const [key, value] of Object.entries(flat)) {
     const page = key.split('.')[0];
-    (pages[page] = pages[page] || []).push([key, value]);
+    (pages[page] = pages[page] || []).push([key, whenLine(key, value)]);
   }
+  const files = {};
   const body = Object.entries(pages)
     .map(([page, entries]) => {
-      const whens = entries
-        .map(([key, v]) => {
-          const js = jsEscape(v);
-          const out = js === v ? v : `{%- if js -%}${js}{%- else -%}${v}{%- endif -%}`;
-          return `      {%- when '${key}' -%}${out}`;
-        })
-        .join('\n');
-      return `  {%- when '${page}' -%}\n    {%- case key -%}\n${whens}\n    {%- endcase -%}`;
+      const size = entries.reduce((n, [, line]) => n + Buffer.byteLength(line) + 1, 0);
+      if (size <= INLINE_BYTES) {
+        return `  {%- when '${page}' -%}\n    {%- case key -%}\n${entries.map(([, l]) => l).join('\n')}\n    {%- endcase -%}`;
+      }
+      // group by entry (the key's second part), then pack entries into chunks
+      const groups = new Map();
+      for (const [key, line] of entries) {
+        const entry = key.split('.')[1];
+        if (!groups.has(entry)) groups.set(entry, []);
+        groups.get(entry).push(line);
+      }
+      const chunks = [];
+      let current = null;
+      for (const [entry, lines] of groups) {
+        const bytes = lines.reduce((n, l) => n + Buffer.byteLength(l) + 1, 0);
+        if (!current || current.bytes + bytes > CHUNK_BYTES) chunks.push((current = { entries: [], lines: [], bytes: 0 }));
+        current.entries.push(entry);
+        current.lines.push(...lines);
+        current.bytes += bytes;
+      }
+      const routes = chunks.map((c, i) => {
+        const name = `region--content--${page}-${i + 1}`;
+        const text = `{%- comment -%} GENERATED — do not edit. Part of ${page}.json (${regionId ? `regions/${regionId}` : 'core'}); read through region--content. {%- endcomment -%}\n{%- case key -%}\n${c.lines.join('\n')}\n{%- endcase -%}\n`;
+        if (Buffer.byteLength(text) > LIQUID_FILE_LIMIT) {
+          const err = new Error(`content "${page}.${c.entries[0]}" alone is over Shopify's 256 KB file limit`);
+          err.handled = true;
+          console.error(`\n❌ ${err.message}\n`);
+          throw err;
+        }
+        files[name] = text;
+        return `      {%- when ${c.entries.map((e) => `'${e}'`).join(', ')} -%}{%- render '${name}', key: key, js: js -%}`;
+      });
+      return `  {%- when '${page}' -%}\n    {%- assign content_entry = key | remove_first: '${page}.' | split: '.' | first -%}\n    {%- case content_entry -%}\n${routes.join('\n')}\n    {%- endcase -%}`;
     })
     .join('\n');
   const source = regionId
     ? `Region: ${regionId}. Source: regions/${regionId}/content/*.json`
     : "Empty on purpose: the theme holds no content. Each region's build generates this from regions/<id>/content/*.json";
-  return `{%- comment -%}
+  files['region--content'] = `{%- comment -%}
   GENERATED — do not edit. ${source}
   Usage: render 'region--content' with key set to '<page>.<section>.<field>' (add js: true inside a JS string)
 {%- endcomment -%}
@@ -560,14 +603,28 @@ function renderContentSnippet(content, regionId) {
 ${body}
 {%- endcase -%}
 `;
+  return files;
 }
 
+/** The single lookup snippet, for callers that need only the main file (the core stub). */
+function renderContentSnippet(content, regionId) {
+  return renderContentSnippets(content, regionId)['region--content'];
+}
+
+/**
+ * Writes region--content (and any chunks) for a region. Returns the content
+ * as { key: value } and the snippet files written, for the build to keep.
+ */
 function emitContentSnippet(regionId, distDir) {
   const content = readRegionContent(regionId);
-  const target = path.join(distDir, 'snippets', 'region--content.liquid');
-  fs.mkdirSync(path.dirname(target), { recursive: true });
-  fs.writeFileSync(target, renderContentSnippet(content, regionId));
-  return { ...flattenContent(content), ...listContentKeys(content) };
+  const dir = path.join(distDir, 'snippets');
+  fs.mkdirSync(dir, { recursive: true });
+  const files = renderContentSnippets(content, regionId);
+  for (const [name, text] of Object.entries(files)) {
+    const target = path.join(dir, `${name}.liquid`);
+    if (!fs.existsSync(target) || fs.readFileSync(target, 'utf8') !== text) fs.writeFileSync(target, text);
+  }
+  return { flat: { ...flattenContent(content), ...listContentKeys(content) }, snippets: Object.keys(files).map((n) => `snippets/${n}.liquid`) };
 }
 
 /** Every content path the theme reads, mapped to the files that read it. */

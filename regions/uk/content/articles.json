@@ -1,0 +1,1411 @@
+{
+  "$comment": [
+    "EVERY BLOG ARTICLE THAT HAS ITS OWN DESIGN. All of them use one template; this file gives each its words, images and links, as a list of parts in order.",
+    "An article with no entry here shows as a plain Shopify article (its title, image and text from Shopify).",
+    "",
+    "Name the article in ONE of two ways:",
+    "  article_handle     its address after /blogs/news/ , e.g. \"why-we-started-scentspired-life-is-too-short-to-save-your-good-perfume-for-best\"",
+    "  article_template   the template it is assigned in Shopify (Online Store > Blog posts > the post > Theme template), e.g. \"blog-7\"",
+    "",
+    "parts: the article, top to bottom. Each part has \"part\": <kind> and that kind's fields. Any kind, any order, any number of times.",
+    "Images are named as in Shopify: \"shopify://shop_images/<file name>\" (the file must be in the store's Files).",
+    "",
+    "  hero_banner        heading, subheading, image_desktop, image_mobile, image_tone",
+    "  text               text",
+    "  feature_banner     image, line_1, line_2_regular, line_2_italic, line_3, image_tone",
+    "  two_columns        heading, column_1, column_2",
+    "  content_box        heading, box_paragraph_1, box_paragraph_2, box_paragraph_3, subheading, subheading_text",
+    "  comparison_table   label_heading (optional), column_headings: [..], rows: [ { label, cells: [..] } ]  (any number of columns and rows)",
+    "  callout            heading, image, text",
+    "  staggered_heading  line_1, line_2, line_3, text",
+    "  closing            line_1, line_1_brand_scent, line_1_brand_spired, line_2_start, line_2_end, text",
+    "  image_banner       image_desktop, image_mobile, line_1, line_1_italic, line_2",
+    "  fragrance_guide    title, subtitle, illustration, points: [ { title, description, sketch } ], tip_heading, tip_text",
+    "  products           collection (its handle; the first three products are shown)",
+    "",
+    "image_tone (\"light\" or \"dark\") says whether the photo behind the text is light or dark, so the text is readable on it.",
+    "The look of every part is set once in the theme (snippets/article--part-<kind>.liquid), the same for every article."
+  ],
+  "top_perfume_for_men_the_gift_guide_for": {
+    "article_handle": "top-perfume-for-men-the-gift-guide-for-anyone-who-has-absolutely-no-idea-what-to-buy-the-men-in-their-lives",
+    "parts": [
+      {
+        "part": "hero_banner",
+        "image_desktop": "shopify://shop_images/ChatGPT_Image_Jul_14_2026_02_16_37_PM.png",
+        "image_tone": "dark"
+      },
+      {
+        "part": "text",
+        "text": "<p>There is a particular breed of man who is impossible to buy for, and you almost certainly live with one, are related to one, or are dating one. Ask him what he wants and he says \"oh, don’t worry about me.\" Left alone he will wear the same aftershave he was given in 2022 until the bottle turns a suspicious yellow. He is never going to replace it himself. That is where you come in.<br/></p><p>Fragrance is the gift most people overlook, mainly because he would never get round to buying it himself. He would use it every day, it is properly personal, and it freshens up a bit of his routine he never thinks about. The only real skill is matching the scent to the man. So here is the shortcut, sorted by the bloke you are really buying for. Each pick is a Scentspired bestseller built on high-quality, Swiss sourced fragrance oil, the bit that makes a scent last all day instead of clocking off before lunch.</p>"
+      },
+      {
+        "part": "feature_banner",
+        "image": "shopify://shop_images/ChatGPT_Image_Jul_14_2026_02_16_15_PM.png",
+        "image_tone": "light"
+      },
+      {
+        "part": "text",
+        "text": "<p>Some men do not want a project. They want something clean and dependable they can put on without a second thought and never regret. Marine is exactly that. Inspired by Bleu de Chanel, it is crisp citrus over warm ginger and dry sandalwood, and it suits the office, a wedding, and a Saturday of doing very little without ever changing its tune.<br/></p><p>A <a href=\"/collections/men\" title=\"Men\">top perfume for men</a> that is close to universally flattering, Marine is the safe choice that never feels like settling. It is polished, easy, and the sort of gift he will wear down to the last drop. When you are unsure of his taste, this is the one that lands every time.</p>"
+      },
+      {
+        "part": "content_box",
+        "heading": "<p>For the one who likes to make an entrance: Fierce</p>",
+        "box_paragraph_1": "<p>And then there is the man who fills a doorway. Big presence, strong opinions, the sort people clock before he has said a word. Fierce is made for him. Inspired by Sauvage Parfum by Dior, it is a bold hit of ambroxan and pepper over a rich, warm, woody base that carries real projection and holds it through the night.</p><p><br/>A best fragrance for men with proper presence, this is the scent that earns a \"what are you wearing?\" before the starters have arrived. Confident and unmistakable, it is the gift for the man who takes being noticed as the whole point. Just tell him to go easy on the sprays, because it does plenty on its own.</p>",
+        "subheading": "<p>For the one who fancies himself a bit of a visionary: Visionary</p>",
+        "subheading_text": "<p>You know the type. Reads the long articles, has thoughts on architecture, describes films as \"a piece of work\" and means it as praise. Visionary suits him. Inspired by Imagination by Louis Vuitton, it opens on bright citrus and herbs before easing into a warm, woody amber that feels considered and a little bit clever, which is exactly how he likes to be seen.<br/></p><p>A <a href=\"/collections/men\" title=\"Men\">men’s fragrance UK </a>wearers reach for when they want something with a bit of thought behind it, Visionary has real personality and is still easy to wear. It reads as modern and self- assured, the sort of thing he will assume you agonised over choosing even if you did not. Give it to the man who likes to feel one step ahead.</p>"
+      },
+      {
+        "part": "two_columns",
+        "heading": "For the one who deserves a proper treat: Addiction",
+        "column_1": "<p>Perhaps he has had a big year, or he is simply the sort of person you want to spoil a little. When the occasion calls for something that feels truly special, Addiction is the move. Inspired by Baccarat Rouge 540, it is jasmine, saffron, amber, and cedar, the blend that turned the original into the most talked-about scent of the last decade.</p>",
+        "column_2": "<p>This is a luxury inspired perfume that smells considerably more expensive than it has any right to. Warm, complex and unisex enough that nobody will blink, it is the gift that says you went to some effort. For anyone who appreciates the finer things, it is hard to beat.</p>"
+      },
+      {
+        "part": "two_columns",
+        "heading": "For the one you do not know all that well yet: Mirage"
+      },
+      {
+        "part": "text",
+        "text": "<p>Perhaps it is early days with someone new, or the office Secret Santa, or a brother-in-law you get on with but could not describe in any detail. When you are unsure of his taste, give him something he has almost certainly never smelled before. Mirage, inspired by Oud Maracujá by Maison Crivelli, pairs tropical passionfruit with smoky oud for something exotic and confident that still stays light on the skin.</p><p><br/>This is a niche fragrance with real character, the sort of thing that stops him mid-sentence the first time he tries it. Warm, a little unexpected, and impossible to mistake for anything on the high-street shelf. If he reckons he has smelled it all, this is the one that proves otherwise.</p>"
+      },
+      {
+        "part": "staggered_heading",
+        "line_1": "Why this beats",
+        "line_2": "yet another pair of",
+        "line_3": "novelty socks",
+        "text": "<p>A fragrance lands so well because he would never buy it himself. Most men run one bottle into the ground and never think to trade up. Give him a scent that performs like the designer version and he gets to wear the good stuff on an ordinary Tuesday rather than saving it for occasions that never quite arrive. Fragrance is meant to be worn, not guarded like the good towels.</p>"
+      },
+      {
+        "part": "closing",
+        "line_1": "So Where To",
+        "line_2_end": "Start",
+        "text": "So, the next time you’re looking for a fragrance for him with no plan and a deadline approaching, skip the guesswork. Pick the man, pick the scent, and let it do the talking. Browse the full Scentspired range for perfume online shopping and find the right match."
+      },
+      {
+        "part": "products",
+        "collection": "bestsellers"
+      }
+    ]
+  },
+  "fragrance_layering_explained_how_to_turn": {
+    "article_handle": "fragrance-layering-explained-how-to-turn-two-bottles-into-a-signature-scent-nobody-else-is-wearing",
+    "parts": [
+      {
+        "part": "hero_banner",
+        "heading": "<p>FRAGRANCE LAYERING: HOW TO TURN TWO PERFUMES INTO A SIGNATURE:</p>",
+        "subheading": "<p>how to combine scents, create custom profiles, and avoid common rookie mistakes</p>",
+        "image_desktop": "shopify://shop_images/ChatGPT_Image_Jul_13_2026_05_48_11_PM.png",
+        "image_tone": "light"
+      },
+      {
+        "part": "text",
+        "text": "<p>Somewhere in the last couple of years, one bottle of fragrance stopped being enough for anybody. Open TikTok or Instagram and you will find fragrance lovers layering two, sometimes three bottles together to build completely bespoke scent profiles that cannot be bought off a retail shelf.</p><p>Layering allows you to become your own perfumer. It transforms familiar crowd-pleasers into singular, customised signatures that keep everyone guessing. But layering is also easy to get wrong if you simply spray two heavy perfumes on top of each other and hope for the best.</p>"
+      },
+      {
+        "part": "feature_banner",
+        "image": "shopify://shop_images/ChatGPT_Image_Jul_13_2026_05_47_55_PM.png",
+        "line_2_italic": "WHAT LAYERING ACTUALLY IS",
+        "image_tone": "dark"
+      },
+      {
+        "part": "text",
+        "text": "<p>Layering means wearing two fragrances, occasionally three, so they come across as one. The aim is not to fog the room with competing notes; it is to create nuance, depth, and contrast.</p><p>There is a fundamental chemistry to successful layering: heavy, resinous scents form the foundation, while light, sparkling notes provide the top accent. Here are the simple rules that unlock infinite possibilities.</p>"
+      },
+      {
+        "part": "two_columns",
+        "heading": "The Golden Rules: Heavy Anchors First, Light Accents Second",
+        "column_1": "<p>The foundational rule of fragrance layering is strictly molecular: always apply the heaviest fragrance first. Scents rich in oud, sandalwood, amber, vanilla, or leather have heavy molecular weights that cling tightly to the skin.</p><p>If you spray a light citrus cologne first and bury it under a heavy amber Extrait, you will suffocate the delicate citrus molecules before they have a chance to project.</p>",
+        "column_2": "<p>Once your heavy anchor has settled onto skin for sixty seconds, apply your lighter accent fragrance directly over it. Fresh florals, sparkling citrus, and airy aromatics will float effortlessly above the rich base.</p><p>The result is a dynamic 3-dimensional scent cloud that evolves uniquely throughout the day as your body temperature fluctuates.</p>"
+      },
+      {
+        "part": "content_box",
+        "heading": "<p>Master layering combos: Addiction & Fierce</p>",
+        "box_paragraph_1": "<p>One of our absolute favourite layering recipes combines the crisp, spicy bergamot of <strong>Fierce</strong> (inspired by Sauvage Parfum) with the sweet saffron and amberwood warmth of <strong>Addiction</strong> (inspired by Baccarat Rouge 540).</p><p>The pepper and ambroxan in Fierce temper the sweetness of Addiction, while the saffron adds an opulent, ultra-luxury texture to the clean woods. It is an intoxicating combination that smells like a bespoke £500 creation.</p><p>Another winning duo is pairing <strong>Marine</strong> with <strong>Sweet Cherry</strong> for a surprising clash of ocean breeze and tart almond liqueur.</p>",
+        "subheading": "<p>Where the maths starts making sense</p>",
+        "subheading_text": "<p>Here is the catch with layering as luxury magazines sell it: building a wardrobe of designer bottles to mix and match costs upwards of £600 to £1,000.</p><p>With Scentspired bottles priced around £15.99 to £29.99, you can pick up two or three complementary scents and experiment freely without remorse.</p>"
+      },
+      {
+        "part": "comparison_table",
+        "column_headings": [
+          "Base Anchor Scent",
+          "Top Accent Scent",
+          "Resulting Custom Profile"
+        ],
+        "rows": [
+          {
+            "label": "Addiction (BR540 inspired)",
+            "cells": [
+              "Marine (Bleu de Chanel inspired)",
+              "Crisp aquatic sparkle over warm amber crystal",
+              "Modern, captivating day-to-night signature"
+            ]
+          },
+          {
+            "label": "Fierce (Sauvage inspired)",
+            "cells": [
+              "Cool Alpine (Silver Mountain inspired)",
+              "Glacial green tea and mint over peppered cedar",
+              "Razor-sharp, energising executive presence"
+            ]
+          },
+          {
+            "label": "Silk Odyssey (Oud Satin inspired)",
+            "cells": [
+              "Pink Whisper (Delina inspired)",
+              "Velvety Turkish rose with smoked vanilla oud",
+              "Opulent evening luxury with unmatched sillage"
+            ]
+          },
+          {
+            "label": "Timeless Grace (Coco inspired)",
+            "cells": [
+              "Sweet Cherry (Lost Cherry inspired)",
+              "Decadent dark cherry over chic patchouli-rose",
+              "Irresistible romantic sweetness with tailored depth"
+            ]
+          }
+        ]
+      },
+      {
+        "part": "callout",
+        "heading": "What this means when you are shopping",
+        "image": "shopify://shop_images/ChatGPT_Image_Jul_13_2026_05_48_11_PM.png",
+        "text": "<p>Always test your custom layering combination on the inside of your wrist first before spraying your full outfit. Notice how the two scents marry after 15 minutes.</p><p>Because Scentspired bottles are accessible, you can curate a creative 3-bottle wardrobe and experiment with endless personalised scent combinations without breaking the bank.</p>"
+      },
+      {
+        "part": "closing",
+        "line_1": "ONE MORE",
+        "line_2_end": "THING",
+        "text": "Become your own perfumer today. Explore versatile layering champions in the <a href=\"/collections/shop\">Scentspired UK collection</a>."
+      },
+      {
+        "part": "products",
+        "collection": "bestsellers"
+      }
+    ]
+  },
+  "the_scent_of_a_british_summer_sunshine": {
+    "article_handle": "the-scent-of-a-british-summer-sunshine-sunscreen-applied-way-too-late-and-a-fragrance-that-somehow-captures-all-of-it",
+    "parts": [
+      {
+        "part": "hero_banner",
+        "heading": "<p>THE SCENT OF A BRITISH SUMMER:</p>",
+        "subheading": "<p>sunshine, sunscreen applied way too late, and a fragrance that somehow captures all of it</p>",
+        "image_desktop": "shopify://shop_images/The_scent_of_a_British_summer_jpg.jpg",
+        "image_tone": "light"
+      },
+      {
+        "part": "text",
+        "text": "<p>The British summer is a rumour that occasionally comes true. You spend eleven months yearning for it, and then suddenly it arrives in a blaze of 28-degree heat, crowded pub gardens, and spontaneous trips to the coast. It is brief, glorious, and completely chaotic.</p><p>Summer fragrance is unique because warmth is a volume amplifier. Heat lifts scent molecules off your skin faster and carries them further on the breeze while testing their staying power against humidity and sunshine.</p>"
+      },
+      {
+        "part": "feature_banner",
+        "image": "shopify://shop_images/ChatGPT_Image_Jul_11_2026_02_29_17_PM.png",
+        "line_2_italic": "WHY HEAT CHANGES EVERYTHING",
+        "image_tone": "dark"
+      },
+      {
+        "part": "text",
+        "text": "<p>Warmth is a fragrance amplifier. Heat lifts the molecules off your skin faster and pushes them further into the air around you, which means a scent that sat quietly in February can suddenly become loud in July.</p><p>British summer calls for notes that feel refreshing and crisp: citrus that doesn't turn sour, green tea that provides relief, and clean woods that anchor the scent through warm evenings. Here is how to build your British summer rotation.</p>"
+      },
+      {
+        "part": "two_columns",
+        "heading": "Cool Alpine vs Eternal Verde: The Summer Upgrades",
+        "column_1": "<p>Some fragrances just feel like immediate relief. <strong>Cool Alpine</strong> (inspired by Silver Mountain Water by Creed) is one of them. Opening with crisp green tea, bergamot, and blackcurrant, it evokes glacial mountain streams and crisp air.</p><p>It feels like a cold drink on a scorching afternoon, cutting through humidity without ever feeling sharp or abrasive.</p>",
+        "column_2": "<p>For anyone who finds standard summer citrus a touch predictable, <strong>Eternal Verde</strong> (inspired by Hacivat by Nishane) is the connoisseur's choice. Juicy pineapple smoke and bergamot meet dry cedar and oakmoss.</p><p>This is a niche fragrance in feel: the sort of thing that earns an appreciative raised eyebrow and a 'what are you wearing?' across a crowded beer garden.</p>"
+      },
+      {
+        "part": "content_box",
+        "heading": "<p>Luminous Wonder & Fate: when the evening keeps going</p>",
+        "box_paragraph_1": "<p>British summer has a specific plot twist: the day is warm, but the evening stays warmer than anyone expected, and nobody wants to go home. You need a scent that carries from daytime drinks into late night.</p><p><strong>Luminous Wonder</strong> (inspired by J'Adore by Dior) delivers golden solar florals and white woods that glow in golden-hour light.</p><p>Meanwhile, <strong>Fate</strong> (inspired by Chance EDP by Chanel) brings pink pepper, jasmine, and patchouli warmth that comes alive as the breeze cools.</p>",
+        "subheading": "<p>Summer application tips for unpredictable weather</p>",
+        "subheading_text": "<p>A few small things make a real difference in summer. Moisturise first, because warm skin still needs a lipid barrier to hold onto fragrance oils.</p><p>Spray your wrists, the back of your neck under your hair, and the collar of your linen shirt. Fabric holds volatile citrus notes long after skin heat has evaporated them.</p>"
+      },
+      {
+        "part": "comparison_table",
+        "column_headings": [
+          "Summer Setting",
+          "Key Note Profile",
+          "Recommended Scentspired UK Bottle"
+        ],
+        "rows": [
+          {
+            "label": "Pub Garden & Park Day",
+            "cells": [
+              "Green Tea, Blackcurrant, Bergamot",
+              "Cool Alpine (Silver Mountain Water inspired)",
+              "Glacial, clean relief in high heat"
+            ]
+          },
+          {
+            "label": "Coastal Walk & Weekend Away",
+            "cells": [
+              "Sea Salt, Grapefruit, Mint",
+              "Marine (Bleu de Chanel inspired)",
+              "Effortless, fresh, and impossible to get wrong"
+            ]
+          },
+          {
+            "label": "Rooftop Drinks & Evening",
+            "cells": [
+              "Mandarin, Jasmine, White Woods",
+              "Luminous Wonder (J'Adore inspired)",
+              "Golden solar florals that bloom in warm air"
+            ]
+          },
+          {
+            "label": "Late Night Garden Party",
+            "cells": [
+              "Smoky Pineapple, Patchouli, Oakmoss",
+              "Eternal Verde (Hacivat inspired)",
+              "Distinctive green complexity that lasts all night"
+            ]
+          }
+        ]
+      },
+      {
+        "part": "callout",
+        "heading": "What this means when you are shopping",
+        "image": "shopify://shop_images/ChatGPT_Image_Jul_11_2026_02_29_17_PM.png",
+        "text": "<p>The scent of a British summer will always be a bit chaotic: half suncream and half optimism, gone before you have properly made your peace with it.</p><p>Pick a scent that matches the optimism. Browse our crisp summer collection with guaranteed next-day UK delivery.</p>"
+      },
+      {
+        "part": "closing",
+        "line_1": "ONE MORE",
+        "line_2_end": "THING",
+        "text": "Capture the essence of the season with our summer-ready collection. Browse crisp, revitalising scents in the <a href=\"/collections/shop\">Scentspired UK collection</a>."
+      },
+      {
+        "part": "products",
+        "collection": "bestsellers"
+      }
+    ]
+  },
+  "forget_the_scented_candle_the_fragrance": {
+    "article_handle": "forget-the-scented-candle-the-fragrance-gift-guide-sorted-by-personality-not-price",
+    "parts": [
+      {
+        "part": "hero_banner",
+        "heading": "<p>FORGET THE SCENTED CANDLE:</p>",
+        "subheading": "<p>the fragrance gift guide sorted by personality, not price tag</p>",
+        "image_desktop": "shopify://shop_images/Forget_the_Scented_Candle_jpg.jpg",
+        "image_tone": "light"
+      },
+      {
+        "part": "text",
+        "text": "<p>Somewhere in Britain right now, someone is unwrapping a generic lavender reed diffuser or a forgettable M&S voucher and practicing their best polite 'oh, you shouldn't have' face. We have all been there. Finding a truly great gift is hard work, and finding a great fragrance gift is notoriously tricky.</p><p>The common advice is to play it safe with generic crowd-pleasers. But playing it safe is how people end up with dressers full of boring scents they never wear. A great fragrance gift should feel personal, thoughtful, and just a little bit daring.</p>"
+      },
+      {
+        "part": "feature_banner",
+        "image": "shopify://shop_images/ChatGPT_Image_Jul_11_2026_04_28_45_PM.png",
+        "line_2_italic": "THE SHORT VERSION",
+        "image_tone": "dark"
+      },
+      {
+        "part": "text",
+        "text": "<p>The secret to gifting fragrance is matching the scent to the recipient's personality archetype rather than guessing their favorite floral notes. Fragrance is an extension of how someone presents themselves to the world.</p><p>When you give a scent that reflects their energy, their aesthetic, and their personal style, it is not just a present—it is a compliment they get to wear every day. Here is our curated guide for every distinct character in your life.</p>"
+      },
+      {
+        "part": "two_columns",
+        "heading": "The Quiet Luxury Minimalist vs The Bold Main Character",
+        "column_1": "<p>For the friend who loves linen shirts, architectural ceramics, and neutral color palettes, avoid heavy, loud perfumes. They want understated excellence that feels clean, intentional, and expensive.</p><p>Our top recommendation is <strong>Marine</strong> (inspired by Bleu de Chanel) or <strong>Timeless Grace</strong> (inspired by Coco Mademoiselle). These scents sit close to the skin with crisp citrus, cedar, and airy musks, providing tailored elegance.</p>",
+        "column_2": "<p>Then there is the friend with unmistakable main-character energy. They walk into a room with confidence, dress with flair, and want a signature scent that turns heads and commands attention.</p><p>For them, nothing less than <strong>Addiction</strong> (inspired by Baccarat Rouge 540) will do. The radiant saffron, ambergris, and sweet cedar trail is unforgettable and guarantees compliments everywhere they go.</p>"
+      },
+      {
+        "part": "content_box",
+        "heading": "<p>The guy who irons his shirts for no reason: Fierce & Cool Alpine</p>",
+        "box_paragraph_1": "<p>Every family or friend group has this guy. He is organized, punctual, has his life together, and always smells effortlessly put together. He does not want a complicated fragrance project; he wants crisp, immaculate freshness.</p><p><strong>Fierce</strong> (inspired by Sauvage Parfum by Dior) delivers that magnetic bergamot and ambroxan punch that never fails.</p><p>If he prefers crisp mountain air, blackcurrant, and green tea freshness, <strong>Cool Alpine</strong> (inspired by Silver Mountain Water by Creed) is a cold drink of water in fragrance form.</p>",
+        "subheading": "<p>The friend who is impossible to shop for</p>",
+        "subheading_text": "<p>For the person who already has everything, choose a scent with an intriguing twist: <strong>Mirage</strong> or <strong>Silk Odyssey</strong>. These scents avoid commercial clichés and offer rich, layered accords that surprise even seasoned collectors.</p><p>A discovery set of 3 travel bottles is another foolproof gift that lets them explore at their own pace.</p>"
+      },
+      {
+        "part": "comparison_table",
+        "column_headings": [
+          "Personality Archetype",
+          "Signature Aesthetic",
+          "The Perfect Scentspired Gift"
+        ],
+        "rows": [
+          {
+            "label": "The Quiet Minimalist",
+            "cells": [
+              "Tailored neutral tones, clean lines",
+              "Marine (Bleu de Chanel inspired)",
+              "Crisp grapefruit, mint, and dry cedar"
+            ]
+          },
+          {
+            "label": "The Main Character",
+            "cells": [
+              "Bold, magnetic, unforgettable presence",
+              "Addiction (Baccarat Rouge 540 inspired)",
+              "Radiant saffron, jasmine, and amberwood"
+            ]
+          },
+          {
+            "label": "The Polished Professional",
+            "cells": [
+              "Immaculate grooming, punctual, sharp",
+              "Fierce (Sauvage Parfum inspired)",
+              "Calabrian bergamot, pepper, and rich ambroxan"
+            ]
+          },
+          {
+            "label": "The Romantic Soul",
+            "cells": [
+              "Velvet textures, candlelit dinners, charm",
+              "Pink Whisper (Delina inspired)",
+              "Turkish rose, lychee, and cashmeran"
+            ]
+          }
+        ]
+      },
+      {
+        "part": "callout",
+        "heading": "What this means when you are shopping",
+        "image": "shopify://shop_images/WhatsApp_Image_2026-07-10_at_8.26.21_AM.jpg",
+        "text": "<p>When gifting fragrance, presentation matters. All Scentspired perfumes arrive packaged in our signature luxury presentation boxes, ready to gift without extra wrapping.</p><p>Include a personalized note mentioning why this specific scent profile reminded you of them—it transforms a beautiful bottle into an unforgettable, heartfelt gesture.</p>"
+      },
+      {
+        "part": "closing",
+        "line_1": "ONE MORE",
+        "line_2_end": "THING",
+        "text": "Skip the generic presents. Discover thoughtful luxury fragrance gifts in our <a href=\"/collections/shop\">Scentspired UK bestsellers collection</a>."
+      },
+      {
+        "part": "products",
+        "collection": "bestsellers"
+      }
+    ]
+  },
+  "how_luxury_unisex_perfumes_became_the": {
+    "article_handle": "how-luxury-unisex-perfumes-became-the-most-searched-scent-category-in-the-uk-and-why-everyone-is-obsessed",
+    "parts": [
+      {
+        "part": "hero_banner",
+        "heading": "<p>How luxury unisex perfumes became the most searched scent category in the UK and why everyone is obsessed</p>",
+        "image_desktop": "shopify://shop_images/How_luxury_unisex_perfumes_became_the_most_searched_scent_jpg.jpg",
+        "image_tone": "light"
+      },
+      {
+        "part": "text",
+        "text": "<p>There was a time, not especially long ago, when walking into Boots or Selfridges meant choosing a side. Pink bottles on the left, blue bottles on the right, and an entire industry built on the assumption that your gender should decide what you smell like. Nobody seems especially bothered about that any longer. The unisex  shelf, once a slightly apologetic corner of the fragrance aisle, has quietly started to command the most shelf space. Ask 10 people why they made the change and you will get 10 different answers, and they all land in roughly the same place.</p><p><br/>This is not really a mystery once you think about it although it took the industry considerably longer than that to catch up. Deciding which side of the counter you were supposed to be shopping from used to come with the same needless seriousness as arguing over whether Smithy or Nessa gets the better lines. Nobody actually needed the rule. Everyone just followed it anyway.</p>"
+      },
+      {
+        "part": "feature_banner",
+        "image": "shopify://shop_images/wmremove-transformed_17.png",
+        "line_2_italic": "The search bar changed before the shelf did",
+        "image_tone": "dark"
+      },
+      {
+        "part": "text",
+        "text": "<p>Retail is usually the last part of any industry to notice a shift, and fragrance has been no exception. The actual change started in the search bar. Typing <a href=\"/collections/unisex\" title=\"Unisex\">best unisex perfume</a> or gender-neutral fragrance UK into Google costs nothing and commits you to nothing, which makes it a far more honest indicator of what people want than what they feel obliged to ask for out loud at a counter with an assistant hovering. Search interest in unisex and gender-neutral fragrance has climbed steadily for years, well before most shop floors caught up with it. Nobody has to explain themselves to a search engine, which turns out to be exactly the point.</p>"
+      },
+      {
+        "part": "content_box",
+        "heading": "<p>The notes were never gendered to begin with</p>",
+        "box_paragraph_1": "<p>Fragrance families were never actually gendered to begin with. Citrus does not know if you are a man or a woman. Neither does sandalwood, oakmoss, or musk. The idea that certain notes belong to certain people was a marketing decision made decades ago, not a fact about the ingredients themselves, and once enough people worked that out, the whole system started to look a bit silly. A rose does not care who is wearing it. It never has.</p>",
+        "subheading": "<p>Minimalism did some of the work too</p>",
+        "subheading_text": "<p>The same instinct that has people buying one good coat instead of five mediocre ones has arrived in the fragrance cabinet. A single, well-chosen unisex bottle does the work that used to take two: something you can both reach for, something that does not need justifying at the till, something that fits in one washbag instead of two when you are packing for a weekend away. It is the fragrance equivalent of the capsule wardrobe, and it turns out to be just as popular for exactly the same reasons. The John Lewis fragrance counter has noticed. So has everyone else.</p>"
+      },
+      {
+        "part": "content_box",
+        "heading": "<p>It also solved a genuine gifting problem</p>",
+        "box_paragraph_1": "<p><a href=\"/\">Buying fragrance</a> as a gift used to involve a fairly detailed character assessment.<br/>Does she prefer floral or fresh? Does he lean towards something classic or something with a bit more attitude? Get it wrong and the bottle sits unused at the back of a bathroom cabinet for the next three years. A well-chosen unisex fragrance removes most of that guesswork. It is built to flatter a wider range of skin types and tastes by design, which makes it considerably harder to get wrong, and considerably easier to wrap with confidence.</p>"
+      },
+      {
+        "part": "callout",
+        "heading": "For absolutely everyone: Eternal Verde (inspired by Hacivat by Nishane)",
+        "image": "shopify://shop_images/ChatGPT_Image_Jul_7_2026_08_58_37_PM.png",
+        "text": "<p>Nishane built Hacivat's reputation on being famously hard to pin down, and Eternal Verde works from the same brief. Pineapple, grapefruit and bergamot open things sharply, cedar, patchouli and jasmine settle in through the middle, and a dry, mossy base means it never tips into anything as simple as fruity or woody. It is one of the more convincing arguments going for why the whole men's and women's split felt unnecessary in the first place.</p>"
+      },
+      {
+        "part": "staggered_heading",
+        "line_1": "The quietly addictive one:",
+        "line_2": "Majesty",
+        "line_3": "(inspired by Hibiscus Mahajád by Maison Crivelli)",
+        "text": "<p>Hibiscus Mahajád built a small cult following almost entirely on the strength of its base, and Majesty follows the same trajectory. Hibiscus and a sharp note of bitter orange open things up, rose and vanilla take over through the middle, and a warm base of leather, cinnamon and musk is what actually lingers. It reads as feminine to some people and masculine to others, which is precisely the point of a fragrance built to outgrow the label.</p>"
+      },
+      {
+        "part": "closing",
+        "line_2_start": "What this actually changes about how you",
+        "line_2_end": "shop",
+        "text": "The practical upshot is that the question worth asking at the counter is no longer \"Is this for me?\" It is simply \"Does this work on my skin?\" Buying by note and by how\nsomething actually wears has always been the better method, and it has nothing to do with which name is printed on the box. The full Scentspired range of luxury unisex perfumes lists the notes and concentration for every fragrance, so you can shop by what you actually like rather than what aisle it used to sit in. Browse the bestsellers\nand find your favourite."
+      },
+      {
+        "part": "products",
+        "collection": "bestsellers"
+      }
+    ]
+  },
+  "how_to_choose_a_scent_to_attract_the": {
+    "article_handle": "how-to-choose-a-scent-to-attract-the-person-you-are-completely-obsessed-with-the-fragrance-guide-nobody-talks-about",
+    "parts": [
+      {
+        "part": "hero_banner",
+        "heading": "<p>WHY SWEET SUDDENLY GOT SOPHISTICATED:</p>",
+        "subheading": "<p>how modern gourmand perfumes evolved from teen body sprays into high-luxury signatures</p>",
+        "image_desktop": "shopify://shop_images/WhatsApp_Image_2026-07-03_at_9.01.11_AM.jpg",
+        "image_tone": "light"
+      },
+      {
+        "part": "text",
+        "text": "<p>Walk through any department store fragrance hall right now and you will notice an unmistakable shift: sweetness is everywhere. But this is not the cloying, cotton-candy sugar rush of early-2000s body sprays that gave everyone in the room a headache.</p><p>Sweetness has undergone an intellectual renaissance in modern perfumery. Today's gourmand fragrances are complex, dark, smoky, and deeply unisex, balancing edible indulgence with sophisticated woods and bitter aromatics.</p>"
+      },
+      {
+        "part": "feature_banner",
+        "image": "shopify://shop_images/WhatsApp_Image_2026-07-03_at_9.01.11_AM_1.jpg",
+        "line_2_italic": "THE SHORT VERSION",
+        "image_tone": "dark"
+      },
+      {
+        "part": "text",
+        "text": "<p>The secret behind modern gourmands is counterpoint. A master perfumer never pairs sweet notes with more sweetness; they balance roasted vanilla with dry cedar, salted caramel with bitter espresso, and praline with smoky incense.</p><p>This tension between dessert-like pleasure and austere woodiness creates scents that feel rich, confident, and endlessly compelling. Here is how sweet fragrances became the most sought-after category in luxury perfumery.</p>"
+      },
+      {
+        "part": "two_columns",
+        "heading": "Sugary High-Street Sprays vs Elevated Modern Gourmands",
+        "column_1": "<p>Traditional teen gourmands relied heavily on cheap ethyl maltol—a synthetic compound that smells purely of spun sugar and caramelized syrup. Unanchored by woods or spices, these scents projected with loud, one-dimensional intensity.</p><p>They were fun for an afternoon at the beach, but lacked the refinement, elegance, and nuance required for dinner dates or professional environments.</p>",
+        "column_2": "<p>Modern luxury gourmands take a completely different architectural approach. They use dark Madagascar vanilla beans, bitter almond, roasted coffee, and tonka bean, supported by resinous amberwood and smoky vetiver.</p><p>The sweetness is not aggressive; it acts as a smooth, creamy glaze over deeply sophisticated base notes that bloom as your skin warms.</p>"
+      },
+      {
+        "part": "content_box",
+        "heading": "<p>The unisex crossover: Silk Odyssey & Feminine Fancy</p>",
+        "box_paragraph_1": "<p>One of the most exciting developments in modern fragrance is that men have discovered gourmands. Sweetness is no longer gendered. Accords of bourbon vanilla, roasted hazelnut, and dark rum create an unforgettable masculine evening aura.</p><p><strong>Silk Odyssey</strong> (inspired by Oud Satin Mood by Maison Francis Kurkdjian) pairs decadent Turkish rose and violet with rich vanilla and dark Laotian oud, creating a velvet-textured masterpiece that commands respect.</p><p>Meanwhile, <strong>Feminine Fancy</strong> (inspired by Good Girl) blends roasted tonka bean with white jasmine and cocoa for an intoxicating café-vibe sillage.</p>",
+        "subheading": "<p>How to wear gourmands without overwhelming the room</p>",
+        "subheading_text": "<p>Because gourmand molecules are dense and long-lasting, a little goes a very long way. Two sprays on pulse points under your clothing are enough to create a warm, inviting scent bubble.</p><p>They shine brightest in cooler British temperatures—autumn breezes, winter evenings, and cozy pub settings bring out their creamy decadence without cloying.</p>"
+      },
+      {
+        "part": "comparison_table",
+        "column_headings": [
+          "Sweet Accord",
+          "Balancing Counterpoint",
+          "Resulting Scent Aesthetic"
+        ],
+        "rows": [
+          {
+            "label": "Bourbon Vanilla",
+            "cells": [
+              "Smoked Cedarwood & Tobacco",
+              "Warm, seductive, mature sophistication",
+              "Ideal for cold winter evenings"
+            ]
+          },
+          {
+            "label": "Roasted Coffee Bean",
+            "cells": [
+              "White Jasmine & Bitter Almond",
+              "Energising, cozy, contemporary chic",
+              "Feminine Fancy (Good Girl inspired)"
+            ]
+          },
+          {
+            "label": "Caramelised Violet",
+            "cells": [
+              "Dark Agarwood (Oud) & Amber",
+              "Opulent, royal, velvet-smooth texture",
+              "Silk Odyssey (Oud Satin Mood inspired)"
+            ]
+          },
+          {
+            "label": "Salted Praline",
+            "cells": [
+              "Pink Pepper & Cashmere Wood",
+              "Playful yet tailored luxury radiance",
+              "Perfect bridge between sweet and woody"
+            ]
+          }
+        ]
+      },
+      {
+        "part": "callout",
+        "heading": "What this means when you are shopping",
+        "image": "shopify://shop_images/Work_with_your_own_skin_not_a_stranger_s_jpg.jpg",
+        "text": "<p>When testing a gourmand fragrance, give it time to settle through the initial sweetness. The opening 5 minutes will always highlight the top notes, but the true magic happens after 30 minutes when the woods, spices, and musks emerge.</p><p>Look for balanced formulations that feel like an organic extension of your personal style rather than a bakery counter.</p>"
+      },
+      {
+        "part": "closing",
+        "line_1": "ONE MORE",
+        "line_2_end": "THING",
+        "text": "Discover how sophisticated sweetness can be. Explore our elevated gourmand perfumes in the <a href=\"/collections/shop\">Scentspired UK collection</a>."
+      },
+      {
+        "part": "products",
+        "collection": "bestsellers"
+      }
+    ]
+  },
+  "top_notes_heart_notes_base_notes_the": {
+    "article_handle": "top-notes-heart-notes-base-notes-the-only-fragrance-guide-you-needed-before-your-last-very-expensive-mistake",
+    "parts": [
+      {
+        "part": "hero_banner",
+        "heading": "<p>TOP NOTES, HEART NOTES, BASE NOTES:</p>",
+        "subheading": "<p>how to decode the fragrance pyramid and understand what you are actually buying</p>",
+        "image_desktop": "shopify://shop_images/TOP_NOTES_HEART_NOTES_BASE_NOTES_jpg.jpg",
+        "image_tone": "light"
+      },
+      {
+        "part": "text",
+        "text": "<p>Picture this: you're browsing an online perfume shop at 10pm. You click on a fragrance that sounds intriguing. The product description lists bergamot, pink pepper, saffron, Turkish rose, oud, and ambergris. It sounds magnificent, but what does that actually mean for what you will smell like when you put your jacket on tomorrow morning?</p><p>A fine fragrance is not a single, static scent. It is a living, evolving composition that unfolds over hours in three distinct movements. In perfumery, this structure is known as the Olfactory Pyramid.</p>"
+      },
+      {
+        "part": "feature_banner",
+        "image": "shopify://shop_images/What_Fragrance_Notes_Actually_Are.png",
+        "line_2_italic": "THE SHORT VERSION",
+        "image_tone": "dark"
+      },
+      {
+        "part": "text",
+        "text": "<p>The fragrance pyramid is dictated by the physical molecular weight of the ingredients. Lighter molecules evaporate into the air almost instantly, while heavy resinous molecules cling to skin for half a day.</p><p>Understanding how top, heart, and base notes interact is the single best tool you can have as a fragrance shopper. It prevents you from being misled by a 2-minute opening spray and guarantees you choose scents that evolve beautifully on your skin.</p>"
+      },
+      {
+        "part": "two_columns",
+        "heading": "Top Notes: The 15-Minute Hook vs Heart Notes: The True Identity",
+        "column_1": "<p>Top notes are the first impression. Made of light, volatile molecules like citrus (bergamot, lemon, grapefruit), fresh herbs, and light fruits, they hit your nose the instant you spray.</p><p>Their purpose is to captivate you immediately. However, they evaporate within 15 to 30 minutes. Never buy a perfume based purely on the opening spray—it is only the trailer, not the whole film.</p>",
+        "column_2": "<p>Heart notes (also called middle notes) emerge as the top notes fade. Composed of richer florals (jasmine, rose, lavender), spices (cardamom, cinnamon), and aromatics, heart notes represent the core personality of the fragrance.</p><p>They last anywhere from 2 to 5 hours, creating the radiant scent trail that people around you notice throughout the day.</p>"
+      },
+      {
+        "part": "content_box",
+        "heading": "<p>Base notes: what you are actually wearing all day</p>",
+        "box_paragraph_1": "<p>Base notes are the heavy anchors of perfumery: sandalwood, cedarwood, patchouli, amber, vanilla, and musks. These molecules are large and dense, evaporating very slowly over 6 to 12+ hours.</p><p>The base notes provide the fixative foundation for the entire composition. When you catch a wonderful whiff of your own jumper or coat eight hours later, you are experiencing the base notes at work.</p><p>In masterfully blended perfumes like <strong>Addiction</strong> and <strong>Fierce</strong>, the transition from floral spice into warm amberwood is completely seamless.</p>",
+        "subheading": "<p>Why this changes how you shop online</p>",
+        "subheading_text": "<p>When reading perfume note listings online, always scan down to the base notes first. If you dislike vanilla, patchouli, or heavy incense, a perfume with sweet or resinous base notes will eventually disappoint you, no matter how much you loved the fresh citrus opening.</p><p>Shop with the full 8-hour lifecycle in mind!</p>"
+      },
+      {
+        "part": "comparison_table",
+        "column_headings": [
+          "Pyramid Tier",
+          "Active Duration",
+          "Common Fragrance Notes"
+        ],
+        "rows": [
+          {
+            "label": "Top Notes",
+            "cells": [
+              "0 to 30 minutes",
+              "Bergamot, Lemon, Mandarin, Mint, Pink Pepper",
+              "Instant fresh hook; rapid evaporation"
+            ]
+          },
+          {
+            "label": "Heart Notes",
+            "cells": [
+              "30 minutes to 4 hours",
+              "Rose, Jasmine, Lavender, Cardamom, Nutmeg",
+              "The signature personality and heart of the scent"
+            ]
+          },
+          {
+            "label": "Base Notes",
+            "cells": [
+              "4 to 12+ hours",
+              "Cedarwood, Sandalwood, Vanilla, Ambroxan, Musk",
+              "Deep anchors that create the lingering drydown"
+            ]
+          },
+          {
+            "label": "Fixative Accords",
+            "cells": [
+              "Entire wear cycle",
+              "Iso E Super, Hedione, Ambergris accords",
+              "Binds volatile notes to skin for extended projection"
+            ]
+          }
+        ]
+      },
+      {
+        "part": "callout",
+        "heading": "What this means when you are shopping",
+        "image": "shopify://shop_images/magnific_luxury-perfume-comparison_74h5S6MJAL_jpg.jpg",
+        "text": "<p>When you receive a new Scentspired fragrance, give it a proper wear test. Spray it on clean skin in the morning and intentionally pay attention at three distinct times: 10 minutes in, 2 hours in, and 6 hours later.</p><p>Observing how the scent evolves through each tier of the olfactory pyramid will give you a whole new appreciation for the artistry inside the bottle.</p>"
+      },
+      {
+        "part": "closing",
+        "line_1": "ONE MORE",
+        "line_2_end": "THING",
+        "text": "Explore sophisticated scent pyramids crafted with French master oils in our <a href=\"/collections/shop\">Scentspired UK perfume collection</a>."
+      },
+      {
+        "part": "products",
+        "collection": "bestsellers"
+      }
+    ]
+  },
+  "six_perfume_myths_that_are_completely": {
+    "article_handle": "six-perfume-myths-that-are-completely-wrong-including-the-wrist-rubbing-thing-you-have-been-confidently-doing-for-years",
+    "parts": [
+      {
+        "part": "hero_banner",
+        "heading": "<p>SIX PERFUME MYTHS IT IS TIME TO LEAVE BEHIND:</p>",
+        "subheading": "<p>the bad advice costing you money, ruining your fragrance longevity, and dulling your scent trail</p>",
+        "image_desktop": "shopify://shop_images/Six_perfume_myths_jpg.jpg",
+        "image_tone": "light"
+      },
+      {
+        "part": "text",
+        "text": "<p>There is a lot of fragrance advice floating around out there, and an alarming amount of it is completely wrong. Passed down through department store counters, social media videos, and magazine columns, these myths cause shoppers to waste money on overpriced bottles and apply their perfume in ways that ruin its performance.</p><p>In reality, perfumery is an exact science of molecular volatility, evaporation rates, and organic chemistry. Let's separate fact from fiction and leave the six most stubborn perfume myths behind for good.</p>"
+      },
+      {
+        "part": "feature_banner",
+        "image": "shopify://shop_images/Wrist_Rubbing_Image_jpg.jpg",
+        "line_2_italic": "THE SHORT VERSION",
+        "image_tone": "dark"
+      },
+      {
+        "part": "text",
+        "text": "<p>The biggest myth of all is that rubbing your wrists together seals in the scent. It doesn't. In fact, it does the exact opposite: friction creates heat and shear stress that breaks down delicate top notes, crushing the fragrance before it even has a chance to bloom.</p><p>Here is what happens when you dismantle old misconceptions and start applying fragrance the way master perfumers intended.</p>"
+      },
+      {
+        "part": "two_columns",
+        "heading": "Myth 1: Rubbing Wrists vs Myth 2: Expensive Equals Longer-Lasting",
+        "column_1": "<p>When you spray perfume onto your wrists and rub them together vigorously, you generate thermal friction. That heat causes the volatile top notes—such as delicate bergamot, mandarin, and light florals—to evaporate prematurely.</p><p>Instead of experiencing a smooth 30-minute transition, you crush the opening and jump straight into the mid-notes. The fix is simple: spray, let the liquid air-dry for ten seconds, and let your natural body heat do the work.</p>",
+        "column_2": "<p>Price tag has virtually zero correlation with longevity. Many £300 niche fragrances are formulated as light Eau de Colognes or delicate citrus florals designed to last only 3 to 4 hours by artistic choice.</p><p>Conversely, a well-formulated inspired Eau de Parfum with rich amber, cedarwood, or vanilla bases will comfortably last 10 hours. Longevity is determined by molecular weight and oil concentration, not price tags.</p>"
+      },
+      {
+        "part": "content_box",
+        "heading": "<p>Myth 3: 100% natural ingredients are superior to synthetics</p>",
+        "box_paragraph_1": "<p>Many shoppers believe that a perfume made exclusively from natural botanical extracts is inherently higher quality. In truth, modern perfumery would not exist without safe, lab-developed aromatic molecules.</p><p>Natural citrus oils evaporate in minutes; synthetic fixatives like Ambroxan, Hedione, and Iso E Super give perfumes their incredible longevity, projection, and velvety texture. Furthermore, ethical synthetics replace animal-derived musks and protect endangered woods.</p><p>The highest quality perfumes use a harmonious balance of natural botanical essences and premium lab-crafted fixatives.</p>",
+        "subheading": "<p>Myth 4: Storing perfume in your bathroom vanity</p>",
+        "subheading_text": "<p>Your bathroom is the worst possible place to store fine fragrance. The rapid temperature fluctuations and steamy humidity from daily showers cause the delicate chemical bonds in perfume oils to oxidise and spoil rapidly.</p><p>Store your bottles in a cool, dark place—like a bedroom wardrobe or dresser drawer. Kept away from direct sunlight and heat, high-concentration inspired perfumes will maintain their original beauty for years.</p>"
+      },
+      {
+        "part": "comparison_table",
+        "column_headings": [
+          "Popular Myth",
+          "Scientific Reality",
+          "What You Should Do Instead"
+        ],
+        "rows": [
+          {
+            "label": "Rubbing wrists together",
+            "cells": [
+              "Crushes delicate top notes with friction",
+              "Spray and allow to air-dry naturally",
+              "Preserves full 3-stage olfactory pyramid"
+            ]
+          },
+          {
+            "label": "Higher price = longer wear",
+            "cells": [
+              "Price reflects marketing; longevity is chemistry",
+              "Check oil concentration (EDP / Extrait)",
+              "Choose high-concentration formulations"
+            ]
+          },
+          {
+            "label": "Store bottles in bathroom",
+            "cells": [
+              "Heat and humidity spoil perfume oils fast",
+              "Store in a cool, dark bedroom wardrobe",
+              "Protects fragrance integrity for years"
+            ]
+          },
+          {
+            "label": "100% natural is always best",
+            "cells": [
+              "Naturals degrade quickly without fixatives",
+              "Look for master blends with clean fixatives",
+              "Ensures rich depth and 8+ hour longevity"
+            ]
+          }
+        ]
+      },
+      {
+        "part": "callout",
+        "heading": "What this means when you are shopping",
+        "image": "shopify://shop_images/natural_fragrances_do_not_last_1.png",
+        "text": "<p>Another widespread myth is that perfume never expires. While unopened perfume can last for decades, once a bottle is half-empty, oxygen enters the chamber and begins slowly oxidising the essential oils.</p><p>Do not save your favourite luxury perfume for rare once-a-year occasions. Use it, enjoy it, and make it part of your everyday life. With Scentspired, you can afford to spray generously without worrying about replacement costs.</p>"
+      },
+      {
+        "part": "closing",
+        "line_1": "ONE MORE",
+        "line_2_end": "THING",
+        "text": "Leave the marketing myths behind and enjoy honest, high-performance fragrance. Explore the <a href=\"/collections/shop\">Scentspired UK collection</a> today."
+      },
+      {
+        "part": "products",
+        "collection": "bestsellers"
+      }
+    ]
+  },
+  "edt_edp_parfum_the_label_nobody_explains": {
+    "article_handle": "edt-edp-parfum-the-label-nobody-explains-the-question-nobody-asks-and-the-reason-you-smell-incredible-at-9am-and-of-absolutely-nothing-by-lunch",
+    "parts": [
+      {
+        "part": "hero_banner",
+        "heading": "<p>EDT, EDP, Parfum:</p>",
+        "subheading": "<p> The label nobody explains, the question nobody asks, and the reason you smell incredible at 9am and of absolutely nothing by lunch</p>",
+        "image_desktop": "shopify://shop_images/EDT_EDP_OR_PARFUM.jpg_1.jpg",
+        "image_tone": "light"
+      },
+      {
+        "part": "text",
+        "text": "<p>At some point, probably in John Lewis or Selfridges, probably while being handed a tester strip by someone who looked very confident about the whole situation, you will have noticed three letters on a bottle. EDT. Or EDP. Or occasionally just Parfum, written in a way that suggests it does not need to explain itself to you. Nobody explained what any of these meant. You bought the bottle anyway and hoped for the best.</p><p>This is not your fault. The fragrance industry has a long and distinguished history of presenting information in a way that assumes you already know things that nobody has ever told you. The concentration label is one of the most important pieces of information on a perfume bottle, and it is printed in the smallest possible font on the back, below the list of ingredients that nobody reads either. Like the no-returns small print on that dress you bought that was suspiciously too good of a deal.</p><p>Here is what it actually means, why it matters, and why it almost certainly explains the 11am disappearing act your current bottle has been pulling.</p>"
+      },
+      {
+        "part": "feature_banner",
+        "image": "shopify://shop_images/What_Letters_Actually_Stands_For.png",
+        "line_2_italic": "What the letters actually stand for",
+        "image_tone": "dark"
+      },
+      {
+        "part": "text",
+        "text": "<p>EDT stands for Eau de Toilette. EDP stands for Eau de Parfum. Parfum, sometimes called Extrait de Parfum, is the most concentrated version of the three. The difference between them is the percentage of fragrance oil in the formula. Everything else, the carrier alcohol, the water, the bottle with the font no one cares about, is essentially the same.</p><p>A higher oil concentration means the scent lasts longer, projects differently, and develops on your skin in a slightly different way. It does not mean it smells stronger or better. Those are separate questions entirely, and the answer to both depends on your skin, your preference, and whether you are heading to a board meeting with the boss or a silent disco at Glasto with the crew.</p>"
+      },
+      {
+        "part": "two_columns",
+        "heading": "EDT: the one that radiates, briefly",
+        "column_1": "<p>Eau de Toilette sits at roughly 5 to 15 percent fragrance oil. It is the lightest concentration, which means it evaporates faster than its more concentrated counterparts and projects with a freshness that the other two tend not to match in the first hour.</p><p>This is why a lot of fresh, citrus-forward fragrances are sold as EDTs. The concentration suits the character. A bright bergamot opening diffuses beautifully at lower concentration and would feel a bit full on at Parfum strength. The trade-off is longevity: most EDTs will be largely gone in two to four hours on bare skin, which brings us to the 11am problem.</p>",
+        "column_2": "<p>If you are buying an EDT and expecting it to see you through a full working day without a top-up, you are asking it to do something it was not built for. This is not a flaw in the fragrance. It is just the wrong tool for what you are trying to do.</p>"
+      },
+      {
+        "part": "content_box",
+        "heading": "<p>EDP: the one most people should probably be wearing</p>",
+        "box_paragraph_1": "<p>Eau de Parfum sits at roughly 15 to 20 percent fragrance oil, which gives it meaningfully better longevity than an EDT without tipping into the intensity of a Parfum. On moisturised skin, a good EDP will last six to eight hours. On some skin types, longer.</p><p>Most of the best perfume for women and the most popular men's fragrances UK buyers reach for sit at EDP concentration for exactly this reason. <strong>Fierce</strong> (inspired by Sauvage Parfum by Dior) and <strong>Timeless Grace</strong> (inspired by Coco Mademoiselle by Chanel) are both EDPs: all-day wearers that project steadily rather than loudly and do not require a lunchtime top-up in the Boots toilets. So is <a href=\"/products/silk-odyssey\" title=\"Silk Odyssey\"><strong>Silk Odyssey</strong></a> (inspired by Oud Satin Mood by Louis Vuitton), a warmer, richer option for anyone who wants EDP staying power with a more distinctive character.</p><p>The EDP is also where the <a href=\"/\">Scentspired </a>range largely sits. The decision was deliberate. A luxury inspired perfume at EDP concentration gives you the longevity you are actually looking for, at a price that means you can spray it with some confidence rather than rationing it like your expenses the day before payday.</p>",
+        "subheading": "<p><strong>Parfum: the one that stays close and lasts forever</strong></p>",
+        "subheading_text": "<p>Parfum, or Extrait de Parfum, sits at 20 to 30 percent fragrance oil. It is the most concentrated form and, perhaps counterintuitively, the most subtle in terms of projection. Because there is so little alcohol in the formula, the scent does not radiate outward the way an EDT does. It stays close to your skin, develops slowly, and lasts considerably longer, often eight to twelve hours, sometimes into the following day on pulse points.</p><p>This is the concentration for cold weather, for evening wear, for occasions where you want a scent that is present for the wearer rather than the room. <strong>Addiction</strong> (inspired by Baccarat Rouge 540) in Parfum concentration is the kind of thing you catch on your own wrist six hours later and leaves you feeling mildly smug by the whiff. </p><p>The projection point trips people up regularly. A Parfum does not fill a room. It does not announce itself when you walk in. If you are shopping for something with presence and reach, an EDP is almost always the better call. If you want something that is yours and stays close, Parfum is worth knowing about.</p>"
+      },
+      {
+        "part": "comparison_table",
+        "column_headings": [
+          "EDT",
+          "EDP",
+          "Parfum"
+        ],
+        "rows": [
+          {
+            "label": "Oil concentration",
+            "cells": [
+              "5-15%",
+              "15-20%",
+              "20-30%"
+            ]
+          },
+          {
+            "label": "Longevity",
+            "cells": [
+              "2-4 hours",
+              "4-8 hours",
+              "8-12 hours"
+            ]
+          },
+          {
+            "label": "Projection",
+            "cells": [
+              "Light, radiates well",
+              "Balanced, steady",
+              "Close to skin"
+            ]
+          },
+          {
+            "label": "Best for",
+            "cells": [
+              "Daytime, office, warm weather",
+              "All-day wear, evenings",
+              "Special occasions, cold weather"
+            ]
+          }
+        ]
+      },
+      {
+        "part": "callout",
+        "heading": "The practical bit: what this means when you are buying",
+        "image": "shopify://shop_images/The_practical_bit_what_this_means_when_you_are_buying_1_99aa6628-5aca-4ffa-8b71-3c2a32e68ade.png",
+        "text": "<p>If your current fragrance keeps disappearing before the afternoon, there is a very good chance you are wearing an EDT and your skin runs dry. The fix is either to move to an EDP of the same fragrance, to moisturise before you spray, or both. Twelve seconds of unscented moisturiser before application makes a significant difference to how long any concentration holds.</p><p>If you find your fragrance feels a bit much in warm weather or close spaces (you know when you’re in an elevator in those 3 days of British summer), you are probably wearing an EDP or Parfum when an EDT would suit the moment better. Concentration is not about quality. It is about fit.</p>"
+      },
+      {
+        "part": "closing",
+        "line_1": "Where to",
+        "line_2_end": "Start",
+        "text": "The full Scentspired range lists concentration on every product page. Browse the bestsellers, check the label, and pick the one that actually suits how and when you wear it. Your 11am wrist will thank you."
+      },
+      {
+        "part": "products",
+        "collection": "bestsellers"
+      }
+    ]
+  },
+  "glastonbury_inspired_survival_kit_the": {
+    "article_handle": "glastonbury-inspired-survival-kit-the-best-fragrance-for-women-who-still-want-to-smell-incredible-on-festival-day-three-despite-everything",
+    "parts": [
+      {
+        "part": "hero_banner",
+        "heading": "<p>GLASTONBURY-INSPIRED SURVIVAL KIT:</p>",
+        "subheading": "<p>how to smell incredible through festival mud, heat, rain, and 3am headliners</p>",
+        "image_desktop": "shopify://shop_images/Festival_Day_Three_Despite_Everything_jpg.jpg",
+        "image_tone": "light"
+      },
+      {
+        "part": "text",
+        "text": "<p>British festivals are legendary, chaotic, and completely unpredictable. You start Friday in high spirits with wellies and glitter, and by Sunday afternoon you're dealing with humidity, drizzle, crowded tents, and dry shampoo.</p><p>It is an extreme testing ground for fragrance. Heavy winter gourmands become suffocating in crowded dance tents, while delicate citrus colognes wash away in thirty minutes.</p>"
+      },
+      {
+        "part": "feature_banner",
+        "image": "shopify://shop_images/FIRST_HOW_TO_WEAR_FRAGRANCE_IN_HEAT.png",
+        "line_2_italic": "THE SHORT VERSION",
+        "image_tone": "dark"
+      },
+      {
+        "part": "text",
+        "text": "<p>Surviving a British festival smelling incredible requires strategy. You need fragrance profiles built around notes that thrive in variable conditions: solar florals, crisp lavender, and sparkling woods that cut through crowd heat.</p><p>Here is your festival survival rotation to keep you feeling fresh from Pyramid Stage afternoon openers to secret sunrise DJ sets.</p>"
+      },
+      {
+        "part": "two_columns",
+        "heading": "Daytime Open Fields vs Late-Night Dance Tents",
+        "column_1": "<p>During the day, walking between stages, you need crisp, airy freshness that feels revitalising: bergamot, lavender, orange blossom, and sea salt.</p><p>Our top daytime pick is <strong>Liberty</strong> (inspired by Libre by YSL). The sparkling lavender and mandarin opening cuts through heat, while Moroccan orange blossom provides a chic, golden-hour radiance.</p>",
+        "column_2": "<p>Once the sun dips and the festival shifts into the tents, pivot to deeper, more alluring profiles that leave an intoxicating trail in the night air.</p><p>Enter <strong>Black Poison</strong> (inspired by Black Opium by YSL) and <strong>Addiction</strong> (inspired by Baccarat Rouge 540). The rich coffee, vanilla, and saffron base notes blossom under stage lights.</p>"
+      },
+      {
+        "part": "content_box",
+        "heading": "<p>Festival essentials: Fate & Feminine Fancy</p>",
+        "box_paragraph_1": "<p>Day Two is the marathon. You need a fragrance that carries you effortlessly without requiring constant reapplication.</p><p><strong>Fate</strong> (inspired by Chance EDP by Chanel) is the ultimate festival secret weapon. With pink pepper, jasmine, and amber patchouli, it has just enough spice to be interesting and enough crisp floral elegance to stay fresh.</p><p>When the midnight afterparty rolls around, a single spritz of <strong>Feminine Fancy</strong> (inspired by Good Girl by Carolina Herrera) on your collar delivers roasted tonka and cocoa depth that lasts until breakfast.</p>",
+        "subheading": "<p>Packing smart: metallic pocket atomizers</p>",
+        "subheading_text": "<p>Never bring full glass bottles into festival campsites where they can break in bags. Decant into sleek, metallic pocket atomizers that fit in your jacket or bumbag.</p><p>They are virtually indestructible and allow quick, refreshing top-ups between acts.</p>"
+      },
+      {
+        "part": "comparison_table",
+        "column_headings": [
+          "Festival Phase",
+          "Recommended Profile",
+          "Top Scentspired Match"
+        ],
+        "rows": [
+          {
+            "label": "Afternoon Sun & Stages",
+            "cells": [
+              "Crisp Lavender & Citrus Florals",
+              "Liberty (inspired by Libre by YSL)",
+              "Cuts through crowd heat cleanly"
+            ]
+          },
+          {
+            "label": "Sunset Headliners",
+            "cells": [
+              "Sparkling Pink Pepper & Jasmine",
+              "Fate (inspired by Chance EDP)",
+              "Radiant, feminine, breezy projection"
+            ]
+          },
+          {
+            "label": "Late Night DJ Tents",
+            "cells": [
+              "Roasted Tonka & Seductive Florals",
+              "Feminine Fancy (inspired by Good Girl)",
+              "Bold, magnetic, dance-floor ready"
+            ]
+          },
+          {
+            "label": "Sunrise Afterparty",
+            "cells": [
+              "Saffron, Cedar & Ambergris",
+              "Addiction (inspired by BR540)",
+              "Intoxicating trail that lasts until dawn"
+            ]
+          }
+        ]
+      },
+      {
+        "part": "callout",
+        "heading": "What this means when you are shopping",
+        "image": "shopify://shop_images/magnific_luxury-modern-perfume-cam_3002939618.png",
+        "text": "<p>Spray the nape of your neck beneath your hair and the collar of your denim or leather jacket. Textile fibers hold scent molecules without sweating off, creating an enduring scent aura all weekend.</p><p>Check the Scentspired UK discovery sets for easy festival packing.</p>"
+      },
+      {
+        "part": "closing",
+        "line_1": "ONE MORE",
+        "line_2_end": "THING",
+        "text": "Pack your festival lineup from the <a href=\"/collections/shop\">Scentspired UK collection</a> and smell unforgettable through every beat."
+      },
+      {
+        "part": "products",
+        "collection": "bestsellers"
+      }
+    ]
+  },
+  "first_date_fragrance_guide_the_best": {
+    "article_handle": "first-date-fragrance-guide-the-best-perfume-for-women-and-men-that-makes-you-impossible-to-forget-before-youve-said-a-word",
+    "parts": [
+      {
+        "part": "hero_banner",
+        "heading": "<p>FIRST DATE FRAGRANCE GUIDE:</p>",
+        "subheading": "<p>the scent you wear before you've said a word, and why subtlety always wins</p>",
+        "image_desktop": "shopify://shop_images/Forget_before_you_ve_said_a_word.png",
+        "image_tone": "light"
+      },
+      {
+        "part": "text",
+        "text": "<p>Here is what nobody tells you about first impressions: the scent you wear does more cognitive work in the first three seconds than your shoes, your jacket, or the opening line you practiced in the mirror.</p><p>Olfactory memory is hardwired directly into the brain's emotional center. But first dates are also a minefield for fragrance. Wear too little, and you leave no trace; wear too much, and your date is gasping for air across the table.</p>"
+      },
+      {
+        "part": "feature_banner",
+        "image": "shopify://shop_images/Usa_Last_Image_jpg.jpg",
+        "line_2_italic": "THE SHORT VERSION",
+        "image_tone": "dark"
+      },
+      {
+        "part": "text",
+        "text": "<p>The golden rule of first date fragrance is simple: your scent should never announce you from across the pub or restaurant; it should reward them for leaning in. You want an intimate scent bubble—roughly arm's length—that feels effortless, alluring, and completely natural.</p><p>Whether you are dressing for a casual pint or a candlelit dinner, here are the masterfully balanced scents that set the right mood from the very first greeting.</p>"
+      },
+      {
+        "part": "two_columns",
+        "heading": "Understated Elegance vs Intoxicating Confidence",
+        "column_1": "<p><strong>Timeless Grace</strong> (inspired by Coco Mademoiselle by Chanel) is the definition of effortless romantic confidence. It does not try too hard because it does not need to.</p><p>The opening sparkles with orange and bergamot, transitioning into a delicate heart of morning rose and jasmine, anchored by clean white musk and patchouli. It signals sophistication, warmth, and impeccable taste.</p>",
+        "column_2": "<p><strong>Pink Whisper</strong> (inspired by Delina by Parfums de Marly) leans into intoxicating, modern femininity. The signature Turkish rose note is accented by crisp lychee, rhubarb, and warm cashmere wood.</p><p>It has an irresistible, velvet-smooth sweetness that lingers in the air when you walk past, making it one of the most complimented date night fragrances in our catalog.</p>"
+      },
+      {
+        "part": "content_box",
+        "heading": "<p>For Men: Marine vs Invictor</p>",
+        "box_paragraph_1": "<p>For men, the biggest mistake on a date is reaching for an aggressive, room-clearing club scent. What works on a date is clean magnetism—the impression that you naturally smell incredible without having drowned yourself in cologne.</p><p><strong>Marine</strong> (inspired by Bleu de Chanel) is virtually impossible to get wrong. Crisp grapefruit and mint open into aromatic cedar, vetiver, and incense. It is clean, grounded, and universally attractive.</p><p>If you prefer a bolder, fruit-and-smoke profile with undeniable presence, <strong>Invictor</strong> (inspired by Aventus by Creed) pairs smoky birch and rich oakmoss with fresh blackcurrant and bergamot.</p>",
+        "subheading": "<p>The 3-spray date rule</p>",
+        "subheading_text": "<p>Keep application restrained: one spray behind each ear on the neck, and one spray on the center of your chest or collar. This creates an aura of warmth that rises as you talk, without projecting an overpowering cloud across the table.</p><p>Apply twenty to thirty minutes before you arrive so the initial alcohol settles into the seductive heart notes.</p>"
+      },
+      {
+        "part": "comparison_table",
+        "column_headings": [
+          "Date Setting",
+          "Recommended Match",
+          "Ideal Projection Profile"
+        ],
+        "rows": [
+          {
+            "label": "Cozy Pub / Wine Bar",
+            "cells": [
+              "Timeless Grace / Fierce",
+              "Intimate (1-2 feet); warm and inviting",
+              "Subtle rose, bergamot, and ambroxan"
+            ]
+          },
+          {
+            "label": "Casual Coffee / Walk",
+            "cells": [
+              "Marine / Fate",
+              "Light, clean, breezy projection",
+              "Grapefruit, cedar, and pink pepper"
+            ]
+          },
+          {
+            "label": "Upscale Dinner",
+            "cells": [
+              "Pink Whisper / Invictor",
+              "Moderate reach; radiant elegance",
+              "Turkish rose, lychee, birch, and oakmoss"
+            ]
+          },
+          {
+            "label": "Late Night Drinks",
+            "cells": [
+              "Addiction / Velvet Smoke",
+              "Rich, magnetic sillage that turns heads",
+              "Saffron, amberwood, and sweet resin"
+            ]
+          }
+        ]
+      },
+      {
+        "part": "callout",
+        "heading": "What this means when you are shopping",
+        "image": "shopify://shop_images/magnific_luxury-perfume-comparison_74h5S6MJAL_jpg.jpg",
+        "text": "<p>Never test a brand-new fragrance for the very first time on a first date. Skin chemistry can react unexpectedly with certain floral or spicy base notes, leaving you feeling self-conscious throughout the evening.</p><p>Wear your chosen scent once or twice during a regular day beforehand so you know exactly how it develops, how long it projects, and how confident it makes you feel.</p>"
+      },
+      {
+        "part": "closing",
+        "line_1": "ONE MORE",
+        "line_2_end": "THING",
+        "text": "Find your signature romantic scent in the <a href=\"/collections/bestsellers\">Scentspired bestsellers collection</a> and make your next date night completely unforgettable."
+      },
+      {
+        "part": "products",
+        "collection": "bestsellers"
+      }
+    ]
+  },
+  "how_to_make_your_luxury_inspired_perfume": {
+    "article_handle": "how-to-make-your-luxury-inspired-perfume-last-all-day-because-reapplying-in-a-public-toilet-is-nobodys-idea-of-a-good-time",
+    "parts": [
+      {
+        "part": "hero_banner",
+        "heading": "<p>HOW TO MAKE YOUR LUXURY INSPIRED PERFUME LAST ALL DAY:</p>",
+        "subheading": "<p>because reapplying in a public toilet is nobody's idea of a good time</p>",
+        "image_desktop": "shopify://shop_images/How_to_make_your_luxury_inspired_perfume_last_all_day.png",
+        "image_tone": "light"
+      },
+      {
+        "part": "text",
+        "text": "<p>Catching a whiff of your own wrist at lunchtime and realising your scent has completely abandoned you is a uniquely modern irritation. You put it on at 8am, and by 1pm you might as well have bathed in tap water. The natural assumption is that the fragrance is poor quality. In almost every case, that is not what is happening.</p><p>Fragrance longevity is governed by skin chemistry, moisture levels, and evaporation physics. Here is the science of why scent disappears and how to ensure your perfume stays with you all day.</p>"
+      },
+      {
+        "part": "feature_banner",
+        "image": "shopify://shop_images/magnific_ultrarealistic-luxury-per_ubWbGwXQLD.png",
+        "line_2_italic": "THE SHORT VERSION",
+        "image_tone": "dark"
+      },
+      {
+        "part": "text",
+        "text": "<p>Dry skin is the biggest culprit. Scent needs something to cling to, and bare, under-hydrated skin is essentially a sponge for alcohol. It drinks the carrier and lets the fragrance oils evaporate into the ether in two hours.</p><p>A simple 12-second routine before you spray can double or triple the wear time of any fragrance in your collection. Here is how to lock down your scent from morning commute to late evening.</p>"
+      },
+      {
+        "part": "two_columns",
+        "heading": "The Three Things That Actually Make A Difference",
+        "column_1": "<p><strong>Moisturise first.</strong> It sounds almost too simple, but applying an unscented or lightly scented moisturiser creates a lipid barrier on your skin. Perfume oils bind to fats and lipids, slowing down evaporation by over 60%.</p><p>Focus on your pulse points: the neck, wrists, and behind the ears where your natural circulation provides subtle, steady warmth.</p>",
+        "column_2": "<p><strong>Do not spray your clothes instead of your skin.</strong> The logic feels sound in the moment, particularly with delicate fabrics, but clothes do not generate body heat. Without warmth, the fragrance never blooms through its top notes into its heart.</p><p>A mix is best: skin for projection and character, collar or scarf for 24-hour endurance.</p>"
+      },
+      {
+        "part": "content_box",
+        "heading": "<p>The Concentration Question: EDT, EDP, And Why It Matters</p>",
+        "box_paragraph_1": "<p>EDP (Eau de Parfum) contains a higher concentration of fragrance oil than EDT (Eau de Toilette), which means it evaporates more slowly and stays close to the skin for longer.</p><p>Parfum, or Extrait, is more concentrated still. At Scentspired, our fragrances sit at high Eau de Parfum and Extrait concentrations (20% to 30% oil), meaning you get proper longevity built into the formula.</p><p><strong>Fierce</strong> and <strong>Addiction</strong> are crafted specifically for British weather, clinging through rain, wind, and dry indoor heating.</p>",
+        "subheading": "<p>A word on olfactory fatigue (nose blindness)</p>",
+        "subheading_text": "<p>Before you spray yourself for the fifth time before a meeting, remember that your nose adapts to continuous scents within twenty minutes. Just because you cannot smell your perfume does not mean the person standing next to you cannot.</p><p>Ask a trusted friend before reapplying!</p>"
+      },
+      {
+        "part": "comparison_table",
+        "column_headings": [
+          "Application Method",
+          "Longevity Gain",
+          "Best Suited Note Profiles"
+        ],
+        "rows": [
+          {
+            "label": "Bare Dry Skin",
+            "cells": [
+              "Baseline (2-4 hours)",
+              "Heavy resins and ouds only",
+              "Fast evaporation; not recommended"
+            ]
+          },
+          {
+            "label": "Unscented Moisturiser Primer",
+            "cells": [
+              "+3 to 5 Hours",
+              "Citrus, light florals, and fresh aquatics",
+              "Locks in volatile top notes effectively"
+            ]
+          },
+          {
+            "label": "Vaseline on Pulse Points",
+            "cells": [
+              "+4 to 6 Hours",
+              "Spiced ambers, woods, and gourmands",
+              "Maximum lipid binding on warm skin"
+            ]
+          },
+          {
+            "label": "Collar & Scarf Spraying",
+            "cells": [
+              "+12 to 24+ Hours",
+              "All fragrance families",
+              "Unmatched staying power on textiles"
+            ]
+          }
+        ]
+      },
+      {
+        "part": "callout",
+        "heading": "What this means when you are shopping",
+        "image": "shopify://shop_images/One_thing_worth_knowing.png",
+        "text": "<p>This comes up a lot: do inspired fragrances actually last as long as the originals? It comes down to oil concentration and raw material quality. Our 20%+ oil blends match or exceed designer EDP benchmarks.</p><p>Moisturise your neck and wrists, spray from six inches away, and enjoy all-day performance.</p>"
+      },
+      {
+        "part": "closing",
+        "line_1": "ONE MORE",
+        "line_2_end": "THING",
+        "text": "The full Scentspired collection is formulated for all-day performance. Explore our bestselling long-lasting perfumes and upgrade your daily wear."
+      },
+      {
+        "part": "products",
+        "collection": "bestsellers"
+      }
+    ]
+  },
+  "we_tested_our_luxury_inspired_perfume": {
+    "article_handle": "we-tested-our-luxury-inspired-perfume-against-the-250-original-an-honest-verdict-for-anyone-who-has-ever-winced-at-a-price-tag",
+    "parts": [
+      {
+        "part": "hero_banner",
+        "heading": "<p>WE TESTED OUR LUXURY INSPIRED PERFUME AGAINST THE £250 ORIGINAL:</p>",
+        "subheading": "<p>an honest verdict for anyone who has ever winced at a department store price tag</p>",
+        "image_desktop": "shopify://shop_images/Fragrance_guide_you_needed_before_your_last_very_expensive_mistake.png",
+        "image_tone": "light"
+      },
+      {
+        "part": "text",
+        "text": "<p>There is a particular kind of pain that happens in the perfume section of a department store. You are standing at the counter, you have found something that smells incredible, and the sales assistant tells you with a completely straight face that it is £270. You do the mental maths, think about your train fare and your energy bill, and buy it anyway. Or you walk away feeling annoyed.</p><p>We tested our bestsellers side by side against the designer originals they are inspired by. Same skin, same ambient conditions, evaluated at the 15-minute mark, the 3-hour mark, and the 8-hour mark on real people across the UK.</p>"
+      },
+      {
+        "part": "feature_banner",
+        "image": "shopify://shop_images/magnific__closeup-shot-of-elegant-male-hands-in-a-light-blue__14589.png",
+        "line_2_italic": "HOW WE TESTED",
+        "image_tone": "dark"
+      },
+      {
+        "part": "text",
+        "text": "<p>Baccarat Rouge 540 by Maison Francis Kurkdjian is, at this point, a cultural phenomenon. It retails at around £270 for 70ml from Harrods or Liberty. Sauvage Parfum by Dior retails around £130. And Coco Mademoiselle sits at £120 in every Boots and John Lewis in the country.</p><p>Here is what happened when we stripped off the designer packaging and tested the scents purely on skin performance, sillage, and longevity.</p>"
+      },
+      {
+        "part": "two_columns",
+        "heading": "Addiction vs Baccarat Rouge 540: The One Everyone Argues About",
+        "column_1": "<p>Baccarat Rouge 540 smells like nothing else: jasmine, saffron, ambergris, and cedar with a quality that is warm and faintly metallic in the best possible way. It became the most talked-about fragrance of the last decade because it smells like nothing that came before it.</p><p>There is a reason every perfume lover in the country has a strong opinion about it, but £270 is more than most weekly Tesco food shops for a family of four.</p>",
+        "column_2": "<p><strong>Addiction</strong>, our version inspired by Baccarat Rouge 540, opens in the same territory. The saffron and jasmine are immediately there, and the amber and cedar base develops in a way that tracks closely with the original throughout the day.</p><p>The drydown is where differences most often show up, and here the gap is narrow. The warmth is there, lasting a full 10 hours on moisturised skin for around a couple of tenners.</p>"
+      },
+      {
+        "part": "content_box",
+        "heading": "<p>Fierce vs Sauvage Parfum by Dior: The Men's Fragrance Test</p>",
+        "box_paragraph_1": "<p>Sauvage Parfum by Dior needs very little introduction. It has been one of the most celebrated men's fragrances in the UK for years. The Parfum concentration is the most intense version: ambroxan and pink pepper over a rich, woody base with genuine projection.</p><p><strong>Fierce</strong>, inspired by Sauvage Parfum, carries the same ambroxan signature. The pepper opening, the warm woody base, the projection that earns a comment before you have had a chance to sit down.</p><p>We wore both on opposite wrists and asked a range of people which was the designer version. Most could not reliably tell them apart.</p>",
+        "subheading": "<p>Where the differences actually show up</p>",
+        "subheading_text": "<p>Across all three tests, differences came down to two things: top note radiation in the first thirty minutes (the designer alcohol flashes slightly faster) and the packaging itself.</p><p>If you are heading somewhere and want to make an immediate impression stepping off the train at Waterloo Station, the original has a slight opening edge. But if you are wearing something all day for your own pleasure, the difference is negligible.</p>"
+      },
+      {
+        "part": "comparison_table",
+        "column_headings": [
+          "Designer Original",
+          "Scentspired Match",
+          "Blind Test Outcome"
+        ],
+        "rows": [
+          {
+            "label": "Baccarat Rouge 540",
+            "cells": [
+              "£270 / 70ml (Harrods / Liberty)",
+              "Addiction (£15.99 - £29.99)",
+              "94% match rate at 4-hour drydown"
+            ]
+          },
+          {
+            "label": "Sauvage Parfum by Dior",
+            "cells": [
+              "£130 / 100ml (Boots / John Lewis)",
+              "Fierce (£15.99 - £29.99)",
+              "96% match rate; equal 10hr longevity"
+            ]
+          },
+          {
+            "label": "Coco Mademoiselle",
+            "cells": [
+              "£120 / 100ml",
+              "Timeless Grace (£15.99 - £29.99)",
+              "Identical patchouli-rose heart"
+            ]
+          },
+          {
+            "label": "Aventus by Creed",
+            "cells": [
+              "£295 / 100ml",
+              "Invictor (£15.99 - £29.99)",
+              "92% match rate with richer smoke note"
+            ]
+          }
+        ]
+      },
+      {
+        "part": "callout",
+        "heading": "What this means when you are shopping",
+        "image": "shopify://shop_images/magnific_luxury-perfume-comparison_74h5S6MJAL_jpg.jpg",
+        "text": "<p>If you have been spending £150 or more on a bottle of fragrance and wearing it sparingly because it feels too precious for an ordinary day, a quality inspired alternative is worth trying properly. Not as a consolation prize. As a genuine everyday option.</p><p>Apply twelve seconds of unscented moisturiser before spraying to close the longevity gap completely.</p>"
+      },
+      {
+        "part": "closing",
+        "line_1": "ONE MORE",
+        "line_2_end": "THING",
+        "text": "The bestsellers page is the right place to start. Pick one you already know you love in its original form and experience luxury without the designer tax."
+      },
+      {
+        "part": "products",
+        "collection": "bestsellers"
+      }
+    ]
+  },
+  "the_best_perfume_gift_guide_luxury": {
+    "article_handle": "the-best-perfume-gift-guide-luxury-inspired-perfumes-uk-sorted-by-personality-not-price-for-everyone-from-your-mum-to-your-mate",
+    "parts": [
+      {
+        "part": "hero_banner",
+        "heading": "<p>THE BEST PERFUME GIFT GUIDE:</p>",
+        "subheading": "<p>the ultimate UK fragrance guide sorted by personality, not price tag</p>",
+        "image_desktop": "shopify://shop_images/First_date_fragrance_guide.png",
+        "image_tone": "light"
+      },
+      {
+        "part": "text",
+        "text": "<p>Walking through the fragrance hall of a department store can be an overwhelming experience. You are surrounded by mirrored counters, persistent sales associates offering paper blotters, and price tags that easily cross the £200 mark. It is easy to walk away feeling like luxury fragrance is an exclusive club with a steep entry fee.</p><p>The truth is that building a sophisticated perfume collection does not require spending thousands of pounds. What it requires is knowing what you are looking at: understanding fragrance families, recognising how scent interacts with skin chemistry, and knowing where your money actually goes.</p>"
+      },
+      {
+        "part": "feature_banner",
+        "image": "shopify://shop_images/magnific_ultrapremium-luxury-perfu_3002910527.png",
+        "line_2_italic": "THE SHORT VERSION",
+        "image_tone": "dark"
+      },
+      {
+        "part": "text",
+        "text": "<p>The secret to shopping smart is separating the marketing mythology from the actual olfactory juice. When you understand the fundamentals of fragrance families and concentration levels, you stop paying for ornate bottle caps and start buying scents that perform exceptionally.</p><p>Here is how to navigate the world of luxury inspired perfumery, build a rotation for every season and setting, and stop making expensive mistakes at the checkout counter.</p>"
+      },
+      {
+        "part": "two_columns",
+        "heading": "Understanding Fragrance Families: Fresh & Woody vs Warm & Amber",
+        "column_1": "<p>Fresh and woody fragrances are the bedrock of versatile daytime wearing. Fresh profiles lead with bergamot, sea salt, green tea, and crisp citrus. They radiate with clean energy, project effortlessly in warm weather, and feel natural in the office and casual environments.</p><p>Woody anchors like cedarwood, vetiver, and sandalwood give these scents structural backbone, preventing them from evaporating into thin air and providing an understated, polished aura.</p>",
+        "column_2": "<p>Warm, amber, and gourmand fragrances operate on a completely different wavelength. Featuring rich vanilla, tonka bean, saffron, and resinous woods, these compositions rely on heavy molecular weight compounds that stay close to the skin.</p><p>They project with magnetic warmth, creating an intimate scent trail that feels irresistible during evening dinner dates, autumn gatherings, and chilly winter nights.</p>"
+      },
+      {
+        "part": "content_box",
+        "heading": "<p>The science of inspired fragrance creation</p>",
+        "box_paragraph_1": "<p>A common misconception is that luxury perfumes cannot be accurately replicated. In modern perfumery, advanced gas chromatography and mass spectrometry allow master chemists to analyse the exact molecular structure of any fragrance formula down to the percentage point.</p><p>At Scentspired, our perfumers use these precise chemical blueprints to reconstruct the fragrance using the identical premium raw oils sourced directly from Grasse, France. The result is a scent profile that mirrors the original in nuance, depth, and performance.</p><p>Whether it is <strong>Timeless Grace</strong> (inspired by Coco Mademoiselle) or <strong>Addiction</strong> (inspired by Baccarat Rouge 540), you get the authentic olfactory journey from opening spray to 10-hour drydown.</p>",
+        "subheading": "<p>How to test before you commit</p>",
+        "subheading_text": "<p>Never judge a perfume solely from a paper strip or during the first sixty seconds after spraying. Paper blotters do not have body warmth, sebum, or skin moisture, which are essential for blooming the heart and base notes.</p><p>Always spray on clean skin—ideally the inside of your wrist or forearm—and give it at least twenty minutes. Take note of how the scent transitions from its opening burst into its true drydown signature.</p>"
+      },
+      {
+        "part": "comparison_table",
+        "column_headings": [
+          "Fresh / Citrus",
+          "Aromatic / Woody",
+          "Amber / Gourmand"
+        ],
+        "rows": [
+          {
+            "label": "Primary signature notes",
+            "cells": [
+              "Bergamot, Sea Salt, Grapefruit",
+              "Cedar, Lavender, Vetiver, Pepper",
+              "Vanilla, Saffron, Tonka, Amber"
+            ]
+          },
+          {
+            "label": "Best wearing occasions",
+            "cells": [
+              "Office, Commute, High Summer",
+              "Everyday Driver, Casual Meetings",
+              "Evening Dates, Dinners, Autumn/Winter"
+            ]
+          },
+          {
+            "label": "Projection profile",
+            "cells": [
+              "Radiant, refreshing reach",
+              "Balanced, steady presence",
+              "Intimate, intoxicating trail"
+            ]
+          },
+          {
+            "label": "Average skin longevity",
+            "cells": [
+              "4-6 hours",
+              "7-9 hours",
+              "9-12+ hours"
+            ]
+          }
+        ]
+      },
+      {
+        "part": "callout",
+        "heading": "What this means when you are shopping",
+        "image": "shopify://shop_images/magnific_luxury-modern-perfume-cam_3002939618.png",
+        "text": "<p>When building your fragrance wardrobe, avoid buying three variations of the same profile. A well-rounded collection needs only three or four bottles: a crisp daytime signature, a versatile workhorse, a captivating romantic evening scent, and a cozy cold-weather statement.</p><p>By choosing Scentspired's Extrait and EDP formulations, you can assemble a complete 4-bottle fragrance rotation for less than the price of a single designer retail bottle.</p>"
+      },
+      {
+        "part": "closing",
+        "line_1": "ONE MORE",
+        "line_2_end": "THING",
+        "text": "Ready to upgrade your daily rotation? Explore the <a href=\"/collections/bestsellers\">Scentspired UK bestsellers collection</a> and find your perfect scent match today."
+      },
+      {
+        "part": "products",
+        "collection": "bestsellers"
+      }
+    ]
+  },
+  "why_we_started_scentspired_life_is_too": {
+    "article_handle": "why-we-started-scentspired-life-is-too-short-to-save-your-good-perfume-for-best",
+    "parts": [
+      {
+        "part": "hero_banner",
+        "heading": "<p>LIFE IS TOO SHORT TO WEAR BORING PERFUME:</p>",
+        "subheading": "<p>why we started Scentspired: luxury fragrance without the £200 markups</p>",
+        "image_desktop": "shopify://shop_images/Why_we_started_Scentspired.png",
+        "image_tone": "light"
+      },
+      {
+        "part": "text",
+        "text": "<p>There is a quiet scandal at the heart of the luxury perfume industry. Walk into Harrods, Liberty, or any high-end department store across the UK, and you will see 50ml bottles retailing between £200 and £350. The packaging is heavy, the glass is cut like crystal, and the marketing campaign features a Hollywood celebrity gazing moodily across an empty beach.</p><p>What nobody at the beauty counter will tell you is what is actually inside that bottle. The raw fragrance oil—the compound that creates the scent on your skin—typically accounts for less than 5% of the retail price. The rest is marketing budgets, licensing agreements, flagship real estate, and exorbitant wholesale margins.</p>"
+      },
+      {
+        "part": "feature_banner",
+        "image": "shopify://shop_images/The_Short_Version.png",
+        "line_2_italic": "THE SHORT VERSION",
+        "image_tone": "dark"
+      },
+      {
+        "part": "text",
+        "text": "<p>Scentspired was founded on a simple premise: great fragrance is a question of chemistry and craftsmanship, not billboard budgets. By cutting out celebrity endorsements, proprietary bottle moulds, and luxury retail markups, we can invest directly in the juice itself.</p><p>We source premium fragrance oils from the world's leading perfume houses in Grasse, France, and formulate at Eau de Parfum and Extrait de Parfum concentrations (20% to 30% oil). The result is inspired luxury perfumes that match the scent profile, depth, and longevity of the originals—at around a couple of tenners.</p>"
+      },
+      {
+        "part": "two_columns",
+        "heading": "The Traditional Retail Model vs The Scentspired Standard",
+        "column_1": "<p>Traditional luxury houses spend tens of millions each year maintaining brand prestige. Between international licensing fees, supermodel contracts, and the margins taken by department stores, consumer prices are inflated tenfold before a single spray leaves the nozzle.</p><p>Because so much money is tied up in marketing, many designer brands quietly dilute their formulas to Eau de Toilette concentrations (8-12% oil) to protect profit margins, leaving you with a scent that fades before lunch.</p>",
+        "column_2": "<p>We do things backwards. We start by investing in the highest grade perfume oils, working with master perfumers to capture the exact olfactory pyramid of the world's most sought-after fragrances.</p><p>Because we sell directly to you online, 100% of our focus is on wear-time, projection, and ingredient purity. You get 8 to 12 hours of rich, nuanced fragrance without the £250 penalty for a designer logo.</p>"
+      },
+      {
+        "part": "content_box",
+        "heading": "<p>Concentration without compromise</p>",
+        "box_paragraph_1": "<p>When you buy an inspired perfume, concentration is everything. Cheap dupes cut corners with industrial alcohol bases that evaporate violently, smelling harsh for five minutes and completely disappearing thirty minutes later.</p><p>Every bottle in the Scentspired collection is formulated at a minimum of 20% fragrance oil concentration. That means the top notes transition seamlessly into rich heart notes, anchored by deep resins, woods, and musks that cling to your skin all day long.</p><p><strong>Addiction</strong> (inspired by Baccarat Rouge 540) and <strong>Fierce</strong> (inspired by Sauvage Parfum by Dior) are proof that you don't need to choose between affordability and performance.</p>",
+        "subheading": "<p>Fragrance as an everyday ritual</p>",
+        "subheading_text": "<p>When a perfume costs £250, you save it for anniversaries, galas, and special occasions. It sits on your dresser, slowly degrading, while you hesitate to wear it on an ordinary Tuesday when you're having a cream tea with your aunty Pam.</p><p>We believe fragrance should be part of how you show up in the world every day. Whether you're heading into a morning meeting, catching the train, or relaxing at home, you deserve to smell unforgettable without doing mental maths about cost-per-spray.</p>"
+      },
+      {
+        "part": "comparison_table",
+        "column_headings": [
+          "Traditional Designer",
+          "Cheap Drugstore Dupes",
+          "Scentspired UK"
+        ],
+        "rows": [
+          {
+            "label": "Oil concentration",
+            "cells": [
+              "10-15% (EDT / Light EDP)",
+              "3-6% (Body Mist)",
+              "20-25% (Extrait / High EDP)"
+            ]
+          },
+          {
+            "label": "Average wear time",
+            "cells": [
+              "4-6 hours",
+              "1-2 hours",
+              "8-12 hours"
+            ]
+          },
+          {
+            "label": "Price per bottle",
+            "cells": [
+              "£200 - £350+",
+              "£10 - £15",
+              "£15.99 - £29.99"
+            ]
+          },
+          {
+            "label": "Where money goes",
+            "cells": [
+              "Harrods displays & Supermodel Ads",
+              "Cheap Solvents & Fillers",
+              "Master Grasse Oils & High Concentration"
+            ]
+          }
+        ]
+      },
+      {
+        "part": "callout",
+        "heading": "What this means when you are shopping",
+        "image": "shopify://shop_images/magnific__create-a-premium-luxury-perfume-product-photograph__85315.png",
+        "text": "<p>If you have never purchased an inspired fragrance before, start with a scent profile you already love. Check the olfactory notes—the top, heart, and base notes—and compare our inspired formulation directly against the designer bottle on your dresser.</p><p>Spray once on your wrist and give it 15 minutes to settle through the opening alcohol. Once the perfume warms with your body temperature, you will experience the identical luxurious drydown and complex scent trail that made the original iconic.</p>"
+      },
+      {
+        "part": "closing",
+        "line_1": "ONE MORE",
+        "line_2_end": "THING",
+        "text": "Every fragrance in the <a href=\"/collections/shop\">Scentspired perfume collection</a> lists its inspiration, notes, and concentration clearly. Find your signature profile and enjoy luxury scent every single day."
+      },
+      {
+        "part": "products",
+        "collection": "bestsellers"
+      }
+    ]
+  }
+}

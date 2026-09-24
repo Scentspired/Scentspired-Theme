@@ -9,6 +9,10 @@
  */
 {
   "sections": {
+    "parts": {
+      "type": "article--parts",
+      "settings": {}
+    },
     "main": {
       "type": "editorial--article",
       "blocks": {
@@ -46,6 +50,7 @@
     }
   },
   "order": [
+    "parts",
     "main"
   ]
 }

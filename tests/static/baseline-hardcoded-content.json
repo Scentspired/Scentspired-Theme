@@ -476,6 +476,69 @@
     "fallback": 0,
     "ids": 0
   },
+  "snippets/article--part-callout.liquid": {
+    "total": 1,
+    "text": 1,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "snippets/article--part-feature-banner.liquid": {
+    "total": 2,
+    "text": 1,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 1,
+    "ids": 0
+  },
+  "snippets/article--part-fragrance-guide.liquid": {
+    "total": 5,
+    "text": 5,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "snippets/article--part-hero-banner.liquid": {
+    "total": 3,
+    "text": 1,
+    "js-text": 1,
+    "media": 0,
+    "links": 0,
+    "fallback": 1,
+    "ids": 0
+  },
+  "snippets/article--part-image-banner.liquid": {
+    "total": 2,
+    "text": 2,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "snippets/article--part-products.liquid": {
+    "total": 3,
+    "text": 3,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "snippets/article--part-text.liquid": {
+    "total": 3,
+    "text": 0,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 3,
+    "ids": 0
+  },
   "snippets/blog--article--author-bio.liquid": {
     "total": 1,
     "text": 0,

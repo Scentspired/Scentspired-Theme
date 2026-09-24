@@ -1,3 +1,10 @@
+{%- comment -%}
+  The plain article: Shopify's own title, image and body. An article with an
+  entry in regions/<id>/content/articles.json is drawn by
+  sections/article--parts.liquid instead, and this section stands aside.
+{%- endcomment -%}
+{%- capture article_entry -%}{%- render 'article--entry', handle: article.handle, template_suffix: article.template_suffix -%}{%- endcapture -%}
+{%- if article_entry == blank -%}
 {{ "blog--typography.css" | asset_url | stylesheet_tag }}
 {{ "section-blog-post.css" | asset_url | stylesheet_tag }}
 
@@ -327,6 +334,7 @@
 <script type="application/ld+json">
   {{ article | structured_data }}
 </script>
+{%- endif -%}
 
 {% schema %}
 {

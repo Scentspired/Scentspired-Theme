@@ -2166,6 +2166,28 @@
  "sections\\pagefly-section.liquid": [
   ".pf-ph { font-size: 14px }"
  ],
+ "snippets\\article--part-comparison-table.liquid": [
+  "tbody td { font-weight: normal }",
+  "tbody td:first-child { font-weight: normal }",
+  "thead th { font-weight: bold }"
+ ],
+ "snippets\\article--part-content-box.liquid": [
+  "strong { font-weight: 700 }"
+ ],
+ "snippets\\article--part-feature-banner.liquid": [
+  "[inline] { font-size: 13px }"
+ ],
+ "snippets\\article--part-hero-banner.liquid": [
+  ".italic-text { font-family: ppeditorialnew ultralight italic, serif }"
+ ],
+ "snippets\\article--part-text.liquid": [
+  ".blog-richtext--standard .blog-richtext-content { font-size: 19px }",
+  ".blog-richtext--statement .blog-richtext-content { font-size: 28px }",
+  ".blog-richtext--statement .blog-richtext-content { font-size: 52px }",
+  ".blog-richtext--statement .blog-richtext-content { line-height: 1.15 }",
+  ".blog-richtext--statement .blog-richtext-content { line-height: 1.3 }",
+  ".blog-richtext-content b { font-weight: 700 }"
+ ],
  "snippets\\bundle--product-grid.liquid": [
   "[inline] { font-size: 25px }"
  ],
