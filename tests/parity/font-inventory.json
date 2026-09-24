@@ -356,37 +356,6 @@
   ".subtotal-row { font-size: 14px }",
   ".subtotal-row { font-weight: 600 }"
  ],
- "assets\\bundle--discovery.css": [
-  ".add-to-cart-btn { font-size: 11px }",
-  ".add-to-cart-btn { font-size: 15px }",
-  ".add-to-cart-btn { font-weight: 600 }",
-  ".add-to-cart-btn { letter-spacing: 2px }",
-  ".back-arrow-btn { font-size: 24px }",
-  ".back-arrow-btn { line-height: 1 }",
-  ".drawer-title { font-size: 20px }",
-  ".drawer-title { letter-spacing: 1px }",
-  ".no-results-message { font-size: 15px }",
-  ".perfume-bundle-section { font-family: montserrat, sans-serif }",
-  ".remove-item { font-size: 18px }",
-  ".search-icon { font-size: 16px }",
-  ".search-input-container input { font-family: montserrat, sans-serif }",
-  ".search-input-container input { font-size: 15px }",
-  ".sidebar-header h2 { font-size: 19px }",
-  ".sidebar-header h2 { font-size: 22px }",
-  ".sidebar-header h2 { font-weight: 600 }",
-  ".sidebar-header h2 { font-weight: 600 }",
-  ".sidebar-header p { font-size: 14px }",
-  ".sidebar-header p { line-height: 1.4 }",
-  ".slot-info h4 { font-size: 16px }",
-  ".slot-info h4 { font-weight: 600 }",
-  ".slot-info p { font-size: 13px }",
-  ".slot-placeholder-icon { font-size: 20px }",
-  ".slot-placeholder-text .primary { font-size: 14px }",
-  ".slot-placeholder-text .unlock { font-size: 16px }",
-  ".slot-placeholder-text .unlock { font-weight: 600 }",
-  ".slot-price { font-size: 15px }",
-  ".slot-price { font-weight: 600 }"
- ],
  "assets\\bundle--heading.css": [
   ".scent-carousel { font-family: -apple-system, blinkmacsystemfont, segoe ui, roboto, sans-serif }",
   ".scent-sub { font-family: ppeditorialnew italic, serif }",
@@ -2087,9 +2056,6 @@
   ".variant-option-btn { font-size: 11px }",
   "[inline] { font-family: ppmori regular, sans-serif }",
   "[inline] { font-weight: 500 }"
- ],
- "sections\\bundle--discovery.liquid": [
-  "[inline] { font-size: 25px }"
  ],
  "sections\\bundle--five-favourites.liquid": [
   "[inline] { font-size: 9px }",

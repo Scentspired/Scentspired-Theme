@@ -324,8 +324,9 @@ emitted.add('snippets/region--active.liquid');
         if (!at(field)) boxErrors.push(`templates/${f}: box "${box}" has no ${field}`);
       }
       if (!(Number(at('capacity')) >= 1)) boxErrors.push(`templates/${f}: box "${box}" needs a capacity of 1 or more`);
-      if (!Object.keys(flat).some((k) => k.startsWith(`boxes.${box}.choices.`))) {
-        boxErrors.push(`templates/${f}: box "${box}" names no choices (size -> collection)`);
+      // One collection for every size ("choices": "discovery"), or one per size.
+      if (!at('choices') && !Object.keys(flat).some((k) => k.startsWith(`boxes.${box}.choices.`))) {
+        boxErrors.push(`templates/${f}: box "${box}" names no choices (a collection, or size -> collection)`);
       }
     }
   }

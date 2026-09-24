@@ -26,5 +26,12 @@
       "50ml": 77.97,
       "100ml": 119.97
     }
+  },
+  "discovery_set": {
+    "heading": "Your Fragrance Discovery Starts Here",
+    "name": "Discovery Box",
+    "product": "discovery-set",
+    "capacity": 5,
+    "choices": "discovery"
   }
 }

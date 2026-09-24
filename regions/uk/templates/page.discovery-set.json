@@ -174,10 +174,12 @@
       "settings": {}
     },
     "discovery_we6EM7": {
-      "type": "bundle--discovery",
+      "type": "bundle--box",
       "custom_css": [],
       "name": "Discovery",
-      "settings": {}
+      "settings": {
+        "box": "discovery_set"
+      }
     },
     "newsletter_banner_jKFrVt": {
       "type": "marketing--newsletter-banner",

@@ -1,32 +1,31 @@
 {%- comment -%}
-  Box builder — one component for every "build your own box" (Five Favourites,
-  Signature Trio, …). It replaces bundle--five-box and bundle--trio-set, two
-  copies of the same builder that had drifted apart and typed their prices and
-  variant IDs into the code.
+  Box builder — one component for every "build your own box": Five Favourites,
+  Signature Trio, Discovery Set, and any box added later. It replaces
+  bundle--five-box, bundle--trio-set and bundle--discovery, three copies of the
+  same builder that typed their prices and variant IDs into the code.
 
   The page layout (theme-level) says WHICH box, in the `box` setting. The box
   itself is defined once per region in regions/<id>/content/boxes.json:
 
     "signature_trio": {
-      "heading":  "Build Your Own Signature Trio Set",   the page's heading
+      "heading":  "Build Your Own Signature Trio Set",   the page's heading (its H1)
       "name":     "Signature Trio Set",                  used in the messages
       "product":  "the-signature-trio",                  the Shopify product sold
       "capacity": 3,                                     how many perfumes it holds
       "choices":  { "50ml": "bundle-50ml", … }           size -> collection to choose from
     }
 
+  "choices" may instead be one collection for every size ("choices": "discovery").
+
   Everything else is read from the store, never typed: the sizes are the
-  product's own variants, and each size's price and variant ID come from that
-  variant. The standard price is the sum of the perfumes chosen; the saving is
-  the difference. `capacity` drives the slots, the progress markers, the
-  messages and the logic — change it and all of them follow.
+  product's own variants (one size: no size step), and each size's variant ID
+  and price come from that variant, formatted by the store. The standard price
+  a saving is shown against is the variant's compare-at price; until the store
+  sets one, a region may state it as "reference_price": { "50ml": 77.97 }.
+  With neither, no saving is shown. `capacity` drives the slots, the progress
+  markers, the messages and the logic — change it and all of them follow.
 {%- endcomment -%}
 {%- liquid
-  capture region_currency_symbol
-    render 'region--active', key: 'currency_symbol'
-  endcapture
-  assign region_currency_symbol = region_currency_symbol | strip
-
   assign box_prefix = 'boxes.' | append: section.settings.box | append: '.'
   assign k = box_prefix | append: 'heading'
   capture box_heading
@@ -49,6 +48,54 @@
   assign box_product = all_products[box_product_handle]
   assign box_capacity = box_capacity | strip | plus: 0
   assign last_marker = box_capacity | minus: 1
+
+  # One collection for every size, when "choices" names one rather than a map.
+  assign k = box_prefix | append: 'choices'
+  capture choices_for_every_size
+    render 'region--content', key: k
+  endcapture
+  assign choices_for_every_size = choices_for_every_size | strip
+
+  # Per size: the price the store charges and, where one exists, the standard
+  # price a saving is measured against (see above). Formatted by the store, so
+  # every region shows its own currency with no symbol written here.
+  assign box_sizes = box_product.variants.size
+  assign has_standard = false
+  capture box_variants_js
+    for variant in box_product.variants
+      assign k = box_prefix | append: 'reference_price.' | append: variant.title
+      capture reference_price
+        render 'region--content', key: k
+      endcapture
+      assign reference_price = reference_price | strip
+      assign standard = nil
+      if variant.compare_at_price > variant.price
+        assign standard = variant.compare_at_price
+      elsif reference_price != blank
+        assign standard = reference_price | times: 100 | round
+      endif
+      echo variant.title | json
+      echo ': { id: '
+      echo variant.id
+      echo ', price: '
+      echo variant.price | money | strip_html | json
+      echo ', standard: '
+      if standard
+        assign has_standard = true
+        echo standard | money | strip_html | json
+        echo ', saving: '
+        echo standard | minus: variant.price | money | strip_html | json
+      else
+        echo 'null, saving: null'
+      endif
+      echo ', available: '
+      echo variant.available | json
+      echo ' }'
+      unless forloop.last
+        echo ', '
+      endunless
+    endfor
+  endcapture
 -%}
 
 {{ 'bundle--box.css' | asset_url | stylesheet_tag }}
@@ -59,7 +106,8 @@
     <!-- LEFT SIDEBAR: BUNDLE STATUS -->
     <div class="bundle-sidebar">
       <div class="sidebar-header">
-        <h2>{{ box_heading }}</h2>
+        {%- comment -%} The page's one H1: the banners above it are H2s. {%- endcomment -%}
+        <h1>{{ box_heading }}</h1>
         <p id="BundleStatusText">Add {{ box_capacity }} items to complete your {{ box_name }}</p>
       </div>
 
@@ -98,14 +146,15 @@
         <div class="cart">
           <button class="add-to-cart-btn" id="MainActionBtn" disabled onclick="handleCheckout()">
             <span>Add to Cart</span>
-            <span id="TotalDisplay">{{ region_currency_symbol }} 0</span>
+            <span id="TotalDisplay">{{ 0 | money_without_trailing_zeros | strip_html }}</span>
           </button>
         </div>
-        <div class="savings-row">
-          Standard Price: <span class="saving">{{ region_currency_symbol }}0</span>
+        {%- comment -%} No standard price for any size: no saving to show. {%- endcomment -%}
+        <div class="savings-row"{% unless has_standard %} style="display: none;"{% endunless %}>
+          Standard Price: <span class="saving">{{ 0 | money_without_trailing_zeros | strip_html }}</span>
         </div>
-        <div class="save-row">
-          Total Saving <span>{{ region_currency_symbol }}0</span>
+        <div class="save-row"{% unless has_standard %} style="display: none;"{% endunless %}>
+          Total Saving <span>{{ 0 | money_without_trailing_zeros | strip_html }}</span>
         </div>
       </div>
     </div>
@@ -119,11 +168,13 @@
               <polyline points="15 18 9 12 15 6"></polyline>
             </svg>
           </button>
-          <span class="drawer-title-text" id="DrawerHeadline">Select Size</span>
+          <span class="drawer-title-text" id="DrawerHeadline">{% if box_sizes > 1 %}Select Size{% else %}Select Product{% endif %}</span>
         </div>
         <button onclick="closeSelector()" style="background: none; border: none; cursor: pointer; font-size: 25px;">×</button>
       </div>
 
+      {%- comment -%} A box sold in one size has no size to choose. {%- endcomment -%}
+      {%- if box_sizes > 1 %}
       <div id="Step-Size" class="step-container">
         <div class="option-list">
           {%- for variant in box_product.variants %}
@@ -133,8 +184,9 @@
           {%- endfor %}
         </div>
       </div>
+      {%- endif %}
 
-      <div id="Step-Product" class="step-container" style="display: none;">
+      <div id="Step-Product" class="step-container"{% if box_sizes > 1 %} style="display: none;"{% endif %}>
         <div class="search-bar-wrapper">
           <div class="search-input-container">
             <input type="text" id="ProductSearch" placeholder="Search" />
@@ -154,38 +206,12 @@
 </div>
 
 <script>
-  // var, not const: several sections declare this and a top-level const is a
-  // global lexical binding, so the second one on the page throws and takes the
-  // rest of its script with it.
-  var currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '{{ cart.currency.symbol }}' || '$';
-
   // The box: its size (capacity), its name, and — per size — the variant of the
-  // box product that is added to the cart and the price the store charges for it.
+  // box product that is added to the cart, the price the store charges for it,
+  // and the standard price and saving where one exists (see the top of this file).
   const CAPACITY = {{ box_capacity }};
   const BOX_NAME = {{ box_name | json }};
-  //
-  // The standard ("was") price a saving is measured against: the box variant's
-  // compare-at price in Shopify, where the store sets one. Until it does, a
-  // region may state it in boxes.json (reference_price) — today's figures,
-  // which no store price backs. Neither: no saving is claimed.
-  const BOX_VARIANTS = {
-    {%- for variant in box_product.variants %}
-      {%- liquid
-        assign k = box_prefix | append: 'reference_price.' | append: variant.title
-        capture reference_price
-          render 'region--content', key: k
-        endcapture
-        assign reference_price = reference_price | strip
-        assign standard = 'null'
-        if variant.compare_at_price > variant.price
-          assign standard = variant.compare_at_price
-        elsif reference_price != blank
-          assign standard = reference_price | times: 100 | round
-        endif
-      %}
-    {{ variant.title | json }}: { id: {{ variant.id }}, price: {{ variant.price }}, standard: {{ standard }}, available: {{ variant.available | json }} }{% unless forloop.last %},{% endunless %}
-    {%- endfor %}
-  };
+  const BOX_VARIANTS = { {{ box_variants_js }} };
 
   // The perfumes to choose from, per size, from the collection the box names.
   const PRODUCTS_BY_SIZE = {
@@ -195,7 +221,7 @@
         capture choices_handle
           render 'region--content', key: k
         endcapture
-        assign choices_handle = choices_handle | strip
+        assign choices_handle = choices_handle | strip | default: choices_for_every_size
         assign choices = collections[choices_handle]
       %}
     {{ variant.title | json }}: [
@@ -219,13 +245,14 @@
     {%- endfor %}
   };
 
-  let activeSize = null;
-  let currentStep = 'Step-Size';
+  // A box sold in one size starts with that size chosen.
+  const SIZES = Object.keys(BOX_VARIANTS);
+  const ONE_SIZE = SIZES.length === 1 ? SIZES[0] : null;
+  let activeSize = ONE_SIZE;
+  let currentStep = ONE_SIZE ? 'Step-Product' : 'Step-Size';
   let hasAddedFirstProduct = false;
   let bundle = new Array(CAPACITY).fill(null);
   let currentSlot = null;
-
-  const money = (cents) => (cents / 100).toFixed(2);
 
   function isDesktop() {
     return window.innerWidth > 1024;
@@ -251,8 +278,10 @@
   }
 
   function showStep(id) {
+    const step = document.getElementById(id);
+    if (!step) return;
     document.querySelectorAll('.step-container').forEach((c) => (c.style.display = 'none'));
-    document.getElementById(id).style.display = 'block';
+    step.style.display = 'block';
     currentStep = id;
 
     const backArrowBtn = document.getElementById('BackArrowBtn');
@@ -264,16 +293,16 @@
     }
     if (id === 'Step-Product') {
       document.getElementById('DrawerHeadline').innerText = 'Select Product';
-      // The back arrow only makes sense before the first perfume is chosen:
-      // after that the size is fixed for the whole box.
-      backArrowBtn.style.display = hasAddedFirstProduct ? 'none' : 'flex';
+      // The back arrow goes back to the sizes, so only while there is a size to
+      // change: more than one, and no perfume chosen yet (that fixes the size).
+      backArrowBtn.style.display = !ONE_SIZE && !hasAddedFirstProduct ? 'flex' : 'none';
       renderProducts();
       initSearchListener();
     }
   }
 
   function goBackToStep() {
-    if (currentStep === 'Step-Product' && !hasAddedFirstProduct) showStep('Step-Size');
+    if (!ONE_SIZE && currentStep === 'Step-Product' && !hasAddedFirstProduct) showStep('Step-Size');
   }
 
   function selectSize(size) {
@@ -401,14 +430,14 @@
     // in this size, and — only where a standard price exists — the saving.
     const boxVariant = activeSize && BOX_VARIANTS[activeSize];
     if (count === CAPACITY && boxVariant) {
-      totalDisplay.innerText = `${currSym} ${money(boxVariant.price)}`;
+      totalDisplay.innerText = boxVariant.price;
       totalDisplay.style.visibility = 'visible';
       const hasStandard = boxVariant.standard !== null;
       document.querySelector('.savings-row').style.display = hasStandard ? '' : 'none';
       document.querySelector('.save-row').style.display = hasStandard ? '' : 'none';
       if (hasStandard) {
-        document.querySelector('.savings-row .saving').innerText = `${currSym} ${money(boxVariant.standard)}`;
-        document.querySelector('.save-row span').innerText = `${currSym} ${money(boxVariant.standard - boxVariant.price)}`;
+        document.querySelector('.savings-row .saving').innerText = boxVariant.standard;
+        document.querySelector('.save-row span').innerText = boxVariant.saving;
       }
     } else {
       totalDisplay.innerText = '';
@@ -471,7 +500,7 @@
       if (!response.ok) throw new Error('Add to cart failed');
 
       bundle = bundle.map(() => null);
-      activeSize = null;
+      activeSize = ONE_SIZE;
       hasAddedFirstProduct = false;
       updateUI();
       openSelector(0);

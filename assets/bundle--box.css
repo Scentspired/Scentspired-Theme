@@ -43,6 +43,7 @@
     background: #f3f3f3;
   }
 
+  .sidebar-header h1,
   .sidebar-header h2 {
     font-size: 22px;
     margin: 0 0 10px;
@@ -458,6 +459,7 @@
     .add-to-cart-btn {
     font-size: 11px;
   }
+  .sidebar-header h1,
   .sidebar-header h2 {
     font-size: 19px;
     margin: 0 0 10px;

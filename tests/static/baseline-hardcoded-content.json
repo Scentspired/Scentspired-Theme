@@ -18,8 +18,8 @@
     "ids": 0
   },
   "sections/bundle--box.liquid": {
-    "total": 17,
-    "text": 10,
+    "total": 18,
+    "text": 11,
     "js-text": 7,
     "media": 0,
     "links": 0,
@@ -52,15 +52,6 @@
     "links": 0,
     "fallback": 3,
     "ids": 0
-  },
-  "sections/bundle--discovery.liquid": {
-    "total": 17,
-    "text": 8,
-    "js-text": 8,
-    "media": 0,
-    "links": 0,
-    "fallback": 0,
-    "ids": 1
   },
   "sections/bundle--five-favourites.liquid": {
     "total": 14,

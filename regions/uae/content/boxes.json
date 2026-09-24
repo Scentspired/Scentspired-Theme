@@ -18,5 +18,12 @@
       "50ml": "bundle-50ml",
       "100ml": "bundle-100ml"
     }
+  },
+  "discovery_set": {
+    "heading": "Your Fragrance Discovery Starts Here",
+    "name": "Discovery Box",
+    "product": "discovery-set",
+    "capacity": 5,
+    "choices": "discovery"
   }
 }

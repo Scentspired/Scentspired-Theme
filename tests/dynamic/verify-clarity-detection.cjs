@@ -55,7 +55,7 @@ const clarityBugs = [
     file: "bundle--discovery-legacy.liquid",
     pattern: "selected-variant-id",
   },
-  // five-box and trio-set are one section now, bundle--box.
+  // five-box, trio-set and discovery are one section now, bundle--box.
   {
     name: "onclick selectBrand apostrophe — five-box / trio-set (12+5 sessions)",
     file: "bundle--box.liquid",
@@ -68,7 +68,7 @@ const clarityBugs = [
   },
   {
     name: "onclick selectBrand apostrophe — discovery (12+5 sessions)",
-    file: "bundle--discovery.liquid",
+    file: "bundle--box.liquid",
     pattern: "selectbrand",
   },
   { name: "null.style — bundle showStep (5 sessions)", file: "bundle--five-favourites.liquid", pattern: "style" },

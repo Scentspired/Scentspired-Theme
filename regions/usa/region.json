@@ -50,20 +50,6 @@
       "standard_100": 249.95,
       "saving_50": 69.96,
       "saving_100": 69.96
-    },
-    "trio": {
-      "variant_50": 45733933154487,
-      "variant_100": 45733933187255,
-      "price_50": 79.99,
-      "price_100": 119.99,
-      "standard_50": 119.97,
-      "standard_100": 179.97,
-      "saving_50": 39.98,
-      "saving_100": 59.98
-    },
-    "discovery": {
-      "variant_id": 45733851955383,
-      "price_display": "$19.99"
     }
   }
 }

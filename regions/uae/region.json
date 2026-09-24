@@ -44,20 +44,6 @@
       "standard_100": 149.95,
       "saving_50": 34.96,
       "saving_100": 49.96
-    },
-    "trio": {
-      "variant_50": 57083186086233,
-      "variant_100": 57083186119001,
-      "price_50": 39.99,
-      "price_100": 59.99,
-      "standard_50": 59.97,
-      "standard_100": 89.97,
-      "saving_50": 19.98,
-      "saving_100": 29.98
-    },
-    "discovery": {
-      "variant_id": 57083186217305,
-      "price_display": "£14.99"
     }
   }
 }
