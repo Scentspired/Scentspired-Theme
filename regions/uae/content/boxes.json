@@ -1,4 +1,27 @@
 {
+  "$comment": [
+    "EVERY BOX ON THE SITE. Add an entry here (and the product in Shopify) and the box gets its page, its menu links and its builder. No theme change.",
+    "",
+    "page_template     the page template the build creates for this box. In Shopify: Online Store > Pages > (the page) > Theme template.",
+    "page_url          that page's address, e.g. /pages/trio. The menus link here.",
+    "banner            the banner at the top of the box page: heading, subheading, image_desktop, image_mobile.",
+    "builder_heading   the title above the builder.",
+    "box_name          the name in the builder's messages (\"Add 3 items to complete your ...\").",
+    "product_handle    the Shopify product that is sold (its URL handle). Sizes, prices and stock come from Shopify.",
+    "perfumes_per_box  how many perfumes the shopper picks.",
+    "perfume_collection_per_size   per size (the product's variant name, e.g. \"50ml\"), the collection the perfumes come from.",
+    "perfume_collection            instead of the above: one collection for every size.",
+    "standard_price_per_size       optional. The struck-through price, until the product has a compare-at price in Shopify.",
+    "",
+    "menu              optional. Leave it out and the box is in no menu. It has label, image, image_alt, and shown_in:",
+    "                  where in the HEADER MENU (at the top of every page) the box is listed. Any of:",
+    "  \"shop_menu_more_ways_to_shop\"   SHOP menu > \"More ways to shop\"   (desktop dropdown and mobile menu)",
+    "  \"shop_menu_bundles\"             SHOP menu > \"Bundles\"             (desktop dropdown and mobile menu)",
+    "  \"bundles_menu\"                  the BUNDLES menu                  (desktop dropdown and mobile menu)",
+    "  \"mobile_menu_own_link\"          its own link in the mobile menu, like DISCOVERY BOX",
+    "                                  (on desktop, top-level links are set in Shopify: Online Store > Navigation)",
+    "Menus list the boxes in the order they are in this file."
+  ],
   "signature_trio": {
     "page_template": "trio-box",
     "page_url": "/pages/trio",
