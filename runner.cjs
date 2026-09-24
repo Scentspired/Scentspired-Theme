@@ -290,9 +290,21 @@ const CORE_LAYERS = [
     failMsg: "A section or snippet reference points at a file that does not exist",
   },
   {
+    // A top-level const in one section collides with the same name in another
+    // and throws at runtime, while each file on its own is valid JavaScript —
+    // so the AST validator cannot see it. Core-only.
+    name: "Layer 19: Script Global Collision Guard",
+    cmd: "node",
+    args: [
+      path.join(TESTS_DIR, "static", "guard--script-globals.cjs"),
+      `--root=${GUARDIAN_ROOT}`,
+    ],
+    failMsg: "Two files declare the same top-level const/let: the second throws and its script stops",
+  },
+  {
     // The guards above are only worth their exit code if they have been seen
     // to fail. Each fixture plants defects and asserts they are caught.
-    name: "Layer 19: Guard Fixtures (red/green verification)",
+    name: "Layer 20: Guard Fixtures (red/green verification)",
     cmd: "node",
     args: [path.join(TESTS_DIR, "static", "run-guard-fixtures.cjs")],
     failMsg: "A guard no longer catches what it claims to catch",

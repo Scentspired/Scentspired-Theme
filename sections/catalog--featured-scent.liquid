@@ -457,7 +457,10 @@
 <script>
 // Currency symbol comes from the region resolved at build time. It used to be
     // a hardcoded symbol, which shipped one region's currency to every storefront.
-const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '{{ cart.currency.symbol }}' || '$';
+// var, not const: several sections declare this and a top-level const is a
+// global lexical binding, so the second one on the page throws and takes the
+// rest of its script with it.
+var currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '{{ cart.currency.symbol }}' || '$';
 
 document.addEventListener("DOMContentLoaded", () => {
   function updateVariantAvailability() {

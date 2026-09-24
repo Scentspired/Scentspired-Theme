@@ -71,6 +71,15 @@
   if product == blank
     assign card_price = ''
   endif
+
+  # Whether the first variant is discounted, decided here so the compare price
+  # and sale badge are right in the markup rather than revealed by script.
+  assign card_on_sale = false
+  assign card_compare_price = ''
+  if product != blank and first_variant.compare_at_price > first_variant.price
+    assign card_on_sale = true
+    assign card_compare_price = first_variant.compare_at_price | money
+  endif
 -%}
 
 {%- if is_template -%}<template id="card--product-carousel">{%- endif -%}
@@ -99,10 +108,32 @@
 
     <div class="fragrance-brand" data-card-vendor>{{ card_vendor }}</div>
 
+    {%- comment -%}
+      The compare price and sale badge are rendered here, not left to JS.
+
+      They used to ship empty with style="display: none" and were filled only
+      when a variant handler ran — so a product that IS on sale showed no sale
+      until you clicked a size, and the badge appeared out of nowhere. Markup
+      that is correct before any script runs also means the sale survives a
+      slow or failed script, and search engines see it.
+
+      JS still updates both when the shopper switches variant; it is setting
+      values that are already right rather than revealing hidden ones.
+    {%- endcomment -%}
     <div class="price-section">
       <span class="product-price-display" data-price-display {% if card_id != '' %}data-product-id="{{ card_id }}"{% endif %}>{{ card_price }}</span>
-      <span class="original-price" data-compare-at-price-display data-compare-price style="display: none;"></span>
-      <span class="price-badge" data-price-badge data-sale-badge style="display: none;">Sale</span>
+      <span
+        class="original-price"
+        data-compare-at-price-display
+        data-compare-price
+        style="display: {% if card_on_sale %}inline{% else %}none{% endif %};"
+      >{% if card_on_sale %}{{ card_compare_price }}{% endif %}</span>
+      <span
+        class="price-badge"
+        data-price-badge
+        data-sale-badge
+        style="display: {% if card_on_sale %}inline{% else %}none{% endif %};"
+      >Sale</span>
     </div>
 
     <form class="item-form" method="post" action="/cart/add" data-card-form {% if card_id != '' %}data-product-id="{{ card_id }}"{% endif %}>

@@ -44,9 +44,11 @@ const clarityBugs = [
     pattern: "queryselectorall",
   },
   {
-    name: "selected-variant-id.value — best-sellers (19+13 sessions)",
+    name: "variant id input .value — best-sellers (19+13 sessions)",
     file: "catalog--best-sellers.liquid",
-    pattern: "selected-variant-id",
+    // Was .selected-variant-id. best-sellers now renders the shared card,
+    // whose hidden input is .variant-id-input — same crash, new hook.
+    pattern: "variant-id-input",
   },
   {
     name: "selected-variant-id.value — bundlediscovery (19+13 sessions)",

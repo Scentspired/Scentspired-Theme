@@ -1841,7 +1841,10 @@ text-align: left;
 </div>
 
 <script>
-  const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '{{ cart.currency.symbol }}' || '$';
+  // var, not const: several sections declare this and a top-level const is a
+  // global lexical binding, so the second one on the page throws and takes the
+  // rest of its script with it.
+  var currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '{{ cart.currency.symbol }}' || '$';
 // Global variables
 let isUserLoggedIn = false;
 let currentShopMethod = 'guest';

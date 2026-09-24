@@ -66,12 +66,12 @@
     transition: opacity 0.4s ease;
 }
 
-.fragrance-image-wrap .secondary-image {
+.fragrance-image-wrap .product-hover-image {
     opacity: 0;
     transition: opacity 0.4s ease;
 }
 
-.fragrance-image-wrap:hover .secondary-image {
+.fragrance-image-wrap:hover .product-hover-image {
     opacity: 1;
 }
 
@@ -150,20 +150,20 @@
     gap: 8px;
 }
 
-.price-wrapper {
+.price-section {
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
-.compare-price {
+.original-price {
     font-size: 14px;
     color: #666;
     text-decoration: line-through;
     font-weight: 400;
 }
 
-.sale-badge {
+.price-badge {
     background-color: #fa0000ff;
     color: #fff;
     font-size: 12px;
@@ -314,7 +314,7 @@
 
 
 
-{% render 'card--product' %}
+{% render 'card--product-carousel' %}
 <script src="{{ 'card--product.js' | asset_url }}" defer="defer"></script>
 
 <section class="bs-section">
@@ -486,7 +486,7 @@ function updateVariantAvailability() {
       });
 
       // Update cart buttons based on available variants
-      document.querySelectorAll('.product-form').forEach(form => {
+      document.querySelectorAll('.item-form').forEach(form => {
         const productCard = form.closest('.fragrance-item');
         const cartBtn = form.querySelector('.cart-button');
         const availableVariants = productCard.querySelectorAll('.variant-option-btn:not(.disabled)');
@@ -513,17 +513,18 @@ function updateProductsDisplay() {
   const perPage = getPerPage();
   const productsToShow = allProducts.slice(currentIndex, currentIndex + perPage);
 
-  // Card markup lives in snippets/card--product.liquid. This section supplies
+  // Card markup lives in snippets/card--product-carousel.liquid, the same card
+  // every other section renders. This section supplies
   // data only, so a card change is a one-file change there.
   grid.innerHTML = '';
   productsToShow.forEach(product => {
-    grid.appendChild(ScentspiredCard.render(product, { formatPrice: formatPrice }));
+    grid.appendChild(ScentspiredCard.renderCarousel(product, { formatPrice: formatPrice }));
   });
 
   // Auto-select first AVAILABLE variant per product
   grid.querySelectorAll('.fragrance-item').forEach(card => {
     const variantBtns = card.querySelectorAll('.variant-option-btn');
-    const idInput = card.querySelector('.selected-variant-id');
+    const idInput = card.querySelector('.variant-id-input');
     const priceDisplay = card.querySelector('[data-price-display]');
     const cartBtn = card.querySelector('.cart-button');
 
@@ -564,18 +565,26 @@ function updateProductsDisplay() {
 
       idInput.value = firstAvailableBtn.dataset.variantId;
       
-      const comparePrice = parseFloat(firstAvailableBtn.dataset.comparePrice) || 0;
+      const comparePrice = parseFloat(firstAvailableBtn.dataset.variantCompareAtPrice) || 0;
       const currentPrice = firstAvailableBtn.dataset.variantPrice;
       
-      let priceHTML = `<div class="price-wrapper">`;
-      priceHTML += `<span data-current-price>${currentPrice}</span>`;
-      if (comparePrice > 0) {
-        priceHTML += `<span class="compare-price">${formatPrice(comparePrice)}</span>`;
-        priceHTML += `<span class="sale-badge">SALE</span>`;
+      // The shared card holds price, compare price and badge as siblings, so
+      // update them rather than writing markup into the price span. Writing
+      // into it nested the markup wrongly and destroyed the badge the server
+      // had already rendered.
+      const section = priceDisplay.closest('.price-section') || priceDisplay.parentElement;
+      const comparePriceEl = section && section.querySelector('[data-compare-at-price-display]');
+      const saleBadgeEl = section && section.querySelector('[data-price-badge]');
+      const onSale = comparePrice > 0;
+
+      priceDisplay.textContent = currentPrice;
+      if (comparePriceEl) {
+        comparePriceEl.textContent = onSale ? formatPrice(comparePrice) : '';
+        comparePriceEl.style.display = onSale ? 'inline' : 'none';
       }
-      priceHTML += `</div>`;
-      
-      priceDisplay.innerHTML = priceHTML;
+      if (saleBadgeEl) {
+        saleBadgeEl.style.display = onSale ? 'inline' : 'none';
+      }
     }
   });
 
@@ -634,31 +643,39 @@ function rebindProductEvents() {
 
       btn.classList.add('active');
 
-      card.querySelector('.selected-variant-id').value = btn.dataset.variantId;
+      card.querySelector('.variant-id-input').value = btn.dataset.variantId;
       
-      const comparePrice = parseFloat(btn.dataset.comparePrice) || 0;
+      const comparePrice = parseFloat(btn.dataset.variantCompareAtPrice) || 0;
       const currentPrice = btn.dataset.variantPrice;
       const priceDisplay = card.querySelector('[data-price-display]');
       
-      let priceHTML = `<div class="price-wrapper">`;
-      priceHTML += `<span data-current-price>${currentPrice}</span>`;
-      if (comparePrice > 0) {
-        priceHTML += `<span class="compare-price">${formatPrice(comparePrice)}</span>`;
-        priceHTML += `<span class="sale-badge">SALE</span>`;
+      // The shared card holds price, compare price and badge as siblings, so
+      // update them rather than writing markup into the price span. Writing
+      // into it nested the markup wrongly and destroyed the badge the server
+      // had already rendered.
+      const section = priceDisplay.closest('.price-section') || priceDisplay.parentElement;
+      const comparePriceEl = section && section.querySelector('[data-compare-at-price-display]');
+      const saleBadgeEl = section && section.querySelector('[data-price-badge]');
+      const onSale = comparePrice > 0;
+
+      priceDisplay.textContent = currentPrice;
+      if (comparePriceEl) {
+        comparePriceEl.textContent = onSale ? formatPrice(comparePrice) : '';
+        comparePriceEl.style.display = onSale ? 'inline' : 'none';
       }
-      priceHTML += `</div>`;
-      
-      priceDisplay.innerHTML = priceHTML;
+      if (saleBadgeEl) {
+        saleBadgeEl.style.display = onSale ? 'inline' : 'none';
+      }
     });
   });
 
   /* ADD TO CART */
-  document.querySelectorAll('.product-form').forEach(form => {
+  document.querySelectorAll('.item-form').forEach(form => {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       e.stopPropagation();
 
-      const variantId = form.querySelector('.selected-variant-id').value;
+      const variantId = form.querySelector('.variant-id-input').value;
       const submitBtn = form.querySelector('.cart-button');
       const originalText = submitBtn.innerText;
 

@@ -1,0 +1,151 @@
+{
+  "accepted": {
+    "brands": {
+      "files": [
+        "sections/bundle--discovery.liquid",
+        "sections/bundle--five-box.liquid",
+        "sections/bundle--five-favourites.liquid",
+        "sections/bundle--trio-set.liquid"
+      ],
+      "reason": "Pre-existing. Shares a name across bundle sections, but no \"already been declared\" error is observed on any page that composes them — the depth heuristic flags some declarations that are in practice scoped. Ratcheted so a NEW collision fails, which is what currSym was."
+    },
+    "bundle": {
+      "files": [
+        "sections/bundle--discovery.liquid",
+        "sections/bundle--five-box.liquid",
+        "sections/bundle--five-favourites.liquid",
+        "sections/bundle--trio-set.liquid"
+      ],
+      "reason": "Pre-existing. Shares a name across bundle sections, but no \"already been declared\" error is observed on any page that composes them — the depth heuristic flags some declarations that are in practice scoped. Ratcheted so a NEW collision fails, which is what currSym was."
+    },
+    "currentSlot": {
+      "files": [
+        "sections/bundle--discovery.liquid",
+        "sections/bundle--five-box.liquid",
+        "sections/bundle--five-favourites.liquid",
+        "sections/bundle--trio-set.liquid"
+      ],
+      "reason": "Pre-existing. Shares a name across bundle sections, but no \"already been declared\" error is observed on any page that composes them — the depth heuristic flags some declarations that are in practice scoped. Ratcheted so a NEW collision fails, which is what currSym was."
+    },
+    "allFilteredProducts": {
+      "files": [
+        "sections/bundle--discovery.liquid",
+        "sections/bundle--five-box.liquid",
+        "sections/bundle--five-favourites.liquid",
+        "sections/bundle--trio-set.liquid"
+      ],
+      "reason": "Pre-existing. Shares a name across bundle sections, but no \"already been declared\" error is observed on any page that composes them — the depth heuristic flags some declarations that are in practice scoped. Ratcheted so a NEW collision fails, which is what currSym was."
+    },
+    "currentStep": {
+      "files": [
+        "sections/bundle--five-box.liquid",
+        "sections/bundle--five-favourites.liquid",
+        "sections/bundle--trio-set.liquid",
+        "sections/media--hero.liquid"
+      ],
+      "reason": "Pre-existing. Shares a name across bundle sections, but no \"already been declared\" error is observed on any page that composes them — the depth heuristic flags some declarations that are in practice scoped. Ratcheted so a NEW collision fails, which is what currSym was."
+    },
+    "activeSize": {
+      "files": [
+        "sections/bundle--five-box.liquid",
+        "sections/bundle--five-favourites.liquid",
+        "sections/bundle--trio-set.liquid"
+      ],
+      "reason": "Pre-existing. Shares a name across bundle sections, but no \"already been declared\" error is observed on any page that composes them — the depth heuristic flags some declarations that are in practice scoped. Ratcheted so a NEW collision fails, which is what currSym was."
+    },
+    "hasAddedFirstProduct": {
+      "files": [
+        "sections/bundle--five-box.liquid",
+        "sections/bundle--five-favourites.liquid",
+        "sections/bundle--trio-set.liquid"
+      ],
+      "reason": "Pre-existing. Shares a name across bundle sections, but no \"already been declared\" error is observed on any page that composes them — the depth heuristic flags some declarations that are in practice scoped. Ratcheted so a NEW collision fails, which is what currSym was."
+    },
+    "PRICING": {
+      "files": [
+        "sections/bundle--five-box.liquid",
+        "sections/bundle--five-favourites.liquid",
+        "sections/bundle--trio-set.liquid"
+      ],
+      "reason": "Pre-existing. Shares a name across bundle sections, but no \"already been declared\" error is observed on any page that composes them — the depth heuristic flags some declarations that are in practice scoped. Ratcheted so a NEW collision fails, which is what currSym was."
+    },
+    "PRODUCTS_BY_SIZE": {
+      "files": [
+        "sections/bundle--five-box.liquid",
+        "sections/bundle--five-favourites.liquid",
+        "sections/bundle--trio-set.liquid"
+      ],
+      "reason": "Pre-existing. Shares a name across bundle sections, but no \"already been declared\" error is observed on any page that composes them — the depth heuristic flags some declarations that are in practice scoped. Ratcheted so a NEW collision fails, which is what currSym was."
+    },
+    "allProducts": {
+      "files": [
+        "sections/bundle--discovery-legacy.liquid",
+        "sections/catalog--best-sellers.liquid"
+      ],
+      "reason": "Pre-existing. Shares a name across bundle sections, but no \"already been declared\" error is observed on any page that composes them — the depth heuristic flags some declarations that are in practice scoped. Ratcheted so a NEW collision fails, which is what currSym was."
+    },
+    "currentIndex": {
+      "files": [
+        "sections/bundle--discovery-legacy.liquid",
+        "sections/catalog--best-sellers.liquid"
+      ],
+      "reason": "Pre-existing. Shares a name across bundle sections, but no \"already been declared\" error is observed on any page that composes them — the depth heuristic flags some declarations that are in practice scoped. Ratcheted so a NEW collision fails, which is what currSym was."
+    },
+    "totalProducts": {
+      "files": [
+        "sections/bundle--discovery-legacy.liquid",
+        "sections/catalog--best-sellers.liquid"
+      ],
+      "reason": "Pre-existing. Shares a name across bundle sections, but no \"already been declared\" error is observed on any page that composes them — the depth heuristic flags some declarations that are in practice scoped. Ratcheted so a NEW collision fails, which is what currSym was."
+    },
+    "totalPages": {
+      "files": [
+        "sections/bundle--discovery-legacy.liquid",
+        "sections/catalog--best-sellers.liquid"
+      ],
+      "reason": "Pre-existing. Shares a name across bundle sections, but no \"already been declared\" error is observed on any page that composes them — the depth heuristic flags some declarations that are in practice scoped. Ratcheted so a NEW collision fails, which is what currSym was."
+    },
+    "isMobile": {
+      "files": [
+        "sections/bundle--discovery-legacy.liquid",
+        "sections/catalog--best-sellers.liquid"
+      ],
+      "reason": "Pre-existing. Shares a name across bundle sections, but no \"already been declared\" error is observed on any page that composes them — the depth heuristic flags some declarations that are in practice scoped. Ratcheted so a NEW collision fails, which is what currSym was."
+    },
+    "activeBrand": {
+      "files": [
+        "sections/bundle--discovery.liquid",
+        "sections/bundle--trio-set.liquid"
+      ],
+      "reason": "Pre-existing. Shares a name across bundle sections, but no \"already been declared\" error is observed on any page that composes them — the depth heuristic flags some declarations that are in practice scoped. Ratcheted so a NEW collision fails, which is what currSym was."
+    },
+    "DISCOVERY_SET_VARIANT": {
+      "files": [
+        "sections/bundle--five-box.liquid",
+        "sections/bundle--five-favourites.liquid"
+      ],
+      "reason": "Pre-existing. Shares a name across bundle sections, but no \"already been declared\" error is observed on any page that composes them — the depth heuristic flags some declarations that are in practice scoped. Ratcheted so a NEW collision fails, which is what currSym was."
+    },
+    "aromaData": {
+      "files": [
+        "blocks/catalog--aroma-notes.liquid",
+        "sections/catalog--aroma-selector.liquid"
+      ],
+      "reason": "Pre-existing. Shares a name across bundle sections, but no \"already been declared\" error is observed on any page that composes them — the depth heuristic flags some declarations that are in practice scoped. Ratcheted so a NEW collision fails, which is what currSym was."
+    },
+    "activeExpandedContent": {
+      "files": [
+        "blocks/catalog--aroma-notes.liquid",
+        "sections/catalog--aroma-selector.liquid"
+      ],
+      "reason": "Pre-existing. Shares a name across bundle sections, but no \"already been declared\" error is observed on any page that composes them — the depth heuristic flags some declarations that are in practice scoped. Ratcheted so a NEW collision fails, which is what currSym was."
+    },
+    "currentProductIndex": {
+      "files": [
+        "blocks/catalog--aroma-notes.liquid",
+        "sections/catalog--aroma-selector.liquid"
+      ],
+      "reason": "Pre-existing. Shares a name across bundle sections, but no \"already been declared\" error is observed on any page that composes them — the depth heuristic flags some declarations that are in practice scoped. Ratcheted so a NEW collision fails, which is what currSym was."
+    }
+  }
+}
