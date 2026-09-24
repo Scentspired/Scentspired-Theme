@@ -100,6 +100,18 @@ const PAGES = {
  * ids, tokens, nonces, timestamps and cache-busting query strings only.
  */
 function normalize(html) {
+  /*
+   * The development theme's id changes on every `shopify theme dev` restart and
+   * appears in at least five forms (themeId: N, theme_id: N, "themeId":N,
+   * data-theme-instance-id="N", inside Shopify.theme). Matching forms one at a
+   * time missed four of them and reported all 20 pages changed after a
+   * restart. So read the id off the page and replace it wherever it appears.
+   */
+  const themeId =
+    (html.match(/data-theme-instance-id="(\d{6,})"/) || [])[1] ||
+    (html.match(/Shopify\.theme\s*=\s*\{[^}]*?"id"\s*:\s*(\d{6,})/) || [])[1];
+  if (themeId) html = html.replace(new RegExp(`\\b${themeId}\\b`, 'g'), 'THEME_ID');
+
   return (
     html
       // Shopify injects installed-app blocks through content_for_header, and
@@ -142,6 +154,10 @@ function normalize(html) {
       .replace(/Shopify\.theme\s*=\s*\{[\s\S]*?\};/g, 'Shopify.theme = {X};')
       .replace(/"theme_store_id":\s*(?:null|\d+)/g, '"theme_store_id":X')
       .replace(/a[a-z0-9]{17,}aigenblock/g, 'AIGEN_aigenblock')
+      // Block instance prefixes are re-issued per development theme too:
+      // shopify-block-AOUN6TTZxbnQwL1JrS__judge_me_… after one restart,
+      // shopify-block-ATU1nU2dkU2o4UzA3T__judge_me_… after the next.
+      .replace(/\bA[A-Za-z0-9]{17}__(?=[a-z])/g, 'BLOCK__')
       // per-request security and session values
       .replace(/nonce="[^"]*"/g, 'nonce="X"')
       .replace(/"token":"[^"]*"/g, '"token":"X"')
@@ -163,7 +179,9 @@ function normalize(html) {
       .replace(/\r\n/g, '\n')
       // Removing an injected block leaves a blank line behind, which offsets
       // every following line. Blank lines do not render, so collapse them.
-      .replace(/\n[ \t]*\n+/g, '\n')
+      // Whole runs, so normalising is idempotent: the old /\n[ \t]*\n+/ left
+      // every second whitespace-only line, and a second pass changed output.
+      .replace(/\n(?:[ \t]*\n)+/g, '\n')
       .trim()
   );
 }
