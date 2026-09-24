@@ -1,3 +1,18 @@
+{%- comment -%}
+  The homepage's bundles slider: one card per box in
+  regions/<id>/content/boxes.json that has a "homepage_card", in the file's
+  order. A new box gets its card by its entry alone.
+
+    "homepage_card": {
+      "title":         "The Signature Trio",     under the image
+      "button_text":   "Shop Now",
+      "image_mobile":  "https://…/4_5.jpg",       the card's image on mobile
+      "image_desktop": "https://…/Tri_Box.webp",  the card's image on desktop
+      "video_desktop": "https://…/x.mp4"          optional: a video instead, on desktop
+    }
+
+  The card links to the box's page_url.
+{%- endcomment -%}
 {{ 'bundle--collection.css' | asset_url | stylesheet_tag }}
 
 <div class="featured-collections-section">
@@ -6,47 +21,83 @@
     <button class="arrow-btn" id="arrow-right">&#10095;</button>
   </div>
   <div class="featured-collections-wrapper" id="collectionSlider">
-    {% for block in section.blocks %}
-      {% assign collection = collections[block.settings.collection] %}
-      {% if collection != blank %}
-        <div class="collection-card">
-          <a href="{{ block.settings.button_link }}" style="text-decoration: none; color: inherit;">
-            {%- if block.settings.mobile_image != blank -%}
-              <!-- Mobile Image -->
-              <img
-                src="{{ block.settings.mobile_image | img_url: 'master' }}"
-                alt="{{ block.settings.title }}"
-                class="collection-img mobile-only">
-            {%- endif -%}
+    {%- liquid
+      capture box_ids
+        render 'region--content', key: 'boxes.__keys'
+      endcapture
+      assign box_ids = box_ids | strip | split: ','
+    -%}
+    {%- for box_id in box_ids -%}
+      {%- liquid
+        assign card_key = 'boxes.' | append: box_id | append: '.homepage_card.'
+        assign k = card_key | append: 'title'
+        capture card_title
+          render 'region--content', key: k
+        endcapture
+        assign card_title = card_title | strip
+        assign k = 'boxes.' | append: box_id | append: '.page_url'
+        capture card_link
+          render 'region--content', key: k
+        endcapture
+        assign k = card_key | append: 'button_text'
+        capture card_button
+          render 'region--content', key: k
+        endcapture
+        assign k = card_key | append: 'image_mobile'
+        capture card_image_mobile
+          render 'region--content', key: k
+        endcapture
+        assign k = card_key | append: 'image_desktop'
+        capture card_image_desktop
+          render 'region--content', key: k
+        endcapture
+        assign k = card_key | append: 'video_desktop'
+        capture card_video_desktop
+          render 'region--content', key: k
+        endcapture
+        assign card_link = card_link | strip
+        assign card_button = card_button | strip
+        assign card_image_mobile = card_image_mobile | strip
+        assign card_image_desktop = card_image_desktop | strip
+        assign card_video_desktop = card_video_desktop | strip
+      -%}
+      {%- comment -%} A box without a homepage_card has no card. {%- endcomment -%}
+      {%- if card_title != blank -%}
+      <div class="collection-card">
+        <a href="{{ card_link | escape }}" style="text-decoration: none; color: inherit;">
+          {%- if card_image_mobile != blank -%}
+            <!-- Mobile Image -->
+            <img
+              src="{{ card_image_mobile | escape }}"
+              alt="{{ card_title | escape }}"
+              class="collection-img mobile-only">
+          {%- endif -%}
+          <!-- Desktop Media -->
+          {%- if card_video_desktop != blank -%}
+            <video
+              class="collection-video desktop-only"
+              src="{{ card_video_desktop | escape }}"
+              autoplay
+              muted
+              loop
+              playsinline></video>
+          {%- else -%}
+            <img
+              src="{{ card_image_desktop | escape }}"
+              alt="{{ card_title | escape }}"
+              class="collection-img desktop-only">
+          {%- endif -%}
+        </a>
 
-            <!-- Desktop Media -->
-            {%- if block.settings.video_url != blank -%}
-              <video
-                class="collection-video desktop-only"
-                src="{{ block.settings.video_url }}"
-                autoplay
-                muted
-                loop
-                playsinline></video>
-            {%- else -%}
-              <img
-                src="{{ collection.image | img_url: 'master' }}"
-                alt="{{ collection.title }}"
-                class="collection-img desktop-only">
-            {%- endif -%}
-          </a>
-
-          <div class="collection-content">{{ block.settings.title }}</div>
-          <a href="{{ block.settings.button_link }}" class="collection-button">
-            {{ block.settings.button_text }}
-          </a>
-        </div>
-      {% endif %}
-    {% endfor %}
+        <div class="collection-content">{{ card_title | escape }}</div>
+        <a href="{{ card_link | escape }}" class="collection-button">
+          {{ card_button | escape }}
+        </a>
+      </div>
+      {%- endif -%}
+    {%- endfor -%}
   </div>
 </div>
-
-
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -74,60 +125,12 @@
 {% schema %}
 {
   "name": "Bundle Collections",
-  "settings": [],
-  "blocks": [
+  "settings": [
     {
-      "type": "collection_block",
-      "name": "Collection Block",
-      "settings": [
-        {
-          "type": "collection",
-          "id": "collection",
-          "label": "Select collection"
-        },
-        {
-          "type": "url",
-          "id": "video_url",
-          "label": "Collection Video URL",
-          "info": "Upload MP4 in Content → Files and paste the link here"
-        },
-        {
-          "type": "image_picker",
-          "id": "mobile_image",
-          "label": "Mobile Image",
-          "info": "Upload a different image for mobile view. If not provided, the collection's default image will be used."
-        },
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Collection title",
-          "default": "Women"
-        },
-        {
-          "type": "text",
-          "id": "button_text",
-          "label": "Button text",
-          "default": "Shop Now"
-        },
-        {
-          "type": "url",
-          "id": "button_link",
-          "label": "Button link"
-        }
-      ]
+      "type": "paragraph",
+      "content": "One card per box in the region's content/boxes.json that has a homepage_card. Edit the cards there."
     }
   ],
-  "max_blocks": 4,
-  "presets": [
-    {
-      "name": "Bundle Collections",
-      "blocks": [
-        { "type": "collection_block" },
-        { "type": "collection_block" },
-        { "type": "collection_block" },
-        { "type": "collection_block" }
-      ]
-    }
-  ]
+  "presets": [{ "name": "Bundle Collections" }]
 }
 {% endschema %}

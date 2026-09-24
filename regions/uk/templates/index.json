@@ -387,59 +387,6 @@
     },
     "bundle_collection_dNJFpE": {
       "type": "bundle--collection",
-      "blocks": {
-        "collection_block_7VGMEN": {
-          "type": "collection_block",
-          "settings": {
-            "collection": "bundle-50ml",
-            "video_url": "",
-            "mobile_image": "shopify://shop_images/4_5.jpg",
-            "title": "The Signature Trio",
-            "button_text": "Shop Now",
-            "button_link": "shopify://pages/trio"
-          }
-        },
-        "collection_block_WXd7en": {
-          "type": "collection_block",
-          "settings": {
-            "collection": "fifer",
-            "video_url": "",
-            "mobile_image": "shopify://shop_images/3_3.jpg",
-            "title": "The Five Favourites",
-            "button_text": "Shop Now",
-            "button_link": "shopify://pages/five-favourites"
-          }
-        },
-        "collection_block_AQiG3b": {
-          "type": "collection_block",
-          "disabled": true,
-          "settings": {
-            "collection": "customize-bundle",
-            "video_url": "",
-            "mobile_image": "shopify://shop_images/2_7.jpg",
-            "title": "Your Custom Collection",
-            "button_text": "Shop Now",
-            "button_link": "shopify://pages/bundle-1"
-          }
-        },
-        "collection_block_TftEmL": {
-          "type": "collection_block",
-          "settings": {
-            "collection": "discovery",
-            "video_url": "",
-            "mobile_image": "shopify://shop_images/1_6_7da887c1-c1c3-4c53-ada3-cfa836b6fa84.jpg",
-            "title": "Discovery Box",
-            "button_text": "Shop Now",
-            "button_link": "shopify://pages/discovery-set"
-          }
-        }
-      },
-      "block_order": [
-        "collection_block_7VGMEN",
-        "collection_block_WXd7en",
-        "collection_block_AQiG3b",
-        "collection_block_TftEmL"
-      ],
       "custom_css": [
         "@media only screen and (min-width: 1023px) {.collection-button {position: absolute; bottom: 20px; left: -20px; } .collection-content {font-size: 28px; }}",
         ".scent-subtitle {text-decoration: underline; text-decoration-color: #fadb95; text-decoration-thickness: 2px; text-underline-offset: 2px;}"

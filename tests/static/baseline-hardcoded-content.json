@@ -26,31 +26,13 @@
     "fallback": 0,
     "ids": 0
   },
-  "sections/bundle--coming-soon.liquid": {
-    "total": 2,
-    "text": 1,
-    "js-text": 1,
-    "media": 0,
+  "sections/bundle--collection.liquid": {
+    "total": 3,
+    "text": 0,
+    "js-text": 0,
+    "media": 3,
     "links": 0,
     "fallback": 0,
-    "ids": 0
-  },
-  "sections/bundle--discovery-legacy.liquid": {
-    "total": 6,
-    "text": 2,
-    "js-text": 4,
-    "media": 0,
-    "links": 0,
-    "fallback": 0,
-    "ids": 0
-  },
-  "sections/bundle--discovery-set.liquid": {
-    "total": 18,
-    "text": 14,
-    "js-text": 1,
-    "media": 0,
-    "links": 0,
-    "fallback": 3,
     "ids": 0
   },
   "sections/bundle--five-favourites.liquid": {

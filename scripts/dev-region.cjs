@@ -102,6 +102,15 @@ console.log(`  Store:    ${store}`);
 console.log(`  Currency: ${resolved.currency_code} ${resolved.currency_symbol}`);
 console.log(`  Domain:   ${resolved.home_url}`);
 console.log(`  Port:     ${port}  ->  http://127.0.0.1:${port}`);
+// Shopify picks the market from where the request comes from, so a preview
+// opened from outside the region's countries renders that market: products
+// not sold there read as unavailable, and lists like the box builder's come
+// up empty. The country parameter shows the page as the region's shoppers see it.
+const shopperCountry = (String(resolved.geo_countries || '').split(',')[0] || '').trim();
+if (shopperCountry) {
+  console.log(`  Preview:  http://127.0.0.1:${port}/?country=${shopperCountry}   <- as a shopper in ${shopperCountry} sees it`);
+  console.log(`            (keep ?country=${shopperCountry} on any page; without it you see your own country's market)`);
+}
 if (storeArg || process.env.SHOPIFY_DEV_STORE) {
   console.log(`  (store overridden; this region's own store is ${resolved.myshopify_domain})`);
 }

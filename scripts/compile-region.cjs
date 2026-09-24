@@ -368,6 +368,17 @@ emitted.add('snippets/region--active.liquid');
         for (const p of shownIn) if (!menuPlaces.includes(p)) boxErrors.push(`${where}: "menu"."shown_in" has "${p}" — the header has ${menuPlaces.join(', ')}`);
       }
     }
+    // "homepage_card" is optional: the box's card in the homepage bundles slider
+    // (sections/bundle--collection.liquid).
+    if (box.homepage_card !== undefined) {
+      const card = box.homepage_card || {};
+      for (const field of ['title', 'button_text', 'image_mobile']) {
+        if (typeof card[field] !== 'string' || !card[field].trim()) boxErrors.push(`${where}: "homepage_card" needs "${field}"`);
+      }
+      if (!(card.image_desktop || '').trim() && !(card.video_desktop || '').trim()) {
+        boxErrors.push(`${where}: "homepage_card" needs "image_desktop" (or "video_desktop")`);
+      }
+    }
     if (typeof box.page_url === 'string' && !box.page_url.startsWith('/')) {
       boxErrors.push(`${where}: "page_url" is the page's address on the store, e.g. "/pages/trio"`);
     }

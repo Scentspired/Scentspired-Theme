@@ -20,7 +20,11 @@
     "  \"bundles_menu\"                  the BUNDLES menu                  (desktop dropdown and mobile menu)",
     "  \"mobile_menu_own_link\"          its own link in the mobile menu, like DISCOVERY BOX",
     "                                  (on desktop, top-level links are set in Shopify: Online Store > Navigation)",
-    "Menus list the boxes in the order they are in this file."
+    "Menus list the boxes in the order they are in this file.",
+    "",
+    "homepage_card     optional. The box's card in the HOMEPAGE bundles slider; leave it out and the box has no card.",
+    "                  title, button_text, image_mobile, image_desktop, and optionally video_desktop (a video instead of",
+    "                  the desktop image). The card links to page_url. Cards are in the order of this file."
   ],
   "signature_trio": {
     "page_template": "trio-box",
@@ -51,6 +55,12 @@
         "shop_menu_bundles",
         "bundles_menu"
       ]
+    },
+    "homepage_card": {
+      "title": "The Signature Trio",
+      "button_text": "Shop Now",
+      "image_mobile": "https://cdn.shopify.com/s/files/1/0997/3714/1593/files/4_5.jpg?v=1769034828",
+      "image_desktop": "https://cdn.shopify.com/s/files/1/0997/3714/1593/collections/Tri_Box1696_x_2528_-_2.webp?v=1768579858"
     }
   },
   "five_favourites": {
@@ -82,6 +92,12 @@
         "shop_menu_bundles",
         "bundles_menu"
       ]
+    },
+    "homepage_card": {
+      "title": "The Five Favourites",
+      "button_text": "Shop Now",
+      "image_mobile": "https://cdn.shopify.com/s/files/1/0997/3714/1593/files/3_3.jpg?v=1769034828",
+      "image_desktop": "https://cdn.shopify.com/s/files/1/0997/3714/1593/collections/Customized_Bundle_Banner_1696_x_2528_-_1.webp?v=1768579978"
     }
   },
   "discovery_set": {
@@ -106,6 +122,12 @@
         "shop_menu_more_ways_to_shop",
         "mobile_menu_own_link"
       ]
+    },
+    "homepage_card": {
+      "title": "Discovery Box",
+      "button_text": "Shop Now",
+      "image_mobile": "https://cdn.shopify.com/s/files/1/0997/3714/1593/files/1_6_7da887c1-c1c3-4c53-ada3-cfa836b6fa84.jpg?v=1769034828",
+      "image_desktop": "https://cdn.shopify.com/s/files/1/0997/3714/1593/collections/Discovery_Banners_1696_x_2528_-_1.webp?v=1768580241"
     }
   }
 }

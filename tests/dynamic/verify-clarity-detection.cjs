@@ -50,11 +50,8 @@ const clarityBugs = [
     // whose hidden input is .variant-id-input — same crash, new hook.
     pattern: "variant-id-input",
   },
-  {
-    name: "selected-variant-id.value — bundlediscovery (19+13 sessions)",
-    file: "bundle--discovery-legacy.liquid",
-    pattern: "selected-variant-id",
-  },
+  // "selected-variant-id.value — bundlediscovery" lived in bundle--discovery-legacy,
+  // which no page used and is deleted; the code that crashed no longer exists.
   // five-box, trio-set and discovery are one section now, bundle--box.
   {
     name: "onclick selectBrand apostrophe — five-box / trio-set (12+5 sessions)",
