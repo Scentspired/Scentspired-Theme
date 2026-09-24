@@ -54,6 +54,7 @@ const isContentFile = (rel) =>
   /^templates\//.test(rel) ||
   /^sections\/[^/]+\.json$/.test(rel) ||
   /^data\/[^/]+\.json$/.test(rel) ||
+  /^content\/[^/]+\.json$/.test(rel) ||
   rel === 'config/settings_data.json';
 
 /** Every content file a region folder holds, as paths relative to the folder. */
@@ -450,6 +451,121 @@ function consumedDataNames() {
   return out;
 }
 
+/**
+ * Page content — every title, description, label, image and link a shopper
+ * sees — lives in human-friendly files, one per page, per region:
+ *
+ *   regions/<id>/content/global.json    header, footer, cart drawer (every page)
+ *   regions/<id>/content/bundles.json   { "five_favourites": { "title": …, "labels": {…} } }
+ *
+ * The theme reads a value by its path, page first:
+ *
+ *   {% render 'region--content', key: 'global.cart_drawer.empty.heading' %}
+ *   '{% render 'region--content', key: 'bundles.five_favourites.labels.add_to_cart', js: true %}'
+ *
+ * `js: true` returns the value escaped for use inside a JavaScript string. The
+ * build fails, naming it, when the theme reads a path a region does not have —
+ * so a region's own file, never a fallback, is what shoppers see.
+ */
+function readRegionContent(regionId) {
+  const dir = path.join(REGIONS_DIR, regionId, 'content');
+  if (!fs.existsSync(dir)) return {};
+  const out = {};
+  for (const f of fs.readdirSync(dir).filter((f) => f.endsWith('.json')).sort()) {
+    out[f.replace(/\.json$/, '')] = stripComments(readJson(path.join(dir, f)));
+  }
+  return out;
+}
+
+/** { 'global.cart_drawer.empty.heading': 'Oops...', … } — arrays by index. */
+function flattenContent(content) {
+  const out = {};
+  const walk = (v, key) => {
+    if (v && typeof v === 'object') {
+      for (const [k, x] of Object.entries(v)) walk(x, key ? `${key}.${k}` : k);
+    } else if (v !== null && v !== undefined) out[key] = String(v);
+  };
+  walk(content, '');
+  return out;
+}
+
+/** A value made safe to sit inside a JavaScript string literal, either quote. */
+const jsEscape = (s) =>
+  s
+    .replace(/\\/g, '\\\\')
+    .replace(/'/g, "\\'")
+    .replace(/"/g, '\\"')
+    .replace(/\r?\n/g, '\\n')
+    .replace(/<\//g, '<\\/');
+
+function renderContentSnippet(content, regionId) {
+  const flat = flattenContent(content);
+  for (const [key, value] of Object.entries(flat)) {
+    if (/\{\{|\{%/.test(value)) {
+      const err = new Error(`content "${key}" contains "{{" or "{%" — Liquid would execute it`);
+      err.handled = true;
+      console.error(`\n❌ ${err.message}\n`);
+      throw err;
+    }
+  }
+  // Dispatch on the page first, so each lookup scans one page's keys.
+  const pages = {};
+  for (const [key, value] of Object.entries(flat)) {
+    const page = key.split('.')[0];
+    (pages[page] = pages[page] || []).push([key, value]);
+  }
+  const body = Object.entries(pages)
+    .map(([page, entries]) => {
+      const whens = entries
+        .map(([key, v]) => {
+          const js = jsEscape(v);
+          const out = js === v ? v : `{%- if js -%}${js}{%- else -%}${v}{%- endif -%}`;
+          return `      {%- when '${key}' -%}${out}`;
+        })
+        .join('\n');
+      return `  {%- when '${page}' -%}\n    {%- case key -%}\n${whens}\n    {%- endcase -%}`;
+    })
+    .join('\n');
+  const source = regionId
+    ? `Region: ${regionId}. Source: regions/${regionId}/content/*.json`
+    : "Empty on purpose: the theme holds no content. Each region's build generates this from regions/<id>/content/*.json";
+  return `{%- comment -%}
+  GENERATED — do not edit. ${source}
+  Usage: render 'region--content' with key set to '<page>.<section>.<field>' (add js: true inside a JS string)
+{%- endcomment -%}
+{%- assign content_page = key | split: '.' | first -%}
+{%- case content_page -%}
+${body}
+{%- endcase -%}
+`;
+}
+
+function emitContentSnippet(regionId, distDir) {
+  const content = readRegionContent(regionId);
+  const target = path.join(distDir, 'snippets', 'region--content.liquid');
+  fs.mkdirSync(path.dirname(target), { recursive: true });
+  fs.writeFileSync(target, renderContentSnippet(content, regionId));
+  return flattenContent(content);
+}
+
+/** Every content path the theme reads, mapped to the files that read it. */
+function consumedContentKeys() {
+  const out = new Map();
+  for (const dir of ['sections', 'snippets', 'blocks', 'layout']) {
+    const abs = path.join(THEME_ROOT, dir);
+    if (!fs.existsSync(abs)) continue;
+    for (const f of fs.readdirSync(abs)) {
+      if (!f.endsWith('.liquid') || f.startsWith('region--')) continue;
+      const src = fs.readFileSync(path.join(abs, f), 'utf8');
+      for (const m of src.matchAll(/render\s+['"]region--content['"]\s*,\s*key:\s*['"]([^'"]+)['"]/g)) {
+        if (!out.has(m[1])) out.set(m[1], new Set());
+        out.get(m[1]).add(`${dir}/${f}`);
+      }
+    }
+  }
+  return out;
+}
+
 function syncCoreStubs() {
   // Core is the DEFAULT_REGION theme, so its stub resolves that region. This read
   // _defaults.json's id, which stopped existing when _defaults became neutral —
@@ -467,6 +583,7 @@ function syncCoreStubs() {
     path.join(snippetsDir, 'region--data.liquid'),
     renderDataSnippet({}, null)
   );
+  fs.writeFileSync(path.join(snippetsDir, 'region--content.liquid'), renderContentSnippet({}, null));
   fs.writeFileSync(
     path.join(snippetsDir, 'region--registry.liquid'),
     renderRegistry(publishedRegions())
@@ -567,6 +684,10 @@ module.exports = {
   readRegionData,
   emitDataSnippet,
   consumedDataNames,
+  readRegionContent,
+  flattenContent,
+  emitContentSnippet,
+  consumedContentKeys,
   regionContract,
   deepMerge,
   DEFAULT_REGION,

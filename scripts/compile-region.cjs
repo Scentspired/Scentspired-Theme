@@ -23,6 +23,8 @@ const {
   unresolvedKeys,
   emitDataSnippet,
   consumedDataNames,
+  emitContentSnippet,
+  consumedContentKeys,
   listRegions,
   regionContentFiles,
   DEFAULT_REGION,
@@ -268,6 +270,34 @@ emitted.add('snippets/region--active.liquid');
   const live = consumed.filter(([name, e]) => !names.includes(name) && e.optional).map(([name]) => name);
   console.log(`  + snippets/region--data.liquid    (${names.length} data file(s): ${names.join(', ') || 'none'})`);
   if (live.length) console.log(`  ~ read live from the store (no data file): ${live.join(', ')}`);
+}
+
+// Page content from regions/<id>/content/*.json, read through
+// {% render 'region--content', key: '<page>.<section>.<field>' %}. Every path
+// the theme reads must exist in this region's files: shoppers see the
+// region's own words, never a fallback.
+{
+  let flat;
+  try {
+    flat = emitContentSnippet(target, DIST_DIR);
+  } catch (err) {
+    if (!err.handled) throw err;
+    process.exit(1);
+  }
+  emitted.add('snippets/region--content.liquid');
+  const missing = [...consumedContentKeys().entries()].filter(([key]) => !(key in flat));
+  if (missing.length) {
+    console.error(`\n❌ regions/${target}/content/ lacks ${missing.length} value(s) the theme shows:\n`);
+    for (const [key, files] of missing.slice(0, 30)) {
+      const [page, ...rest] = key.split('.');
+      console.error(`   content/${page}.json  ${rest.join('.').padEnd(40)} read by ${[...files].join(', ')}`);
+    }
+    if (missing.length > 30) console.error(`   … and ${missing.length - 30} more`);
+    console.error('');
+    process.exit(1);
+  }
+  const pages = [...new Set(Object.keys(flat).map((k) => k.split('.')[0]))];
+  console.log(`  + snippets/region--content.liquid (${Object.keys(flat).length} value(s) in ${pages.length} page file(s))`);
 }
 
 /**

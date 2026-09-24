@@ -1,0 +1,56 @@
+{
+  "cart_drawer": {
+    "title": "YOUR CART",
+    "back_button": "Back",
+    "logo_alt": "Scentspired",
+    "empty": {
+      "heading": "Oops...",
+      "message": "You have no items in your bag.",
+      "help": "Let us help!",
+      "button": {
+        "label": "SHOP ALL PERFUMES",
+        "collection": "shop"
+      },
+      "free_shipping": "Free Shipping over",
+      "collections": {
+        "handles": "men,women,bestsellers,unisex",
+        "names": "Men Inspired Impressions,Women Inspired Impressions,Best-sellers,Unisex Inspired Impression"
+      }
+    },
+    "shipping": {
+      "label": "Shipping",
+      "below": "Below",
+      "free_shipping": "FreeShipping",
+      "free": "FREE",
+      "on_orders_over": "shipping on orders over",
+      "under": "shipping under"
+    },
+    "order_summary_link": "Go to Order Summary",
+    "account": {
+      "view": {
+        "label": "View Account",
+        "link": "/account"
+      },
+      "login": {
+        "label": "Login",
+        "link": "/account/login"
+      }
+    },
+    "summary": {
+      "title": "ORDER SUMMARY",
+      "subtotal": "Cart Subtotal",
+      "discount": "Discount: 10% OFF",
+      "tax_note": "Tax is calculated at next step",
+      "discount_note": "Your Sp+ discount has been automatically added to your total."
+    },
+    "recommendations": {
+      "title": "You might like to add",
+      "add_to_cart": "ADD TO CART"
+    },
+    "product": {
+      "inspired_by": "Inspired by",
+      "brand_fallback": "Dossier Perfumes"
+    },
+    "checkout_button": "GO TO CHECKOUT"
+  }
+}
