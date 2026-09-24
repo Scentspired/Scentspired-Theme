@@ -1,0 +1,513 @@
+{%- comment -%}
+  Box builder — one component for every "build your own box" (Five Favourites,
+  Signature Trio, …). It replaces bundle--five-box and bundle--trio-set, two
+  copies of the same builder that had drifted apart and typed their prices and
+  variant IDs into the code.
+
+  The page layout (theme-level) says WHICH box, in the `box` setting. The box
+  itself is defined once per region in regions/<id>/content/boxes.json:
+
+    "signature_trio": {
+      "heading":  "Build Your Own Signature Trio Set",   the page's heading
+      "name":     "Signature Trio Set",                  used in the messages
+      "product":  "the-signature-trio",                  the Shopify product sold
+      "capacity": 3,                                     how many perfumes it holds
+      "choices":  { "50ml": "bundle-50ml", … }           size -> collection to choose from
+    }
+
+  Everything else is read from the store, never typed: the sizes are the
+  product's own variants, and each size's price and variant ID come from that
+  variant. The standard price is the sum of the perfumes chosen; the saving is
+  the difference. `capacity` drives the slots, the progress markers, the
+  messages and the logic — change it and all of them follow.
+{%- endcomment -%}
+{%- liquid
+  capture region_currency_symbol
+    render 'region--active', key: 'currency_symbol'
+  endcapture
+  assign region_currency_symbol = region_currency_symbol | strip
+
+  assign box_prefix = 'boxes.' | append: section.settings.box | append: '.'
+  assign k = box_prefix | append: 'heading'
+  capture box_heading
+    render 'region--content', key: k
+  endcapture
+  assign k = box_prefix | append: 'name'
+  capture box_name
+    render 'region--content', key: k
+  endcapture
+  assign k = box_prefix | append: 'product'
+  capture box_product_handle
+    render 'region--content', key: k
+  endcapture
+  assign k = box_prefix | append: 'capacity'
+  capture box_capacity
+    render 'region--content', key: k
+  endcapture
+  assign box_name = box_name | strip
+  assign box_product_handle = box_product_handle | strip
+  assign box_product = all_products[box_product_handle]
+  assign box_capacity = box_capacity | strip | plus: 0
+  assign last_marker = box_capacity | minus: 1
+-%}
+
+{{ 'bundle--box.css' | asset_url | stylesheet_tag }}
+
+<div class="perfume-bundle-section">
+  <div class="builder-layout">
+
+    <!-- LEFT SIDEBAR: BUNDLE STATUS -->
+    <div class="bundle-sidebar">
+      <div class="sidebar-header">
+        <h2>{{ box_heading }}</h2>
+        <p id="BundleStatusText">Add {{ box_capacity }} items to complete your {{ box_name }}</p>
+      </div>
+
+      <div class="slots-wrapper">
+        <div class="progress-timeline">
+          <div class="progress-line"></div>
+          {%- for i in (0..last_marker) -%}
+            {%- liquid
+              if forloop.last and box_capacity > 1
+                assign top = 98
+              elsif last_marker > 0
+                assign top = i | times: 100 | divided_by: last_marker
+              else
+                assign top = 0
+              endif
+            -%}
+            <div class="progress-marker" style="top: {{ top }}%" id="Marker-{{ i }}"></div>
+            <div class="progress-label" style="top: {{ top }}%" id="Label-{{ i | plus: 1 }}"></div>
+          {%- endfor -%}
+        </div>
+
+        <div class="slot-list" id="BundleSlots">
+          {% for i in (1..box_capacity) %}
+            <div class="slot-item empty" data-index="{{ forloop.index0 }}" onclick="openSelector({{ forloop.index0 }})">
+              <div class="slot-placeholder-icon">+</div>
+              <div class="slot-placeholder-text">
+                <span class="primary">Select a product</span>
+                <span class="unlock"> {{ box_capacity | minus: forloop.index | plus: 1 }} Selections Remaining</span>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="cart">
+          <button class="add-to-cart-btn" id="MainActionBtn" disabled onclick="handleCheckout()">
+            <span>Add to Cart</span>
+            <span id="TotalDisplay">{{ region_currency_symbol }} 0</span>
+          </button>
+        </div>
+        <div class="savings-row">
+          Standard Price: <span class="saving">{{ region_currency_symbol }}0</span>
+        </div>
+        <div class="save-row">
+          Total Saving <span>{{ region_currency_symbol }}0</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT CONTENT: SELECTION DRAWER -->
+    <div class="selection-drawer" id="SelectionDrawer">
+      <div class="drawer-title">
+        <div class="drawer-title-content">
+          <button onclick="goBackToStep()" class="back-arrow-btn" id="BackArrowBtn" title="Go back">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          <span class="drawer-title-text" id="DrawerHeadline">Select Size</span>
+        </div>
+        <button onclick="closeSelector()" style="background: none; border: none; cursor: pointer; font-size: 25px;">×</button>
+      </div>
+
+      <div id="Step-Size" class="step-container">
+        <div class="option-list">
+          {%- for variant in box_product.variants %}
+          <div class="option-item" onclick="selectSize({{ variant.title | json | escape }})">
+            <span>{{ variant.title }}</span>
+          </div>
+          {%- endfor %}
+        </div>
+      </div>
+
+      <div id="Step-Product" class="step-container" style="display: none;">
+        <div class="search-bar-wrapper">
+          <div class="search-input-container">
+            <input type="text" id="ProductSearch" placeholder="Search" />
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="option-list" id="ProductGrid">
+          <!-- Products injected here -->
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // var, not const: several sections declare this and a top-level const is a
+  // global lexical binding, so the second one on the page throws and takes the
+  // rest of its script with it.
+  var currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '{{ cart.currency.symbol }}' || '$';
+
+  // The box: its size (capacity), its name, and — per size — the variant of the
+  // box product that is added to the cart and the price the store charges for it.
+  const CAPACITY = {{ box_capacity }};
+  const BOX_NAME = {{ box_name | json }};
+  //
+  // The standard ("was") price a saving is measured against: the box variant's
+  // compare-at price in Shopify, where the store sets one. Until it does, a
+  // region may state it in boxes.json (reference_price) — today's figures,
+  // which no store price backs. Neither: no saving is claimed.
+  const BOX_VARIANTS = {
+    {%- for variant in box_product.variants %}
+      {%- liquid
+        assign k = box_prefix | append: 'reference_price.' | append: variant.title
+        capture reference_price
+          render 'region--content', key: k
+        endcapture
+        assign reference_price = reference_price | strip
+        assign standard = 'null'
+        if variant.compare_at_price > variant.price
+          assign standard = variant.compare_at_price
+        elsif reference_price != blank
+          assign standard = reference_price | times: 100 | round
+        endif
+      %}
+    {{ variant.title | json }}: { id: {{ variant.id }}, price: {{ variant.price }}, standard: {{ standard }}, available: {{ variant.available | json }} }{% unless forloop.last %},{% endunless %}
+    {%- endfor %}
+  };
+
+  // The perfumes to choose from, per size, from the collection the box names.
+  const PRODUCTS_BY_SIZE = {
+    {%- for variant in box_product.variants %}
+      {%- liquid
+        assign k = box_prefix | append: 'choices.' | append: variant.title
+        capture choices_handle
+          render 'region--content', key: k
+        endcapture
+        assign choices_handle = choices_handle | strip
+        assign choices = collections[choices_handle]
+      %}
+    {{ variant.title | json }}: [
+      {% paginate choices.products by 100 %}
+        {% for product in choices.products %}
+          {
+            id: {{ product.id }},
+            title: {{ product.title | json }},
+            vendor: {{ product.vendor | json }},
+            image: {{ product.featured_image | img_url: '300x300' | json }},
+            tags: {{ product.tags | json }},
+            variants: [
+              {% for v in product.variants %}
+                { id: {{ v.id }}, title: {{ v.title | json }}, price: {{ v.price }}, sku: {{ v.sku | json }}, available: {{ v.available | json }} }{% unless forloop.last %},{% endunless %}
+              {% endfor %}
+            ]
+          }{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+      {% endpaginate %}
+    ]{% unless forloop.last %},{% endunless %}
+    {%- endfor %}
+  };
+
+  let activeSize = null;
+  let currentStep = 'Step-Size';
+  let hasAddedFirstProduct = false;
+  let bundle = new Array(CAPACITY).fill(null);
+  let currentSlot = null;
+
+  const money = (cents) => (cents / 100).toFixed(2);
+
+  function isDesktop() {
+    return window.innerWidth > 1024;
+  }
+
+  window.addEventListener('DOMContentLoaded', function () {
+    if (isDesktop()) openSelector(0);
+  });
+
+  function openSelector(index) {
+    currentSlot = index;
+    document.getElementById('SelectionDrawer').classList.add('visible');
+    document.querySelectorAll('.slot-item').forEach((s) => s.classList.remove('active'));
+    const slot = document.querySelector(`.slot-item[data-index="${index}"]`);
+    if (slot) slot.classList.add('active');
+    showStep(activeSize ? 'Step-Product' : 'Step-Size');
+  }
+
+  function closeSelector() {
+    const drawer = document.getElementById('SelectionDrawer');
+    if (drawer) drawer.classList.remove('visible');
+    document.querySelectorAll('.slot-item').forEach((s) => s.classList.remove('active'));
+  }
+
+  function showStep(id) {
+    document.querySelectorAll('.step-container').forEach((c) => (c.style.display = 'none'));
+    document.getElementById(id).style.display = 'block';
+    currentStep = id;
+
+    const backArrowBtn = document.getElementById('BackArrowBtn');
+    if (!backArrowBtn) return;
+
+    if (id === 'Step-Size') {
+      document.getElementById('DrawerHeadline').innerText = 'Select Size';
+      backArrowBtn.style.display = 'none';
+    }
+    if (id === 'Step-Product') {
+      document.getElementById('DrawerHeadline').innerText = 'Select Product';
+      // The back arrow only makes sense before the first perfume is chosen:
+      // after that the size is fixed for the whole box.
+      backArrowBtn.style.display = hasAddedFirstProduct ? 'none' : 'flex';
+      renderProducts();
+      initSearchListener();
+    }
+  }
+
+  function goBackToStep() {
+    if (currentStep === 'Step-Product' && !hasAddedFirstProduct) showStep('Step-Size');
+  }
+
+  function selectSize(size) {
+    activeSize = size;
+    showStep('Step-Product');
+  }
+
+  function renderProducts(searchQuery = '') {
+    const grid = document.getElementById('ProductGrid');
+    if (!activeSize) return;
+
+    const available = (PRODUCTS_BY_SIZE[activeSize] || []).filter(
+      (p) => Array.isArray(p.variants) && p.variants.some((v) => v.available === true)
+    );
+
+    let shown = available;
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase();
+      shown = available.filter(
+        (p) =>
+          p.title.toLowerCase().includes(q) ||
+          p.vendor.toLowerCase().includes(q) ||
+          p.tags.some((tag) => tag.toLowerCase().includes(q))
+      );
+    }
+
+    if (shown.length === 0) {
+      grid.innerHTML = '<div class="no-results-message">No products found matching your search.</div>';
+      return;
+    }
+
+    grid.innerHTML = shown
+      .map(
+        (p) => `
+      <div class="option-item" onclick="addProductToBundle(${p.id}, '${activeSize}')">
+        <div class="item-thumb"><img src="${p.image}" alt=""></div>
+        <span>${p.title} (${p.vendor})</span>
+      </div>
+    `
+      )
+      .join('');
+  }
+
+  function handleSearch(event) {
+    renderProducts(event.target.value);
+  }
+
+  function initSearchListener() {
+    const searchInput = document.getElementById('ProductSearch');
+    if (searchInput) {
+      searchInput.value = '';
+      searchInput.addEventListener('input', handleSearch);
+    }
+  }
+
+  function addProductToBundle(id, size) {
+    const product = (PRODUCTS_BY_SIZE[size] || []).find((p) => p.id === id);
+    if (!product) return alert('Product not found');
+
+    const variant =
+      product.variants.find((v) => v.title.toLowerCase().includes(size.toLowerCase())) || product.variants[0];
+
+    bundle[currentSlot] = {
+      variantId: variant.id,
+      title: product.title,
+      sku: variant.sku,
+      image: product.image,
+      price: variant.price,
+    };
+    hasAddedFirstProduct = true;
+    updateUI();
+
+    const nextEmptyIndex = bundle.findIndex((item) => item === null);
+    if (nextEmptyIndex !== -1) {
+      if (isDesktop()) {
+        currentSlot = nextEmptyIndex;
+        setTimeout(() => openSelector(nextEmptyIndex), 100);
+      } else {
+        closeSelector();
+      }
+    } else {
+      setTimeout(() => closeSelector(), 100);
+    }
+  }
+
+  function removeItem(index) {
+    bundle[index] = null;
+    updateUI();
+  }
+
+  function updateUI() {
+    const count = bundle.filter((x) => x).length;
+
+    bundle.forEach((item, i) => {
+      const el = document.querySelector(`.slot-item[data-index="${i}"]`);
+      if (!el) return;
+      if (item) {
+        el.classList.remove('empty');
+        el.innerHTML = `
+          <div class="slot-filled-content">
+            <div class="slot-img"><img src="${item.image}" alt=""></div>
+            <div class="slot-info">
+              <h4>${item.title}</h4>
+            </div>
+            <button class="remove-item" onclick="event.stopPropagation(); removeItem(${i})">×</button>
+          </div>
+        `;
+      } else {
+        el.classList.add('empty');
+        el.innerHTML = `
+          <div class="slot-placeholder-icon">+</div>
+          <div class="slot-placeholder-text">
+            <span class="primary">Select a product</span>
+            <span class="unlock"> ${CAPACITY - i} Selections Remaining</span>
+          </div>
+        `;
+      }
+    });
+
+    const totalDisplay = document.getElementById('TotalDisplay');
+    const mainBtn = document.getElementById('MainActionBtn');
+    mainBtn.disabled = count !== CAPACITY;
+
+    // The price shows once the box is full: what the store charges for the box
+    // in this size, and — only where a standard price exists — the saving.
+    const boxVariant = activeSize && BOX_VARIANTS[activeSize];
+    if (count === CAPACITY && boxVariant) {
+      totalDisplay.innerText = `${currSym} ${money(boxVariant.price)}`;
+      totalDisplay.style.visibility = 'visible';
+      const hasStandard = boxVariant.standard !== null;
+      document.querySelector('.savings-row').style.display = hasStandard ? '' : 'none';
+      document.querySelector('.save-row').style.display = hasStandard ? '' : 'none';
+      if (hasStandard) {
+        document.querySelector('.savings-row .saving').innerText = `${currSym} ${money(boxVariant.standard)}`;
+        document.querySelector('.save-row span').innerText = `${currSym} ${money(boxVariant.standard - boxVariant.price)}`;
+      }
+    } else {
+      totalDisplay.innerText = '';
+      totalDisplay.style.visibility = 'hidden';
+    }
+
+    document.getElementById('BundleStatusText').innerText =
+      count < CAPACITY
+        ? `Add ${CAPACITY - count} more items to complete your ${BOX_NAME}`
+        : `Your ${BOX_NAME} is complete!`;
+
+    document.querySelectorAll('.progress-marker, .progress-label').forEach((el) => el.classList.remove('active'));
+    for (let i = 0; i < count; i++) {
+      const marker = document.getElementById(`Marker-${i}`);
+      if (marker) marker.classList.add('active');
+      const label = document.getElementById(`Label-${i + 1}`);
+      if (label) label.classList.add('active');
+    }
+  }
+
+  async function handleCheckout() {
+    const btn = document.getElementById('MainActionBtn');
+    const priceSpan = btn.querySelector('span:nth-child(2)');
+    // The price the button shows before Adding.../ADDED!, restored afterwards.
+    const originalPrice = priceSpan ? priceSpan.innerText : '';
+
+    if (window.isProcessingCartAction) {
+      console.warn('Cart action already in progress');
+      return;
+    }
+    if (!activeSize) {
+      alert('Please select a size first.');
+      return;
+    }
+    const boxVariant = BOX_VARIANTS[activeSize];
+    if (!boxVariant) {
+      alert('Variant not found.');
+      return;
+    }
+
+    window.isProcessingCartAction = true;
+    btn.disabled = true;
+    if (priceSpan) priceSpan.innerText = 'Adding...';
+
+    // One line item — the box — carrying the perfumes chosen as properties.
+    const properties = {};
+    bundle.forEach((item, index) => {
+      if (!item) return;
+      properties[`Product ${index + 1}`] = item.title;
+      properties[`SKU ${index + 1}`] = item.sku;
+      properties[`Variant ID ${index + 1}`] = item.variantId;
+    });
+
+    try {
+      const response = await fetch('/cart/add.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ id: boxVariant.id, quantity: 1, properties }),
+      });
+      if (!response.ok) throw new Error('Add to cart failed');
+
+      bundle = bundle.map(() => null);
+      activeSize = null;
+      hasAddedFirstProduct = false;
+      updateUI();
+      openSelector(0);
+
+      btn.disabled = false;
+      if (priceSpan) priceSpan.innerText = 'ADDED!';
+
+      const cart = await (await fetch('/cart.js')).json();
+      if (typeof updateDossierCartUI === 'function') updateDossierCartUI(cart);
+      if (typeof openDossierCart === 'function') openDossierCart();
+
+      setTimeout(() => {
+        if (priceSpan) priceSpan.innerText = originalPrice;
+        window.isProcessingCartAction = false;
+      }, 2000);
+    } catch (err) {
+      console.error('Add to cart error:', err);
+      alert(`Error adding ${BOX_NAME} to cart. Please try again.`);
+      btn.disabled = false;
+      if (priceSpan) priceSpan.innerText = originalPrice;
+      window.isProcessingCartAction = false;
+    }
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Box builder",
+  "settings": [
+    {
+      "type": "text",
+      "id": "box",
+      "label": "Box",
+      "info": "Which box this page builds: a key in the region's content/boxes.json, e.g. five_favourites or signature_trio. Its heading, product, capacity and choices are set there."
+    }
+  ],
+  "presets": [{ "name": "Box builder" }]
+}
+{% endschema %}

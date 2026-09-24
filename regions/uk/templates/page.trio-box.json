@@ -171,12 +171,14 @@
       "settings": {}
     },
     "trio_set_8igDY7": {
-      "type": "bundle--trio-set",
+      "type": "bundle--box",
       "custom_css": [
         ".savings-row {padding: 4px 0 20px 0px; text-align: center; font-size: 14px; color: #666; background: #f3f3f3;}"
       ],
       "name": "Trio Set",
-      "settings": {}
+      "settings": {
+        "box": "signature_trio"
+      }
     },
     "newsletter_banner_4nyEBG": {
       "type": "marketing--newsletter-banner",

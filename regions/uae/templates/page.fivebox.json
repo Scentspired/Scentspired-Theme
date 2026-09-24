@@ -122,12 +122,14 @@
       }
     },
     "five_box_yEAUmF": {
-      "type": "bundle--five-box",
+      "type": "bundle--box",
       "custom_css": [
         ".savings-row {padding: 4px 0 20px 0px; text-align: center; font-size: 14px; color: #666; background: #f3f3f3;}"
       ],
       "name": "Five Box",
-      "settings": {}
+      "settings": {
+        "box": "five_favourites"
+      }
     },
     "newsletter_banner_Y3AUjn": {
       "type": "marketing--newsletter-banner",

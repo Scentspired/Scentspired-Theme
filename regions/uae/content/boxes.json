@@ -1,0 +1,22 @@
+{
+  "five_favourites": {
+    "heading": "Build Your Own Five Favourites",
+    "name": "Five Favourites",
+    "product": "the-five-favourites",
+    "capacity": 5,
+    "choices": {
+      "50ml": "bundle-50ml",
+      "100ml": "bundle-100ml"
+    }
+  },
+  "signature_trio": {
+    "heading": "Build Your Own Signature Trio Set",
+    "name": "Signature Trio Set",
+    "product": "the-signature-trio",
+    "capacity": 3,
+    "choices": {
+      "50ml": "bundle-50ml",
+      "100ml": "bundle-100ml"
+    }
+  }
+}

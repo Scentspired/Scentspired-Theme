@@ -17,6 +17,15 @@
     "fallback": 0,
     "ids": 0
   },
+  "sections/bundle--box.liquid": {
+    "total": 17,
+    "text": 10,
+    "js-text": 7,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
   "sections/bundle--coming-soon.liquid": {
     "total": 2,
     "text": 1,
@@ -53,15 +62,6 @@
     "fallback": 0,
     "ids": 1
   },
-  "sections/bundle--five-box.liquid": {
-    "total": 20,
-    "text": 8,
-    "js-text": 10,
-    "media": 0,
-    "links": 0,
-    "fallback": 0,
-    "ids": 2
-  },
   "sections/bundle--five-favourites.liquid": {
     "total": 14,
     "text": 0,
@@ -79,15 +79,6 @@
     "links": 0,
     "fallback": 0,
     "ids": 1
-  },
-  "sections/bundle--trio-set.liquid": {
-    "total": 20,
-    "text": 8,
-    "js-text": 10,
-    "media": 0,
-    "links": 0,
-    "fallback": 0,
-    "ids": 2
   },
   "sections/catalog--aroma-selector.liquid": {
     "total": 31,

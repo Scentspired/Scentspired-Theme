@@ -298,6 +298,43 @@ emitted.add('snippets/region--active.liquid');
   }
   const pages = [...new Set(Object.keys(flat).map((k) => k.split('.')[0]))];
   console.log(`  + snippets/region--content.liquid (${Object.keys(flat).length} value(s) in ${pages.length} page file(s))`);
+
+  // The box builder reads its box by a key the page layout names
+  // (settings.box), which the check above cannot see. So check each box a
+  // page names: it must exist in content/boxes.json with every field.
+  const boxErrors = [];
+  const tplDir = path.join(DIST_DIR, 'templates');
+  const strip = (s) => (s.charCodeAt(0) === 0xfeff ? s.slice(1) : s).replace(/^\s*\/\*[\s\S]*?\*\//, '');
+  for (const f of fs.existsSync(tplDir) ? fs.readdirSync(tplDir).filter((x) => x.endsWith('.json')) : []) {
+    let doc;
+    try {
+      doc = JSON.parse(strip(fs.readFileSync(path.join(tplDir, f), 'utf8')));
+    } catch {
+      continue;
+    }
+    for (const s of Object.values(doc.sections || {})) {
+      if (s.type !== 'bundle--box' || s.disabled) continue;
+      const box = (s.settings || {}).box;
+      if (!box) {
+        boxErrors.push(`templates/${f}: a box builder names no box`);
+        continue;
+      }
+      const at = (field) => flat[`boxes.${box}.${field}`];
+      for (const field of ['heading', 'name', 'product']) {
+        if (!at(field)) boxErrors.push(`templates/${f}: box "${box}" has no ${field}`);
+      }
+      if (!(Number(at('capacity')) >= 1)) boxErrors.push(`templates/${f}: box "${box}" needs a capacity of 1 or more`);
+      if (!Object.keys(flat).some((k) => k.startsWith(`boxes.${box}.choices.`))) {
+        boxErrors.push(`templates/${f}: box "${box}" names no choices (size -> collection)`);
+      }
+    }
+  }
+  if (boxErrors.length) {
+    console.error(`\n❌ regions/${target}/content/boxes.json does not define what the pages use:\n`);
+    for (const e of boxErrors) console.error(`   ${e}`);
+    console.error('');
+    process.exit(1);
+  }
 }
 
 /**

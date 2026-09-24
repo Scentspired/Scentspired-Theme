@@ -55,14 +55,10 @@ const clarityBugs = [
     file: "bundle--discovery-legacy.liquid",
     pattern: "selected-variant-id",
   },
+  // five-box and trio-set are one section now, bundle--box.
   {
-    name: "onclick selectBrand apostrophe — five-box (12+5 sessions)",
-    file: "bundle--five-box.liquid",
-    pattern: "selectbrand",
-  },
-  {
-    name: "onclick selectBrand apostrophe — trio-set (12+5 sessions)",
-    file: "bundle--trio-set.liquid",
+    name: "onclick selectBrand apostrophe — five-box / trio-set (12+5 sessions)",
+    file: "bundle--box.liquid",
     pattern: "selectbrand",
   },
   {
@@ -87,13 +83,8 @@ const clarityBugs = [
     pattern: "rebindproductevents",
   },
   {
-    name: "SyntaxError: Duplicate totalDisplay identifier — five-box",
-    file: "bundle--five-box.liquid",
-    pattern: "totaldisplay",
-  },
-  {
-    name: "SyntaxError: Duplicate totalDisplay identifier — trio-set",
-    file: "bundle--trio-set.liquid",
+    name: "SyntaxError: Duplicate totalDisplay identifier — five-box / trio-set",
+    file: "bundle--box.liquid",
     pattern: "totaldisplay",
   },
   {

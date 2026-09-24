@@ -1,7 +1,6 @@
-/* Extracted from sections/bundle--five-box.liquid.
- * Inline CSS is re-downloaded with the HTML on every page that renders
- * that file and can never be cached. Edit this file, not the .liquid.
- * Blocks still in the .liquid are the ones that contain Liquid. */
+/* The box builder — sections/bundle--box.liquid. One stylesheet for every
+ * box (Five Favourites, Signature Trio, …); it was bundle--trio-set.css and
+ * bundle--five-box.css, which were the same file. */
 
   :root {
     --perfume-gold: #b39152;
@@ -289,7 +288,7 @@
     display: block;
   }
 
-  .drawer-title {
+    .drawer-title {
     font-size: 20px;
     text-transform: uppercase;
     margin-bottom: 30px;
@@ -332,7 +331,6 @@
   .back-arrow-btn.visible {
     display: flex;
   }
-
   /* List Styles */
   .option-list {
     display: flex;
@@ -425,11 +423,6 @@
   .search-icon:hover {
     color: #e0e635;
     transform: scale(1.1);
-  }
-
-  .search-icon svg {
-    width: 20px;
-    height: 20px;
   }
 
   .no-results-message {
