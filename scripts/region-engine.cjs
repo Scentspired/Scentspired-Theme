@@ -32,13 +32,40 @@ const REGIONS_DIR = process.env.SCENTSPIRED_REGIONS_DIR
   : path.join(THEME_ROOT, 'regions');
 
 /**
- * The region the shared core already IS. Core is the live UK theme, so a UK
- * build overlays nothing and the UK parity baseline is the unsuffixed one.
+ * The region a command uses when it is given none, the one a new region copies
+ * its content from (`npm run region:new -- fr` starts from uk's pages, header
+ * and footer), and the one whose parity baseline is the unsuffixed one.
+ *
+ * It is an ordinary region: its content lives in regions/uk/ exactly like
+ * every other region's. Core (the repository root) holds only what is
+ * identical for every region.
  *
  * This is the only place tooling may name a region. Everything else discovers
  * regions from regions/<id>/region.json — adding region #101 edits no script.
  */
-const CORE_REGION = 'uk';
+const DEFAULT_REGION = 'uk';
+
+/**
+ * Content a region can own, whole-file: pages, section groups (header/footer)
+ * and theme settings. Core holds the ones identical for every region; the rest
+ * live in each region's folder (scripts/prune-region-overlays.cjs keeps it so).
+ */
+const isContentFile = (rel) =>
+  /^templates\//.test(rel) || /^sections\/[^/]+\.json$/.test(rel) || rel === 'config/settings_data.json';
+
+/** Every content file a region folder holds, as paths relative to the folder. */
+function regionContentFiles(id) {
+  const root = path.join(REGIONS_DIR, id);
+  const walk = (d) =>
+    fs.existsSync(d)
+      ? fs.readdirSync(d, { withFileTypes: true }).flatMap((e) =>
+          e.isDirectory() ? walk(path.join(d, e.name)) : [path.join(d, e.name)]
+        )
+      : [];
+  return walk(root)
+    .map((f) => path.relative(root, f).split(path.sep).join('/'))
+    .filter(isContentFile);
+}
 
 /** The region.json of one region, or null. Tooling reads data from here, never a hardcoded table. */
 function readRegionFile(id) {
@@ -321,11 +348,11 @@ function emitRegistrySnippet(distDir) {
  * untouched. Regenerate with `npm run region:sync`.
  */
 function syncCoreStubs() {
-  // Core is the CORE_REGION theme, so its stub resolves that region. This read
+  // Core is the DEFAULT_REGION theme, so its stub resolves that region. This read
   // _defaults.json's id, which stopped existing when _defaults became neutral —
   // leaving the command broken and core's stub frozen on the USA values
   // _defaults used to impersonate.
-  const defaults = resolveRegion(CORE_REGION);
+  const defaults = resolveRegion(DEFAULT_REGION);
   const snippetsDir = path.join(THEME_ROOT, 'snippets');
   fs.writeFileSync(
     path.join(snippetsDir, 'region--active.liquid'),
@@ -424,11 +451,13 @@ module.exports = {
   syncCoreStubs,
   listRegions,
   readRegionFile,
+  isContentFile,
+  regionContentFiles,
   consumedKeys,
   unresolvedKeys,
   regionContract,
   deepMerge,
-  CORE_REGION,
+  DEFAULT_REGION,
   REGIONS_DIR,
 };
 

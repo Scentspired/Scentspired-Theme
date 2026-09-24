@@ -19,7 +19,7 @@ const fs = require('fs');
 const path = require('path');
 
 const THEME_ROOT = path.resolve(__dirname, '..');
-const { readRegionFile, CORE_REGION } = require('./region-engine.cjs');
+const { readRegionFile, DEFAULT_REGION } = require('./region-engine.cjs');
 /**
  * Which baseline set to read or write. The core region lives in tests/parity/baseline; a
  * second region needs its own, because the same page legitimately differs
@@ -32,7 +32,7 @@ const regionArg = process.argv.find((a) => a.startsWith('--region='));
 const REGION = regionArg ? regionArg.slice('--region='.length) : '';
 const BASELINE_DIR = path.join(
   THEME_ROOT,
-  REGION && REGION !== CORE_REGION ? `tests/parity/baseline-${REGION}` : 'tests/parity/baseline'
+  REGION && REGION !== DEFAULT_REGION ? `tests/parity/baseline-${REGION}` : 'tests/parity/baseline'
 );
 
 const args = process.argv.slice(2);
@@ -44,7 +44,7 @@ const isCheck = args.includes('--check');
  * 9292 whatever the region, which reported every USA page as changed — the
  * harness comparing one storefront against another's baseline.
  */
-const regionData = readRegionFile(REGION || CORE_REGION) || {};
+const regionData = readRegionFile(REGION || DEFAULT_REGION) || {};
 if (REGION && !readRegionFile(REGION)) {
   console.error(`\n  ✗ No regions/${REGION}/region.json — unknown region.\n`);
   process.exit(1);

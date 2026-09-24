@@ -1,0 +1,343 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "177868548039dc52a1": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_0232e4c_37U8Va": {
+          "type": "editorial--luxury-perfume-banner",
+          "settings": {
+            "heading": "<p>THE MAN WHO IS IMPOSSIBLE TO BUY FOR:</p>",
+            "heading_size": 48,
+            "mobile_heading_size": 24,
+            "heading_line_height": 1.1,
+            "heading_color": "#1a1a1a",
+            "paragraph": "<p>a curated fragrance guide for the guy who claims he already has everything</p>",
+            "paragraph_size": 18,
+            "mobile_paragraph_size": 16,
+            "paragraph_line_height": 1.4,
+            "paragraph_color": "#332F2B",
+            "desktop_image": "shopify://shop_images/ChatGPT_Image_Jul_14_2026_02_16_37_PM.png",
+            "image_aspect_ratio": "16/9",
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "text_alignment": "left",
+            "content_padding": 40,
+            "content_max_width_inner": 680,
+            "mobile_horizontal_alignment": "flex-start",
+            "mobile_vertical_alignment": "center",
+            "mobile_text_alignment": "left",
+            "mobile_content_padding": 25,
+            "content_max_width": 1400,
+            "outer_spacing": 0,
+            "mobile_outer_spacing": 0,
+            "background_color": "#FAF8F5"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_0232e4c_37U8Va"
+      ],
+      "custom_css": [],
+      "settings": {}
+    },
+    "blogtextliquid_LBJgtB": {
+      "type": "editorial--blog-text-liquid",
+      "custom_css": [],
+      "name": "Blog Text Liquid",
+      "settings": {
+        "text_content": "<p>There is a particular breed of man who is impossible to buy for, and you almost certainly live with him, work with him, or are related to him. You ask what he wants, and he replies 'nothing really'. He returns half the presents he receives and claims he is 'so easy' to shop for.</p><p>Fragrance is the classic answer, but buying him a generic bottle of whatever is on the front display table at Boots misses the mark completely. If he takes pride in his style, he wants a fragrance with genuine character and presence.</p>"
+      }
+    },
+    "177868816090d620d4": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_a1afcd9_GyikqF": {
+          "type": "editorial--luxury-perfume-banner-2",
+          "settings": {
+            "background_image": "shopify://shop_images/ChatGPT_Image_Jul_14_2026_02_16_15_PM.png",
+            "outer_border_color": "#FAF8F5",
+            "outer_border_px": 0,
+            "aspect_ratio": 56,
+            "font_family_regular": "'PP Editorial New', 'Cormorant Garamond', Georgia, serif",
+            "font_family_italic": "'PPEditorialNew Ultralight Italic', 'Cormorant Garamond', Georgia, serif",
+            "text_color": "#ffffff",
+            "text_line_1": "",
+            "line1_top": 66,
+            "line1_left": 19,
+            "brand_name_regular": "",
+            "brand_name_italic": "THE SHORT VERSION",
+            "brand_top": 6,
+            "brand_left": 50,
+            "text_line_2": "",
+            "line3_top": 87,
+            "line3_left": 63
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_a1afcd9_GyikqF"
+      ],
+      "settings": {}
+    },
+    "blogtextliquid_ra7Awx": {
+      "type": "editorial--blog-text-liquid",
+      "custom_css": [],
+      "name": "Blog Text Liquid",
+      "settings": {
+        "text_content": "<p>A fragrance lands so well as a gift for one reason: he would rarely buy it for himself. Most men run one bottle into the ground for three years before reluctantly replacing it.</p><p>Giving him a high-performance inspired perfume that punches way above its weight is an immediate upgrade to his daily routine. Here are four fail-safe profiles matched to who he is.</p>"
+      }
+    },
+    "blocks_ji7beH": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_614820f_zNd6WG": {
+          "type": "editorial--text-section",
+          "settings": {
+            "heading": "For The Big Presence vs The Quiet Visionary",
+            "heading_size": 42,
+            "heading_size_mobile": 28,
+            "heading_line_height": 1.1,
+            "heading_color": "#1A1816",
+            "heading_margin_bottom": 30,
+            "heading_margin_bottom_mobile": 25,
+            "column_1_text": "<p><strong>Fierce</strong> (inspired by Sauvage Parfum by Dior) is for the man who fills a doorway. Big presence, strong opinions, the sort of person people clock the second he walks into a room.</p><p>The spicy bergamot opening and bold ambroxan base make an undeniable impression. It is sharp, confident, and lasts through an entire workday.</p>",
+            "column_2_text": "<p><strong>Visionary</strong> (inspired by Imagination by Louis Vuitton) is for the man who fancies himself an aesthete. He reads the long articles, has thoughts on architecture, and appreciates subtle craftsmanship.</p><p>Opening with sparkling Calabrian citrus and Chinese black tea, it is sophisticated, airy, and unexpectedly luxurious.</p>",
+            "body_size": 17,
+            "body_size_mobile": 15,
+            "body_line_height": 1.9,
+            "body_color": "#2D2A26",
+            "paragraph_spacing": 20,
+            "column_gap": 55,
+            "column_gap_mobile": 30,
+            "max_width": 1100,
+            "desktop_width_percent": 100,
+            "background_color": "#FAF8F5",
+            "padding_top": 60,
+            "padding_bottom": 60,
+            "padding_horizontal": 40,
+            "padding_top_mobile": 40,
+            "padding_bottom_mobile": 40,
+            "padding_horizontal_mobile": 20
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_614820f_zNd6WG"
+      ],
+      "name": "Editorial text section",
+      "settings": {}
+    },
+    "1778690749e24fd023": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_fb81b45_9nTtAA": {
+          "type": "editorial--content",
+          "settings": {
+            "desktop_width_percent": 100,
+            "max_width": 1100,
+            "section_padding": 60,
+            "background_color": "#FAF8F5",
+            "heading": "<p>Addiction & Mirage: treats worth giving</p>",
+            "heading_size": 42,
+            "heading_color": "#1A1816",
+            "heading_spacing": 25,
+            "box_color": "#1C1917",
+            "box_radius": 15,
+            "box_padding": 45,
+            "box_spacing": 35,
+            "box_paragraph_1": "<p>If he has had a big year, or he is simply someone you want to spoil a little, <strong>Addiction</strong> (inspired by Baccarat Rouge 540) is an unforgettable treat. The amberwood and saffron sillage smells considerably more expensive than it has any right to.</p><p>For someone you do not know all that well yet—like an office Secret Santa or a brother-in-law—<strong>Mirage</strong> offers clean powdery iris and smooth cedar that is impossible to dislike.</p><p>Every bottle comes presented in our signature gift-ready presentation box.</p>",
+            "box_paragraph_2": "",
+            "box_paragraph_3": "",
+            "box_text_color": "#F5EFE6",
+            "box_text_size": 17,
+            "box_text_line_height": 1.9,
+            "paragraph_spacing": 20,
+            "subheading": "<p>Why inspired fragrance makes the best gift</p>",
+            "subheading_size": 42,
+            "subheading_color": "#1A1816",
+            "subheading_spacing": 40,
+            "bottom_text": "<p>He gets the exact same luxury scent experience as a £250 department store bottle, without you having to spend a fortune.</p><p>It looks handsome on his dresser, lasts all day on his skin, and solves the gift dilemma in five minutes.</p>",
+            "bottom_text_size": 17,
+            "bottom_text_color": "#2D2A26",
+            "bottom_text_line_height": 1.9
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_fb81b45_9nTtAA"
+      ],
+      "settings": {}
+    },
+    "1780925695be0a3de2": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_e9499a3_nQznTw": {
+          "type": "editorial--comparison-table",
+          "settings": {
+            "header_1": "His Personality Archetype",
+            "header_2": "Key Note Profile",
+            "header_3": "The Recommended Gift Bottle",
+            "row_1_label": "The Bold & Confident Guy",
+            "row_1_col_1": "Bergamot, Sichuan Pepper, Ambroxan",
+            "row_1_col_2": "Fierce (Sauvage Parfum inspired)",
+            "row_1_col_3": "Big presence, sharp masculine projection",
+            "row_2_label": "The Quiet Aesthete",
+            "row_2_col_1": "Citrus, Chinese Black Tea, Ambrox",
+            "row_2_col_2": "Visionary (Imagination inspired)",
+            "row_2_col_3": "Subtle, sophisticated, impeccably tailored",
+            "row_3_label": "The Guy Worth Spoiling",
+            "row_3_col_1": "Saffron, Jasmine, Ambergris, Cedar",
+            "row_3_col_2": "Addiction (Baccarat Rouge 540 inspired)",
+            "row_3_col_3": "Opulent luxury that turns heads everywhere",
+            "row_4_label": "The Safe & Polished Pick",
+            "row_4_col_1": "Iris, Dry Cedar, Smooth Leather",
+            "row_4_col_2": "Mirage",
+            "row_4_col_3": "Understated elegance; perfect for any occasion",
+            "side_padding": 20,
+            "cell_padding": 18,
+            "label_font_weight": "bold",
+            "header_bg_color": "#1A1816",
+            "header_text_color": "#F8F5F0",
+            "row_bg_color": "#FAF8F5",
+            "body_text_color": "#383430",
+            "border_color": "rgba(0,0,0,0.06)",
+            "table_bg_color": "#FAF8F5"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_e9499a3_nQznTw"
+      ],
+      "settings": {}
+    },
+    "17786893180b60ea14": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_c88e324_m8PFU4": {
+          "type": "editorial--section",
+          "settings": {
+            "container_width": 1100,
+            "left_column_width": 45,
+            "right_column_width": 55,
+            "column_gap": 50,
+            "desktop_width_percent": 100,
+            "heading": "What this means when you are shopping",
+            "heading_font": "serif",
+            "heading_size": 42,
+            "mobile_heading_size": 28,
+            "heading_color": "#1A1816",
+            "heading_indent": 0,
+            "mobile_heading_indent": 0,
+            "image": "shopify://shop_images/magnific_luxury-perfume-comparison_74h5S6MJAL_jpg.jpg",
+            "image_max_width": 500,
+            "heading_image_gap": 16,
+            "mobile_heading_image_gap": 20,
+            "body_text": "<p>When in doubt, choose versatile fresh-woody profiles like Fierce or Visionary that he can wear straight out of the box to the office or down the pub.</p><p>Add a personal note explaining why you picked this particular profile for him.</p>",
+            "body_font": "system_ui_n4",
+            "body_size": 17,
+            "mobile_body_size": 15,
+            "body_color": "#2D2A26",
+            "paragraph_spacing": 20,
+            "mobile_paragraph_spacing": 15,
+            "text_vertical_offset": 0,
+            "background_color": "#FAF8F5",
+            "padding_top": 60,
+            "padding_bottom": 60,
+            "horizontal_padding": 30,
+            "mobile_padding_top": 40,
+            "mobile_padding_bottom": 40,
+            "mobile_horizontal_padding": 20,
+            "mobile_gap": 30
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_c88e324_m8PFU4"
+      ],
+      "settings": {}
+    },
+    "1778692264fe7b6973": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_e9ac98b_QF8teC": {
+          "type": "editorial--split-text",
+          "settings": {
+            "container_width": 1100,
+            "horizontal_padding": 30,
+            "padding_top": 60,
+            "padding_bottom": 60,
+            "column_gap": 50,
+            "mobile_gap": 25,
+            "mobile_scale": 0.7,
+            "background_color": "#FAF8F5",
+            "prefix_text": "ONE MORE",
+            "prefix_font_size": 38,
+            "brand_scent_text": "",
+            "brand_spired_text": "",
+            "brand_font_size": 38,
+            "start_text": "",
+            "start_font_size": 38,
+            "bestsellers_text": "THING",
+            "bestsellers_font_size": 38,
+            "heading_line_spacing": 4,
+            "heading_line_height": 1.1,
+            "heading_color": "#1A1816",
+            "body_text": "Stop guessing and start gifting with confidence. Explore our curated gifts for him in the <a href=\"/collections/men\">Scentspired UK collection</a>.",
+            "body_font_size": 17,
+            "body_line_height": 1.8,
+            "body_color": "#2D2A26"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_e9ac98b_QF8teC"
+      ],
+      "custom_css": [],
+      "settings": {}
+    },
+    "1778701783b132082f": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_29a8932_icikjA": {
+          "type": "catalog--product-collection-grid",
+          "settings": {
+            "collection": "bestsellers"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_29a8932_icikjA"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "177868548039dc52a1",
+    "blogtextliquid_LBJgtB",
+    "177868816090d620d4",
+    "blogtextliquid_ra7Awx",
+    "blocks_ji7beH",
+    "1778690749e24fd023",
+    "1780925695be0a3de2",
+    "17786893180b60ea14",
+    "1778692264fe7b6973",
+    "1778701783b132082f"
+  ]
+}

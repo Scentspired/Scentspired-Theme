@@ -57,7 +57,6 @@
     "region:sync": "node scripts/region-engine.cjs --sync",
     "region:list": "node scripts/region-engine.cjs",
     "region:show": "node scripts/show-region.cjs",
-    "region:edit": "node scripts/edit-region.cjs",
     "region:new": "node scripts/new-region.cjs",
     "region:prune": "node scripts/prune-region-overlays.cjs",
     "dev:uk:live": "node scripts/dev-region.cjs uk",

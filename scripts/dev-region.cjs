@@ -32,13 +32,13 @@
 const net = require('net');
 const path = require('path');
 const { spawnSync } = require('child_process');
-const { resolveRegion, listRegions, CORE_REGION } = require('./region-engine.cjs');
+const { resolveRegion, listRegions, DEFAULT_REGION } = require('./region-engine.cjs');
 const { assertStoreAllowed } = require('./guard-live-repos.cjs');
 
 const THEME_ROOT = path.resolve(__dirname, '..');
 
 const args = process.argv.slice(2);
-const region = (args.find((a) => !a.startsWith('-')) || CORE_REGION).toLowerCase();
+const region = (args.find((a) => !a.startsWith('-')) || DEFAULT_REGION).toLowerCase();
 const storeArg = args.find((a) => a.startsWith('--store='));
 const portArg = args.find((a) => a.startsWith('--port='));
 

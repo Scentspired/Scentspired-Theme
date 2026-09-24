@@ -26,8 +26,8 @@
  *      then checks the build carries the new region's identity and none of
  *      another region's in its code, and that publishing it locks its store.
  *
- *   3. NO FROZEN COPIES. A region file identical to core is a fork that stops
- *      tracking core (scripts/prune-region-overlays.cjs --check).
+ *   3. NO CONTENT IN THE THEME. Pages, header/footer groups and theme settings
+ *      live in regions/<id>/, never in core (scripts/prune-region-overlays.cjs --check).
  *
  *   node tests/static/guard--region-onboarding.cjs
  *   node tests/static/guard--region-onboarding.cjs --static-only --root=<dir>
@@ -163,14 +163,14 @@ const gitState = () => {
 const before = gitState();
 
 try {
-  // A copy of every region's data, so the registry and lock see real regions.
+  // A full copy of every region — settings AND pages — since the theme holds
+  // no content and the new region copies its pages from an existing one.
   fs.mkdirSync(T_REGIONS, { recursive: true });
   for (const f of ['_defaults.json', '_schema.json']) {
     fs.copyFileSync(path.join(THEME_ROOT, 'regions', f), path.join(T_REGIONS, f));
   }
   for (const id of regionIds) {
-    fs.mkdirSync(path.join(T_REGIONS, id));
-    fs.copyFileSync(path.join(regionsDir, id, 'region.json'), path.join(T_REGIONS, id, 'region.json'));
+    fs.cpSync(path.join(regionsDir, id), path.join(T_REGIONS, id), { recursive: true });
   }
   const other = regionIds.map((id) => JSON.parse(fs.readFileSync(path.join(regionsDir, id, 'region.json'), 'utf8')));
 
@@ -256,7 +256,7 @@ try {
       }
     }
   }
-  if (!leaks) console.log('  ✅ A region defined only by region.json compiles, carries its own identity, and no other region\'s');
+  if (!leaks) console.log('  ✅ A new region (npm run region:new) compiles, carries its own identity, and no other region\'s in code');
 
   // Publishing locks the store. Load the lock with the probe marked live.
   region.published = true;
@@ -284,8 +284,8 @@ const prune = spawnSync('node', [path.join(THEME_ROOT, 'scripts/prune-region-ove
   cwd: THEME_ROOT,
   encoding: 'utf8',
 });
-if (prune.status !== 0) fail(`regional files copy core instead of overriding it — run npm run region:prune\n${prune.stdout}`);
-else console.log('  ✅ Every regional file differs from core — no frozen copies');
+if (prune.status !== 0) fail(`page content is in the theme instead of the regions — run npm run region:prune\n${prune.stdout}`);
+else console.log('  ✅ The theme holds no page content — every region holds its own, complete');
 
 finish();
 

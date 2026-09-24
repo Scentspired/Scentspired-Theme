@@ -21,14 +21,16 @@ const {
   deepMerge,
   consumedKeys,
   unresolvedKeys,
-  CORE_REGION,
+  listRegions,
+  regionContentFiles,
+  DEFAULT_REGION,
   REGIONS_DIR,
 } = require('./region-engine.cjs');
 
 assertCwdNotLocked();
 
 const THEME_ROOT = path.resolve(__dirname, '..');
-const target = (process.argv[2] || CORE_REGION).toLowerCase();
+const target = (process.argv[2] || DEFAULT_REGION).toLowerCase();
 // Both roots are overridable only for the onboarding probe, which builds a
 // synthetic region in a temp directory. See tests/static/guard--region-onboarding.cjs.
 const DIST_DIR = path.join(
@@ -149,6 +151,29 @@ function mergeLocales(src, dest) {
     count++;
   }
   return count;
+}
+
+/**
+ * The theme holds no page content, so a region must bring all of its own.
+ * Every page, header, footer and settings file the default region has is the
+ * standard set, and is required here — without one the storefront would ship
+ * with that page missing, and nothing would say so. A region may have extra
+ * pages of its own (USA's robots.txt, UAE's waitlist).
+ */
+if (target !== DEFAULT_REGION && listRegions().includes(DEFAULT_REGION)) {
+  const standard = regionContentFiles(DEFAULT_REGION);
+  const mine = new Set(regionContentFiles(target));
+  const missing = standard.filter((f) => !mine.has(f));
+  {
+    if (missing.length) {
+      console.error(`\n❌ regions/${target}/ is missing ${missing.length} of the standard content file(s):\n`);
+      for (const f of missing.slice(0, 25)) console.error(`   ${f}`);
+      if (missing.length > 25) console.error(`   … and ${missing.length - 25} more`);
+      console.error(`\n   Copy them from a region to start from, then edit:`);
+      console.error(`     cp regions/${DEFAULT_REGION}/<file> regions/${target}/<file>\n`);
+      process.exit(1);
+    }
+  }
 }
 
 console.log(`\n>>> [2/6] Overlaying ${target.toUpperCase()} data payload...`);
