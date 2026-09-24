@@ -448,8 +448,8 @@
       <div class="mobile-nav-item">
         <div class="mobile-nav-ic" id="mobileMenuTrigger">
           <img
-            src="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/hd-black-menu-burger-icon-transparent-background-701751695037028szh5wywnpo-removebg-preview.png?v=1770049325"
-            alt="Menu"
+            src="{% render 'region--content', key: 'global.header.mobile_bar.menu.icon' %}"
+            alt="{% render 'region--content', key: 'global.header.mobile_bar.menu.alt' %}"
             class="nav-ic-img">
         </div>
       </div>
@@ -457,8 +457,8 @@
       <div class="mobile-nav-item">
         <div class="mobile-nav-icon" id="mobileAccountTrigger">
           <img
-            src="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Vector_1.svg?v=1764053807"
-            alt="Account"
+            src="{% render 'region--content', key: 'global.header.mobile_bar.account.icon' %}"
+            alt="{% render 'region--content', key: 'global.header.mobile_bar.account.alt' %}"
             class="nav-icon-img">
         </div>
       </div>
@@ -466,8 +466,8 @@
       <div class="mobile-nav-item">
         <div class="mobile-nav-icon" id="mobileSearchTrigger">
           <img
-            src="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Vector_5.png?v=1767880379"
-            alt="Search"
+            src="{% render 'region--content', key: 'global.header.mobile_bar.search.icon' %}"
+            alt="{% render 'region--content', key: 'global.header.mobile_bar.search.alt' %}"
             class="nav-icon-img">
         </div>
       </div>
@@ -518,7 +518,7 @@
     <!-- Mobile Menu Drawer - HARDCODED MENU STRUCTURE -->
     <div class="mobile-menu-drawer" id="mobileMenuDrawer">
       <div class="mobile-menu-header">
-        <div class="menu-drawer-title ui-label" style="margin: 0; font-family: var(--font-body);">Menu</div>
+        <div class="menu-drawer-title ui-label" style="margin: 0; font-family: var(--font-body);">{% render 'region--content', key: 'global.header.mobile_menu.title' %}</div>
         <button class="mobile-menu-close" id="mobileMenuClose">
           <svg viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor">
             <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -530,7 +530,7 @@
         <!-- SHOP - WITH DROPDOWN -->
         <div class="mobile-menu-item-wrapper">
           <div class="mobile-menu-item-header">
-            <a href="/collections/shop" class="mobile-menu-item">SHOP</a>
+            <a href="{% render 'region--content', key: 'global.header.mobile_menu.shop.link' %}" class="mobile-menu-item">{% render 'region--content', key: 'global.header.mobile_menu.shop.label' %}</a>
             <button class="mobile-menu-toggle" onclick="toggleMobileSubmenu(this)">
               <svg
                 viewBox="0 0 24 24"
@@ -546,91 +546,91 @@
           <div class="mobile-submenu">
             <!-- Shop All Section -->
             <div class="mobile-submenu-section">
-              <a href="/collections/shop" class="mobile-submenu-item">
+              <a href="{% render 'region--content', key: 'global.header.mobile_menu.shop.shop_all.link' %}" class="mobile-submenu-item">
                 <div class="mobile-submenu-icon">
                   <img
-                    src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Website_-_Shop_All_b5e05bba-d8ae-4641-b9e5-449348c1b35d.webp?v=1772787990"
-                    alt="All Perfumes">
+                    src="{% render 'region--content', key: 'global.header.mobile_menu.shop.shop_all.image' %}"
+                    alt="{% render 'region--content', key: 'global.header.mobile_menu.shop.shop_all.image_alt' %}">
                 </div>
-                <span>Shop All</span>
+                <span>{% render 'region--content', key: 'global.header.mobile_menu.shop.shop_all.label' %}</span>
               </a>
             </div>
 
             <!-- Shop by Gender Section -->
-            <div class="mobile-submenu-section-title">FRAGRANCES FOR</div>
+            <div class="mobile-submenu-section-title">{% render 'region--content', key: 'global.header.mobile_menu.shop.fragrances_for.title' %}</div>
             <div class="mobile-submenu-section">
-              <a href="/collections/women" class="mobile-submenu-item">
+              <a href="{% render 'region--content', key: 'global.header.mobile_menu.shop.fragrances_for.women.link' %}" class="mobile-submenu-item">
                 <div class="mobile-submenu-icon">
                   <img
-                    src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Screenshot_2025-07-01_133909_1_3.webp?v=1772788038"
-                    alt="Women">
+                    src="{% render 'region--content', key: 'global.header.mobile_menu.shop.fragrances_for.women.image' %}"
+                    alt="{% render 'region--content', key: 'global.header.mobile_menu.shop.fragrances_for.women.image_alt' %}">
                 </div>
-                <span>Women</span>
+                <span>{% render 'region--content', key: 'global.header.mobile_menu.shop.fragrances_for.women.label' %}</span>
               </a>
-              <a href="/collections/men" class="mobile-submenu-item">
+              <a href="{% render 'region--content', key: 'global.header.mobile_menu.shop.fragrances_for.men.link' %}" class="mobile-submenu-item">
                 <div class="mobile-submenu-icon">
                   <img
-                    src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Screenshot_2025-07-01_134105_1_2.webp?v=1772788156"
-                    alt="Men">
+                    src="{% render 'region--content', key: 'global.header.mobile_menu.shop.fragrances_for.men.image' %}"
+                    alt="{% render 'region--content', key: 'global.header.mobile_menu.shop.fragrances_for.men.image_alt' %}">
                 </div>
-                <span>Men</span>
+                <span>{% render 'region--content', key: 'global.header.mobile_menu.shop.fragrances_for.men.label' %}</span>
               </a>
-              <a href="/collections/unisex" class="mobile-submenu-item">
+              <a href="{% render 'region--content', key: 'global.header.mobile_menu.shop.fragrances_for.unisex.link' %}" class="mobile-submenu-item">
                 <div class="mobile-submenu-icon">
                   <img
-                    src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Screenshot_2025-07-01_134204_1_1.webp?v=1772788236"
-                    alt="Unisex">
+                    src="{% render 'region--content', key: 'global.header.mobile_menu.shop.fragrances_for.unisex.image' %}"
+                    alt="{% render 'region--content', key: 'global.header.mobile_menu.shop.fragrances_for.unisex.image_alt' %}">
                 </div>
-                <span>Unisex</span>
+                <span>{% render 'region--content', key: 'global.header.mobile_menu.shop.fragrances_for.unisex.label' %}</span>
               </a>
             </div>
 
             <!-- More Ways to Shop Section -->
-            <div class="mobile-submenu-section-title">MORE WAYS TO SHOP</div>
+            <div class="mobile-submenu-section-title">{% render 'region--content', key: 'global.header.mobile_menu.shop.more_ways.title' %}</div>
             <div class="mobile-submenu-section">
-              <a href="/pages/discovery-set" class="mobile-submenu-item">
+              <a href="{% render 'region--content', key: 'global.header.mobile_menu.shop.more_ways.discovery_box.link' %}" class="mobile-submenu-item">
                 <div class="mobile-submenu-icon">
                   <img
-                    src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Website_-_Discovery_Box_01_a3d7863e-bec1-458b-babe-cdbb1f2973a5.webp?v=1772788327"
-                    alt="New Arrivals">
+                    src="{% render 'region--content', key: 'global.header.mobile_menu.shop.more_ways.discovery_box.image' %}"
+                    alt="{% render 'region--content', key: 'global.header.mobile_menu.shop.more_ways.discovery_box.image_alt' %}">
                 </div>
-                <span>Discovery Box</span>
+                <span>{% render 'region--content', key: 'global.header.mobile_menu.shop.more_ways.discovery_box.label' %}</span>
               </a>
-              <a href="/collections/bestsellers" class="mobile-submenu-item">
+              <a href="{% render 'region--content', key: 'global.header.mobile_menu.shop.more_ways.bestsellers.link' %}" class="mobile-submenu-item">
                 <div class="mobile-submenu-icon">
                   <img
-                    src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Website_-_Shop_All_b5e05bba-d8ae-4641-b9e5-449348c1b35d_1.webp?v=1772788391"
-                    alt="Bestsellers">
+                    src="{% render 'region--content', key: 'global.header.mobile_menu.shop.more_ways.bestsellers.image' %}"
+                    alt="{% render 'region--content', key: 'global.header.mobile_menu.shop.more_ways.bestsellers.image_alt' %}">
                 </div>
-                <span>Bestsellers</span>
+                <span>{% render 'region--content', key: 'global.header.mobile_menu.shop.more_ways.bestsellers.label' %}</span>
               </a>
-              <a href="/pages/scent-notes" class="mobile-submenu-item">
+              <a href="{% render 'region--content', key: 'global.header.mobile_menu.shop.more_ways.notes_seasons.link' %}" class="mobile-submenu-item">
                 <div class="mobile-submenu-icon">
                   <img
-                    src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/ScentSpired_-_Scent_Notes_01_-_Banner.webp?v=1772788464"
-                    alt="Scent Families">
+                    src="{% render 'region--content', key: 'global.header.mobile_menu.shop.more_ways.notes_seasons.image' %}"
+                    alt="{% render 'region--content', key: 'global.header.mobile_menu.shop.more_ways.notes_seasons.image_alt' %}">
                 </div>
-                <span>Notes/Seasons</span>
+                <span>{% render 'region--content', key: 'global.header.mobile_menu.shop.more_ways.notes_seasons.label' %}</span>
               </a>
             </div>
 
-            <div class="mobile-submenu-section-title">BUNDLES</div>
+            <div class="mobile-submenu-section-title">{% render 'region--content', key: 'global.header.mobile_menu.shop.bundles.title' %}</div>
             <div class="mobile-submenu-section">
-              <a href="/pages/trio" class="mobile-submenu-item">
+              <a href="{% render 'region--content', key: 'global.header.mobile_menu.shop.bundles.signature_trio.link' %}" class="mobile-submenu-item">
                 <div class="mobile-submenu-icon">
                   <img
-                    src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/M5_2.webp?v=1772788511"
-                    alt="All Perfumes">
+                    src="{% render 'region--content', key: 'global.header.mobile_menu.shop.bundles.signature_trio.image' %}"
+                    alt="{% render 'region--content', key: 'global.header.mobile_menu.shop.bundles.signature_trio.image_alt' %}">
                 </div>
-                <span>The Signature Trio</span>
+                <span>{% render 'region--content', key: 'global.header.mobile_menu.shop.bundles.signature_trio.label' %}</span>
               </a>
-              <a href="/pages/fifer-box" class="mobile-submenu-item">
+              <a href="{% render 'region--content', key: 'global.header.mobile_menu.shop.bundles.five_favourites.link' %}" class="mobile-submenu-item">
                 <div class="mobile-submenu-icon">
                   <img
-                    src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/2_1ae5ba53-2d4a-4517-8adc-50a5facd4758_2.webp?v=1772788554"
-                    alt="All Perfumes">
+                    src="{% render 'region--content', key: 'global.header.mobile_menu.shop.bundles.five_favourites.image' %}"
+                    alt="{% render 'region--content', key: 'global.header.mobile_menu.shop.bundles.five_favourites.image_alt' %}">
                 </div>
-                <span>The Five Favourites</span>
+                <span>{% render 'region--content', key: 'global.header.mobile_menu.shop.bundles.five_favourites.label' %}</span>
               </a>
             </div>
           </div>
@@ -639,33 +639,33 @@
         <!-- FIND YOUR SCENT - NO DROPDOWN -->
         <div class="mobile-menu-item-wrapper">
           <div class="mobile-menu-item-header">
-            <a href="/collections/shop" class="mobile-menu-item">FIND YOUR SCENT</a>
+            <a href="{% render 'region--content', key: 'global.header.mobile_menu.find_your_scent.link' %}" class="mobile-menu-item">{% render 'region--content', key: 'global.header.mobile_menu.find_your_scent.label' %}</a>
           </div>
         </div>
 
         <!-- ABOUT US - NO DROPDOWN -->
         <div class="mobile-menu-item-wrapper">
           <div class="mobile-menu-item-header">
-            <a href="/pages/about-us" class="mobile-menu-item">ABOUT US</a>
+            <a href="{% render 'region--content', key: 'global.header.mobile_menu.about_us.link' %}" class="mobile-menu-item">{% render 'region--content', key: 'global.header.mobile_menu.about_us.label' %}</a>
           </div>
         </div>
 
         <!-- SCENT FAMILIES - NO DROPDOWN -->
         <div class="mobile-menu-item-wrapper">
           <div class="mobile-menu-item-header">
-            <a href="/pages/scent-notes" class="mobile-menu-item">SCENT NOTES</a>
+            <a href="{% render 'region--content', key: 'global.header.mobile_menu.scent_notes.link' %}" class="mobile-menu-item">{% render 'region--content', key: 'global.header.mobile_menu.scent_notes.label' %}</a>
           </div>
         </div>
 
         <div class="mobile-menu-item-wrapper">
           <div class="mobile-menu-item-header">
-            <a href="/pages/discovery-set" class="mobile-menu-item">DISCOVERY BOX</a>
+            <a href="{% render 'region--content', key: 'global.header.mobile_menu.discovery_box.link' %}" class="mobile-menu-item">{% render 'region--content', key: 'global.header.mobile_menu.discovery_box.label' %}</a>
           </div>
         </div>
 
         <div class="mobile-menu-item-wrapper">
           <div class="mobile-menu-item-header">
-            <a href="#" class="mobile-menu-item">BUNDLES</a>
+            <a href="#" class="mobile-menu-item">{% render 'region--content', key: 'global.header.mobile_menu.bundles.label' %}</a>
             <button class="mobile-menu-toggle" onclick="toggleMobileSubmenu(this)">
               <svg
                 viewBox="0 0 24 24"
@@ -681,21 +681,21 @@
           <div class="mobile-submenu">
             <!-- Shop All Section -->
             <div class="mobile-submenu-section">
-              <a href="/pages/trio" class="mobile-submenu-item">
+              <a href="{% render 'region--content', key: 'global.header.mobile_menu.bundles.signature_trio.link' %}" class="mobile-submenu-item">
                 <div class="mobile-submenu-icon">
                   <img
-                    src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/M5_2.webp?v=1772788511"
-                    alt="All Perfumes">
+                    src="{% render 'region--content', key: 'global.header.mobile_menu.bundles.signature_trio.image' %}"
+                    alt="{% render 'region--content', key: 'global.header.mobile_menu.bundles.signature_trio.image_alt' %}">
                 </div>
-                <span>The Signature Trio</span>
+                <span>{% render 'region--content', key: 'global.header.mobile_menu.bundles.signature_trio.label' %}</span>
               </a>
-              <a href="/pages/fifer-box" class="mobile-submenu-item">
+              <a href="{% render 'region--content', key: 'global.header.mobile_menu.bundles.five_favourites.link' %}" class="mobile-submenu-item">
                 <div class="mobile-submenu-icon">
                   <img
-                    src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/2_1ae5ba53-2d4a-4517-8adc-50a5facd4758_2.webp?v=1772788554"
-                    alt="All Perfumes">
+                    src="{% render 'region--content', key: 'global.header.mobile_menu.bundles.five_favourites.image' %}"
+                    alt="{% render 'region--content', key: 'global.header.mobile_menu.bundles.five_favourites.image_alt' %}">
                 </div>
-                <span>The Five Favourites</span>
+                <span>{% render 'region--content', key: 'global.header.mobile_menu.bundles.five_favourites.label' %}</span>
               </a>
             </div>
           </div>
@@ -727,7 +727,7 @@
         <input
           type="text"
           id="customSearchInput"
-          placeholder="Search scents, brands, ingredients"
+          placeholder="{% render 'region--content', key: 'global.header.search.placeholder' %}"
           class="custom-search-input">
         <button id="customCloseBtn" class="custom-close-btn">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -751,7 +751,7 @@
       <div id="customSearchResults" class="custom-search-results">
         <div class="custom-search-results-header">
           <div class="custom-search-results-count" id="searchResultsCount">
-            See All Results for "<span id="searchTerm"></span>" (0)
+            {% render 'region--content', key: 'global.header.search.see_all_results' %} "<span id="searchTerm"></span>" (0)
           </div>
         </div>
         <div class="custom-search-results-grid" id="searchResultsGrid"></div>
@@ -759,12 +759,12 @@
 
       <!-- Loading State -->
       <div id="customSearchLoading" class="custom-search-loading">
-        <p>Searching...</p>
+        <p>{% render 'region--content', key: 'global.header.search.searching' %}</p>
       </div>
 
       <!-- No Results State -->
       <div id="customSearchNoResults" class="custom-search-no-results">
-        <p>No products found. Try a different search term.</p>
+        <p>{% render 'region--content', key: 'global.header.search.no_results' %}</p>
       </div>
 
       <!-- Main Content -->
@@ -779,12 +779,12 @@
                   <circle cx="12" cy="12" r="10"></circle>
                   <polyline points="12,6 12,12 16,14"></polyline>
                 </svg>
-                <div class="search-recent-title ui-label">Recent Searches</div>
+                <div class="search-recent-title ui-label">{% render 'region--content', key: 'global.header.search.recent_title' %}</div>
               </div>
             </div>
             <div class="custom-pill-container" id="customRecentSearches">
-              <button class="custom-pill" onclick="customSearchOverlay.handlePillClick('Amber')">Amber</button>
-              <button class="custom-pill" onclick="customSearchOverlay.handlePillClick('Women')">Women</button>
+              <button class="custom-pill" onclick="customSearchOverlay.handlePillClick('{% render 'region--content', key: 'global.header.search.suggested_pills.first', js: true %}')">{% render 'region--content', key: 'global.header.search.suggested_pills.first' %}</button>
+              <button class="custom-pill" onclick="customSearchOverlay.handlePillClick('{% render 'region--content', key: 'global.header.search.suggested_pills.second', js: true %}')">{% render 'region--content', key: 'global.header.search.suggested_pills.second' %}</button>
             </div>
           </div>
 
@@ -799,7 +799,7 @@
                   <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
                   <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                 </svg>
-                <h3>Gender</h3>
+                <h3>{% render 'region--content', key: 'global.header.search.filters.gender' %}</h3>
               </div>
               <div class="custom-nav-arrows" style="display:none !important;">
                 <button class="custom-nav-arrow" id="customGenderPrev">
@@ -825,7 +825,7 @@
                   <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
                   <line x1="7" y1="7" x2="7.01" y2="7"></line>
                 </svg>
-                <h3>Inspired By</h3>
+                <h3>{% render 'region--content', key: 'global.header.search.filters.inspired_by' %}</h3>
               </div>
               <div class="custom-nav-arrows">
                 <button class="custom-nav-arrow" id="customBrandsPrev">
@@ -851,7 +851,7 @@
                   <polyline points="23,6 13.5,15.5 8.5,10.5 1,18"></polyline>
                   <polyline points="17,6 23,6 23,12"></polyline>
                 </svg>
-                <h3>Scent Families</h3>
+                <h3>{% render 'region--content', key: 'global.header.search.filters.scent_families' %}</h3>
               </div>
               <div class="custom-nav-arrows" style="display:none !important;">
                 <button class="custom-nav-arrow" id="customTrendingPrev">
@@ -879,7 +879,7 @@
                   <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
                   <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                 </svg>
-                <h3>Scent Notes</h3>
+                <h3>{% render 'region--content', key: 'global.header.search.filters.scent_notes' %}</h3>
               </div>
               <div class="custom-nav-arrows">
                 <button class="custom-nav-arrow" id="customScentNotesPrev">
@@ -907,7 +907,7 @@
                 <svg class="custom-section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon>
                 </svg>
-                <h3>Most Popular Products</h3>
+                <h3>{% render 'region--content', key: 'global.header.search.popular_products_title' %}</h3>
               </div>
               <div class="custom-nav-arrows">
                 <button class="custom-nav-arrow" id="customProductsPrev">
@@ -933,7 +933,7 @@
 
       <!-- Collections Section - Full Width -->
       <div class="custom-collections-section" id="customCollectionsSection">
-        <h3>Shop By Season</h3>
+        <h3>{% render 'region--content', key: 'global.header.search.shop_by_season_title' %}</h3>
         <div class="custom-collections-grid" id="customCollectionsGrid"></div>
       </div>
     </div>

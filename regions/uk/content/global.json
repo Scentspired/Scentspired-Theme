@@ -52,5 +52,141 @@
       "brand_fallback": "Dossier Perfumes"
     },
     "checkout_button": "GO TO CHECKOUT"
+  },
+  "header": {
+    "mobile_bar": {
+      "menu": {
+        "icon": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/hd-black-menu-burger-icon-transparent-background-701751695037028szh5wywnpo-removebg-preview.png?v=1770049325",
+        "alt": "Menu"
+      },
+      "account": {
+        "icon": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Vector_1.svg?v=1764053807",
+        "alt": "Account"
+      },
+      "search": {
+        "icon": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Vector_5.png?v=1767880379",
+        "alt": "Search"
+      }
+    },
+    "mobile_menu": {
+      "title": "Menu",
+      "shop": {
+        "label": "SHOP",
+        "link": "/collections/shop",
+        "shop_all": {
+          "label": "Shop All",
+          "link": "/collections/shop",
+          "image": "https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Website_-_Shop_All_b5e05bba-d8ae-4641-b9e5-449348c1b35d.webp?v=1772787990",
+          "image_alt": "All Perfumes"
+        },
+        "fragrances_for": {
+          "title": "FRAGRANCES FOR",
+          "women": {
+            "label": "Women",
+            "link": "/collections/women",
+            "image": "https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Screenshot_2025-07-01_133909_1_3.webp?v=1772788038",
+            "image_alt": "Women"
+          },
+          "men": {
+            "label": "Men",
+            "link": "/collections/men",
+            "image": "https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Screenshot_2025-07-01_134105_1_2.webp?v=1772788156",
+            "image_alt": "Men"
+          },
+          "unisex": {
+            "label": "Unisex",
+            "link": "/collections/unisex",
+            "image": "https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Screenshot_2025-07-01_134204_1_1.webp?v=1772788236",
+            "image_alt": "Unisex"
+          }
+        },
+        "more_ways": {
+          "title": "MORE WAYS TO SHOP",
+          "discovery_box": {
+            "label": "Discovery Box",
+            "link": "/pages/discovery-set",
+            "image": "https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Website_-_Discovery_Box_01_a3d7863e-bec1-458b-babe-cdbb1f2973a5.webp?v=1772788327",
+            "image_alt": "New Arrivals"
+          },
+          "bestsellers": {
+            "label": "Bestsellers",
+            "link": "/collections/bestsellers",
+            "image": "https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Website_-_Shop_All_b5e05bba-d8ae-4641-b9e5-449348c1b35d_1.webp?v=1772788391",
+            "image_alt": "Bestsellers"
+          },
+          "notes_seasons": {
+            "label": "Notes/Seasons",
+            "link": "/pages/scent-notes",
+            "image": "https://cdn.shopify.com/s/files/1/0997/3714/1593/files/ScentSpired_-_Scent_Notes_01_-_Banner.webp?v=1772788464",
+            "image_alt": "Scent Families"
+          }
+        },
+        "bundles": {
+          "title": "BUNDLES",
+          "signature_trio": {
+            "label": "The Signature Trio",
+            "link": "/pages/trio",
+            "image": "https://cdn.shopify.com/s/files/1/0997/3714/1593/files/M5_2.webp?v=1772788511",
+            "image_alt": "All Perfumes"
+          },
+          "five_favourites": {
+            "label": "The Five Favourites",
+            "link": "/pages/fifer-box",
+            "image": "https://cdn.shopify.com/s/files/1/0997/3714/1593/files/2_1ae5ba53-2d4a-4517-8adc-50a5facd4758_2.webp?v=1772788554",
+            "image_alt": "All Perfumes"
+          }
+        }
+      },
+      "find_your_scent": {
+        "label": "FIND YOUR SCENT",
+        "link": "/collections/shop"
+      },
+      "about_us": {
+        "label": "ABOUT US",
+        "link": "/pages/about-us"
+      },
+      "scent_notes": {
+        "label": "SCENT NOTES",
+        "link": "/pages/scent-notes"
+      },
+      "discovery_box": {
+        "label": "DISCOVERY BOX",
+        "link": "/pages/discovery-set"
+      },
+      "bundles": {
+        "label": "BUNDLES",
+        "signature_trio": {
+          "label": "The Signature Trio",
+          "link": "/pages/trio",
+          "image": "https://cdn.shopify.com/s/files/1/0997/3714/1593/files/M5_2.webp?v=1772788511",
+          "image_alt": "All Perfumes"
+        },
+        "five_favourites": {
+          "label": "The Five Favourites",
+          "link": "/pages/fifer-box",
+          "image": "https://cdn.shopify.com/s/files/1/0997/3714/1593/files/2_1ae5ba53-2d4a-4517-8adc-50a5facd4758_2.webp?v=1772788554",
+          "image_alt": "All Perfumes"
+        }
+      }
+    },
+    "search": {
+      "placeholder": "Search scents, brands, ingredients",
+      "see_all_results": "See All Results for",
+      "searching": "Searching...",
+      "no_results": "No products found. Try a different search term.",
+      "recent_title": "Recent Searches",
+      "filters": {
+        "gender": "Gender",
+        "inspired_by": "Inspired By",
+        "scent_families": "Scent Families",
+        "scent_notes": "Scent Notes"
+      },
+      "popular_products_title": "Most Popular Products",
+      "shop_by_season_title": "Shop By Season",
+      "suggested_pills": {
+        "first": "Amber",
+        "second": "Women"
+      }
+    }
   }
 }

@@ -297,11 +297,11 @@
     "ids": 0
   },
   "sections/header.liquid": {
-    "total": 176,
-    "text": 113,
+    "total": 98,
+    "text": 65,
     "js-text": 0,
-    "media": 30,
-    "links": 33,
+    "media": 16,
+    "links": 17,
     "fallback": 0,
     "ids": 0
   },

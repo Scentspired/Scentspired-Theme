@@ -72,6 +72,9 @@ function protectedRanges(text) {
   add(/\{%-?\s*comment\s*-?%\}[\s\S]*?\{%-?\s*endcomment\s*-?%\}/g);
   add(/<style[^>]*>[\s\S]*?<\/style>/g);
   add(/\{%-?\s*style\s*-?%\}[\s\S]*?\{%-?\s*endstyle\s*-?%\}/g);
+  // Shopify bundles {% javascript %} into a shared asset: Liquid never runs
+  // there, so a region lookup placed inside would print literally.
+  add(/\{%-?\s*javascript\s*-?%\}[\s\S]*?\{%-?\s*endjavascript\s*-?%\}/g);
   add(/<!--[\s\S]*?-->/g);
   add(/\{\{[\s\S]*?\}\}/g);
   add(/\{%[\s\S]*?%\}/g);
@@ -90,7 +93,17 @@ const inside = (ranges, i) => ranges.some(([a, b]) => i >= a && i < b);
  * a label on the page but a comparison in the script (activeSize === '50ml'),
  * and replacing that would break size selection.
  */
-const spec = (v) => (typeof v === 'string' ? { text: v, only: null } : { text: v && v.text, only: v && v.only });
+/*
+ * { "lines": [553, 603] } limits a value to occurrences on those lines of the
+ * file as it is before this run. Lines never shift, because no replacement adds
+ * or removes a newline. Needed when one text is reused for different things —
+ * the header gives three different images the same alt "All Perfumes", and each
+ * should be its own regional value.
+ */
+const spec = (v) =>
+  typeof v === 'string'
+    ? { text: v, only: null, lines: null }
+    : { text: v && v.text, only: v && v.only, lines: (v && v.lines) || null };
 const valueOf = (v) => spec(v).text;
 
 // Longest texts first, so "View Account" is placed before a bare "Account".
@@ -98,7 +111,9 @@ const entries = Object.entries(map.values).sort((a, b) => valueOf(b[1]).length -
 const report = [];
 
 for (const [field, raw] of entries) {
-  const { text, only } = spec(raw);
+  const { text, only, lines } = spec(raw);
+  const lineOf = (i) => src.slice(0, i).split('\n').length;
+  const onLine = (i) => !lines || lines.includes(lineOf(i));
   if (only && !['markup', 'attr', 'js'].includes(only)) fail(`values["${field}"].only must be markup, attr or js`);
   const allow = (ctx) => !only || only === ctx;
   if (typeof text !== 'string' || !text.length) fail(`values["${field}"] must be the exact text in ${FILE}`);
@@ -115,19 +130,19 @@ for (const [field, raw] of entries) {
     for (const m of body.matchAll(new RegExp(`(['"])${t}\\1`, 'g'))) {
       const s = a + m.index;
       if (inside(prot, s)) continue;
-      edits.push([s + 1, s + 1 + text.length, tag(field, true)]);
+      if (onLine(s + 1)) edits.push([s + 1, s + 1 + text.length, tag(field, true)]);
     }
     for (const m of body.matchAll(new RegExp(`>(\\s*)${t}(\\s*)<`, 'g'))) {
       const s = a + m.index + 1 + m[1].length;
       if (inside(prot, s)) continue;
-      edits.push([s, s + text.length, tag(field, true)]);
+      if (onLine(s)) edits.push([s, s + text.length, tag(field, true)]);
     }
   }
   // Attributes a shopper sees or follows.
   for (const m of allow('attr') ? src.matchAll(new RegExp(`\\s(?:alt|title|placeholder|aria-label|href|src|value|content|data-[\\w-]+)=(["'])${t}\\1`, 'g')) : []) {
     const s = m.index + m[0].length - 1 - text.length;
     if (inside(prot, m.index) || inside(scripts, m.index)) continue;
-    edits.push([s, s + text.length, tag(field, false)]);
+    if (onLine(s)) edits.push([s, s + text.length, tag(field, false)]);
   }
   // Visible text between tags.
   for (const m of allow('markup') ? src.matchAll(new RegExp(t, 'g')) : []) {
@@ -139,7 +154,7 @@ for (const [field, raw] of entries) {
     const close = src.lastIndexOf('>', s);
     if (before > close) continue; // inside an HTML tag (attributes handled above)
     if (!boundary(s, e)) continue;
-    edits.push([s, e, tag(field, false)]);
+    if (onLine(s)) edits.push([s, e, tag(field, false)]);
   }
 
   if (!edits.length) fail(`"${text}" (${field}) not found as content in ${FILE}`);
