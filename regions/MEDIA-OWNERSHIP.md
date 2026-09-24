@@ -59,7 +59,6 @@ whichever store's library they name.
 | 5 | `layout/theme.liquid` |
 | 3 | `sections/luxury-product-showcase.liquid` |
 | 3 | `sections/main-collection-product-grid.liquid` |
-| 3 | `blocks/bundle--builder.liquid` |
 | 3 | `sections/product-info-tab.liquid` |
 | 2 | `sections/bundlediscovery.liquid` |
 | 2 | `sections/contact-section.liquid` |
@@ -70,8 +69,6 @@ whichever store's library they name.
 | 2 | `sections/hero-section.liquid` |
 | 1 | `sections/dual-slider.liquid` |
 | 1 | `snippets/product-variant-hover.liquid` |
-| 1 | `sections/ecom-default-template-quickview.liquid` |
-| 1 | `snippets/pf-password-css.liquid` |
 | 1 | `snippets/region--active.liquid` |
 
 ## Note on the two heaviest files

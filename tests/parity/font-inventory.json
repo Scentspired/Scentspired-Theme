@@ -246,68 +246,6 @@
   ".slot-price { font-size: 15px }",
   ".slot-price { font-weight: 600 }"
  ],
- "assets\\bundle--builder.css": [
-  ".add-button { font-family: ppmori regular, sans-serif }",
-  ".add-button { font-size: 36px }",
-  ".add-button { line-height: 1 }",
-  ".add-to-bundle-btn { font-family: ppmori regular, sans-serif }",
-  ".add-to-bundle-btn { font-size: 11px }",
-  ".add-to-bundle-btn { font-weight: 700 }",
-  ".badge { font-family: ppmori regular, sans-serif }",
-  ".badge { font-size: 10px }",
-  ".badge { font-weight: 600 }",
-  ".bundle-builder-section { font-family: ppmori regular, sans-serif }",
-  ".bundle-description { font-family: ppmori regular, sans-serif }",
-  ".bundle-description { font-size: 16px }",
-  ".bundle-description { line-height: 1.4 }",
-  ".bundle-product-name { font-family: ppmori regular, sans-serif }",
-  ".bundle-product-name { font-size: 11px }",
-  ".bundle-product-name { font-size: 9px }",
-  ".bundle-product-name { font-weight: 500 }",
-  ".bundle-product-name { font-weight: 500 }",
-  ".bundle-product-name { line-height: 1.2 }",
-  ".bundle-product-name { line-height: 1.3 }",
-  ".bundle-title { font-family: ppmori regular, sans-serif }",
-  ".bundle-title { font-size: 36px }",
-  ".bundle-title { font-size: 48px }",
-  ".bundle-title { font-weight: 300 }",
-  ".bundle-title { line-height: 1 }",
-  ".checkout-button { font-family: ppmori regular, sans-serif }",
-  ".checkout-button { font-size: 14px }",
-  ".checkout-button { font-weight: 700 }",
-  ".filter-tab { font-family: ppmori regular, sans-serif }",
-  ".filter-tab { font-size: 13px }",
-  ".filter-tab { font-weight: 500 }",
-  ".initial-price-row { font-family: ppmori regular, sans-serif }",
-  ".initial-price-row { font-size: 14px }",
-  ".initial-price-row { font-weight: 600 }",
-  ".product-price-overlay { font-family: ppmori regular, sans-serif }",
-  ".product-price-overlay { font-size: 16px }",
-  ".product-price-overlay { font-weight: 300 }",
-  ".product-subtitle { font-family: ppmori regular, sans-serif }",
-  ".product-subtitle { font-size: 11px }",
-  ".product-subtitle { line-height: 1.3 }",
-  ".product-title { font-family: ppmori regular, sans-serif }",
-  ".product-title { font-size: 14px }",
-  ".product-title { font-weight: 300 }",
-  ".product-title { line-height: 1.2 }",
-  ".remove-item { font-family: ppmori regular, sans-serif }",
-  ".remove-item { font-size: 14px }",
-  ".review-count { font-family: ppmori regular, sans-serif }",
-  ".review-count { font-size: 11px }",
-  ".savings-text { font-family: ppmori regular, sans-serif }",
-  ".savings-text { font-size: 12px }",
-  ".search-input { font-family: ppmori regular, sans-serif }",
-  ".search-input { font-size: 13px }",
-  ".slot-number { font-family: ppmori regular, sans-serif }",
-  ".slot-number { font-size: 24px }",
-  ".slot-number { font-weight: 300 }",
-  ".star { font-size: 20px }",
-  ".stars { font-size: 20px }",
-  ".subtotal-row { font-family: ppmori regular, sans-serif }",
-  ".subtotal-row { font-size: 14px }",
-  ".subtotal-row { font-weight: 600 }"
- ],
  "assets\\bundle--collection.css": [
   ".arrow-btn { font-size: 20px }",
   ".collection-button { font-family: ppmori regular, sans-serif }",
@@ -774,25 +712,6 @@
   ".variant-option-btn { font-size: 11px }",
   ".variant-option-btn { font-weight: 400 }"
  ],
- "assets\\catalog--mobile-showcase.css": [
-  ".dropdown-button { font-size: 2.5rem }",
-  ".dropdown-button { font-weight: 300 }",
-  ".dropdown-item { font-size: 1.25rem }",
-  ".inspired-range { font-size: 0.875rem }",
-  ".inspired-range { font-weight: 500 }",
-  ".inspired-range { letter-spacing: 0.1em }",
-  ".product-price { font-size: 1.25rem }",
-  ".product-price { font-weight: 600 }",
-  ".product-subtitle { font-size: 0.75rem }",
-  ".product-subtitle { line-height: 1.3 }",
-  ".product-title { font-size: 0.875rem }",
-  ".product-title { font-weight: 600 }",
-  ".product-title { line-height: 1.3 }",
-  ".shop-button { font-size: 0.875rem }",
-  ".shop-button { font-weight: 600 }",
-  ".shop-button { letter-spacing: 0.05em }",
-  ".star { font-size: 0.875rem }"
- ],
  "assets\\catalog--product-custom.css": [
   "#psQuantityDisplay { font-size: 16px }",
   "#psQuantityDisplay { font-weight: 600 }",
@@ -911,31 +830,6 @@
  "assets\\component-accordion.css": [
   ".accordion summary { line-height: 1 }"
  ],
- "assets\\component-article-card.css": [
-  ".article-card-wrapper--featured .article-card__excerpt { font-size: 16px }",
-  ".article-card-wrapper--featured .article-card__title { font-size: 22px }",
-  ".article-card-wrapper--featured .article-card__title { font-size: 28px }",
-  ".article-card__author { font-weight: 600 }",
-  ".article-card__category { font-family: sans-serif }",
-  ".article-card__category { font-size: 11px }",
-  ".article-card__category { font-weight: 600 }",
-  ".article-card__category { letter-spacing: 0.1em }",
-  ".article-card__excerpt { font-family: sans-serif }",
-  ".article-card__excerpt { font-size: 14px }",
-  ".article-card__excerpt { font-size: 15px }",
-  ".article-card__excerpt { line-height: 1.55 }",
-  ".article-card__meta { font-family: sans-serif }",
-  ".article-card__meta { font-size: 13px }",
-  ".article-card__read-more { font-family: sans-serif }",
-  ".article-card__read-more { font-size: 13px }",
-  ".article-card__read-more { font-weight: 700 }",
-  ".article-card__read-more { letter-spacing: 0.08em }",
-  ".article-card__title { font-family: georgia, serif }",
-  ".article-card__title { font-size: 18px }",
-  ".article-card__title { font-size: 20px }",
-  ".article-card__title { font-weight: 700 }",
-  ".article-card__title { line-height: 1.3 }"
- ],
  "assets\\component-card.css": [
   ".card-information .caption { letter-spacing: 0.07rem }"
  ],
@@ -961,10 +855,6 @@
  "assets\\component-collection-hero.css": [
   ".collection-hero__title + .collection-hero__description { font-size: 1.6rem }",
   ".collection-hero__title + .collection-hero__description { font-size: 1.8rem }"
- ],
- "assets\\component-complementary-products.css": [
-  ".complementary-products > .summary__title { line-height: 1 }",
-  ".complementary-products__container .price--on-sale .price-item--regular { font-size: 1.3rem }"
  ],
  "assets\\component-discounts.css": [
   ".discounts { font-size: 1.2rem }"
@@ -1003,11 +893,6 @@
   ".menu-drawer__close-button { font-size: 1.4rem }",
   ".menu-drawer__menu-item { font-size: 1.8rem }"
  ],
- "assets\\component-pickup-availability.css": [
-  ".pickup-availability-address { font-size: 1.2rem }",
-  ".pickup-availability-button { letter-spacing: 0.06rem }",
-  ".pickup-availability-variant { font-size: 1.3rem }"
- ],
  "assets\\component-predictive-search.css": [
   ".predictive-search__image { font-family: object-fit: contain }",
   ".predictive-search__item .price { font-size: 1.2rem }",
@@ -1024,11 +909,6 @@
   ".price--on-sale .price-item--regular { font-size: 1.3rem }",
   ".unit-price { font-size: 1.1rem }",
   ".unit-price { letter-spacing: 0.04rem }"
- ],
- "assets\\component-product-variant-picker.css": [
-  ".product-form__input--pill input[type=\"radio\"] + label { font-size: 1.4rem }",
-  ".product-form__input--pill input[type=\"radio\"] + label { letter-spacing: 0.1rem }",
-  ".product-form__input--pill input[type=\"radio\"] + label { line-height: 1 }"
  ],
  "assets\\component-rating.css": [
   ".rating-star { font-family: times }",
@@ -1160,16 +1040,6 @@
   ".order tfoot tr:last-of-type th { font-size: 2.2rem }",
   ":is(.account, .order) p { font-size: 1.6rem }",
   "label[for=\"AddressProvinceNew\"] { font-size: 1.4rem }"
- ],
- "assets\\ecom-predictive-search.css": [
-  ".ecom-predictive-search__heading { font-size: 14px }",
-  ".ecom-predictive-search__item { font-size: 16px }",
-  ".ecom-predictive-search__item { font-weight: 500 }",
-  ".ecom-predictive-search__item--term { font-size: 14px }",
-  ".ecom-predictive-search__item--term { font-weight: 500 }",
-  ".ecom-predictive-search__item-heading { line-height: 1 }",
-  ".ecom-predictive-search__item-price { font-size: 12px }",
-  ".ecom-predictive-search__item-query { line-height: 1.2 }"
  ],
  "assets\\editorial--blog-section.css": [
   ".prf-badge { font-family: cormorant garamond, georgia, serif }",
@@ -1600,32 +1470,6 @@
   ".video-button-rounded { font-weight: 400 }",
   ".video-button-rounded { letter-spacing: 0.5px }"
  ],
- "assets\\pf-password-css.css": [
-  ".__pf.__pf_hyqXuG0V .pf-12_ { font-family: lato }",
-  ".__pf.__pf_hyqXuG0V .pf-12_ { font-size: 20px }",
-  ".__pf.__pf_hyqXuG0V .pf-12_ { font-size: 32px }",
-  ".__pf.__pf_hyqXuG0V .pf-12_ { font-weight: 700 }",
-  ".__pf.__pf_hyqXuG0V .pf-13_ { font-weight: 700 }",
-  ".__pf.__pf_hyqXuG0V .pf-14_ { font-family: lato }",
-  ".__pf.__pf_hyqXuG0V .pf-14_ { font-size: 14px }",
-  ".__pf.__pf_hyqXuG0V .pf-14_ { font-weight: 400 }",
-  ".__pf.__pf_hyqXuG0V .pf-14_ { line-height: 1.5em }",
-  ".__pf.__pf_hyqXuG0V .pf-20_ { font-size: 16px }",
-  ".__pf.__pf_hyqXuG0V .pf-20_ { line-height: 1.5em }",
-  ".__pf.__pf_hyqXuG0V .pf-7_ { font-size: 23px }",
-  ".__pf.__pf_hyqXuG0V .pf-7_ { font-size: 32px }",
-  ".__pf.__pf_hyqXuG0V .pf-7_ { font-weight: 700 }",
-  ".__pf.__pf_hyqXuG0V .pf-9_ { font-family: lato }",
-  ".__pf.__pf_hyqXuG0V .pf-9_ { font-size: 14px }",
-  ".__pf.__pf_hyqXuG0V .pf-9_ { font-weight: 400 }",
-  ".__pf.__pf_hyqXuG0V .pf-9_ { line-height: 1.5em }",
-  ".bgYgRc button { font-size: 16px }",
-  ".bgYgRc input { font-family: inherit }",
-  ".bgYgRc input { font-size: 16px }",
-  ".bgYgRc label { font-size: 16px }",
-  ".fLWima { font-size: 14px }",
-  ".glvfXg { font-family: inherit }"
- ],
  "assets\\quantity-popover.css": [
   ".quantity-popover__info .volume-pricing-label { font-size: 1.2rem }",
   "quantity-popover volume-pricing li { font-size: 1.2rem }",
@@ -1768,43 +1612,6 @@
   ".slot-price { font-size: 15px }",
   ".slot-price { font-weight: 600 }"
  ],
- "assets\\section-footer.css": [
-  ".copyright__content { font-size: 1.1rem }",
-  ".footer-block__details-content .list-menu__item--link { font-size: 1.4rem }"
- ],
- "assets\\section-main-blog.css": [
-  ".main-blog__category-pill { font-family: sans-serif }",
-  ".main-blog__category-pill { font-size: 13px }",
-  ".main-blog__category-pill { font-weight: 600 }",
-  ".main-blog__category-pill { letter-spacing: 0.06em }",
-  ".main-blog__description { font-family: sans-serif }",
-  ".main-blog__description { font-size: 18px }",
-  ".main-blog__description { line-height: 1.6 }",
-  ".main-blog__title { font-family: georgia, serif }",
-  ".main-blog__title { font-size: 32px }",
-  ".main-blog__title { font-size: 42px }",
-  ".main-blog__title { font-weight: 700 }",
-  ".main-blog__title { letter-spacing: -0.02em }"
- ],
- "assets\\section-main-product.css": [
-  ".product-form__error-message-wrapper:not([hidden]) { font-size: 1.3rem }",
-  ".product-form__error-message-wrapper:not([hidden]) { letter-spacing: 0.04rem }",
-  ".product-form__error-message-wrapper:not([hidden]) { line-height: 1.4 }",
-  ".product-popup-modal__button { font-size: 1.6rem }",
-  ".product__description-title { font-weight: 600 }",
-  ".product__info-container .price--on-sale .price-item--regular { font-size: 1.6rem }",
-  ".recipient-checkbox { font-size: 1.6rem }",
-  ".shopify-payment-button__button { font-family: inherit }",
-  ".shopify-payment-button__button { font-size: 1.5rem }",
-  ".shopify-payment-button__button { letter-spacing: 0.1rem }",
-  ".shopify-payment-button__button--unbranded { font-size: 1.4rem }",
-  ".shopify-payment-button__button--unbranded { letter-spacing: 0.07rem }",
-  ".shopify-payment-button__more-options { font-size: 1.2rem }",
-  ".shopify-payment-button__more-options { letter-spacing: 0.05rem }"
- ],
- "assets\\section-multicolumn.css": [
-  ".multicolumn-card__info .link { font-size: inherit }"
- ],
  "assets\\section-password.css": [
   ".password-heading { font-weight: 400 }",
   ".password-link { font-size: 1.4rem }",
@@ -1900,65 +1707,7 @@
   ".gift_card__apple-wallet { line-height: 0 }",
   "body { letter-spacing: 0.07rem }"
  ],
- "blocks\\bundle--builder.liquid": [
-  "[inline] { font-size: 16px }"
- ],
- "blocks\\editorial--comparison-table.liquid": [
-  "tbody td { font-size: 13.5px }",
-  "tbody td { font-size: 15px }",
-  "tbody td { line-height: 1.5 }",
-  "tbody td:first-child { font-size: 13px }",
-  "tbody td:first-child { font-weight: 600 }",
-  "tbody td:first-child { letter-spacing: 0.04em }",
-  "tbody td:nth-child(3) { font-weight: 500 }",
-  "thead th { font-family: ppeditorialnew italic, serif }",
-  "thead th { font-size: 20px }",
-  "thead th { font-weight: 400 }",
-  "thead th { letter-spacing: 0.02em }",
-  "thead th:first-child { font-family: ppmori regular, sans-serif }",
-  "thead th:first-child { font-size: 13px }",
-  "thead th:first-child { font-weight: 500 }",
-  "thead th:first-child { letter-spacing: 0.08em }"
- ],
- "blocks\\editorial--content-2.liquid": [
-  "strong { font-weight: 700 }"
- ],
- "blocks\\editorial--content.liquid": [
-  "p { font-family: inherit }",
-  "p { font-size: inherit }",
-  "p { line-height: inherit }",
-  "strong { font-weight: 600 }",
-  "strong { font-weight: 600 }"
- ],
- "blocks\\editorial--luxury-perfume-banner-2.liquid": [
-  "[inline] { font-size: 13px }"
- ],
- "blocks\\editorial--luxury-perfume-banner-3.liquid": [
-  "[inline] { font-size: 13px }"
- ],
- "blocks\\editorial--luxury-perfume-banner-4.liquid": [
-  ".italic-text { font-family: ppeditorialnew ultralight italic, serif }"
- ],
- "blocks\\editorial--luxury-perfume-banner.liquid": [
-  ".italic-text { font-family: ppeditorialnew ultralight italic, serif }",
-  "p { font-family: inherit }",
-  "p { font-size: inherit }",
-  "p { line-height: inherit }"
- ],
- "blocks\\editorial--section.liquid": [
-  "p { font-size: inherit }",
-  "p { line-height: inherit }"
- ],
- "blocks\\editorial--text-section.liquid": [
-  "p { font-size: inherit }",
-  "p { line-height: inherit }"
- ],
  "layout\\theme.liquid": [
-  "body { font-size: 1.5rem }",
-  "body { font-size: 1.6rem }",
-  "body { letter-spacing: 0.06rem }"
- ],
- "layout\\theme.pagefly.liquid": [
   "body { font-size: 1.5rem }",
   "body { font-size: 1.6rem }",
   "body { letter-spacing: 0.06rem }"
@@ -2050,36 +1799,11 @@
   "[inline] { font-size: 12px }",
   "[inline] { font-size: 16px }"
  ],
- "sections\\editorial--blog-text-liquid.liquid": [
-  ".shopify-hardcoded-text-section-content b { font-weight: 600 }",
-  ".shopify-hardcoded-text-section-content { font-family: ppmori regular, sans-serif }",
-  ".shopify-hardcoded-text-section-content { font-size: clamp(1.0625rem, 1.25vw, 1.1875rem) }",
-  ".shopify-hardcoded-text-section-content { font-weight: 350 }",
-  ".shopify-hardcoded-text-section-content { letter-spacing: -0.01em }",
-  ".shopify-hardcoded-text-section-content { line-height: 1.85 }"
- ],
- "sections\\editorial--blog-text.liquid": [
-  ".blog-richtext--standard .blog-richtext-content { font-size: 19px }",
-  ".blog-richtext--statement .blog-richtext-content { font-size: 28px }",
-  ".blog-richtext--statement .blog-richtext-content { font-size: 52px }",
-  ".blog-richtext--statement .blog-richtext-content { line-height: 1.15 }",
-  ".blog-richtext--statement .blog-richtext-content { line-height: 1.3 }",
-  ".blog-richtext-content b { font-weight: 700 }"
- ],
  "sections\\editorial--brand-story.liquid": [
   ".story-description { font-size: 14px }",
   ".story-description { font-size: 15px }",
   ".story-heading { font-size: 24px }",
   ".story-heading { font-size: 28px }"
- ],
- "sections\\editorial--text-blog.liquid": [
-  ".shopify-hardcoded-text-section-content { font-family: ppmori regular, sans-serif }",
-  ".shopify-hardcoded-text-section-content { font-size: 20px }",
-  ".shopify-hardcoded-text-section-content { font-size: 78px }",
-  ".shopify-hardcoded-text-section-content { font-weight: 200 }",
-  ".shopify-hardcoded-text-section-content { letter-spacing: 0.02em }",
-  ".shopify-hardcoded-text-section-content { line-height: 1.6 }",
-  "strong { font-weight: 700 }"
  ],
  "sections\\editorial--text-section.liquid": [
   ".shopify-hardcoded-text-section-content { font-family: pp editorial new, serif }",
@@ -2163,9 +1887,6 @@
   ".video-text-section .text-box { font-weight: 400 }",
   ".video-text-section .text-box { line-height: 1.6 }"
  ],
- "sections\\pagefly-section.liquid": [
-  ".pf-ph { font-size: 14px }"
- ],
  "snippets\\article--part-comparison-table.liquid": [
   "tbody td { font-weight: normal }",
   "tbody td:first-child { font-weight: normal }",
@@ -2190,13 +1911,5 @@
  ],
  "snippets\\bundle--product-grid.liquid": [
   "[inline] { font-size: 25px }"
- ],
- "snippets\\catalog--variant-hover.liquid": [
-  ".hover-variant-btn { font-family: ppmori regular, sans-serif }",
-  ".hover-variant-btn { font-size: 12px }",
-  ".hover-variant-btn.active { font-weight: 600 }"
- ],
- "snippets\\ecom_theme_helper.liquid": [
-  "#ecom-toast { font-size: 17px }"
  ]
 }
