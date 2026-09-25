@@ -604,70 +604,126 @@
     },
     "scent_filter_banner": {
       "video_url": null,
-      "category_label_1": null,
-      "category_label_2": null,
-      "brand_heading_1": null,
-      "brand_collection_1": null,
-      "brand_button_url_1": null,
-      "brand_heading_2": null,
-      "brand_collection_2": null,
-      "brand_button_url_2": null,
-      "brand_heading_3": null,
-      "brand_collection_3": null,
-      "brand_button_url_3": null,
-      "brand_heading_4": null,
-      "brand_collection_4": null,
-      "brand_button_url_4": null,
-      "brand_heading_5": null,
-      "brand_collection_5": null,
-      "brand_button_url_5": null,
-      "brand_heading_6": null,
-      "brand_collection_6": null,
-      "brand_button_url_6": null,
-      "notes_heading_1": null,
-      "notes_collection_1": null,
-      "notes_button_url_1": null,
-      "notes_heading_2": null,
-      "notes_collection_2": null,
-      "notes_button_url_2": null,
-      "notes_heading_3": null,
-      "notes_collection_3": null,
-      "notes_button_url_3": null,
-      "notes_heading_4": null,
-      "notes_collection_4": null,
-      "notes_button_url_4": null,
-      "notes_heading_5": null,
-      "notes_collection_5": null,
-      "notes_button_url_5": null,
-      "notes_heading_6": null,
-      "notes_collection_6": null,
-      "notes_button_url_6": null
+      "brands_label": null,
+      "notes_label": null,
+      "brands": [
+        {
+          "heading": null,
+          "collection": null,
+          "button_url": null
+        },
+        {
+          "heading": null,
+          "collection": null,
+          "button_url": null
+        },
+        {
+          "heading": null,
+          "collection": null,
+          "button_url": null
+        },
+        {
+          "heading": null,
+          "collection": null,
+          "button_url": null
+        },
+        {
+          "heading": null,
+          "collection": null,
+          "button_url": null
+        },
+        {
+          "heading": null,
+          "collection": null,
+          "button_url": null
+        }
+      ],
+      "notes": [
+        {
+          "heading": null,
+          "collection": null,
+          "button_url": null
+        },
+        {
+          "heading": null,
+          "collection": null,
+          "button_url": null
+        },
+        {
+          "heading": null,
+          "collection": null,
+          "button_url": null
+        },
+        {
+          "heading": null,
+          "collection": null,
+          "button_url": null
+        },
+        {
+          "heading": null,
+          "collection": null,
+          "button_url": null
+        },
+        {
+          "heading": null,
+          "collection": null,
+          "button_url": null
+        }
+      ]
     },
     "mobile_video_banner": {
-      "heading_1": null,
-      "collection_1": null,
-      "heading_2": null,
-      "collection_2": null,
-      "heading_3": null,
-      "collection_3": null,
-      "heading_4": null,
-      "collection_4": null,
-      "heading_5": null,
-      "collection_5": null,
-      "heading_6": null,
-      "collection_6": null,
-      "heading_notes_1": null,
-      "collection_notes_1": null,
-      "heading_notes_2": null,
-      "collection_notes_2": null,
-      "heading_notes_3": null,
-      "collection_notes_3": null,
-      "heading_notes_4": null,
-      "collection_notes_4": null,
-      "heading_notes_5": null,
-      "collection_notes_5": null,
-      "heading_notes_6": null,
-      "collection_notes_6": null
+      "brands": [
+        {
+          "heading": null,
+          "collection": null
+        },
+        {
+          "heading": null,
+          "collection": null
+        },
+        {
+          "heading": null,
+          "collection": null
+        },
+        {
+          "heading": null,
+          "collection": null
+        },
+        {
+          "heading": null,
+          "collection": null
+        },
+        {
+          "heading": null,
+          "collection": null
+        }
+      ],
+      "notes": [
+        {
+          "heading": null,
+          "collection": null
+        },
+        {
+          "heading": null,
+          "collection": null
+        },
+        {
+          "heading": null,
+          "collection": null
+        },
+        {
+          "heading": null,
+          "collection": null
+        },
+        {
+          "heading": null,
+          "collection": null
+        },
+        {
+          "heading": null,
+          "collection": null
+        }
+      ]
     },
     "best_sellers": {
       "section_title": null,
@@ -701,15 +757,27 @@
       "subheading": null
     },
     "instagram_grid": {
-      "instagram_grid": {
-        "instagram_url": null,
-        "image_1": null,
-        "image_2": null,
-        "image_3": null,
-        "image_4": null,
-        "image_5": null,
-        "image_6": null
-      }
+      "instagram_url": null,
+      "images": [
+        {
+          "image": null
+        },
+        {
+          "image": null
+        },
+        {
+          "image": null
+        },
+        {
+          "image": null
+        },
+        {
+          "image": null
+        },
+        {
+          "image": null
+        }
+      ]
     },
     "newsletter_banner": {
       "background_image": null,
@@ -1488,96 +1556,54 @@
       "about_image": null,
       "ingredients_image": null,
       "faq_image": null,
-      "icon_1": null,
-      "icon_1_text": null,
-      "icon_2": null,
-      "icon_2_text": null,
-      "icon_3": null,
-      "icon_3_text": null,
-      "icon_4": null,
-      "icon_4_text": null,
-      "icon_5": null,
-      "icon_5_text": null,
+      "icons": [
+        {
+          "image": null,
+          "text": null
+        },
+        {
+          "image": null,
+          "text": null
+        },
+        {
+          "image": null,
+          "text": null
+        },
+        {
+          "image": null,
+          "text": null
+        },
+        {
+          "image": null,
+          "text": null
+        }
+      ],
       "usage_image": null,
-      "items": [
+      "faqs": [
         {
-          "type": null,
           "question": null,
           "answer": null
         },
         {
-          "type": null,
           "question": null,
           "answer": null
         },
         {
-          "type": null,
           "question": null,
           "answer": null
         },
         {
-          "type": null,
           "question": null,
           "answer": null
         },
         {
-          "type": null,
           "question": null,
           "answer": null
         },
         {
-          "type": null,
           "question": null,
           "answer": null,
           "shown": null
-        },
-        {
-          "type": null,
-          "ingredient_name": null,
-          "safety_rating": null,
-          "concentration": null
-        },
-        {
-          "type": null,
-          "ingredient_name": null,
-          "safety_rating": null,
-          "concentration": null
-        },
-        {
-          "type": null,
-          "ingredient_name": null,
-          "safety_rating": null,
-          "concentration": null
-        },
-        {
-          "type": null,
-          "ingredient_name": null,
-          "safety_rating": null,
-          "concentration": null
-        },
-        {
-          "type": null,
-          "ingredient_name": null,
-          "safety_rating": null,
-          "concentration": null
-        },
-        {
-          "type": null,
-          "ingredient_name": null,
-          "safety_rating": null,
-          "concentration": null
-        },
-        {
-          "type": null,
-          "ingredient_name": null,
-          "safety_rating": null,
-          "concentration": null
-        },
-        {
-          "type": null,
-          "ingredient_name": null,
-          "safety_rating": null,
-          "concentration": null
         }
       ]
     },

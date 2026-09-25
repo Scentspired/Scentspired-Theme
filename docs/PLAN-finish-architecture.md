@@ -83,9 +83,18 @@ and the header's cart count stale until reload (its script called a `Shopify.for
 nothing defines). It now asks Shopify for the re-rendered rows, totals, cart icon and
 screen-reader summary in the same request (Section Rendering API).
 
-**3. Lists that grow.** Numbered settings → blocks, filled from content lists:
-product info tabs (icons), mobile video banner (categories), scent filter banner
-(brands and notes), Instagram grid (images). HTML identical apart from block ids.
+**3. Lists that grow.** *(done)* Numbered settings became blocks filled from content
+lists; the compiler gained a typed form, `"blocks": { "brand": "@list:…brands",
+"note": "@list:…notes" }`, one list per block type. Product info tabs: `icons` (the
+per-product `custom.icon_N_*` metafields still override by position; the Highlight
+Notes fallback shows the first four) and `faqs` (the mixed `items` list held 8
+`ingredient` entries per region whose block type nothing rendered — removed).
+Scent filter banner and mobile video banner: `brands` and `notes` (plus `brands_label`
+/ `notes_label` for the two numbered labels). Instagram grid: from an AI block inside
+Shopify's `_blocks` section to its own section with an `images` list, same section
+key, its six hand-written animation delays generated per image. HTML identical apart
+from the grid's class suffix (section id instead of block id), `0.0s`/`1.0s` for
+`0s`/`1s`, and a space inside tags where `block.shopify_attributes` prints nothing.
 
 **4. One product card.** Search results (and articles without parts) use
 `card--product-carousel`; `card--product-legacy` goes. The price snippet stays for

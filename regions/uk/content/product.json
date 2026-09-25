@@ -8,96 +8,54 @@
     "about_image": "shopify://shop_images/158.jpg",
     "ingredients_image": "shopify://shop_images/Screenshot_2025-07-23_124305.png",
     "faq_image": "shopify://shop_images/Website_-_Product_About_01_70b08b11-c0b7-431c-a4e2-78f6b2dd1742.png",
-    "icon_1": "shopify://shop_images/Cruelty_Free.png",
-    "icon_1_text": "Cruelty Free",
-    "icon_2": "shopify://shop_images/Paraben_and_Phthalate_free.png",
-    "icon_2_text": "Paraben and Phthalate-free",
-    "icon_3": "shopify://shop_images/Vegan.webp",
-    "icon_3_text": "Vegan",
-    "icon_4": "shopify://shop_images/Colorant_and_UV_Filter_Free.png",
-    "icon_4_text": "Colorant and UV Filter Free",
-    "icon_5": "shopify://shop_images/Long_lasting_Extrait_Formula.png",
-    "icon_5_text": "Long lasting Extrait Formula",
-    "usage_image": null,
-    "items": [
+    "icons": [
       {
-        "type": "faq",
+        "image": "shopify://shop_images/Cruelty_Free.png",
+        "text": "Cruelty Free"
+      },
+      {
+        "image": "shopify://shop_images/Paraben_and_Phthalate_free.png",
+        "text": "Paraben and Phthalate-free"
+      },
+      {
+        "image": "shopify://shop_images/Vegan.webp",
+        "text": "Vegan"
+      },
+      {
+        "image": "shopify://shop_images/Colorant_and_UV_Filter_Free.png",
+        "text": "Colorant and UV Filter Free"
+      },
+      {
+        "image": "shopify://shop_images/Long_lasting_Extrait_Formula.png",
+        "text": "Long lasting Extrait Formula"
+      }
+    ],
+    "usage_image": null,
+    "faqs": [
+      {
         "question": "How long does this fragrance last?",
         "answer": "Our perfumes are crafted using high-quality fragrance oils with a higher oil concentration, designed for long-lasting wear. Longevity can vary based on skin type and environment, but most customers experience at least 10 hours of noticeable scent with proper application."
       },
       {
-        "type": "faq",
         "question": "Are Scentspired perfumes original, and are they similar to designer fragrances?",
         "answer": "All Scentspired perfumes are original formulations, independently crafted by our perfumers. They are inspired by iconic luxury fragrance profiles, capturing the essence and character of well-known scents while remaining distinct creations. We are not affiliated with any designer brands."
       },
       {
-        "type": "faq",
         "question": "What concentration are your perfumes?",
         "answer": "Our perfumes are formulated at a high concentration of up to 35% fragrance oils, placing them in the Eau de Parfum to Extrait-level range. This higher concentration delivers a richer scent profile, stronger projection, and longer wear compared to standard formulations."
       },
       {
-        "type": "faq",
         "question": "How should I apply the perfume for best results?",
         "answer": "We recommend applying your perfume to pulse points such as the neck, wrists, and behind the ears, where body heat helps the scent develop naturally. Avoid rubbing after application, as this can alter the fragrance structure.\nFor a lighter, all-over effect, you can also spritz the fragrance into the air and walk through it, allowing the scent to gently envelop you. Applying on moisturized skin can further enhance longevity.\nFor more application tips and techniques, you can explore our Blog section."
       },
       {
-        "type": "faq",
         "question": "Are Scentspired perfumes suitable for everyday wear?",
         "answer": "Yes. Our collection features a wide range of scent profiles from fresh and clean to warm, bold, and sensual—making them suitable for daily wear, evenings, and special occasions."
       },
       {
-        "type": "faq",
         "question": "How many times should i use this?",
         "answer": "",
         "shown": false
-      },
-      {
-        "type": "ingredient",
-        "ingredient_name": "AQUA (1)",
-        "safety_rating": "1",
-        "concentration": "35-55%"
-      },
-      {
-        "type": "ingredient",
-        "ingredient_name": "Aqua (and) Sodium Lauroyl Methyl Isethionate (and) Cocamidopropyl Betaine (and) Sodium Methyl Oleoyl Taurate (and) Lauryl Glucoside (and) Coco–Glucoside",
-        "safety_rating": "1, 1, 1, 1, 5, 1",
-        "concentration": "20% – 40%"
-      },
-      {
-        "type": "ingredient",
-        "ingredient_name": "Cocamidopropyl Betaine",
-        "safety_rating": "1 – 5",
-        "concentration": "5% – 15%"
-      },
-      {
-        "type": "ingredient",
-        "ingredient_name": "Extracts – Centella asiatica, Glycyrrhiza glabra, Curcuma longa",
-        "safety_rating": "1, 4, 1",
-        "concentration": "35% – 55%"
-      },
-      {
-        "type": "ingredient",
-        "ingredient_name": "Glycerin",
-        "safety_rating": "1",
-        "concentration": "35% – 55%"
-      },
-      {
-        "type": "ingredient",
-        "ingredient_name": "Aqua, Sodium hydroxide",
-        "safety_rating": "1, 1 – 4",
-        "concentration": "2/5% – 3%"
-      },
-      {
-        "type": "ingredient",
-        "ingredient_name": "Aqua, Sodium hydroxide",
-        "safety_rating": "1, 1 – 4",
-        "concentration": "2/5% – 3%"
-      },
-      {
-        "type": "ingredient",
-        "ingredient_name": "Aqua, Sodium hydroxide",
-        "safety_rating": "1, 1 – 4",
-        "concentration": "2/5% – 3%"
       }
     ]
   },

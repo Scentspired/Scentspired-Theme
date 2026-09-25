@@ -2,200 +2,66 @@
 {
   "name": "Scent Video Banner",
   "settings": [
-    { "type": "text", "id": "video_url", "label": "Video file URL (.mp4)" },
-    { "type": "text", "id": "category_label_1", "label": "First category label" },
-    { "type": "text", "id": "category_label_2", "label": "Second category label" },
     {
       "type": "text",
-      "id": "brand_heading_1",
-      "label": "Brand Heading 1",
-      "default": "Flowery"
-    },
-    {
-      "type": "collection",
-      "id": "brand_collection_1",
-      "label": "Collection for Brand 1"
-    },
-    {
-      "type": "url",
-      "id": "brand_button_url_1",
-      "label": "Button URL for Brand 1"
+      "id": "video_url",
+      "label": "Video file URL (.mp4)"
     },
     {
       "type": "text",
-      "id": "brand_heading_2",
-      "label": "Brand Heading 2",
-      "default": "Fresh"
-    },
-    {
-      "type": "collection",
-      "id": "brand_collection_2",
-      "label": "Collection for Brand 2"
-    },
-    {
-      "type": "url",
-      "id": "brand_button_url_2",
-      "label": "Button URL for Brand 2"
+      "id": "brands_label",
+      "label": "Brands heading",
+      "default": "Brands"
     },
     {
       "type": "text",
-      "id": "brand_heading_3",
-      "label": "Brand Heading 3",
-      "default": "(Earthy)"
+      "id": "notes_label",
+      "label": "Notes heading",
+      "default": "Notes"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "brand",
+      "name": "Brand",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "Shop button link"
+        }
+      ]
     },
     {
-      "type": "collection",
-      "id": "brand_collection_3",
-      "label": "Collection for Brand 3"
-    },
-    {
-      "type": "url",
-      "id": "brand_button_url_3",
-      "label": "Button URL for Brand 3"
-    },
-    {
-      "type": "text",
-      "id": "brand_heading_4",
-      "label": "Brand Heading 4",
-      "default": "Herbal"
-    },
-    {
-      "type": "collection",
-      "id": "brand_collection_4",
-      "label": "Collection for Brand 4"
-    },
-    {
-      "type": "url",
-      "id": "brand_button_url_4",
-      "label": "Button URL for Brand 4"
-    },
-    {
-      "type": "text",
-      "id": "brand_heading_5",
-      "label": "Brand Heading 5",
-      "default": "Warm"
-    },
-    {
-      "type": "collection",
-      "id": "brand_collection_5",
-      "label": "Collection for Brand 5"
-    },
-    {
-      "type": "url",
-      "id": "brand_button_url_5",
-      "label": "Button URL for Brand 5"
-    },
-    {
-      "type": "text",
-      "id": "brand_heading_6",
-      "label": "Brand Heading 6",
-      "default": "Tom Ford"
-    },
-    {
-      "type": "collection",
-      "id": "brand_collection_6",
-      "label": "Collection for Brand 6"
-    },
-    {
-      "type": "url",
-      "id": "brand_button_url_6",
-      "label": "Button URL for Brand 6"
-    },
-    {
-      "type": "text",
-      "id": "notes_heading_1",
-      "label": "Notes Heading 1",
-      "default": "Flowery"
-    },
-    {
-      "type": "collection",
-      "id": "notes_collection_1",
-      "label": "Collection for Notes 1"
-    },
-    {
-      "type": "url",
-      "id": "notes_button_url_1",
-      "label": "Button URL for Notes 1"
-    },
-    {
-      "type": "text",
-      "id": "notes_heading_2",
-      "label": "Notes Heading 2",
-      "default": "Fresh"
-    },
-    {
-      "type": "collection",
-      "id": "notes_collection_2",
-      "label": "Collection for Notes 2"
-    },
-    {
-      "type": "url",
-      "id": "notes_button_url_2",
-      "label": "Button URL for Notes 2"
-    },
-    {
-      "type": "text",
-      "id": "notes_heading_3",
-      "label": "Notes Heading 3",
-      "default": "Earthy"
-    },
-    {
-      "type": "collection",
-      "id": "notes_collection_3",
-      "label": "Collection for Notes 3"
-    },
-    {
-      "type": "url",
-      "id": "notes_button_url_3",
-      "label": "Button URL for Notes 3"
-    },
-    {
-      "type": "text",
-      "id": "notes_heading_4",
-      "label": "Notes Heading 4",
-      "default": "Herbal"
-    },
-    {
-      "type": "collection",
-      "id": "notes_collection_4",
-      "label": "Collection for Notes 4"
-    },
-    {
-      "type": "url",
-      "id": "notes_button_url_4",
-      "label": "Button URL for Notes 4"
-    },
-    {
-      "type": "text",
-      "id": "notes_heading_5",
-      "label": "Notes Heading 5",
-      "default": "Warm"
-    },
-    {
-      "type": "collection",
-      "id": "notes_collection_5",
-      "label": "Collection for Notes 5"
-    },
-    {
-      "type": "url",
-      "id": "notes_button_url_5",
-      "label": "Button URL for Notes 5"
-    },
-    {
-      "type": "text",
-      "id": "notes_heading_6",
-      "label": "Notes Heading 6",
-      "default": "Gourmand"
-    },
-    {
-      "type": "collection",
-      "id": "notes_collection_6",
-      "label": "Collection for Notes 6"
-    },
-    {
-      "type": "url",
-      "id": "notes_button_url_6",
-      "label": "Button URL for Notes 6"
+      "type": "note",
+      "name": "Note",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "Shop button link"
+        }
+      ]
     }
   ],
   "presets": [
@@ -219,62 +85,34 @@
 
     <div class="scent-content">
       <div class="scent-left">
+        {%- liquid
+          assign brand_blocks = section.blocks | where: 'type', 'brand'
+          assign note_blocks = section.blocks | where: 'type', 'note'
+        -%}
         <p class="scent-label">INSPIRED BY</p>
 
         <!-- Added main category headings (Brands and Notes) -->
         <div class="main-headings-container">
-          <h2 class="main-heading active-main" data-category="brands">{{ section.settings.category_label_1 }}</h2>
-          <h2 class="main-heading" data-category="notes">{{ section.settings.category_label_2 }}</h2>
+          <h2 class="main-heading active-main" data-category="brands">{{ section.settings.brands_label }}</h2>
+          <h2 class="main-heading" data-category="notes">{{ section.settings.notes_label }}</h2>
         </div>
 
         <!-- Brands inner headings -->
         <div class="inner-headings-group" data-category="brands" style="display: block;">
-          <p class="scent-heading heading-1 clickable-heading" data-index="1" data-collection="brand_collection_1">
-            {{ section.settings.brand_heading_1 }}
+          {%- for block in brand_blocks %}
+          <p class="scent-heading heading-{{ forloop.index }} clickable-heading{% if forloop.index == 3 %} active-heading{% endif %}" data-index="{{ forloop.index }}" data-collection="brand_collection_{{ forloop.index }}" {{ block.shopify_attributes }}>
+            {{ block.settings.heading }}
           </p>
-          <p class="scent-heading heading-2 clickable-heading" data-index="2" data-collection="brand_collection_2">
-            {{ section.settings.brand_heading_2 }}
-          </p>
-          <p
-            class="scent-heading heading-3 clickable-heading active-heading"
-            data-index="3"
-            data-collection="brand_collection_3">
-            {{ section.settings.brand_heading_3 }}
-          </p>
-          <p class="scent-heading heading-4 clickable-heading" data-index="4" data-collection="brand_collection_4">
-            {{ section.settings.brand_heading_4 }}
-          </p>
-          <p class="scent-heading heading-5 clickable-heading" data-index="5" data-collection="brand_collection_5">
-            {{ section.settings.brand_heading_5 }}
-          </p>
-          <p class="scent-heading heading-6 clickable-heading" data-index="6" data-collection="brand_collection_6">
-            {{ section.settings.brand_heading_6 }}
-          </p>
+          {%- endfor %}
         </div>
 
         <!-- Notes inner headings -->
         <div class="inner-headings-group" data-category="notes" style="display: none;">
-          <p class="scent-heading heading-1 clickable-heading" data-index="0" data-collection="notes_collection_1">
-            {{ section.settings.notes_heading_1 }}
+          {%- for block in note_blocks %}
+          <p class="scent-heading heading-{{ forloop.index }} clickable-heading{% if forloop.index == 3 %} active-heading{% endif %}" data-index="{{ forloop.index0 }}" data-collection="notes_collection_{{ forloop.index }}" {{ block.shopify_attributes }}>
+            {{ block.settings.heading }}
           </p>
-          <p class="scent-heading heading-2 clickable-heading" data-index="1" data-collection="notes_collection_2">
-            {{ section.settings.notes_heading_2 }}
-          </p>
-          <p
-            class="scent-heading heading-3 clickable-heading active-heading"
-            data-index="2"
-            data-collection="notes_collection_3">
-            {{ section.settings.notes_heading_3 }}
-          </p>
-          <p class="scent-heading heading-4 clickable-heading" data-index="3" data-collection="notes_collection_4">
-            {{ section.settings.notes_heading_4 }}
-          </p>
-          <p class="scent-heading heading-5 clickable-heading" data-index="4" data-collection="notes_collection_5">
-            {{ section.settings.notes_heading_5 }}
-          </p>
-          <p class="scent-heading heading-6 clickable-heading" data-index="5" data-collection="notes_collection_6">
-            {{ section.settings.notes_heading_6 }}
-          </p>
+          {%- endfor %}
         </div>
       </div>
       <div class="scent-right">
@@ -300,27 +138,20 @@
 </div>
 <script type="application/json" id="themeButtonUrls">
   {
-    "brand_1": "{{ section.settings.brand_button_url_1 }}",
-    "brand_2": "{{ section.settings.brand_button_url_2 }}",
-    "brand_3": "{{ section.settings.brand_button_url_3 }}",
-    "brand_4": "{{ section.settings.brand_button_url_4 }}",
-    "brand_5": "{{ section.settings.brand_button_url_5 }}",
-    "brand_6": "{{ section.settings.brand_button_url_6 }}",
-    "notes_1": "{{ section.settings.notes_button_url_1 }}",
-    "notes_2": "{{ section.settings.notes_button_url_2 }}",
-    "notes_3": "{{ section.settings.notes_button_url_3 }}",
-    "notes_4": "{{ section.settings.notes_button_url_4 }}",
-    "notes_5": "{{ section.settings.notes_button_url_5 }}",
-    "notes_6": "{{ section.settings.notes_button_url_6 }}"
+    {%- for block in brand_blocks %}
+    "brand_{{ forloop.index }}": "{{ block.settings.button_url }}",
+    {%- endfor %}
+    {%- for block in note_blocks %}
+    "notes_{{ forloop.index }}": "{{ block.settings.button_url }}"{% unless forloop.last %},{% endunless %}
+    {%- endfor %}
   }
 </script>
 <!-- Updated product data to include both brands and notes collections -->
 <script type="application/json" id="productData">
   {
-    {% for i in (1..6) %}
-      {% assign brand_collection_key = 'brand_collection_' | append: i %}
-      {% assign brand_collection = collections[section.settings[brand_collection_key]] %}
-      "brand_collection_{{ i }}": [
+    {% for block in brand_blocks %}
+      {% assign brand_collection = collections[block.settings.collection] %}
+      "brand_collection_{{ forloop.index }}": [
         {% for product in brand_collection.products limit: 6 %}
           {
             "id": {{ product.id }},
@@ -350,10 +181,9 @@
       ]{% unless forloop.last %},{% endunless %}
     {% endfor %}
     ,
-    {% for i in (1..6) %}
-      {% assign notes_collection_key = 'notes_collection_' | append: i %}
-      {% assign notes_collection = collections[section.settings[notes_collection_key]] %}
-      "notes_collection_{{ i }}": [
+    {% for block in note_blocks %}
+      {% assign notes_collection = collections[block.settings.collection] %}
+      "notes_collection_{{ forloop.index }}": [
         {% for product in notes_collection.products limit: 6 %}
           {
             "id": {{ product.id }},

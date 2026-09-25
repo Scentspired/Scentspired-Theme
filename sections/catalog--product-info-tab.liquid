@@ -22,61 +22,6 @@
       "type": "image_picker",
       "id": "faq_image",
       "label": "FAQ Section Image"
-    },
-    {
-      "type": "image_picker",
-      "id": "icon_1",
-      "label": "Icon 1"
-    },
-    {
-      "type": "text",
-      "id": "icon_1_text",
-      "label": "Icon 1 Text",
-      "default": "Skin Brightening"
-    },
-    {
-      "type": "image_picker",
-      "id": "icon_2",
-      "label": "Icon 2"
-    },
-    {
-      "type": "text",
-      "id": "icon_2_text",
-      "label": "Icon 2 Text",
-      "default": "Deep Cleanse"
-    },
-    {
-      "type": "image_picker",
-      "id": "icon_3",
-      "label": "Icon 3"
-    },
-    {
-      "type": "text",
-      "id": "icon_3_text",
-      "label": "Icon 3 Text",
-      "default": "Anti-Oxidant"
-    },
-    {
-      "type": "image_picker",
-      "id": "icon_4",
-      "label": "Icon 4"
-    },
-    {
-      "type": "text",
-      "id": "icon_4_text",
-      "label": "Icon 4 Text",
-      "default": "Exfoliating"
-    },
-    {
-      "type": "image_picker",
-      "id": "icon_5",
-      "label": "Icon 5"
-    },
-    {
-      "type": "text",
-      "id": "icon_5_text",
-      "label": "Icon 5 Text",
-      "default": "Vegan"
     }
   ],
   "blocks": [
@@ -97,23 +42,18 @@
       ]
     },
     {
-      "type": "ingredient",
-      "name": "Ingredient",
+      "type": "icon",
+      "name": "Icon",
       "settings": [
         {
-          "type": "text",
-          "id": "ingredient_name",
-          "label": "Ingredient Name"
+          "type": "image_picker",
+          "id": "image",
+          "label": "Icon"
         },
         {
           "type": "text",
-          "id": "safety_rating",
-          "label": "EWG Safety Rating"
-        },
-        {
-          "type": "text",
-          "id": "concentration",
-          "label": "Concentration"
+          "id": "text",
+          "label": "Text"
         }
       ]
     }
@@ -126,6 +66,7 @@
   ]
 }
 {% endschema %}
+{%- assign icon_blocks = section.blocks | where: 'type', 'icon' -%}
 
 {{ 'catalog--product-info-tab.css' | asset_url | stylesheet_tag }}
 
@@ -226,76 +167,27 @@
         Use metafield for icon images with fallback to section settings
       {%- endcomment -%}
       <div class="icon-row">
-        <div class="icon-item">
-          {% if product.metafields.custom.icon_1_image %}
-            <img src="{{ product.metafields.custom.icon_1_image | image_url }}" alt="Icon 1" width="48" height="48" loading="lazy">
-          {% elsif section.settings.icon_1 %}
-            <img src="{{ section.settings.icon_1 | image_url }}" alt="Icon 1" width="48" height="48" loading="lazy">
-          {% endif %}
-          <span>
-            {% if product.metafields.custom.icon_1_text %}
-              {{ product.metafields.custom.icon_1_text }}
-            {% else %}
-              {{ section.settings.icon_1_text }}
+        {%- for block in icon_blocks -%}
+          {%- liquid
+            assign position = forloop.index
+            assign icon_image_field = 'icon_' | append: position | append: '_image'
+            assign icon_text_field = 'icon_' | append: position | append: '_text'
+          -%}
+          <div class="icon-item" {{ block.shopify_attributes }}>
+            {% if product.metafields.custom[icon_image_field] %}
+              <img src="{{ product.metafields.custom[icon_image_field] | image_url }}" alt="Icon {{ position }}" width="48" height="48" loading="lazy">
+            {% elsif block.settings.image %}
+              <img src="{{ block.settings.image | image_url }}" alt="Icon {{ position }}" width="48" height="48" loading="lazy">
             {% endif %}
-          </span>
-        </div>
-        <div class="icon-item">
-          {% if product.metafields.custom.icon_2_image %}
-            <img src="{{ product.metafields.custom.icon_2_image | image_url }}" alt="Icon 2" width="48" height="48" loading="lazy">
-          {% elsif section.settings.icon_2 %}
-            <img src="{{ section.settings.icon_2 | image_url }}" alt="Icon 2" width="48" height="48" loading="lazy">
-          {% endif %}
-          <span>
-            {% if product.metafields.custom.icon_2_text %}
-              {{ product.metafields.custom.icon_2_text }}
-            {% else %}
-              {{ section.settings.icon_2_text }}
-            {% endif %}
-          </span>
-        </div>
-        <div class="icon-item">
-          {% if product.metafields.custom.icon_3_image %}
-            <img src="{{ product.metafields.custom.icon_3_image | image_url }}" alt="Icon 3" width="48" height="48" loading="lazy">
-          {% elsif section.settings.icon_3 %}
-            <img src="{{ section.settings.icon_3 | image_url }}" alt="Icon 3" width="48" height="48" loading="lazy">
-          {% endif %}
-          <span>
-            {% if product.metafields.custom.icon_3_text %}
-              {{ product.metafields.custom.icon_3_text }}
-            {% else %}
-              {{ section.settings.icon_3_text }}
-            {% endif %}
-          </span>
-        </div>
-        <div class="icon-item">
-          {% if product.metafields.custom.icon_4_image %}
-            <img src="{{ product.metafields.custom.icon_4_image | image_url }}" alt="Icon 4" width="48" height="48" loading="lazy">
-          {% elsif section.settings.icon_4 %}
-            <img src="{{ section.settings.icon_4 | image_url }}" alt="Icon 4" width="48" height="48" loading="lazy">
-          {% endif %}
-          <span>
-            {% if product.metafields.custom.icon_4_text %}
-              {{ product.metafields.custom.icon_4_text }}
-            {% else %}
-              {{ section.settings.icon_4_text }}
-            {% endif %}
-          </span>
-        </div>
-        <div class="icon-item">
-          {% if product.metafields.custom.icon_5_image %}
-            <img src="{{ product.metafields.custom.icon_5_image | image_url }}" alt="Icon 5" width="48" height="48" loading="lazy">
-          {% elsif section.settings.icon_5 %}
-            <img src="{{ section.settings.icon_5 | image_url }}" alt="Icon 5" width="48" height="48" loading="lazy">
-          {% endif %}
-          <span>
-            {% if product.metafields.custom.icon_5_text %}
-              {{ product.metafields.custom.icon_5_text }}
-            {% else %}
-              {{ section.settings.icon_5_text }}
-            {% endif %}
-          </span>
-        </div>
+            <span>
+              {% if product.metafields.custom[icon_text_field] %}
+                {{ product.metafields.custom[icon_text_field] }}
+              {% else %}
+                {{ block.settings.text }}
+              {% endif %}
+            </span>
+          </div>
+        {%- endfor -%}
       </div>
     </div>
   </div>
@@ -480,42 +372,17 @@
           {% endif %}
 
         {% else %}
-          {%- comment -%} Fallback: Show theme icons from section settings {%- endcomment -%}
-          {% if section.settings.icon_1 %}
-            <div class="icon-item">
-              <img src="{{ section.settings.icon_1 | image_url }}" alt="Icon 1" width="48" height="48" loading="lazy">
-              {% if section.settings.icon_1_text %}
-                <span>{{ section.settings.icon_1_text }}</span>
-              {% endif %}
-            </div>
-          {% endif %}
-
-          {% if section.settings.icon_2 %}
-            <div class="icon-item">
-              <img src="{{ section.settings.icon_2 | image_url }}" alt="Icon 2" width="48" height="48" loading="lazy">
-              {% if section.settings.icon_2_text %}
-                <span>{{ section.settings.icon_2_text }}</span>
-              {% endif %}
-            </div>
-          {% endif %}
-
-          {% if section.settings.icon_3 %}
-            <div class="icon-item">
-              <img src="{{ section.settings.icon_3 | image_url }}" alt="Icon 3" width="48" height="48" loading="lazy">
-              {% if section.settings.icon_3_text %}
-                <span>{{ section.settings.icon_3_text }}</span>
-              {% endif %}
-            </div>
-          {% endif %}
-
-          {% if section.settings.icon_4 %}
-            <div class="icon-item">
-              <img src="{{ section.settings.icon_4 | image_url }}" alt="Icon 4" width="48" height="48" loading="lazy">
-              {% if section.settings.icon_4_text %}
-                <span>{{ section.settings.icon_4_text }}</span>
-              {% endif %}
-            </div>
-          {% endif %}
+          {%- comment -%} Fallback: the first four of the section's icons {%- endcomment -%}
+          {% for block in icon_blocks limit: 4 %}
+            {% if block.settings.image %}
+              <div class="icon-item">
+                <img src="{{ block.settings.image | image_url }}" alt="Icon {{ forloop.index }}" width="48" height="48" loading="lazy">
+                {% if block.settings.text %}
+                  <span>{{ block.settings.text }}</span>
+                {% endif %}
+              </div>
+            {% endif %}
+          {% endfor %}
         {% endif %}
       </div>
     </div>
@@ -552,7 +419,8 @@
             </div>
           {% endif %}
         {% endfor %}
-        {% if section.blocks.size == 0 or section.blocks == blank %}
+        {%- assign faq_blocks = section.blocks | where: 'type', 'faq' -%}
+        {% if faq_blocks.size == 0 %}
           <div class="faq-item">
             <div class="faq-question">How many times should I use this?</div>
             <div class="faq-answer">

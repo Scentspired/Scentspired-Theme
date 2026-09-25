@@ -99,8 +99,8 @@
     "ids": 0
   },
   "sections/catalog--product-info-tab.liquid": {
-    "total": 92,
-    "text": 85,
+    "total": 78,
+    "text": 71,
     "js-text": 3,
     "media": 4,
     "links": 0,
@@ -297,6 +297,15 @@
     "ids": 0
   },
   "sections/search--results.liquid": {
+    "total": 2,
+    "text": 2,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "sections/social--instagram-grid.liquid": {
     "total": 2,
     "text": 2,
     "js-text": 0,
@@ -564,15 +573,6 @@
     "media": 0,
     "links": 1,
     "fallback": 2,
-    "ids": 0
-  },
-  "blocks/social--instagram-grid.liquid": {
-    "total": 2,
-    "text": 2,
-    "js-text": 0,
-    "media": 0,
-    "links": 0,
-    "fallback": 0,
     "ids": 0
   },
   "layout/password.liquid": {

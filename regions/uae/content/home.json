@@ -62,70 +62,126 @@
   },
   "scent_filter_banner": {
     "video_url": "https://cdn.shopify.com/videos/c/o/v/fbfe40c4c4c744f5b13cfbe4d843fe31.mp4",
-    "category_label_1": "ICONS",
-    "category_label_2": "VIBES",
-    "brand_heading_1": "Ysl",
-    "brand_collection_1": "ysl-1",
-    "brand_button_url_1": "shopify://collections/ysl-1",
-    "brand_heading_2": "Dior",
-    "brand_collection_2": "dior-1",
-    "brand_button_url_2": "shopify://collections/dior-1",
-    "brand_heading_3": "Chanel",
-    "brand_collection_3": "chanel",
-    "brand_button_url_3": "shopify://collections/chanel",
-    "brand_heading_4": "Tom Ford",
-    "brand_collection_4": "tom-ford",
-    "brand_button_url_4": "shopify://collections/tom-ford",
-    "brand_heading_5": "Louis Vuitton",
-    "brand_collection_5": "lv",
-    "brand_button_url_5": "shopify://collections/lv",
-    "brand_heading_6": "Maison Crivelli",
-    "brand_collection_6": "maison-crivelli",
-    "brand_button_url_6": "shopify://collections/maison-crivelli",
-    "notes_heading_1": "Flowery",
-    "notes_collection_1": "flowery",
-    "notes_button_url_1": "shopify://collections/flowery",
-    "notes_heading_2": "Fresh",
-    "notes_collection_2": "fresh",
-    "notes_button_url_2": "shopify://collections/fresh",
-    "notes_heading_3": "Earthy",
-    "notes_collection_3": "earthy",
-    "notes_button_url_3": "shopify://collections/earthy",
-    "notes_heading_4": "Herbal",
-    "notes_collection_4": "herbal",
-    "notes_button_url_4": "shopify://collections/herbal",
-    "notes_heading_5": "Warm",
-    "notes_collection_5": "warm",
-    "notes_button_url_5": "shopify://collections/warm",
-    "notes_heading_6": "Gourmand",
-    "notes_collection_6": "gourmand",
-    "notes_button_url_6": "shopify://collections/gourmand"
+    "brands_label": "ICONS",
+    "notes_label": "VIBES",
+    "brands": [
+      {
+        "heading": "Ysl",
+        "collection": "ysl-1",
+        "button_url": "shopify://collections/ysl-1"
+      },
+      {
+        "heading": "Dior",
+        "collection": "dior-1",
+        "button_url": "shopify://collections/dior-1"
+      },
+      {
+        "heading": "Chanel",
+        "collection": "chanel",
+        "button_url": "shopify://collections/chanel"
+      },
+      {
+        "heading": "Tom Ford",
+        "collection": "tom-ford",
+        "button_url": "shopify://collections/tom-ford"
+      },
+      {
+        "heading": "Louis Vuitton",
+        "collection": "lv",
+        "button_url": "shopify://collections/lv"
+      },
+      {
+        "heading": "Maison Crivelli",
+        "collection": "maison-crivelli",
+        "button_url": "shopify://collections/maison-crivelli"
+      }
+    ],
+    "notes": [
+      {
+        "heading": "Flowery",
+        "collection": "flowery",
+        "button_url": "shopify://collections/flowery"
+      },
+      {
+        "heading": "Fresh",
+        "collection": "fresh",
+        "button_url": "shopify://collections/fresh"
+      },
+      {
+        "heading": "Earthy",
+        "collection": "earthy",
+        "button_url": "shopify://collections/earthy"
+      },
+      {
+        "heading": "Herbal",
+        "collection": "herbal",
+        "button_url": "shopify://collections/herbal"
+      },
+      {
+        "heading": "Warm",
+        "collection": "warm",
+        "button_url": "shopify://collections/warm"
+      },
+      {
+        "heading": "Gourmand",
+        "collection": "gourmand",
+        "button_url": "shopify://collections/gourmand"
+      }
+    ]
   },
   "mobile_video_banner": {
-    "heading_1": "Chanel",
-    "collection_1": "chanel",
-    "heading_2": "Dior",
-    "collection_2": "dior-1",
-    "heading_3": "Tom Ford",
-    "collection_3": "tom-ford",
-    "heading_4": "Louis Vuitton",
-    "collection_4": "lv",
-    "heading_5": "Ysl",
-    "collection_5": "ysl-1",
-    "heading_6": "Maison Crivelli",
-    "collection_6": "maison-crivelli",
-    "heading_notes_1": "Flowery",
-    "collection_notes_1": "flowery",
-    "heading_notes_2": "Fresh",
-    "collection_notes_2": "fresh",
-    "heading_notes_3": "Earthy",
-    "collection_notes_3": "earthy",
-    "heading_notes_4": "Herbal",
-    "collection_notes_4": "herbal",
-    "heading_notes_5": "Warm",
-    "collection_notes_5": "warm",
-    "heading_notes_6": "Gourmand",
-    "collection_notes_6": "gourmand"
+    "brands": [
+      {
+        "heading": "Chanel",
+        "collection": "chanel"
+      },
+      {
+        "heading": "Dior",
+        "collection": "dior-1"
+      },
+      {
+        "heading": "Tom Ford",
+        "collection": "tom-ford"
+      },
+      {
+        "heading": "Louis Vuitton",
+        "collection": "lv"
+      },
+      {
+        "heading": "Ysl",
+        "collection": "ysl-1"
+      },
+      {
+        "heading": "Maison Crivelli",
+        "collection": "maison-crivelli"
+      }
+    ],
+    "notes": [
+      {
+        "heading": "Flowery",
+        "collection": "flowery"
+      },
+      {
+        "heading": "Fresh",
+        "collection": "fresh"
+      },
+      {
+        "heading": "Earthy",
+        "collection": "earthy"
+      },
+      {
+        "heading": "Herbal",
+        "collection": "herbal"
+      },
+      {
+        "heading": "Warm",
+        "collection": "warm"
+      },
+      {
+        "heading": "Gourmand",
+        "collection": "gourmand"
+      }
+    ]
   },
   "best_sellers": {
     "section_title": "Best Sellers",
@@ -159,15 +215,27 @@
     "subheading": "@thescentspired"
   },
   "instagram_grid": {
-    "instagram_grid": {
-      "instagram_url": "https://www.instagram.com/thescentspired/",
-      "image_1": null,
-      "image_2": null,
-      "image_3": null,
-      "image_4": null,
-      "image_5": null,
-      "image_6": null
-    }
+    "instagram_url": "https://www.instagram.com/thescentspired/",
+    "images": [
+      {
+        "image": null
+      },
+      {
+        "image": null
+      },
+      {
+        "image": null
+      },
+      {
+        "image": null
+      },
+      {
+        "image": null
+      },
+      {
+        "image": null
+      }
+    ]
   },
   "newsletter_banner": {
     "background_image": "",

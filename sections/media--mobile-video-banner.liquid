@@ -34,6 +34,10 @@
     </video>
   </div>
 
+  {%- liquid
+    assign brand_blocks = section.blocks | where: 'type', 'brand'
+    assign note_blocks = section.blocks | where: 'type', 'note'
+  -%}
   <div class="mvps-overlay">
     <div class="mvps-top">
       <div class="mvps-subtitle">INSPIRED BY</div>
@@ -44,7 +48,7 @@
         <div class="mvps-dropdown-group">
           <div class="mvps-heading-wrap">
             <button class="mvps-dropdown-btn" id="mvps-brands-btn-{{ section.id }}" data-category="brands">
-              <span class="mvps-dropdown-text">{{ section.settings.heading_1 }}</span>
+              <span class="mvps-dropdown-text">{{ brand_blocks.first.settings.heading }}</span>
               <svg
                 class="mvps-chevron"
                 xmlns="http://www.w3.org/2000/svg"
@@ -64,14 +68,14 @@
             <div class="mvps-popup-content">
               <button class="mvps-popup-close" aria-label="Close">×</button>
               <div class="mvps-popup-items">
-                {% for i in (1..6) %}
-                  {% assign heading_key = "heading_" | append: i %}
-                  {% assign collection_key = "collection_" | append: i %}
+                {% for block in brand_blocks %}
+                  {% assign collection_key = "collection_" | append: forloop.index %}
                   <button
-                    class="mvps-popup-item {% if i == 1 %}active{% endif %}"
-                    data-index="{{ i }}"
-                    data-collection="{{ collection_key }}">
-                    {{ section.settings[heading_key] }}
+                    class="mvps-popup-item {% if forloop.first %}active{% endif %}"
+                    data-index="{{ forloop.index }}"
+                    data-collection="{{ collection_key }}"
+                    {{ block.shopify_attributes }}>
+                    {{ block.settings.heading }}
                   </button>
                 {% endfor %}
               </div>
@@ -83,7 +87,7 @@
         <div class="mvps-dropdown-group">
           <div class="mvps-heading-wrap">
             <button class="mvps-dropdown-btn" id="mvps-notes-btn-{{ section.id }}" data-category="notes">
-              <span class="mvps-dropdown-text">{{ section.settings.heading_notes_1 }}</span>
+              <span class="mvps-dropdown-text">{{ note_blocks.first.settings.heading }}</span>
               <svg
                 class="mvps-chevron"
                 xmlns="http://www.w3.org/2000/svg"
@@ -103,11 +107,10 @@
             <div class="mvps-popup-content">
               <button class="mvps-popup-close" aria-label="Close">×</button>
               <div class="mvps-popup-items">
-                {% for i in (1..6) %}
-                  {% assign heading_key = "heading_notes_" | append: i %}
-                  {% assign collection_key = "collection_notes_" | append: i %}
-                  <button class="mvps-popup-item" data-index="{{ i }}" data-collection="{{ collection_key }}">
-                    {{ section.settings[heading_key] }}
+                {% for block in note_blocks %}
+                  {% assign collection_key = "collection_notes_" | append: forloop.index %}
+                  <button class="mvps-popup-item" data-index="{{ forloop.index }}" data-collection="{{ collection_key }}" {{ block.shopify_attributes }}>
+                    {{ block.settings.heading }}
                   </button>
                 {% endfor %}
               </div>
@@ -120,14 +123,13 @@
     <div class="mvps-content">
       <div class="mvps-fragrance-container">
         <!-- Brands Collections -->
-        {% for i in (1..6) %}
-          {% assign collection_key = "collection_" | append: i %}
-          {% assign coll_handle = section.settings[collection_key] %}
-          {% assign coll = collections[coll_handle] %}
+        {% for block in brand_blocks %}
+          {% assign collection_key = "collection_" | append: forloop.index %}
+          {% assign coll = collections[block.settings.collection] %}
           <div
             class="mvps-fragrance-layout"
             data-collection="{{ collection_key }}"
-            {% if i == 1 %}
+            {% if forloop.first %}
               data-active="true"
             {% else %}
               style="display:none"
@@ -143,10 +145,9 @@
         {% endfor %}
 
         <!-- Notes Collections -->
-        {% for i in (1..6) %}
-          {% assign collection_key = "collection_notes_" | append: i %}
-          {% assign coll_handle = section.settings[collection_key] %}
-          {% assign coll = collections[coll_handle] %}
+        {% for block in note_blocks %}
+          {% assign collection_key = "collection_notes_" | append: forloop.index %}
+          {% assign coll = collections[block.settings.collection] %}
           <div class="mvps-fragrance-layout" data-collection="{{ collection_key }}" style="display:none;">
             {% if coll and coll.products_count > 0 %}
               {% for product in coll.products limit: 12 %}
@@ -438,138 +439,39 @@
 {% schema %}
 {
   "name": "Scent Families Video",
-  "settings": [
+  "settings": [],
+  "blocks": [
     {
-      "type": "text",
-      "id": "heading_1",
-      "label": "Brand 1",
-      "default": "Brand 1"
+      "type": "brand",
+      "name": "Brand",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        }
+      ]
     },
     {
-      "type": "collection",
-      "id": "collection_1",
-      "label": "Collection for Brand 1"
-    },
-    {
-      "type": "text",
-      "id": "heading_2",
-      "label": "Brand 2",
-      "default": "Brand 2"
-    },
-    {
-      "type": "collection",
-      "id": "collection_2",
-      "label": "Collection for Brand 2"
-    },
-    {
-      "type": "text",
-      "id": "heading_3",
-      "label": "Brand 3",
-      "default": "Brand 3"
-    },
-    {
-      "type": "collection",
-      "id": "collection_3",
-      "label": "Collection for Brand 3"
-    },
-    {
-      "type": "text",
-      "id": "heading_4",
-      "label": "Brand 4",
-      "default": "Brand 4"
-    },
-    {
-      "type": "collection",
-      "id": "collection_4",
-      "label": "Collection for Brand 4"
-    },
-    {
-      "type": "text",
-      "id": "heading_5",
-      "label": "Brand 5",
-      "default": "Brand 5"
-    },
-    {
-      "type": "collection",
-      "id": "collection_5",
-      "label": "Collection for Brand 5"
-    },
-    {
-      "type": "text",
-      "id": "heading_6",
-      "label": "Brand 6",
-      "default": "Brand 6"
-    },
-    {
-      "type": "collection",
-      "id": "collection_6",
-      "label": "Collection for Brand 6"
-    },
-    {
-      "type": "text",
-      "id": "heading_notes_1",
-      "label": "Note 1",
-      "default": "Flowery"
-    },
-    {
-      "type": "collection",
-      "id": "collection_notes_1",
-      "label": "Collection for Note 1"
-    },
-    {
-      "type": "text",
-      "id": "heading_notes_2",
-      "label": "Note 2",
-      "default": "Fresh"
-    },
-    {
-      "type": "collection",
-      "id": "collection_notes_2",
-      "label": "Collection for Note 2"
-    },
-    {
-      "type": "text",
-      "id": "heading_notes_3",
-      "label": "Note 3",
-      "default": "Earthy"
-    },
-    {
-      "type": "collection",
-      "id": "collection_notes_3",
-      "label": "Collection for Note 3"
-    },
-    {
-      "type": "text",
-      "id": "heading_notes_4",
-      "label": "Note 4",
-      "default": "Herbal"
-    },
-    {
-      "type": "collection",
-      "id": "collection_notes_4",
-      "label": "Collection for Note 4"
-    },
-    {
-      "type": "text",
-      "id": "heading_notes_5",
-      "label": "Note 5",
-      "default": "Warm"
-    },
-    {
-      "type": "collection",
-      "id": "collection_notes_5",
-      "label": "Collection for Note 5"
-    },
-    {
-      "type": "text",
-      "id": "heading_notes_6",
-      "label": "Note 6",
-      "default": "Gourmand"
-    },
-    {
-      "type": "collection",
-      "id": "collection_notes_6",
-      "label": "Collection for Note 6"
+      "type": "note",
+      "name": "Note",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        }
+      ]
     }
   ],
   "presets": [

@@ -19,7 +19,7 @@ npm run region:show -- uk
 | what | edit |
 | :--- | :--- |
 | a page's words, images, links (home, product, FAQs, contact, …) | `regions/<id>/content/<page>.json` (`home`, `product`, `page-faqs`, …) |
-| a list on a page (FAQs, policy sections, collection cards, blog items) | the `items` list in that page's content file: add, remove, reorder |
+| a list on a page (FAQs, policy sections, collection cards, blog items, the homepage's brands and notes, Instagram images, product icons) | that list in the page's content file (`items`, `faqs`, `brands`, `notes`, `images`, `icons`): add, remove, reorder — the page grows with it |
 | whether a section shows in this region | its `"shown"` in that page's content file, where the layout allows it |
 | the header's or footer's content | `regions/<id>/content/header-group.json`, `footer-group.json` |
 | the info pages' sidebar links | `regions/<id>/content/info-pages.json` |

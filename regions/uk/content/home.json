@@ -62,70 +62,126 @@
   },
   "scent_filter_banner": {
     "video_url": "https://cdn.shopify.com/videos/c/o/v/2fe67c6edaa646b18805a79903b1059c.mp4",
-    "category_label_1": "VIBES",
-    "category_label_2": "OCCASIONS",
-    "brand_heading_1": "Flowery",
-    "brand_collection_1": "flowery",
-    "brand_button_url_1": "shopify://collections/flowery",
-    "brand_heading_2": "Fresh",
-    "brand_collection_2": "fresh",
-    "brand_button_url_2": "shopify://collections/fresh",
-    "brand_heading_3": "Earthy",
-    "brand_collection_3": "earthy",
-    "brand_button_url_3": "shopify://collections/earthy",
-    "brand_heading_4": "Herbal",
-    "brand_collection_4": "herbal",
-    "brand_button_url_4": "shopify://collections/herbal",
-    "brand_heading_5": "Warm",
-    "brand_collection_5": "warm",
-    "brand_button_url_5": "shopify://collections/warm",
-    "brand_heading_6": "Gourmand",
-    "brand_collection_6": "gourmand",
-    "brand_button_url_6": "shopify://collections/gourmand",
-    "notes_heading_1": "Date",
-    "notes_collection_1": "date",
-    "notes_button_url_1": "shopify://collections/date",
-    "notes_heading_2": "Night",
-    "notes_collection_2": "night",
-    "notes_button_url_2": "shopify://collections/night",
-    "notes_heading_3": "Travel",
-    "notes_collection_3": "travel",
-    "notes_button_url_3": "shopify://collections/travel",
-    "notes_heading_4": "Formal",
-    "notes_collection_4": "formal",
-    "notes_button_url_4": "shopify://collections/formal",
-    "notes_heading_5": "Everyday",
-    "notes_collection_5": "everyday",
-    "notes_button_url_5": "shopify://collections/everyday",
-    "notes_heading_6": "Office",
-    "notes_collection_6": "office",
-    "notes_button_url_6": "shopify://collections/office"
+    "brands_label": "VIBES",
+    "notes_label": "OCCASIONS",
+    "brands": [
+      {
+        "heading": "Flowery",
+        "collection": "flowery",
+        "button_url": "shopify://collections/flowery"
+      },
+      {
+        "heading": "Fresh",
+        "collection": "fresh",
+        "button_url": "shopify://collections/fresh"
+      },
+      {
+        "heading": "Earthy",
+        "collection": "earthy",
+        "button_url": "shopify://collections/earthy"
+      },
+      {
+        "heading": "Herbal",
+        "collection": "herbal",
+        "button_url": "shopify://collections/herbal"
+      },
+      {
+        "heading": "Warm",
+        "collection": "warm",
+        "button_url": "shopify://collections/warm"
+      },
+      {
+        "heading": "Gourmand",
+        "collection": "gourmand",
+        "button_url": "shopify://collections/gourmand"
+      }
+    ],
+    "notes": [
+      {
+        "heading": "Date",
+        "collection": "date",
+        "button_url": "shopify://collections/date"
+      },
+      {
+        "heading": "Night",
+        "collection": "night",
+        "button_url": "shopify://collections/night"
+      },
+      {
+        "heading": "Travel",
+        "collection": "travel",
+        "button_url": "shopify://collections/travel"
+      },
+      {
+        "heading": "Formal",
+        "collection": "formal",
+        "button_url": "shopify://collections/formal"
+      },
+      {
+        "heading": "Everyday",
+        "collection": "everyday",
+        "button_url": "shopify://collections/everyday"
+      },
+      {
+        "heading": "Office",
+        "collection": "office",
+        "button_url": "shopify://collections/office"
+      }
+    ]
   },
   "mobile_video_banner": {
-    "heading_1": "Flowery",
-    "collection_1": "flowery",
-    "heading_2": "Fresh",
-    "collection_2": "fresh",
-    "heading_3": "Earthy",
-    "collection_3": "earthy",
-    "heading_4": "Herbal",
-    "collection_4": "herbal",
-    "heading_5": "Warm",
-    "collection_5": "warm",
-    "heading_6": "Gourmand",
-    "collection_6": "gourmand",
-    "heading_notes_1": "Date",
-    "collection_notes_1": "date",
-    "heading_notes_2": "Night",
-    "collection_notes_2": "night",
-    "heading_notes_3": "Travel",
-    "collection_notes_3": "travel",
-    "heading_notes_4": "Formal",
-    "collection_notes_4": "formal",
-    "heading_notes_5": "Everyday",
-    "collection_notes_5": "everyday",
-    "heading_notes_6": "Office",
-    "collection_notes_6": "office"
+    "brands": [
+      {
+        "heading": "Flowery",
+        "collection": "flowery"
+      },
+      {
+        "heading": "Fresh",
+        "collection": "fresh"
+      },
+      {
+        "heading": "Earthy",
+        "collection": "earthy"
+      },
+      {
+        "heading": "Herbal",
+        "collection": "herbal"
+      },
+      {
+        "heading": "Warm",
+        "collection": "warm"
+      },
+      {
+        "heading": "Gourmand",
+        "collection": "gourmand"
+      }
+    ],
+    "notes": [
+      {
+        "heading": "Date",
+        "collection": "date"
+      },
+      {
+        "heading": "Night",
+        "collection": "night"
+      },
+      {
+        "heading": "Travel",
+        "collection": "travel"
+      },
+      {
+        "heading": "Formal",
+        "collection": "formal"
+      },
+      {
+        "heading": "Everyday",
+        "collection": "everyday"
+      },
+      {
+        "heading": "Office",
+        "collection": "office"
+      }
+    ]
   },
   "best_sellers": {
     "section_title": "Best Sellers",
@@ -159,15 +215,27 @@
     "subheading": "@thescentspired"
   },
   "instagram_grid": {
-    "instagram_grid": {
-      "instagram_url": "https://www.instagram.com/thescentspired/",
-      "image_1": "shopify://shop_images/imgi_1_669677066_17914666242357350_2487952813188035984_n.jpg",
-      "image_2": "shopify://shop_images/imgi_1_653065007_17910131769357350_3400065105340633507_n.jpg",
-      "image_3": "shopify://shop_images/image_1.png",
-      "image_4": "shopify://shop_images/image_4.png",
-      "image_5": "shopify://shop_images/imgi_1_671161054_17915003391357350_8066704312270788470_n.jpg",
-      "image_6": "shopify://shop_images/imgi_10_669055390_17914225821357350_2880828186054914834_n.jpg"
-    }
+    "instagram_url": "https://www.instagram.com/thescentspired/",
+    "images": [
+      {
+        "image": "shopify://shop_images/imgi_1_669677066_17914666242357350_2487952813188035984_n.jpg"
+      },
+      {
+        "image": "shopify://shop_images/imgi_1_653065007_17910131769357350_3400065105340633507_n.jpg"
+      },
+      {
+        "image": "shopify://shop_images/image_1.png"
+      },
+      {
+        "image": "shopify://shop_images/image_4.png"
+      },
+      {
+        "image": "shopify://shop_images/imgi_1_671161054_17915003391357350_8066704312270788470_n.jpg"
+      },
+      {
+        "image": "shopify://shop_images/imgi_10_669055390_17914225821357350_2880828186054914834_n.jpg"
+      }
+    ]
   },
   "newsletter_banner": {
     "background_image": "shopify://shop_images/ScentSpired_-_Homepage_06_-_Image_01_2.jpg",

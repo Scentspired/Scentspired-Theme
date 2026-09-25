@@ -365,6 +365,8 @@ emitted.add('snippets/region--active.liquid');
    *                              that value is true
    *   "blocks": "@list:<path>"   one block per item of that list, each styled by
    *                              the layout's "block_designs" for its "type"
+   *   "blocks": { "<type>": "@list:<path>", … }
+   *                              a list per block type (brands, then notes), in order
    *
    * A template whose page this region has no content file for is not published
    * here. A market override (a template with a "parent") keeps only sections
@@ -471,22 +473,30 @@ emitted.add('snippets/region--active.liquid');
               sec.disabled = true;
             }
           }
-          if (typeof sec.blocks === 'string' && sec.blocks.startsWith('@list:')) {
-            const key = sec.blocks.slice('@list:'.length);
-            const items = lookup(key);
+          // "@list:<path>" — one list, each item's type from item.type or the only design;
+          // { "<type>": "@list:<path>", … } — one list per block type, in that order.
+          const isList = (v) => typeof v === 'string' && v.startsWith('@list:');
+          const lists = isList(sec.blocks) ? [[null, sec.blocks]]
+            : sec.blocks && typeof sec.blocks === 'object' && Object.keys(sec.blocks).length && Object.values(sec.blocks).every(isList) ? Object.entries(sec.blocks)
+            : null;
+          if (lists) {
             const designs = sec.block_designs || {};
             const only = Object.keys(designs).length === 1 ? Object.keys(designs)[0] : null;
             sec.blocks = {}; sec.block_order = [];
-            if (!Array.isArray(items)) errors.push(`${where}: "${key}" must be a list in regions/${target}/content/`);
-            (Array.isArray(items) ? items : []).forEach((item, i) => {
-              const type = item.type || only;
-              if (!designs[type]) { errors.push(`${where}: ${key}[${i}] has type "${item.type}", which this section has no design for (${Object.keys(designs).join(', ')})`); return; }
-              const settings = { ...(designs[type].settings || {}) };
-              for (const [k, v] of Object.entries(item)) if (k !== 'type' && k !== 'shown' && v !== null) settings[k] = v;
-              const id2 = blockId(type, i + 1);
-              sec.blocks[id2] = { type, settings, ...(item.shown === false ? { disabled: true } : {}) };
-              sec.block_order.push(id2);
-            });
+            for (const [listType, ref] of lists) {
+              const key = ref.slice('@list:'.length);
+              const items = lookup(key);
+              if (!Array.isArray(items)) errors.push(`${where}: "${key}" must be a list in regions/${target}/content/`);
+              (Array.isArray(items) ? items : []).forEach((item, i) => {
+                const type = listType || item.type || only;
+                if (!designs[type]) { errors.push(`${where}: ${key}[${i}] has type "${type}", which this section has no design for (${Object.keys(designs).join(', ')})`); return; }
+                const settings = { ...(designs[type].settings || {}) };
+                for (const [k, v] of Object.entries(item)) if (k !== 'type' && k !== 'shown' && v !== null) settings[k] = v;
+                const id2 = blockId(type, i + 1);
+                sec.blocks[id2] = { type, settings, ...(item.shown === false ? { disabled: true } : {}) };
+                sec.block_order.push(id2);
+              });
+            }
             delete sec.block_designs;
           }
           out.sections[id] = fill(sec, where);

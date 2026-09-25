@@ -23,16 +23,6 @@
         "about_image": "@content:product.product_info_tab.about_image",
         "ingredients_image": "@content:product.product_info_tab.ingredients_image",
         "faq_image": "@content:product.product_info_tab.faq_image",
-        "icon_1": "@content:product.product_info_tab.icon_1",
-        "icon_1_text": "@content:product.product_info_tab.icon_1_text",
-        "icon_2": "@content:product.product_info_tab.icon_2",
-        "icon_2_text": "@content:product.product_info_tab.icon_2_text",
-        "icon_3": "@content:product.product_info_tab.icon_3",
-        "icon_3_text": "@content:product.product_info_tab.icon_3_text",
-        "icon_4": "@content:product.product_info_tab.icon_4",
-        "icon_4_text": "@content:product.product_info_tab.icon_4_text",
-        "icon_5": "@content:product.product_info_tab.icon_5",
-        "icon_5_text": "@content:product.product_info_tab.icon_5_text",
         "usage_image": "@content:product.product_info_tab.usage_image"
       },
       "custom_css": [
@@ -41,12 +31,15 @@
         "h5,.h5 {font-size: calc(var(--font-heading-scale) * 1.3rem); color: #000; font-weight: 700;}",
         "h3,.h3 {font-size: 20px; color: #000; text-align: center; font-weight: 600;}"
       ],
-      "blocks": "@list:product.product_info_tab.items",
+      "blocks": {
+        "faq": "@list:product.product_info_tab.faqs",
+        "icon": "@list:product.product_info_tab.icons"
+      },
       "block_designs": {
         "faq": {
           "settings": {}
         },
-        "ingredient": {
+        "icon": {
           "settings": {}
         }
       }
