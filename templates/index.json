@@ -106,6 +106,9 @@
       "type": "media--scent-filter-banner",
       "name": "Video Banner",
       "settings": {
+        "video_url": "@content:home.scent_filter_banner.video_url",
+        "category_label_1": "@content:home.scent_filter_banner.category_label_1",
+        "category_label_2": "@content:home.scent_filter_banner.category_label_2",
         "brand_heading_1": "@content:home.scent_filter_banner.brand_heading_1",
         "brand_collection_1": "@content:home.scent_filter_banner.brand_collection_1",
         "brand_button_url_1": "@content:home.scent_filter_banner.brand_button_url_1",

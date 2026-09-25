@@ -2,6 +2,9 @@
 {
   "name": "Scent Video Banner",
   "settings": [
+    { "type": "text", "id": "video_url", "label": "Video file URL (.mp4)" },
+    { "type": "text", "id": "category_label_1", "label": "First category label" },
+    { "type": "text", "id": "category_label_2", "label": "Second category label" },
     {
       "type": "text",
       "id": "brand_heading_1",
@@ -204,20 +207,6 @@
 }
 {% endschema %}
 
-{%- liquid
-  capture default_video_url
-    render 'region--active', key: 'hero_video_url'
-  endcapture
-  capture default_cat1
-    render 'region--active', key: 'category_label_1'
-  endcapture
-  capture default_cat2
-    render 'region--active', key: 'category_label_2'
-  endcapture
-  assign default_video_url = default_video_url | strip
-  assign default_cat1 = default_cat1 | strip
-  assign default_cat2 = default_cat2 | strip
--%}
 
 {% render 'card--product-carousel' %}
 <script src="{{ 'card--product.js' | asset_url }}" defer="defer"></script>
@@ -225,7 +214,7 @@
 <div class="scent-video-banner" id="scent-video-banner">
   <div class="video-container">
     <video id="main-video" autoplay muted loop playsinline style="filter: brightness(40%);">
-      <source src="{{ section.settings.video_url | default: default_video_url }}" type="video/mp4">
+      <source src="{{ section.settings.video_url }}" type="video/mp4">
     </video>
 
     <div class="scent-content">
@@ -234,8 +223,8 @@
 
         <!-- Added main category headings (Brands and Notes) -->
         <div class="main-headings-container">
-          <h2 class="main-heading active-main" data-category="brands">{{ section.settings.category_label_1 | default: default_cat1 }}</h2>
-          <h2 class="main-heading" data-category="notes">{{ section.settings.category_label_2 | default: default_cat2 }}</h2>
+          <h2 class="main-heading active-main" data-category="brands">{{ section.settings.category_label_1 }}</h2>
+          <h2 class="main-heading" data-category="notes">{{ section.settings.category_label_2 }}</h2>
         </div>
 
         <!-- Brands inner headings -->

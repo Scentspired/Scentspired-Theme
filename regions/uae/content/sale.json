@@ -535,6 +535,10 @@
         "heading": null,
         "subheading": null,
         "description": null
+      },
+      "seo": {
+        "homepage_title": null,
+        "homepage_description": null
       }
     },
     "header-group": {
@@ -606,6 +610,9 @@
         "text_right": null
       },
       "scent_filter_banner": {
+        "video_url": null,
+        "category_label_1": null,
+        "category_label_2": null,
         "brand_heading_1": null,
         "brand_collection_1": null,
         "brand_button_url_1": null,

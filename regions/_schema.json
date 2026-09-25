@@ -14,8 +14,6 @@
     "free_shipping_threshold_display",
     "shipping_cost_cents",
     "shipping_cost_display",
-    "seo_title",
-    "seo_description",
     "support_email",
     "returns_email"
   ],
@@ -80,14 +78,6 @@
       "type": "string",
       "description": "Formatted shipping charge, e.g. £4.99"
     },
-    "seo_title": {
-      "type": "string",
-      "description": "Homepage title tag"
-    },
-    "seo_description": {
-      "type": "string",
-      "description": "Homepage meta description"
-    },
     "support_email": {
       "type": "string"
     },
@@ -96,22 +86,6 @@
     },
     "company_address": {
       "type": "string"
-    },
-    "logo_url": {
-      "type": "string",
-      "description": "Absolute URL of the logo used in transactional UI"
-    },
-    "hero_video_url": {
-      "type": "string",
-      "description": "Fallback hero video when the section has no upload"
-    },
-    "category_label_1": {
-      "type": "string",
-      "description": "First hero category label, e.g. VIBES"
-    },
-    "category_label_2": {
-      "type": "string",
-      "description": "Second hero category label, e.g. OCCASIONS"
     },
     "social": {
       "type": "object",

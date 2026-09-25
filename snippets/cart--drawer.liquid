@@ -1,10 +1,4 @@
 {%- liquid
-  # The brand logo is regional data: each storefront may ship its own file.
-  capture region_logo_url
-    render 'region--active', key: 'logo_url'
-  endcapture
-  assign region_logo_url = region_logo_url | strip
-
   # The recommendation prices below were written with a literal pound sign, so
   # the USA storefront printed pound signs on dollar products.
   capture region_currency_symbol
@@ -131,7 +125,7 @@
         <div class="sp-bundle-container">
           <div class="sp-bundle-header">
 <img 
-  src="{{ region_logo_url }}&width=200" 
+  src="{{ settings.logo | image_url: width: 200 }}" 
   alt="Scentspired" 
   class="sp-logo-image"
 />
