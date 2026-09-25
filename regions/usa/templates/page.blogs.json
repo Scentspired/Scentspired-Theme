@@ -67,7 +67,7 @@
       }
     },
     "blog_section_4VLNh8": {
-      "type": "editorial--blog-section",
+      "type": "editorial--zigzag-blog",
       "blocks": {
         "blog_item_nNRxck": {
           "type": "blog_item",

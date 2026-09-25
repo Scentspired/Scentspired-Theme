@@ -152,15 +152,6 @@
     "fallback": 1,
     "ids": 0
   },
-  "sections/editorial--blog-section.liquid": {
-    "total": 2,
-    "text": 1,
-    "js-text": 0,
-    "media": 0,
-    "links": 0,
-    "fallback": 1,
-    "ids": 0
-  },
   "sections/editorial--brand-story.liquid": {
     "total": 3,
     "text": 2,
