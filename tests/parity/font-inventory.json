@@ -246,18 +246,6 @@
   ".slot-price { font-size: 15px }",
   ".slot-price { font-weight: 600 }"
  ],
- "assets\\bundle--collection.css": [
-  ".arrow-btn { font-size: 20px }",
-  ".collection-button { font-family: ppmori regular, sans-serif }",
-  ".collection-button { font-size: 12px }",
-  ".collection-button { font-size: 12px }",
-  ".collection-button { font-size: 13px }",
-  ".collection-button { font-weight: 200 }",
-  ".collection-content { font-size: 24px }",
-  ".collection-content { font-size: 36px }",
-  ".collection-content { font-weight: 700 }",
-  ".featured-collections-section { font-family: ppmori semibold, sans-serif }"
- ],
  "assets\\cart--drawer.css": [
   ".bundle-restrict { font-size: 13px }",
   ".sp-add-to-cart-btn { font-size: 10px }",
@@ -473,6 +461,18 @@
   ".shop-button { font-size: 13px }",
   ".shop-button { letter-spacing: 2px }"
  ],
+ "assets\\catalog--card-slider.css": [
+  ".arrow-btn { font-size: 20px }",
+  ".collection-button { font-family: ppmori regular, sans-serif }",
+  ".collection-button { font-size: 12px }",
+  ".collection-button { font-size: 12px }",
+  ".collection-button { font-size: 13px }",
+  ".collection-button { font-weight: 200 }",
+  ".collection-content { font-size: 24px }",
+  ".collection-content { font-size: 36px }",
+  ".collection-content { font-weight: 700 }",
+  ".featured-collections-section { font-family: ppmori semibold, sans-serif }"
+ ],
  "assets\\catalog--collection-grid.css": [
   ".add-to-cart { font-family: ppmori regular, sans-serif }",
   ".add-to-cart { font-size: 12px }",
@@ -630,17 +630,6 @@
   ".section-heading { font-size: 37px }",
   ".section-heading { font-weight: 900 }",
   ".slider-arrows { font-size: 20px }"
- ],
- "assets\\catalog--featured-collections.css": [
-  ".arrow-btn { font-size: 20px }",
-  ".collection-button { font-family: ppmori regular, sans-serif }",
-  ".collection-button { font-size: 12px }",
-  ".collection-button { font-size: 13px }",
-  ".collection-button { font-weight: 200 }",
-  ".collection-content { font-size: 24px }",
-  ".collection-content { font-size: 36px }",
-  ".collection-content { font-weight: 700 }",
-  ".featured-collections-section { font-family: ppmori semibold, sans-serif }"
  ],
  "assets\\catalog--featured-scent.css": [
   ".cart-button { font-family: ppmori regular, sans-serif }",

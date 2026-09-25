@@ -1,7 +1,9 @@
-/* Extracted from sections/bundle--collection.liquid.
- * Inline CSS is re-downloaded with the HTML on every page that renders
- * that file and can never be cached. Edit this file, not the .liquid.
- * Blocks still in the .liquid are the ones that contain Liquid. */
+/* The card sliders: catalog--featured-collections (collection cards, from
+ * blocks) and bundle--collection (the homepage's box cards, from boxes.json).
+ * One design for both; the only difference is that bundle cards dim their
+ * photos (featured-collections-section--dim-images, at the end).
+ *
+ * Desktop is 1024px and up, everything narrower is the stacked layout. */
 
   .featured-collections-section {
     padding: 60px 0px;
@@ -88,7 +90,7 @@
   }
 
   /* Mobile Layout */
-  @media (max-width: 1024px) {
+  @media (max-width: 1023px) {
     .featured-collections-section {
       padding: 20px 10px;
     }
@@ -180,12 +182,8 @@
     }
   }
 
-  @media screen and (min-width: 810px) and (max-width: 830px) {
-    .collection-button {
-      left: -23px !important;
-    }
-  }
-  @media screen and (min-width: 750px) and (max-width: 1024px) {
+  /* Tablet: the button centred on the card. */
+  @media screen and (min-width: 750px) and (max-width: 1023px) {
     .collection-button {
       position: absolute;
       bottom: 20px;
@@ -198,7 +196,7 @@
     }
   }
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1023px) {
     .desktop-only {
       display: none !important;
     }
@@ -215,7 +213,10 @@
       display: block !important;
     }
   }
-  .collection-card img {
+
+  /* Bundle cards: photos dimmed so the title over them reads, at their own
+   * height. :where() keeps this rule's weight that of '.collection-card img'. */
+  :where(.featured-collections-section--dim-images) .collection-card img {
     width: 100%;
     height: auto;
     object-fit: cover;

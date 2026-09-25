@@ -13,14 +13,14 @@
 
   The card links to the box's page_url.
 {%- endcomment -%}
-{{ 'bundle--collection.css' | asset_url | stylesheet_tag }}
+{{ 'catalog--card-slider.css' | asset_url | stylesheet_tag }}
 
-<div class="featured-collections-section">
+<div class="featured-collections-section featured-collections-section--dim-images" data-card-slider>
   <div class="mobile-arrows">
-    <button class="arrow-btn" id="arrow-left">&#10094;</button>
-    <button class="arrow-btn" id="arrow-right">&#10095;</button>
+    <button class="arrow-btn" type="button" data-card-slider-prev>&#10094;</button>
+    <button class="arrow-btn" type="button" data-card-slider-next>&#10095;</button>
   </div>
-  <div class="featured-collections-wrapper" id="collectionSlider">
+  <div class="featured-collections-wrapper" data-card-slider-track>
     {%- liquid
       capture box_ids
         render 'region--content', key: 'boxes.__keys'
@@ -99,28 +99,7 @@
   </div>
 </div>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const leftBtn = document.getElementById('arrow-left');
-    const rightBtn = document.getElementById('arrow-right');
-    const slider = document.getElementById('collectionSlider');
-
-    if (!slider || !leftBtn || !rightBtn) return;
-
-    // Only enable slider functionality on desktop
-    if (window.innerWidth >= 1024) {
-      const scrollAmount = () => slider.offsetWidth * 0.9;
-
-      leftBtn.addEventListener('click', () => {
-        slider.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
-      });
-
-      rightBtn.addEventListener('click', () => {
-        slider.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
-      });
-    }
-  });
-</script>
+<script src="{{ 'catalog--card-slider.js' | asset_url }}" defer="defer"></script>
 
 {% schema %}
 {
