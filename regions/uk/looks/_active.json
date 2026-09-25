@@ -1,6 +1,6 @@
 {
   "$comment": [
-    "The look this region shows: the name of a file in this folder (without .json), or \"\" for the normal look.",
+    "The look this region shows: the name of a file in this folder, e.g. \"flat-sale\" (\"flat-sale.json\" works too), or \"\" for the normal look.",
     "Looks change only how the site looks. Which products are on sale, and by how much, is set in Shopify."
   ],
   "active_look": ""

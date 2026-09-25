@@ -498,7 +498,8 @@ function applyLook(content, regionId) {
   const errors = [];
   const names = fs.readdirSync(dir).filter((f) => f.endsWith('.json') && !f.startsWith('_')).map((f) => f.replace(/\.json$/, ''));
   const activeFile = path.join(dir, '_active.json');
-  const active = fs.existsSync(activeFile) ? String(stripComments(readJson(activeFile)).active_look || '').trim() : '';
+  // The look's name; 'flat-sale' and 'flat-sale.json' both work.
+  const active = fs.existsSync(activeFile) ? String(stripComments(readJson(activeFile)).active_look || '').trim().replace(/\.json$/i, '') : '';
   if (active && !names.includes(active)) errors.push(`_active.json names "${active}", but there is no looks/${active}.json (looks: ${names.join(', ') || 'none'})`);
   const merge = (base, over, where, apply) => {
     for (const [k, v] of Object.entries(over)) {
