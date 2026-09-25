@@ -1,0 +1,34 @@
+{%- comment -%}
+  One filter group's checkboxes, from a list in the region's content: each item
+  a label and the product tag it filters by ("value").
+
+  {% render 'catalog--filter-options', list: 'collection-grid.filters.sizes', input_class: 'filter-size', variant_index: true %}
+
+  variant_index writes each option's position as data-variant-index (the size
+  filter reads it to pick the matching variant).
+{%- endcomment -%}
+{%- liquid
+  assign keys_key = list | append: '.__keys'
+  capture option_keys
+    render 'region--content', key: keys_key
+  endcapture
+  assign option_keys = option_keys | strip | split: ','
+-%}
+{%- for i in option_keys -%}
+  {%- liquid
+    assign item = list | append: '.' | append: i
+    assign k = item | append: '.label'
+    capture label
+      render 'region--content', key: k
+    endcapture
+    assign k = item | append: '.value'
+    capture value
+      render 'region--content', key: k
+    endcapture
+  -%}
+  <label>
+    <input type="checkbox" class="{{ input_class }}" value="{{ value }}"{% if variant_index %} data-variant-index="{{ forloop.index0 }}"{% endif %}>
+    {{ label }}
+  </label>
+  {%- unless forloop.last %}<br>{% endunless %}
+{% endfor -%}

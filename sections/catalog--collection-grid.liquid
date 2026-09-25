@@ -1,5 +1,22 @@
 {{ 'catalog--collection-grid.css' | asset_url | stylesheet_tag }}
 
+{%- comment -%}
+  Words, links and lists come from the region's content/collection-grid.json
+  (shared by every collection page); interface wording from the locale
+  (sections.collection_grid).
+{%- endcomment -%}
+{%- liquid
+  capture grid_intro
+    render 'region--content', key: 'collection-grid.intro'
+  endcapture
+  capture season_collections_heading
+    render 'region--content', key: 'collection-grid.season_collections_heading'
+  endcapture
+  capture scent_notes_heading
+    render 'region--content', key: 'collection-grid.scent_notes_heading'
+  endcapture
+-%}
+
 {% comment %} ========== HTML STRUCTURE ========== {% endcomment %}
 <div class="scent-wrapper">
   {% comment %} ========== HEADER SECTION ========== {% endcomment %}
@@ -27,23 +44,31 @@
       </h1>
 
       <p class="scent-sub-description">
-        Discover our range of <strong style="color: #cbdd00;">designer-inspired</strong>
-        <strong style="color: #cbdd00;">signature perfumes,</strong> crafted for everyday luxury.
+        {{ grid_intro }}
       </p>
     </div>
 
     {% comment %} Collection Navigation {% endcomment %}
     <div class="scent-collection-nav">
-      <a href="/collections/shop">All Perfumes</a>
-      <a href="/collections/bestsellers">Bestsellers</a>
-      <a href="/collections/men">Men Inspired Perfumes</a>
-      <a href="/collections/women">Women Inspired Perfumes</a>
-      <a href="/collections/unisex">Unisex Inspired Perfumes</a>
-      <a href="/pages/scent-notes">Scent Notes</a>
+      {%- capture link_keys -%}{%- render 'region--content', key: 'collection-grid.collection_links.__keys' -%}{%- endcapture -%}
+      {%- assign link_keys = link_keys | strip | split: ',' -%}
+      {%- for i in link_keys -%}
+        {%- liquid
+          assign k = 'collection-grid.collection_links.' | append: i | append: '.label'
+          capture link_label
+            render 'region--content', key: k
+          endcapture
+          assign k = 'collection-grid.collection_links.' | append: i | append: '.url'
+          capture link_url
+            render 'region--content', key: k
+          endcapture
+        -%}
+        <a href="{{ link_url }}">{{ link_label }}</a>
+      {% endfor %}
 
       {% comment %} Desktop Filter Button {% endcomment %}
       <button class="filter-toggle-desktop" id="filterToggleDesktop">
-        <span id="filterToggleTextDesktop">SHOW SORT & FILTER</span>
+        <span id="filterToggleTextDesktop">{{ 'sections.collection_grid.show_filters_html' | t }}</span>
         <span id="filterCountDesktop">(0)</span>
         <svg
           id="filterToggleIconDesktop"
@@ -61,7 +86,7 @@
 
       {% comment %} Original Filter Button {% endcomment %}
       <button class="filter-toggle-button" id="filterToggleButton">
-        <span id="filterToggleText">HIDE SORT & FILTER</span>
+        <span id="filterToggleText">{{ 'sections.collection_grid.hide_filters_html' | t }}</span>
         <span id="filterCount">(0)</span>
         <svg
           id="filterToggleIcon"
@@ -85,17 +110,13 @@
         <div class="scent-search-input-wrapper">
           <input
             type="text"
-            placeholder="Search scents, brands, ingredients"
+            placeholder="{{ 'sections.collection_grid.search_placeholder' | t }}"
             class="scent-search-input"
             id="mainSearchInput">
         </div>
 
         <div class="scent-search-tags">
-          <span class="scent-search-tag" data-search-term="citrus">Citrus</span>
-          <span class="scent-search-tag" data-search-term="amber">Amber</span>
-          <span class="scent-search-tag" data-search-term="jasmine">Jasmine</span>
-          <span class="scent-search-tag" data-search-term="apple">Apple</span>
-          <span class="scent-search-tag" data-search-term="bergamot">Bergamot</span>
+          {%- render 'catalog--search-tags', list: 'collection-grid.search_bar_tags' %}
         </div>
 
         <span class="scent-search-tag-add" id="openSearchFromPlus">
@@ -112,7 +133,7 @@
           <div class="scent-overlay-search-input-wrapper">
             <input
               type="text"
-              placeholder="Search scents, brands, ingredients"
+              placeholder="{{ 'sections.collection_grid.search_placeholder' | t }}"
               class="scent-overlay-search-input"
               id="overlaySearchInput">
             <button class="scent-overlay-search-button" id="overlaySearchButton">
@@ -157,7 +178,7 @@
               <path d="M12 8v4l2 2"/>
               <circle cx="12" cy="12" r="10"/>
             </svg>
-            Recent Searches
+            {{ 'sections.collection_grid.recent_searches' | t }}
           </div>
           <div class="scent-overlay-tags-grid" id="recentSearchesGrid">
             <!-- Dynamic recent search tags will be inserted here by JavaScript -->
@@ -181,18 +202,10 @@
               <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
               <polyline points="16 7 22 7 22 13"/>
             </svg>
-            Trending Search
+            {{ 'sections.collection_grid.trending_searches' | t }}
           </div>
           <div class="scent-overlay-tags-grid">
-            <span class="scent-search-tag" data-search-term="Amber">Amber</span>
-            <span class="scent-search-tag" data-search-term="Jasmine">Jasmine</span>
-            <span class="scent-search-tag" data-search-term="Fruity">Fruity</span>
-            <span class="scent-search-tag" data-search-term="Tomford">Tomford</span>
-            <span class="scent-search-tag" data-search-term="Gourmand">Gourmand</span>
-            <span class="scent-search-tag" data-search-term="MFK">MFK</span>
-            <span class="scent-search-tag" data-search-term="Citrus">Citrus</span>
-            <span class="scent-search-tag" data-search-term="YSL">YSL</span>
-            <span class="scent-search-tag" data-search-term="Saffron">Saffron</span>
+            {%- render 'catalog--search-tags', list: 'collection-grid.trending_searches' %}
           </div>
         </div>
 
@@ -214,7 +227,7 @@
               <path d="M3 6h18"/>
               <path d="M16 10a4 4 0 0 1-8 0"/>
             </svg>
-            Find Your Season's Scent
+            {{ season_collections_heading }}
           </div>
           <div class="scent-overlay-brands-grid">
             {% assign brand_collection_handles = section.settings.brand_collection_handles | split: "," %}
@@ -229,7 +242,7 @@
                         alt="{{ brand_collection.title }}">
                     {% else %}
                       <div class="scent-overlay-no-image">
-                        <span>No Image</span>
+                        <span>{{ 'sections.collection_grid.no_image' | t }}</span>
                       </div>
                     {% endif %}
                     <span class="col-button">{{ brand_collection.title }}</span>
@@ -260,7 +273,7 @@
               <path d="M12 7.5v9"/>
               <path d="M3 15h18"/>
             </svg>
-            Scent Notes
+            {{ scent_notes_heading }}
           </div>
           <div class="scent-overlay-scent-notes-grid">
             {% assign scent_collection_handles = section.settings.scent_collection_handles | split: "," %}
@@ -275,7 +288,7 @@
                         alt="{{ scent_collection.title }}">
                     {% else %}
                       <div class="scent-overlay-no-image">
-                        <span>No Image</span>
+                        <span>{{ 'sections.collection_grid.no_image' | t }}</span>
                       </div>
                     {% endif %}
                     <span class="scent-overlay-collection-title-on-image">{{ scent_collection.title }}</span>
@@ -290,7 +303,7 @@
 
     {% comment %} ========== NEW MOBILE PRODUCT PER ROW SELECTOR ========== {% endcomment %}
     <div class="mobile-product-per-row-selector" id="mobileProductPerRowSelector">
-      <div class="selector-label">Products per row:</div>
+      <div class="selector-label">{{ 'sections.collection_grid.products_per_row' | t }}</div>
       <div class="selector-buttons">
         <button class="selector-button active" data-columns="1">1</button>
         <button class="selector-button" data-columns="2">2</button>
@@ -302,11 +315,11 @@
   <div class="scent-layout sidebar-hidden" id="scentLayout">
     {% comment %} ========== SIDEBAR ========== {% endcomment %}
     <div class="scent-sidebar" id="scentSidebar">
-      <h3 style="font-family: var(--font-mori-alt); font-size: 14px; margin-bottom: 20px;">FILTERS</h3>
+      <h3 style="font-family: var(--font-mori-alt); font-size: 14px; margin-bottom: 20px;">{{ 'sections.collection_grid.filters' | t }}</h3>
 
       {% comment %} Price Range Filter {% endcomment %}
       <details>
-        <summary>Range</summary>
+        <summary>{{ 'sections.collection_grid.filter_price' | t }}</summary>
         <div style="padding-left: 10px; margin-top: 6px;">
           <label>
             <input type="checkbox" class="filter-range" data-min="0" data-max="50" data-variant-index="0">
@@ -320,324 +333,39 @@
       </details>
 
       <details>
-        <summary>Size</summary>
+        <summary>{{ 'sections.collection_grid.filter_size' | t }}</summary>
         <div style="padding-left: 10px; margin-top: 6px;">
-          <label>
-            <input type="checkbox" class="filter-size" value="50ml" data-variant-index="0">
-            50ml </label
-          ><br>
-          <label>
-            <input type="checkbox" class="filter-size" value="100ml" data-variant-index="1">
-            100ml
-          </label>
+          {%- render 'catalog--filter-options', list: 'collection-grid.filters.sizes', input_class: 'filter-size', variant_index: true %}
         </div>
       </details>
       {% comment %} Gender Filter {% endcomment %}
       <details>
-        <summary>Gender</summary>
+        <summary>{{ 'sections.collection_grid.filter_gender' | t }}</summary>
         <div style="padding-left: 10px; margin-top: 6px;">
-          <label>
-            <input type="checkbox" class="filter-gender" value="gender-men">
-            Men </label
-          ><br>
-          <label>
-            <input type="checkbox" class="filter-gender" value="gender-women">
-            Women </label
-          ><br>
-          <label>
-            <input type="checkbox" class="filter-gender" value="gender-unisex">
-            Unisex
-          </label>
+          {%- render 'catalog--filter-options', list: 'collection-grid.filters.genders', input_class: 'filter-gender' %}
         </div>
       </details>
 
       <details>
-        <summary>Scent Families</summary>
+        <summary>{{ 'sections.collection_grid.filter_scent_families' | t }}</summary>
         <div style="padding-left: 10px; margin-top: 6px;">
-          <label>
-            <input type="checkbox" class="filter-type" value="flowery">
-            Flowery </label
-          ><br>
-          <label>
-            <input type="checkbox" class="filter-type" value="fresh">
-            Fresh </label
-          ><br>
-          <label>
-            <input type="checkbox" class="filter-type" value="earthy">
-            Earthy </label
-          ><br>
-          <label>
-            <input type="checkbox" class="filter-type" value="herbal">
-            Herbal </label
-          ><br>
-          <label>
-            <input type="checkbox" class="filter-type" value="warm">
-            Warm </label
-          ><br>
-          <label>
-            <input type="checkbox" class="filter-type" value="gourmand">
-            Gourmand
-          </label>
+          {%- render 'catalog--filter-options', list: 'collection-grid.filters.scent_families', input_class: 'filter-type' %}
         </div>
       </details>
 
       {% comment %} Inspired By Filter {% endcomment %}
       <details style="padding-left: 10px; margin-top: 6px; display: none;">
-        <summary>Inspired By</summary>
+        <summary>{{ 'sections.collection_grid.filter_inspired_by' | t }}</summary>
         <div style="padding-left: 10px; margin-top: 6px; display: none;">
-          <label>
-            <input type="checkbox" class="filter-type" value="tomford">
-            Tomford </label
-          ><br>
-          <label>
-            <input type="checkbox" class="filter-type" value="chanel">
-            Chanel </label
-          ><br>
-          <label>
-            <input type="checkbox" class="filter-type" value="louisvuitton">
-            Louis Vuitton </label
-          ><br>
-          <label>
-            <input type="checkbox" class="filter-type" value="bykillian">
-            By Killian </label
-          ><br>
-          <label>
-            <input type="checkbox" class="filter-type" value="byredo">
-            Byredo </label
-          ><br>
-          <label>
-            <input type="checkbox" class="filter-type" value="dior">
-            Dior </label
-          ><br>
-          <label>
-            <input type="checkbox" class="filter-ingredient" value="maisoncrivelli">
-            Maison Crivelli </label
-          ><br>
-          <label>
-            <input type="checkbox" class="filter-type" value="creed">
-            Creed </label
-          ><br>
-          <label>
-            <input type="checkbox" class="filter-type" value="lelabo">
-            Le Labo </label
-          ><br>
-          <label>
-            <input type="checkbox" class="filter-type" value="ysl">
-            Ysl </label
-          ><br>
-          <label>
-            <input type="checkbox" class="filter-type" value="burberry">
-            Burberry </label
-          ><br>
-          <label>
-            <input type="checkbox" class="filter-type" value="exnihilos">
-            Ex Nihilo's </label
-          ><br>
-          <label>
-            <input type="checkbox" class="filter-type" value="parfums">
-            Parfums </label
-          ><br>
-          <label>
-            <input type="checkbox" class="filter-type" value="bvlgari">
-            Bvlgari </label
-          ><br>
-          <label>
-            <input type="checkbox" class="filter-type" value="carolinaherrera">
-            Carolina Herrera </label
-          ><br>
-          <label>
-            <input type="checkbox" class="filter-type" value="diptyque">
-            Diptyque </label
-          ><br>
-          <label>
-            <input type="checkbox" class="filter-type" value="giorgioarmani">
-            Giorgio Armani </label
-          ><br>
-          <label>
-            <input type="checkbox" class="filter-type" value="gucci">
-            Gucci </label
-          ><br>
-          <label>
-            <input type="checkbox" class="filter-type" value="hermès">
-            Hermès </label
-          ><br>
-          <label>
-            <input type="checkbox" class="filter-type" value="initio">
-            Initio </label
-          ><br>
-          <label>
-            <input type="checkbox" class="filter-type" value="lancôme">
-            Lancôme </label
-          ><br>
-          <label>
-            <input type="checkbox" class="filter-type" value="mfk">
-            MFK </label
-          ><br>
-          <label>
-            <input type="checkbox" class="filter-type" value="narciso">
-            Narciso </label
-          ><br>
-          <label>
-            <input type="checkbox" class="filter-type" value="nasomattos">
-            Nasomatto's </label
-          ><br>
-          <label>
-            <input type="checkbox" class="filter-type" value="nishane">
-            Nishane </label
-          ><br>
-          <label>
-            <input type="checkbox" class="filter-type" value="pacorabanne">
-            Paco Rabanne </label
-          ><br>
+          {%- render 'catalog--filter-options', list: 'collection-grid.filters.inspired_by', input_class: 'filter-type' %}
         </div>
       </details>
 
       {% comment %} Ingredients Filter {% endcomment %}
       <details>
-        <summary>Ingredients</summary>
+        <summary>{{ 'sections.collection_grid.filter_ingredients' | t }}</summary>
         <div style="padding-left: 10px; margin-top: 6px;">
-          <label><input type="checkbox" class="filter-ingredient" value="saffron"> Saffron</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="jasmine"> Jasmine</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="amberwood"> Amberwood</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="ambergris"> Ambergris</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="fir-resin"> Fir Resin</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="cedar"> Cedar</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="bergamot"> Bergamot</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="blackcurrant"> Black Currant</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="apple"> Apple</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="lemon"> Lemon</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="pinkpepper"> Pink Pepper</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="pineapple"> Pineapple</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="patchouli"> Patchouli</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="moroccanjasmine"> Moroccan Jasmine</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="birch"> Birch</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="musk"> Musk</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="oakmoss"> Oakmoss</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="cedarwood"> Cedarwood</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="ambroxan"> Ambroxan</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="litchi"> Litchi</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="rhubarb"> Rhubarb</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="nutmeg"> Nutmeg</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="turkishrose"> Turkish Rose</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="peony"> Peony</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="petalia"> Petalia</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="vanilla"> Vanilla</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="cashmeran"> Cashmeran</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="incense"> Incense</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="haitianvetiver"> Haitian Vetiver</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="lavender"> Lavender</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="agarwood"> Agarwood (Oud)</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="orange"> Orange</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="mandarinorange"> Mandarin Orange</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="orangeblossom"> Orange Blossom</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="jasminesambac"> Jasmine Sambac</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="ylang-ylang"> Ylang-Ylang</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="whitemusk"> White Musk</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="vetiver"> Vetiver</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="tonkabean"> Tonka Bean</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="opoponax"> Opoponax</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="greentea"> Green Tea</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="sandalwood"> Sandalwood</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="petitgrain"> Petitgrain</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="galbanum"> Galbanum</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="pear"> Pear</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="coffee"> Coffee</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="bitteralmond"> Bitter Almond</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="licorice"> Licorice</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="cashmerewood"> Cashmere Wood</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="almond"> Almond</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="tuberose"> Tuberose</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="orris"> Orris</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="cacao"> Cacao</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="praline"> Praline</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="cinnamon"> Cinnamon</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="iris"> Iris</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="passionfruit"> Passionfruit</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="fruitynotes"> Fruity Notes</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="benzoin"> Benzoin</label><br>
-          <label
-            ><input type="checkbox" class="filter-ingredient" value="indonesianpatchoulileaf"> Indonesian Patchouli Leaf</label
-          ><br>
-          <label><input type="checkbox" class="filter-ingredient" value="leather"> Leather</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="akigalawood"> Akigalawood</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="labdanum"> Labdanum</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="cassis"> Cassis</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="hibiscus"> Hibiscus</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="damaskrose"> Damask Rose</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="violet"> Violet</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="papyrus"> Papyrus</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="spicynotes"> Spicy Notes</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="woodynotes"> Woody Notes</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="clearwood"> Clearwood</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="elemi"> Elemi</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="olibanum"> Olibanum</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="ginger"> Ginger</label>
-          <label><input type="checkbox" class="filter-ingredient" value="isoesuper"> Iso E Super</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="whitewoods"> White Woods</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="strawberry"> Strawberry</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="raspberry"> Raspberry</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="blackberry"> Blackberry</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="peach"> Peach</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="melon"> Melon</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="magnolia"> Magnolia</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="freesia"> Freesia</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="orchid"> Orchid</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="plum"> Plum</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="blacktea"> Black Tea</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="guaiacwood"> Guaiac Wood</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="cognac"> Cognac</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="oak"> Oak</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="praline"> Praline</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="fig"> Fig</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="dates"> Dates</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="ambrette"> Ambrette</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="helvetolide"> Helvetolide</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="cetalox"> Cetalox</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="geranium"> Geranium</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="pitosporum"> Pitosporum</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="hay"> Hay</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="bloodmandarin"> Blood Mandarin</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="basil"> Basil</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="carrotseed"> Carrot Seeds</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="mayrose"> May Rose</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="apricot"> Apricot</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="neroli"> Neroli</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="seanotes"> Sea Notes</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="aldehydes"> Aldehydes</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="palisanderrosewood"> Palisander Rosewood</label
-          ><br>
-          <label><input type="checkbox" class="filter-ingredient" value="honeysuckle"> Honeysuckle</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="orrisroot"> Orris Root</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="amber"> Amber</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="rum"> Rum</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="sugarcane"> Sugar Cane</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="heliotrope"> Heliotrope</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="davana"> Davana</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="vanillaabsolute"> Vanilla Absolute</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="vanillacaviar"> Vanilla Caviar</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="gardenia"> Gardenia</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="truffle"> Truffle</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="spices"> Spices</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="lotus"> Lotus</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="mexicanchocolate"> Mexican Chocolate</label
-          ><br>
-          <label><input type="checkbox" class="filter-ingredient" value="styrax"> Styrax</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="castoreum"> Castoreum</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="whiterose"> White Rose</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="crystalrose"> Crystal Rose</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="juniperberries"> Juniper Berries</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="sicilianorange"> Sicilian Orange</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="calabrianbergamot"> Calabrian Bergamot</label
-          ><br>
-          <label><input type="checkbox" class="filter-ingredient" value="cherry"> Cherry</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="ginger"> Ginger</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="bucchu"> Bucchu</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="cyclamen"> Cyclamen</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="tactilewoods"> Tactile Woods</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="amberlyn"> Amberlyn</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="crystalrose"> Crystal Rose</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="rhubarb"> Rhubarb</label><br>
-          <label><input type="checkbox" class="filter-ingredient" value="ginger"> Ginger</label>
+          {%- render 'catalog--filter-options', list: 'collection-grid.filters.ingredients', input_class: 'filter-ingredient' %}
         </div>
       </details>
     </div>
@@ -665,8 +393,19 @@
   </div>
 </div>
 
+<script type="application/json" id="collectionGridStrings">
+  {
+    "showFilters": {{ 'sections.collection_grid.show_filters_html' | t | json }},
+    "hideFilters": {{ 'sections.collection_grid.hide_filters_html' | t | json }},
+    "noRecentSearches": {{ 'sections.collection_grid.no_recent_searches' | t | json }},
+    "noProducts": {{ 'sections.collection_grid.no_products' | t | json }},
+    "addToCart": {{ 'sections.collection_grid.add_to_cart' | t | json }},
+    "soldOut": {{ 'sections.collection_grid.sold_out' | t | json }}
+  }
+</script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
+    const gridStrings = JSON.parse(document.getElementById('collectionGridStrings').textContent);
     const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '{{ cart.currency.symbol }}' || '$';
     let cartQuantities = {};
     let cartFetchInProgress = false;
@@ -756,11 +495,11 @@
           const textEl = addBtn.querySelector('.btn-text') || addBtn;
           if (textEl) {
             if (!firstAvailable) {
-              textEl.textContent = 'Sold Out';
+              textEl.textContent = gridStrings.soldOut;
               addBtn.style.cursor = 'not-allowed';
               addBtn.style.opacity = '0.6';
             } else {
-              textEl.textContent = 'Add to Cart';
+              textEl.textContent = gridStrings.addToCart;
               addBtn.style.cursor = 'pointer';
               addBtn.style.opacity = '1';
             }
@@ -865,6 +604,7 @@
 <script>
   // This script handles the interactive elements of the collection page, including sidebar toggling, search functionality, and filtering.
   document.addEventListener('DOMContentLoaded', () => {
+    const gridStrings = JSON.parse(document.getElementById('collectionGridStrings').textContent);
     const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '{{ cart.currency.symbol }}' || '$';
     {% comment %} DOM Element References {% endcomment %}
     const filterToggleButton = document.getElementById('filterToggleButton');
@@ -998,10 +738,10 @@
 
       // Update button text and icon for both buttons
       if (filterToggleText) {
-        filterToggleText.textContent = 'SHOW SORT & FILTER';
+        filterToggleText.textContent = gridStrings.showFilters;
       }
       if (filterToggleTextDesktop) {
-        filterToggleTextDesktop.textContent = 'SHOW SORT & FILTER';
+        filterToggleTextDesktop.textContent = gridStrings.showFilters;
       }
       if (filterToggleIcon) {
         filterToggleIcon.innerHTML = '<path d="m6 9 6 6 6-6"/>';
@@ -1017,10 +757,10 @@
 
       // Update button text and icon for both buttons
       if (filterToggleText) {
-        filterToggleText.textContent = 'HIDE SORT & FILTER';
+        filterToggleText.textContent = gridStrings.hideFilters;
       }
       if (filterToggleTextDesktop) {
-        filterToggleTextDesktop.textContent = 'HIDE SORT & FILTER';
+        filterToggleTextDesktop.textContent = gridStrings.hideFilters;
       }
       if (filterToggleIcon) {
         filterToggleIcon.innerHTML = '<path d="m18 15-6-6-6 6"/>';
@@ -1102,7 +842,8 @@
       recentSearchesGrid.innerHTML = '';
       
       if (searches.length === 0) {
-        recentSearchesGrid.innerHTML = '<span style="color: #888;">No recent searches.</span>';
+        recentSearchesGrid.innerHTML = '<span style="color: #888;"></span>';
+        recentSearchesGrid.firstChild.textContent = gridStrings.noRecentSearches;
         return;
       }
       
@@ -1124,7 +865,8 @@
       overlayProductGrid.innerHTML = '';
       
       if (productsToRender.length === 0) {
-        overlayProductGrid.innerHTML = '<p class="text-center text-gray-600">No products found.</p>';
+        overlayProductGrid.innerHTML = '<p class="text-center text-gray-600"></p>';
+        overlayProductGrid.firstChild.textContent = gridStrings.noProducts;
         return;
       }
       

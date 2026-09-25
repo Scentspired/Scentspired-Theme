@@ -264,6 +264,26 @@
       "min_error": "This item has a minimum of {{ min }}",
       "max_error": "This item has a maximum of {{ max }}",
       "step_error": "You can only add this item in increments of {{ step }}"
+    },
+    "collection_grid": {
+      "show_filters_html": "SHOW SORT & FILTER",
+      "hide_filters_html": "HIDE SORT & FILTER",
+      "search_placeholder": "Search scents, brands, ingredients",
+      "recent_searches": "Recent Searches",
+      "no_recent_searches": "No recent searches.",
+      "trending_searches": "Trending Search",
+      "no_products": "No products found.",
+      "no_image": "No Image",
+      "products_per_row": "Products per row:",
+      "filters": "FILTERS",
+      "filter_price": "Range",
+      "filter_size": "Size",
+      "filter_gender": "Gender",
+      "filter_scent_families": "Scent Families",
+      "filter_inspired_by": "Inspired By",
+      "filter_ingredients": "Ingredients",
+      "add_to_cart": "Add to Cart",
+      "sold_out": "Sold Out"
     }
   },
   "localization": {

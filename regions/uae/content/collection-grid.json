@@ -1,0 +1,803 @@
+{
+  "$comment": [
+    "The collection pages' product grid (sections/catalog--collection-grid.liquid), the same on every collection page: its introduction, the links to the other collections, the search suggestions, and the filter lists.",
+    "Every list grows with this file: add, remove or reorder items. A filter's \"value\" is the product tag it matches."
+  ],
+  "intro": "Discover our range of <strong>designer-inspired</strong> <strong>signature perfumes,</strong> crafted for everyday luxury.",
+  "collection_links": [
+    {
+      "label": "All Perfumes",
+      "url": "/collections/shop"
+    },
+    {
+      "label": "Bestsellers",
+      "url": "/collections/bestsellers"
+    },
+    {
+      "label": "Men Inspired Perfumes",
+      "url": "/collections/men"
+    },
+    {
+      "label": "Women Inspired Perfumes",
+      "url": "/collections/women"
+    },
+    {
+      "label": "Unisex Inspired Perfumes",
+      "url": "/collections/unisex"
+    },
+    {
+      "label": "Scent Notes",
+      "url": "/pages/scent-notes"
+    }
+  ],
+  "search_bar_tags": [
+    {
+      "label": "Citrus",
+      "term": "citrus"
+    },
+    {
+      "label": "Amber",
+      "term": "amber"
+    },
+    {
+      "label": "Jasmine",
+      "term": "jasmine"
+    },
+    {
+      "label": "Apple",
+      "term": "apple"
+    },
+    {
+      "label": "Bergamot",
+      "term": "bergamot"
+    }
+  ],
+  "trending_searches": [
+    {
+      "label": "Amber",
+      "term": "Amber"
+    },
+    {
+      "label": "Jasmine",
+      "term": "Jasmine"
+    },
+    {
+      "label": "Fruity",
+      "term": "Fruity"
+    },
+    {
+      "label": "Tomford",
+      "term": "Tomford"
+    },
+    {
+      "label": "Gourmand",
+      "term": "Gourmand"
+    },
+    {
+      "label": "MFK",
+      "term": "MFK"
+    },
+    {
+      "label": "Citrus",
+      "term": "Citrus"
+    },
+    {
+      "label": "YSL",
+      "term": "YSL"
+    },
+    {
+      "label": "Saffron",
+      "term": "Saffron"
+    }
+  ],
+  "season_collections_heading": "Find Your Season's Scent",
+  "scent_notes_heading": "Scent Notes",
+  "filters": {
+    "sizes": [
+      {
+        "label": "50ml",
+        "value": "50ml"
+      },
+      {
+        "label": "100ml",
+        "value": "100ml"
+      }
+    ],
+    "genders": [
+      {
+        "label": "Men",
+        "value": "gender-men"
+      },
+      {
+        "label": "Women",
+        "value": "gender-women"
+      },
+      {
+        "label": "Unisex",
+        "value": "gender-unisex"
+      }
+    ],
+    "scent_families": [
+      {
+        "label": "Flowery",
+        "value": "flowery"
+      },
+      {
+        "label": "Fresh",
+        "value": "fresh"
+      },
+      {
+        "label": "Earthy",
+        "value": "earthy"
+      },
+      {
+        "label": "Herbal",
+        "value": "herbal"
+      },
+      {
+        "label": "Warm",
+        "value": "warm"
+      },
+      {
+        "label": "Gourmand",
+        "value": "gourmand"
+      }
+    ],
+    "inspired_by": [
+      {
+        "label": "Tomford",
+        "value": "tomford"
+      },
+      {
+        "label": "Chanel",
+        "value": "chanel"
+      },
+      {
+        "label": "Louis Vuitton",
+        "value": "louisvuitton"
+      },
+      {
+        "label": "By Killian",
+        "value": "bykillian"
+      },
+      {
+        "label": "Byredo",
+        "value": "byredo"
+      },
+      {
+        "label": "Dior",
+        "value": "dior"
+      },
+      {
+        "label": "Maison Crivelli",
+        "value": "maisoncrivelli"
+      },
+      {
+        "label": "Creed",
+        "value": "creed"
+      },
+      {
+        "label": "Le Labo",
+        "value": "lelabo"
+      },
+      {
+        "label": "Ysl",
+        "value": "ysl"
+      },
+      {
+        "label": "Burberry",
+        "value": "burberry"
+      },
+      {
+        "label": "Ex Nihilo's",
+        "value": "exnihilos"
+      },
+      {
+        "label": "Parfums",
+        "value": "parfums"
+      },
+      {
+        "label": "Bvlgari",
+        "value": "bvlgari"
+      },
+      {
+        "label": "Carolina Herrera",
+        "value": "carolinaherrera"
+      },
+      {
+        "label": "Diptyque",
+        "value": "diptyque"
+      },
+      {
+        "label": "Giorgio Armani",
+        "value": "giorgioarmani"
+      },
+      {
+        "label": "Gucci",
+        "value": "gucci"
+      },
+      {
+        "label": "Hermès",
+        "value": "hermès"
+      },
+      {
+        "label": "Initio",
+        "value": "initio"
+      },
+      {
+        "label": "Lancôme",
+        "value": "lancôme"
+      },
+      {
+        "label": "MFK",
+        "value": "mfk"
+      },
+      {
+        "label": "Narciso",
+        "value": "narciso"
+      },
+      {
+        "label": "Nasomatto's",
+        "value": "nasomattos"
+      },
+      {
+        "label": "Nishane",
+        "value": "nishane"
+      },
+      {
+        "label": "Paco Rabanne",
+        "value": "pacorabanne"
+      }
+    ],
+    "ingredients": [
+      {
+        "label": "Saffron",
+        "value": "saffron"
+      },
+      {
+        "label": "Jasmine",
+        "value": "jasmine"
+      },
+      {
+        "label": "Amberwood",
+        "value": "amberwood"
+      },
+      {
+        "label": "Ambergris",
+        "value": "ambergris"
+      },
+      {
+        "label": "Fir Resin",
+        "value": "fir-resin"
+      },
+      {
+        "label": "Cedar",
+        "value": "cedar"
+      },
+      {
+        "label": "Bergamot",
+        "value": "bergamot"
+      },
+      {
+        "label": "Black Currant",
+        "value": "blackcurrant"
+      },
+      {
+        "label": "Apple",
+        "value": "apple"
+      },
+      {
+        "label": "Lemon",
+        "value": "lemon"
+      },
+      {
+        "label": "Pink Pepper",
+        "value": "pinkpepper"
+      },
+      {
+        "label": "Pineapple",
+        "value": "pineapple"
+      },
+      {
+        "label": "Patchouli",
+        "value": "patchouli"
+      },
+      {
+        "label": "Moroccan Jasmine",
+        "value": "moroccanjasmine"
+      },
+      {
+        "label": "Birch",
+        "value": "birch"
+      },
+      {
+        "label": "Musk",
+        "value": "musk"
+      },
+      {
+        "label": "Oakmoss",
+        "value": "oakmoss"
+      },
+      {
+        "label": "Cedarwood",
+        "value": "cedarwood"
+      },
+      {
+        "label": "Ambroxan",
+        "value": "ambroxan"
+      },
+      {
+        "label": "Litchi",
+        "value": "litchi"
+      },
+      {
+        "label": "Rhubarb",
+        "value": "rhubarb"
+      },
+      {
+        "label": "Nutmeg",
+        "value": "nutmeg"
+      },
+      {
+        "label": "Turkish Rose",
+        "value": "turkishrose"
+      },
+      {
+        "label": "Peony",
+        "value": "peony"
+      },
+      {
+        "label": "Petalia",
+        "value": "petalia"
+      },
+      {
+        "label": "Vanilla",
+        "value": "vanilla"
+      },
+      {
+        "label": "Cashmeran",
+        "value": "cashmeran"
+      },
+      {
+        "label": "Incense",
+        "value": "incense"
+      },
+      {
+        "label": "Haitian Vetiver",
+        "value": "haitianvetiver"
+      },
+      {
+        "label": "Lavender",
+        "value": "lavender"
+      },
+      {
+        "label": "Agarwood (Oud)",
+        "value": "agarwood"
+      },
+      {
+        "label": "Orange",
+        "value": "orange"
+      },
+      {
+        "label": "Mandarin Orange",
+        "value": "mandarinorange"
+      },
+      {
+        "label": "Orange Blossom",
+        "value": "orangeblossom"
+      },
+      {
+        "label": "Jasmine Sambac",
+        "value": "jasminesambac"
+      },
+      {
+        "label": "Ylang-Ylang",
+        "value": "ylang-ylang"
+      },
+      {
+        "label": "White Musk",
+        "value": "whitemusk"
+      },
+      {
+        "label": "Vetiver",
+        "value": "vetiver"
+      },
+      {
+        "label": "Tonka Bean",
+        "value": "tonkabean"
+      },
+      {
+        "label": "Opoponax",
+        "value": "opoponax"
+      },
+      {
+        "label": "Green Tea",
+        "value": "greentea"
+      },
+      {
+        "label": "Sandalwood",
+        "value": "sandalwood"
+      },
+      {
+        "label": "Petitgrain",
+        "value": "petitgrain"
+      },
+      {
+        "label": "Galbanum",
+        "value": "galbanum"
+      },
+      {
+        "label": "Pear",
+        "value": "pear"
+      },
+      {
+        "label": "Coffee",
+        "value": "coffee"
+      },
+      {
+        "label": "Bitter Almond",
+        "value": "bitteralmond"
+      },
+      {
+        "label": "Licorice",
+        "value": "licorice"
+      },
+      {
+        "label": "Cashmere Wood",
+        "value": "cashmerewood"
+      },
+      {
+        "label": "Almond",
+        "value": "almond"
+      },
+      {
+        "label": "Tuberose",
+        "value": "tuberose"
+      },
+      {
+        "label": "Orris",
+        "value": "orris"
+      },
+      {
+        "label": "Cacao",
+        "value": "cacao"
+      },
+      {
+        "label": "Praline",
+        "value": "praline"
+      },
+      {
+        "label": "Cinnamon",
+        "value": "cinnamon"
+      },
+      {
+        "label": "Iris",
+        "value": "iris"
+      },
+      {
+        "label": "Passionfruit",
+        "value": "passionfruit"
+      },
+      {
+        "label": "Fruity Notes",
+        "value": "fruitynotes"
+      },
+      {
+        "label": "Benzoin",
+        "value": "benzoin"
+      },
+      {
+        "label": "Indonesian Patchouli Leaf",
+        "value": "indonesianpatchoulileaf"
+      },
+      {
+        "label": "Leather",
+        "value": "leather"
+      },
+      {
+        "label": "Akigalawood",
+        "value": "akigalawood"
+      },
+      {
+        "label": "Labdanum",
+        "value": "labdanum"
+      },
+      {
+        "label": "Cassis",
+        "value": "cassis"
+      },
+      {
+        "label": "Hibiscus",
+        "value": "hibiscus"
+      },
+      {
+        "label": "Damask Rose",
+        "value": "damaskrose"
+      },
+      {
+        "label": "Violet",
+        "value": "violet"
+      },
+      {
+        "label": "Papyrus",
+        "value": "papyrus"
+      },
+      {
+        "label": "Spicy Notes",
+        "value": "spicynotes"
+      },
+      {
+        "label": "Woody Notes",
+        "value": "woodynotes"
+      },
+      {
+        "label": "Clearwood",
+        "value": "clearwood"
+      },
+      {
+        "label": "Elemi",
+        "value": "elemi"
+      },
+      {
+        "label": "Olibanum",
+        "value": "olibanum"
+      },
+      {
+        "label": "Ginger",
+        "value": "ginger"
+      },
+      {
+        "label": "Iso E Super",
+        "value": "isoesuper"
+      },
+      {
+        "label": "White Woods",
+        "value": "whitewoods"
+      },
+      {
+        "label": "Strawberry",
+        "value": "strawberry"
+      },
+      {
+        "label": "Raspberry",
+        "value": "raspberry"
+      },
+      {
+        "label": "Blackberry",
+        "value": "blackberry"
+      },
+      {
+        "label": "Peach",
+        "value": "peach"
+      },
+      {
+        "label": "Melon",
+        "value": "melon"
+      },
+      {
+        "label": "Magnolia",
+        "value": "magnolia"
+      },
+      {
+        "label": "Freesia",
+        "value": "freesia"
+      },
+      {
+        "label": "Orchid",
+        "value": "orchid"
+      },
+      {
+        "label": "Plum",
+        "value": "plum"
+      },
+      {
+        "label": "Black Tea",
+        "value": "blacktea"
+      },
+      {
+        "label": "Guaiac Wood",
+        "value": "guaiacwood"
+      },
+      {
+        "label": "Cognac",
+        "value": "cognac"
+      },
+      {
+        "label": "Oak",
+        "value": "oak"
+      },
+      {
+        "label": "Praline",
+        "value": "praline"
+      },
+      {
+        "label": "Fig",
+        "value": "fig"
+      },
+      {
+        "label": "Dates",
+        "value": "dates"
+      },
+      {
+        "label": "Ambrette",
+        "value": "ambrette"
+      },
+      {
+        "label": "Helvetolide",
+        "value": "helvetolide"
+      },
+      {
+        "label": "Cetalox",
+        "value": "cetalox"
+      },
+      {
+        "label": "Geranium",
+        "value": "geranium"
+      },
+      {
+        "label": "Pitosporum",
+        "value": "pitosporum"
+      },
+      {
+        "label": "Hay",
+        "value": "hay"
+      },
+      {
+        "label": "Blood Mandarin",
+        "value": "bloodmandarin"
+      },
+      {
+        "label": "Basil",
+        "value": "basil"
+      },
+      {
+        "label": "Carrot Seeds",
+        "value": "carrotseed"
+      },
+      {
+        "label": "May Rose",
+        "value": "mayrose"
+      },
+      {
+        "label": "Apricot",
+        "value": "apricot"
+      },
+      {
+        "label": "Neroli",
+        "value": "neroli"
+      },
+      {
+        "label": "Sea Notes",
+        "value": "seanotes"
+      },
+      {
+        "label": "Aldehydes",
+        "value": "aldehydes"
+      },
+      {
+        "label": "Palisander Rosewood",
+        "value": "palisanderrosewood"
+      },
+      {
+        "label": "Honeysuckle",
+        "value": "honeysuckle"
+      },
+      {
+        "label": "Orris Root",
+        "value": "orrisroot"
+      },
+      {
+        "label": "Amber",
+        "value": "amber"
+      },
+      {
+        "label": "Rum",
+        "value": "rum"
+      },
+      {
+        "label": "Sugar Cane",
+        "value": "sugarcane"
+      },
+      {
+        "label": "Heliotrope",
+        "value": "heliotrope"
+      },
+      {
+        "label": "Davana",
+        "value": "davana"
+      },
+      {
+        "label": "Vanilla Absolute",
+        "value": "vanillaabsolute"
+      },
+      {
+        "label": "Vanilla Caviar",
+        "value": "vanillacaviar"
+      },
+      {
+        "label": "Gardenia",
+        "value": "gardenia"
+      },
+      {
+        "label": "Truffle",
+        "value": "truffle"
+      },
+      {
+        "label": "Spices",
+        "value": "spices"
+      },
+      {
+        "label": "Lotus",
+        "value": "lotus"
+      },
+      {
+        "label": "Mexican Chocolate",
+        "value": "mexicanchocolate"
+      },
+      {
+        "label": "Styrax",
+        "value": "styrax"
+      },
+      {
+        "label": "Castoreum",
+        "value": "castoreum"
+      },
+      {
+        "label": "White Rose",
+        "value": "whiterose"
+      },
+      {
+        "label": "Crystal Rose",
+        "value": "crystalrose"
+      },
+      {
+        "label": "Juniper Berries",
+        "value": "juniperberries"
+      },
+      {
+        "label": "Sicilian Orange",
+        "value": "sicilianorange"
+      },
+      {
+        "label": "Calabrian Bergamot",
+        "value": "calabrianbergamot"
+      },
+      {
+        "label": "Cherry",
+        "value": "cherry"
+      },
+      {
+        "label": "Ginger",
+        "value": "ginger"
+      },
+      {
+        "label": "Bucchu",
+        "value": "bucchu"
+      },
+      {
+        "label": "Cyclamen",
+        "value": "cyclamen"
+      },
+      {
+        "label": "Tactile Woods",
+        "value": "tactilewoods"
+      },
+      {
+        "label": "Amberlyn",
+        "value": "amberlyn"
+      },
+      {
+        "label": "Crystal Rose",
+        "value": "crystalrose"
+      },
+      {
+        "label": "Rhubarb",
+        "value": "rhubarb"
+      },
+      {
+        "label": "Ginger",
+        "value": "ginger"
+      }
+    ]
+  }
+}

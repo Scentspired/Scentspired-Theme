@@ -1,0 +1,27 @@
+{%- comment -%}
+  Search suggestion tags, from a list in the region's content: each item a
+  label and the term a click searches for.
+
+  {% render 'catalog--search-tags', list: 'collection-grid.trending_searches' %}
+{%- endcomment -%}
+{%- liquid
+  assign keys_key = list | append: '.__keys'
+  capture tag_keys
+    render 'region--content', key: keys_key
+  endcapture
+  assign tag_keys = tag_keys | strip | split: ','
+-%}
+{%- for i in tag_keys -%}
+  {%- liquid
+    assign item = list | append: '.' | append: i
+    assign k = item | append: '.label'
+    capture tag_label
+      render 'region--content', key: k
+    endcapture
+    assign k = item | append: '.term'
+    capture tag_term
+      render 'region--content', key: k
+    endcapture
+  -%}
+  <span class="scent-search-tag" data-search-term="{{ tag_term }}">{{ tag_label }}</span>
+{% endfor -%}

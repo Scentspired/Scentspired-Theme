@@ -18,9 +18,9 @@
     "ids": 0
   },
   "sections/bundle--box.liquid": {
-    "total": 18,
+    "total": 17,
     "text": 11,
-    "js-text": 7,
+    "js-text": 6,
     "media": 0,
     "links": 0,
     "fallback": 0,
@@ -36,9 +36,9 @@
     "ids": 0
   },
   "sections/bundle--five-favourites.liquid": {
-    "total": 14,
+    "total": 12,
     "text": 0,
-    "js-text": 12,
+    "js-text": 10,
     "media": 0,
     "links": 0,
     "fallback": 2,
@@ -63,20 +63,11 @@
     "ids": 0
   },
   "sections/catalog--best-sellers.liquid": {
-    "total": 12,
+    "total": 11,
     "text": 2,
-    "js-text": 10,
-    "media": 0,
-    "links": 0,
-    "fallback": 0,
-    "ids": 0
-  },
-  "sections/catalog--collection-grid.liquid": {
-    "total": 231,
-    "text": 216,
     "js-text": 9,
     "media": 0,
-    "links": 6,
+    "links": 0,
     "fallback": 0,
     "ids": 0
   },
@@ -99,9 +90,9 @@
     "ids": 0
   },
   "sections/catalog--product-info-tab.liquid": {
-    "total": 78,
+    "total": 76,
     "text": 71,
-    "js-text": 3,
+    "js-text": 1,
     "media": 4,
     "links": 0,
     "fallback": 0,
@@ -198,9 +189,9 @@
     "ids": 0
   },
   "sections/header--main.liquid": {
-    "total": 156,
+    "total": 155,
     "text": 27,
-    "js-text": 103,
+    "js-text": 102,
     "media": 14,
     "links": 12,
     "fallback": 0,
@@ -216,18 +207,18 @@
     "ids": 0
   },
   "sections/media--hero.liquid": {
-    "total": 69,
+    "total": 68,
     "text": 53,
-    "js-text": 15,
+    "js-text": 14,
     "media": 1,
     "links": 0,
     "fallback": 0,
     "ids": 0
   },
   "sections/media--image-banner.liquid": {
-    "total": 2,
+    "total": 1,
     "text": 0,
-    "js-text": 1,
+    "js-text": 0,
     "media": 0,
     "links": 0,
     "fallback": 1,
@@ -486,9 +477,9 @@
     "ids": 0
   },
   "snippets/cart--drawer.liquid": {
-    "total": 55,
+    "total": 52,
     "text": 41,
-    "js-text": 10,
+    "js-text": 7,
     "media": 0,
     "links": 2,
     "fallback": 2,
@@ -588,15 +579,6 @@
     "total": 3,
     "text": 0,
     "js-text": 3,
-    "media": 0,
-    "links": 0,
-    "fallback": 0,
-    "ids": 0
-  },
-  "assets/cart--quantity-popover.js": {
-    "total": 1,
-    "text": 0,
-    "js-text": 1,
     "media": 0,
     "links": 0,
     "fallback": 0,

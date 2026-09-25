@@ -100,7 +100,13 @@ function count(src, isJs, items) {
   }
 
   for (const s of scripts) {
-    const body = s.replace(/\/\/[^\n]*|\/\*[\s\S]*?\*\//g, '');
+    const body = s
+      .replace(/\/\/[^\n]*|\/\*[\s\S]*?\*\//g, '')
+      // not shown to a shopper: console messages, and key names a handler compares
+      .replace(/console\.(?:log|warn|error|info|debug)\((?:[^()]|\([^()]*\))*\)/g, '')
+      .replace(/\.key\s*[!=]==?\s*(['"])[A-Za-z]+\1|(['"])(?:Enter|Escape|Tab|ArrowUp|ArrowDown|ArrowLeft|ArrowRight)\2\s*[!=]==?\s*[\w.]*key\b/g, '')
+      // a >= / <= comparison, not markup
+      .replace(/[<>]=/g, ' ');
     for (const m of body.matchAll(/(['"`])((?:(?!\1)[^\\\n]|\\.){2,120})\1/g)) {
       const v = m[2].trim();
       if (/[.#\[:>]|^\s*$|\$\{|https?:|\/|=|\(|;|^[A-Z_]+$/.test(v)) continue;
