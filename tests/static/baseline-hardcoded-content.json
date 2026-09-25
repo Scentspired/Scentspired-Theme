@@ -44,15 +44,6 @@
     "fallback": 2,
     "ids": 0
   },
-  "sections/bundle--heading.liquid": {
-    "total": 33,
-    "text": 20,
-    "js-text": 4,
-    "media": 8,
-    "links": 0,
-    "fallback": 0,
-    "ids": 1
-  },
   "sections/catalog--aroma-selector.liquid": {
     "total": 31,
     "text": 17,
@@ -332,6 +323,15 @@
     "fallback": 0,
     "ids": 0
   },
+  "sections/media--scent-carousel.liquid": {
+    "total": 32,
+    "text": 18,
+    "js-text": 4,
+    "media": 8,
+    "links": 0,
+    "fallback": 1,
+    "ids": 1
+  },
   "sections/media--scent-filter-banner.liquid": {
     "total": 12,
     "text": 2,
@@ -360,33 +360,6 @@
     "ids": 0
   },
   "sections/search--results.liquid": {
-    "total": 2,
-    "text": 2,
-    "js-text": 0,
-    "media": 0,
-    "links": 0,
-    "fallback": 0,
-    "ids": 0
-  },
-  "sections/social--instagram-feed.liquid": {
-    "total": 33,
-    "text": 20,
-    "js-text": 4,
-    "media": 8,
-    "links": 0,
-    "fallback": 0,
-    "ids": 1
-  },
-  "sections/social--instagram-heading.liquid": {
-    "total": 2,
-    "text": 2,
-    "js-text": 0,
-    "media": 0,
-    "links": 0,
-    "fallback": 0,
-    "ids": 0
-  },
-  "sections/social--instagram.liquid": {
     "total": 2,
     "text": 2,
     "js-text": 0,

@@ -343,7 +343,7 @@
       }
     },
     "bundle_heading_wRwayJ": {
-      "type": "bundle--heading",
+      "type": "media--scent-carousel",
       "custom_css": [
         ".carousel-container {display: none;}",
         ".scent-header {margin-bottom: -50px;}",
@@ -351,7 +351,12 @@
         ".scent-sub {text-decoration: underline !important; text-decoration-color: #fadb95 !important; text-decoration-thickness: 2px !important; text-underline-offset: 2px !important;}"
       ],
       "name": "Bundle Heading",
-      "settings": {}
+      "settings": {
+        "heading": "The Collection",
+        "subheading": "Better Value When Chosen Together",
+        "subheading_style": "scent-sub",
+        "show_carousel": true
+      }
     },
     "bundle_collection_dNJFpE": {
       "type": "bundle--collection",
@@ -363,7 +368,7 @@
       "settings": {}
     },
     "instagram_heading_J7WmJ7": {
-      "type": "social--instagram-heading",
+      "type": "media--scent-carousel",
       "custom_css": [
         ".carousel-container {display: none;}",
         ".scent-header {margin-bottom: -50px;}",
@@ -371,7 +376,12 @@
         ".scent-sub {text-decoration: underline !important; text-decoration-color: #fadb95 !important; text-decoration-thickness: 2px !important; text-underline-offset: 2px !important;}"
       ],
       "name": "Instagram Videos",
-      "settings": {}
+      "settings": {
+        "heading": "What People",
+        "subheading": "Say About Us",
+        "subheading_style": "scent-sub",
+        "show_carousel": false
+      }
     },
     "177088923078fc317e": {
       "type": "apps",
@@ -401,7 +411,7 @@
       }
     },
     "instagram_feed_6XcCWT": {
-      "type": "social--instagram-feed",
+      "type": "media--scent-carousel",
       "custom_css": [
         ".carousel-container {display: none;}",
         ".scent-header {margin-bottom: -120px;}",
@@ -409,7 +419,12 @@
         ".scent-subtitle {text-decoration: underline !important; text-decoration-color: #fadb95 !important; text-decoration-thickness: 2px !important; text-underline-offset: 2px !important;}"
       ],
       "name": "Instagram Feed Section",
-      "settings": {}
+      "settings": {
+        "heading": "A sneak peek",
+        "subheading": "@thescentspired",
+        "subheading_style": "scent-subtitle",
+        "show_carousel": true
+      }
     },
     "1756981498fec8c3c0": {
       "type": "_blocks",

@@ -1,10 +1,16 @@
+{%- comment -%}
+  A heading, and under it (show_carousel) the scent image carousel. Replaces
+  four copies of it: bundle--heading and social--instagram-feed (heading and
+  carousel) and social--instagram / social--instagram-heading (heading only).
+{%- endcomment -%}
+{%- assign subheading_class = section.settings.subheading_style | default: 'scent-sub' -%}
 <section class="scent-carousel">
   <!-- Header -->
   <div class="scent-header">
-    <h2 class="scent-title">The Collection</h2>
-    <p class="scent-sub">Better Value When Chosen Together</p>
+    <h2 class="scent-title">{{ section.settings.heading }}</h2>
+    <p class="{{ subheading_class }}">{{ section.settings.subheading }}</p>
   </div>
-
+{% if section.settings.show_carousel %}
   <!-- Carousel Container -->
   <div class="carousel-container">
     <!-- Background Text Layer - Behind images -->
@@ -78,13 +84,14 @@
       </div>
     </div>
   </div>
-
+{% endif %}
   <!-- Bottom Spacing -->
   <div class="carousel-spacing"></div>
 </section>
 
-{{ 'bundle--heading.css' | asset_url | stylesheet_tag }}
+{{ 'media--scent-carousel.css' | asset_url | stylesheet_tag }}
 
+{% if section.settings.show_carousel %}
 <script>
   // Enhanced carousel script with improved reliability and immediate startup
   (function () {
@@ -419,15 +426,26 @@
     startInitialization();
   })();
 </script>
+{% endif %}
 
 {% schema %}
 {
-  "name": "Bundle Heading",
-  "settings": [],
-  "presets": [
+  "name": "Scent carousel",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading" },
+    { "type": "text", "id": "subheading", "label": "Subheading" },
     {
-      "name": "Bundle Heading"
-    }
-  ]
+      "type": "select",
+      "id": "subheading_style",
+      "label": "Subheading style",
+      "options": [
+        { "value": "scent-sub", "label": "Bold italic, 28px" },
+        { "value": "scent-subtitle", "label": "Bold italic, 48px" }
+      ],
+      "default": "scent-sub"
+    },
+    { "type": "checkbox", "id": "show_carousel", "label": "Show the image carousel", "default": true }
+  ],
+  "presets": [{ "name": "Scent carousel" }]
 }
 {% endschema %}

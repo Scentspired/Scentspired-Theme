@@ -1,4 +1,6 @@
-/* Extracted from sections/bundle--heading.liquid.
+/* The scent carousel (sections/media--scent-carousel.liquid). Was four near-identical
+ * copies — bundle--heading, social--instagram, social--instagram-heading and
+ * social--instagram-feed .css; these are the rules that won when all four loaded.
  * Inline CSS is re-downloaded with the HTML on every page that renders
  * that file and can never be cached. Edit this file, not the .liquid.
  * Blocks still in the .liquid are the ones that contain Liquid. */
@@ -25,6 +27,16 @@
     margin: 0 auto;
     font-family: var(--font-body-light);
     display: block;
+  }
+
+  .scent-subtitle {
+    font-size: 48px;
+    font-weight: 900;
+    color: black;
+    font-style: italic;
+    letter-spacing: 0.05em;
+    margin-top: -10px !important;
+    font-family: var(--font-display-italic);
   }
 
   .scent-sub {
@@ -110,11 +122,20 @@
 
   @media (max-width: 767px) {
     .scent-title {
-      font-size: 25px;
+      font-size: 32px;
       font-weight: 100;
       color: #666;
       letter-spacing: 0.05em;
       margin-left: 0px !important;
+    }
+
+    .scent-subtitle {
+      font-size: 32px;
+      font-weight: 900;
+      color: black;
+      font-style: italic;
+      letter-spacing: 0.05em;
+      margin-top: 0px !important;
     }
 
     .scent-sub {
