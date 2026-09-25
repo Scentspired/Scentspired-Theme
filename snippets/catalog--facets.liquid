@@ -12,9 +12,9 @@
   {% render 'catalog--facets', results: collection, enable_filtering: true, enable_sorting: true, filter_type: 'vertical', paginate: paginate %}
 {% endcomment %}
 
-{{ "component-show-more.css" | asset_url | stylesheet_tag }}
-{{ "component-swatch-input.css" | asset_url | stylesheet_tag }}
-{{ "component-swatch.css" | asset_url | stylesheet_tag }}
+{{ "ui--show-more.css" | asset_url | stylesheet_tag }}
+{{ "catalog--swatch-input.css" | asset_url | stylesheet_tag }}
+{{ "catalog--swatch.css" | asset_url | stylesheet_tag }}
 
 {%- liquid
   assign sort_by = results.sort_by | default: results.default_sort_by
@@ -76,7 +76,7 @@
                         <span class="active-facets__button-inner button button--tertiary">
                           {{ filter.label | escape }}: {{ value.label | escape }}
                           <span class="svg-wrapper">
-                            {{- "icon-close-small.svg" | inline_asset_content -}}
+                            {{- "ui--icon-close-small.svg" | inline_asset_content -}}
                           </span>
                           <span class="visually-hidden">{{ "products.facets.clear_filter" | t }}</span>
                         </span>
@@ -92,7 +92,7 @@
                           <span class="active-facets__button-inner button button--tertiary">
                             {{ min | default: 0 | money }} - {{ max | default: filter.range_max | money }}
                             <span class="svg-wrapper">
-                              {{- "icon-close-small.svg" | inline_asset_content -}}
+                              {{- "ui--icon-close-small.svg" | inline_asset_content -}}
                             </span>
                             <span class="visually-hidden">{{ "products.facets.clear_filter" | t }}</span>
                           </span>
@@ -104,7 +104,7 @@
               </div>
             {%- endif -%}
 
-            <script src="{{ 'show-more.js' | asset_url }}" defer="defer"></script>
+            <script src="{{ 'ui--show-more.js' | asset_url }}" defer="defer"></script>
             {% comment %} Filters for both horizontal and vertical filter {% endcomment %}
             {%- for filter in results.filters -%}
               {% liquid
@@ -145,7 +145,7 @@
                             {{ "products.facets.filter_and_operator_subtitle" | t }}
                           </span>
                         {%- endif -%}
-                        {{- "icon-caret.svg" | inline_asset_content -}}
+                        {{- "ui--icon-caret.svg" | inline_asset_content -}}
                       </div>
                     </summary>
                     <div
@@ -254,10 +254,10 @@
                                       {%- endif -%}
                                     </div>
                                   {%- else -%}
-                                    {{- "square.svg" | inline_asset_content -}}
+                                    {{- "ui--square.svg" | inline_asset_content -}}
 
                                     <div class="svg-wrapper">
-                                      {{- "icon-checkmark.svg" | inline_asset_content -}}
+                                      {{- "ui--icon-checkmark.svg" | inline_asset_content -}}
                                     </div>
                                   {%- endif -%}
 
@@ -296,7 +296,7 @@
                     <summary class="facets__summary caption-large focus-offset">
                       <div>
                         <span>{{ filter.label | escape }}</span>
-                        {{- "icon-caret.svg" | inline_asset_content -}}
+                        {{- "ui--icon-caret.svg" | inline_asset_content -}}
                       </div>
                     </summary>
                     <div
@@ -333,7 +333,7 @@
                       <span class="active-facets__button-inner button button--tertiary">
                         {{ filter.label | escape }}: {{ value.label | escape }}
                         <span class="svg-wrapper">
-                          {{- "icon-close-small.svg" | inline_asset_content -}}
+                          {{- "ui--icon-close-small.svg" | inline_asset_content -}}
                         </span>
                         <span class="visually-hidden">{{ "products.facets.clear_filter" | t }}</span>
                       </span>
@@ -349,7 +349,7 @@
                         <span class="active-facets__button-inner button button--tertiary">
                           {{ min | default: 0 | money }} - {{ max | default: filter.range_max | money }}
                           <span class="svg-wrapper">
-                            {{- "icon-close-small.svg" | inline_asset_content -}}
+                            {{- "ui--icon-close-small.svg" | inline_asset_content -}}
                           </span>
                           <span class="visually-hidden">{{ "products.facets.clear_filter" | t }}</span>
                         </span>
@@ -397,7 +397,7 @@
                     {%- endfor -%}
                   </select>
                   <span class="svg-wrapper">
-                    {{- "icon-caret.svg" | inline_asset_content -}}
+                    {{- "ui--icon-caret.svg" | inline_asset_content -}}
                   </span>
                 </div>
               </div>
@@ -432,7 +432,7 @@
       <summary class="mobile-facets__open-wrapper focus-offset">
         <span class="mobile-facets__open{% if filter_type == 'drawer' and enable_filtering == false %} medium-hide large-up-hide{% endif %}">
           <span class="svg-wrapper">
-            {{- "icon-filter.svg" | inline_asset_content -}}
+            {{- "ui--icon-filter.svg" | inline_asset_content -}}
           </span>
           <span class="mobile-facets__open-label button-label medium-hide large-up-hide">
             {%- if enable_filtering and enable_sorting -%}
@@ -451,7 +451,7 @@
         </span>
         <span tabindex="0" class="mobile-facets__close">
           <span class="svg-wrapper">
-            {{- "icon-close.svg" | inline_asset_content -}}
+            {{- "ui--icon-close.svg" | inline_asset_content -}}
           </span>
         </span>
       </summary>
@@ -512,7 +512,7 @@
                           <div>
                             <span>{{ filter.label | escape }}</span>
                             <span class="mobile-facets__arrow">
-                              {{- "icon-arrow.svg" | inline_asset_content -}}
+                              {{- "ui--icon-arrow.svg" | inline_asset_content -}}
                             </span>
                           </div>
                         </summary>
@@ -523,7 +523,7 @@
                             class="mobile-facets__close-button link link--text focus-inset"
                             aria-expanded="true"
                             type="button">
-                            {{- "icon-arrow.svg" | inline_asset_content -}}
+                            {{- "ui--icon-arrow.svg" | inline_asset_content -}}
                             <span>{{ filter.label | escape }}</span>
                             {%- if filter.operator == "AND" -%}
                               <span class="facets__and-helptext">
@@ -614,8 +614,8 @@
                                       </div>
                                     {%- else -%}
                                       <span class="mobile-facets__highlight"></span>
-                                      {{- "square.svg" | inline_asset_content -}}
-                                      {{- "icon-checkmark.svg" | inline_asset_content -}}
+                                      {{- "ui--square.svg" | inline_asset_content -}}
+                                      {{- "ui--icon-checkmark.svg" | inline_asset_content -}}
                                     {%- endif %}
 
                                     {{ text_value }}
@@ -649,7 +649,7 @@
                           <div>
                             <span>{{ filter.label | escape }}</span>
                             <span class="mobile-facets__arrow">
-                              {{- "icon-arrow.svg" | inline_asset_content -}}
+                              {{- "ui--icon-arrow.svg" | inline_asset_content -}}
                             </span>
                           </div>
                         </summary>
@@ -660,7 +660,7 @@
                             class="mobile-facets__close-button link link--text focus-inset"
                             aria-expanded="true"
                             type="button">
-                            {{- "icon-arrow.svg" | inline_asset_content -}}
+                            {{- "ui--icon-arrow.svg" | inline_asset_content -}}
                             {{ filter.label | escape }}
                           </button>
 
@@ -716,7 +716,7 @@
                           {%- endfor -%}
                         </select>
                         <span class="svg-wrapper">
-                          {{- "icon-caret.svg" | inline_asset_content -}}
+                          {{- "ui--icon-caret.svg" | inline_asset_content -}}
                         </span>
                       </div>
                     </div>
@@ -761,7 +761,7 @@
             <span class="active-facets__button-inner button button--tertiary">
               {{ filter.label | escape }}: {{ value.label | escape }}
               <span class="svg-wrapper">
-                {{- "icon-close-small.svg" | inline_asset_content -}}
+                {{- "ui--icon-close-small.svg" | inline_asset_content -}}
               </span>
               <span class="visually-hidden">{{ "products.facets.clear_filter" | t }}</span>
             </span>
@@ -778,7 +778,7 @@
               <span class="active-facets__button-inner button button--tertiary">
                 {{ min | default: 0 | money }} - {{ max | default: filter.range_max | money }}
                 <span class="svg-wrapper">
-                  {{- "icon-close-small.svg" | inline_asset_content -}}
+                  {{- "ui--icon-close-small.svg" | inline_asset_content -}}
                 </span>
                 <span class="visually-hidden">{{ "products.facets.clear_filter" | t }}</span>
               </span>
@@ -820,7 +820,7 @@
                 {%- endfor -%}
               </select>
               <span class="svg-wrapper">
-                {{- "icon-caret.svg" | inline_asset_content -}}
+                {{- "ui--icon-caret.svg" | inline_asset_content -}}
               </span>
             </div>
           </div>
@@ -867,7 +867,7 @@
                   <span class="active-facets__button-inner button button--tertiary">
                     {{ filter.label | escape }}: {{ value.label | escape }}
                     <span class="svg-wrapper">
-                      {{- "icon-close-small.svg" | inline_asset_content -}}
+                      {{- "ui--icon-close-small.svg" | inline_asset_content -}}
                     </span>
                     <span class="visually-hidden">{{ "products.facets.clear_filter" | t }}</span>
                   </span>
@@ -884,7 +884,7 @@
                     <span class="active-facets__button-inner button button--tertiary">
                       {{ min | default: 0 | money }} - {{ max | default: filter.range_max | money }}
                       <span class="svg-wrapper">
-                        {{- "icon-close-small.svg" | inline_asset_content -}}
+                        {{- "ui--icon-close-small.svg" | inline_asset_content -}}
                       </span>
                       <span class="visually-hidden">{{ "products.facets.clear_filter" | t }}</span>
                     </span>

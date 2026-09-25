@@ -28,6 +28,7 @@
  *   node tests/static/guard--hardcoded-content.cjs            check
  *   node tests/static/guard--hardcoded-content.cjs --list     show every file's debt
  *   node tests/static/guard--hardcoded-content.cjs --update   re-record after paying some off
+ *   node tests/static/guard--hardcoded-content.cjs --items=sections/x.liquid   every item in one file
  *
  * Counting is heuristic and conservative; a false positive sits in the
  * baseline harmlessly. What it must never do is miss an increase.
@@ -43,7 +44,7 @@ const BASELINE = rootArg ? null : path.join(__dirname, 'baseline-hardcoded-conte
 
 // Third-party and platform code we do not author (Dawn base JS, app output).
 const THIRD_PARTY =
-  /^assets\/(global|pubsub|constants|details-disclosure|details-modal|cart|cart-notification|facets|search-form|show-more|localization-form|customer|theme-editor)\.js$/;
+  /^assets\/(core--global|core--pubsub|core--constants|ui--details-disclosure|ui--details-modal|catalog--facets|search--form|ui--show-more|core--localization-form|account--customer|core--theme-editor)\.js$/;
 
 function themeFiles() {
   const out = [];
@@ -60,8 +61,13 @@ function themeFiles() {
   return out;
 }
 
-function count(src, isJs) {
+function count(src, isJs, items) {
   const c = { text: 0, 'js-text': 0, media: 0, links: 0, fallback: 0, ids: 0 };
+  // counts a list, and with --items records what was counted
+  const note = (kind, list) => {
+    if (items) list.forEach((v) => items.push(`${kind.padEnd(8)} ${String(v).replace(/\s+/g, ' ').trim().slice(0, 140)}`));
+    return list.length;
+  };
   // {% javascript %} is script too (Shopify bundles it); counting it as markup
   // read every `<` comparison in the header's 2,300 lines of code as page text.
   const scripts = isJs
@@ -80,7 +86,7 @@ function count(src, isJs) {
       .replace(/<script[\s\S]*?<\/script>/g, '')
       .replace(/\{%-?\s*javascript\s*-?%\}[\s\S]*?\{%-?\s*endjavascript\s*-?%\}/g, '')
       .replace(/<!--[\s\S]*?-->/g, '');
-    c.text += markup
+    c.text += note('text', markup
       // JSON keys ("name": …) in a snippet that emits data are structure, not
       // words a shopper reads — snippets/catalog--finder-products.liquid.
       .replace(/"[A-Za-z_][A-Za-z0-9_]*"\s*:/g, '')
@@ -89,8 +95,8 @@ function count(src, isJs) {
       .split(/<[^>]*>/)
       .flatMap((t) => t.split('\u0000'))
       .map((t) => t.replace(/&[a-z#0-9]+;/gi, ' ').replace(/\s+/g, ' ').trim())
-      .filter((t) => /[A-Za-z]{2,}/.test(t)).length;
-    c.text += [...markup.matchAll(/\b(?:alt|title|placeholder|aria-label)="([^"{]*[A-Za-z]{2,}[^"{]*)"/g)].length;
+      .filter((t) => /[A-Za-z]{2,}/.test(t)));
+    c.text += note('attr', [...markup.matchAll(/\b(?:alt|title|placeholder|aria-label)="([^"{]*[A-Za-z]{2,}[^"{]*)"/g)].map((m) => m[0]));
   }
 
   for (const s of scripts) {
@@ -98,21 +104,30 @@ function count(src, isJs) {
     for (const m of body.matchAll(/(['"`])((?:(?!\1)[^\\\n]|\\.){2,120})\1/g)) {
       const v = m[2].trim();
       if (/[.#\[:>]|^\s*$|\$\{|https?:|\/|=|\(|;|^[A-Z_]+$/.test(v)) continue;
-      if (/^[A-Z][a-z]+( [A-Za-z']+)+[.!?]?$|^[A-Z ]{3,}$|^[A-Z][a-z']+[.!?]?$/.test(v)) c['js-text']++;
+      if (/^[A-Z][a-z]+( [A-Za-z']+)+[.!?]?$|^[A-Z ]{3,}$|^[A-Z][a-z']+[.!?]?$/.test(v)) c['js-text'] += note('js-text', [v]);
     }
-    c['js-text'] += [...body.matchAll(/>([^<>${}\n]*[A-Za-z]{2,}[^<>${}\n]*)</g)].filter((m) => m[1].trim()).length;
+    c['js-text'] += note('js-html', [...body.matchAll(/>([^<>${}\n]*[A-Za-z]{2,}[^<>${}\n]*)</g)].filter((m) => m[1].trim()).map((m) => m[1]));
   }
 
-  c.media += [
+  c.media += note('media', [
     ...noSchema.matchAll(
       /(https?:)?\/\/[^\s"'`)]+\.(?:jpe?g|png|webp|gif|svg|mp4|webm|avif)(\?[^\s"'`)]*)?|\/cdn\/shop\/files\/[^\s"'`)]+/gi
     ),
-  ].length;
-  c.links += [...noSchema.matchAll(/href=["'](\/(?:pages|collections|products|blogs|policies)\/[^"'{]+|https?:\/\/[^"'{]+)["']/g)].length;
-  c.links += [...noSchema.matchAll(/(?:location\.href|window\.location)\s*=\s*['"`](\/[a-z][^'"`]*)['"`]/g)].length;
-  c.fallback += [...noSchema.matchAll(/\|\s*default:\s*['"]([^'"]*[A-Za-z]{2,}[^'"]*)['"]/g)].length;
-  c.ids += [...noSchema.matchAll(/\b\d{13,14}\b/g)].length;
+  ].map((m) => m[0]));
+  c.links += note('link', [...noSchema.matchAll(/href=["'](\/(?:pages|collections|products|blogs|policies)\/[^"'{]+|https?:\/\/[^"'{]+)["']/g)].map((m) => m[1]));
+  c.links += note('link', [...noSchema.matchAll(/(?:location\.href|window\.location)\s*=\s*['"`](\/[a-z][^'"`]*)['"`]/g)].map((m) => m[1]));
+  c.fallback += note('fallback', [...noSchema.matchAll(/\|\s*default:\s*['"]([^'"]*[A-Za-z]{2,}[^'"]*)['"]/g)].map((m) => m[1]));
+  c.ids += note('id', [...noSchema.matchAll(/\b\d{13,14}\b/g)].map((m) => m[0]));
   return c;
+}
+
+const itemsArg = process.argv.find((a) => a.startsWith('--items='));
+if (itemsArg) {
+  const rel = itemsArg.slice('--items='.length);
+  const items = [];
+  count(fs.readFileSync(path.join(ROOT, rel), 'utf8'), rel.endsWith('.js'), items);
+  items.forEach((i) => console.log(i));
+  process.exit(0);
 }
 
 const current = {};

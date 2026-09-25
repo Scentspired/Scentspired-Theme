@@ -69,7 +69,7 @@ graph TD
     subgraph Client_Runtime ["9. Client-Side Runtime & State"]
         WINDOW_CONF["window.__STORE_CONFIG<br/>(JSON Serialized Metadata & Thresholds)"]
         WINDOW_SCENT["window.Scentspired.store<br/>(Global JS Store State)"]
-        JS_BUNDLE["assets/section-bundle-builder.css & JS<br/>(Client Bundle Selectors & Cart Dispatch)"]
+        JS_BUNDLE["assets/bundle--five-favourites.css & JS<br/>(Client Bundle Selectors & Cart Dispatch)"]
     end
 
     %% Presentation Connections

@@ -593,7 +593,7 @@
     "fallback": 0,
     "ids": 0
   },
-  "assets/quantity-popover.js": {
+  "assets/cart--quantity-popover.js": {
     "total": 1,
     "text": 0,
     "js-text": 1,
@@ -602,7 +602,7 @@
     "fallback": 0,
     "ids": 0
   },
-  "assets/scentspired-telemetry.js": {
+  "assets/core--telemetry.js": {
     "total": 11,
     "text": 0,
     "js-text": 11,

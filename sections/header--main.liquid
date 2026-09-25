@@ -1,12 +1,12 @@
-<link rel="stylesheet" href="{{ 'component-list-menu.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-search.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-menu-drawer.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'header--list-menu.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'search--form.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'header--menu-drawer.css' | asset_url }}" media="print" onload="this.media='all'">
 {%- if section.settings.menu_type_desktop == "mega" -%}
-  <link rel="stylesheet" href="{{ 'component-mega-menu.css' | asset_url }}" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="{{ 'header--mega-menu.css' | asset_url }}" media="print" onload="this.media='all'">
 {%- endif -%}
 
 {%- comment -%} The only header rules that depend on section settings. They stay inline;
-  everything static is in assets/header.css, linked below in the same cascade position. {%- endcomment -%}
+  everything static is in assets/header--main.css, linked below in the same cascade position. {%- endcomment -%}
 <style>
     {%- if section.settings.sticky_header_type == 'reduce-logo-size' -%}
       .scrolled-past-header .header__heading-logo-wrapper {
@@ -22,7 +22,7 @@
       }
     {%- endif -%}
 </style>
-{{ 'header.css' | asset_url | stylesheet_tag }}
+{{ 'header--main.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
     .header {
@@ -347,9 +347,9 @@
 
       <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
         {% if cart == empty %}
-          <span class="svg-wrapper">{{ "icon-cart-empty.svg" | inline_asset_content }}</span>
+          <span class="svg-wrapper">{{ "ui--icon-cart-empty.svg" | inline_asset_content }}</span>
         {% else %}
-          <span class="svg-wrapper">{{ "icon-cart.svg" | inline_asset_content }}</span>
+          <span class="svg-wrapper">{{ "ui--icon-cart.svg" | inline_asset_content }}</span>
         {% endif %}
         <span class="visually-hidden">{{ "templates.cart.cart" | t }}</span>
         {%- if cart != empty -%}
@@ -372,11 +372,11 @@
               {%- if customer and customer.has_avatar? -%}
                 {{ customer | avatar }}
               {%- else -%}
-                <span class="svg-wrapper">{{ "icon-account.svg" | inline_asset_content }}</span>
+                <span class="svg-wrapper">{{ "ui--icon-account.svg" | inline_asset_content }}</span>
               {%- endif -%}
             </account-icon>
           {%- else -%}
-            <span class="svg-wrapper">{{ "icon-account.svg" | inline_asset_content }}</span>
+            <span class="svg-wrapper">{{ "ui--icon-account.svg" | inline_asset_content }}</span>
           {%- endif -%}
           <span class="visually-hidden">
             {%- liquid
@@ -437,9 +437,9 @@
       {% comment %}
         <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
           {% if cart == empty %}
-            <span class="svg-wrapper">{{ 'icon-cart-empty.svg' | inline_asset_content }}</span>
+            <span class="svg-wrapper">{{ 'ui--icon-cart-empty.svg' | inline_asset_content }}</span>
           {% else %}
-            <span class="svg-wrapper">{{ 'icon-cart.svg' | inline_asset_content }}</span>
+            <span class="svg-wrapper">{{ 'ui--icon-cart.svg' | inline_asset_content }}</span>
           {% endif %}
           <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
           {%- if cart != empty -%}
@@ -454,9 +454,9 @@
       {% endcomment %}
       <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
         {% if cart == empty %}
-          <span class="svg-wrapper">{{ "icon-cart-empty.svg" | inline_asset_content }}</span>
+          <span class="svg-wrapper">{{ "ui--icon-cart-empty.svg" | inline_asset_content }}</span>
         {% else %}
-          <span class="svg-wrapper">{{ "icon-cart.svg" | inline_asset_content }}</span>
+          <span class="svg-wrapper">{{ "ui--icon-cart.svg" | inline_asset_content }}</span>
         {% endif %}
         <span class="visually-hidden">{{ "templates.cart.cart" | t }}</span>
         {%- if cart != empty -%}

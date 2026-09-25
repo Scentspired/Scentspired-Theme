@@ -89,7 +89,7 @@ const normalize = v =>
  */
 function globalVars() {
   const map = new Map();
-  for (const file of ['snippets/token--typography.liquid', 'layout/theme.liquid', 'assets/base.css']) {
+  for (const file of ['snippets/token--typography.liquid', 'layout/theme.liquid', 'assets/core--base.css']) {
     const full = path.join(THEME_ROOT, file);
     if (!fs.existsSync(full)) continue;
     for (const [k, v] of buildVarMap(fs.readFileSync(full, 'utf8'))) {

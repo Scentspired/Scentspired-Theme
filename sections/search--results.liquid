@@ -1,18 +1,18 @@
-{{ "template-collection.css" | asset_url | stylesheet_tag }}
-{{ "component-card.css" | asset_url | stylesheet_tag }}
-{{ "component-price.css" | asset_url | stylesheet_tag }}
-{{ "component-search.css" | asset_url | stylesheet_tag }}
+{{ "search--results.css" | asset_url | stylesheet_tag }}
+{{ "ui--card.css" | asset_url | stylesheet_tag }}
+{{ "catalog--price.css" | asset_url | stylesheet_tag }}
+{{ "search--form.css" | asset_url | stylesheet_tag }}
 
 {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
-  {{ "component-facets.css" | asset_url | stylesheet_tag }}
-  <script src="{{ 'facets.js' | asset_url }}" defer="defer"></script>
+  {{ "catalog--facets.css" | asset_url | stylesheet_tag }}
+  <script src="{{ 'catalog--facets.js' | asset_url }}" defer="defer"></script>
 {%- endif -%}
 
 {% if section.settings.image_shape == "blob" %}
-  {{ "mask-blobs.css" | asset_url | stylesheet_tag }}
+  {{ "ui--mask-blobs.css" | asset_url | stylesheet_tag }}
 {%- endif -%}
 
-<script src="{{ 'main-search.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'search--main.js' | asset_url }}" defer="defer"></script>
 
 <style>
   .template-search__header {
@@ -92,12 +92,12 @@
                 class="reset__button field__button{% if search.terms == blank %} hidden{% endif %}"
                 aria-label="{{ 'general.search.reset' | t }}">
                 <span class="svg-wrapper">
-                  {{- "icon-reset.svg" | inline_asset_content -}}
+                  {{- "ui--icon-reset.svg" | inline_asset_content -}}
                 </span>
               </button>
               <button type="submit" class="search__button field__button" aria-label="{{ 'general.search.search' | t }}">
                 <span class="svg-wrapper">
-                  {{- "icon-search.svg" | inline_asset_content -}}
+                  {{- "ui--icon-search.svg" | inline_asset_content -}}
                 </span>
               </button>
             </div>
@@ -147,7 +147,7 @@
                     {%- endfor -%}
                   </select>
                   <span class="svg-wrapper">
-                    {{- "icon-caret.svg" | inline_asset_content -}}
+                    {{- "ui--icon-caret.svg" | inline_asset_content -}}
                   </span>
                 </div>
               </div>
@@ -279,7 +279,7 @@
   </div>
 {% endpaginate %}
 {% if section.settings.image_shape == "arch" %}
-  {{ "mask-arch.svg" | inline_asset_content }}
+  {{ "ui--mask-arch.svg" | inline_asset_content }}
 {%- endif -%}
 
 {% schema %}

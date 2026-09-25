@@ -274,7 +274,7 @@ later: each is now reachable from one place.
     logo is an image.
   - `main-cart-items` — the empty-cart message was a second h1; now an h2.
     It had no font-size of its own and was inheriting the global h1 size, so
-    that size is now pinned on `.cart__empty-text` in `component-cart.css`.
+    that size is now pinned on `.cart__empty-text` in `cart--layout.css`.
     **Verified in the browser at both breakpoints: 30px/39px and 40px, the
     same values a bare h1 computes to.**
   - `contact-section` — a second, permanently empty h1; now an h2.
@@ -288,7 +288,7 @@ later: each is now reachable from one place.
 - **DONE — UI labels are no longer headings.** The cart drawer, mobile menu
   and search overlay labels — `YOUR CART`, `Oops...`, `ORDER SUMMARY`,
   `You might like to add`, `Menu`, `Recent Searches` — are divs carrying
-  `.ui-label`, a class in `assets/base.css` that reproduces exactly what the
+  `.ui-label`, a class in `assets/core--base.css` that reproduces exactly what the
   heading tag supplied: family, style, weight, letter-spacing, colour,
   line-height, word-break. It is a deliberate copy of the `h1`–`h5` rule and
   says so, because the two have to move together.

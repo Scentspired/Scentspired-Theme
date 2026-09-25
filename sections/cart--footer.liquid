@@ -1,7 +1,7 @@
-{{ "component-cart.css" | asset_url | stylesheet_tag }}
-{{ "component-totals.css" | asset_url | stylesheet_tag }}
-{{ "component-price.css" | asset_url | stylesheet_tag }}
-{{ "component-discounts.css" | asset_url | stylesheet_tag }}
+{{ "cart--layout.css" | asset_url | stylesheet_tag }}
+{{ "cart--totals.css" | asset_url | stylesheet_tag }}
+{{ "catalog--price.css" | asset_url | stylesheet_tag }}
+{{ "cart--discounts.css" | asset_url | stylesheet_tag }}
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -47,7 +47,7 @@
                     <ul class="discounts list-unstyled" role="list" aria-label="{{ 'customer.order.discount' | t }}">
                       {%- for discount in cart.cart_level_discount_applications -%}
                         <li class="discounts__discount discounts__discount--position">
-                          {{- "icon-discount.svg" | inline_asset_content -}}
+                          {{- "ui--icon-discount.svg" | inline_asset_content -}}
                           {{ discount.title | escape }}
                           (-{{ discount.total_allocated_amount | money }})
                         </li>

@@ -1,9 +1,9 @@
-{{ "component-cart.css" | asset_url | stylesheet_tag }}
-{{ "component-cart-items.css" | asset_url | stylesheet_tag }}
-{{ "component-totals.css" | asset_url | stylesheet_tag }}
-{{ "component-price.css" | asset_url | stylesheet_tag }}
-{{ "component-discounts.css" | asset_url | stylesheet_tag }}
-{{ "quantity-popover.css" | asset_url | stylesheet_tag }}
+{{ "cart--layout.css" | asset_url | stylesheet_tag }}
+{{ "cart--line-items.css" | asset_url | stylesheet_tag }}
+{{ "cart--totals.css" | asset_url | stylesheet_tag }}
+{{ "catalog--price.css" | asset_url | stylesheet_tag }}
+{{ "cart--discounts.css" | asset_url | stylesheet_tag }}
+{{ "cart--quantity-popover.css" | asset_url | stylesheet_tag }}
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -24,7 +24,7 @@
   }
 {%- endstyle -%}
 
-<script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'cart--quantity-popover.js' | asset_url }}" defer="defer"></script>
 
 <script>
   class CartManager {
@@ -311,7 +311,7 @@
                       <ul class="discounts list-unstyled" role="list" aria-label="{{ 'customer.order.discount' | t }}">
                         {%- for discount in item.line_level_discount_allocations -%}
                           <li class="discounts__discount">
-                            {{- "icon-discount.svg" | inline_asset_content -}}
+                            {{- "ui--icon-discount.svg" | inline_asset_content -}}
                             {{ discount.discount_application.title | escape }}
                           </li>
                         {%- endfor -%}
@@ -383,7 +383,7 @@
                                 type="button"
                                 aria-expanded="false"
                                 class="quantity-popover__info-button quantity-popover__info-button--icon-only button button--tertiary small-hide medium-hide">
-                                {{- "icon-info.svg" | inline_asset_content -}}
+                                {{- "ui--icon-info.svg" | inline_asset_content -}}
                               </button>
                             {%- endif -%}
                             <quantity-input class="quantity cart-quantity">
@@ -436,7 +436,7 @@
                             type="button"
                             class="quantity-popover__info-button quantity-popover__info-button--icon-with-label button button--tertiary large-up-hide"
                             aria-expanded="false">
-                            {{- "icon-info.svg" | inline_asset_content -}}
+                            {{- "ui--icon-info.svg" | inline_asset_content -}}
                             <span>
                               {%- if has_vol_pricing -%}
                                 {{ "products.product.volume_pricing.note" | t }}
@@ -487,7 +487,7 @@
                               type="button"
                               aria-label="{{ 'accessibility.close' | t }}">
                               <span class="svg-wrapper">
-                                {{- "icon-close.svg" | inline_asset_content -}}
+                                {{- "ui--icon-close.svg" | inline_asset_content -}}
                               </span>
                             </button>
                             {%- if item.variant.quantity_price_breaks.size > 0 -%}
@@ -516,7 +516,7 @@
                         <div class="cart-item__error" id="Line-item-error-{{ item.index | plus: 1 }}" role="alert">
                           <small class="cart-item__error-text"></small>
                           <span class="svg-wrapper">
-                            {{- "icon-error.svg" | inline_asset_content -}}
+                            {{- "ui--icon-error.svg" | inline_asset_content -}}
                           </span>
                         </div>
                       </quantity-popover>

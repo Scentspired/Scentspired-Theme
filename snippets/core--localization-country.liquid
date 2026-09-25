@@ -37,7 +37,7 @@
       {{ localization.country.currency.iso_code }}
       {{ localization.country.currency.symbol -}}
     </span>
-    {{ "icon-caret.svg" | inline_asset_content }}
+    {{ "ui--icon-caret.svg" | inline_asset_content }}
   </button>
   <div class="disclosure__list-wrapper country-selector" hidden>
     <div class="country-filter{% unless show_country_filter %} country-filter--no-padding{% endunless %}">
@@ -64,10 +64,10 @@
             type="reset"
             class="country-filter__reset-button field__button hidden"
             aria-label="{{ 'general.search.reset' | t }}">
-            {{- "icon-reset.svg" | inline_asset_content -}}
+            {{- "ui--icon-reset.svg" | inline_asset_content -}}
           </button>
           <div class="country-filter__search-icon field__button motion-reduce">
-            {{- "icon-search.svg" | inline_asset_content -}}
+            {{- "ui--icon-search.svg" | inline_asset_content -}}
           </div>
         </div>
       {% endif %}
@@ -75,7 +75,7 @@
         class="country-selector__close-button button--small link"
         type="button"
         aria-label="{{ 'accessibility.close' | t }}">
-        {{- "icon-close.svg" | inline_asset_content -}}
+        {{- "ui--icon-close.svg" | inline_asset_content -}}
       </button>
     </div>
     <div id="sr-country-search-results" class="visually-hidden" aria-live="polite"></div>
@@ -101,7 +101,7 @@
                   {% if country.iso_code != localization.country.iso_code %}
                     class="visibility-hidden"
                   {% endif %}>
-                  {{- "icon-checkmark.svg" | inline_asset_content -}}
+                  {{- "ui--icon-checkmark.svg" | inline_asset_content -}}
                 </span>
                 <span class="country">{{- country.name }}</span>
                 <span class="localization-form__currency motion-reduce{% unless show_currencies %} hidden{% endunless %}">
@@ -128,7 +128,7 @@
                 {% if country.iso_code != localization.country.iso_code %}
                   class="visibility-hidden"
                 {% endif %}>
-                {{- "icon-checkmark.svg" | inline_asset_content -}}
+                {{- "ui--icon-checkmark.svg" | inline_asset_content -}}
               </span>
               <span class="country">{{- country.name }}</span>
               <span class="localization-form__currency motion-reduce{% unless show_currencies %} hidden{% endunless %}">

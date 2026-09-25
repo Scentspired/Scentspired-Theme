@@ -3399,7 +3399,7 @@ details-disclosure > details {
 
   :root {
     --easter-egg: none;
-    --sparkle: url("./sparkle.gif");
+    --sparkle: url("./core--sparkle.gif");
   }
 
   .animate--hover-vertical-lift .button:not(.button--tertiary),

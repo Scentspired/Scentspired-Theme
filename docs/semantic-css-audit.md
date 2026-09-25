@@ -13,14 +13,14 @@ Preserving awareness of these type selectors ensures that future template refact
 | :--- | :--- | :--- | :--- |
 | `assets/quick-add.css:340` | `quick-add-modal .product__title > h1` | Hides the product page `<h1>` when rendered inside the quick-add modal dialog | Protected & Verified |
 | `assets/quick-add.css:344` | `quick-add-modal .product__title > a` | Displays the product link inside quick-add modal dialog | Protected & Verified |
-| `assets/customer.css:15` | `.customer > h1` | Top-level headings in customer auth templates (login, register) | Protected & Verified |
-| `assets/customer.css:446` | `:is(.account, .order) h1` | Top-level heading typography on customer account & order pages | Protected & Verified |
-| `assets/customer.css:461` | `.account h1 + a` | Log out link adjacent to customer account heading | Protected & Verified |
-| `assets/customer.css:351` | `.login h3` | Sub-heading typography on login template | Protected & Verified |
+| `assets/account--customer.css:15` | `.customer > h1` | Top-level headings in customer auth templates (login, register) | Protected & Verified |
+| `assets/account--customer.css:446` | `:is(.account, .order) h1` | Top-level heading typography on customer account & order pages | Protected & Verified |
+| `assets/account--customer.css:461` | `.account h1 + a` | Log out link adjacent to customer account heading | Protected & Verified |
+| `assets/account--customer.css:351` | `.login h3` | Sub-heading typography on login template | Protected & Verified |
 | `assets/section-footer.css:267` | `.footer__localization h2` | Localization / currency picker heading in footer | Protected & Verified |
-| `assets/section-bundle-builder.css:53` | `.sidebar-header h2` | Bundle builder sidebar heading | Protected & Verified |
+| `assets/bundle--five-favourites.css:53` | `.sidebar-header h2` | Bundle builder sidebar heading | Protected & Verified |
 | `assets/blog--typography.css:82-110` | `.blog-rte h2`, `.blog-rte h3`, `.blog-rte h4` | Editorial article content headings generated via rich text editor | Protected & Verified |
-| `assets/component-totals.css:12` | `.totals > h2` | Cart subtotal & totals label | Protected & Verified |
+| `assets/cart--totals.css:12` | `.totals > h2` | Cart subtotal & totals label | Protected & Verified |
 | `sections/main-account.liquid:11` | `.customer.account h1, h2, h3` | Inline heading margin normalization in account dashboard | Protected & Verified |
 | `sections/bundlescomingsoon.liquid:29` | `#coming-soon-overlay .coming-soon-heading, #coming-soon-overlay h1, #coming-soon-overlay h2` | Full-screen countdown overlay heading | Protected & Verified |
 

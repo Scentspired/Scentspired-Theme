@@ -74,6 +74,10 @@ crawl did not reach (a cart with items, active filters, social links set, the ed
 `core--localization-country/-language`. Section groups keep Shopify's names
 (`header-group`, `footer-group`). `bulk-quick-order-list` is not renamed: it is reachable
 only from the legacy card, and goes with it in phase 4.
+Assets too (after phase 4 removed those only the legacy card used): 145 renamed, e.g.
+`base.css` → `core--base.css`, `global.js` → `core--global.js`, `component-cart.css` →
+`cart--layout.css`, `facets.js` → `catalog--facets.js`, the 84 `icon-*.svg` →
+`ui--icon-*.svg` (the icon picker builds `ui--icon-<name>.svg`).
 The cart "bug" as scoped — scripts requesting sections that do not exist — was in code
 that never runs: the theme's cart type is the drawer, so `cart.js` was never loaded and
 Dawn's notification never rendered. Those went (`cart.js`, `cart-notification.js`, its

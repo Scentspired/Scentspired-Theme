@@ -136,12 +136,12 @@
 
     {% render "core--meta-tags" %}
 
-    <script src="{{ 'constants.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'details-disclosure.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'details-modal.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'search-form.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'core--constants.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'core--pubsub.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'core--global.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'ui--details-disclosure.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'ui--details-modal.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'search--form.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'card--product.js' | asset_url }}" defer="defer"></script>
 
     {% render 'core--telemetry' %}
@@ -387,19 +387,19 @@
     {%- endcomment -%}
     {% render 'token--typography' %}
 
-    {{ "base.css" | asset_url | stylesheet_tag }}
+    {{ "core--base.css" | asset_url | stylesheet_tag }}
     {%- comment -%} The product card, before any section: sections style only their layout around it. {%- endcomment -%}
     {{ "card--product-carousel.css" | asset_url | stylesheet_tag }}
     {%- if template contains 'article' or template contains 'blog' -%}
       {{ "blog--typography.css" | asset_url | stylesheet_tag }}
     {%- endif -%}
-    <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="{{ 'cart--line-items.css' | asset_url }}" media="print" onload="this.media='all'">
 
-    {{ "component-cart-drawer.css" | asset_url | stylesheet_tag }}
-    {{ "component-cart.css" | asset_url | stylesheet_tag }}
-    {{ "component-totals.css" | asset_url | stylesheet_tag }}
-    {{ "component-price.css" | asset_url | stylesheet_tag }}
-    {{ "component-discounts.css" | asset_url | stylesheet_tag }}
+    {{ "cart--drawer-base.css" | asset_url | stylesheet_tag }}
+    {{ "cart--layout.css" | asset_url | stylesheet_tag }}
+    {{ "cart--totals.css" | asset_url | stylesheet_tag }}
+    {{ "catalog--price.css" | asset_url | stylesheet_tag }}
+    {{ "cart--discounts.css" | asset_url | stylesheet_tag }}
 
     {%- unless settings.type_body_font.system? -%}
       {% comment %}theme-check-disable AssetPreload{% endcomment %}
@@ -413,8 +413,8 @@
     {%- endunless -%}
 
     {%- if localization.available_countries.size > 1 or localization.available_languages.size > 1 -%}
-      {{ "component-localization-form.css" | asset_url | stylesheet_tag: preload: true }}
-      <script src="{{ 'localization-form.js' | asset_url }}" defer="defer"></script>
+      {{ "core--localization-form.css" | asset_url | stylesheet_tag: preload: true }}
+      <script src="{{ 'core--localization-form.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
 
     <script>

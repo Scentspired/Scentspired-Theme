@@ -1,5 +1,5 @@
-{{ "component-slideshow.css" | asset_url | stylesheet_tag }}
-{{ "component-slider.css" | asset_url | stylesheet_tag }}
+{{ "ui--slideshow.css" | asset_url | stylesheet_tag }}
+{{ "ui--slider.css" | asset_url | stylesheet_tag }}
 
 {%- liquid
   assign social_icons = true
@@ -15,7 +15,7 @@
 -%}
 
 {% if social_icons %}
-  {{ "component-list-social.css" | asset_url | stylesheet_tag }}
+  {{ "social--list.css" | asset_url | stylesheet_tag }}
 {% endif %}
 
 <div
@@ -40,7 +40,7 @@
           <div class="announcement-bar__message h5">
             {{ section.blocks.first.settings.text }}
             {%- if section.blocks.first.settings.link != blank -%}
-              {{ "icon-arrow.svg" | inline_asset_content }}
+              {{ "ui--icon-arrow.svg" | inline_asset_content }}
             {%- endif -%}
           </div>
 
@@ -64,7 +64,7 @@
             aria-label="{{ 'sections.announcements.previous_announcement' | t }}"
             aria-controls="Slider-{{ section.id }}">
             <span class="svg-wrapper">
-              {{- "icon-caret.svg" | inline_asset_content -}}
+              {{- "ui--icon-caret.svg" | inline_asset_content -}}
             </span>
           </button>
           <div
@@ -112,13 +112,13 @@
             aria-label="{{ 'sections.announcements.next_announcement' | t }}"
             aria-controls="Slider-{{ section.id }}">
             <span class="svg-wrapper">
-              {{- "icon-caret.svg" | inline_asset_content -}}
+              {{- "ui--icon-caret.svg" | inline_asset_content -}}
             </span>
           </button>
         </div>
       </slideshow-component>
       {%- if request.design_mode -%}
-        <script src="{{ 'theme-editor.js' | asset_url }}" defer="defer"></script>
+        <script src="{{ 'core--theme-editor.js' | asset_url }}" defer="defer"></script>
         <style>
           /* theme editor power preview fix */
           .announcement-bar-slider .slider__slide[aria-hidden='true'] {

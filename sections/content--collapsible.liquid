@@ -1,5 +1,5 @@
-{{ "component-accordion.css" | asset_url | stylesheet_tag }}
-{{ "collapsible-content.css" | asset_url | stylesheet_tag }}
+{{ "ui--accordion.css" | asset_url | stylesheet_tag }}
+{{ "content--collapsible.css" | asset_url | stylesheet_tag }}
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -81,7 +81,7 @@
                     <h3 class="accordion__title inline-richtext h4">
                       {{ block.settings.heading | default: block.settings.page.title | escape }}
                     </h3>
-                    {{- "icon-caret.svg" | inline_asset_content -}}
+                    {{- "ui--icon-caret.svg" | inline_asset_content -}}
                   </summary>
                   <div
                     class="accordion__content rte"
