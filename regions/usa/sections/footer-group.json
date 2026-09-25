@@ -140,7 +140,6 @@
             "show_copyright_symbol": true,
             "show_year": true,
             "copyright_text": "",
-            "rights_text": "",
             "show_powered_by": false,
             "background_color": "#121212",
             "text_color": "#ffffff",
@@ -149,9 +148,7 @@
             "font_size": 14,
             "container_width": 1000,
             "padding_top": 50,
-            "padding_bottom": 20,
-            "mobile_alignment": "center",
-            "desktop_width_percent": 100
+            "padding_bottom": 20
           },
           "blocks": {}
         }

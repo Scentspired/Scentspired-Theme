@@ -116,7 +116,6 @@
         ".scent-main-title {display: none;}"
       ],
       "settings": {
-        "products_per_row": 4,
         "brand_collection_handles": "summer,winter,autumn,spring",
         "scent_collection_handles": "flowery,fresh,earthy,herbal"
       }

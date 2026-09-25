@@ -25,24 +25,7 @@
         "@media screen and (max-width: 1024px) {.hero-section {margin-top: -100px; }}"
       ],
       "name": "Hero Section",
-      "settings": {
-        "pre_heading": "Fragrance Finder",
-        "heading": "<h4>DISCOVER YOUR SIGNATURE  SPIRED SCENT</h4>",
-        "button_text": "START THE QUIZ",
-        "button_link": "",
-        "nav_item_1_text": "",
-        "nav_item_1_link": "",
-        "nav_item_2_text": "",
-        "nav_item_2_link": "",
-        "nav_item_3_text": "CYAN NORI",
-        "nav_item_3_link": "",
-        "nav_item_4_text": "THE APARTMENT",
-        "nav_item_4_link": "",
-        "nav_item_5_text": "PINK IRIS",
-        "nav_item_5_link": "",
-        "nav_item_6_text": "PAUSE",
-        "nav_item_6_link": ""
-      }
+      "settings": {}
     }
   },
   "order": [

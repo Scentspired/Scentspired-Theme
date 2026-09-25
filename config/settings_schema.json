@@ -758,22 +758,6 @@
     "name": "t:settings_schema.blog_cards.name",
     "settings": [
       {
-        "type": "select",
-        "id": "blog_card_style",
-        "options": [
-          {
-            "value": "standard",
-            "label": "t:settings_schema.blog_cards.settings.style.options__1.label"
-          },
-          {
-            "value": "card",
-            "label": "t:settings_schema.blog_cards.settings.style.options__2.label"
-          }
-        ],
-        "default": "standard",
-        "label": "t:settings_schema.blog_cards.settings.style.label"
-      },
-      {
         "type": "range",
         "id": "blog_card_image_padding",
         "min": 0,
@@ -1274,29 +1258,9 @@
         "content": "t:settings_schema.brand_information.settings.paragraph.content"
       },
       {
-        "type": "inline_richtext",
-        "id": "brand_headline",
-        "label": "t:settings_schema.brand_information.settings.brand_headline.label"
-      },
-      {
         "type": "richtext",
         "id": "brand_description",
         "label": "t:settings_schema.brand_information.settings.brand_description.label"
-      },
-      {
-        "type": "image_picker",
-        "id": "brand_image",
-        "label": "t:settings_schema.brand_information.settings.brand_image.label"
-      },
-      {
-        "type": "range",
-        "id": "brand_image_width",
-        "min": 50,
-        "max": 550,
-        "step": 5,
-        "default": 100,
-        "unit": "px",
-        "label": "t:settings_schema.brand_information.settings.brand_image_width.label"
       }
     ]
   },
@@ -1433,22 +1397,6 @@
         "id": "show_cart_note",
         "label": "t:settings_schema.cart.settings.show_cart_note.label",
         "default": false
-      },
-      {
-        "type": "header",
-        "content": "t:settings_schema.cart.settings.cart_drawer.header"
-      },
-      {
-        "type": "collection",
-        "id": "cart_drawer_collection",
-        "label": "t:settings_schema.cart.settings.cart_drawer.collection.label",
-        "info": "t:settings_schema.cart.settings.cart_drawer.collection.info"
-      },
-      {
-        "type": "color_scheme",
-        "id": "cart_color_scheme",
-        "label": "t:sections.all.colors.label",
-        "default": "scheme-1"
       }
     ]
   }

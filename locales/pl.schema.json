@@ -260,13 +260,6 @@
         },
         "show_cart_note": {
           "label": "Uwaga dotycząca koszyka"
-        },
-        "cart_drawer": {
-          "header": "Szuflada koszyka",
-          "collection": {
-            "label": "Kolekcja",
-            "info": "Pokazywane, gdy szuflada koszyka jest pusta"
-          }
         }
       }
     },
@@ -299,18 +292,7 @@
       }
     },
     "blog_cards": {
-      "name": "Karty blogu",
-      "settings": {
-        "style": {
-          "options__1": {
-            "label": "Standardowy"
-          },
-          "options__2": {
-            "label": "Karta"
-          },
-          "label": "Styl"
-        }
-      }
+      "name": "Karty blogu"
     },
     "logo": {
       "name": "Logo",
@@ -330,17 +312,8 @@
     "brand_information": {
       "name": "Informacje o marce",
       "settings": {
-        "brand_headline": {
-          "label": "Headline"
-        },
         "brand_description": {
           "label": "Opis"
-        },
-        "brand_image": {
-          "label": "Obraz"
-        },
-        "brand_image_width": {
-          "label": "Szerokość obrazu"
         },
         "paragraph": {
           "content": "Wyświetla się w bloku informacji o marce w stopce"

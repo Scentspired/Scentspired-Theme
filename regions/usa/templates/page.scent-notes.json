@@ -109,10 +109,7 @@
       "blocks": {
         "ai_gen_block_5fa445c_DCMWA9": {
           "type": "catalog--aroma-notes",
-          "settings": {
-            "heading": "Scent Profile",
-            "desktop_width_percent": 100
-          },
+          "settings": {},
           "blocks": {}
         }
       },

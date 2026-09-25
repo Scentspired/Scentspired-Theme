@@ -274,13 +274,6 @@
         },
         "show_cart_note": {
           "label": "หมายเหตุสำหรับตะกร้าสินค้า"
-        },
-        "cart_drawer": {
-          "header": "ตะกร้าสินค้าแบบเลื่อนด้านข้าง",
-          "collection": {
-            "label": "คอลเลกชัน",
-            "info": "แสดงผลเมื่อตะกร้าสินค้าแบบเลื่อนด้านข้างว่างเปล่า"
-          }
         }
       }
     },
@@ -299,18 +292,7 @@
       }
     },
     "blog_cards": {
-      "name": "บัตรบล็อก",
-      "settings": {
-        "style": {
-          "options__1": {
-            "label": "มาตรฐาน"
-          },
-          "options__2": {
-            "label": "บัตร"
-          },
-          "label": "รูปแบบ"
-        }
-      }
+      "name": "บัตรบล็อก"
     },
     "logo": {
       "name": "โลโก้",
@@ -330,17 +312,8 @@
     "brand_information": {
       "name": "ข้อมูลแบรนด์",
       "settings": {
-        "brand_headline": {
-          "label": "หัวเรื่อง"
-        },
         "brand_description": {
           "label": "คำอธิบาย"
-        },
-        "brand_image": {
-          "label": "รูปภาพ"
-        },
-        "brand_image_width": {
-          "label": "ความกว้างของรูปภาพ"
         },
         "paragraph": {
           "content": "แสดงในบล็อกข้อมูลแบรนด์ในส่วนท้าย"

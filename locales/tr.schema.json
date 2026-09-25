@@ -260,13 +260,6 @@
         },
         "show_cart_note": {
           "label": "Sepet notu"
-        },
-        "cart_drawer": {
-          "header": "Sepet çekmecesi",
-          "collection": {
-            "label": "Koleksiyon",
-            "info": "Sepet çekmecesi boş olduğunda gösterilir"
-          }
         }
       }
     },
@@ -299,18 +292,7 @@
       }
     },
     "blog_cards": {
-      "name": "Blog kartları",
-      "settings": {
-        "style": {
-          "options__1": {
-            "label": "Standart"
-          },
-          "options__2": {
-            "label": "Kart"
-          },
-          "label": "Stil"
-        }
-      }
+      "name": "Blog kartları"
     },
     "logo": {
       "name": "Logo",
@@ -330,17 +312,8 @@
     "brand_information": {
       "name": "Marka bilgileri",
       "settings": {
-        "brand_headline": {
-          "label": "Başlık"
-        },
         "brand_description": {
           "label": "Açıklama"
-        },
-        "brand_image": {
-          "label": "Görsel"
-        },
-        "brand_image_width": {
-          "label": "Görsel genişliği"
         },
         "paragraph": {
           "content": "Altbilginin marka bilgileri bloğunda görüntülenir"

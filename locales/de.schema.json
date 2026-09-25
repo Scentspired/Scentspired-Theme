@@ -260,13 +260,6 @@
         },
         "show_cart_note": {
           "label": "Warenkorbanmerkung"
-        },
-        "cart_drawer": {
-          "header": "Warenkorbeinschub",
-          "collection": {
-            "label": "Kollektion",
-            "info": "Wird angezeigt, wenn der Warenkorbeinschub leer ist"
-          }
         }
       }
     },
@@ -299,18 +292,7 @@
       }
     },
     "blog_cards": {
-      "name": "Blog-Karten",
-      "settings": {
-        "style": {
-          "options__1": {
-            "label": "Standard"
-          },
-          "options__2": {
-            "label": "Karte"
-          },
-          "label": "Optik"
-        }
-      }
+      "name": "Blog-Karten"
     },
     "logo": {
       "name": "Logo",
@@ -330,17 +312,8 @@
     "brand_information": {
       "name": "Markeninformationen",
       "settings": {
-        "brand_headline": {
-          "label": "Überschrift"
-        },
         "brand_description": {
           "label": "Beschreibung"
-        },
-        "brand_image": {
-          "label": "Bild"
-        },
-        "brand_image_width": {
-          "label": "Bildbreite"
         },
         "paragraph": {
           "content": "Wird in der Fußzeile des Markeninfoblocks angezeigt"

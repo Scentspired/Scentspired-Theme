@@ -260,13 +260,6 @@
         },
         "show_cart_note": {
           "label": "Varukorgsanteckning"
-        },
-        "cart_drawer": {
-          "header": "Varukorgspanel",
-          "collection": {
-            "label": "Produktserie",
-            "info": "Visas när varukorgspanelen är tom"
-          }
         }
       }
     },
@@ -299,18 +292,7 @@
       }
     },
     "blog_cards": {
-      "name": "Bloggkort",
-      "settings": {
-        "style": {
-          "options__1": {
-            "label": "Standard"
-          },
-          "options__2": {
-            "label": "Kort"
-          },
-          "label": "Stil"
-        }
-      }
+      "name": "Bloggkort"
     },
     "logo": {
       "name": "Logotyp",
@@ -330,17 +312,8 @@
     "brand_information": {
       "name": "Varumärkesinformation",
       "settings": {
-        "brand_headline": {
-          "label": "Rubrik"
-        },
         "brand_description": {
           "label": "Beskrivning"
-        },
-        "brand_image": {
-          "label": "Bild"
-        },
-        "brand_image_width": {
-          "label": "Bildbredd"
         },
         "paragraph": {
           "content": "Visas i sidfotens block med information om varumärke"

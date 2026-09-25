@@ -260,13 +260,6 @@
         },
         "show_cart_note": {
           "label": "Poznámky ke košíku"
-        },
-        "cart_drawer": {
-          "header": "Výsuvný košík",
-          "collection": {
-            "label": "Kolekce",
-            "info": "Zobrazí se v případě, že výsuvný košík je prázdný"
-          }
         }
       }
     },
@@ -299,18 +292,7 @@
       }
     },
     "blog_cards": {
-      "name": "Karty blogu",
-      "settings": {
-        "style": {
-          "options__1": {
-            "label": "Standardní"
-          },
-          "options__2": {
-            "label": "Karta"
-          },
-          "label": "Styl"
-        }
-      }
+      "name": "Karty blogu"
     },
     "logo": {
       "name": "Logo",
@@ -330,17 +312,8 @@
     "brand_information": {
       "name": "Informace o značce",
       "settings": {
-        "brand_headline": {
-          "label": "Titulek"
-        },
         "brand_description": {
           "label": "Popis"
-        },
-        "brand_image": {
-          "label": "Obrázek"
-        },
-        "brand_image_width": {
-          "label": "Šířka obrázku"
         },
         "paragraph": {
           "content": "Zobrazuje se v bloku informací o značce v zápatí."

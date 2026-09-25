@@ -274,13 +274,6 @@
         },
         "show_cart_note": {
           "label": "Tilauskommentti"
-        },
-        "cart_drawer": {
-          "header": "Veto-ostoskori",
-          "collection": {
-            "label": "Kokoelma",
-            "info": "Näytetään, kun veto-ostoskori on tyhjä"
-          }
         }
       }
     },
@@ -299,18 +292,7 @@
       }
     },
     "blog_cards": {
-      "name": "Blogi-kortit",
-      "settings": {
-        "style": {
-          "options__1": {
-            "label": "Vakio"
-          },
-          "options__2": {
-            "label": "Kortti"
-          },
-          "label": "Tyyli"
-        }
-      }
+      "name": "Blogi-kortit"
     },
     "logo": {
       "name": "Logo",
@@ -330,17 +312,8 @@
     "brand_information": {
       "name": "Bränditiedot",
       "settings": {
-        "brand_headline": {
-          "label": "Otsikko"
-        },
         "brand_description": {
           "label": "Oikeuksien kuvaus"
-        },
-        "brand_image": {
-          "label": "Kuva"
-        },
-        "brand_image_width": {
-          "label": "Kuvan leveys"
         },
         "paragraph": {
           "content": "Näytetään alatunnisteen bränditietolohkossa"

@@ -274,13 +274,6 @@
         },
         "show_cart_note": {
           "label": "購物車備註"
-        },
-        "cart_drawer": {
-          "header": "購物車導覽匣",
-          "collection": {
-            "label": "商品系列",
-            "info": "當購物車導覽匣無商品時顯示"
-          }
         }
       }
     },
@@ -299,18 +292,7 @@
       }
     },
     "blog_cards": {
-      "name": "網誌卡片",
-      "settings": {
-        "style": {
-          "options__1": {
-            "label": "標準"
-          },
-          "options__2": {
-            "label": "卡片"
-          },
-          "label": "樣式"
-        }
-      }
+      "name": "網誌卡片"
     },
     "logo": {
       "name": "標誌",
@@ -330,17 +312,8 @@
     "brand_information": {
       "name": "品牌資訊",
       "settings": {
-        "brand_headline": {
-          "label": "標題"
-        },
         "brand_description": {
           "label": "說明"
-        },
-        "brand_image": {
-          "label": "圖片"
-        },
-        "brand_image_width": {
-          "label": "圖片寬度"
         },
         "paragraph": {
           "content": "顯示於頁尾的品牌資訊區塊"

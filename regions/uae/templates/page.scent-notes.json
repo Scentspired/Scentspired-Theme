@@ -101,10 +101,7 @@
       "blocks": {
         "catalog_aroma_notes_DCMWA9": {
           "type": "catalog--aroma-notes",
-          "settings": {
-            "heading": "Scent Profile",
-            "desktop_width_percent": 100
-          },
+          "settings": {},
           "blocks": {}
         }
       },

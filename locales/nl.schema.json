@@ -260,13 +260,6 @@
         },
         "show_cart_note": {
           "label": "Notitie voor winkelwagen"
-        },
-        "cart_drawer": {
-          "header": "Winkelwagenoptie",
-          "collection": {
-            "label": "Collectie",
-            "info": "Weergegeven als winkelwagenoptie leeg is"
-          }
         }
       }
     },
@@ -299,18 +292,7 @@
       }
     },
     "blog_cards": {
-      "name": "Blogkaarten",
-      "settings": {
-        "style": {
-          "options__1": {
-            "label": "Standaard"
-          },
-          "options__2": {
-            "label": "Kaart"
-          },
-          "label": "Stijl"
-        }
-      }
+      "name": "Blogkaarten"
     },
     "logo": {
       "name": "Logo",
@@ -330,17 +312,8 @@
     "brand_information": {
       "name": "Merkinformatie",
       "settings": {
-        "brand_headline": {
-          "label": "Headline"
-        },
         "brand_description": {
           "label": "Beschrijving"
-        },
-        "brand_image": {
-          "label": "Afbeelding"
-        },
-        "brand_image_width": {
-          "label": "Breedte afbeelding"
         },
         "paragraph": {
           "content": "Weergegeven in het merkinformatieblok in de voettekst"

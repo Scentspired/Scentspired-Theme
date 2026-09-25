@@ -260,13 +260,6 @@
         },
         "show_cart_note": {
           "label": "Observação do carrinho"
-        },
-        "cart_drawer": {
-          "header": "Carrinho de compras deslizante",
-          "collection": {
-            "label": "Coleção",
-            "info": "Exibido quando o carrinho de compras deslizante está vazio"
-          }
         }
       }
     },
@@ -299,18 +292,7 @@
       }
     },
     "blog_cards": {
-      "name": "Cartões de blog",
-      "settings": {
-        "style": {
-          "options__1": {
-            "label": "Padrão"
-          },
-          "options__2": {
-            "label": "Cartão"
-          },
-          "label": "Estilo"
-        }
-      }
+      "name": "Cartões de blog"
     },
     "logo": {
       "name": "Logo",
@@ -330,17 +312,8 @@
     "brand_information": {
       "name": "Informações da marca",
       "settings": {
-        "brand_headline": {
-          "label": "Cabeçalho"
-        },
         "brand_description": {
           "label": "Descrição"
-        },
-        "brand_image": {
-          "label": "Imagem"
-        },
-        "brand_image_width": {
-          "label": "Largura da imagem"
         },
         "paragraph": {
           "content": "É exibido no bloco de informações da marca no rodapé"

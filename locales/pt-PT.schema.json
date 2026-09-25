@@ -260,13 +260,6 @@
         },
         "show_cart_note": {
           "label": "Nota do carrinho"
-        },
-        "cart_drawer": {
-          "header": "Painel deslizante do carrinho",
-          "collection": {
-            "label": "Coleção",
-            "info": "Visível quando o painel deslizante do carrinho está vazio"
-          }
         }
       }
     },
@@ -299,18 +292,7 @@
       }
     },
     "blog_cards": {
-      "name": "Cartões de blogue",
-      "settings": {
-        "style": {
-          "options__1": {
-            "label": "Padrão"
-          },
-          "options__2": {
-            "label": "Cartão"
-          },
-          "label": "Estilo"
-        }
-      }
+      "name": "Cartões de blogue"
     },
     "logo": {
       "name": "Logótipo",
@@ -330,17 +312,8 @@
     "brand_information": {
       "name": "Informação de marca",
       "settings": {
-        "brand_headline": {
-          "label": "Cabeçalho"
-        },
         "brand_description": {
           "label": "Descrição"
-        },
-        "brand_image": {
-          "label": "Imagem"
-        },
-        "brand_image_width": {
-          "label": "Largura da imagem"
         },
         "paragraph": {
           "content": "Apresentado no bloco de informações da marca no rodapé"

@@ -260,13 +260,6 @@
         },
         "show_cart_note": {
           "label": "Nota del carrito"
-        },
-        "cart_drawer": {
-          "header": "Carrito lateral",
-          "collection": {
-            "label": "Colección",
-            "info": "Se muestra cuando el carrito lateral está vacío"
-          }
         }
       }
     },
@@ -299,18 +292,7 @@
       }
     },
     "blog_cards": {
-      "name": "Tarjetas de blogs",
-      "settings": {
-        "style": {
-          "options__1": {
-            "label": "Estándar"
-          },
-          "options__2": {
-            "label": "Tarjeta"
-          },
-          "label": "Estilo"
-        }
-      }
+      "name": "Tarjetas de blogs"
     },
     "logo": {
       "name": "Logo",
@@ -330,17 +312,8 @@
     "brand_information": {
       "name": "Información de marca",
       "settings": {
-        "brand_headline": {
-          "label": "Titular"
-        },
         "brand_description": {
           "label": "Descripción"
-        },
-        "brand_image": {
-          "label": "Imagen"
-        },
-        "brand_image_width": {
-          "label": "Ancho de imagen"
         },
         "paragraph": {
           "content": "Se muestra en el bloque de información de marca del pie de página"

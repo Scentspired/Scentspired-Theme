@@ -260,13 +260,6 @@
         },
         "show_cart_note": {
           "label": "Handlekurvnotat"
-        },
-        "cart_drawer": {
-          "header": "Handlekurvskuff",
-          "collection": {
-            "label": "Samling",
-            "info": "Synlig når handlekurvskuffen er tom"
-          }
         }
       }
     },
@@ -299,18 +292,7 @@
       }
     },
     "blog_cards": {
-      "name": "Bloggkort",
-      "settings": {
-        "style": {
-          "options__1": {
-            "label": "Standard"
-          },
-          "options__2": {
-            "label": "Kort"
-          },
-          "label": "Stil"
-        }
-      }
+      "name": "Bloggkort"
     },
     "logo": {
       "name": "Logo",
@@ -330,17 +312,8 @@
     "brand_information": {
       "name": "Merkevareinformasjon",
       "settings": {
-        "brand_headline": {
-          "label": "Overskrift"
-        },
         "brand_description": {
           "label": "Beskrivelse"
-        },
-        "brand_image": {
-          "label": "Bilde"
-        },
-        "brand_image_width": {
-          "label": "Bildebredde"
         },
         "paragraph": {
           "content": "Vises i bunntekstens blokk med merkevareinformasjon"

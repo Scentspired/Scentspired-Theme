@@ -260,13 +260,6 @@
         },
         "show_cart_note": {
           "label": "Note de panier"
-        },
-        "cart_drawer": {
-          "header": "Panier coulissant",
-          "collection": {
-            "label": "Collection",
-            "info": "Affiché lorsque le panier coulissant est vide"
-          }
         }
       }
     },
@@ -299,18 +292,7 @@
       }
     },
     "blog_cards": {
-      "name": "Cartes de blog",
-      "settings": {
-        "style": {
-          "options__1": {
-            "label": "Standard"
-          },
-          "options__2": {
-            "label": "Carte"
-          },
-          "label": "Style"
-        }
-      }
+      "name": "Cartes de blog"
     },
     "logo": {
       "name": "Logo",
@@ -330,17 +312,8 @@
     "brand_information": {
       "name": "Informations sur la marque",
       "settings": {
-        "brand_headline": {
-          "label": "Titre"
-        },
         "brand_description": {
           "label": "Description"
-        },
-        "brand_image": {
-          "label": "Image"
-        },
-        "brand_image_width": {
-          "label": "Largeur d’image"
         },
         "paragraph": {
           "content": "S’affiche dans le bloc d’informations de marque du pied de page"

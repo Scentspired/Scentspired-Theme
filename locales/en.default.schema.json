@@ -81,18 +81,7 @@
       }
     },
     "blog_cards": {
-      "name": "Blog cards",
-      "settings": {
-        "style": {
-          "options__1": {
-            "label": "Standard"
-          },
-          "options__2": {
-            "label": "Card"
-          },
-          "label": "Style"
-        }
-      }
+      "name": "Blog cards"
     },
     "badges": {
       "name": "Badges",
@@ -168,17 +157,8 @@
         "paragraph": {
           "content": "Displays in the footer's brand information block"
         },
-        "brand_headline": {
-          "label": "Headline"
-        },
         "brand_description": {
           "label": "Description"
-        },
-        "brand_image": {
-          "label": "Image"
-        },
-        "brand_image_width": {
-          "label": "Image width"
         }
       }
     },
@@ -335,13 +315,6 @@
         },
         "show_cart_note": {
           "label": "Cart note"
-        },
-        "cart_drawer": {
-          "header": "Cart drawer",
-          "collection": {
-            "label": "Collection",
-            "info": "Shown when cart drawer is empty"
-          }
         }
       }
     },

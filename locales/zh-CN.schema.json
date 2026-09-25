@@ -260,13 +260,6 @@
         },
         "show_cart_note": {
           "label": "购物车备注"
-        },
-        "cart_drawer": {
-          "header": "购物车抽屉",
-          "collection": {
-            "label": "产品系列",
-            "info": "在购物车抽屉为空时显示﻿"
-          }
         }
       }
     },
@@ -299,18 +292,7 @@
       }
     },
     "blog_cards": {
-      "name": "博客卡",
-      "settings": {
-        "style": {
-          "options__1": {
-            "label": "标准"
-          },
-          "options__2": {
-            "label": "卡"
-          },
-          "label": "样式"
-        }
-      }
+      "name": "博客卡"
     },
     "logo": {
       "name": "logo",
@@ -330,17 +312,8 @@
     "brand_information": {
       "name": "品牌信息",
       "settings": {
-        "brand_headline": {
-          "label": "标题"
-        },
         "brand_description": {
           "label": "描述"
-        },
-        "brand_image": {
-          "label": "图片"
-        },
-        "brand_image_width": {
-          "label": "图片宽度"
         },
         "paragraph": {
           "content": "显示在页脚的品牌信息块中"
