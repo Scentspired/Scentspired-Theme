@@ -8,11 +8,10 @@ name: Auto-Update UAE Live Store
 # - NEVER pushes to Scentspired-UK or Scentspired-USA (permanently locked).
 # ==============================================================================
 
+# Manual only. Pushing this repository must never deploy anywhere: a push to
+# main runs the quality gate and nothing else. Run this by hand when a UAE
+# release is intended.
 on:
-  workflow_run:
-    workflows: ["Scentspired Core Theme Quality Gate"]
-    types: [completed]
-    branches: [main]
   workflow_dispatch:
 
 jobs:
