@@ -6,7 +6,7 @@
       <h1 class="faq-title">{{ section.settings.page_title | default: "Privacy Policy" }}</h1>
     </div>
     <div class="faq-content">
-      {% render 'content--info-sidebar', section_settings: section.settings %}
+      {% render 'content--info-sidebar' %}
       <main class="faq-main">
         {% for block in section.blocks %}
           <div class="faq-category">
@@ -45,89 +45,8 @@
       "default": "Privacy Policy"
     },
     {
-      "type": "text",
-      "id": "link_1_text",
-      "label": "Link 1 Text",
-      "default": "Contact Us"
-    },
-    {
-      "type": "url",
-      "id": "link_1_url",
-      "label": "Link 1 URL"
-    },
-    {
-      "type": "text",
-      "id": "link_2_text",
-      "label": "Link 2 Text",
-      "default": "[ Privacy Policy ]"
-    },
-    {
-      "type": "url",
-      "id": "link_2_url",
-      "label": "Link 2 URL"
-    },
-    {
-      "type": "text",
-      "id": "link_3_text",
-      "label": "Link 3 Text",
-      "default": "Stockists"
-    },
-    {
-      "type": "url",
-      "id": "link_3_url",
-      "label": "Link 3 URL"
-    },
-    {
-      "type": "text",
-      "id": "link_4_text",
-      "label": "Link 4 Text",
-      "default": "Terms and Conditions"
-    },
-    {
-      "type": "url",
-      "id": "link_4_url",
-      "label": "Link 4 URL"
-    },
-    {
-      "type": "text",
-      "id": "link_5_text",
-      "label": "Link 5 Text",
-      "default": "Refund Policy"
-    },
-    {
-      "type": "url",
-      "id": "link_5_url",
-      "label": "Link 5 URL"
-    },
-    {
-      "type": "text",
-      "id": "link_6_text",
-      "label": "Link 6 Text"
-    },
-    {
-      "type": "url",
-      "id": "link_6_url",
-      "label": "Link 6 URL"
-    },
-    {
-      "type": "text",
-      "id": "link_7_text",
-      "label": "Link 7 Text"
-    },
-    {
-      "type": "url",
-      "id": "link_7_url",
-      "label": "Link 7 URL"
-    },
-    {
-      "type": "text",
-      "id": "link_8_text",
-      "label": "Link 8 Text"
-    },
-    {
-      "type": "url",
-      "id": "link_8_url",
-      "label": "Link 8 URL"
+      "type": "paragraph",
+      "content": "The sidebar links are the region's content/info-pages.json (sidebar_links), shared by all the info pages."
     }
   ],
   "blocks": [

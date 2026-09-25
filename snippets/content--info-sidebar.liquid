@@ -1,51 +1,38 @@
 {%- comment -%}
   The sidebar of the info pages (content--faq, content--privacy-policy,
-  content--contact): up to eight links, each shown when its text is set.
-  Which link is the current page is marked by each section's own script.
+  content--contact): one link per entry of sidebar_links in the region's
+  content/info-pages.json, in the file's order. Which link is the current page
+  is marked by each section's own script.
 
-  Usage: {% render 'content--info-sidebar', section_settings: section.settings %}
+  Usage: {% render 'content--info-sidebar' %}
 {%- endcomment -%}
+{%- liquid
+  capture positions
+    render 'region--content', key: 'info-pages.sidebar_links.__keys'
+  endcapture
+  assign positions = positions | strip | split: ','
+-%}
 <aside class="faq-sidebar">
         <ul>
-          {% if section_settings.link_1_text != blank %}
+          {%- for position in positions -%}
+            {%- liquid
+              assign link_key = 'info-pages.sidebar_links.' | append: position | append: '.'
+              assign k = link_key | append: 'label'
+              capture link_label
+                render 'region--content', key: k
+              endcapture
+              assign k = link_key | append: 'url'
+              capture link_url
+                render 'region--content', key: k
+              endcapture
+              assign link_label = link_label | strip
+              assign link_url = link_url | strip
+            -%}
+            {%- if link_label != blank %}
             <li>
-              <a href="{{ section_settings.link_1_url }}">{{ section_settings.link_1_text }}</a>
+              <a href="{{ link_url | escape }}">{{ link_label | escape }}</a>
             </li>
-          {% endif %}
-          {% if section_settings.link_2_text != blank %}
-            <li>
-              <a href="{{ section_settings.link_2_url }}">{{ section_settings.link_2_text }}</a>
-            </li>
-          {% endif %}
-          {% if section_settings.link_3_text != blank %}
-            <li>
-              <a href="{{ section_settings.link_3_url }}">{{ section_settings.link_3_text }}</a>
-            </li>
-          {% endif %}
-          {% if section_settings.link_4_text != blank %}
-            <li>
-              <a href="{{ section_settings.link_4_url }}">{{ section_settings.link_4_text }}</a>
-            </li>
-          {% endif %}
-          {% if section_settings.link_5_text != blank %}
-            <li>
-              <a href="{{ section_settings.link_5_url }}">{{ section_settings.link_5_text }}</a>
-            </li>
-          {% endif %}
-          {% if section_settings.link_6_text != blank %}
-            <li>
-              <a href="{{ section_settings.link_6_url }}">{{ section_settings.link_6_text }}</a>
-            </li>
-          {% endif %}
-          {% if section_settings.link_7_text != blank %}
-            <li>
-              <a href="{{ section_settings.link_7_url }}">{{ section_settings.link_7_text }}</a>
-            </li>
-          {% endif %}
-          {% if section_settings.link_8_text != blank %}
-            <li>
-              <a href="{{ section_settings.link_8_url }}">{{ section_settings.link_8_text }}</a>
-            </li>
-          {% endif %}
+            {%- endif -%}
+          {%- endfor %}
         </ul>
       </aside>

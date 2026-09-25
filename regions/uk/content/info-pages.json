@@ -1,0 +1,34 @@
+{
+  "$comment": [
+    "The info pages: Contact, FAQs, Privacy Policy, Returns, Terms and Conditions and Disclaimer.",
+    "sidebar_links is the menu down the left of all six, in this order. Add, remove or reorder",
+    "entries here and every one of those pages follows. The design shows labels in capitals;",
+    "write them normally. The page being viewed is highlighted by itself."
+  ],
+  "sidebar_links": [
+    {
+      "label": "Contact Us",
+      "url": "/pages/contact"
+    },
+    {
+      "label": "FAQs",
+      "url": "/pages/faqs"
+    },
+    {
+      "label": "Privacy Policy",
+      "url": "/pages/privacy-policy"
+    },
+    {
+      "label": "Returns",
+      "url": "/pages/returns"
+    },
+    {
+      "label": "Terms and Conditions",
+      "url": "/pages/terms-and-condition"
+    },
+    {
+      "label": "Disclaimer",
+      "url": "/pages/disclaimer"
+    }
+  ]
+}

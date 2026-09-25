@@ -12,7 +12,7 @@
       <div class="faq-title-line"></div>
     </div>
     <div class="faq-content">
-      {% render 'content--info-sidebar', section_settings: section.settings %}
+      {% render 'content--info-sidebar' %}
       <main class="faq-main">
         <div class="contact-form-wrapper">
           {%- comment -%}
@@ -130,6 +130,10 @@
       "default": "CONTACT"
     },
     {
+      "type": "paragraph",
+      "content": "The sidebar links are the region's content/info-pages.json (sidebar_links), shared by all the info pages."
+    },
+    {
       "type": "text",
       "id": "main_heading",
       "label": "Main Content Heading",
@@ -140,92 +144,6 @@
       "id": "main_description",
       "label": "Main Content Description",
       "default": "<p>If, for any reason, you have any issues or simply just have some questions for us, please do not think twice about contacting our support team at;</p><p>help@theessencevault.co.uk</p><p>We aim to respond to all questions within 24 hours.</p><p>Speak soon!</p>"
-    },
-    {
-      "type": "text",
-      "id": "link_1_text",
-      "label": "Link 1 Text",
-      "default": "[ CONTACT US ]"
-    },
-    {
-      "type": "url",
-      "id": "link_1_url",
-      "label": "Link 1 URL"
-    },
-    {
-      "type": "text",
-      "id": "link_2_text",
-      "label": "Link 2 Text",
-      "default": "FAQS"
-    },
-    {
-      "type": "url",
-      "id": "link_2_url",
-      "label": "Link 2 URL"
-    },
-    {
-      "type": "text",
-      "id": "link_3_text",
-      "label": "Link 3 Text",
-      "default": "STOCKISTS"
-    },
-    {
-      "type": "url",
-      "id": "link_3_url",
-      "label": "Link 3 URL"
-    },
-    {
-      "type": "text",
-      "id": "link_4_text",
-      "label": "Link 4 Text",
-      "default": "PRIVACY POLICY"
-    },
-    {
-      "type": "url",
-      "id": "link_4_url",
-      "label": "Link 4 URL"
-    },
-    {
-      "type": "text",
-      "id": "link_5_text",
-      "label": "Link 5 Text",
-      "default": "TERMS AND CONDITIONS"
-    },
-    {
-      "type": "url",
-      "id": "link_5_url",
-      "label": "Link 5 URL"
-    },
-    {
-      "type": "text",
-      "id": "link_6_text",
-      "label": "Link 6 Text",
-      "default": "REFUND POLICY"
-    },
-    {
-      "type": "url",
-      "id": "link_6_url",
-      "label": "Link 6 URL"
-    },
-    {
-      "type": "text",
-      "id": "link_7_text",
-      "label": "Link 7 Text"
-    },
-    {
-      "type": "url",
-      "id": "link_7_url",
-      "label": "Link 7 URL"
-    },
-    {
-      "type": "text",
-      "id": "link_8_text",
-      "label": "Link 8 Text"
-    },
-    {
-      "type": "url",
-      "id": "link_8_url",
-      "label": "Link 8 URL"
     }
   ],
   "blocks": [],

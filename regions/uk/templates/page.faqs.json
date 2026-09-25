@@ -18,23 +18,7 @@
       ],
       "name": "FAQ Section",
       "settings": {
-        "page_title": "Frequently Asked Questions",
-        "link_1_text": "Contact Us",
-        "link_1_url": "shopify://pages/contact",
-        "link_2_text": "FAQs",
-        "link_2_url": "shopify://pages/faqs",
-        "link_3_text": "PRIVACY POLICY",
-        "link_3_url": "shopify://pages/privacy-policy",
-        "link_4_text": "RETURNS",
-        "link_4_url": "shopify://pages/returns",
-        "link_5_text": "Terms and Conditions",
-        "link_5_url": "shopify://pages/terms-and-conditions",
-        "link_6_text": "Disclaimer",
-        "link_6_url": "shopify://pages/disclaimer",
-        "link_7_text": "",
-        "link_7_url": "",
-        "link_8_text": "",
-        "link_8_url": ""
+        "page_title": "Frequently Asked Questions"
       },
       "blocks": {
         "category_1": {
