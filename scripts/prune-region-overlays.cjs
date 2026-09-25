@@ -6,9 +6,9 @@
  *
  * The theme is structure and design: Liquid, HTML, CSS, JS, and the layouts of
  * its templates and section groups (templates/*.json, sections/*.json), whose
- * words, images, links and lists are each region's regions/<id>/content/.
- * Theme settings (config/settings_data.json) still belong to a region and live
- * in regions/<id>/, complete, for every region including the default one.
+ * words, images, links and lists are each region's regions/<id>/content/; the
+ * theme settings (config/settings_data.json) likewise, with the logo, social
+ * links and app embeds in regions/<id>/content/theme-settings.json.
  *
  *   1. MOVE    any content file found in core is copied into every region
  *              that lacks its own, and removed from core
@@ -33,12 +33,13 @@ const DRY = process.argv.includes('--dry') || process.argv.includes('--check');
 const CHECK = process.argv.includes('--check');
 
 /**
- * Whole-file content: the theme settings. Templates and section groups are not
- * on this list: they are layouts (structure and design) and belong to the
- * theme, with their content in regions/<id>/content/ — the compiler refuses a
- * layout that holds a content value of its own.
+ * Whole-file content in core: none any more. Templates, section groups and theme
+ * settings (templates/*.json, sections/*.json, config/settings_data.json) are
+ * layouts — structure and design — and belong to the theme, with their content
+ * in regions/<id>/content/; the compiler refuses a layout holding a content
+ * value of its own. What remains here is the locale reduction below.
  */
-const isContent = (rel) => rel === 'config/settings_data.json';
+const isContent = () => false;
 
 const stripJsonComments = (s) =>
   (s.charCodeAt(0) === 0xfeff ? s.slice(1) : s).replace(/\/\*[\s\S]*?\*\//g, '');

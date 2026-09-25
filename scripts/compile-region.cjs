@@ -123,7 +123,8 @@ console.log('>>> [1/6] Copying shared core...');
 // Template and section-group JSON are layouts, filled from the region's content
 // further down; copying them raw would put unfilled references in front of the
 // dev server.
-const isLayoutJson = (dir) => (entry) => (dir === 'templates' || dir === 'sections') && entry.isFile() && entry.name.endsWith('.json');
+const isLayoutJson = (dir) => (entry) =>
+  entry.isFile() && (((dir === 'templates' || dir === 'sections') && entry.name.endsWith('.json')) || (dir === 'config' && entry.name === 'settings_data.json'));
 for (const dir of CORE_DIRS) {
   stats[dir] = copyTree(path.join(THEME_ROOT, dir), path.join(DIST_DIR, dir), isLayoutJson(dir));
   console.log(`  + ${dir.padEnd(12)}: ${stats[dir]} files`);
@@ -226,9 +227,9 @@ if (fs.existsSync(regionSnippets) && fs.readdirSync(regionSnippets).length > 0) 
  * every region: templates/*.json and sections/*.json. A region brings only
  * content (regions/<id>/content/<page>.json), so it may hold neither.
  */
-for (const dir of ['templates', 'sections']) {
+for (const dir of ['templates', 'sections', 'config/settings_data.json']) {
   const abs = path.join(REGION_DIR, dir);
-  const found = fs.existsSync(abs) ? fs.readdirSync(abs) : [];
+  const found = !fs.existsSync(abs) ? [] : fs.statSync(abs).isDirectory() ? fs.readdirSync(abs) : [path.basename(abs)];
   if (found.length) {
     console.error(`\n❌ regions/${target}/${dir}/ may not exist. Found: ${found.join(', ')}`);
     console.error(`   Layout and design are the theme's (${dir}/*.json), shared by every region.`);
@@ -447,6 +448,20 @@ emitted.add('snippets/region--active.liquid');
       const out = { ...doc, sections: Object.fromEntries(Object.entries(doc.sections || {}).filter(([id]) => id in parent.sections)) };
       if (doc.order) out.order = doc.order.filter((id) => id in parent.sections);
       writeOut(rel, out);
+    }
+    // Theme settings: design shared (config/settings_data.json), content from
+    // content/theme-settings.json — the logo, social links, the store's app embeds.
+    {
+      const rel = 'config/settings_data.json';
+      const src = path.join(THEME_ROOT, rel);
+      if (fs.existsSync(src)) {
+        const doc = JSON.parse(fs.readFileSync(src, 'utf8').replace(/^﻿?\s*\/\*[\s\S]*?\*\/\s*/, ''));
+        const types = {};
+        for (const g of JSON.parse(fs.readFileSync(path.join(THEME_ROOT, 'config', 'settings_schema.json'), 'utf8'))) for (const s of g.settings || []) if (s.id) types[s.id] = s.type;
+        for (const [k, v] of Object.entries(doc.current || {})) if (isContentSetting(types[k], k) && literal(v)) misplaced.push(`${rel} current.${k}: ${JSON.stringify(v).slice(0, 60)}`);
+        if (!('theme-settings' in content)) errors.push(`${rel}: regions/${target}/content/theme-settings.json is missing`);
+        else { built[rel] = fill(doc, rel); writeOut(rel, built[rel]); }
+      }
     }
     if (misplaced.length) {
       console.error(`\n❌ ${misplaced.length} content value(s) are written into theme layouts:\n`);

@@ -1,0 +1,52 @@
+{
+  "$comment": [
+    "This region's theme settings that are content: logo, favicon, brand description, social links, and the app embeds its store has switched on (app_embeds, as Shopify writes them).",
+    "Every other theme setting (colours, fonts, spacing) is design, shared by every region: config/settings_data.json. A null value leaves that setting empty."
+  ],
+  "logo": "shopify://shop_images/Scentspired_logo_1.png",
+  "favicon": "shopify://shop_images/favicon_3.png",
+  "brand_description": "<p></p>",
+  "social_facebook_link": "",
+  "social_instagram_link": "",
+  "social_youtube_link": "",
+  "social_tiktok_link": "",
+  "social_twitter_link": "",
+  "social_snapchat_link": "",
+  "social_pinterest_link": "",
+  "social_tumblr_link": "",
+  "social_vimeo_link": "",
+  "app_embeds": {
+    "855628211100114053": {
+      "type": "shopify://apps/klaviyo-email-marketing-sms/blocks/klaviyo-onsite-embed/2632fe16-c075-4321-a88b-50b567f42507",
+      "disabled": false,
+      "settings": {}
+    },
+    "2567389343055140935": {
+      "type": "shopify://apps/microsoft-clarity/blocks/clarity_js/31c3d126-8116-4b4a-8ba1-baeda7c4aeea",
+      "disabled": false,
+      "settings": {}
+    },
+    "2200952712151285029": {
+      "type": "shopify://apps/microsoft-clarity/blocks/brandAgents_js/31c3d126-8116-4b4a-8ba1-baeda7c4aeea",
+      "disabled": false,
+      "settings": {}
+    },
+    "1679441073093641486": {
+      "type": "shopify://apps/k-popup/blocks/app-extension/0199a93d-4fc0-74b8-9e2f-a339e9d9c6ee",
+      "disabled": false,
+      "settings": {}
+    },
+    "14060646107696862457": {
+      "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+      "disabled": false,
+      "settings": {}
+    },
+    "11809892702313333283": {
+      "type": "shopify://apps/firework-shoppable-video-ugc/blocks/firework-header/347a2e4c-f5cb-410d-8354-490d1e80558c",
+      "disabled": false,
+      "settings": {
+        "cookies_opt_in": "disabled"
+      }
+    }
+  }
+}
