@@ -1,6 +1,11 @@
 /**
- * Product card renderer for sections that build their grid in JavaScript
- * (best sellers, the scent filter banner).
+ * The product card's behaviour, loaded once by layout/theme.liquid.
+ *
+ * - renderCarousel(): the card for sections that build their grid in JavaScript
+ *   (best sellers, the scent filter banner);
+ * - every card form adds to cart without leaving the page (bindForms);
+ * - sizes and sold-out for Liquid-rendered cards in a grid marked data-card-bind
+ *   (search results, an article's related products).
  *
  * Contains NO markup. The card is defined once in
  * snippets/card--product-carousel.liquid, which also emits it as a <template>;
@@ -151,5 +156,127 @@ window.ScentspiredCard = (function () {
     return node;
   }
 
-  return { renderCarousel };
+  /**
+   * Choosing a size on a server-rendered card: the size is marked, the form
+   * adds that variant, and the price, struck-through price and sale badge follow
+   * it by the theme's one sale rule. Adding to cart is the layout's .item-form
+   * handler (layout/theme.liquid).
+   */
+  function selectVariant(card, btn) {
+    card.querySelectorAll('.variant-option-btn').forEach(b => b.classList.toggle('active', b === btn));
+    const input = card.querySelector('.variant-id-input');
+    if (input) input.value = btn.dataset.variantId;
+
+    const price = Number(btn.dataset.variantPriceRaw);
+    const compare = Number(btn.dataset.variantCompareAtPrice);
+    const priceEl = card.querySelector('[data-price-display]');
+    if (priceEl && btn.dataset.variantPrice) priceEl.textContent = btn.dataset.variantPrice;
+
+    const compareEl = card.querySelector('[data-compare-at-price-display]');
+    if (compareEl) {
+      const shows = sale().showsWasPrice(price, compare);
+      compareEl.textContent = shows ? currencySymbol() + (compare / 100).toFixed(2) : '';
+      compareEl.style.display = shows ? 'inline' : 'none';
+    }
+    const badgeEl = card.querySelector('[data-price-badge]');
+    if (badgeEl) {
+      const text = sale().badge(price, compare);
+      badgeEl.textContent = text;
+      badgeEl.style.display = text ? 'inline' : 'none';
+    }
+  }
+
+  /**
+   * Add to cart from a card's form, then show the cart drawer with the new cart.
+   */
+  function addToCart(form) {
+    const submitBtn = form.querySelector('[type="submit"]') || form.querySelector('button');
+    if (submitBtn) submitBtn.disabled = true;
+
+    fetch('/cart/add.js', {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { Accept: 'application/json' },
+    })
+      .then(res => {
+        if (!res.ok) throw new Error('Add to cart failed.');
+        return res.json();
+      })
+      .then(() => {
+        // Synchronize with the cart drawer (#sp-cart-drawer)
+        if (typeof window.updateDossierCartUI === 'function' || typeof window.openDossierCart === 'function') {
+          fetch('/cart.js')
+            .then(res => res.json())
+            .then(cartData => {
+              if (typeof window.updateDossierCartUI === 'function') window.updateDossierCartUI(cartData);
+              setTimeout(() => {
+                if (typeof window.openDossierCart === 'function') window.openDossierCart();
+              }, 100);
+            })
+            .catch(cartErr => console.error('Error fetching cart after add:', cartErr));
+        } else {
+          const cartBubble = document.getElementById('cart-icon-bubble');
+          if (cartBubble) cartBubble.click();
+        }
+      })
+      .catch(error => console.error('Error adding to cart:', error))
+      .finally(() => {
+        if (submitBtn) submitBtn.disabled = false;
+      });
+  }
+
+  /** Every card form (.item-form) under root adds to cart without leaving the page. */
+  function bindForms(root) {
+    (root || document).querySelectorAll('.item-form').forEach(form => {
+      if (form.dataset.addToCartBound) return;
+      form.dataset.addToCartBound = 'true';
+      form.addEventListener('submit', event => {
+        event.preventDefault();
+        addToCart(form);
+      });
+    });
+  }
+
+  /**
+   * Behaviour for cards rendered by Liquid in a section with no script of its
+   * own (search results, an article's related products): the first size that
+   * can be bought is chosen, a card with none says sold out. Such a section
+   * marks its grid data-card-bind; cards it adds later are bound by refresh().
+   */
+  function bind(root) {
+    (root || document).querySelectorAll('[data-card-root]').forEach(card => {
+      if (card.dataset.cardBound) return;
+      card.dataset.cardBound = 'true';
+      const buttons = [...card.querySelectorAll('.variant-option-btn')];
+      buttons.forEach(btn =>
+        btn.addEventListener('click', event => {
+          event.preventDefault();
+          if (btn.dataset.available === 'true') selectVariant(card, btn);
+        })
+      );
+      if (!buttons.length) return;
+      const first = buttons.find(b => b.dataset.available === 'true');
+      if (first) {
+        selectVariant(card, first);
+      } else {
+        const submit = card.querySelector('[data-card-submit]');
+        if (submit) {
+          submit.disabled = true;
+          submit.classList.add('disabled');
+          submit.textContent = (window.variantStrings && window.variantStrings.soldOut) || submit.textContent;
+        }
+      }
+    });
+  }
+
+  /** After a section replaces its grid (filters, sorting): bind what is new. */
+  function refresh(root) {
+    bindForms(root);
+    if (root && root.closest && root.closest('[data-card-bind]')) bind(root);
+    (root || document).querySelectorAll('[data-card-bind]').forEach(bind);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => refresh(document));
+
+  return { renderCarousel, bind, bindForms, refresh };
 })();

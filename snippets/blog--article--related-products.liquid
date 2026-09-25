@@ -20,16 +20,9 @@
 {%- if collection != blank -%}
   <div class="blog-related">
     <h2 class="blog-related__heading">{{ heading_text | escape }}</h2>
-    <div class="blog-related__grid">
+    <div class="blog-related__grid" data-card-bind>
       {%- for product in collection.products limit: max_products -%}
-        {%- render "card--product-legacy",
-          card_product: product,
-          media_aspect_ratio: "adapt",
-          image_shape: "default",
-          show_secondary_image: true,
-          show_vendor: false,
-          show_rating: false
-        -%}
+        {%- render "card--product-carousel", product: product -%}
       {%- endfor -%}
     </div>
   </div>
@@ -42,14 +35,7 @@
         {%- if products_shown >= max_products -%}{%- break -%}{%- endif -%}
         {%- for ptag in product.tags -%}
           {%- if article.tags contains ptag and products_shown < max_products -%}
-            {%- render "card--product-legacy",
-              card_product: product,
-              media_aspect_ratio: "adapt",
-              image_shape: "default",
-              show_secondary_image: true,
-              show_vendor: false,
-              show_rating: false
-            -%}
+            {%- render "card--product-carousel", product: product -%}
             {%- assign products_shown = products_shown | plus: 1 -%}
             {%- break -%}
           {%- endif -%}
@@ -61,7 +47,7 @@
   {%- if products_shown > 0 -%}
     <div class="blog-related">
       <h2 class="blog-related__heading">{{ heading_text | escape }}</h2>
-      <div class="blog-related__grid">
+      <div class="blog-related__grid" data-card-bind>
         {{ products_html }}
       </div>
     </div>

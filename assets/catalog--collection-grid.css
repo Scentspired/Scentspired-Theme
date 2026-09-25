@@ -14,15 +14,6 @@
       margin-top: 0px !important;
   }
 
-    .product-badges {
-    position: absolute;
-    top: 10px;
-    left: 15px;
-    z-index: 5;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
   .product-badge {
     background-color: #FFFFFF;
     color: #000000 !important;

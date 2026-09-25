@@ -135,7 +135,8 @@ function requestedSections(text) {
   for (const m of text.matchAll(/section_id=([a-z0-9_-]+)/g)) ids.add(m[1]);
   for (const m of text.matchAll(/sections=([a-z0-9_,-]+)/g)) m[1].split(',').forEach((x) => x && ids.add(x));
   for (const m of text.matchAll(/section:\s*['"]([a-z0-9_-]+)['"]/g)) ids.add(m[1]);
-  for (const m of text.matchAll(/sections:\s*\[([^\]]*)\]/g)) for (const s of m[1].matchAll(/['"]([a-z0-9_-]+)['"]/g)) ids.add(s[1]);
+  // sections: ['a', 'b'] in a request body, or a list built first: const sections = [..., 'a']
+  for (const m of text.matchAll(/\bsections\s*[:=]\s*\[([^\]]*)\]/g)) for (const s of m[1].matchAll(/['"]([a-z0-9_-]+)['"]/g)) ids.add(s[1]);
   // Dawn's getSectionsToRender(): { id: 'x', section: 'y' } asks for y; an entry
   // with only { id: 'x' } asks for x itself (cart-notification.js).
   const at = text.indexOf('getSectionsToRender');

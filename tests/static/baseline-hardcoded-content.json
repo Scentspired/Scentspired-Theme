@@ -296,15 +296,6 @@
     "fallback": 0,
     "ids": 0
   },
-  "sections/search--results.liquid": {
-    "total": 2,
-    "text": 2,
-    "js-text": 0,
-    "media": 0,
-    "links": 0,
-    "fallback": 0,
-    "ids": 0
-  },
   "sections/social--instagram-grid.liquid": {
     "total": 2,
     "text": 2,
@@ -606,15 +597,6 @@
     "total": 1,
     "text": 0,
     "js-text": 1,
-    "media": 0,
-    "links": 0,
-    "fallback": 0,
-    "ids": 0
-  },
-  "assets/quick-order-list.js": {
-    "total": 4,
-    "text": 0,
-    "js-text": 4,
     "media": 0,
     "links": 0,
     "fallback": 0,

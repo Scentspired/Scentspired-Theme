@@ -96,9 +96,22 @@ key, its six hand-written animation delays generated per image. HTML identical a
 from the grid's class suffix (section id instead of block id), `0.0s`/`1.0s` for
 `0s`/`1s`, and a space inside tags where `block.shopify_attributes` prints nothing.
 
-**4. One product card.** Search results (and articles without parts) use
-`card--product-carousel`; `card--product-legacy` goes. The price snippet stays for
-predictive search, renamed. Visible: search result cards look like collection cards.
+**4. One product card.** *(done)* `card--product-carousel` is the only card: search results
+and an article's related products use it, and `card--product-legacy` is gone with
+everything only it used (the bulk quick-order feature: section, 2 snippets, script and
+styles; `catalog--price`, `ui--quantity-input`, `ui--progress-bar`, the rating and
+volume-pricing stylesheets; 7 unused custom elements and 6 unused helpers in
+`global.js`). One card also means one stylesheet and one behaviour: the card's rules
+moved out of the featured-scent stylesheet (which, unscoped, had been styling every card
+on the page) into `card--product-carousel.css`, loaded once in the page head; its
+add-to-cart, size switching and sold-out live in `card--product.js`, loaded once by the
+layout (the layout's inline add-to-cart handler moved there). Proven with an in-page A/B:
+the same page, the phase-3 cascade rebuilt inside it, every card element's computed
+style compared — identical on home, collections and product at 390 and 1440px, after
+removing one collection-grid rule the moved rules had always overridden. Visible: search
+results show the store's card, three per row on desktop and one on phones, like the
+collection pages. Also found: five media queries in `base.css` written `1200pxpx`, dead
+since they were written — removed (the one rule search needs is back under a valid query).
 
 **5. Content out of the code (996 → 0).** Largest files first (collection grid 231,
 header 156, product tabs 92, hero 69, cart drawer 55, …). Where each piece goes:

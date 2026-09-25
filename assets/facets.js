@@ -108,6 +108,7 @@ class FacetFiltersForm extends HTMLElement {
     const newPgc = parsed.getElementById("ProductGridContainer");
     if (newPgc && pgc) {
       pgc.innerHTML = newPgc.innerHTML;
+      if (window.ScentspiredCard) window.ScentspiredCard.refresh(pgc);
     }
   }
 

@@ -468,12 +468,6 @@ table:not([class]) th {
   }
 }
 
-@media screen and (min-width: 1200px) and (max-width: 1200pxpx) {
-  .medium-hide {
-    display: none !important;
-  }
-}
-
 @media screen and (min-width: 990px) {
   .large-up-hide {
     display: none !important;
@@ -996,22 +990,11 @@ summary::-webkit-details-marker {
   }
 }
 
-@media screen and (max-width: 1200pxpx) {
+@media screen and (max-width: 989px) {
   .grid--1-col-tablet-down .grid__item {
     width: 100%;
     max-width: 100%;
   }
-
-  .slider--tablet.grid--peek {
-    margin: 0;
-    width: 100%;
-  }
-
-  .slider--tablet.grid--peek .grid__item {
-    box-sizing: content-box;
-    margin: 0;
-  }
-
 }
 
 @media screen and (min-width: 990px) {
@@ -1090,33 +1073,6 @@ summary::-webkit-details-marker {
   .slider--tablet.grid--peek.grid--1-col-tablet-down .grid__item,
   .slider--mobile.grid--peek.grid--1-col-tablet-down .grid__item {
     width: calc(100% - var(--grid-mobile-horizontal-spacing) - 3rem);
-  }
-}
-
-@media screen and (min-width: 1200px) and (max-width: 1200pxpx) {
-  .slider--tablet.grid--peek .grid__item {
-    width: calc(25% - var(--grid-desktop-horizontal-spacing) - 3rem);
-  }
-
-  .slider--tablet.grid--peek.grid--3-col-tablet .grid__item {
-    width: calc(33.33% - var(--grid-desktop-horizontal-spacing) - 3rem);
-  }
-
-  .slider--tablet.grid--peek.grid--2-col-tablet .grid__item,
-  .slider--tablet.grid--peek.grid--2-col-tablet-down .grid__item {
-    width: calc(50% - var(--grid-desktop-horizontal-spacing) - 3rem);
-  }
-
-  .slider--tablet.grid--peek .grid__item:first-of-type {
-    margin-left: 1.5rem;
-  }
-
-  .grid--2-col-tablet-down .grid__item {
-    width: calc(50% - var(--grid-desktop-horizontal-spacing) / 2);
-  }
-
-  .grid--1-col-tablet-down.grid--peek .grid__item {
-    width: calc(100% - var(--grid-desktop-horizontal-spacing) - 3rem);
   }
 }
 
@@ -2146,12 +2102,6 @@ input[type="checkbox"] {
   grid-area: social-icons;
 }
 
-@media screen and (max-width: 1200pxpx) {
-  .utility-bar .utility-bar__grid .list-social {
-    display: none;
-  }
-}
-
 .utility-bar .list-social__item .icon {
   scale: 0.9;
 }
@@ -2488,23 +2438,6 @@ input[type="checkbox"] {
   width: 100%;
   display: inline-block;
   transition: width 0.3s cubic-bezier(0.52, 0, 0.61, 0.99);
-}
-
-@media screen and (max-width: 1200pxpx) {
-  .header__heading,
-  .header__heading-link {
-    text-align: center;
-  }
-
-  .header--mobile-left .header__heading,
-  .header--mobile-left .header__heading-link {
-    text-align: left;
-    justify-self: start;
-  }
-
-  .header--mobile-left {
-    grid-template-columns: auto 2fr 1fr;
-  }
 }
 
 @media screen and (min-width: 990px) {

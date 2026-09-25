@@ -2,8 +2,11 @@
   ============================================================================
   SCENTSPIRED — Product Card (carousel variant)
   ============================================================================
-  The single definition of the carousel card markup, used by Video-banner1,
-  featuredscent, main-collection-product-grid and mobile-video-banner.
+  The store's one product card: the only card markup in the theme, used by
+  the featured scent, best sellers, collection grid, scent filter and mobile
+  video banners, search results and an article's related products. Its styles
+  are assets/card--product-carousel.css (loaded once, in the page head) and its
+  behaviour assets/card--product.js.
 
   Two render modes, ONE copy of the markup:
 
@@ -18,19 +21,6 @@
 
   The markup below is written once; whether it is wrapped in <template>
   is the only difference. That is what stops the two modes drifting apart.
-
-  Why this is separate from card--product:
-
-    card--product           .product-form / .selected-variant-id
-                            .compare-price / .sale-badge       (43 CSS rules)
-    card--product-carousel  .item-form / .variant-id-input
-                            .original-price / .price-badge     (2 CSS rules)
-
-  Those hooks are styled differently, so merging the families is a CSS change,
-  not a markup change. Kept apart deliberately; see TODO.md.
-
-  Element tags were safe to unify — no CSS targets `h3.fragrance-name` or
-  `p.fragrance-brand`, only the bare class.
 
   Props:
     product       optional. A Shopify product object for server mode; omit for

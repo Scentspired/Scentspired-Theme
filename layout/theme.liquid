@@ -142,6 +142,7 @@
     <script src="{{ 'details-disclosure.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'details-modal.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'search-form.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'card--product.js' | asset_url }}" defer="defer"></script>
 
     {% render 'core--telemetry' %}
 
@@ -387,6 +388,8 @@
     {% render 'token--typography' %}
 
     {{ "base.css" | asset_url | stylesheet_tag }}
+    {%- comment -%} The product card, before any section: sections style only their layout around it. {%- endcomment -%}
+    {{ "card--product-carousel.css" | asset_url | stylesheet_tag }}
     {%- if template contains 'article' or template contains 'blog' -%}
       {{ "blog--typography.css" | asset_url | stylesheet_tag }}
     {%- endif -%}
@@ -773,58 +776,6 @@
       };
     </script>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        document.querySelectorAll('.item-form').forEach(function (form) {
-          form.addEventListener('submit', function (e) {
-            e.preventDefault();
-            const submitBtn = form.querySelector('[type="submit"]') || form.querySelector('button');
-            if (submitBtn) submitBtn.disabled = true;
-
-            const formData = new FormData(form);
-
-            fetch('/cart/add.js', {
-              method: 'POST',
-              body: formData,
-              headers: {
-                Accept: 'application/json',
-              },
-            })
-              .then(res => {
-                if (!res.ok) throw new Error('Add to cart failed.');
-                return res.json();
-              })
-              .then(data => {
-                // Synchronize with Scentspired Custom Cart Drawer (#sp-cart-drawer)
-                if (typeof window.updateDossierCartUI === 'function' || typeof window.openDossierCart === 'function') {
-                  fetch('/cart.js')
-                    .then(res => res.json())
-                    .then(cartData => {
-                      if (typeof window.updateDossierCartUI === 'function') {
-                        window.updateDossierCartUI(cartData);
-                      }
-                      setTimeout(() => {
-                        if (typeof window.openDossierCart === 'function') {
-                          window.openDossierCart();
-                        }
-                      }, 100);
-                    })
-                    .catch(cartErr => console.error('Error fetching cart after add:', cartErr));
-                } else {
-                  const cartBubble = document.getElementById('cart-icon-bubble');
-                  if (cartBubble) cartBubble.click();
-                }
-              })
-              .catch(error => {
-                console.error('Error adding to cart:', error);
-              })
-              .finally(() => {
-                if (submitBtn) submitBtn.disabled = false;
-              });
-          });
-        });
-      });
-    </script>
     <script>
       (function () {
         let lastScroll = 0;
