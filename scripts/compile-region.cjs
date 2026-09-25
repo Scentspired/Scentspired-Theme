@@ -227,9 +227,23 @@ if (fs.existsSync(regionSnippets) && fs.readdirSync(regionSnippets).length > 0) 
  * every region: templates/*.json and sections/*.json. A region brings only
  * content (regions/<id>/content/<page>.json), so it may hold neither.
  */
+// A region's standalone Liquid pages (templates/*.liquid: USA's robots.txt,
+// a waitlist page) are its own and are copied as they are. Its JSON templates
+// would be design, which is the theme's.
+{
+  const abs = path.join(REGION_DIR, 'templates');
+  const liquid = fs.existsSync(abs) ? fs.readdirSync(abs).filter((f) => f.endsWith('.liquid')) : [];
+  for (const f of liquid) {
+    const to = path.join(DIST_DIR, 'templates', f);
+    const next = fs.readFileSync(path.join(abs, f));
+    if (!fs.existsSync(to) || !fs.readFileSync(to).equals(next)) fs.writeFileSync(to, next);
+    emitted.add(`templates/${f}`);
+  }
+  if (liquid.length) console.log(`  ~ ${'templates'.padEnd(12)}: ${liquid.length} standalone Liquid page(s) of its own`);
+}
 for (const dir of ['templates', 'sections', 'config/settings_data.json']) {
   const abs = path.join(REGION_DIR, dir);
-  const found = !fs.existsSync(abs) ? [] : fs.statSync(abs).isDirectory() ? fs.readdirSync(abs) : [path.basename(abs)];
+  const found = (!fs.existsSync(abs) ? [] : fs.statSync(abs).isDirectory() ? fs.readdirSync(abs) : [path.basename(abs)]).filter((f) => !(dir === 'templates' && f.endsWith('.liquid')));
   if (found.length) {
     console.error(`\n❌ regions/${target}/${dir}/ may not exist. Found: ${found.join(', ')}`);
     console.error(`   Layout and design are the theme's (${dir}/*.json), shared by every region.`);
@@ -407,7 +421,8 @@ emitted.add('snippets/region--active.liquid');
     };
     const misplaced = [];
     const pageOfLayout = (rel) => {
-      const base = path.basename(rel, '.json');
+      // templates/customers/login.json -> customers-login
+      const base = rel.replace(/^(templates|sections)\//, '').replace(/\.json$/, '').replace(/\//g, '-');
       if (rel.startsWith('sections/')) return base;
       if (base === 'index') return 'home';
       if (base === '404') return 'not-found';
@@ -422,10 +437,17 @@ emitted.add('snippets/region--active.liquid');
       if (!fs.existsSync(to) || fs.readFileSync(to, 'utf8') !== text) fs.writeFileSync(to, text);
       emitted.add(rel);
     };
+    // Every layout, nested ones too (templates/customers/*.json).
+    const layoutFiles = (dir, sub = '') => {
+      const abs = path.join(THEME_ROOT, dir, sub);
+      if (!fs.existsSync(abs)) return [];
+      return fs.readdirSync(abs, { withFileTypes: true }).flatMap((e) => (e.isDirectory()
+        ? layoutFiles(dir, sub ? `${sub}/${e.name}` : e.name)
+        : e.name.endsWith('.json') ? [sub ? `${sub}/${e.name}` : e.name] : []));
+    };
     for (const dir of ['templates', 'sections']) {
       const abs = path.join(THEME_ROOT, dir);
-      if (!fs.existsSync(abs)) continue;
-      for (const f of fs.readdirSync(abs).filter((f) => f.endsWith('.json'))) {
+      for (const f of layoutFiles(dir)) {
         const rel = `${dir}/${f}`;
         // Only the header comment: custom_css strings may hold CSS comments of their own.
         const layout = JSON.parse(fs.readFileSync(path.join(abs, f), 'utf8').replace(/^﻿?\s*\/\*[\s\S]*?\*\/\s*/, ''));

@@ -46,10 +46,12 @@ const THEME = [
 const assetNames = new Set(list('assets').map((f) => path.basename(f)));
 
 // ── roots: what Shopify renders ─────────────────────────────────────────────
-const regionTemplates = walkDir('regions').filter((f) => /\/templates\//.test(f));
-const regionGroups = walkDir('regions').filter((f) => /\/sections\/[^/]+\.json$/.test(f));
+// The theme's layouts (templates, section groups, theme settings) are what every
+// region renders; a region holds only its content.
+const templates = walkDir('templates').filter((f) => f.endsWith('.json'));   // nested too: customers/
+const regionGroups = list('sections', /\.json$/);
 const pageLayouts = list('page-layouts', /\.json$/);
-const roots = [...regionTemplates, ...regionGroups, ...pageLayouts, 'layout/theme.liquid'];
+const roots = [...templates, ...regionGroups, ...pageLayouts, 'config/settings_data.json', 'layout/theme.liquid'];
 
 const reached = new Map(); // file -> the file that first reached it
 const queue = [];
@@ -75,7 +77,8 @@ function edgesOfJson(rel) {
   for (const s of Object.values(doc.sections || {})) {
     if (!s || typeof s !== 'object') continue;
     if (s.type && s.type !== '_blocks' && !s.type.startsWith('@')) out.push(`sections/${s.type}.liquid`);
-    blocks(s.blocks);
+    if (typeof s.blocks === 'object') blocks(s.blocks);
+    for (const t of Object.keys(s.block_designs || {})) out.push(`blocks/${t}.liquid`);   // a content list's block types
   }
   return out;
 }
