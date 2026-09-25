@@ -218,14 +218,8 @@
     },
     "contact": {
       "form": {
-        "name": "Ime",
-        "email": "E-poštni naslov",
-        "phone": "Telefonska številka",
-        "comment": "Komentar",
-        "send": "Pošlji",
         "post_success": "Hvala za vaše sporočilo. Z vami bomo v stiku takoj, ko bo mogoče.",
-        "error_heading": "Prilagodite naslednje:",
-        "title": "Obrazec za stik"
+        "error_heading": "Prilagodite naslednje:"
       }
     }
   },
@@ -270,7 +264,6 @@
       "taxes_at_checkout_shipping_at_checkout_without_policy": "Davki, popusti in strošek dostave se obračunajo ob zaključku nakupa."
     },
     "collection_template": {
-      "title": "Zbirka",
       "empty": "Ni najdenih izdelkov",
       "use_fewer_filters_html": "Uporabite manj filtrov ali <a class=\"{{ class }}\" href=\"{{ link }}\">odstranite vse</a>"
     },

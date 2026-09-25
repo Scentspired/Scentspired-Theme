@@ -89,15 +89,6 @@
     "fallback": 0,
     "ids": 0
   },
-  "sections/catalog--luxury-showcase.liquid": {
-    "total": 4,
-    "text": 2,
-    "js-text": 0,
-    "media": 0,
-    "links": 0,
-    "fallback": 2,
-    "ids": 0
-  },
   "sections/catalog--product-custom.liquid": {
     "total": 16,
     "text": 6,
@@ -146,15 +137,6 @@
   "sections/content--privacy-policy.liquid": {
     "total": 1,
     "text": 0,
-    "js-text": 0,
-    "media": 0,
-    "links": 0,
-    "fallback": 1,
-    "ids": 0
-  },
-  "sections/editorial--brand-story.liquid": {
-    "total": 3,
-    "text": 2,
     "js-text": 0,
     "media": 0,
     "links": 0,
@@ -242,15 +224,6 @@
     "fallback": 0,
     "ids": 0
   },
-  "sections/media--dual-slider.liquid": {
-    "total": 6,
-    "text": 6,
-    "js-text": 0,
-    "media": 0,
-    "links": 0,
-    "fallback": 0,
-    "ids": 0
-  },
   "sections/media--hero.liquid": {
     "total": 69,
     "text": 53,
@@ -278,29 +251,11 @@
     "fallback": 2,
     "ids": 0
   },
-  "sections/media--image-with-text.liquid": {
-    "total": 6,
-    "text": 6,
-    "js-text": 0,
-    "media": 0,
-    "links": 0,
-    "fallback": 0,
-    "ids": 0
-  },
   "sections/media--mobile-video-banner.liquid": {
     "total": 11,
     "text": 7,
     "js-text": 3,
     "media": 1,
-    "links": 0,
-    "fallback": 0,
-    "ids": 0
-  },
-  "sections/media--review-slider.liquid": {
-    "total": 5,
-    "text": 5,
-    "js-text": 0,
-    "media": 0,
     "links": 0,
     "fallback": 0,
     "ids": 0
@@ -539,15 +494,6 @@
     "fallback": 0,
     "ids": 0
   },
-  "snippets/card--product.liquid": {
-    "total": 2,
-    "text": 2,
-    "js-text": 0,
-    "media": 0,
-    "links": 0,
-    "fallback": 0,
-    "ids": 0
-  },
   "snippets/cart--drawer.liquid": {
     "total": 55,
     "text": 41,
@@ -629,15 +575,6 @@
     "fallback": 0,
     "ids": 0
   },
-  "blocks/catalog--fragrance-showcase.liquid": {
-    "total": 10,
-    "text": 10,
-    "js-text": 0,
-    "media": 0,
-    "links": 0,
-    "fallback": 0,
-    "ids": 0
-  },
   "blocks/footer--copyright.liquid": {
     "total": 6,
     "text": 3,
@@ -675,9 +612,9 @@
     "ids": 1
   },
   "assets/card--product.js": {
-    "total": 4,
+    "total": 3,
     "text": 0,
-    "js-text": 4,
+    "js-text": 3,
     "media": 0,
     "links": 0,
     "fallback": 0,

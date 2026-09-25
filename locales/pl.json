@@ -218,14 +218,8 @@
     },
     "contact": {
       "form": {
-        "name": "Nazwa",
-        "email": "E-mail",
-        "phone": "Numer telefonu",
-        "comment": "Komentarz",
-        "send": "Wyślij",
         "post_success": "Dziękujemy za skontaktowanie się z nami. Skontaktujemy się z Tobą tak szybko, jak to możliwe.",
-        "error_heading": "Dostosuj następujące dane:",
-        "title": "Formularz kontaktowy"
+        "error_heading": "Dostosuj następujące dane:"
       }
     }
   },
@@ -270,7 +264,6 @@
       "taxes_at_checkout_shipping_at_checkout_without_policy": "Obliczenie podatków, rabatów i wysyłki przy realizacji zakupu."
     },
     "collection_template": {
-      "title": "Kolekcja",
       "empty": "Nie znaleziono produktów",
       "use_fewer_filters_html": "Użyj mniejszej ilości filtrów lub <a class=\"{{ class }}\" href=\"{{ link }}\">usuń wszystko</a>"
     },

@@ -351,8 +351,7 @@
       },
       "spacing": "Espaciado",
       "colors": {
-        "label": "Esquema de colores",
-        "has_cards_info": "Para cambiar el esquema de color de la tarjeta, actualiza la configuración del tema."
+        "label": "Esquema de colores"
       },
       "heading_size": {
         "label": "Tamaño del título",
@@ -457,30 +456,6 @@
       },
       "presets": {
         "name": "Barra de anuncios"
-      }
-    },
-    "contact-form": {
-      "name": "Formulario de contacto",
-      "presets": {
-        "name": "Formulario de contacto"
-      },
-      "settings": {
-        "title": {
-          "default": "Formulario de contacto",
-          "label": "Encabezado"
-        }
-      }
-    },
-    "custom-liquid": {
-      "name": "Liquid personalizado",
-      "settings": {
-        "custom_liquid": {
-          "label": "Código de Liquid",
-          "info": "Agrega fragmentos de la aplicación u otros códigos para crear personalizaciones avanzadas. [Más información](https://shopify.dev/docs/api/liquid)"
-        }
-      },
-      "presets": {
-        "name": "Liquid personalizado"
       }
     },
     "footer": {
@@ -741,179 +716,6 @@
         "name": "Banner de imagen"
       }
     },
-    "image-with-text": {
-      "name": "Imagen con texto",
-      "settings": {
-        "image": {
-          "label": "Imagen"
-        },
-        "height": {
-          "options__1": {
-            "label": "Adaptar a la imagen"
-          },
-          "options__2": {
-            "label": "Pequeño"
-          },
-          "options__3": {
-            "label": "Mediano"
-          },
-          "label": "Altura",
-          "options__4": {
-            "label": "Grande"
-          }
-        },
-        "layout": {
-          "options__1": {
-            "label": "Imagen primero"
-          },
-          "options__2": {
-            "label": "Imagen segunda"
-          },
-          "label": "Colocación"
-        },
-        "desktop_image_width": {
-          "options__1": {
-            "label": "Pequeña"
-          },
-          "options__2": {
-            "label": "Mediana"
-          },
-          "options__3": {
-            "label": "Grande"
-          },
-          "label": "Ancho"
-        },
-        "desktop_content_alignment": {
-          "options__1": {
-            "label": "Izquierda"
-          },
-          "options__2": {
-            "label": "Centrado"
-          },
-          "options__3": {
-            "label": "Derecha"
-          },
-          "label": "Alineación"
-        },
-        "desktop_content_position": {
-          "options__1": {
-            "label": "Arriba"
-          },
-          "options__2": {
-            "label": "Centrada"
-          },
-          "options__3": {
-            "label": "Abajo"
-          },
-          "label": "Posición"
-        },
-        "content_layout": {
-          "options__1": {
-            "label": "Sin solapamiento"
-          },
-          "options__2": {
-            "label": "Solapamiento"
-          },
-          "label": "Diseño"
-        },
-        "mobile_content_alignment": {
-          "options__1": {
-            "label": "Izquierda"
-          },
-          "options__2": {
-            "label": "Centrado"
-          },
-          "options__3": {
-            "label": "Derecha"
-          },
-          "label": "Alineación móvil"
-        },
-        "header": {
-          "content": "Contenido"
-        },
-        "header_colors": {
-          "content": "Colores"
-        }
-      },
-      "blocks": {
-        "heading": {
-          "name": "Título",
-          "settings": {
-            "heading": {
-              "label": "Título",
-              "default": "Imagen con texto"
-            }
-          }
-        },
-        "text": {
-          "name": "Texto",
-          "settings": {
-            "text": {
-              "label": "Texto",
-              "default": "<p>Vincula un texto con una imagen para atraer la atención hacia tu producto, colección o artículo de blog seleccionados. Agrega detalles sobre disponibilidad y estilo, o incluso ofrece una reseña.</p>"
-            },
-            "text_style": {
-              "label": "Estilo",
-              "options__1": {
-                "label": "Cuerpo"
-              },
-              "options__2": {
-                "label": "Subtítulo"
-              }
-            }
-          }
-        },
-        "button": {
-          "name": "Botón",
-          "settings": {
-            "button_label": {
-              "label": "Etiqueta",
-              "info": "Dejar en blanco para ocultar",
-              "default": "Etiqueta de botón"
-            },
-            "button_link": {
-              "label": "Enlace"
-            },
-            "outline_button": {
-              "label": "Estilo de contorno"
-            }
-          }
-        },
-        "caption": {
-          "name": "Leyenda",
-          "settings": {
-            "text": {
-              "label": "Texto",
-              "default": "Agregar un eslogan"
-            },
-            "text_style": {
-              "label": "Estilo",
-              "options__1": {
-                "label": "Subtítulo"
-              },
-              "options__2": {
-                "label": "Mayúscula"
-              }
-            },
-            "caption_size": {
-              "label": "Talla",
-              "options__1": {
-                "label": "Pequeño"
-              },
-              "options__2": {
-                "label": "Mediano"
-              },
-              "options__3": {
-                "label": "Grande"
-              }
-            }
-          }
-        }
-      },
-      "presets": {
-        "name": "Imagen con texto"
-      }
-    },
     "main-article": {
       "name": "Artículo de blog",
       "blocks": {
@@ -1004,20 +806,6 @@
     },
     "main-cart-items": {
       "name": "Artículos"
-    },
-    "main-collection-banner": {
-      "name": "Banner de colección",
-      "settings": {
-        "paragraph": {
-          "content": "La información de la colección se [gestiona en tu panel de control](https://help.shopify.com/manual/products/collections/collection-layout)"
-        },
-        "show_collection_description": {
-          "label": "Descripción"
-        },
-        "show_collection_image": {
-          "label": "Imagen"
-        }
-      }
     },
     "main-collection-product-grid": {
       "settings": {
@@ -1678,65 +1466,6 @@
     },
     "main-reset-password": {
       "name": "Restablecimiento de contraseña"
-    },
-    "related-products": {
-      "name": "Productos relacionados",
-      "settings": {
-        "heading": {
-          "label": "Encabezado"
-        },
-        "products_to_show": {
-          "label": "Recuento de productos"
-        },
-        "columns_desktop": {
-          "label": "Columnas"
-        },
-        "paragraph__1": {
-          "content": "Los productos relacionados se pueden gestionar en la [aplicación Search & Discovery](https://help.shopify.com/manual/online-store/search-and-discovery/product-recommendations)",
-          "default": "También te puede interesar"
-        },
-        "header__2": {
-          "content": "Tarjeta de producto"
-        },
-        "image_ratio": {
-          "label": "Relación de aspecto de imagen",
-          "options__1": {
-            "label": "Adaptar a la imagen"
-          },
-          "options__2": {
-            "label": "Vertical"
-          },
-          "options__3": {
-            "label": "Cuadrada"
-          }
-        },
-        "show_secondary_image": {
-          "label": "Mostrar segunda imagen al pasar el cursor"
-        },
-        "show_vendor": {
-          "label": "Proveedor"
-        },
-        "show_rating": {
-          "label": "Calificación del producto",
-          "info": "Se requiere una aplicación para las calificaciones de productos. [Más información](https://help.shopify.com/manual/online-store/themes/customizing-themes/add-product-recommendations)"
-        },
-        "columns_mobile": {
-          "label": "Columnas móviles",
-          "options__1": {
-            "label": "1"
-          },
-          "options__2": {
-            "label": "2"
-          }
-        }
-      }
-    },
-    "multirow": {
-      "settings": {
-        "container_color_scheme": {
-          "label": "Esquema de color del contenedor"
-        }
-      }
     },
     "quick-order-list": {
       "name": "Lista de pedidos rápidos"

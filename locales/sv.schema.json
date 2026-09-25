@@ -351,8 +351,7 @@
       },
       "spacing": "Radavstånd",
       "colors": {
-        "label": "Färgschema",
-        "has_cards_info": "Uppdatera dina temainställningar för att ändra kortets färgsättning."
+        "label": "Färgschema"
       },
       "heading_size": {
         "label": "Rubrikstorlek",
@@ -457,30 +456,6 @@
       },
       "presets": {
         "name": "Meddelandefält"
-      }
-    },
-    "contact-form": {
-      "name": "Kontaktformulär",
-      "presets": {
-        "name": "Kontaktformulär"
-      },
-      "settings": {
-        "title": {
-          "default": "Kontaktformulär",
-          "label": "Rubrik"
-        }
-      }
-    },
-    "custom-liquid": {
-      "name": "Anpassa Liquid",
-      "settings": {
-        "custom_liquid": {
-          "label": "Liquid-kod",
-          "info": "Lägg till appfragment eller annan kod för att skapa avancerade anpassningar. [Mer information](https://shopify.dev/docs/api/liquid)"
-        }
-      },
-      "presets": {
-        "name": "Anpassa Liquid"
       }
     },
     "footer": {
@@ -741,179 +716,6 @@
         "name": "Bildbanner"
       }
     },
-    "image-with-text": {
-      "name": "Bild med text",
-      "settings": {
-        "image": {
-          "label": "Bild"
-        },
-        "height": {
-          "options__1": {
-            "label": "Anpassa till bild"
-          },
-          "options__2": {
-            "label": "Liten"
-          },
-          "options__3": {
-            "label": "Medel"
-          },
-          "label": "Höjd",
-          "options__4": {
-            "label": "Stor"
-          }
-        },
-        "layout": {
-          "options__1": {
-            "label": "Bild först"
-          },
-          "options__2": {
-            "label": "Andra bild"
-          },
-          "label": "Placering"
-        },
-        "desktop_image_width": {
-          "options__1": {
-            "label": "Liten"
-          },
-          "options__2": {
-            "label": "Medel"
-          },
-          "options__3": {
-            "label": "Stor"
-          },
-          "label": "Bredd"
-        },
-        "desktop_content_alignment": {
-          "options__1": {
-            "label": "Vänster"
-          },
-          "options__3": {
-            "label": "Höger"
-          },
-          "label": "Justering",
-          "options__2": {
-            "label": "Centrera"
-          }
-        },
-        "desktop_content_position": {
-          "options__1": {
-            "label": "Högst upp"
-          },
-          "options__2": {
-            "label": "Mitten"
-          },
-          "options__3": {
-            "label": "Längst ner"
-          },
-          "label": "Position"
-        },
-        "content_layout": {
-          "options__1": {
-            "label": "Ingen överlappning"
-          },
-          "options__2": {
-            "label": "Överlappande"
-          },
-          "label": "Layout"
-        },
-        "mobile_content_alignment": {
-          "options__1": {
-            "label": "Vänster"
-          },
-          "options__3": {
-            "label": "Höger"
-          },
-          "label": "Mobil linjering",
-          "options__2": {
-            "label": "Centrera"
-          }
-        },
-        "header": {
-          "content": "Innehåll"
-        },
-        "header_colors": {
-          "content": "Färger"
-        }
-      },
-      "blocks": {
-        "heading": {
-          "settings": {
-            "heading": {
-              "label": "Rubrik",
-              "default": "Bild med text"
-            }
-          },
-          "name": "Rubrik"
-        },
-        "text": {
-          "settings": {
-            "text": {
-              "label": "Text",
-              "default": "<p>Para ihop text med en bild för att ge fokus åt vald produkt, produktserie eller blogginlägg. Lägg till information om tillgänglighet, stil eller tillhandahåll en recension.</p>"
-            },
-            "text_style": {
-              "label": "Stil",
-              "options__1": {
-                "label": "Brödtext"
-              },
-              "options__2": {
-                "label": "Underrubrik"
-              }
-            }
-          },
-          "name": "Text"
-        },
-        "button": {
-          "settings": {
-            "button_label": {
-              "label": "Etikett",
-              "info": "Lämna tomt för att dölja",
-              "default": "Knappetikett"
-            },
-            "button_link": {
-              "label": "Länk"
-            },
-            "outline_button": {
-              "label": "Konturstil"
-            }
-          },
-          "name": "Knapp"
-        },
-        "caption": {
-          "name": "Rubrik",
-          "settings": {
-            "text": {
-              "label": "Text",
-              "default": "Lägg till en slogan"
-            },
-            "text_style": {
-              "label": "Stil",
-              "options__1": {
-                "label": "Underrubrik"
-              },
-              "options__2": {
-                "label": "Stora bokstäver"
-              }
-            },
-            "caption_size": {
-              "label": "Storlek",
-              "options__1": {
-                "label": "Liten"
-              },
-              "options__2": {
-                "label": "Medel"
-              },
-              "options__3": {
-                "label": "Stor"
-              }
-            }
-          }
-        }
-      },
-      "presets": {
-        "name": "Bild med text"
-      }
-    },
     "main-article": {
       "name": "Blogginlägg",
       "blocks": {
@@ -1004,20 +806,6 @@
     },
     "main-cart-items": {
       "name": "Artiklar"
-    },
-    "main-collection-banner": {
-      "name": "Banner för produktserie",
-      "settings": {
-        "paragraph": {
-          "content": "Inhämtningsuppgifter [hanteras i admin](https://help.shopify.com/manual/products/collections/collection-layout)"
-        },
-        "show_collection_description": {
-          "label": "Beskrivning"
-        },
-        "show_collection_image": {
-          "label": "Bild"
-        }
-      }
     },
     "main-collection-product-grid": {
       "settings": {
@@ -1678,65 +1466,6 @@
     },
     "main-reset-password": {
       "name": "Lösenordsåterställning"
-    },
-    "related-products": {
-      "name": "Relaterade produkter",
-      "settings": {
-        "heading": {
-          "label": "Rubrik"
-        },
-        "products_to_show": {
-          "label": "Produkträkning"
-        },
-        "columns_desktop": {
-          "label": "Kolumner"
-        },
-        "paragraph__1": {
-          "content": "Relaterade produkter kan hanteras i [Search & Discovery-appen](https://help.shopify.com/manual/online-store/search-and-discovery/product-recommendations)",
-          "default": "Du kanske också gillar"
-        },
-        "header__2": {
-          "content": "Produktkort"
-        },
-        "image_ratio": {
-          "label": "Bildförhållande",
-          "options__1": {
-            "label": "Anpassa till bild"
-          },
-          "options__2": {
-            "label": "Porträtt"
-          },
-          "options__3": {
-            "label": "Fyrkantig"
-          }
-        },
-        "show_secondary_image": {
-          "label": "Visa andra bild på hovring"
-        },
-        "show_vendor": {
-          "label": "Säljare"
-        },
-        "show_rating": {
-          "label": "Produktbetyg",
-          "info": "En app krävs för produktbedömningar. [Mer information](https://help.shopify.com/manual/online-store/themes/customizing-themes/add-product-recommendations)"
-        },
-        "columns_mobile": {
-          "label": "Mobila kolumner",
-          "options__1": {
-            "label": "1"
-          },
-          "options__2": {
-            "label": "2"
-          }
-        }
-      }
-    },
-    "multirow": {
-      "settings": {
-        "container_color_scheme": {
-          "label": "Färgschema för container"
-        }
-      }
     },
     "quick-order-list": {
       "name": "Snabb orderlista"

@@ -200,14 +200,8 @@
     },
     "contact": {
       "form": {
-        "name": "Naam",
-        "email": "E‑mail",
-        "phone": "Telefoonnummer",
-        "comment": "Reactie",
-        "send": "Sturen",
         "post_success": "Bedankt dat je contact met ons hebt opgenomen. Je hoort zo snel mogelijk van ons.",
-        "error_heading": "Pas het volgende aan:",
-        "title": "Contactformulier"
+        "error_heading": "Pas het volgende aan:"
       }
     }
   },
@@ -250,7 +244,6 @@
       "taxes_at_checkout_shipping_at_checkout_without_policy": "Belastingen, kortingen en verzending worden bij de checkout berekend."
     },
     "collection_template": {
-      "title": "Collectie",
       "empty": "Geen producten gevonden",
       "use_fewer_filters_html": "Minder filters gebruiken of <a class=\"{{ class }}\" href=\"{{ link }}\">alles verwijderen</a>"
     },

@@ -351,8 +351,7 @@
       },
       "spacing": "间距",
       "colors": {
-        "label": "配色方案",
-        "has_cards_info": "若要更改卡配色方案，请更新您的模板设置。"
+        "label": "配色方案"
       },
       "heading_size": {
         "label": "标题大小",
@@ -457,30 +456,6 @@
       },
       "presets": {
         "name": "公告栏"
-      }
-    },
-    "contact-form": {
-      "name": "联系表",
-      "presets": {
-        "name": "联系表"
-      },
-      "settings": {
-        "title": {
-          "default": "联系表",
-          "label": "标题"
-        }
-      }
-    },
-    "custom-liquid": {
-      "name": "自定义 Liquid",
-      "settings": {
-        "custom_liquid": {
-          "label": "Liquid 代码",
-          "info": "添加应用代码片段或其他代码以创建高级自定义。[详细了解](https://shopify.dev/docs/api/liquid)"
-        }
-      },
-      "presets": {
-        "name": "自定义 Liquid"
       }
     },
     "footer": {
@@ -741,179 +716,6 @@
         "name": "图片横幅"
       }
     },
-    "image-with-text": {
-      "name": "带文本的图片",
-      "settings": {
-        "image": {
-          "label": "图片"
-        },
-        "height": {
-          "options__1": {
-            "label": "适应图片"
-          },
-          "options__2": {
-            "label": "小"
-          },
-          "options__3": {
-            "label": "中"
-          },
-          "label": "高度",
-          "options__4": {
-            "label": "大"
-          }
-        },
-        "layout": {
-          "options__1": {
-            "label": "图片优先"
-          },
-          "options__2": {
-            "label": "第二张图片"
-          },
-          "label": "放置"
-        },
-        "desktop_image_width": {
-          "options__1": {
-            "label": "小"
-          },
-          "options__2": {
-            "label": "中"
-          },
-          "options__3": {
-            "label": "大"
-          },
-          "label": "宽度"
-        },
-        "desktop_content_alignment": {
-          "options__1": {
-            "label": "左"
-          },
-          "options__3": {
-            "label": "右"
-          },
-          "label": "对齐方式",
-          "options__2": {
-            "label": "居中"
-          }
-        },
-        "desktop_content_position": {
-          "options__1": {
-            "label": "顶部"
-          },
-          "options__2": {
-            "label": "中间"
-          },
-          "options__3": {
-            "label": "底部"
-          },
-          "label": "位置"
-        },
-        "content_layout": {
-          "options__1": {
-            "label": "无重叠"
-          },
-          "options__2": {
-            "label": "重叠"
-          },
-          "label": "布局"
-        },
-        "mobile_content_alignment": {
-          "options__1": {
-            "label": "左"
-          },
-          "options__3": {
-            "label": "右"
-          },
-          "label": "移动设备对齐方式",
-          "options__2": {
-            "label": "居中"
-          }
-        },
-        "header": {
-          "content": "内容"
-        },
-        "header_colors": {
-          "content": "颜色"
-        }
-      },
-      "blocks": {
-        "heading": {
-          "settings": {
-            "heading": {
-              "label": "标题",
-              "default": "带文本图片"
-            }
-          },
-          "name": "标题"
-        },
-        "text": {
-          "settings": {
-            "text": {
-              "label": "文本",
-              "default": "<p>将文本与图片配对，以便将焦点置于您选择的产品、产品系列或博客文章。添加有关供货情况和样式的详细信息，甚至是提供评论。</p>"
-            },
-            "text_style": {
-              "label": "样式",
-              "options__1": {
-                "label": "正文"
-              },
-              "options__2": {
-                "label": "副标题"
-              }
-            }
-          },
-          "name": "文本"
-        },
-        "button": {
-          "settings": {
-            "button_label": {
-              "label": "标签",
-              "info": "留空以隐藏",
-              "default": "按钮标签"
-            },
-            "button_link": {
-              "label": "链接"
-            },
-            "outline_button": {
-              "label": "轮廓样式"
-            }
-          },
-          "name": "按钮"
-        },
-        "caption": {
-          "name": "字幕",
-          "settings": {
-            "text": {
-              "label": "文本",
-              "default": "添加标语"
-            },
-            "text_style": {
-              "label": "样式",
-              "options__1": {
-                "label": "副标题"
-              },
-              "options__2": {
-                "label": "大写"
-              }
-            },
-            "caption_size": {
-              "label": "尺码",
-              "options__1": {
-                "label": "小"
-              },
-              "options__2": {
-                "label": "中"
-              },
-              "options__3": {
-                "label": "大"
-              }
-            }
-          }
-        }
-      },
-      "presets": {
-        "name": "带文本的图片"
-      }
-    },
     "main-article": {
       "name": "博客文章",
       "blocks": {
@@ -1004,20 +806,6 @@
     },
     "main-cart-items": {
       "name": "商品"
-    },
-    "main-collection-banner": {
-      "name": "产品系列横幅",
-      "settings": {
-        "paragraph": {
-          "content": "产品系列详细信息[在您的后台内管理](https://help.shopify.com/manual/products/collections/collection-layout)"
-        },
-        "show_collection_description": {
-          "label": "描述"
-        },
-        "show_collection_image": {
-          "label": "图片"
-        }
-      }
     },
     "main-collection-product-grid": {
       "settings": {
@@ -1678,65 +1466,6 @@
     },
     "main-reset-password": {
       "name": "密码重设"
-    },
-    "related-products": {
-      "name": "相关产品",
-      "settings": {
-        "heading": {
-          "label": "标题"
-        },
-        "products_to_show": {
-          "label": "产品数量"
-        },
-        "columns_desktop": {
-          "label": "列"
-        },
-        "paragraph__1": {
-          "content": "可在 [Search & Discovery 应用](https://help.shopify.com/manual/online-store/search-and-discovery/product-recommendations) 中管理相关产品﻿﻿",
-          "default": "您可能还喜欢"
-        },
-        "header__2": {
-          "content": "产品卡"
-        },
-        "image_ratio": {
-          "label": "图片比",
-          "options__1": {
-            "label": "适应图片"
-          },
-          "options__2": {
-            "label": "纵向"
-          },
-          "options__3": {
-            "label": "方形"
-          }
-        },
-        "show_secondary_image": {
-          "label": "在悬停时显示第二张图片"
-        },
-        "show_vendor": {
-          "label": "厂商"
-        },
-        "show_rating": {
-          "label": "产品评分",
-          "info": "需要一个应用来进行产品评分。[详细了解](https://help.shopify.com/manual/online-store/themes/customizing-themes/add-product-recommendations)"
-        },
-        "columns_mobile": {
-          "label": "移动设备列",
-          "options__1": {
-            "label": "1"
-          },
-          "options__2": {
-            "label": "2"
-          }
-        }
-      }
-    },
-    "multirow": {
-      "settings": {
-        "container_color_scheme": {
-          "label": "容器配色方案"
-        }
-      }
     },
     "quick-order-list": {
       "name": "快速订单列表"

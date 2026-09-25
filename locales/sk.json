@@ -218,14 +218,8 @@
     },
     "contact": {
       "form": {
-        "name": "Meno",
-        "email": "E-mail",
-        "phone": "Telefónne číslo",
-        "comment": "Komentár",
-        "send": "Odoslať",
         "post_success": "Ďakujeme, že ste nás kontaktovali. Budeme sa vám venovať čo najskôr.",
-        "error_heading": "Upravte tieto údaje:",
-        "title": "Kontaktný formulár"
+        "error_heading": "Upravte tieto údaje:"
       }
     }
   },
@@ -270,7 +264,6 @@
       "taxes_at_checkout_shipping_at_checkout_without_policy": "Dane, zľavy a doprava sa vypočítajú pri platbe."
     },
     "collection_template": {
-      "title": "Kolekcia",
       "empty": "Nenašli sa žiadne produkty",
       "use_fewer_filters_html": "Použite menej filtrov alebo <a class=\"{{ class }}\" href=\"{{ link }}\">všetky odstráňte</a>"
     },

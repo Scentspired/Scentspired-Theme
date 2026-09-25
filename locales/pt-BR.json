@@ -209,14 +209,8 @@
     },
     "contact": {
       "form": {
-        "name": "Nome",
-        "email": "E-mail",
-        "phone": "Telefone",
-        "comment": "Comentário",
-        "send": "Enviar",
         "post_success": "Agradecemos seu contato. Retornaremos o mais rápido possível.",
-        "error_heading": "Ajuste o seguinte:",
-        "title": "Formulário de contato"
+        "error_heading": "Ajuste o seguinte:"
       }
     }
   },
@@ -260,7 +254,6 @@
       "taxes_at_checkout_shipping_at_checkout_without_policy": "Tributos, descontos e frete calculados no checkout."
     },
     "collection_template": {
-      "title": "Coleção",
       "empty": "Nenhum produto encontrado",
       "use_fewer_filters_html": "Usar menos filtros ou <a class=\"{{ class }}\" href=\"{{ link }}\">remover tudo</a>"
     },

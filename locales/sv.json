@@ -200,14 +200,8 @@
     },
     "contact": {
       "form": {
-        "name": "Namn",
-        "email": "E-postadress",
-        "phone": "Telefonnummer",
-        "comment": "Kommentar",
-        "send": "Skicka",
         "post_success": "Tack för att du kontaktar oss. Vi återkommer till dig så snart som möjligt.",
-        "error_heading": "Justera följande:",
-        "title": "Kontaktformulär"
+        "error_heading": "Justera följande:"
       }
     }
   },
@@ -250,7 +244,6 @@
       "taxes_at_checkout_shipping_at_checkout_without_policy": "Skatter, rabatter och fraktkostnad beräknas i kassan."
     },
     "collection_template": {
-      "title": "Produktserie",
       "empty": "Inga produkter hittades",
       "use_fewer_filters_html": "Använd färre filter eller <a class=\"{{ class }}\" href=\"{{ link }}\">ta bort alla</a>"
     },

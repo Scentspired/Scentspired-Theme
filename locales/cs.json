@@ -218,14 +218,8 @@
     },
     "contact": {
       "form": {
-        "name": "Jméno",
-        "email": "E-mail",
-        "phone": "Telefonní číslo",
-        "comment": "Komentář",
-        "send": "Odeslat",
         "post_success": "Děkujeme, že jste nás kontaktovali. Ozveme se vám co možná nejdříve.",
-        "error_heading": "Upravte prosím následující informace:",
-        "title": "Kontaktní formulář"
+        "error_heading": "Upravte prosím následující informace:"
       }
     }
   },
@@ -270,7 +264,6 @@
       "taxes_at_checkout_shipping_at_checkout_without_policy": "Daně, slevy a poštovné se vypočítají na pokladně."
     },
     "collection_template": {
-      "title": "Kolekce",
       "empty": "Nenalezeny žádné produkty",
       "use_fewer_filters_html": "Můžete použít méně filtrů nebo <a class=\"{{ class }}\" href=\"{{ link }}\">všechny odebrat</a>"
     },

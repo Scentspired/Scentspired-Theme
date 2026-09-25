@@ -200,14 +200,8 @@
     },
     "contact": {
       "form": {
-        "name": "이름",
-        "email": "이메일",
-        "phone": "전화 번호",
-        "comment": "댓글",
-        "send": "보내기",
         "post_success": "문의해 주셔서 감사드립니다. 최대한 빨리 답변드리겠습니다.",
-        "error_heading": "다음을 조정하십시오.",
-        "title": "연락처 양식"
+        "error_heading": "다음을 조정하십시오."
       }
     }
   },
@@ -250,7 +244,6 @@
       "taxes_at_checkout_shipping_at_checkout_without_policy": "결제 시 세금, 할인 및 배송료가 계산됩니다."
     },
     "collection_template": {
-      "title": "컬렉션",
       "empty": "제품을 찾을 수 없음",
       "use_fewer_filters_html": "더 적은 수의 필터를 사용하거나 <a class=\"{{ class }}\" href=\"{{ link }}\">모두 제거하기</a>"
     },

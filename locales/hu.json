@@ -200,14 +200,8 @@
     },
     "contact": {
       "form": {
-        "name": "Név",
-        "email": "E-mail-cím",
-        "phone": "Telefonszám",
-        "comment": "Hozzászólás",
-        "send": "Küldés",
         "post_success": "Köszönjük, hogy írtál nekünk. A lehető legrövidebb időn belül válaszolni fogunk.",
-        "error_heading": "Kérjük, helyesbítsd a következőket:",
-        "title": "Kapcsolattartói űrlap"
+        "error_heading": "Kérjük, helyesbítsd a következőket:"
       }
     }
   },
@@ -250,7 +244,6 @@
       "taxes_at_checkout_shipping_at_checkout_without_policy": "Az adókat, a kedvezményeket és a szállítási költséget a megrendeléskor számítjuk ki"
     },
     "collection_template": {
-      "title": "Kollekció",
       "empty": "Nincs találat",
       "use_fewer_filters_html": "Használj kevesebb szűrőt, vagy <a class=\"{{ class }}\" href=\"{{ link }}\">távolítsd el az összeset</a>."
     },

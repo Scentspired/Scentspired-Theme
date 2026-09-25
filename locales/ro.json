@@ -209,14 +209,8 @@
     },
     "contact": {
       "form": {
-        "name": "Nume",
-        "email": "E-mail",
-        "phone": "Număr de telefon",
-        "comment": "Comentariu",
-        "send": "Trimiteți",
         "post_success": "Vă mulțumim că ne-ați contactat. Vom lua legătura cu dvs. cât mai curând posibil.",
-        "error_heading": "Vă rugăm să ajustați următoarele:",
-        "title": "Formular de contact"
+        "error_heading": "Vă rugăm să ajustați următoarele:"
       }
     }
   },
@@ -260,7 +254,6 @@
       "taxes_at_checkout_shipping_at_checkout_without_policy": "Taxele, reducerile și transportul sunt calculate la finalizarea comenzii."
     },
     "collection_template": {
-      "title": "Colecție",
       "empty": "Nu s-au găsit produse",
       "use_fewer_filters_html": "Folosește mai puține filtre sau <a class=\"{{ class }}\" href=\"{{ link }}\">elimină-le pe toate</a>"
     },

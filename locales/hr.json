@@ -209,14 +209,8 @@
     },
     "contact": {
       "form": {
-        "name": "Ime",
-        "email": "Adresa e-pošte",
-        "phone": "Broj telefona",
-        "comment": "Komentar",
-        "send": "Pošalji",
         "post_success": "Hvala vam na javljanju. Odgovorit ćemo vam u najkraćem mogućem roku.",
-        "error_heading": "Prilagodite sljedeće:",
-        "title": "Obrazac za kontakt"
+        "error_heading": "Prilagodite sljedeće:"
       }
     }
   },
@@ -260,7 +254,6 @@
       "taxes_at_checkout_shipping_at_checkout_without_policy": "Porezi, popusti i poštarina obračunavaju se prilikom plaćanja."
     },
     "collection_template": {
-      "title": "Kolekcija",
       "empty": "Nije pronađen nijedan proizvod",
       "use_fewer_filters_html": "Upotrijebi manje filtara ili <a class=\"{{ class }}\" href=\"{{ link }}\">ukloni sve</a>"
     },

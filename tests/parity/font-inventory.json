@@ -820,10 +820,6 @@
   ".cart__note label { line-height: 1 }",
   ".title { font-size: 30px }"
  ],
- "assets\\component-collection-hero.css": [
-  ".collection-hero__title + .collection-hero__description { font-size: 1.6rem }",
-  ".collection-hero__title + .collection-hero__description { font-size: 1.8rem }"
- ],
  "assets\\component-discounts.css": [
   ".discounts { font-size: 1.2rem }"
  ],
@@ -1181,17 +1177,6 @@
   ".newsletter-banner small { line-height: 120% }",
   ".newsletter-message { font-family: ppmori regular, sans-serif }",
   ".newsletter-message { font-size: 14px }"
- ],
- "assets\\media--dual-slider.css": [
-  ".slider-arrow { font-size: 24px }",
-  ".slider-caption { font-family: pp mori, sans-serif }",
-  ".slider-caption { font-size: 17px }",
-  ".slider-caption { font-size: 20px }",
-  ".slider-caption { font-size: 20px }",
-  ".slider-caption { font-size: 20px }",
-  ".slider-caption { font-size: 20px }",
-  ".slider-caption { font-weight: 400 }",
-  ".slider-caption { line-height: 1.6 }"
  ],
  "assets\\media--hero.css": [
   ".ai-reason { font-size: 14px }",
@@ -1588,38 +1573,6 @@
   "[inline] { font-family: pp mori, sans-serif }",
   "[inline] { font-size: 14px }"
  ],
- "sections\\catalog--luxury-showcase.liquid": [
-  ".luxury-showcase__description { font-family: ppmori regular, sans-serif }",
-  ".luxury-showcase__description { font-size: 15px }",
-  ".luxury-showcase__description { font-weight: 500 }",
-  ".luxury-showcase__description { line-height: 1.6 }",
-  ".luxury-showcase__heading { font-family: ppmori extralight, sans-serif }",
-  ".luxury-showcase__heading { font-size: 28px }",
-  ".luxury-showcase__heading { font-size: 32px }",
-  ".luxury-showcase__heading { font-size: 58px }",
-  ".luxury-showcase__heading { font-weight: 100 }",
-  ".luxury-showcase__heading { letter-spacing: 1px }",
-  ".luxury-showcase__heading { line-height: 1.1 }",
-  ".luxury-showcase__promise { font-family: ppmori regular, sans-serif }",
-  ".luxury-showcase__promise { font-size: 14px }",
-  ".luxury-showcase__promise { font-weight: 500 }",
-  ".luxury-showcase__promise { letter-spacing: 2px }",
-  ".luxury-showcase__subheading { font-family: ppeditorialnew italic, serif }",
-  ".luxury-showcase__subheading { font-size: 32px }",
-  ".luxury-showcase__subheading { font-size: 32px }",
-  ".luxury-showcase__subheading { font-size: 42px }",
-  ".luxury-showcase__subheading { font-size: 48px }",
-  ".luxury-showcase__subheading { font-weight: 600 }",
-  ".luxury-showcase__subheading { line-height: 1.1 }",
-  "[inline] { font-size: 12px }",
-  "[inline] { font-size: 16px }"
- ],
- "sections\\editorial--brand-story.liquid": [
-  ".story-description { font-size: 14px }",
-  ".story-description { font-size: 15px }",
-  ".story-heading { font-size: 24px }",
-  ".story-heading { font-size: 28px }"
- ],
  "sections\\editorial--text-section.liquid": [
   ".shopify-hardcoded-text-section-content { font-family: pp editorial new, serif }",
   ".shopify-hardcoded-text-section-content { font-size: 20px }",
@@ -1680,14 +1633,6 @@
   ".main-heading { font-size: 42px }",
   ".placeholder-image { font-family: ppmori regular, sans-serif }",
   ".placeholder-image { font-size: 18px }"
- ],
- "sections\\media--review-slider.liquid": [
-  ".content { font-size: 14px }",
-  ".review-date { font-size: 12px }",
-  ".review-meta .verified { font-weight: bold }",
-  ".review-meta strong { font-weight: bold }",
-  ".review-meta { font-size: 14px }",
-  ".review-slider-section { font-family: georgia, serif }"
  ],
  "sections\\media--running-text.liquid": [
   ".running-text-content { font-family: ppeditorialnew ultralight italic, serif }",

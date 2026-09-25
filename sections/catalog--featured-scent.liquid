@@ -5,8 +5,7 @@
   The heading level is composition, not code: this section is the page's main
   heading on the homepage and a secondary one on collection and product pages.
   Which it is belongs in the template data, so the same component can be placed
-  anywhere without a page-type conditional here. Defaults to h2, the level its
-  sibling blocks/catalog--fragrance-showcase already uses for this class.
+  anywhere without a page-type conditional here. Defaults to h2.
 {%- endcomment -%}
 {%- assign fragrance_heading_level = section.settings.heading_level | default: 'h2' -%}
 

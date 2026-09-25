@@ -51,7 +51,10 @@ const assetNames = new Set(list('assets').map((f) => path.basename(f)));
 const templates = walkDir('templates').filter((f) => f.endsWith('.json'));   // nested too: customers/
 const regionGroups = list('sections', /\.json$/);
 const pageLayouts = list('page-layouts', /\.json$/);
-const roots = [...templates, ...regionGroups, ...pageLayouts, 'config/settings_data.json', 'layout/theme.liquid'];
+// Liquid templates render on their own: the theme's (gift_card) and each
+// region's standalone pages (robots.txt, a waitlist page).
+const liquidTemplates = [...walkDir('templates'), ...walkDir('regions').filter((f) => /\/templates\/[^/]+\.liquid$/.test(f))].filter((f) => f.endsWith('.liquid'));
+const roots = [...templates, ...liquidTemplates, ...regionGroups, ...pageLayouts, 'config/settings_data.json', 'layout/theme.liquid'];
 
 const reached = new Map(); // file -> the file that first reached it
 const queue = [];

@@ -351,8 +351,7 @@
       },
       "spacing": "Boşluk",
       "colors": {
-        "label": "Renk şeması",
-        "has_cards_info": "Kart renk şemasını değiştirmek için tema ayarlarınızı güncelleyin."
+        "label": "Renk şeması"
       },
       "heading_size": {
         "label": "Başlık boyutu",
@@ -457,30 +456,6 @@
       },
       "presets": {
         "name": "Duyuru çubuğu"
-      }
-    },
-    "contact-form": {
-      "name": "İletişim Formu",
-      "presets": {
-        "name": "İletişim formu"
-      },
-      "settings": {
-        "title": {
-          "default": "İletişim formu",
-          "label": "Başlık"
-        }
-      }
-    },
-    "custom-liquid": {
-      "name": "Özel Liquid",
-      "settings": {
-        "custom_liquid": {
-          "label": "Liquid kodu",
-          "info": "Gelişmiş özelleştirmeler oluşturmak için uygulama parçacıkları veya başka bir kod ekleyin. [Daha fazla bilgi edinin](https://shopify.dev/docs/api/liquid)"
-        }
-      },
-      "presets": {
-        "name": "Özel Liquid"
       }
     },
     "footer": {
@@ -741,179 +716,6 @@
         "name": "Görsel banner'ı"
       }
     },
-    "image-with-text": {
-      "name": "Metin içeren görsel",
-      "settings": {
-        "image": {
-          "label": "Görsel"
-        },
-        "height": {
-          "options__1": {
-            "label": "Görsele uyarla"
-          },
-          "options__2": {
-            "label": "Küçük"
-          },
-          "options__3": {
-            "label": "Orta"
-          },
-          "label": "Yükseklik",
-          "options__4": {
-            "label": "Büyük"
-          }
-        },
-        "layout": {
-          "options__1": {
-            "label": "Önce görsel"
-          },
-          "options__2": {
-            "label": "Görsel 2"
-          },
-          "label": "Yerleşim"
-        },
-        "desktop_image_width": {
-          "options__1": {
-            "label": "Küçük"
-          },
-          "options__2": {
-            "label": "Orta"
-          },
-          "options__3": {
-            "label": "Büyük"
-          },
-          "label": "Genişlik"
-        },
-        "desktop_content_alignment": {
-          "options__1": {
-            "label": "Sol"
-          },
-          "options__2": {
-            "label": "Orta"
-          },
-          "options__3": {
-            "label": "Sağ"
-          },
-          "label": "Hizalama"
-        },
-        "desktop_content_position": {
-          "options__1": {
-            "label": "Üst"
-          },
-          "options__2": {
-            "label": "Orta"
-          },
-          "options__3": {
-            "label": "Alt"
-          },
-          "label": "Konum"
-        },
-        "content_layout": {
-          "options__1": {
-            "label": "Çakışma yok"
-          },
-          "options__2": {
-            "label": "Çakışma"
-          },
-          "label": "Düzen"
-        },
-        "mobile_content_alignment": {
-          "options__1": {
-            "label": "Sol"
-          },
-          "options__2": {
-            "label": "Orta"
-          },
-          "options__3": {
-            "label": "Sağ"
-          },
-          "label": "Mobil hizalama"
-        },
-        "header": {
-          "content": "İçerik"
-        },
-        "header_colors": {
-          "content": "Renkler"
-        }
-      },
-      "blocks": {
-        "heading": {
-          "name": "Başlık",
-          "settings": {
-            "heading": {
-              "label": "Başlık",
-              "default": "Metin içeren görsel"
-            }
-          }
-        },
-        "text": {
-          "name": "Metin rengi",
-          "settings": {
-            "text": {
-              "label": "Metin",
-              "default": "<p>Metni bir görselle eşleyerek seçtiğiniz ürüne, koleksiyona veya blog gönderisine dikkat çekin. Stok durumu, stil hakkındaki ayrıntıları ekleyin, hatta inceleme sağlayın.</p>"
-            },
-            "text_style": {
-              "label": "Stil",
-              "options__1": {
-                "label": "Gövde"
-              },
-              "options__2": {
-                "label": "Alt yazı"
-              }
-            }
-          }
-        },
-        "button": {
-          "name": "Düğme",
-          "settings": {
-            "button_label": {
-              "label": "Etiket",
-              "info": "Gizlemek için boş bırakın",
-              "default": "Düğme etiketi"
-            },
-            "button_link": {
-              "label": "Bağlantı"
-            },
-            "outline_button": {
-              "label": "Dış çizgi stili"
-            }
-          }
-        },
-        "caption": {
-          "name": "Alt yazı",
-          "settings": {
-            "text": {
-              "label": "Metin",
-              "default": "Reklam sloganı ekleyin"
-            },
-            "text_style": {
-              "label": "Stil",
-              "options__1": {
-                "label": "Alt yazı"
-              },
-              "options__2": {
-                "label": "Büyük harf"
-              }
-            },
-            "caption_size": {
-              "label": "Beden",
-              "options__1": {
-                "label": "Küçük"
-              },
-              "options__2": {
-                "label": "Orta"
-              },
-              "options__3": {
-                "label": "Büyük"
-              }
-            }
-          }
-        }
-      },
-      "presets": {
-        "name": "Metin içeren görsel"
-      }
-    },
     "main-article": {
       "name": "Blog gönderisi",
       "blocks": {
@@ -1004,20 +806,6 @@
     },
     "main-cart-items": {
       "name": "Ürünler"
-    },
-    "main-collection-banner": {
-      "name": "Koleksiyon banner'ı",
-      "settings": {
-        "paragraph": {
-          "content": "Koleksiyon bilgileri [yönetici panelinizde yönetilir](https://help.shopify.com/manual/products/collections/collection-layout)"
-        },
-        "show_collection_description": {
-          "label": "Açıklama"
-        },
-        "show_collection_image": {
-          "label": "Görsel"
-        }
-      }
     },
     "main-collection-product-grid": {
       "settings": {
@@ -1678,65 +1466,6 @@
     },
     "main-reset-password": {
       "name": "Parola sıfırlama"
-    },
-    "related-products": {
-      "name": "Alakalı ürünler",
-      "settings": {
-        "heading": {
-          "label": "Başlık"
-        },
-        "products_to_show": {
-          "label": "Ürün sayısı"
-        },
-        "columns_desktop": {
-          "label": "Sütunlar"
-        },
-        "paragraph__1": {
-          "content": "İlgili ürünler [Search & Discovery uygulamasında](https://help.shopify.com/manual/online-store/search-and-discovery/product-recommendations) yönetilebilir",
-          "default": "Şu ürünler de hoşunuza gidebilir:"
-        },
-        "header__2": {
-          "content": "Ürün kartı"
-        },
-        "image_ratio": {
-          "label": "Görsel oranı",
-          "options__1": {
-            "label": "Görsele uyarla"
-          },
-          "options__2": {
-            "label": "Portre"
-          },
-          "options__3": {
-            "label": "Kare"
-          }
-        },
-        "show_secondary_image": {
-          "label": "Üstüne gelindiğinde ikinci görseli göster"
-        },
-        "show_vendor": {
-          "label": "Satıcı"
-        },
-        "show_rating": {
-          "label": "Ürün derecelendirmesi",
-          "info": "Ürün derecelendirmeleri için bir uygulama gereklidir. [Daha fazla bilgi edinin](https://help.shopify.com/manual/online-store/themes/customizing-themes/add-product-recommendations)"
-        },
-        "columns_mobile": {
-          "label": "Mobil sütunlar",
-          "options__1": {
-            "label": "1"
-          },
-          "options__2": {
-            "label": "2"
-          }
-        }
-      }
-    },
-    "multirow": {
-      "settings": {
-        "container_color_scheme": {
-          "label": "Kapsayıcı renk şeması"
-        }
-      }
     },
     "quick-order-list": {
       "name": "Hızlı sipariş listesi"

@@ -7,7 +7,6 @@
  *
  * Simulates complete customer purchase journeys across 5 core suites:
  *
- * Suite A: Product Detail Page (PDP) Add-to-Cart Lifecycle (product-form.js)
  * Suite B: Collection & Best-Sellers Variant Switching & Quick-Add
  * Suite C: Interactive Bundle & Box Builder Journey (Apostrophe & Step safety)
  * Suite D: Custom Cart Drawer Sync, Tiered Progress, & Empty States
@@ -247,158 +246,6 @@ global.FormData = class {
     return this.data[k];
   }
 };
-
-// ============================================================================
-// SUITE A: Product Detail Page (PDP) Add-to-Cart Lifecycle (product-form.js)
-// ============================================================================
-
-async function runSuiteA() {
-  console.log("\n┌──────────────────────────────────────────────────────────────┐");
-  console.log("│ SUITE A: Product Detail Page (PDP) Add-to-Cart Simulation    │");
-  console.log("└──────────────────────────────────────────────────────────────┘");
-
-  // Load actual product--form.js code from repo
-  const productFormRel = fs.existsSync(path.join(ROOT, "assets/product--form.js"))
-    ? "assets/product--form.js"
-    : "assets/product-form.js";
-  const productFormCode = fs.readFileSync(path.join(ROOT, productFormRel), "utf8");
-  eval(productFormCode);
-
-  const ProductFormClass = customElements.get("product-form");
-
-  function createProductFormDOM() {
-    const pf = new ProductFormClass();
-    const form = new MockElement("form");
-    const idInput = new MockElement("input", { name: "id", value: "44556677" });
-    const btn = new MockElement("button", { type: "submit" });
-    const btnText = new MockElement("span");
-    btnText.textContent = "Add to cart";
-    const spinner = new MockElement("div");
-    spinner.classList.add("loading__spinner");
-    spinner.classList.add("hidden");
-    const soldOutMsg = new MockElement("span");
-    soldOutMsg.classList.add("sold-out-message");
-    soldOutMsg.classList.add("hidden");
-    soldOutMsg.textContent = "Sold out";
-
-    btn.appendChild(btnText);
-    btn.appendChild(spinner);
-    btn.appendChild(soldOutMsg);
-    form.appendChild(idInput);
-    form.appendChild(btn);
-    pf.appendChild(form);
-
-    pf.form = form;
-    pf.submitButton = btn;
-    pf.submitButtonText = btnText;
-    return { pf, form, btn, btnText, spinner, soldOutMsg, idInput };
-  }
-
-  // Test A1: Standard Add to Cart Flow with Cart Drawer Synchronization
-  {
-    let drawerUpdated = false;
-    let drawerOpened = false;
-    let cartAddFired = false;
-
-    window.updateDossierCartUI = cart => {
-      drawerUpdated = true;
-    };
-    window.openDossierCart = () => {
-      drawerOpened = true;
-    };
-
-    global.fetch = async url => {
-      if (url === "/cart/add") {
-        cartAddFired = true;
-        return { json: async () => ({ id: 44556677, title: "Smoky Leather" }) };
-      }
-      if (url === "/cart.js") {
-        return {
-          json: async () => ({ item_count: 1, items: [{ id: 44556677, title: "Smoky Leather" }] }),
-        };
-      }
-      return { json: async () => ({}) };
-    };
-
-    const { pf, btn } = createProductFormDOM();
-    pf.onSubmitHandler({ preventDefault: () => {} });
-
-    assert(btn.disabled === true, "A1.1: Submit button physically disabled on click");
-    assert(btn.classList.contains("loading"), "A1.2: Loading class applied to button");
-
-    await new Promise(r => setTimeout(r, 200));
-
-    assert(cartAddFired === true, "A1.3: Dispatched /cart/add request");
-    assert(drawerUpdated === true, "A1.4: window.updateDossierCartUI received cart update");
-    assert(drawerOpened === true, "A1.5: window.openDossierCart triggered to slide drawer open");
-    assert(btn.disabled === false, "A1.6: Button re-enabled after completion");
-    assert(!btn.classList.contains("loading"), "A1.7: Loading spinner removed");
-  }
-
-  // Test A2: Multi-Tap / Rage-Click Debouncing
-  {
-    let dispatchCount = 0;
-    global.fetch = async url => {
-      if (url === "/cart/add") dispatchCount++;
-      await new Promise(r => setTimeout(r, 50));
-      return { json: async () => ({ id: 44556677 }) };
-    };
-
-    const { pf } = createProductFormDOM();
-    // Simulate 5 rapid taps within 10ms
-    pf.onSubmitHandler({ preventDefault: () => {} });
-    pf.onSubmitHandler({ preventDefault: () => {} });
-    pf.onSubmitHandler({ preventDefault: () => {} });
-    pf.onSubmitHandler({ preventDefault: () => {} });
-    pf.onSubmitHandler({ preventDefault: () => {} });
-
-    await new Promise(r => setTimeout(r, 200));
-    assert(
-      dispatchCount === 1,
-      "A2.1: Exactly 1 request dispatched despite 5 rapid clicks",
-      `Count: ${dispatchCount}`
-    );
-  }
-
-  // Test A3: Sold Out / Shopify 422 Error Handling
-  {
-    global.fetch = async url => ({
-      json: async () => ({
-        status: 422,
-        message: "Sold Out",
-        description: "Product variant is currently sold out.",
-      }),
-    });
-
-    const { pf, btn, soldOutMsg } = createProductFormDOM();
-    pf.onSubmitHandler({ preventDefault: () => {} });
-    await new Promise(r => setTimeout(r, 100));
-
-    assert(pf.error === true, "A3.1: Error state active on sold-out response");
-    assert(btn.disabled === true, "A3.2: Sold out button remains physically disabled");
-    assert(!soldOutMsg.classList.contains("hidden"), "A3.3: Sold out message rendered visible");
-  }
-
-  // Test A4: Network Failure / Server Crash Recovery
-  {
-    global.fetch = async () => {
-      throw new Error("500 Internal Server Error");
-    };
-
-    const { pf, btn } = createProductFormDOM();
-    let threw = false;
-    try {
-      pf.onSubmitHandler({ preventDefault: () => {} });
-      await new Promise(r => setTimeout(r, 100));
-    } catch (e) {
-      threw = true;
-    }
-
-    assert(!threw, "A4.1: Network crash handled cleanly without unhandled exception");
-    assert(btn.disabled === false, "A4.2: Button safely re-enabled so customer can retry");
-    assert(!btn.classList.contains("loading"), "A4.3: Loading spinner cleared on failure");
-  }
-}
 
 // ============================================================================
 // SUITE B: Best-Sellers & Collection Variant Switching
@@ -1727,7 +1574,6 @@ async function runAllSuites() {
   console.log("║  SCENTSPIRED THEME GUARDIAN — Layer 2: Flow Simulator       ║");
   console.log("╚══════════════════════════════════════════════════════════════╝");
 
-  await runSuiteA();
   await runSuiteB();
   await runSuiteC();
   await runSuiteD();

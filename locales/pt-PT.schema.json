@@ -351,8 +351,7 @@
       },
       "spacing": "Espaçamento",
       "colors": {
-        "label": "Esquema de cores",
-        "has_cards_info": "Para alterar o esquema de cores do cartão, atualize as suas definições de tema."
+        "label": "Esquema de cores"
       },
       "heading_size": {
         "label": "Tamanho do título",
@@ -457,30 +456,6 @@
       },
       "presets": {
         "name": "Barra de comunicado"
-      }
-    },
-    "contact-form": {
-      "name": "Formulário de contacto",
-      "presets": {
-        "name": "Formulário de contacto"
-      },
-      "settings": {
-        "title": {
-          "default": "Formulário de contacto",
-          "label": "Cabeçalho"
-        }
-      }
-    },
-    "custom-liquid": {
-      "name": "Liquid personalizado",
-      "settings": {
-        "custom_liquid": {
-          "label": "Código Liquid",
-          "info": "Adicione fragmentos de aplicação ou outro código para criar personalizações avançadas. [Saber mais](https://shopify.dev/docs/api/liquid)"
-        }
-      },
-      "presets": {
-        "name": "Liquid personalizado"
       }
     },
     "footer": {
@@ -741,179 +716,6 @@
         "name": "Faixa de imagem"
       }
     },
-    "image-with-text": {
-      "name": "Imagem com texto",
-      "settings": {
-        "image": {
-          "label": "Imagem"
-        },
-        "height": {
-          "options__1": {
-            "label": "Adaptar à imagem"
-          },
-          "options__2": {
-            "label": "Pequeno"
-          },
-          "options__3": {
-            "label": "Médio"
-          },
-          "label": "Altura",
-          "options__4": {
-            "label": "Grande"
-          }
-        },
-        "layout": {
-          "options__1": {
-            "label": "Imagem primeiro"
-          },
-          "options__2": {
-            "label": "Segunda imagem"
-          },
-          "label": "Posicionamento"
-        },
-        "desktop_image_width": {
-          "options__1": {
-            "label": "Pequeno"
-          },
-          "options__2": {
-            "label": "Médio"
-          },
-          "options__3": {
-            "label": "Grande"
-          },
-          "label": "Largura"
-        },
-        "desktop_content_alignment": {
-          "options__1": {
-            "label": "Esquerda"
-          },
-          "options__3": {
-            "label": "Direita"
-          },
-          "label": "Alinhamento",
-          "options__2": {
-            "label": "Ao centro"
-          }
-        },
-        "desktop_content_position": {
-          "options__1": {
-            "label": "Em cima"
-          },
-          "options__2": {
-            "label": "Meio"
-          },
-          "options__3": {
-            "label": "Em baixo"
-          },
-          "label": "Posição"
-        },
-        "content_layout": {
-          "options__1": {
-            "label": "Sem sobreposição"
-          },
-          "options__2": {
-            "label": "Sobreposição"
-          },
-          "label": "Esquema"
-        },
-        "mobile_content_alignment": {
-          "options__1": {
-            "label": "Esquerda"
-          },
-          "options__3": {
-            "label": "Direita"
-          },
-          "label": "Alinhamento em dispositivos móveis",
-          "options__2": {
-            "label": "Ao centro"
-          }
-        },
-        "header": {
-          "content": "Conteúdo"
-        },
-        "header_colors": {
-          "content": "Cores"
-        }
-      },
-      "blocks": {
-        "heading": {
-          "settings": {
-            "heading": {
-              "label": "Título",
-              "default": "Imagem com texto"
-            }
-          },
-          "name": "Cabeçalho"
-        },
-        "text": {
-          "settings": {
-            "text": {
-              "label": "Texto",
-              "default": "<p>Emparelhe texto com uma imagem para destacar o produto, a coleção ou a publicação no blogue escolhido. Adicione informações sobre disponibilidade, estilo ou até mesmo uma avaliação.</p>"
-            },
-            "text_style": {
-              "label": "Estilo",
-              "options__1": {
-                "label": "Corpo"
-              },
-              "options__2": {
-                "label": "Legenda"
-              }
-            }
-          },
-          "name": "Texto"
-        },
-        "button": {
-          "settings": {
-            "button_label": {
-              "label": "Etiqueta",
-              "info": "Deixe em branco para ocultar",
-              "default": "Etiqueta do botão"
-            },
-            "button_link": {
-              "label": "Ligação"
-            },
-            "outline_button": {
-              "label": "Estilo do contorno"
-            }
-          },
-          "name": "Botão"
-        },
-        "caption": {
-          "name": "Legenda",
-          "settings": {
-            "text": {
-              "label": "Texto",
-              "default": "Adicionar um slogan"
-            },
-            "text_style": {
-              "label": "Estilo",
-              "options__1": {
-                "label": "Legenda"
-              },
-              "options__2": {
-                "label": "Maiúsculas"
-              }
-            },
-            "caption_size": {
-              "label": "Tamanho",
-              "options__1": {
-                "label": "Pequeno"
-              },
-              "options__2": {
-                "label": "Médio"
-              },
-              "options__3": {
-                "label": "Grande"
-              }
-            }
-          }
-        }
-      },
-      "presets": {
-        "name": "Imagem com texto"
-      }
-    },
     "main-article": {
       "name": "Publicação no blogue",
       "blocks": {
@@ -1004,20 +806,6 @@
     },
     "main-cart-items": {
       "name": "Itens"
-    },
-    "main-collection-banner": {
-      "name": "Faixa de coleção",
-      "settings": {
-        "paragraph": {
-          "content": "Os detalhes da coleção são [geridos no seu painel de admin](https://help.shopify.com/manual/products/collections/collection-layout)"
-        },
-        "show_collection_description": {
-          "label": "Descrição"
-        },
-        "show_collection_image": {
-          "label": "Imagem"
-        }
-      }
     },
     "main-collection-product-grid": {
       "settings": {
@@ -1678,65 +1466,6 @@
     },
     "main-reset-password": {
       "name": "Redefinição de palavra-passe"
-    },
-    "related-products": {
-      "name": "Produtos relacionados",
-      "settings": {
-        "heading": {
-          "label": "Título"
-        },
-        "products_to_show": {
-          "label": "Número de produtos"
-        },
-        "columns_desktop": {
-          "label": "Colunas"
-        },
-        "paragraph__1": {
-          "content": "Os produtos relacionados podem ser geridos na [aplicação Search & Discovery](https://help.shopify.com/manual/online-store/search-and-discovery/product-recommendations)",
-          "default": "Também poderá gostar de"
-        },
-        "header__2": {
-          "content": "Cartão de produtos"
-        },
-        "image_ratio": {
-          "label": "Proporção de imagem",
-          "options__1": {
-            "label": "Adaptar à imagem"
-          },
-          "options__2": {
-            "label": "Retrato"
-          },
-          "options__3": {
-            "label": "Quadrado"
-          }
-        },
-        "show_secondary_image": {
-          "label": "Mostrar a segunda imagem ao passar o rato"
-        },
-        "show_vendor": {
-          "label": "Fornecedor"
-        },
-        "show_rating": {
-          "label": "Classificação de produto",
-          "info": "É necessária uma app para as classificações de produto. [Saber mais](https://help.shopify.com/manual/online-store/themes/customizing-themes/add-product-recommendations)"
-        },
-        "columns_mobile": {
-          "label": "Colunas em dispositivos móveis",
-          "options__1": {
-            "label": "1"
-          },
-          "options__2": {
-            "label": "2"
-          }
-        }
-      }
-    },
-    "multirow": {
-      "settings": {
-        "container_color_scheme": {
-          "label": "Esquema de cores do contentor"
-        }
-      }
     },
     "quick-order-list": {
       "name": "Lista de encomendas rápida"

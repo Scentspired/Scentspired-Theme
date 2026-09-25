@@ -351,8 +351,7 @@
       },
       "spacing": "Mellemrum",
       "colors": {
-        "label": "Farveskema",
-        "has_cards_info": "Hvis du vil ændre farveskemaet for kort, skal du opdatere dine temaindstillinger."
+        "label": "Farveskema"
       },
       "heading_size": {
         "label": "Størrelse for overskrift",
@@ -457,30 +456,6 @@
       },
       "presets": {
         "name": "Meddelelseslinje"
-      }
-    },
-    "contact-form": {
-      "name": "Kontaktformular",
-      "presets": {
-        "name": "Kontaktformular"
-      },
-      "settings": {
-        "title": {
-          "default": "Kontaktformular",
-          "label": "Overskrift"
-        }
-      }
-    },
-    "custom-liquid": {
-      "name": "Tilpasset Liquid",
-      "settings": {
-        "custom_liquid": {
-          "label": "Liquid-kode",
-          "info": "Tilføj appkodestykker eller anden kode for at oprette avancerede tilpasninger. [Få mere at vide](https://shopify.dev/docs/api/liquid)"
-        }
-      },
-      "presets": {
-        "name": "Tilpasset Liquid"
       }
     },
     "footer": {
@@ -741,179 +716,6 @@
         "name": "Billedbanner"
       }
     },
-    "image-with-text": {
-      "name": "Billede med tekst",
-      "settings": {
-        "image": {
-          "label": "Billede"
-        },
-        "height": {
-          "options__1": {
-            "label": "Tilpas til billede"
-          },
-          "options__2": {
-            "label": "Lille"
-          },
-          "options__3": {
-            "label": "Mellem"
-          },
-          "label": "Højde",
-          "options__4": {
-            "label": "Stor"
-          }
-        },
-        "layout": {
-          "options__1": {
-            "label": "Billede først"
-          },
-          "options__2": {
-            "label": "Andet billede"
-          },
-          "label": "Placering"
-        },
-        "desktop_image_width": {
-          "options__1": {
-            "label": "Lille"
-          },
-          "options__2": {
-            "label": "Medium"
-          },
-          "options__3": {
-            "label": "Stor"
-          },
-          "label": "Bredde"
-        },
-        "desktop_content_alignment": {
-          "options__1": {
-            "label": "Venstre"
-          },
-          "options__3": {
-            "label": "Højre"
-          },
-          "label": "Justering",
-          "options__2": {
-            "label": "Centreret"
-          }
-        },
-        "desktop_content_position": {
-          "options__1": {
-            "label": "Top"
-          },
-          "options__2": {
-            "label": "I midten"
-          },
-          "options__3": {
-            "label": "Bund"
-          },
-          "label": "Placering"
-        },
-        "content_layout": {
-          "options__1": {
-            "label": "Ingen overlapning"
-          },
-          "options__2": {
-            "label": "Overlapning"
-          },
-          "label": "Layout"
-        },
-        "mobile_content_alignment": {
-          "options__1": {
-            "label": "Venstre"
-          },
-          "options__3": {
-            "label": "Højre"
-          },
-          "label": "Justering af mobil",
-          "options__2": {
-            "label": "Centreret"
-          }
-        },
-        "header": {
-          "content": "Indhold"
-        },
-        "header_colors": {
-          "content": "Farver"
-        }
-      },
-      "blocks": {
-        "heading": {
-          "name": "Overskrift",
-          "settings": {
-            "heading": {
-              "label": "Overskrift",
-              "default": "Billede med tekst"
-            }
-          }
-        },
-        "text": {
-          "name": "Tekst",
-          "settings": {
-            "text": {
-              "label": "Tekst",
-              "default": "<p>Kombiner tekst med et billede for at fokusere på dit valgte produkt, din valgte kollektion eller dit valgte blogopslag. Tilføj oplysninger om tilgængelighed, stil og eventuelt også en anmeldelse.</p>"
-            },
-            "text_style": {
-              "label": "Stil",
-              "options__1": {
-                "label": "Brødtekst"
-              },
-              "options__2": {
-                "label": "Undertekst"
-              }
-            }
-          }
-        },
-        "button": {
-          "name": "Knap",
-          "settings": {
-            "button_label": {
-              "label": "Etiket",
-              "info": "Lad stå tom for at skjule",
-              "default": "Knaptekst"
-            },
-            "button_link": {
-              "label": "Link"
-            },
-            "outline_button": {
-              "label": "Rammetypografi"
-            }
-          }
-        },
-        "caption": {
-          "name": "Billedtekst",
-          "settings": {
-            "text": {
-              "label": "Tekst",
-              "default": "Tilføj et slogan"
-            },
-            "text_style": {
-              "label": "Stil",
-              "options__1": {
-                "label": "Underoverskrift"
-              },
-              "options__2": {
-                "label": "Store bogstaver"
-              }
-            },
-            "caption_size": {
-              "label": "Størrelse",
-              "options__1": {
-                "label": "Lille"
-              },
-              "options__2": {
-                "label": "Medium"
-              },
-              "options__3": {
-                "label": "Stor"
-              }
-            }
-          }
-        }
-      },
-      "presets": {
-        "name": "Billede med tekst"
-      }
-    },
     "main-article": {
       "name": "Blogopslag",
       "blocks": {
@@ -1004,20 +806,6 @@
     },
     "main-cart-items": {
       "name": "Varer"
-    },
-    "main-collection-banner": {
-      "name": "Kollektionsbanner",
-      "settings": {
-        "paragraph": {
-          "content": "Kollektionsoplysninger [administreres i din administrator](https://help.shopify.com/manual/products/collections/collection-layout)"
-        },
-        "show_collection_description": {
-          "label": "Beskrivelse"
-        },
-        "show_collection_image": {
-          "label": "Billede"
-        }
-      }
     },
     "main-collection-product-grid": {
       "settings": {
@@ -1678,65 +1466,6 @@
     },
     "main-reset-password": {
       "name": "Nulstilling af adgangskode"
-    },
-    "related-products": {
-      "name": "Relaterede produkter",
-      "settings": {
-        "heading": {
-          "label": "Overskrift"
-        },
-        "products_to_show": {
-          "label": "Produktantal"
-        },
-        "columns_desktop": {
-          "label": "Kolonner"
-        },
-        "paragraph__1": {
-          "content": "Relaterede produkter kan administreres i [Search & Discovery-appen](https://help.shopify.com/manual/online-store/search-and-discovery/product-recommendations)",
-          "default": "Du vil muligvis også synes om"
-        },
-        "header__2": {
-          "content": "Produktkort"
-        },
-        "image_ratio": {
-          "label": "Billedforhold",
-          "options__1": {
-            "label": "Tilpas til billede"
-          },
-          "options__2": {
-            "label": "Stående"
-          },
-          "options__3": {
-            "label": "Kvadrat"
-          }
-        },
-        "show_secondary_image": {
-          "label": "Vis sekundært billede, når der peges"
-        },
-        "show_vendor": {
-          "label": "Forhandler"
-        },
-        "show_rating": {
-          "label": "Produktbedømmelse",
-          "info": "Der kræves en app til produktbedømmelser. [Få mere at vide](https://help.shopify.com/manual/online-store/themes/customizing-themes/add-product-recommendations)"
-        },
-        "columns_mobile": {
-          "label": "Mobilkolonner",
-          "options__1": {
-            "label": "1"
-          },
-          "options__2": {
-            "label": "2"
-          }
-        }
-      }
-    },
-    "multirow": {
-      "settings": {
-        "container_color_scheme": {
-          "label": "Objektbeholder til farveskema"
-        }
-      }
     },
     "quick-order-list": {
       "name": "Hurtig ordreliste"

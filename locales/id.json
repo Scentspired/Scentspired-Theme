@@ -200,14 +200,8 @@
     },
     "contact": {
       "form": {
-        "name": "Nama",
-        "email": "Email",
-        "phone": "Nomor telepon",
-        "comment": "Komentar",
-        "send": "Kirim",
         "post_success": "Terima kasih sudah menghubungi kami. Kami akan segera menghubungi Anda.",
-        "error_heading": "Mohon sesuaikan:",
-        "title": "Formulir kontak"
+        "error_heading": "Mohon sesuaikan:"
       }
     }
   },
@@ -250,7 +244,6 @@
       "taxes_at_checkout_shipping_at_checkout_without_policy": "Pajak, diskon, dan biaya pengiriman dihitung saat checkout."
     },
     "collection_template": {
-      "title": "Koleksi",
       "empty": "Tidak ada produk yang ditemukan",
       "use_fewer_filters_html": "Gunakan lebih sedikit filter atau <a class=\"{{ class }}\" href=\"{{ link }}\">hapus semua</a>"
     },

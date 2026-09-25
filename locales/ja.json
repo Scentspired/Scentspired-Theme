@@ -200,14 +200,8 @@
     },
     "contact": {
       "form": {
-        "name": "名前",
-        "email": "メール",
-        "phone": "電話番号",
-        "comment": "コメント",
-        "send": "送信する",
         "post_success": "お問い合わせいただきありがとうございます。早急に返信いたします。",
-        "error_heading": "以下を確認してください。",
-        "title": "お問い合わせフォーム"
+        "error_heading": "以下を確認してください。"
       }
     }
   },
@@ -250,7 +244,6 @@
       "taxes_at_checkout_shipping_at_checkout_without_policy": "税、ディスカウント、および配送料はチェックアウト時に計算されます。"
     },
     "collection_template": {
-      "title": "コレクション",
       "empty": "商品が見つかりません",
       "use_fewer_filters_html": "絞り込みの数を減らす、または<a class=\"{{ class }}\" href=\"{{ link }}\">すべて削除する</a>"
     },
