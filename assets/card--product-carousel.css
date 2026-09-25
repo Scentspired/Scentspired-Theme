@@ -1,0 +1,11 @@
+/* The product card (snippets/card--product-carousel.liquid).
+ * Loaded by every section that shows it, ahead of the section's own styles.
+ *
+ * The card's image area is a link, and links are inline unless told
+ * otherwise. The card says so itself instead of relying on the section around
+ * it: where a script shows cards with style.display = 'block' (the collection
+ * grid's filters), the card is no longer a flex box, and an inline image link
+ * collapses to nothing, leaving the badge over the product name. */
+.fragrance-image-wrap {
+  display: block;
+}
