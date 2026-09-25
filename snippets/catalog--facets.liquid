@@ -9,7 +9,7 @@
   - paginate: {Object}
 
   Usage:
-  {% render 'facets', results: collection, enable_filtering: true, enable_sorting: true, filter_type: 'vertical', paginate: paginate %}
+  {% render 'catalog--facets', results: collection, enable_filtering: true, enable_sorting: true, filter_type: 'vertical', paginate: paginate %}
 {% endcomment %}
 
 {{ "component-show-more.css" | asset_url | stylesheet_tag }}
@@ -215,7 +215,7 @@
                               {%- if presentation == "swatch" -%}
                                 <div class="{{ label_class }}">
                                   <div class="swatch-input-wrapper">
-                                    {% render "swatch-input",
+                                    {% render "catalog--swatch-input",
                                       id: input_id,
                                       type: "checkbox",
                                       name: value.param_name,
@@ -316,7 +316,7 @@
                         {%- endif -%}
                       </div>
                       <price-range class="facets__price">
-                        {% render "price-facet", filter: filter, id_prefix: "Filter-", filter_type: filter_type %}
+                        {% render "catalog--facet-price", filter: filter, id_prefix: "Filter-", filter_type: filter_type %}
                       </price-range>
                     </div>
                   </details>
@@ -573,7 +573,7 @@
                                 {% if presentation == "swatch" %}
                                   <div class="{{ label_class }}">
                                     <div class="swatch-input-wrapper">
-                                      {% render "swatch-input",
+                                      {% render "catalog--swatch-input",
                                         id: input_id,
                                         type: "checkbox",
                                         name: value.param_name,
@@ -670,7 +670,7 @@
                           </p>
 
                           <price-range class="facets__price">
-                            {% render "price-facet", filter: filter, id_prefix: "Mobile-Filter-" %}
+                            {% render "catalog--facet-price", filter: filter, id_prefix: "Mobile-Filter-" %}
                           </price-range>
                           <div class="mobile-facets__footer">
                             <facet-remove class="mobile-facets__clear-wrapper">

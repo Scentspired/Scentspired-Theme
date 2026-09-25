@@ -11,7 +11,7 @@
   "type": "footer",
   "sections": {
     "footer": {
-      "type": "footer",
+      "type": "footer--main",
       "settings": {
         "footer_bg_color": "#121212",
         "footer_text_color": "#ffffff",

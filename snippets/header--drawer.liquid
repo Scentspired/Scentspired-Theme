@@ -164,7 +164,7 @@
                         <h2 class="visually-hidden" id="HeaderCountryMobileLabel">
                           {{ "localization.country_label" | t }}
                         </h2>
-                        {%- render "country-localization", localPosition: "HeaderCountryMobile" -%}
+                        {%- render "core--localization-country", localPosition: "HeaderCountryMobile" -%}
                       </div>
                     {%- endform -%}
                   </localization-form>
@@ -177,7 +177,7 @@
                         <h2 class="visually-hidden" id="HeaderLanguageMobileLabel">
                           {{ "localization.language_label" | t }}
                         </h2>
-                        {%- render "language-localization", localPosition: "HeaderLanguageMobile" -%}
+                        {%- render "core--localization-language", localPosition: "HeaderLanguageMobile" -%}
                       </div>
                     {%- endform -%}
                   </localization-form>

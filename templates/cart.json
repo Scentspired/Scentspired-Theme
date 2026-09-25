@@ -9,7 +9,7 @@
 {
   "sections": {
     "cart-items": {
-      "type": "main-cart-items",
+      "type": "cart--items",
       "settings": {
         "color_scheme": "scheme-1",
         "padding_top": 36,

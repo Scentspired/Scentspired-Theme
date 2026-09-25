@@ -255,7 +255,7 @@
       ]
     },
     "1770888173be79f9a8": {
-      "type": "apps",
+      "type": "core--apps",
       "@shown": "home.apps.shown",
       "settings": {
         "include_margins": true

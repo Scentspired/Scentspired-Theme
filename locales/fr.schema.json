@@ -227,18 +227,6 @@
     "cart": {
       "name": "Panier",
       "settings": {
-        "cart_type": {
-          "label": "Type",
-          "drawer": {
-            "label": "Tiroir"
-          },
-          "page": {
-            "label": "Page"
-          },
-          "notification": {
-            "label": "Notification contextuelle"
-          }
-        },
         "show_vendor": {
           "label": "Fournisseur"
         },

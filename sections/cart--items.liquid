@@ -24,10 +24,6 @@
   }
 {%- endstyle -%}
 
-{%- unless settings.cart_type == "drawer" -%}
-  <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
-{%- endunless -%}
-
 <script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
 
 <script>
@@ -118,76 +114,58 @@
           if (varId) updates[varId] = parseInt(inp.value) || 0;
         });
 
+        // Shopify renders the changed cart in the same request (Section Rendering
+        // API): the rows, the totals, the header's cart icon and the screen-reader
+        // summary, each in the store's own money format.
+        const items = document.getElementById('main-cart-items');
+        const footer = document.getElementById('main-cart-footer');
+        const sections = [items && items.dataset.id, footer && footer.dataset.id, 'cart--icon-bubble', 'cart--live-region-text'].filter(Boolean);
+
         const rootUrl = (window.Shopify && window.Shopify.routes && window.Shopify.routes.root) || '/';
         fetch(rootUrl + 'cart/update.js', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            Accept: 'application/json',
           },
-          body: JSON.stringify({ updates }),
+          body: JSON.stringify({ updates, sections, sections_url: window.location.pathname }),
         })
           .then(response => {
             if (!response.ok) throw new Error('Cart update error');
             return response.json();
           })
-          .then(data => {
-            this.updatePrices(data);
-            this.updateTotals();
-          })
+          .then(cart => this.render(cart, input && input.id))
           .catch(error => console.error('Error updating cart:', error));
       }, 500);
     }
 
-    updatePrices(cartData) {
-      if (!cartData || !cartData.items) return;
-      const items = cartData.items || [];
+    render(cart, focusId) {
+      const rendered = id => cart.sections && cart.sections[id] ? new DOMParser().parseFromString(cart.sections[id], 'text/html') : null;
 
-      items.forEach((item, index) => {
-        const row = document.querySelector(`tr#CartItem-${index + 1}`);
-        if (row) {
-          const priceElements = row.querySelectorAll('.cart-item__price-wrapper');
-
-          priceElements.forEach(priceWrapper => {
-            if (item.final_line_price !== item.original_line_price) {
-              const discPrice = priceWrapper.querySelector('.cart-item__discounted-prices');
-              if (discPrice) {
-                const dd = priceWrapper.querySelector('dd:last-of-type');
-                const s = priceWrapper.querySelector('s');
-                if (dd && window.Shopify && Shopify.formatMoney)
-                  dd.textContent = Shopify.formatMoney(item.final_line_price);
-                if (s && window.Shopify && Shopify.formatMoney)
-                  s.textContent = Shopify.formatMoney(item.original_line_price);
-              }
-            } else {
-              const priceEl = priceWrapper.querySelector('.price');
-              if (priceEl && window.Shopify && Shopify.formatMoney) {
-                priceEl.textContent = Shopify.formatMoney(item.final_line_price);
-              }
-            }
-          });
-        }
+      ['main-cart-items', 'main-cart-footer'].forEach(regionId => {
+        const region = document.getElementById(regionId);
+        const html = region && rendered(region.dataset.id);
+        const fresh = html && html.querySelector(`#${regionId} .js-contents`);
+        const stale = region && region.querySelector('.js-contents');
+        if (fresh && stale) stale.innerHTML = fresh.innerHTML;
+        const wrapper = region && region.closest('cart-items, .gradient');
+        if (wrapper) wrapper.classList.toggle('is-empty', cart.item_count === 0);
       });
-    }
 
-    updateTotals() {
-      const rootUrl = (window.Shopify && window.Shopify.routes && window.Shopify.routes.root) || '/';
-      fetch(rootUrl + 'cart.js')
-        .then(response => {
-          if (!response.ok) throw new Error('Cart fetch error');
-          return response.json();
-        })
-        .then(data => {
-          const totalElement = document.querySelector('[data-cart-total]');
-          if (totalElement && window.Shopify && Shopify.formatMoney) {
-            totalElement.textContent = Shopify.formatMoney(data.total_price);
-          }
+      const icon = rendered('cart--icon-bubble');
+      const iconContent = icon && icon.querySelector('.shopify-section');
+      if (iconContent) document.querySelectorAll('#cart-icon-bubble').forEach(el => (el.innerHTML = iconContent.innerHTML));
 
-          const subtotalElement = document.querySelector('[data-cart-subtotal]');
-          if (subtotalElement && window.Shopify && Shopify.formatMoney) {
-            subtotalElement.textContent = Shopify.formatMoney(data.subtotal_price);
-          }
-        })
-        .catch(err => console.error('Error fetching totals:', err));
+      const summary = rendered('cart--live-region-text');
+      const summaryContent = summary && summary.querySelector('.shopify-section');
+      const liveRegion = document.getElementById('cart-live-region-text');
+      if (summaryContent && liveRegion) liveRegion.textContent = summaryContent.textContent.trim();
+
+      if (typeof window.updateDossierCartUI === 'function') window.updateDossierCartUI(cart);
+
+      this.init();
+      const focus = focusId && document.getElementById(focusId);
+      if (focus) focus.focus();
     }
   }
 

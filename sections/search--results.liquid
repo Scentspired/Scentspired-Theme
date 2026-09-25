@@ -184,7 +184,7 @@
               class="facets-wrapper{% unless section.settings.enable_filtering %} facets-wrapper--no-filters{% endunless %}{% if section.settings.filter_type != 'vertical' %} page-width{% endif %}"
               id="main-search-filters"
               data-id="{{ section.id }}">
-              {% render "facets",
+              {% render "catalog--facets",
                 results: search,
                 enable_filtering: section.settings.enable_filtering,
                 enable_sorting: section.settings.enable_sorting,
@@ -280,7 +280,7 @@
                 {%- endfor -%}
               </ul>
               {%- if paginate.pages > 1 -%}
-                {% render "pagination", paginate: paginate %}
+                {% render "ui--pagination", paginate: paginate %}
               {%- endif -%}
             </div>
           {%- endif -%}

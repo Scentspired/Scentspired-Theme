@@ -241,18 +241,6 @@
     "cart": {
       "name": "購物車",
       "settings": {
-        "cart_type": {
-          "label": "類型",
-          "drawer": {
-            "label": "導覽匣"
-          },
-          "page": {
-            "label": "頁面"
-          },
-          "notification": {
-            "label": "彈出式視窗通知"
-          }
-        },
         "show_vendor": {
           "label": "廠商"
         },

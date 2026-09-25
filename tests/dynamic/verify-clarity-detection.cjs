@@ -35,7 +35,7 @@ try {
 const clarityBugs = [
   {
     name: "mobileCartTrigger.addEventListener (83 sessions)",
-    file: "header.liquid",
+    file: "header--main.liquid",
     pattern: "mobilecarttrigger",
   },
   {
@@ -71,7 +71,7 @@ const clarityBugs = [
   { name: "null.style — bundle showStep (5 sessions)", file: "bundle--five-favourites.liquid", pattern: "style" },
   {
     name: "ReferenceError: MobileNavigation is not defined",
-    file: "header.liquid",
+    file: "header--main.liquid",
     pattern: "mobilenavigation",
   },
   {

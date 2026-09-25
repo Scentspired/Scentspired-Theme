@@ -227,18 +227,6 @@
     "cart": {
       "name": "Košík",
       "settings": {
-        "cart_type": {
-          "label": "Typ",
-          "drawer": {
-            "label": "Výsuvný panel"
-          },
-          "page": {
-            "label": "Stránka"
-          },
-          "notification": {
-            "label": "Notifikace ve vyskakovacím okně"
-          }
-        },
         "show_vendor": {
           "label": "Dodavatel"
         },

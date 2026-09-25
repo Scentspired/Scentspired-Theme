@@ -173,7 +173,7 @@
                   </footer>
                 </article>
               {%- endfor -%}
-              {% render "pagination", paginate: paginate, anchor: anchor_id %}
+              {% render "ui--pagination", paginate: paginate, anchor: anchor_id %}
             </div>
           {% endpaginate %}
         {%- endif -%}

@@ -113,12 +113,11 @@
     "social_tumblr_link": "@content:theme-settings.social_tumblr_link",
     "social_vimeo_link": "@content:theme-settings.social_vimeo_link",
     "currency_code_enabled": true,
-    "cart_type": "drawer",
     "show_vendor": false,
     "show_cart_note": false,
     "sections": {
-      "main-password-header": {
-        "type": "main-password-header",
+      "core--password-header": {
+        "type": "core--password-header",
         "custom_css": [
           ".link,.customer a {text-decoration: underline; text-underline-offset: 0.3rem; font-size: 1.7rem;}",
           "password-modal {background: #f4ff41; color: #000; border: 1px solid transparent; height: 48px; font-weight: 200; font-size: 13px; border-radius: 40px; text-transform: uppercase; text-decoration: none; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; padding: 0 28px; font-family: \"PPMori Regular\", sans-serif; transition: all 0.25s ease;}",
@@ -128,8 +127,8 @@
           "color_scheme": "scheme-1"
         }
       },
-      "main-password-footer": {
-        "type": "main-password-footer",
+      "core--password-footer": {
+        "type": "core--password-footer",
         "custom_css": [
           ".password__footer {display: none;}"
         ],
@@ -362,18 +361,17 @@
       "social_youtube_link": "",
       "social_vimeo_link": "",
       "currency_code_enabled": true,
-      "cart_type": "notification",
       "show_vendor": false,
       "show_cart_note": false,
       "sections": {
-        "main-password-header": {
-          "type": "main-password-header",
+        "core--password-header": {
+          "type": "core--password-header",
           "settings": {
             "color_scheme": "scheme-1"
           }
         },
-        "main-password-footer": {
-          "type": "main-password-footer",
+        "core--password-footer": {
+          "type": "core--password-footer",
           "settings": {
             "color_scheme": "scheme-1"
           }

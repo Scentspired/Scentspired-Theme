@@ -227,18 +227,6 @@
     "cart": {
       "name": "Carrinho",
       "settings": {
-        "cart_type": {
-          "label": "Tipo",
-          "drawer": {
-            "label": "Gaveta"
-          },
-          "page": {
-            "label": "Página"
-          },
-          "notification": {
-            "label": "Notificação pop-up"
-          }
-        },
         "show_vendor": {
           "label": "Fornecedor"
         },

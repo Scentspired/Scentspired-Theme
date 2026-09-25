@@ -1336,26 +1336,6 @@
     "name": "t:settings_schema.cart.name",
     "settings": [
       {
-        "type": "select",
-        "id": "cart_type",
-        "options": [
-          {
-            "value": "drawer",
-            "label": "t:settings_schema.cart.settings.cart_type.drawer.label"
-          },
-          {
-            "value": "page",
-            "label": "t:settings_schema.cart.settings.cart_type.page.label"
-          },
-          {
-            "value": "notification",
-            "label": "t:settings_schema.cart.settings.cart_type.notification.label"
-          }
-        ],
-        "default": "notification",
-        "label": "t:settings_schema.cart.settings.cart_type.label"
-      },
-      {
         "type": "checkbox",
         "id": "show_vendor",
         "label": "t:settings_schema.cart.settings.show_vendor.label",

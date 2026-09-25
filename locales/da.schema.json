@@ -227,18 +227,6 @@
     "cart": {
       "name": "Indkøbskurv",
       "settings": {
-        "cart_type": {
-          "label": "Type",
-          "drawer": {
-            "label": "Skuffe"
-          },
-          "page": {
-            "label": "Side"
-          },
-          "notification": {
-            "label": "Pop op-meddelelse"
-          }
-        },
         "show_vendor": {
           "label": "Forhandler"
         },

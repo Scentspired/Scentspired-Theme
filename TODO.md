@@ -178,7 +178,7 @@ later: each is now reachable from one place.
 - **What:** after the first currency fix (`best-sellers`, `product-custom`,
   `featuredscent`), nine more hardcoded `£` and one hardcoded `$` remained:
   - `sections/five-box.liquid` ×3, `sections/trio-set.liquid` ×3
-  - `snippets/cart-drawer.liquid` ×3 — **renders on every page of the site**
+  - `snippets/cart--drawer.liquid` ×3 — **renders on every page of the site**
   - `assets/cart.js` ×2 — cart line totals and cart total
   - `assets/card--product.js` ×1 — a `'$'` fallback, which would have rendered
     **dollar** signs on the UK store whenever `formatMoney` was not supplied
@@ -223,7 +223,7 @@ later: each is now reachable from one place.
 ### 0.12 Two region defects fixed, with a deliberate behaviour change
 
 - **Status:** DONE — flagged because rendered output changed
-- **Footer home link.** `sections/footer.liquid` linked the footer background
+- **Footer home link.** `sections/footer--main.liquid` linked the footer background
   logo to `https://scentspired.com` — sending a **UK shopper to the USA
   storefront** from every page. Now `{{ routes.root_url }}`, which stays on the
   current storefront for this region and for every future one, and needs no
@@ -334,7 +334,7 @@ later: each is now reachable from one place.
   | words | file |
   | ---: | :--- |
   | 248 | `sections/product-info-tab.liquid` |
-  | 144 | `sections/header.liquid` |
+  | 144 | `sections/header--main.liquid` |
   | 115 | `sections/text-blog.liquid` |
   | 92 | `sections/dual-slider.liquid` |
 
@@ -455,7 +455,7 @@ later: each is now reachable from one place.
 
 - **Status:** ✅ RESOLVED & IMPLEMENTED
 - **Resolution:**
-  - `snippets/cart-drawer.liquid` dynamically detects storefront region via currency/domain checks:
+  - `snippets/cart--drawer.liquid` dynamically detects storefront region via currency/domain checks:
     - **UK (`is_uk`):** Threshold is `3500` cents (£35.00), default shipping cost `395` cents (£3.95), currency symbol `'£'`.
     - **UAE (`is_uae`):** Threshold is `15000` cents (150 AED), default shipping cost `2500` cents (25 AED), currency symbol `'AED '`.
     - **USA (`is_usa`):** Threshold is `7000` cents ($70.00), default shipping cost `799` cents ($7.99), currency symbol `'$'`.
@@ -484,7 +484,7 @@ later: each is now reachable from one place.
     - `--font-family-brand-spired: 'PPEditorialNew Ultralight Italic', 'PPEditorialNew Italic', Georgia, serif;`
     - Global utility classes `.scentspired-brand-text` and `.brand-name-two-fonts`.
   - Created reusable modular component `snippets/brand-name.liquid` with configurable tag, link, and class attributes.
-  - Applied two-font brand composition to `snippets/header-logo.liquid`, `sections/header.liquid` (text logo fallbacks on desktop & mobile), and `sections/footer.liquid` (fallback brand watermark).
+  - Applied two-font brand composition to `snippets/header-logo.liquid`, `sections/header--main.liquid` (text logo fallbacks on desktop & mobile), and `sections/footer--main.liquid` (fallback brand watermark).
   - All test layers passed with 0 errors and 0 warnings. Testing remains toggled off in `tests/config/test-settings.json` (Acceleration Mode).
 
 ## 4. Regional Deployment Policy: UAE Live Auto-Update Only & Permanent UK/USA Lockdown

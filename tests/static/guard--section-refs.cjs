@@ -43,7 +43,7 @@ const snippets = listNames('snippets');
 const blocks = listNames('blocks');
 
 /** Shopify's own section types, which have no file in the theme. */
-const BUILTIN = new Set(['apps', '_blocks', 'main-password-header', 'main-password-footer']);
+const BUILTIN = new Set(['_blocks']);
 
 function walk(dir, out = []) {
   const p = path.join(ROOT, dir);

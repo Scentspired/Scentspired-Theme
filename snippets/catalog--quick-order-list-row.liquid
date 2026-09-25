@@ -274,7 +274,7 @@
             {% # theme-check-disable %}
             {% assign cart_qty = cart | item_count_for_variant: variant.id %}
             {% # theme-check-enable %}
-            {% render "quantity-input", variant: variant, min: 0 %}
+            {% render "ui--quantity-input", variant: variant, min: 0 %}
           {%- endif -%}
         </div>
         {% if cart_qty > 0 %}

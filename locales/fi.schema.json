@@ -241,18 +241,6 @@
     "cart": {
       "name": "Ostoskori",
       "settings": {
-        "cart_type": {
-          "label": "Tyyppi",
-          "drawer": {
-            "label": "Laatikko"
-          },
-          "page": {
-            "label": "Sivu"
-          },
-          "notification": {
-            "label": "Ponnahdusikkunailmoitukset"
-          }
-        },
         "show_vendor": {
           "label": "Myyjä"
         },

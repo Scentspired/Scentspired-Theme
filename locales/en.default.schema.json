@@ -279,18 +279,6 @@
     "cart": {
       "name": "Cart",
       "settings": {
-        "cart_type": {
-          "label": "Type",
-          "drawer": {
-            "label": "Drawer"
-          },
-          "page": {
-            "label": "Page"
-          },
-          "notification": {
-            "label": "Popup notification"
-          }
-        },
         "show_vendor": {
           "label": "Vendor"
         },

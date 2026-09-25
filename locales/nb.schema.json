@@ -227,18 +227,6 @@
     "cart": {
       "name": "Handlekurv",
       "settings": {
-        "cart_type": {
-          "label": "Type",
-          "drawer": {
-            "label": "Skuff"
-          },
-          "page": {
-            "label": "Side"
-          },
-          "notification": {
-            "label": "Popup-varsel"
-          }
-        },
         "show_vendor": {
           "label": "Selger"
         },

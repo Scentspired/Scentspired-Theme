@@ -134,7 +134,7 @@
       };
     </script>
 
-    {% render "meta-tags" %}
+    {% render "core--meta-tags" %}
 
     <script src="{{ 'constants.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>
@@ -392,13 +392,11 @@
     {%- endif -%}
     <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
 
-    {%- if settings.cart_type == "drawer" -%}
-      {{ "component-cart-drawer.css" | asset_url | stylesheet_tag }}
-      {{ "component-cart.css" | asset_url | stylesheet_tag }}
-      {{ "component-totals.css" | asset_url | stylesheet_tag }}
-      {{ "component-price.css" | asset_url | stylesheet_tag }}
-      {{ "component-discounts.css" | asset_url | stylesheet_tag }}
-    {%- endif -%}
+    {{ "component-cart-drawer.css" | asset_url | stylesheet_tag }}
+    {{ "component-cart.css" | asset_url | stylesheet_tag }}
+    {{ "component-totals.css" | asset_url | stylesheet_tag }}
+    {{ "component-price.css" | asset_url | stylesheet_tag }}
+    {{ "component-discounts.css" | asset_url | stylesheet_tag }}
 
     {%- unless settings.type_body_font.system? -%}
       {% comment %}theme-check-disable AssetPreload{% endcomment %}
@@ -716,9 +714,7 @@
       {{ "accessibility.skip_to_text" | t }}
     </a>
 
-    {%- if settings.cart_type == "drawer" -%}
-      {%- render "cart--drawer" -%}
-    {%- endif -%}
+    {%- render "cart--drawer" -%}
 
     {% sections "header-group" %}
 

@@ -63,7 +63,7 @@
       ]
     },
     "apps_8GiyRb": {
-      "type": "apps",
+      "type": "core--apps",
       "settings": {
         "include_margins": true
       },

@@ -77,7 +77,7 @@
                     open
                   {% endif %}>
                   <summary id="Summary-{{ block.id }}-{{ section.id }}">
-                    {% render "icon-accordion", icon: block.settings.icon %}
+                    {% render "ui--icon", icon: block.settings.icon %}
                     <h3 class="accordion__title inline-richtext h4">
                       {{ block.settings.heading | default: block.settings.page.title | escape }}
                     </h3>

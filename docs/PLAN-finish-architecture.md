@@ -63,17 +63,25 @@ animation, the commented-out `cart-drawer.js`. Kept, with the reason: Shopify's 
 pages (password, gift card, classic customer accounts) and code that runs on a state the
 crawl did not reach (a cart with items, active filters, social links set, the editor).
 
-**2. Names + the cart bug.** Rename to `domain--component` with a codemod over every
-reference (render/section tags, layouts, JS section requests, CSS/JS asset names, tests,
-docs): `header` → `core--header`, `footer` → `core--footer`, `apps` → `core--apps`,
-`cart-drawer` → `cart--drawer-section`, `main-cart-items` → `cart--items`,
-`predictive-search` → `search--predictive`, `main-password-header/footer` →
-`core--password-header/footer`, `bulk-quick-order-list` → `catalog--quick-order-list-section`
-(or removed if unused), snippets `price`, `pagination`, `facets`, `swatch`,
-`swatch-input`, `quantity-input`, `icon-accordion`, `meta-tags`,
-`country-/language-localization` → `catalog--…`, `ui--…`, `core--…`. Fix the cart
-scripts to request the sections that exist; prove on the dev store that adding to cart
-updates the bubble and the live region.
+**2. Names + the cart bug.** *(done)* Sections: `header` → `header--main`, `footer` →
+`footer--main` (beside `header--drawer`, `header--search`, …), `apps` → `core--apps`,
+`main-cart-items` → `cart--items`, `main-password-header/footer` →
+`core--password-header/footer` (also their keys in `settings_data.json`). Snippets:
+`price` → `catalog--price`, `facets` → `catalog--facets`, `price-facet` →
+`catalog--facet-price`, `swatch(-input)` → `catalog--swatch(-input)`, `pagination` →
+`ui--pagination`, `quantity-input` → `ui--quantity-input`, `icon-accordion` → `ui--icon`,
+`meta-tags` → `core--meta-tags`, `country-/language-localization` →
+`core--localization-country/-language`. Section groups keep Shopify's names
+(`header-group`, `footer-group`). `bulk-quick-order-list` is not renamed: it is reachable
+only from the legacy card, and goes with it in phase 4.
+The cart "bug" as scoped — scripts requesting sections that do not exist — was in code
+that never runs: the theme's cart type is the drawer, so `cart.js` was never loaded and
+Dawn's notification never rendered. Those went (`cart.js`, `cart-notification.js`, its
+stylesheet, snippet and two sections, Dawn's `cart-drawer` section, the `cart_type`
+setting). The real bug was on /cart: changing a quantity left the line price, the total
+and the header's cart count stale until reload (its script called a `Shopify.formatMoney`
+nothing defines). It now asks Shopify for the re-rendered rows, totals, cart icon and
+screen-reader summary in the same request (Section Rendering API).
 
 **3. Lists that grow.** Numbered settings → blocks, filled from content lists:
 product info tabs (icons), mobile video banner (categories), scent filter banner

@@ -11,9 +11,9 @@ graph TD
     %% Presentation Tier
     subgraph Presentation_Tier ["1. Presentation Tier (Liquid & SSR)"]
         THEME["layout/theme.liquid<br/>(Global HTML, Head, SEO, Meta)"]
-        CART["snippets/cart-drawer.liquid<br/>(Dynamic Tier Calculations, Shipping)"]
+        CART["snippets/cart--drawer.liquid<br/>(Dynamic Tier Calculations, Shipping)"]
         VIDEO["sections/Video-banner1.liquid<br/>(Hero Video, Category Labels)"]
-        FOOTER["sections/footer.liquid<br/>(Trustpilot Flags, Legal, Brand)"]
+        FOOTER["sections/footer--main.liquid<br/>(Trustpilot Flags, Legal, Brand)"]
         FIVEBOX["sections/five-box.liquid<br/>(Five Favourites Bundle Builder)"]
         BUNDLE["sections/bundle.liquid<br/>(Global 5-Box Page Builder)"]
         TRIO["sections/trio-set.liquid<br/>(Signature Trio Bundle Builder)"]
@@ -180,7 +180,7 @@ sequenceDiagram
 | **Facade & Registry Pattern** | `snippets/store-context.liquid` | Acts as the unified public interface for all presentation sections. Consumers query a single entry point without needing knowledge of underlying regional modules. |
 | **Strategy Dispatcher (Factory)** | `snippets/region-strategy.liquid`<br/>`snippets/region-detect.liquid` | Encapsulates polymorphic dispatch. Resolves the runtime store environment based on domain and currency. |
 | **Single Source of Truth (SSOT)** | `snippets/bundle-curated-brands.liquid` | Eliminates duplicated brand arrays across four bundle templates. Changing brand tags or ordering is done in exactly one file. |
-| **Inversion of Control (IoC)** | `sections/footer.liquid` (via `has_trustpilot`) | Presentation components query declarative feature flags rather than branching on geographic country codes (`if current_region == 'usa'`). |
+| **Inversion of Control (IoC)** | `sections/footer--main.liquid` (via `has_trustpilot`) | Presentation components query declarative feature flags rather than branching on geographic country codes (`if current_region == 'usa'`). |
 | **Zero-Coupling Provider** | `snippets/bundle-data.liquid` | Contains **0 instances of `current_region`** and **0 procedural switch cases**. Operates 100% region-agnostically. |
 
 ---
@@ -206,7 +206,7 @@ To introduce a new region (e.g. `ca` for Canada or `sa` for Saudi Arabia):
    ```
 4. **Zero Presentation Changes Required**:
    - `sections/five-box.liquid`, `bundle.liquid`, `trio-set.liquid`, `discovery.liquid` require **0 edits**.
-   - `layout/theme.liquid`, `snippets/cart-drawer.liquid`, `sections/Video-banner1.liquid` require **0 edits**.
+   - `layout/theme.liquid`, `snippets/cart--drawer.liquid`, `sections/Video-banner1.liquid` require **0 edits**.
    - `snippets/bundle-data.liquid` requires **0 edits**.
 
 ---

@@ -241,18 +241,6 @@
     "cart": {
       "name": "ตะกร้าสินค้า",
       "settings": {
-        "cart_type": {
-          "label": "ประเภท",
-          "drawer": {
-            "label": "ลิ้นชัก"
-          },
-          "page": {
-            "label": "หน้า"
-          },
-          "notification": {
-            "label": "การแจ้งเตือนแบบป๊อปอัป"
-          }
-        },
         "show_vendor": {
           "label": "ผู้ขาย"
         },

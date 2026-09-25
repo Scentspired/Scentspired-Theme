@@ -241,18 +241,6 @@
     "cart": {
       "name": "カート",
       "settings": {
-        "cart_type": {
-          "label": "タイプ",
-          "drawer": {
-            "label": "ドロワー"
-          },
-          "page": {
-            "label": "ページ"
-          },
-          "notification": {
-            "label": "ポップアップ通知"
-          }
-        },
         "show_vendor": {
           "label": "販売元"
         },

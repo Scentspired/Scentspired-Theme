@@ -227,18 +227,6 @@
     "cart": {
       "name": "Sepet",
       "settings": {
-        "cart_type": {
-          "label": "Tür",
-          "drawer": {
-            "label": "Çekmece"
-          },
-          "page": {
-            "label": "Sayfa"
-          },
-          "notification": {
-            "label": "Açılır pencere bildirimi"
-          }
-        },
         "show_vendor": {
           "label": "Satıcı"
         },

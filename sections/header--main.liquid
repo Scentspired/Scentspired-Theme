@@ -1,11 +1,6 @@
 <link rel="stylesheet" href="{{ 'component-list-menu.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-search.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-menu-drawer.css' | asset_url }}" media="print" onload="this.media='all'">
-<link
-  rel="stylesheet"
-  href="{{ 'component-cart-notification.css' | asset_url }}"
-  media="print"
-  onload="this.media='all'">
 {%- if section.settings.menu_type_desktop == "mega" -%}
   <link rel="stylesheet" href="{{ 'component-mega-menu.css' | asset_url }}" media="print" onload="this.media='all'">
 {%- endif -%}
@@ -77,8 +72,6 @@
     white-space: nowrap; /* prevents line break */
   }
 {%- endstyle -%}
-
-<script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
 
 {%- liquid
   for block in section.blocks
@@ -332,7 +325,7 @@
             {%- form "localization", id: "HeaderCountryForm", class: "localization-form" -%}
               <div>
                 <h2 class="visually-hidden" id="HeaderCountryLabel">{{ "localization.country_label" | t }}</h2>
-                {%- render "country-localization", localPosition: "HeaderCountry" -%}
+                {%- render "core--localization-country", localPosition: "HeaderCountry" -%}
               </div>
             {%- endform -%}
           </localization-form>
@@ -343,7 +336,7 @@
             {%- form "localization", id: "HeaderLanguageForm", class: "localization-form" -%}
               <div>
                 <h2 class="visually-hidden" id="HeaderLanguageLabel">{{ "localization.language_label" | t }}</h2>
-                {%- render "language-localization", localPosition: "HeaderLanguage" -%}
+                {%- render "core--localization-language", localPosition: "HeaderLanguage" -%}
               </div>
             {%- endform -%}
           </localization-form>
@@ -628,13 +621,6 @@
       </div>
     </div>
   </header>
-
-  {%- if settings.cart_type == "notification" -%}
-    {%- render "cart--notification",
-      color_scheme: section.settings.color_scheme,
-      desktop_menu_type: section.settings.menu_type_desktop
-    -%}
-  {%- endif -%}
 
   <!-- Move the closing dynamic header tag to after all header content -->
 </{{ header_tag }}>

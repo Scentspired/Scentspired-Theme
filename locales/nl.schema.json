@@ -227,18 +227,6 @@
     "cart": {
       "name": "Winkelwagen",
       "settings": {
-        "cart_type": {
-          "label": "Type",
-          "drawer": {
-            "label": "Optie"
-          },
-          "page": {
-            "label": "Pagina"
-          },
-          "notification": {
-            "label": "Pop-upmelding"
-          }
-        },
         "show_vendor": {
           "label": "Verkoper"
         },

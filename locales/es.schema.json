@@ -227,18 +227,6 @@
     "cart": {
       "name": "Carrito",
       "settings": {
-        "cart_type": {
-          "label": "Tipo",
-          "drawer": {
-            "label": "Lateral"
-          },
-          "page": {
-            "label": "Página"
-          },
-          "notification": {
-            "label": "Notificación emergente"
-          }
-        },
         "show_vendor": {
           "label": "Proveedor"
         },

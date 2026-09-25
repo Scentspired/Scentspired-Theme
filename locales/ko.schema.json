@@ -227,18 +227,6 @@
     "cart": {
       "name": "카트",
       "settings": {
-        "cart_type": {
-          "label": "유형",
-          "drawer": {
-            "label": "펼침 메뉴"
-          },
-          "page": {
-            "label": "페이지"
-          },
-          "notification": {
-            "label": "팝업 알림"
-          }
-        },
         "show_vendor": {
           "label": "공급업체"
         },

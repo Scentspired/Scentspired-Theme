@@ -227,18 +227,6 @@
     "cart": {
       "name": "购物车",
       "settings": {
-        "cart_type": {
-          "label": "类型",
-          "drawer": {
-            "label": "抽屉"
-          },
-          "page": {
-            "label": "页面"
-          },
-          "notification": {
-            "label": "弹出窗口通知"
-          }
-        },
         "show_vendor": {
           "label": "厂商"
         },

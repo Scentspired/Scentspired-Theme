@@ -227,18 +227,6 @@
     "cart": {
       "name": "Koszyk",
       "settings": {
-        "cart_type": {
-          "label": "Typ",
-          "drawer": {
-            "label": "Szuflada"
-          },
-          "page": {
-            "label": "Strona"
-          },
-          "notification": {
-            "label": "Powiadomienie w wyskakującym okienku"
-          }
-        },
         "show_vendor": {
           "label": "Dostawca"
         },

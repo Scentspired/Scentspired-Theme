@@ -227,18 +227,6 @@
     "cart": {
       "name": "Carrello",
       "settings": {
-        "cart_type": {
-          "label": "Tipo",
-          "drawer": {
-            "label": "Finestra"
-          },
-          "page": {
-            "label": "Pagina"
-          },
-          "notification": {
-            "label": "Notifica pop up"
-          }
-        },
         "show_vendor": {
           "label": "Venditore"
         },

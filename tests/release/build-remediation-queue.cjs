@@ -52,9 +52,8 @@ const priorityFiles = [
   "discovery.liquid",
   "best-sellers.liquid",
   "bundlediscovery.liquid",
-  "header.liquid",
+  "header--main.liquid",
   "product-info-tab.liquid",
-  "cart-drawer.liquid",
   "theme.liquid",
 ];
 

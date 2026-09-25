@@ -133,7 +133,7 @@
           {%- form "localization", id: "AnnouncementCountryForm", class: "localization-form" -%}
             <div>
               <h2 class="visually-hidden" id="AnnouncementCountryLabel">{{ "localization.country_label" | t }}</h2>
-              {%- render "country-localization", localPosition: "AnnouncementCountry" -%}
+              {%- render "core--localization-country", localPosition: "AnnouncementCountry" -%}
             </div>
           {%- endform -%}
         </localization-form>
@@ -144,7 +144,7 @@
           {%- form "localization", id: "AnnouncementLanguageForm", class: "localization-form" -%}
             <div>
               <h2 class="visually-hidden" id="AnnouncementLanguageLabel">{{ "localization.language_label" | t }}</h2>
-              {%- render "language-localization", localPosition: "AnnouncementLanguage" -%}
+              {%- render "core--localization-language", localPosition: "AnnouncementLanguage" -%}
             </div>
           {%- endform -%}
         </localization-form>

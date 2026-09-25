@@ -227,18 +227,6 @@
     "cart": {
       "name": "Warenkorb",
       "settings": {
-        "cart_type": {
-          "label": "Art",
-          "drawer": {
-            "label": "Einschub"
-          },
-          "page": {
-            "label": "Seite"
-          },
-          "notification": {
-            "label": "Pop-up-Benachrichtigung"
-          }
-        },
         "show_vendor": {
           "label": "Anbieter"
         },

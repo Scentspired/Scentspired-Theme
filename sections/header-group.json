@@ -40,7 +40,7 @@
       ]
     },
     "header": {
-      "type": "header",
+      "type": "header--main",
       "settings": {
         "logo_position": "middle-left",
         "mobile_logo_position": "center",

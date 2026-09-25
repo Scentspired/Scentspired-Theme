@@ -1464,7 +1464,7 @@
   ".shopify-hardcoded-text-section-content { letter-spacing: 0.02em }",
   ".shopify-hardcoded-text-section-content { line-height: 1 }"
  ],
- "sections\\footer.liquid": [
+ "sections\\footer--main.liquid": [
   ".brand-description { font-size: 14px }",
   ".brand-description { line-height: 1.6 }",
   ".brand-tagline { font-size: 16px }",
@@ -1498,7 +1498,7 @@
   ".footer-links a { font-size: 14px }",
   ".footer-links a { font-weight: 500 }"
  ],
- "sections\\header.liquid": [
+ "sections\\header--main.liquid": [
   ".col-button { font-family: ppmori regular, sans-serif }",
   ".col-button { font-size: 13px }",
   ".col-button { font-weight: 200 }",
