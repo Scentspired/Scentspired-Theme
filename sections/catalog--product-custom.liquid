@@ -80,12 +80,22 @@
       {{ region_currency_symbol }}{{ variant.price | divided_by: 100.0 | round: 2 }}
     </span>
 
-    {% if variant.compare_at_price and variant.compare_at_price > variant.price %}
+    {%- liquid
+      # The theme's one sale rule (snippets/sale--badge.liquid).
+      capture sale_on
+        render 'sale--is-on'
+      endcapture
+      capture sale_badge
+        render 'sale--badge', price: variant.price, compare_at_price: variant.compare_at_price
+      endcapture
+      assign sale_badge = sale_badge | strip
+    -%}
+    {% if sale_on == 'true' and variant.compare_at_price > variant.price %}
       <span class="ps-original-price" data-compare-price>
         {{ region_currency_symbol }}{{ variant.compare_at_price | divided_by: 100.0 | round: 2 }}
       </span>
-      <span class="ps-price-badge" data-sale-badge>Sale</span>
     {% endif %}
+    {% if sale_badge != blank %}<span class="ps-price-badge" data-sale-badge>{{ sale_badge }}</span>{% endif %}
   </div>
 
 </div>
@@ -208,7 +218,11 @@ document.addEventListener('DOMContentLoaded', function () {
     let compareEl = priceContainer.querySelector('[data-compare-price]');
     let badgeEl = priceContainer.querySelector('[data-sale-badge]');
 
-    if (compare && compare > price) {
+    // The theme's one sale rule (layout/theme.liquid).
+    const showsWasPrice = window.ScentspiredSale.showsWasPrice(price, compare);
+    const saleBadgeText = window.ScentspiredSale.badge(price, compare);
+
+    if (showsWasPrice) {
       if (!compareEl) {
         compareEl = document.createElement('span');
         compareEl.className = 'ps-original-price';
@@ -217,18 +231,22 @@ document.addEventListener('DOMContentLoaded', function () {
       }
       compareEl.textContent = currSym + (compare / 100).toFixed(2);
       compareEl.style.display = 'inline';
+    } else if (compareEl) {
+      compareEl.style.display = 'none';
+    }
 
+    if (saleBadgeText) {
       if (!badgeEl) {
         badgeEl = document.createElement('span');
         badgeEl.className = 'ps-price-badge';
         badgeEl.setAttribute('data-sale-badge', '');
-        badgeEl.textContent = 'Sale';
-        compareEl.parentNode.insertBefore(badgeEl, compareEl.nextSibling);
+        const after = compareEl || priceEl;
+        after.parentNode.insertBefore(badgeEl, after.nextSibling);
       }
+      badgeEl.textContent = saleBadgeText;
       badgeEl.style.display = 'inline-block';
-    } else {
-      if (compareEl) compareEl.style.display = 'none';
-      if (badgeEl) badgeEl.style.display = 'none';
+    } else if (badgeEl) {
+      badgeEl.style.display = 'none';
     }
   }
 

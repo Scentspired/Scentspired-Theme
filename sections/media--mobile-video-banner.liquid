@@ -365,26 +365,34 @@
                 let compareEl = card.querySelector('[data-compare-price]');
                 let badgeEl = card.querySelector('[data-sale-badge]');
 
-                if (compare && compare > price) {
+                // The theme's one sale rule (layout/theme.liquid).
+                const showsWasPrice = window.ScentspiredSale.showsWasPrice(price, compare);
+                const saleBadgeText = window.ScentspiredSale.badge(price, compare);
+
+                if (showsWasPrice) {
                   if (!compareEl) {
                     compareEl = document.createElement('span');
                     compareEl.className = 'original-price';
                     compareEl.setAttribute('data-compare-price', '');
                     priceDisplay.after(compareEl);
                   }
-
                   compareEl.textContent = currSym + (compare / 100).toFixed(2);
+                  compareEl.style.display = 'inline';
+                } else if (compareEl) {
+                  compareEl.remove();
+                }
 
+                if (saleBadgeText) {
                   if (!badgeEl) {
                     badgeEl = document.createElement('span');
                     badgeEl.className = 'price-badge';
                     badgeEl.setAttribute('data-sale-badge', '');
-                    badgeEl.textContent = 'Sale';
-                    compareEl.after(badgeEl);
+                    (compareEl || priceDisplay).after(badgeEl);
                   }
-                } else {
-                  if (compareEl) compareEl.remove();
-                  if (badgeEl) badgeEl.remove();
+                  badgeEl.textContent = saleBadgeText;
+                  badgeEl.style.display = 'inline';
+                } else if (badgeEl) {
+                  badgeEl.remove();
                 }
               });
               btn.dataset.listenerAttached = true;

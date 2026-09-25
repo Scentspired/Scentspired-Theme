@@ -35,6 +35,15 @@
     assign money_price_max = price_max | money_with_currency
   endif
 
+  # The theme's one sale rule (snippets/sale--badge.liquid): no sale styling while it is off.
+  capture sale_on
+    render 'sale--is-on'
+  endcapture
+  capture sale_badge
+    render 'sale--badge', price: price, compare_at_price: compare_at_price
+  endcapture
+  assign sale_badge = sale_badge | strip
+
   if target == product and product.price_varies
     assign money_price = "products.product.price.from_price_html" | t: price: money_price
   endif
@@ -46,8 +55,8 @@
       price
       {%- if price_class %} {{ price_class }}{% endif -%}
       {%- if available == false %} price--sold-out{% endif -%}
-      {%- if compare_at_price > price and product.quantity_price_breaks_configured? != true %} price--on-sale{% endif -%}
-      {%- if compare_at_price > price and product.quantity_price_breaks_configured? %} volume-pricing--sale-badge{% endif -%}
+      {%- if sale_on == 'true' and compare_at_price > price and product.quantity_price_breaks_configured? != true %} price--on-sale{% endif -%}
+      {%- if sale_on == 'true' and compare_at_price > price and product.quantity_price_breaks_configured? %} volume-pricing--sale-badge{% endif -%}
       {%- if product.price_varies == false and product.compare_at_price_varies %} price--no-compare{% endif -%}
       {%- if show_badges %} price--show-badge{% endif -%}
     ">
@@ -124,7 +133,7 @@
     </div>
     {%- if show_badges -%}
       <span class="badge price__badge-sale color-{{ settings.sale_badge_color_scheme }}">
-        {{ "products.product.on_sale" | t }}
+        {{ sale_badge }}
       </span>
 
       <span class="badge price__badge-sold-out color-{{ settings.sold_out_badge_color_scheme }}">

@@ -1,0 +1,11 @@
+{%- comment -%}
+  "true" while this region's sale is on (regions/<id>/content/sale.json,
+  sale_is_on), nothing otherwise. A struck-through "was" price shows only while
+  it is on, and only where Shopify's compare-at price is above the price.
+
+  Usage:
+    {%- capture sale_on -%}{% render 'sale--is-on' %}{%- endcapture -%}
+    {%- if sale_on == 'true' and variant.compare_at_price > variant.price -%} … was price … {%- endif -%}
+{%- endcomment -%}
+{%- capture sale_is_on -%}{% render 'region--content', key: 'sale.sale_is_on' %}{%- endcapture -%}
+{%- if sale_is_on contains 'true' -%}true{%- endif -%}

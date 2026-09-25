@@ -21,6 +21,12 @@ window.ScentspiredCard = (function () {
    * The storefront's currency symbol, published by layout/theme.liquid from
    * region data. Never hardcode it: one theme serves every region.
    */
+  // The theme's one sale rule (layout/theme.liquid, from the region's content/sale.json).
+  function sale() {
+    // Every page defines it; without it, show no sale rather than guess one.
+    return window.ScentspiredSale || { on: false, showsWasPrice: () => false, badge: () => '' };
+  }
+
   function currencySymbol() {
     return (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '';
   }
@@ -135,7 +141,7 @@ window.ScentspiredCard = (function () {
     const price = node.querySelector('[data-current-price]');
     if (price) price.textContent = first.price != null ? first.price : '';
 
-    const onSale = Number(first.compareAtPrice) > 0;
+    const onSale = sale().on && Number(first.compareAtPrice) > 0;
     set(node, 'compare-price', el => {
       if (onSale) {
         el.textContent = opts.formatPrice ? opts.formatPrice(first.compareAtPrice) : first.compareAtPrice;
@@ -222,7 +228,8 @@ window.ScentspiredCard = (function () {
     const price = node.querySelector('[data-price-display]');
     if (price) price.textContent = chosen.price != null ? chosen.price : '';
 
-    const hasDiscount = chosen.compareAtPrice && chosen.compareAtPrice > chosen.priceRaw;
+    const hasDiscount = sale().showsWasPrice(chosen.priceRaw, chosen.compareAtPrice);
+    const badgeText = sale().badge(chosen.priceRaw, chosen.compareAtPrice);
     const compare = node.querySelector('[data-compare-at-price-display]');
     const badge = node.querySelector('[data-price-badge]');
     if (compare) {
@@ -231,7 +238,10 @@ window.ScentspiredCard = (function () {
         : currencySymbol() + (chosen.compareAtPrice / 100).toFixed(2);
       compare.style.display = hasDiscount ? 'inline' : 'none';
     }
-    if (badge) badge.style.display = hasDiscount ? 'inline' : 'none';
+    if (badge) {
+      badge.textContent = badgeText;
+      badge.style.display = badgeText ? 'inline' : 'none';
+    }
 
     set(node, 'variants', el => {
       el.textContent = '';

@@ -2295,7 +2295,8 @@
 
       let hoverImage = product.images && product.images[1] ? this.normalizeImageUrl(product.images[1]) : image;
 
-      const discount = comparePrice > price ? Math.round(((comparePrice - price) / comparePrice) * 100) : 0;
+      // Shown only while the region's sale is on (window.ScentspiredSale, layout/theme.liquid).
+      const discount = window.ScentspiredSale.showsWasPrice(price, comparePrice) ? Math.round(((comparePrice - price) / comparePrice) * 100) : 0;
       const variantId = product.variants && product.variants[0] ? product.variants[0].id : product.id;
 
       return `

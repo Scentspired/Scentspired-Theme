@@ -150,6 +150,37 @@
 
     {% render 'core--telemetry' %}
 
+    {%- liquid
+      capture sale_on
+        render 'sale--is-on'
+      endcapture
+      capture sale_badge_text
+        render 'region--content', key: 'sale.badge_text'
+      endcapture
+      capture sale_badge_every
+        render 'region--content', key: 'sale.badge_on_every_product'
+      endcapture
+    -%}
+    <script>
+      /* The theme's one sale rule in the browser, as snippets/sale--badge.liquid is in
+         Liquid; set by the region's content/sale.json. Prices are Shopify's. */
+      window.ScentspiredSale = {
+        on: {{ sale_on | strip | json }} === 'true',
+        badgeText: {{ sale_badge_text | strip | json }},
+        badgeOnEveryProduct: {{ sale_badge_every | strip | json }},
+        showsWasPrice: function (price, compareAtPrice) {
+          return this.on && Number(compareAtPrice) > Number(price);
+        },
+        badge: function (price, compareAtPrice) {
+          if (!this.on) return '';
+          price = Number(price);
+          compareAtPrice = Number(compareAtPrice);
+          if (compareAtPrice > price) return this.badgeText.replace('[percent]', Math.floor(((compareAtPrice - price) * 100) / compareAtPrice));
+          return this.badgeOnEveryProduct;
+        },
+      };
+    </script>
+
     {{ content_for_header }}
 
     {%- liquid

@@ -474,7 +474,49 @@ function readRegionContent(regionId) {
   for (const f of fs.readdirSync(dir).filter((f) => f.endsWith('.json')).sort()) {
     out[f.replace(/\.json$/, '')] = stripComments(readJson(path.join(dir, f)));
   }
-  return out;
+  return applySale(out, regionId);
+}
+
+/**
+ * The sale: regions/<id>/content/sale.json. While "sale_is_on" is true, every
+ * value in its "overrides" that is not null replaces the same path in the
+ * region's content — a banner image, a heading, a cart message — everywhere
+ * that content is read (templates, the Liquid lookup, box pages). While it is
+ * false, the overrides do nothing. "overrides" mirrors the content files
+ * (npm run sale:skeleton writes the full shape, all null); a path that names
+ * no content fails the build, so a typo never silently does nothing.
+ */
+function applySale(content, regionId) {
+  const sale = content.sale;
+  if (!sale || !sale.overrides) return content;
+  const overrides = sale.overrides;
+  delete sale.overrides;                     // the lookup carries only the switch and badges
+  const errors = [];
+  const merge = (base, over, where) => {
+    for (const [k, v] of Object.entries(over)) {
+      if (v === null) continue;
+      const here = `${where}.${k}`;
+      if (base === null || typeof base !== 'object' || !(k in base)) {
+        if (Array.isArray(base) && /^\d+$/.test(k)) { base.push(v); continue; }   // an extra list item
+        errors.push(`${here} names nothing in the region's content`);
+        continue;
+      }
+      if (v && typeof v === 'object' && base[k] && typeof base[k] === 'object') merge(base[k], v, here);
+      else if (sale.sale_is_on === true) base[k] = v;
+    }
+  };
+  for (const [page, over] of Object.entries(overrides)) {
+    if (!(page in content) || page === 'sale') { errors.push(`overrides.${page}: there is no content/${page}.json`); continue; }
+    if (sale.sale_is_on !== true) { merge(JSON.parse(JSON.stringify(content[page])), over, `overrides.${page}`); continue; }  // check only
+    merge(content[page], over, `overrides.${page}`);
+  }
+  if (errors.length) {
+    const err = new Error(`regions/${regionId}/content/sale.json:\n   ${errors.slice(0, 20).join('\n   ')}`);
+    console.error(`\n❌ ${err.message}\n`);
+    err.handled = true;
+    throw err;
+  }
+  return content;
 }
 
 /** { 'global.cart_drawer.empty.heading': 'Oops...', … } — arrays by index. */

@@ -81,9 +81,9 @@
     "ids": 0
   },
   "sections/catalog--featured-scent.liquid": {
-    "total": 8,
+    "total": 7,
     "text": 1,
-    "js-text": 7,
+    "js-text": 6,
     "media": 0,
     "links": 0,
     "fallback": 0,
@@ -99,9 +99,9 @@
     "ids": 0
   },
   "sections/catalog--product-custom.liquid": {
-    "total": 18,
-    "text": 7,
-    "js-text": 7,
+    "total": 16,
+    "text": 6,
+    "js-text": 6,
     "media": 2,
     "links": 2,
     "fallback": 0,
@@ -288,9 +288,9 @@
     "ids": 0
   },
   "sections/media--mobile-video-banner.liquid": {
-    "total": 12,
+    "total": 11,
     "text": 7,
-    "js-text": 4,
+    "js-text": 3,
     "media": 1,
     "links": 0,
     "fallback": 0,
@@ -531,8 +531,8 @@
     "ids": 0
   },
   "snippets/card--product-carousel.liquid": {
-    "total": 2,
-    "text": 2,
+    "total": 1,
+    "text": 1,
     "js-text": 0,
     "media": 0,
     "links": 0,
@@ -585,6 +585,15 @@
     "ids": 0
   },
   "snippets/header--search.liquid": {
+    "total": 1,
+    "text": 1,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 0,
+    "ids": 0
+  },
+  "snippets/sale--is-on.liquid": {
     "total": 1,
     "text": 1,
     "js-text": 0,

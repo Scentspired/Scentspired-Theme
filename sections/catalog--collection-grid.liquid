@@ -738,21 +738,16 @@
           const compareAtPrice = firstAvailable.dataset.variantCompareAtPrice;
           const currentPrice = parseInt(firstAvailable.dataset.variantPriceRaw);
 
-          if (compareAtPrice && parseInt(compareAtPrice) > currentPrice) {
-            if (compareAtPriceEl) {
-              compareAtPriceEl.textContent = currSym + (parseInt(compareAtPrice) / 100).toFixed(2);
-              compareAtPriceEl.style.display = 'inline';
-            }
-            if (priceBadgeEl) {
-              priceBadgeEl.style.display = 'inline';
-            }
-          } else {
-            if (compareAtPriceEl) {
-              compareAtPriceEl.style.display = 'none';
-            }
-            if (priceBadgeEl) {
-              priceBadgeEl.style.display = 'none';
-            }
+          // The theme's one sale rule (layout/theme.liquid).
+          const showsWasPrice = window.ScentspiredSale.showsWasPrice(currentPrice, compareAtPrice);
+          const saleBadgeText = window.ScentspiredSale.badge(currentPrice, compareAtPrice);
+          if (compareAtPriceEl) {
+            if (showsWasPrice) compareAtPriceEl.textContent = currSym + (parseInt(compareAtPrice) / 100).toFixed(2);
+            compareAtPriceEl.style.display = showsWasPrice ? 'inline' : 'none';
+          }
+          if (priceBadgeEl) {
+            priceBadgeEl.textContent = saleBadgeText;
+            priceBadgeEl.style.display = saleBadgeText ? 'inline' : 'none';
           }
         }
 
@@ -802,21 +797,16 @@
       const compareAtPrice = btn.dataset.variantCompareAtPrice;
       const currentPrice = parseInt(btn.dataset.variantPriceRaw);
 
-      if (compareAtPrice && parseInt(compareAtPrice) > currentPrice) {
-        if (compareAtPriceEl) {
-          compareAtPriceEl.textContent = currSym + (parseInt(compareAtPrice) / 100).toFixed(2);
-          compareAtPriceEl.style.display = 'inline';
-        }
-        if (priceBadgeEl) {
-          priceBadgeEl.style.display = 'inline';
-        }
-      } else {
-        if (compareAtPriceEl) {
-          compareAtPriceEl.style.display = 'none';
-        }
-        if (priceBadgeEl) {
-          priceBadgeEl.style.display = 'none';
-        }
+      // The theme's one sale rule (layout/theme.liquid).
+      const showsWasPrice = window.ScentspiredSale.showsWasPrice(currentPrice, compareAtPrice);
+      const saleBadgeText = window.ScentspiredSale.badge(currentPrice, compareAtPrice);
+      if (compareAtPriceEl) {
+        if (showsWasPrice) compareAtPriceEl.textContent = currSym + (parseInt(compareAtPrice) / 100).toFixed(2);
+        compareAtPriceEl.style.display = showsWasPrice ? 'inline' : 'none';
+      }
+      if (priceBadgeEl) {
+        priceBadgeEl.textContent = saleBadgeText;
+        priceBadgeEl.style.display = saleBadgeText ? 'inline' : 'none';
       }
     });
 

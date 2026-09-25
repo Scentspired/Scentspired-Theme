@@ -576,7 +576,10 @@ function updateProductsDisplay() {
       const section = priceDisplay.closest('.price-section') || priceDisplay.parentElement;
       const comparePriceEl = section && section.querySelector('[data-compare-at-price-display]');
       const saleBadgeEl = section && section.querySelector('[data-price-badge]');
-      const onSale = comparePrice > 0;
+      // The theme's one sale rule (layout/theme.liquid).
+      const priceRaw = firstAvailableBtn.dataset.variantPriceRaw;
+      const onSale = window.ScentspiredSale.showsWasPrice(priceRaw, comparePrice);
+      const badgeText = window.ScentspiredSale.badge(priceRaw, comparePrice);
 
       priceDisplay.textContent = currentPrice;
       if (comparePriceEl) {
@@ -584,7 +587,8 @@ function updateProductsDisplay() {
         comparePriceEl.style.display = onSale ? 'inline' : 'none';
       }
       if (saleBadgeEl) {
-        saleBadgeEl.style.display = onSale ? 'inline' : 'none';
+        saleBadgeEl.textContent = badgeText;
+        saleBadgeEl.style.display = badgeText ? 'inline' : 'none';
       }
     }
   });
@@ -657,7 +661,10 @@ function rebindProductEvents() {
       const section = priceDisplay.closest('.price-section') || priceDisplay.parentElement;
       const comparePriceEl = section && section.querySelector('[data-compare-at-price-display]');
       const saleBadgeEl = section && section.querySelector('[data-price-badge]');
-      const onSale = comparePrice > 0;
+      // The theme's one sale rule (layout/theme.liquid).
+      const priceRaw = btn.dataset.variantPriceRaw;
+      const onSale = window.ScentspiredSale.showsWasPrice(priceRaw, comparePrice);
+      const badgeText = window.ScentspiredSale.badge(priceRaw, comparePrice);
 
       priceDisplay.textContent = currentPrice;
       if (comparePriceEl) {
@@ -665,7 +672,8 @@ function rebindProductEvents() {
         comparePriceEl.style.display = onSale ? 'inline' : 'none';
       }
       if (saleBadgeEl) {
-        saleBadgeEl.style.display = onSale ? 'inline' : 'none';
+        saleBadgeEl.textContent = badgeText;
+        saleBadgeEl.style.display = badgeText ? 'inline' : 'none';
       }
     });
   });
