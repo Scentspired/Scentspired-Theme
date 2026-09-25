@@ -593,15 +593,6 @@
     "fallback": 0,
     "ids": 0
   },
-  "snippets/sale--is-on.liquid": {
-    "total": 1,
-    "text": 1,
-    "js-text": 0,
-    "media": 0,
-    "links": 0,
-    "fallback": 0,
-    "ids": 0
-  },
   "snippets/swatch-input.liquid": {
     "total": 1,
     "text": 0,

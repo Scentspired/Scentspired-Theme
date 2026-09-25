@@ -1,37 +1,24 @@
 {%- comment -%}
   The sale badge for one price: its text, or nothing. The theme's one rule for
-  showing a sale, set per region in regions/<id>/content/sale.json:
+  showing a sale, and it is Shopify's: a product is on sale when its compare-at
+  price is above its price. Put products on sale (or take them off) in Shopify,
+  one by one, by collection, or all at once; the site follows.
 
-    sale is off (sale_is_on false)      nothing, on any product
-    Shopify's compare-at price is above
-    the price                           badge_text, where [percent] is that
-                                        product's saving, e.g. "[percent]% OFF"
-                                        -> "38% OFF"
-    otherwise                           badge_on_every_product ("" for none), for
-                                        a store-wide Shopify automatic discount
+  The wording is content: global.json "sale_badge" "text" ("Sale"), which a
+  look can change, e.g. to "[percent]% OFF" — [percent] is that product's
+  saving from its Shopify prices ("50% OFF").
 
-  The prices and so the percentage are always Shopify's. The same rule runs in
-  the browser as window.ScentspiredSale (layout/theme.liquid).
+  The same rule runs in the browser as window.ScentspiredSale (layout/theme.liquid).
 
   Usage:
     {%- capture badge -%}{% render 'sale--badge', price: variant.price, compare_at_price: variant.compare_at_price %}{%- endcapture -%}
 {%- endcomment -%}
 {%- liquid
-  capture sale_on
-    render 'sale--is-on'
-  endcapture
-  if sale_on == 'true'
-    if compare_at_price > price
-      capture badge_text
-        render 'region--content', key: 'sale.badge_text'
-      endcapture
-      assign saving_percent = compare_at_price | minus: price | times: 100 | divided_by: compare_at_price
-      echo badge_text | strip | replace: '[percent]', saving_percent
-    else
-      capture badge_text
-        render 'region--content', key: 'sale.badge_on_every_product'
-      endcapture
-      echo badge_text | strip
-    endif
+  if compare_at_price > price
+    capture badge_text
+      render 'region--content', key: 'global.sale_badge.text'
+    endcapture
+    assign saving_percent = compare_at_price | minus: price | times: 100 | divided_by: compare_at_price
+    echo badge_text | strip | replace: '[percent]', saving_percent
   endif
 -%}

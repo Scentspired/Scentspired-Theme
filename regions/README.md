@@ -26,15 +26,26 @@ npm run region:show -- uk
 | logo, favicon, social links, the store's app embeds | `regions/<id>/content/theme-settings.json` |
 | homepage SEO title and description | `regions/<id>/content/global.json` → `"seo"` |
 | boxes (bundles): pages, menus, the price a saving is shown against | `regions/<id>/content/boxes.json` |
-| **the sale**: on/off, badge text, what changes while it runs | `regions/<id>/content/sale.json` |
+| **which products are on sale, and by how much** | not here: in **Shopify**, each product's price and compare-at price (one by one, by collection, or all at once). The site shows the badge and struck-through price on exactly those products |
+| the sale badge's wording ("Sale") | `regions/<id>/content/global.json` → `"sale_badge"` |
+| **a look** (Christmas, a men's sale): banners, images, headlines while it runs | `regions/<id>/looks/<name>.json` (copy `_blank.json`); switch it on in `looks/_active.json` |
 | Trustpilot on/off, app or widget, URL, IDs | `regions/<id>/region.json` → `"trustpilot"` |
 | Google Analytics / Search Console | `regions/<id>/region.json` → `"analytics"` (shared defaults in `_defaults.json`) |
 | currency, shipping threshold and cost, return fee, contact emails | `regions/<id>/region.json` |
 | one piece of translated text | `regions/<id>/locales/<lang>.json` (only the keys that differ) |
 | **spacing, sizes, colours, section order, CSS** | not in a region: the theme's `templates/*.json`, `sections/*.json`, `config/settings_data.json` or the section's stylesheet, for every region at once |
 
-Prices are always Shopify's: set a product's price and compare-at price in
-Shopify; the sale's percentages are worked out from them.
+Sales and looks are separate:
+
+- **Sale (Shopify).** Set the sale price and compare-at price on the products
+  you want, in Shopify. The site shows "Sale" (or "[percent]% OFF", the saving
+  worked out from those prices) and the struck-through price on exactly those
+  products, and checkout charges the sale price. Nothing here changes a price.
+  A Shopify automatic discount is charged at checkout but never shown on
+  product pages: Shopify does not tell themes about it.
+- **Look (here).** `looks/_active.json` names the look the site wears, or `""`.
+  A look changes only how the site looks. `npm run looks:refresh` adds new
+  content fields to every look and rewrites `_blank.json`.
 
 Then `npm run compile -- <id>` builds it.
 
@@ -70,7 +81,7 @@ writes from this repository.
   `config/settings_data.json`, and no spacing, size, colour or CSS value in its
   content files.
 - `region.json` accepts only the keys in `_schema.json`.
-- A sale override that names no content fails the build.
+- A look that names no content, or an `_active.json` that names no look, fails the build.
 - A region has every page the default region (uk) has. It may have extra pages
   of its own (USA's `robots.txt`, UAE's waitlist).
 - Every value shared code reads resolves for the region, or the build names it.

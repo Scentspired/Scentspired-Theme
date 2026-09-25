@@ -81,16 +81,13 @@
     </span>
 
     {%- liquid
-      # The theme's one sale rule (snippets/sale--badge.liquid).
-      capture sale_on
-        render 'sale--is-on'
-      endcapture
+      # The theme's one sale rule (snippets/sale--badge.liquid): Shopify's prices.
       capture sale_badge
         render 'sale--badge', price: variant.price, compare_at_price: variant.compare_at_price
       endcapture
       assign sale_badge = sale_badge | strip
     -%}
-    {% if sale_on == 'true' and variant.compare_at_price > variant.price %}
+    {% if variant.compare_at_price > variant.price %}
       <span class="ps-original-price" data-compare-price>
         {{ region_currency_symbol }}{{ variant.compare_at_price | divided_by: 100.0 | round: 2 }}
       </span>

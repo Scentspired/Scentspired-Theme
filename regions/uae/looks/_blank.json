@@ -1,0 +1,1730 @@
+{
+  "$comment": [
+    "A LOOK: how the site looks during a season or a sale (Christmas, a men's sale, Black Friday).",
+    "Every field of this region's content files is here, null. Fill in only what this look changes: a banner",
+    "image, a headline, the announcement bar, the sale badge's wording (global.sale_badge.text, where [percent]",
+    "is a product's saving from its Shopify prices). Null keeps the normal value.",
+    "Switch it on in looks/_active.json. Prices are never here: put products on sale in Shopify (their price and",
+    "compare-at price); the site shows the badge and the struck-through price on exactly those products.",
+    "",
+    "This is the blank look: copy it to <name>.json and fill in what the new look changes."
+  ],
+  "article": {
+    "article": {
+      "tags": {
+        "label": null
+      },
+      "share": {
+        "share_label": null
+      },
+      "author_bio": {
+        "bio_text": null
+      },
+      "related_posts": {
+        "heading": null
+      },
+      "related_products": {
+        "heading": null
+      },
+      "newsletter": {
+        "heading": null,
+        "subtext": null,
+        "placeholder": null,
+        "button_text": null,
+        "success_message": null
+      }
+    }
+  },
+  "blog": {},
+  "boxes": {
+    "signature_trio": {
+      "page_template": null,
+      "page_url": null,
+      "banner": {
+        "heading": null,
+        "subheading": null,
+        "image_desktop": null,
+        "image_mobile": null
+      },
+      "builder_heading": null,
+      "box_name": null,
+      "product_handle": null,
+      "perfumes_per_box": null,
+      "perfume_collection_per_size": {
+        "50ml": null,
+        "100ml": null
+      },
+      "menu": {
+        "label": null,
+        "image": null,
+        "image_alt": null,
+        "shown_in": [
+          null,
+          null
+        ]
+      },
+      "homepage_card": {
+        "title": null,
+        "button_text": null,
+        "image_mobile": null,
+        "image_desktop": null
+      }
+    },
+    "five_favourites": {
+      "page_template": null,
+      "page_url": null,
+      "banner": {
+        "heading": null,
+        "subheading": null,
+        "image_desktop": null,
+        "image_mobile": null
+      },
+      "builder_heading": null,
+      "box_name": null,
+      "product_handle": null,
+      "perfumes_per_box": null,
+      "perfume_collection_per_size": {
+        "50ml": null,
+        "100ml": null
+      },
+      "menu": {
+        "label": null,
+        "image": null,
+        "image_alt": null,
+        "shown_in": [
+          null,
+          null
+        ]
+      },
+      "homepage_card": {
+        "title": null,
+        "button_text": null,
+        "image_mobile": null,
+        "image_desktop": null
+      }
+    },
+    "discovery_set": {
+      "page_template": null,
+      "page_url": null,
+      "banner": {
+        "heading": null,
+        "subheading": null,
+        "image_desktop": null,
+        "image_mobile": null
+      },
+      "builder_heading": null,
+      "box_name": null,
+      "product_handle": null,
+      "perfumes_per_box": null,
+      "perfume_collection": null,
+      "menu": {
+        "label": null,
+        "image": null,
+        "image_alt": null,
+        "shown_in": [
+          null,
+          null
+        ]
+      },
+      "homepage_card": {
+        "title": null,
+        "button_text": null,
+        "image_mobile": null,
+        "image_desktop": null
+      }
+    }
+  },
+  "cart": {},
+  "collection-men": {
+    "image_banner_1": {
+      "image": null,
+      "heading": {
+        "heading": null
+      },
+      "text": {
+        "text": null
+      }
+    },
+    "image_banner_2": {
+      "image": null,
+      "heading": {
+        "heading": null
+      },
+      "text": {
+        "text": null
+      }
+    },
+    "collection_grid": {
+      "brand_collection_handles": null,
+      "scent_collection_handles": null
+    },
+    "newsletter_banner": {
+      "background_image": null,
+      "heading": null,
+      "subheading": null,
+      "description": null
+    },
+    "featured_scent": {
+      "heading": null,
+      "subheading": null,
+      "collection": null,
+      "view_all_link": null
+    }
+  },
+  "collection-unisex": {
+    "image_banner_1": {
+      "image": null,
+      "heading": {
+        "heading": null
+      },
+      "text": {
+        "text": null
+      }
+    },
+    "image_banner_2": {
+      "image": null,
+      "heading": {
+        "heading": null
+      },
+      "text": {
+        "text": null
+      }
+    },
+    "collection_grid": {
+      "brand_collection_handles": null,
+      "scent_collection_handles": null
+    },
+    "newsletter_banner": {
+      "background_image": null,
+      "heading": null,
+      "subheading": null,
+      "description": null
+    },
+    "featured_scent": {
+      "heading": null,
+      "subheading": null,
+      "collection": null,
+      "view_all_link": null
+    }
+  },
+  "collection-without-name": {
+    "image_banner_1": {
+      "image": null,
+      "banner_link": null,
+      "banner_link_label": null,
+      "heading": {
+        "heading": null
+      },
+      "text": {
+        "text": null
+      }
+    },
+    "image_banner_2": {
+      "image": null,
+      "banner_link": null,
+      "banner_link_label": null,
+      "heading": {
+        "heading": null
+      },
+      "text": {
+        "text": null
+      }
+    },
+    "collection_grid": {
+      "brand_collection_handles": null,
+      "scent_collection_handles": null
+    },
+    "collapsible": {
+      "shown": null,
+      "caption": null,
+      "heading": null,
+      "items": [
+        {
+          "heading": null,
+          "row_content": null,
+          "page": null
+        },
+        {
+          "heading": null,
+          "row_content": null,
+          "page": null
+        },
+        {
+          "heading": null,
+          "row_content": null,
+          "page": null
+        },
+        {
+          "heading": null,
+          "row_content": null,
+          "page": null
+        },
+        {
+          "heading": null,
+          "row_content": null,
+          "page": null
+        }
+      ]
+    },
+    "newsletter_banner": {
+      "background_image": null,
+      "heading": null,
+      "subheading": null,
+      "description": null
+    },
+    "featured_scent": {
+      "heading": null,
+      "subheading": null,
+      "collection": null,
+      "view_all_link": null
+    }
+  },
+  "collection-women": {
+    "image_banner_1": {
+      "image": null,
+      "heading": {
+        "heading": null
+      },
+      "text": {
+        "text": null
+      }
+    },
+    "image_banner_2": {
+      "image": null,
+      "heading": {
+        "heading": null
+      },
+      "text": {
+        "text": null
+      }
+    },
+    "collection_grid": {
+      "brand_collection_handles": null,
+      "scent_collection_handles": null
+    },
+    "newsletter_banner": {
+      "background_image": null,
+      "heading": null,
+      "subheading": null,
+      "description": null
+    },
+    "featured_scent": {
+      "heading": null,
+      "subheading": null,
+      "collection": null,
+      "view_all_link": null
+    }
+  },
+  "collection": {
+    "image_banner_1": {
+      "image": null,
+      "heading": {
+        "heading": null
+      },
+      "text": {
+        "text": null
+      }
+    },
+    "image_banner_2": {
+      "image": null,
+      "heading": {
+        "heading": null
+      },
+      "text": {
+        "text": null
+      }
+    },
+    "collection_grid": {
+      "brand_collection_handles": null,
+      "scent_collection_handles": null
+    },
+    "newsletter_banner": {
+      "background_image": null,
+      "heading": null,
+      "subheading": null,
+      "description": null
+    },
+    "featured_scent": {
+      "heading": null,
+      "subheading": null,
+      "collection": null,
+      "view_all_link": null
+    }
+  },
+  "footer-group": {
+    "footer": {
+      "brand_description": null,
+      "footer_bg_image": null,
+      "brand_tagline": null,
+      "social_heading": null,
+      "facebook_url": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "threads_url": null,
+      "pinterest_url": null,
+      "youtube_url": null,
+      "sign_in_text": null,
+      "create_account_text": null,
+      "meet_heading": null,
+      "questions_heading": null,
+      "background_text": null,
+      "meet_link_1": {
+        "link_text": null,
+        "link_url": null
+      },
+      "meet_link_2": {
+        "link_text": null,
+        "link_url": null
+      },
+      "meet_link_3": {
+        "link_text": null,
+        "link_url": null
+      },
+      "meet_link_4": {
+        "link_text": null,
+        "link_url": null
+      },
+      "meet_link_5": {
+        "link_text": null,
+        "link_url": null
+      },
+      "meet_link_6": {
+        "link_text": null,
+        "link_url": null
+      },
+      "question_link_1": {
+        "link_text": null,
+        "link_url": null
+      },
+      "question_link_2": {
+        "link_text": null,
+        "link_url": null
+      },
+      "question_link_3": {
+        "link_text": null,
+        "link_url": null
+      },
+      "question_link_4": {
+        "link_text": null,
+        "link_url": null
+      },
+      "question_link_5": {
+        "link_text": null,
+        "link_url": null
+      }
+    },
+    "copyright": {
+      "copyright": {
+        "copyright_text": null
+      }
+    }
+  },
+  "global": {
+    "cart_drawer": {
+      "empty_cart": {
+        "shop_all_collection": null,
+        "featured_collections": [
+          {
+            "handle": null,
+            "name": null
+          },
+          {
+            "handle": null,
+            "name": null
+          },
+          {
+            "handle": null,
+            "name": null
+          },
+          {
+            "handle": null,
+            "name": null
+          }
+        ]
+      },
+      "offer": {
+        "label": null,
+        "note": null
+      }
+    },
+    "header": {
+      "mobile_menu": {
+        "shop": {
+          "label": null,
+          "link": null,
+          "shop_all": {
+            "label": null,
+            "link": null,
+            "image": null,
+            "image_alt": null
+          },
+          "fragrances_for": {
+            "title": null,
+            "women": {
+              "label": null,
+              "link": null,
+              "image": null,
+              "image_alt": null
+            },
+            "men": {
+              "label": null,
+              "link": null,
+              "image": null,
+              "image_alt": null
+            },
+            "unisex": {
+              "label": null,
+              "link": null,
+              "image": null,
+              "image_alt": null
+            }
+          },
+          "more_ways": {
+            "title": null,
+            "bestsellers": {
+              "label": null,
+              "link": null,
+              "image": null,
+              "image_alt": null
+            },
+            "notes_seasons": {
+              "label": null,
+              "link": null,
+              "image": null,
+              "image_alt": null
+            }
+          },
+          "bundles": {
+            "title": null
+          }
+        },
+        "find_your_scent": {
+          "label": null,
+          "link": null
+        },
+        "about_us": {
+          "label": null,
+          "link": null
+        },
+        "scent_notes": {
+          "label": null,
+          "link": null
+        },
+        "bundles": {
+          "label": null
+        }
+      },
+      "suggested_searches": [
+        null,
+        null
+      ]
+    },
+    "newsletter_banner": {
+      "background_image": null,
+      "heading": null,
+      "subheading": null,
+      "description": null
+    },
+    "seo": {
+      "homepage_title": null,
+      "homepage_description": null
+    },
+    "sale_badge": {
+      "text": null
+    }
+  },
+  "header-group": {
+    "announcement_bar": {
+      "announcement": {
+        "text": null,
+        "link": null
+      }
+    },
+    "header": {
+      "menu": null
+    }
+  },
+  "home": {
+    "video_banner": {
+      "main_title_part1": null,
+      "main_title_part2": null,
+      "subtitle_part1": null,
+      "subtitle_part2": null,
+      "side_text": null,
+      "button_text": null,
+      "button_link": null
+    },
+    "running_text_1": {
+      "text_left": null,
+      "text_center": null,
+      "icon_image": null,
+      "text_right": null
+    },
+    "featured_collections": {
+      "items": [
+        {
+          "collection": null,
+          "video_url": null,
+          "title": null,
+          "button_text": null,
+          "button_link": null
+        },
+        {
+          "collection": null,
+          "video_url": null,
+          "title": null,
+          "button_text": null,
+          "button_link": null
+        },
+        {
+          "collection": null,
+          "video_url": null,
+          "title": null,
+          "button_text": null,
+          "button_link": null
+        }
+      ]
+    },
+    "scent_stories": {
+      "title": null
+    },
+    "featured_scent": {
+      "heading": null,
+      "subheading": null,
+      "collection": null,
+      "view_all_link": null
+    },
+    "running_text_2": {
+      "shown": null,
+      "text_left": null,
+      "text_center": null,
+      "icon_image": null,
+      "text_right": null
+    },
+    "scent_filter_banner": {
+      "video_url": null,
+      "category_label_1": null,
+      "category_label_2": null,
+      "brand_heading_1": null,
+      "brand_collection_1": null,
+      "brand_button_url_1": null,
+      "brand_heading_2": null,
+      "brand_collection_2": null,
+      "brand_button_url_2": null,
+      "brand_heading_3": null,
+      "brand_collection_3": null,
+      "brand_button_url_3": null,
+      "brand_heading_4": null,
+      "brand_collection_4": null,
+      "brand_button_url_4": null,
+      "brand_heading_5": null,
+      "brand_collection_5": null,
+      "brand_button_url_5": null,
+      "brand_heading_6": null,
+      "brand_collection_6": null,
+      "brand_button_url_6": null,
+      "notes_heading_1": null,
+      "notes_collection_1": null,
+      "notes_button_url_1": null,
+      "notes_heading_2": null,
+      "notes_collection_2": null,
+      "notes_button_url_2": null,
+      "notes_heading_3": null,
+      "notes_collection_3": null,
+      "notes_button_url_3": null,
+      "notes_heading_4": null,
+      "notes_collection_4": null,
+      "notes_button_url_4": null,
+      "notes_heading_5": null,
+      "notes_collection_5": null,
+      "notes_button_url_5": null,
+      "notes_heading_6": null,
+      "notes_collection_6": null,
+      "notes_button_url_6": null
+    },
+    "mobile_video_banner": {
+      "heading_1": null,
+      "collection_1": null,
+      "heading_2": null,
+      "collection_2": null,
+      "heading_3": null,
+      "collection_3": null,
+      "heading_4": null,
+      "collection_4": null,
+      "heading_5": null,
+      "collection_5": null,
+      "heading_6": null,
+      "collection_6": null,
+      "heading_notes_1": null,
+      "collection_notes_1": null,
+      "heading_notes_2": null,
+      "collection_notes_2": null,
+      "heading_notes_3": null,
+      "collection_notes_3": null,
+      "heading_notes_4": null,
+      "collection_notes_4": null,
+      "heading_notes_5": null,
+      "collection_notes_5": null,
+      "heading_notes_6": null,
+      "collection_notes_6": null
+    },
+    "best_sellers": {
+      "section_title": null,
+      "collection": null,
+      "subheading": null,
+      "featured_image": null,
+      "view_all_link": null
+    },
+    "scent_carousel_1": {
+      "heading": null,
+      "subheading": null
+    },
+    "collection": {
+      "shown": null
+    },
+    "scent_carousel_2": {
+      "heading": null,
+      "subheading": null
+    },
+    "apps": {
+      "shown": null,
+      "firework_shoppable_video_ugc_firework_embed": {
+        "channel": null,
+        "playlist": null,
+        "embedtitle": null,
+        "hashtag": null
+      }
+    },
+    "scent_carousel_3": {
+      "heading": null,
+      "subheading": null
+    },
+    "instagram_grid": {
+      "instagram_grid": {
+        "instagram_url": null,
+        "image_1": null,
+        "image_2": null,
+        "image_3": null,
+        "image_4": null,
+        "image_5": null,
+        "image_6": null
+      }
+    },
+    "newsletter_banner": {
+      "background_image": null,
+      "heading": null,
+      "subheading": null,
+      "description": null
+    }
+  },
+  "info-pages": {
+    "sidebar_links": [
+      {
+        "label": null,
+        "url": null
+      },
+      {
+        "label": null,
+        "url": null
+      },
+      {
+        "label": null,
+        "url": null
+      },
+      {
+        "label": null,
+        "url": null
+      },
+      {
+        "label": null,
+        "url": null
+      },
+      {
+        "label": null,
+        "url": null
+      }
+    ]
+  },
+  "list-collections": {
+    "collection_list": {
+      "title": null
+    }
+  },
+  "not-found": {},
+  "page-about-us": {
+    "image_banner_1": {
+      "image": null,
+      "heading": {
+        "heading": null
+      }
+    },
+    "image_banner_2": {
+      "image": null,
+      "heading": {
+        "heading": null
+      }
+    },
+    "video_text": {
+      "video_url": null,
+      "text_content": null
+    },
+    "image_split_1": {
+      "image": null,
+      "eyebrow_text": null,
+      "heading": null,
+      "description": null,
+      "button_text": null,
+      "button_url": null
+    },
+    "image_split_2": {
+      "image": null,
+      "eyebrow_text": null,
+      "heading": null,
+      "description": null,
+      "button_text": null,
+      "button_url": null
+    },
+    "image_split_3": {
+      "image": null,
+      "eyebrow_text": null,
+      "heading": null,
+      "description": null,
+      "button_text": null,
+      "button_url": null
+    },
+    "perfume_story": {
+      "main_headline": null,
+      "story_text": null,
+      "tagline": null,
+      "button_text": null,
+      "button_link": null,
+      "hero_image": null
+    }
+  },
+  "page-about": {
+    "image_banner_1": {
+      "image": null,
+      "heading": {
+        "heading": null
+      }
+    },
+    "image_banner_2": {
+      "image": null,
+      "heading": {
+        "heading": null
+      }
+    },
+    "video_text": {
+      "video_url": null,
+      "text_content": null
+    },
+    "image_split_1": {
+      "image": null,
+      "eyebrow_text": null,
+      "heading": null,
+      "description": null,
+      "button_text": null,
+      "button_url": null
+    },
+    "image_split_2": {
+      "image": null,
+      "eyebrow_text": null,
+      "heading": null,
+      "description": null,
+      "button_text": null,
+      "button_url": null
+    },
+    "image_split_3": {
+      "image": null,
+      "eyebrow_text": null,
+      "heading": null,
+      "description": null,
+      "button_text": null,
+      "button_url": null
+    },
+    "perfume_story": {
+      "main_headline": null,
+      "story_text": null,
+      "tagline": null,
+      "button_text": null,
+      "button_link": null,
+      "hero_image": null
+    }
+  },
+  "page-blog": {
+    "image_banner": {
+      "image": null
+    },
+    "zigzag_blog": {
+      "heading_label": null,
+      "heading_title": null,
+      "heading_subtitle": null,
+      "items": [
+        {
+          "image": null,
+          "tag": null,
+          "title": null,
+          "excerpt": null,
+          "link": null,
+          "link_label": null
+        },
+        {
+          "image": null,
+          "tag": null,
+          "title": null,
+          "excerpt": null,
+          "link": null,
+          "link_label": null
+        },
+        {
+          "image": null,
+          "tag": null,
+          "title": null,
+          "excerpt": null,
+          "link": null,
+          "link_label": null
+        },
+        {
+          "image": null,
+          "tag": null,
+          "title": null,
+          "excerpt": null,
+          "link": null,
+          "link_label": null
+        },
+        {
+          "image": null,
+          "tag": null,
+          "title": null,
+          "excerpt": null,
+          "link": null,
+          "link_label": null
+        },
+        {
+          "image": null,
+          "tag": null,
+          "title": null,
+          "excerpt": null,
+          "link": null,
+          "link_label": null
+        },
+        {
+          "image": null,
+          "tag": null,
+          "title": null,
+          "excerpt": null,
+          "link": null,
+          "link_label": null
+        },
+        {
+          "image": null,
+          "tag": null,
+          "title": null,
+          "excerpt": null,
+          "link": null,
+          "link_label": null
+        },
+        {
+          "image": null,
+          "tag": null,
+          "title": null,
+          "excerpt": null,
+          "link": null,
+          "link_label": null
+        },
+        {
+          "image": null,
+          "tag": null,
+          "title": null,
+          "excerpt": null,
+          "link": null,
+          "link_label": null
+        },
+        {
+          "image": null,
+          "tag": null,
+          "title": null,
+          "excerpt": null,
+          "link": null,
+          "link_label": null
+        },
+        {
+          "image": null,
+          "tag": null,
+          "title": null,
+          "excerpt": null,
+          "link": null,
+          "link_label": null
+        },
+        {
+          "image": null,
+          "tag": null,
+          "title": null,
+          "excerpt": null,
+          "link": null,
+          "link_label": null
+        },
+        {
+          "image": null,
+          "tag": null,
+          "title": null,
+          "excerpt": null,
+          "link": null,
+          "link_label": null
+        },
+        {
+          "image": null,
+          "tag": null,
+          "title": null,
+          "excerpt": null,
+          "link": null,
+          "link_label": null
+        },
+        {
+          "image": null,
+          "tag": null,
+          "title": null,
+          "excerpt": null,
+          "link": null,
+          "link_label": null,
+          "shown": null
+        }
+      ]
+    }
+  },
+  "page-blogs": {
+    "image_banner": {
+      "image": null,
+      "heading": {
+        "heading": null
+      },
+      "text": {
+        "text": null
+      },
+      "buttons": {
+        "button_label_1": null,
+        "button_link_1": null,
+        "button_label_2": null,
+        "button_link_2": null
+      }
+    },
+    "zigzag_blog": {
+      "heading_label": null,
+      "heading_title": null,
+      "heading_subtitle": null,
+      "items": [
+        {
+          "image": null,
+          "tag": null,
+          "title": null,
+          "excerpt": null,
+          "link": null,
+          "link_label": null
+        },
+        {
+          "image": null,
+          "tag": null,
+          "title": null,
+          "excerpt": null,
+          "link": null,
+          "link_label": null
+        },
+        {
+          "image": null,
+          "tag": null,
+          "title": null,
+          "excerpt": null,
+          "link": null,
+          "link_label": null
+        },
+        {
+          "image": null,
+          "tag": null,
+          "title": null,
+          "excerpt": null,
+          "link": null,
+          "link_label": null
+        },
+        {
+          "image": null,
+          "tag": null,
+          "title": null,
+          "excerpt": null,
+          "link": null,
+          "link_label": null
+        },
+        {
+          "image": null,
+          "tag": null,
+          "title": null,
+          "excerpt": null,
+          "link": null,
+          "link_label": null
+        },
+        {
+          "image": null,
+          "tag": null,
+          "title": null,
+          "excerpt": null,
+          "link": null,
+          "link_label": null
+        },
+        {
+          "image": null,
+          "tag": null,
+          "title": null,
+          "excerpt": null,
+          "link": null,
+          "link_label": null
+        },
+        {
+          "image": null,
+          "tag": null,
+          "title": null,
+          "excerpt": null,
+          "link": null,
+          "link_label": null
+        },
+        {
+          "image": null,
+          "tag": null,
+          "title": null,
+          "excerpt": null,
+          "link": null,
+          "link_label": null
+        },
+        {
+          "image": null,
+          "tag": null,
+          "title": null,
+          "excerpt": null,
+          "link": null,
+          "link_label": null
+        },
+        {
+          "image": null,
+          "tag": null,
+          "title": null,
+          "excerpt": null,
+          "link": null,
+          "link_label": null
+        },
+        {
+          "image": null,
+          "tag": null,
+          "title": null,
+          "excerpt": null,
+          "link": null,
+          "link_label": null
+        },
+        {
+          "image": null,
+          "tag": null,
+          "title": null,
+          "excerpt": null,
+          "link": null,
+          "link_label": null
+        },
+        {
+          "image": null,
+          "tag": null,
+          "title": null,
+          "excerpt": null,
+          "link": null,
+          "link_label": null
+        }
+      ]
+    }
+  },
+  "page-bundle": {
+    "image_banner_1": {
+      "image": null,
+      "heading": {
+        "heading": null
+      },
+      "text": {
+        "text": null
+      }
+    },
+    "image_banner_2": {
+      "image": null,
+      "heading": {
+        "heading": null
+      },
+      "text": {
+        "text": null
+      }
+    },
+    "newsletter_banner": {
+      "background_image": null,
+      "heading": null,
+      "subheading": null,
+      "description": null
+    }
+  },
+  "page-collabs": {
+    "apps": {
+      "collabs_application_page": {
+        "heading": null
+      }
+    }
+  },
+  "page-contact": {
+    "contact": {
+      "page_title": null,
+      "main_heading": null,
+      "main_description": null
+    },
+    "newsletter_banner": {
+      "background_image": null,
+      "heading": null,
+      "subheading": null,
+      "description": null
+    }
+  },
+  "page-disclaimer": {
+    "privacy_policy": {
+      "page_title": null,
+      "privacy_policy_block": {
+        "section_title": null,
+        "section_content": null
+      }
+    },
+    "newsletter_banner": {
+      "background_image": null,
+      "heading": null,
+      "subheading": null,
+      "description": null
+    }
+  },
+  "page-faqs": {
+    "faq": {
+      "page_title": null,
+      "items": [
+        {
+          "type": null,
+          "title": null
+        },
+        {
+          "type": null,
+          "question": null,
+          "answer": null
+        },
+        {
+          "type": null,
+          "question": null,
+          "answer": null
+        },
+        {
+          "type": null,
+          "question": null,
+          "answer": null
+        },
+        {
+          "type": null,
+          "question": null,
+          "answer": null
+        },
+        {
+          "type": null,
+          "question": null,
+          "answer": null
+        },
+        {
+          "type": null,
+          "question": null,
+          "answer": null
+        },
+        {
+          "type": null,
+          "question": null,
+          "answer": null
+        },
+        {
+          "type": null,
+          "question": null,
+          "answer": null
+        },
+        {
+          "type": null,
+          "question": null,
+          "answer": null
+        },
+        {
+          "type": null,
+          "question": null,
+          "answer": null
+        },
+        {
+          "type": null,
+          "question": null,
+          "answer": null
+        },
+        {
+          "type": null,
+          "question": null,
+          "answer": null
+        },
+        {
+          "type": null,
+          "question": null,
+          "answer": null
+        },
+        {
+          "type": null,
+          "question": null,
+          "answer": null
+        },
+        {
+          "type": null,
+          "question": null,
+          "answer": null
+        },
+        {
+          "type": null,
+          "question": null,
+          "answer": null
+        },
+        {
+          "type": null,
+          "question": null,
+          "answer": null
+        },
+        {
+          "type": null,
+          "title": null
+        },
+        {
+          "type": null,
+          "question": null,
+          "answer": null
+        },
+        {
+          "type": null,
+          "question": null,
+          "answer": null
+        },
+        {
+          "type": null,
+          "question": null,
+          "answer": null
+        },
+        {
+          "type": null,
+          "question": null,
+          "answer": null
+        },
+        {
+          "type": null,
+          "question": null,
+          "answer": null
+        },
+        {
+          "type": null,
+          "question": null,
+          "answer": null
+        },
+        {
+          "type": null,
+          "question": null,
+          "answer": null
+        },
+        {
+          "type": null,
+          "question": null,
+          "answer": null
+        },
+        {
+          "type": null,
+          "title": null
+        },
+        {
+          "type": null,
+          "question": null,
+          "answer": null
+        },
+        {
+          "type": null,
+          "question": null,
+          "answer": null
+        }
+      ]
+    },
+    "newsletter_banner": {
+      "background_image": null,
+      "heading": null,
+      "subheading": null,
+      "description": null
+    }
+  },
+  "page-fragrance-finder": {},
+  "page-launching-soon": {},
+  "page-privacy-policy": {
+    "privacy_policy": {
+      "page_title": null,
+      "items": [
+        {
+          "section_title": null,
+          "section_content": null
+        }
+      ]
+    },
+    "newsletter_banner": {
+      "background_image": null,
+      "heading": null,
+      "subheading": null,
+      "description": null
+    }
+  },
+  "page-returns": {
+    "privacy_policy": {
+      "page_title": null,
+      "privacy_policy_block": {
+        "section_title": null,
+        "section_content": null
+      }
+    },
+    "newsletter_banner": {
+      "background_image": null,
+      "heading": null,
+      "subheading": null,
+      "description": null
+    }
+  },
+  "page-scent-2": {
+    "radical": {
+      "title": null,
+      "description": null,
+      "button_text": null,
+      "button_url": null,
+      "desktop_image": null,
+      "mobile_image": null
+    },
+    "custom_collection": {
+      "section_heading": null,
+      "items": [
+        {
+          "collection": null,
+          "collection_title": null,
+          "collection_description": null,
+          "collection_image": null,
+          "collection_url": null,
+          "button_text": null
+        },
+        {
+          "collection": null,
+          "collection_title": null,
+          "collection_description": null,
+          "collection_image": null,
+          "collection_url": null,
+          "button_text": null
+        },
+        {
+          "collection": null,
+          "collection_title": null,
+          "collection_description": null,
+          "collection_image": null,
+          "collection_url": null,
+          "button_text": null
+        }
+      ]
+    },
+    "image_split_1": {
+      "image": null,
+      "eyebrow_text": null,
+      "heading": null,
+      "description": null,
+      "button_text": null,
+      "button_url": null
+    },
+    "image_split_2": {
+      "image": null,
+      "eyebrow_text": null,
+      "heading": null,
+      "description": null,
+      "button_text": null,
+      "button_url": null
+    },
+    "newsletter_banner": {
+      "background_image": null,
+      "heading": null,
+      "subheading": null,
+      "description": null
+    }
+  },
+  "page-scent-families": {
+    "image_banner_1": {
+      "image": null,
+      "heading": {
+        "heading": null
+      },
+      "text": {
+        "text": null
+      }
+    },
+    "image_banner_2": {
+      "image": null,
+      "heading": {
+        "heading": null
+      },
+      "text": {
+        "text": null
+      }
+    },
+    "rich_text": {
+      "heading": {
+        "heading": null
+      }
+    },
+    "featured_collections": {
+      "items": [
+        {
+          "collection": null,
+          "video_url": null,
+          "title": null,
+          "button_text": null,
+          "button_link": null
+        },
+        {
+          "collection": null,
+          "video_url": null,
+          "title": null,
+          "button_text": null,
+          "button_link": null
+        },
+        {
+          "collection": null,
+          "video_url": null,
+          "title": null,
+          "button_text": null,
+          "button_link": null
+        },
+        {
+          "collection": null,
+          "video_url": null,
+          "title": null,
+          "button_text": null,
+          "button_link": null
+        }
+      ]
+    },
+    "newsletter_banner": {
+      "background_image": null,
+      "heading": null,
+      "subheading": null,
+      "description": null
+    }
+  },
+  "page-scent-notes": {
+    "image_banner_1": {
+      "image": null,
+      "heading": {
+        "heading": null
+      },
+      "text": {
+        "text": null
+      }
+    },
+    "image_banner_2": {
+      "image": null,
+      "heading": {
+        "heading": null
+      },
+      "text": {
+        "text": null
+      }
+    },
+    "rich_text": {
+      "heading": {
+        "heading": null
+      }
+    },
+    "featured_collections": {
+      "items": [
+        {
+          "collection": null,
+          "title": null,
+          "button_text": null,
+          "button_link": null
+        },
+        {
+          "collection": null,
+          "title": null,
+          "button_text": null,
+          "button_link": null
+        },
+        {
+          "collection": null,
+          "title": null,
+          "button_text": null,
+          "button_link": null
+        },
+        {
+          "collection": null,
+          "title": null,
+          "button_text": null,
+          "button_link": null
+        }
+      ]
+    }
+  },
+  "page-termsncondition": {
+    "privacy_policy": {
+      "page_title": null,
+      "items": [
+        {
+          "section_title": null,
+          "section_content": null
+        }
+      ]
+    },
+    "newsletter_banner": {
+      "background_image": null,
+      "heading": null,
+      "subheading": null,
+      "description": null
+    }
+  },
+  "page": {},
+  "password": {
+    "email_signup": {
+      "image": null,
+      "heading": {
+        "heading": null
+      },
+      "paragraph": {
+        "text": null
+      }
+    }
+  },
+  "product": {
+    "product_info_tab": {
+      "about_image": null,
+      "ingredients_image": null,
+      "faq_image": null,
+      "icon_1": null,
+      "icon_1_text": null,
+      "icon_2": null,
+      "icon_2_text": null,
+      "icon_3": null,
+      "icon_3_text": null,
+      "icon_4": null,
+      "icon_4_text": null,
+      "icon_5": null,
+      "icon_5_text": null,
+      "usage_image": null,
+      "items": [
+        {
+          "type": null,
+          "question": null,
+          "answer": null
+        },
+        {
+          "type": null,
+          "question": null,
+          "answer": null
+        },
+        {
+          "type": null,
+          "question": null,
+          "answer": null
+        },
+        {
+          "type": null,
+          "question": null,
+          "answer": null
+        },
+        {
+          "type": null,
+          "question": null,
+          "answer": null
+        },
+        {
+          "type": null,
+          "question": null,
+          "answer": null,
+          "shown": null
+        },
+        {
+          "type": null,
+          "ingredient_name": null,
+          "safety_rating": null,
+          "concentration": null
+        },
+        {
+          "type": null,
+          "ingredient_name": null,
+          "safety_rating": null,
+          "concentration": null
+        },
+        {
+          "type": null,
+          "ingredient_name": null,
+          "safety_rating": null,
+          "concentration": null
+        },
+        {
+          "type": null,
+          "ingredient_name": null,
+          "safety_rating": null,
+          "concentration": null
+        },
+        {
+          "type": null,
+          "ingredient_name": null,
+          "safety_rating": null,
+          "concentration": null
+        },
+        {
+          "type": null,
+          "ingredient_name": null,
+          "safety_rating": null,
+          "concentration": null
+        },
+        {
+          "type": null,
+          "ingredient_name": null,
+          "safety_rating": null,
+          "concentration": null
+        },
+        {
+          "type": null,
+          "ingredient_name": null,
+          "safety_rating": null,
+          "concentration": null
+        }
+      ]
+    },
+    "scent_stories": {
+      "shown": null,
+      "title": null
+    },
+    "featured_scent": {
+      "heading": null,
+      "subheading": null,
+      "collection": null,
+      "view_all_link": null
+    },
+    "newsletter_banner": {
+      "background_image": null,
+      "heading": null,
+      "subheading": null,
+      "description": null
+    }
+  },
+  "search": {},
+  "theme-settings": {
+    "logo": null,
+    "favicon": null,
+    "brand_description": null,
+    "social_facebook_link": null,
+    "social_instagram_link": null,
+    "social_youtube_link": null,
+    "social_tiktok_link": null,
+    "social_twitter_link": null,
+    "social_snapchat_link": null,
+    "social_pinterest_link": null,
+    "social_tumblr_link": null,
+    "social_vimeo_link": null
+  }
+}

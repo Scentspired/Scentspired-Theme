@@ -72,17 +72,14 @@
     assign card_price = ''
   endif
 
-  # The sale, by the theme's one rule (snippets/sale--badge.liquid), decided
-  # here so the struck-through price and badge are right in the markup rather
-  # than revealed by script.
+  # The sale, by the theme's one rule (snippets/sale--badge.liquid): Shopify's
+  # prices. Decided here so the struck-through price and badge are right in the
+  # markup rather than revealed by script.
   assign card_on_sale = false
   assign card_compare_price = ''
   assign card_badge = ''
   if product != blank
-    capture sale_on
-      render 'sale--is-on'
-    endcapture
-    if sale_on == 'true' and first_variant.compare_at_price > first_variant.price
+    if first_variant.compare_at_price > first_variant.price
       assign card_on_sale = true
       assign card_compare_price = first_variant.compare_at_price | money
     endif

@@ -21,10 +21,10 @@ window.ScentspiredCard = (function () {
    * The storefront's currency symbol, published by layout/theme.liquid from
    * region data. Never hardcode it: one theme serves every region.
    */
-  // The theme's one sale rule (layout/theme.liquid, from the region's content/sale.json).
+  // The theme's one sale rule (layout/theme.liquid): Shopify's prices decide.
   function sale() {
     // Every page defines it; without it, show no sale rather than guess one.
-    return window.ScentspiredSale || { on: false, showsWasPrice: () => false, badge: () => '' };
+    return window.ScentspiredSale || { showsWasPrice: () => false, badge: () => '' };
   }
 
   function currencySymbol() {
@@ -141,7 +141,7 @@ window.ScentspiredCard = (function () {
     const price = node.querySelector('[data-current-price]');
     if (price) price.textContent = first.price != null ? first.price : '';
 
-    const onSale = sale().on && Number(first.compareAtPrice) > 0;
+    const onSale = Number(first.compareAtPrice) > 0;
     set(node, 'compare-price', el => {
       if (onSale) {
         el.textContent = opts.formatPrice ? opts.formatPrice(first.compareAtPrice) : first.compareAtPrice;

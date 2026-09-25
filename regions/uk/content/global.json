@@ -107,5 +107,8 @@
   "seo": {
     "homepage_title": "Inspired Designer Perfumes for Men & Women | Scentspired UK",
     "homepage_description": "Shop long-lasting inspired perfumes for men, women & unisex. Premium extrait de parfum oils, luxury quality, honest prices. Free delivery on orders over £35."
+  },
+  "sale_badge": {
+    "text": "Sale"
   }
 }

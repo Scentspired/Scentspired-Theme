@@ -474,44 +474,56 @@ function readRegionContent(regionId) {
   for (const f of fs.readdirSync(dir).filter((f) => f.endsWith('.json')).sort()) {
     out[f.replace(/\.json$/, '')] = stripComments(readJson(path.join(dir, f)));
   }
-  return applySale(out, regionId);
+  return applyLook(out, regionId);
 }
 
 /**
- * The sale: regions/<id>/content/sale.json. While "sale_is_on" is true, every
- * value in its "overrides" that is not null replaces the same path in the
- * region's content — a banner image, a heading, a cart message — everywhere
- * that content is read (templates, the Liquid lookup, box pages). While it is
- * false, the overrides do nothing. "overrides" mirrors the content files
- * (npm run sale:skeleton writes the full shape, all null); a path that names
- * no content fails the build, so a typo never silently does nothing.
+ * Looks: regions/<id>/looks/<name>.json, a site theme for a season or a sale
+ * (Christmas, a men's sale, Black Friday). A look mirrors the region's content
+ * files; every value in it that is not null replaces the same value in the
+ * content — a banner image, a headline, the announcement bar, the sale badge's
+ * wording. Null keeps the normal value.
+ *
+ * regions/<id>/looks/_active.json names the look the region shows
+ * ("active_look": "christmas"), or "" for none. Prices are never here: which
+ * products are on sale, and by how much, is Shopify's (compare-at prices).
+ *
+ * Every look is checked, active or not: a path that names no content fails the
+ * build, so a typo never silently does nothing. npm run looks:refresh writes
+ * looks/_blank.json (every field, null) to copy, and adds new fields to each look.
  */
-function applySale(content, regionId) {
-  const sale = content.sale;
-  if (!sale || !sale.overrides) return content;
-  const overrides = sale.overrides;
-  delete sale.overrides;                     // the lookup carries only the switch and badges
+function applyLook(content, regionId) {
+  const dir = path.join(REGIONS_DIR, regionId, 'looks');
+  if (!fs.existsSync(dir)) return content;
   const errors = [];
-  const merge = (base, over, where) => {
+  const names = fs.readdirSync(dir).filter((f) => f.endsWith('.json') && !f.startsWith('_')).map((f) => f.replace(/\.json$/, ''));
+  const activeFile = path.join(dir, '_active.json');
+  const active = fs.existsSync(activeFile) ? String(stripComments(readJson(activeFile)).active_look || '').trim() : '';
+  if (active && !names.includes(active)) errors.push(`_active.json names "${active}", but there is no looks/${active}.json (looks: ${names.join(', ') || 'none'})`);
+  const merge = (base, over, where, apply) => {
     for (const [k, v] of Object.entries(over)) {
-      if (v === null) continue;
+      if (v === null || k === '$comment') continue;
       const here = `${where}.${k}`;
       if (base === null || typeof base !== 'object' || !(k in base)) {
-        if (Array.isArray(base) && /^\d+$/.test(k)) { base.push(v); continue; }   // an extra list item
+        if (Array.isArray(base) && /^\d+$/.test(k)) { if (apply) base.push(v); continue; }   // an extra list item
         errors.push(`${here} names nothing in the region's content`);
         continue;
       }
-      if (v && typeof v === 'object' && base[k] && typeof base[k] === 'object') merge(base[k], v, here);
-      else if (sale.sale_is_on === true) base[k] = v;
+      if (v && typeof v === 'object' && base[k] && typeof base[k] === 'object') merge(base[k], v, here, apply);
+      else if (apply) base[k] = v;
     }
   };
-  for (const [page, over] of Object.entries(overrides)) {
-    if (!(page in content) || page === 'sale') { errors.push(`overrides.${page}: there is no content/${page}.json`); continue; }
-    if (sale.sale_is_on !== true) { merge(JSON.parse(JSON.stringify(content[page])), over, `overrides.${page}`); continue; }  // check only
-    merge(content[page], over, `overrides.${page}`);
+  for (const name of names) {
+    const look = stripComments(readJson(path.join(dir, `${name}.json`)));
+    for (const [page, over] of Object.entries(look)) {
+      if (!over || typeof over !== 'object') continue;
+      if (!(page in content)) { errors.push(`looks/${name}.json: ${page}: there is no content/${page}.json`); continue; }
+      const apply = name === active;
+      merge(apply ? content[page] : JSON.parse(JSON.stringify(content[page])), over, `looks/${name}.json: ${page}`, apply);
+    }
   }
   if (errors.length) {
-    const err = new Error(`regions/${regionId}/content/sale.json:\n   ${errors.slice(0, 20).join('\n   ')}`);
+    const err = new Error(`regions/${regionId}/looks/:\n   ${errors.slice(0, 20).join('\n   ')}`);
     console.error(`\n❌ ${err.message}\n`);
     err.handled = true;
     throw err;
