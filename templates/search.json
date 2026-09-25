@@ -1,0 +1,34 @@
+/*
+ * Template layout, shared by every region: structure and design only.
+ * Its words, images, links and lists are each region's regions/<id>/content/search.json:
+ *   "@content:<page>.<path>"   a value from that file
+ *   "@shown": "<path>"         the section appears where that file says "shown": true
+ *   "@list:<page>.<path>"      one block per item of that list, styled by "block_designs"
+ * The build fills these in (scripts/compile-region.cjs). Edit design here, content there.
+ */
+{
+  "sections": {
+    "main": {
+      "type": "search--results",
+      "settings": {
+        "columns_desktop": 4,
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "enable_filtering": true,
+        "filter_type": "horizontal",
+        "enable_sorting": true,
+        "article_show_date": true,
+        "article_show_author": false,
+        "columns_mobile": "2",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

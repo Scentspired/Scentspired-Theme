@@ -1,0 +1,126 @@
+/*
+ * Template layout, shared by every region: structure and design only.
+ * Its words, images, links and lists are each region's regions/<id>/content/page-bundle.json:
+ *   "@content:<page>.<path>"   a value from that file
+ *   "@shown": "<path>"         the section appears where that file says "shown": true
+ *   "@list:<page>.<path>"      one block per item of that list, styled by "block_designs"
+ * The build fills these in (scripts/compile-region.cjs). Edit design here, content there.
+ */
+{
+  "sections": {
+    "image_banner_V8niWG": {
+      "type": "media--image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "@content:page-bundle.image_banner_1.image",
+        "image_overlay_opacity": 0,
+        "image_height": "medium",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-left",
+        "desktop_content_alignment": "left",
+        "show_text_box": false,
+        "color_scheme": "",
+        "stack_images_on_mobile": false,
+        "mobile_content_alignment": "left",
+        "show_text_below": false
+      },
+      "custom_css": [
+        ".banner__heading {margin-left: -80px; color: #fff; font-family: \"PPEditorialNew Ultralight Italic\", serif; font-weight: 500; font-style: italic;}",
+        ".banner__text {margin-left: -80px; color: #fff; font-family: \"PPMori\", serif; max-width: 400px; font-size: 20px;}",
+        "@media screen and (min-width: 750px) {.page-width {margin: unset; padding: 1.5rem; }}",
+        "@media screen and (min-width: 750px) {.banner--desktop-transparent .banner__box {padding: 3rem 150px; }}",
+        "@media (max-width: 768px) {.banner {display: none; }}"
+      ],
+      "blocks": {
+        "heading_qHmUCw": {
+          "type": "heading",
+          "settings": {
+            "heading": "@content:page-bundle.image_banner_1.heading.heading",
+            "heading_size": "h2"
+          }
+        },
+        "text_dn9m8Y": {
+          "type": "text",
+          "settings": {
+            "text": "@content:page-bundle.image_banner_1.text.text",
+            "text_style": "subtitle"
+          }
+        }
+      },
+      "block_order": [
+        "heading_qHmUCw",
+        "text_dn9m8Y"
+      ]
+    },
+    "image_banner_dKh8Ch": {
+      "type": "media--image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "@content:page-bundle.image_banner_2.image",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-left",
+        "desktop_content_alignment": "left",
+        "show_text_box": false,
+        "color_scheme": "",
+        "stack_images_on_mobile": false,
+        "mobile_content_alignment": "left",
+        "show_text_below": false
+      },
+      "custom_css": [
+        ".banner__heading {margin-bottom: 0; margin-left: 15px !important; color: #fff !important; font-family: \"PPEditorialNew Ultralight Italic\", serif !important; font-weight: 500 !important; font-style: italic !important; margin-top: 300px !important;}",
+        ".banner__text {margin-bottom: 0; margin-left: 15px; color: #fff; font-family: \"PPMori\", serif !important; font-weight: 500; max-width: 400px;}",
+        "@media (min-width: 768px) {.banner {display: none; }}",
+        ".banner__content {padding-top: 40px;}",
+        ".banner__media {height: auto;}",
+        ".banner__text {line-height: 23px;}"
+      ],
+      "blocks": {
+        "heading_fzmUgP": {
+          "type": "heading",
+          "settings": {
+            "heading": "@content:page-bundle.image_banner_2.heading.heading",
+            "heading_size": "h2"
+          }
+        },
+        "text_eMBTUW": {
+          "type": "text",
+          "settings": {
+            "text": "@content:page-bundle.image_banner_2.text.text",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_fzmUgP",
+        "text_eMBTUW"
+      ]
+    },
+    "bundle_tDywUt": {
+      "type": "bundle--five-favourites",
+      "name": "Bundle Builder",
+      "custom_css": []
+    },
+    "newsletter_banner_JztXfP": {
+      "type": "marketing--newsletter-banner",
+      "name": "Newsletter Banner",
+      "settings": {
+        "background_image": "@content:page-bundle.newsletter_banner.background_image",
+        "heading": "@content:page-bundle.newsletter_banner.heading",
+        "subheading": "@content:page-bundle.newsletter_banner.subheading",
+        "description": "@content:page-bundle.newsletter_banner.description"
+      },
+      "custom_css": [
+        "@media only screen and (min-width: 1024px) and (max-width: 1439px) {.newsletter-banner .newsletter-content {margin-right: 0px !important; }}",
+        "@media (max-width: 1023px) {.newsletter-banner button {width: 240px; height: 48px; margin-left: -323px; margin-top: 90px; } .newsletter-banner small {display: block; margin-top: 150px; font-size: 12px; color: #000; text-align: center; font-family: \"PPMori Regular\", sans-serif; line-height: 120%; } .newsletter-banner {height: 790px; } .newsletter-banner .newsletter-content {margin-bottom: 175px !important; }}"
+      ]
+    }
+  },
+  "order": [
+    "image_banner_V8niWG",
+    "image_banner_dKh8Ch",
+    "bundle_tDywUt",
+    "newsletter_banner_JztXfP"
+  ]
+}

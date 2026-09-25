@@ -1,0 +1,66 @@
+{
+  "$comment": [
+    "The words, images, links and lists of templates/page.scent-2.json for this region. Its layout and styling are the theme's (templates/page.scent-2.json), shared by every region.",
+    "Sections, top to bottom: radical, aroma_selector, custom_collection, image_split_1, image_split_2, newsletter_banner. A switchable section appears only where \"shown\" is true.",
+    "A null value leaves that setting empty."
+  ],
+  "radical": {
+    "title": "RADICAL FRAGRANCE",
+    "description": "LEADING A SHIFT IN FRAGRANCE THROUGH BIOTECHNOLOGY, MASTER PERFUMERY AND 100% NATURAL INGREDIENTS.",
+    "button_text": "DISCOVER OUR FRAGRANCE",
+    "button_url": "shopify://collections/all",
+    "desktop_image": "shopify://shop_images/Screenshot_2025-06-30_151253_1.png",
+    "mobile_image": "shopify://shop_images/Screenshot_2025-06-30_151253_1.png"
+  },
+  "custom_collection": {
+    "section_heading": "Browse by Product Type",
+    "items": [
+      {
+        "collection": "",
+        "collection_title": "",
+        "collection_description": "Experience our award-winning eau de parfum in a trio of pocket-sized mini perfumes.",
+        "collection_image": "shopify://shop_images/Screenshot_2025-07-14_204408.png",
+        "collection_url": "",
+        "button_text": "Shop Now"
+      },
+      {
+        "collection": "",
+        "collection_title": "",
+        "collection_description": "Discover your signature scent from our collection of 100% natural perfumes, crafted by our Master Perfumer.",
+        "collection_image": "shopify://shop_images/Rectangle_4813_cc551c53-d633-422a-9e23-9e3ee6631541.png",
+        "collection_url": "",
+        "button_text": "Shop Now"
+      },
+      {
+        "collection": "",
+        "collection_title": "",
+        "collection_description": "Explore the latest natural science and biotechnology for modern, elevated room sprays.",
+        "collection_image": "shopify://shop_images/Screenshot_2025-07-14_204317.png",
+        "collection_url": "",
+        "button_text": "Shop Now"
+      }
+    ]
+  },
+  "image_split_1": {
+    "image": "shopify://shop_images/Screenshot_2025-07-30_173433.png",
+    "eyebrow_text": "IN COLLABORATION WITH NATURE",
+    "heading": "A RADICAL APPROACH",
+    "description": "<p>Behind every Scent Spired fragrance is a radical approach to how we operate. In a fragrance world shrouded by secrecy, we're always transparent.</p><p>In a culture fuelled by hype and excess, we favour the long view and curbing our environmental footprint. And in our use of biotechnology, guided by the artistry of our master perfumer, we create long-lasting 100% natural fragrances that eliminate the need for petrochemical-derived synthetic ingredients.</p>",
+    "button_text": "READ MORE ABOUT  OUR PRACTICE",
+    "button_url": "shopify://products/citrus-green-apple-copy"
+  },
+  "image_split_2": {
+    "image": "shopify://shop_images/Screenshot_2025-07-23_124305.png",
+    "eyebrow_text": "ABOUT SCENT INSPIRED",
+    "heading": "A RADICAL APPROACH",
+    "description": "<p>Founded by former winemaker Frances Shoemack in 2013, Scent Inspired first emerged in Amsterdam and is now headquartered in Wellington, New Zealand. Operating across oceans, we work closely with master perfumer Isaac Sinclair and perfumer Dr Fanny Grau to create forward-thinking natural fragrances, made in good conscience.<br/><br/></p>",
+    "button_text": "READ MORE ABOUT OUR PRACTICE",
+    "button_url": "shopify://pages/about-us"
+  },
+  "newsletter_banner": {
+    "background_image": "shopify://shop_images/Rectangle_4816.png",
+    "heading": "Hear More",
+    "subheading": "From Us",
+    "description": "Get the latest news about skincare tips and new products."
+  }
+}

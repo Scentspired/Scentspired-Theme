@@ -1,0 +1,363 @@
+/*
+ * Template layout, shared by every region: structure and design only.
+ * Its words, images, links and lists are each region's regions/<id>/content/home.json:
+ *   "@content:<page>.<path>"   a value from that file
+ *   "@shown": "<path>"         the section appears where that file says "shown": true
+ *   "@list:<page>.<path>"      one block per item of that list, styled by "block_designs"
+ * The build fills these in (scripts/compile-region.cjs). Edit design here, content there.
+ */
+{
+  "sections": {
+    "video_banner_UijrkX": {
+      "type": "media--video-banner",
+      "name": "Video Banner",
+      "settings": {
+        "main_title_part1": "@content:home.video_banner.main_title_part1",
+        "main_title_part2": "@content:home.video_banner.main_title_part2",
+        "subtitle_part1": "@content:home.video_banner.subtitle_part1",
+        "subtitle_part2": "@content:home.video_banner.subtitle_part2",
+        "side_text": "@content:home.video_banner.side_text",
+        "button_text": "@content:home.video_banner.button_text",
+        "button_link": "@content:home.video_banner.button_link"
+      },
+      "custom_css": [
+        ".video-container {margin-top: 0px; padding-bottom: 50px;}",
+        "@media screen and (min-width: 1024px) and (max-width: 1439px) {.curved-line {position: absolute; top: 58%; left: 72%; transform: translateY(-50%); z-index: 1; } .video-button-rounded {margin-top: 20px; }}",
+        ".side-text {font-family: \"PP Mori\", sans-serif !important;}",
+        ".subtitle-line {margin-left: -18px;}",
+        ".video-button-rounded {margin-left: -18px;}",
+        ".curved-line {display: none;}"
+      ]
+    },
+    "running_text_X9j7b7": {
+      "type": "media--running-text",
+      "name": "Running Text",
+      "settings": {
+        "text_left": "@content:home.running_text_1.text_left",
+        "text_center": "@content:home.running_text_1.text_center",
+        "icon_image": "@content:home.running_text_1.icon_image",
+        "text_right": "@content:home.running_text_1.text_right"
+      },
+      "custom_css": [
+        "@media only screen and (min-width: 1024px) and (max-width: 1439px) {.running-text-content {display: flex; align-items: center; white-space: nowrap; font-style: italic; font-weight: 400 !important; font-size: 40px; color: #000; }}",
+        ".running-text-content {font-weight: 400 !important;}",
+        ".running-text-wrapper {padding: 10px 0;}"
+      ]
+    },
+    "featured_collections_bQ8wqc": {
+      "type": "catalog--featured-collections",
+      "name": "Featured Collections",
+      "custom_css": [
+        "@media only screen and (max-width: 1023px) {.featured-collections-section {padding: 4px 20px; background: #fff; position: relative; overflow: hidden; }}",
+        ".collection-video {width: 100%; height: auto; object-fit: cover; display: block; border-radius: 15px;}"
+      ],
+      "blocks": "@list:home.featured_collections.items",
+      "block_designs": {
+        "collection_block": {
+          "settings": {}
+        }
+      }
+    },
+    "scent_stories_collection_dXw6Vf": {
+      "type": "editorial--scent-stories",
+      "name": "Scent Stories Section",
+      "disabled": true,
+      "settings": {
+        "title": "@content:home.scent_stories.title",
+        "heading_size": "h1"
+      },
+      "custom_css": []
+    },
+    "featuredscent_8M3b4w": {
+      "type": "catalog--featured-scent",
+      "name": "Scent Collection",
+      "settings": {
+        "heading": "@content:home.featured_scent.heading",
+        "subheading": "@content:home.featured_scent.subheading",
+        "collection": "@content:home.featured_scent.collection",
+        "view_all_link": "@content:home.featured_scent.view_all_link",
+        "heading_level": "h1"
+      },
+      "custom_css": [
+        ".fragrance-item:hover .fragrance-info {transform: none; color: black;}",
+        ".product-badge {color: #fff !important;}",
+        ".mobile-only {display: flex !important;}",
+        ".fragrance-rating {margin-left: -3px;}",
+        "@media (min-width: 800px) and (max-width: 1024px) {.fragrance-item {width: 100% !important; }}"
+      ]
+    },
+    "running_text_YJKmUL": {
+      "type": "media--running-text",
+      "name": "Running Text",
+      "@shown": "home.running_text_2.shown",
+      "settings": {
+        "text_left": "@content:home.running_text_2.text_left",
+        "text_center": "@content:home.running_text_2.text_center",
+        "icon_image": "@content:home.running_text_2.icon_image",
+        "text_right": "@content:home.running_text_2.text_right"
+      },
+      "custom_css": [
+        "@media only screen and (min-width: 1024px) and (max-width: 1439px) {.running-text-content {display: flex; align-items: center; white-space: nowrap; font-style: italic; font-weight: 400; font-size: 60px; color: #000; }}",
+        ".running-text-content {font-weight: 400 !important;}",
+        ".running-text-wrapper {display: none;}"
+      ]
+    },
+    "video_banner1_QerXbX": {
+      "type": "media--scent-filter-banner",
+      "name": "Video Banner",
+      "settings": {
+        "brand_heading_1": "@content:home.scent_filter_banner.brand_heading_1",
+        "brand_collection_1": "@content:home.scent_filter_banner.brand_collection_1",
+        "brand_button_url_1": "@content:home.scent_filter_banner.brand_button_url_1",
+        "brand_heading_2": "@content:home.scent_filter_banner.brand_heading_2",
+        "brand_collection_2": "@content:home.scent_filter_banner.brand_collection_2",
+        "brand_button_url_2": "@content:home.scent_filter_banner.brand_button_url_2",
+        "brand_heading_3": "@content:home.scent_filter_banner.brand_heading_3",
+        "brand_collection_3": "@content:home.scent_filter_banner.brand_collection_3",
+        "brand_button_url_3": "@content:home.scent_filter_banner.brand_button_url_3",
+        "brand_heading_4": "@content:home.scent_filter_banner.brand_heading_4",
+        "brand_collection_4": "@content:home.scent_filter_banner.brand_collection_4",
+        "brand_button_url_4": "@content:home.scent_filter_banner.brand_button_url_4",
+        "brand_heading_5": "@content:home.scent_filter_banner.brand_heading_5",
+        "brand_collection_5": "@content:home.scent_filter_banner.brand_collection_5",
+        "brand_button_url_5": "@content:home.scent_filter_banner.brand_button_url_5",
+        "brand_heading_6": "@content:home.scent_filter_banner.brand_heading_6",
+        "brand_collection_6": "@content:home.scent_filter_banner.brand_collection_6",
+        "brand_button_url_6": "@content:home.scent_filter_banner.brand_button_url_6",
+        "notes_heading_1": "@content:home.scent_filter_banner.notes_heading_1",
+        "notes_collection_1": "@content:home.scent_filter_banner.notes_collection_1",
+        "notes_button_url_1": "@content:home.scent_filter_banner.notes_button_url_1",
+        "notes_heading_2": "@content:home.scent_filter_banner.notes_heading_2",
+        "notes_collection_2": "@content:home.scent_filter_banner.notes_collection_2",
+        "notes_button_url_2": "@content:home.scent_filter_banner.notes_button_url_2",
+        "notes_heading_3": "@content:home.scent_filter_banner.notes_heading_3",
+        "notes_collection_3": "@content:home.scent_filter_banner.notes_collection_3",
+        "notes_button_url_3": "@content:home.scent_filter_banner.notes_button_url_3",
+        "notes_heading_4": "@content:home.scent_filter_banner.notes_heading_4",
+        "notes_collection_4": "@content:home.scent_filter_banner.notes_collection_4",
+        "notes_button_url_4": "@content:home.scent_filter_banner.notes_button_url_4",
+        "notes_heading_5": "@content:home.scent_filter_banner.notes_heading_5",
+        "notes_collection_5": "@content:home.scent_filter_banner.notes_collection_5",
+        "notes_button_url_5": "@content:home.scent_filter_banner.notes_button_url_5",
+        "notes_heading_6": "@content:home.scent_filter_banner.notes_heading_6",
+        "notes_collection_6": "@content:home.scent_filter_banner.notes_collection_6",
+        "notes_button_url_6": "@content:home.scent_filter_banner.notes_button_url_6"
+      },
+      "custom_css": [
+        "@media only screen and (min-width: 1024px) and (max-width: 1439px) {.scent-right {margin-right: 0px; } .product-nav {top: 40%; width: calc(100% + 138px); left: -86px; } .scent-left {margin-left: 0px; margin-bottom: -125px; } .product-nav {width: calc(100% + 138px); left: -86px; } .scent-heading {font-size: 68px !important; }}",
+        ".fragrance-image-wrap:hover .product-hover-image {opacity: 1;}",
+        ".fragrance-image-wrap:hover .product-main-image {opacity: 0;}",
+        ".fragrance-item:hover .fragrance-info {transform: none;}",
+        ".product-badge {color: #fff !important;}"
+      ]
+    },
+    "mobile_video_banner_3Bc3Wj": {
+      "type": "media--mobile-video-banner",
+      "name": "Scent Families Video + Collections (Chevron Dropdown)",
+      "settings": {
+        "heading_1": "@content:home.mobile_video_banner.heading_1",
+        "collection_1": "@content:home.mobile_video_banner.collection_1",
+        "heading_2": "@content:home.mobile_video_banner.heading_2",
+        "collection_2": "@content:home.mobile_video_banner.collection_2",
+        "heading_3": "@content:home.mobile_video_banner.heading_3",
+        "collection_3": "@content:home.mobile_video_banner.collection_3",
+        "heading_4": "@content:home.mobile_video_banner.heading_4",
+        "collection_4": "@content:home.mobile_video_banner.collection_4",
+        "heading_5": "@content:home.mobile_video_banner.heading_5",
+        "collection_5": "@content:home.mobile_video_banner.collection_5",
+        "heading_6": "@content:home.mobile_video_banner.heading_6",
+        "collection_6": "@content:home.mobile_video_banner.collection_6",
+        "heading_notes_1": "@content:home.mobile_video_banner.heading_notes_1",
+        "collection_notes_1": "@content:home.mobile_video_banner.collection_notes_1",
+        "heading_notes_2": "@content:home.mobile_video_banner.heading_notes_2",
+        "collection_notes_2": "@content:home.mobile_video_banner.collection_notes_2",
+        "heading_notes_3": "@content:home.mobile_video_banner.heading_notes_3",
+        "collection_notes_3": "@content:home.mobile_video_banner.collection_notes_3",
+        "heading_notes_4": "@content:home.mobile_video_banner.heading_notes_4",
+        "collection_notes_4": "@content:home.mobile_video_banner.collection_notes_4",
+        "heading_notes_5": "@content:home.mobile_video_banner.heading_notes_5",
+        "collection_notes_5": "@content:home.mobile_video_banner.collection_notes_5",
+        "heading_notes_6": "@content:home.mobile_video_banner.heading_notes_6",
+        "collection_notes_6": "@content:home.mobile_video_banner.collection_notes_6"
+      },
+      "custom_css": [
+        "@media screen and (min-width: 1024px) {.mvps-section {display: none; }}",
+        ".fragrance-item:hover .fragrance-info {transform: none;}",
+        ".mobile-only {display: flex !important;}",
+        ".fragrance-rating {display: none;}",
+        ".product-badge {background-color: #ffffff; color: #fff !important;}"
+      ]
+    },
+    "best_sellers_DQtBQy": {
+      "type": "catalog--best-sellers",
+      "name": "Best Sellers Section",
+      "settings": {
+        "section_title": "@content:home.best_sellers.section_title",
+        "collection": "@content:home.best_sellers.collection",
+        "subheading": "@content:home.best_sellers.subheading",
+        "featured_image": "@content:home.best_sellers.featured_image",
+        "view_all_link": "@content:home.best_sellers.view_all_link"
+      },
+      "custom_css": [
+        "@media only screen and (min-width: 1024px) {.bs-featured-image {height: 900px !important; }}",
+        ".bs-image-side {height: auto; padding-top: 0px;}",
+        ".bs-featured-image {border-radius: 0px;}",
+        ".fragrance-item:hover .fragrance-info {transform: none;}",
+        ".product-badge {color: #fff !important;}",
+        ".bs-subheading {display: none;}",
+        "@media screen and (max-width: 990px) {.cart-button {font-size: 12px; padding: 10px 12px; }}",
+        "@media only screen and (max-width: 1024px) {.fragrance-item {width: 100% !important; }}",
+        ".bs-title {}"
+      ]
+    },
+    "bundle_heading_wRwayJ": {
+      "type": "media--scent-carousel",
+      "name": "Bundle Heading",
+      "settings": {
+        "heading": "@content:home.scent_carousel_1.heading",
+        "subheading": "@content:home.scent_carousel_1.subheading",
+        "subheading_style": "scent-sub",
+        "show_carousel": true
+      },
+      "custom_css": [
+        ".carousel-container {display: none;}",
+        ".scent-header {margin-bottom: -50px;}",
+        ".scent-header {text-align: center; padding: 0rem 7rem; margin-top: 0px;}",
+        ".scent-sub {text-decoration: underline !important; text-decoration-color: #fadb95 !important; text-decoration-thickness: 2px !important; text-underline-offset: 2px !important;}"
+      ]
+    },
+    "bundle_collection_dNJFpE": {
+      "type": "bundle--collection",
+      "name": "Bundle Collections",
+      "@shown": "home.collection.shown",
+      "custom_css": [
+        "@media only screen and (min-width: 1023px) {.collection-button {position: absolute; bottom: 20px; left: -20px; } .collection-content {font-size: 28px; }}",
+        ".scent-subtitle {text-decoration: underline; text-decoration-color: #fadb95; text-decoration-thickness: 2px; text-underline-offset: 2px;}"
+      ]
+    },
+    "instagram_section_m4ApUx": {
+      "type": "media--scent-carousel",
+      "name": "Instagram Videos",
+      "settings": {
+        "heading": "@content:home.scent_carousel_2.heading",
+        "subheading": "@content:home.scent_carousel_2.subheading",
+        "subheading_style": "scent-sub",
+        "show_carousel": false
+      },
+      "custom_css": [
+        ".carousel-container {display: none;}",
+        ".scent-header {margin-bottom: -50px;}",
+        ".scent-header {text-align: center; padding: 0rem 7rem; margin-top: 0px;}",
+        ".scent-sub {text-decoration: underline !important; text-decoration-color: #fadb95 !important; text-decoration-thickness: 2px !important; text-underline-offset: 2px !important;}"
+      ]
+    },
+    "1770888173be79f9a8": {
+      "type": "apps",
+      "@shown": "home.apps.shown",
+      "settings": {
+        "include_margins": true
+      },
+      "custom_css": [
+        "fw-embed-feed {display: none;}"
+      ],
+      "blocks": {
+        "firework_shoppable_video_ugc_firework_embed_383LLL": {
+          "type": "shopify://apps/firework-shoppable-video-ugc/blocks/firework-embed/347a2e4c-f5cb-410d-8354-490d1e80558c",
+          "settings": {
+            "channel": "@content:home.apps.firework_shoppable_video_ugc_firework_embed.channel",
+            "playlist": "@content:home.apps.firework_shoppable_video_ugc_firework_embed.playlist",
+            "layout": "storyblock",
+            "embedtitle": "@content:home.apps.firework_shoppable_video_ugc_firework_embed.embedtitle",
+            "titlealignment": "center",
+            "embedtitlesize": 34,
+            "size": "large",
+            "player_placement": "bottom-right",
+            "hashtag": "@content:home.apps.firework_shoppable_video_ugc_firework_embed.hashtag",
+            "pip": true,
+            "enable_seo": true
+          }
+        }
+      },
+      "block_order": [
+        "firework_shoppable_video_ugc_firework_embed_383LLL"
+      ]
+    },
+    "instagram_feed_6XcCWT": {
+      "type": "media--scent-carousel",
+      "name": "Instagram Feed Section",
+      "settings": {
+        "heading": "@content:home.scent_carousel_3.heading",
+        "subheading": "@content:home.scent_carousel_3.subheading",
+        "subheading_style": "scent-subtitle",
+        "show_carousel": true
+      },
+      "custom_css": [
+        ".carousel-container {display: none;}",
+        ".scent-header {margin-bottom: -120px;}",
+        ".scent-header {text-align: center; padding: 4rem 1rem; margin-top: 0px;}",
+        ".scent-subtitle {text-decoration: underline !important; text-decoration-color: #fadb95 !important; text-decoration-thickness: 2px !important; text-underline-offset: 2px !important;}"
+      ]
+    },
+    "1756981498fec8c3c0": {
+      "type": "_blocks",
+      "custom_css": [],
+      "blocks": {
+        "ai_gen_block_6068b75_kqp7mT": {
+          "type": "social--instagram-grid",
+          "settings": {
+            "instagram_url": "@content:home.instagram_grid.instagram_grid.instagram_url",
+            "image_1": "@content:home.instagram_grid.instagram_grid.image_1",
+            "image_2": "@content:home.instagram_grid.instagram_grid.image_2",
+            "image_3": "@content:home.instagram_grid.instagram_grid.image_3",
+            "image_4": "@content:home.instagram_grid.instagram_grid.image_4",
+            "image_5": "@content:home.instagram_grid.instagram_grid.image_5",
+            "image_6": "@content:home.instagram_grid.instagram_grid.image_6",
+            "gap_desktop": 10,
+            "gap_tablet": 10,
+            "gap_mobile": 10,
+            "border_radius": 8,
+            "padding_vertical": 40,
+            "padding_horizontal": 20,
+            "padding_vertical_mobile": 30,
+            "padding_horizontal_mobile": 15
+          }
+        }
+      },
+      "block_order": [
+        "ai_gen_block_6068b75_kqp7mT"
+      ]
+    },
+    "newsletter_banner_AMNnyi": {
+      "type": "marketing--newsletter-banner",
+      "name": "Newsletter Banner",
+      "settings": {
+        "background_image": "@content:home.newsletter_banner.background_image",
+        "heading": "@content:home.newsletter_banner.heading",
+        "subheading": "@content:home.newsletter_banner.subheading",
+        "description": "@content:home.newsletter_banner.description"
+      },
+      "custom_css": [
+        "@media only screen and (min-width: 1024px) and (max-width: 1439px) {.newsletter-banner .newsletter-content {margin-right: 0px !important; }}",
+        "@media (max-width: 1023px) {.newsletter-banner button {width: 240px; height: 48px; margin-left: -323px; margin-top: 90px; } .newsletter-banner small {display: block; margin-top: 150px; font-size: 12px; color: #000; text-align: center; font-family: \"PPMori Regular\", sans-serif; line-height: 120%; } .newsletter-banner {height: 790px; } .newsletter-banner .newsletter-content {margin-bottom: 175px !important; }}"
+      ]
+    }
+  },
+  "order": [
+    "video_banner_UijrkX",
+    "running_text_X9j7b7",
+    "featured_collections_bQ8wqc",
+    "scent_stories_collection_dXw6Vf",
+    "featuredscent_8M3b4w",
+    "running_text_YJKmUL",
+    "video_banner1_QerXbX",
+    "mobile_video_banner_3Bc3Wj",
+    "best_sellers_DQtBQy",
+    "bundle_heading_wRwayJ",
+    "bundle_collection_dNJFpE",
+    "instagram_section_m4ApUx",
+    "1770888173be79f9a8",
+    "instagram_feed_6XcCWT",
+    "1756981498fec8c3c0",
+    "newsletter_banner_AMNnyi"
+  ]
+}

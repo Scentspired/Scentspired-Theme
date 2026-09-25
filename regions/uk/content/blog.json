@@ -1,0 +1,7 @@
+{
+  "$comment": [
+    "The words, images, links and lists of templates/blog.json for this region. Its layout and styling are the theme's (templates/blog.json), shared by every region.",
+    "Sections, top to bottom: blog. A switchable section appears only where \"shown\" is true.",
+    "A null value leaves that setting empty."
+  ]
+}

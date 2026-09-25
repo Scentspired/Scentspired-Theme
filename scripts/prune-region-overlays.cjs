@@ -4,11 +4,11 @@
  * SCENTSPIRED — Keep content out of the theme
  * ============================================================================
  *
- * The theme is a thin template: Liquid, HTML, CSS and JS only. Every page's
- * content — its JSON template, the header and footer groups, the theme
- * settings — belongs to a region and lives in regions/<id>/, complete, for
- * every region including the default one. Core (the repository root) holds
- * none of it.
+ * The theme is structure and design: Liquid, HTML, CSS, JS, and the layouts of
+ * its templates and section groups (templates/*.json, sections/*.json), whose
+ * words, images, links and lists are each region's regions/<id>/content/.
+ * Theme settings (config/settings_data.json) still belong to a region and live
+ * in regions/<id>/, complete, for every region including the default one.
  *
  *   1. MOVE    any content file found in core is copied into every region
  *              that lacks its own, and removed from core
@@ -32,9 +32,13 @@ const THEME_ROOT = path.resolve(__dirname, '..');
 const DRY = process.argv.includes('--dry') || process.argv.includes('--check');
 const CHECK = process.argv.includes('--check');
 
-/** Whole-file content: pages, section groups, theme settings. */
-const isContent = (rel) =>
-  /^templates\//.test(rel) || /^sections\/[^/]+\.json$/.test(rel) || rel === 'config/settings_data.json';
+/**
+ * Whole-file content: the theme settings. Templates and section groups are not
+ * on this list: they are layouts (structure and design) and belong to the
+ * theme, with their content in regions/<id>/content/ — the compiler refuses a
+ * layout that holds a content value of its own.
+ */
+const isContent = (rel) => rel === 'config/settings_data.json';
 
 const stripJsonComments = (s) =>
   (s.charCodeAt(0) === 0xfeff ? s.slice(1) : s).replace(/\/\*[\s\S]*?\*\//g, '');

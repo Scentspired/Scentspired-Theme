@@ -1,0 +1,55 @@
+{
+  "$comment": [
+    "The words, images, links and lists of templates/page.about.json for this region. Its layout and styling are the theme's (templates/page.about.json), shared by every region.",
+    "Sections, top to bottom: image_banner_1, image_banner_2, text_section, video_text, image_split_1, image_split_2, image_split_3, perfume_story. A switchable section appears only where \"shown\" is true.",
+    "A null value leaves that setting empty."
+  ],
+  "image_banner_1": {
+    "image": "shopify://shop_images/WhatsApp_Image_2025-12-31_at_4.30.12_AM.jpg",
+    "heading": {
+      "heading": "About Scentspired"
+    }
+  },
+  "image_banner_2": {
+    "image": "shopify://shop_images/M3.jpg",
+    "heading": {
+      "heading": "About Scentspired"
+    }
+  },
+  "video_text": {
+    "video_url": "https://cdn.shopify.com/videos/c/o/v/7af19bc626cf479685a22847032c39d6.mp4",
+    "text_content": "<p>Scentspired is a modern fragrance house devoted to creating refined scent experiences that feel personal, considered, and beautifully crafted.</p><p>We draw inspiration from iconic fragrance profiles that have shaped modern perfumery, and reinterpret them with care, creating fragrances that feel familiar yet distinctive, elegant yet approachable.</p>"
+  },
+  "image_split_1": {
+    "image": "shopify://shop_images/ScentSpired_-_Scent_Notes_04_-_Banner_62859e56-a982-4659-9a06-3fc6a8575cca.png",
+    "eyebrow_text": "",
+    "heading": "Our Journey",
+    "description": "<p>Our journey began with a deep appreciation for the artistry of fine perfumery and the emotional power of scent. We admired how certain fragrances could become signatures, quietly memorable, deeply expressive, and timeless.</p><p>To honor that craft, we chose to work across regions known for their expertise. Our fragrances are <strong>crafted in the UAE</strong>, a place with a long-standing tradition in perfumery, using <strong>high-quality fragrance oils sourced from Switzerland</strong>, selected for their purity, balance, and performance.</p><p>By blending <strong>Swiss fragrance precision</strong> with <strong>UAE craftsmanship</strong>, we are able to create scents that are refined, enduring, and thoughtfully composed without unnecessary complexity.</p>",
+    "button_text": "READ MORE ABOUT  OUR PRACTICE",
+    "button_url": ""
+  },
+  "image_split_2": {
+    "image": "shopify://shop_images/Website_-_About_Us_-_Male_Image_e535c1e3-01e0-43ae-90cf-e56aff13fa4d.png",
+    "eyebrow_text": "",
+    "heading": "Our Craft & Philosophy",
+    "description": "<p>Every Scentspired fragrance is created with intention and care.</p><ul><li><strong>High Fragrance Oil Concentration (up to 35%)</strong><br/>Our fragrances are crafted as <strong>Extrait de Parfum</strong>, delivering exceptional depth, richness, and long-lasting performance on the skin.</li><li><strong>Premium Swiss Fragrance Oils</strong><br/>Selected for clarity, consistency, and richness.</li><li><strong>Crafted in the UAE</strong><br/>Where heritage, precision, and modern perfumery come together.</li><li><strong>Refined Presentation</strong><br/>Thoughtfully designed packaging that reflects the quality of what lies within.</li></ul><p></p><p>Our goal is simple: to create fragrances that feel balanced, expressive, and easy to come back to us day after day.</p>",
+    "button_text": "",
+    "button_url": ""
+  },
+  "image_split_3": {
+    "image": "shopify://shop_images/1_3_465422d3-dff3-4709-8544-07d4c6d40e5c.jpg",
+    "eyebrow_text": "",
+    "heading": "Inspired by Icons, Crafted Independently",
+    "description": "<p>The world of fragrance is rich with legendary houses and iconic creations that continue to inspire perfumers globally. At Scentspired, these serve as creative reference points, guiding our understanding of balance, structure, and emotion.</p><p>Each Scentspired fragrance is an independent formulation, carefully developed to capture the essence of admired scent styles while expressing its own character. We are not affiliated with or endorsed by any designer or luxury brand.</p><p>Our approach is rooted in respect for the icons that came before us, and for the individuality of the person wearing our fragrance.<br/><br/></p>",
+    "button_text": "",
+    "button_url": ""
+  },
+  "perfume_story": {
+    "main_headline": "More Than a Fragrance House",
+    "story_text": "Scentspired is not just about perfume. It is about moments, memory, and meaning.<br><br>\nWe invite you to explore our collection through Scent Vibes, discover inspirations drawn from Iconic Inspirations, and find the fragrance that feels like it belongs to you.<br><br>\nLet your senses lead the way.",
+    "tagline": "Get Scentspired.",
+    "button_text": "SHOP PRODUCTS",
+    "button_link": "shopify://collections/shop",
+    "hero_image": "shopify://shop_images/ScentSpired_-_About_Us_04.png"
+  }
+}

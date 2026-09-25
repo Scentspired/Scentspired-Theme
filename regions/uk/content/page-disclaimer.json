@@ -1,0 +1,20 @@
+{
+  "$comment": [
+    "The words, images, links and lists of templates/page.disclaimer.json for this region. Its layout and styling are the theme's (templates/page.disclaimer.json), shared by every region.",
+    "Sections, top to bottom: privacy_policy, newsletter_banner. A switchable section appears only where \"shown\" is true.",
+    "A null value leaves that setting empty."
+  ],
+  "privacy_policy": {
+    "page_title": "DISCLAIMER",
+    "privacy_policy_block": {
+      "section_title": "",
+      "section_content": "<p></p><p>Scentspired is an independent fragrance brand. All products sold by Scentspired are <strong>original creations</strong>, developed and manufactured independently.</p><p>Any references on this website to fragrance styles, scent profiles, or well-known perfume houses are made <strong>solely for descriptive and comparative purposes</strong>. Such references are intended to help customers understand the character of a fragrance and <strong>should never be interpreted as implying identity, equivalence, endorsement, sponsorship, or affiliation</strong> with any designer, luxury, niche, or high-street brand.</p><p>Scentspired fragrances are <strong>inspired interpretations</strong> only. They are <strong>not replicas, copies, or clones</strong>, and are <strong>not to be confused with original fragrances</strong> produced by other brands.</p><p>All product names, brand names, trademarks, trade dress, and copyrights mentioned or implied on this website are the <strong>property of their respective owners</strong>. The use of any such names or marks does <strong>not indicate any relationship, partnership, or approval</strong> between Scentspired and the trademark owner.</p><p>Scentspired is <strong>not affiliated with, endorsed by, authorised by, licensed by, or connected in any way</strong> with any designer brand, perfume house, or manufacturer whose trademarks may be referenced. Trademark owners do not sponsor, authorise, promote, or represent Scentspired or its products.</p><p>All references are made in good faith and in accordance with applicable laws governing <strong>comparative and descriptive advertising</strong>, including fair-use principles. Customers should not expect Scentspired products to be identical to any other fragrance.</p>"
+    }
+  },
+  "newsletter_banner": {
+    "background_image": "shopify://shop_images/ScentSpired_-_Scent_Notes_06_-_Banner_315aa991-528b-4aae-8a80-d400e695b460.png",
+    "heading": "Join the",
+    "subheading": "inner circle",
+    "description": "New launches, exclusive edits, and first access, straight to your inbox."
+  }
+}

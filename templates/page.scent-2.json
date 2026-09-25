@@ -1,0 +1,121 @@
+/*
+ * Template layout, shared by every region: structure and design only.
+ * Its words, images, links and lists are each region's regions/<id>/content/page-scent-2.json:
+ *   "@content:<page>.<path>"   a value from that file
+ *   "@shown": "<path>"         the section appears where that file says "shown": true
+ *   "@list:<page>.<path>"      one block per item of that list, styled by "block_designs"
+ * The build fills these in (scripts/compile-region.cjs). Edit design here, content there.
+ */
+{
+  "sections": {
+    "radical_YAgcVm": {
+      "type": "media--radical",
+      "name": "Hero Fragrance Banner",
+      "settings": {
+        "title": "@content:page-scent-2.radical.title",
+        "description": "@content:page-scent-2.radical.description",
+        "button_text": "@content:page-scent-2.radical.button_text",
+        "button_url": "@content:page-scent-2.radical.button_url",
+        "desktop_image": "@content:page-scent-2.radical.desktop_image",
+        "mobile_image": "@content:page-scent-2.radical.mobile_image"
+      },
+      "custom_css": [
+        "@media screen and (min-width: 1441px) {.hero-fragrance-banner__content {top: 50px !important; left: -370px; } .hero-fragrance-banner__description {font-size: 10px; text-transform: uppercase; max-width: 320px !important; } .hero-fragrance-banner__button {margin-right: 20px !important; margin-bottom: 5px !important; padding: 15px 11px !important; font-size: 9px; }}"
+      ]
+    },
+    "aroma_selector_VzMAwH": {
+      "type": "catalog--aroma-selector",
+      "name": "Aroma Selector (Abel Style)",
+      "custom_css": [
+        "@media (max-width: 768px) {.aroma-block {height: 120px; }}",
+        ".mobile-header {display: none;}",
+        "@media screen and (min-width: 1024px) and (max-width: 1440px) {.aroma-block h3 {font-size: 12px; }}",
+        ".select-aroma-section {margin-top: 100px;}"
+      ]
+    },
+    "custom_collection_fDGKXb": {
+      "type": "catalog--custom-collection",
+      "name": "Custom Collection Browse",
+      "settings": {
+        "section_heading": "@content:page-scent-2.custom_collection.section_heading"
+      },
+      "custom_css": [
+        ".collection-browse-section {margin-top: 100px;}"
+      ],
+      "blocks": "@list:page-scent-2.custom_collection.items",
+      "block_designs": {
+        "collection": {
+          "settings": {
+            "background_color": "#f5f5f5"
+          }
+        }
+      }
+    },
+    "image_split_content_twwaKF": {
+      "type": "media--image-split",
+      "name": "Image Content Split",
+      "settings": {
+        "image": "@content:page-scent-2.image_split_1.image",
+        "image_position": "left",
+        "section_height": "600px",
+        "eyebrow_text": "@content:page-scent-2.image_split_1.eyebrow_text",
+        "heading": "@content:page-scent-2.image_split_1.heading",
+        "description": "@content:page-scent-2.image_split_1.description",
+        "button_text": "@content:page-scent-2.image_split_1.button_text",
+        "button_url": "@content:page-scent-2.image_split_1.button_url",
+        "background_color": "#ffffff",
+        "eyebrow_color": "#666666",
+        "heading_color": "#333333",
+        "text_color": "#666666"
+      },
+      "custom_css": [
+        ".content-section.content-right {justify-content: flex-end; padding-right: 23px; padding-left: 40px;}",
+        ".image-content-split {margin-top: 100px;}"
+      ]
+    },
+    "image_split_content_6KRerK": {
+      "type": "media--image-split",
+      "name": "Image Content Split",
+      "settings": {
+        "image": "@content:page-scent-2.image_split_2.image",
+        "image_position": "right",
+        "section_height": "900px",
+        "eyebrow_text": "@content:page-scent-2.image_split_2.eyebrow_text",
+        "heading": "@content:page-scent-2.image_split_2.heading",
+        "description": "@content:page-scent-2.image_split_2.description",
+        "button_text": "@content:page-scent-2.image_split_2.button_text",
+        "button_url": "@content:page-scent-2.image_split_2.button_url",
+        "background_color": "#ffffff",
+        "eyebrow_color": "#666666",
+        "heading_color": "#333333",
+        "text_color": "#666666"
+      },
+      "custom_css": [
+        ".content-wrapper {margin-left: 20px;}",
+        ".image-content-split {margin-bottom: 70px;}"
+      ]
+    },
+    "newsletter_banner_fBFiwz": {
+      "type": "marketing--newsletter-banner",
+      "name": "Newsletter Banner",
+      "settings": {
+        "background_image": "@content:page-scent-2.newsletter_banner.background_image",
+        "heading": "@content:page-scent-2.newsletter_banner.heading",
+        "subheading": "@content:page-scent-2.newsletter_banner.subheading",
+        "description": "@content:page-scent-2.newsletter_banner.description"
+      },
+      "custom_css": [
+        "@media only screen and (min-width: 1024px) and (max-width: 1439px) {.newsletter-banner .newsletter-content {margin-right: 0px !important; }}",
+        "@media (max-width: 768px) {.newsletter-banner button {width: 240px; height: 48px; margin-left: -320px; margin-top: 90px; } .newsletter-banner small {display: block; margin-top: 150px; font-size: 12px; color: #000; text-align: center; font-family: \"PPMori Regular\", sans-serif; line-height: 120%; } .newsletter-banner {height: 790px; } .newsletter-banner .newsletter-content {margin-bottom: 50px !important; }}"
+      ]
+    }
+  },
+  "order": [
+    "radical_YAgcVm",
+    "aroma_selector_VzMAwH",
+    "custom_collection_fDGKXb",
+    "image_split_content_twwaKF",
+    "image_split_content_6KRerK",
+    "newsletter_banner_fBFiwz"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "$comment": [
+    "The words, images, links and lists of templates/page.returns.json for this region. Its layout and styling are the theme's (templates/page.returns.json), shared by every region.",
+    "Sections, top to bottom: privacy_policy, newsletter_banner. A switchable section appears only where \"shown\" is true.",
+    "A null value leaves that setting empty."
+  ],
+  "privacy_policy": {
+    "page_title": "RETURNS",
+    "privacy_policy_block": {
+      "section_title": "",
+      "section_content": "<p>At Scentspired, we take pride in crafting high-quality, inspired fragrances that delight the senses. However, if for any reason you're not fully satisfied with your purchase, we’re here to make the return or exchange process simple and transparent.<br/><br/><strong>Eligibility for Returns:</strong><br/>We accept returns for full-size perfume bottles under the following conditions:<br/><br/>The product is unused, unopened, and in its original packaging<br/><br/>Return is initiated within 30 days of delivery<br/><br/>Proof of purchase is provided (order confirmation or receipt)<br/><br/>Perfume Minis, samples, discovery sets, and gift cards are final sale and non-refundable due to hygiene and testing purposes.</p><p>For hygiene and quality reasons, we kindly ask that the complimentary 5 ml sample remains unopened. Returns can be processed only if both the full-size bottle and the sample are unused<br/><br/> <strong>Exchanges</strong><br/>We offer exchanges for full-size items that arrive:<br/><br/>Damaged or defective<br/><br/>Incorrect due to a packing error<br/><br/>If you'd like to exchange a product for another fragrance, please note:<br/><br/>The product must be unopened and unused<br/><br/>Exchanges must be requested within 30 days of delivery<br/><br/>You will be responsible for return shipping (unless the product was faulty or incorrect)<br/><br/><strong>Refunds</strong><br/>Once your return is received and inspected, we will notify you by email. If approved, your refund will be processed within 5–7 business days to your original payment method.<br/><br/>Please note:<br/><br/>Shipping costs are non-refundable<br/><br/>If your return is late or not in original condition, a partial refund or store credit may be issued at our discretion based on the condition of the returned item.<br/><br/> <strong>Return Shipping</strong><br/>To initiate a return or exchange, please contact us at:<br/>returns@scentspired.com<br/><br/>We will provide return instructions and the return shipping address. You will be responsible for return shipping unless the item was defective, damaged, or incorrect.<br/><br/><strong> Important Notes</strong><br/>We recommend using a trackable shipping service for all returns<br/><br/>Scentspired is not responsible for lost or delayed return shipments<br/><br/>We reserve the right to refuse returns that do not meet our policy terms</p><p>Scentspired fragrances are inspired interpretations. Returns will not be accepted based on expectations of identity with any other fragrance or brand.<br/><br/><br/><strong>Need Help?</strong><br/>Our team is here to help with any concerns or product questions.<br/>Email us at returns@scentspired.com for quick support.</p>"
+    }
+  },
+  "newsletter_banner": {
+    "background_image": "shopify://shop_images/ScentSpired_-_Scent_Notes_06_-_Banner.png",
+    "heading": "Join the",
+    "subheading": "inner circle",
+    "description": "New launches, exclusive edits, and first access, straight to your inbox."
+  }
+}

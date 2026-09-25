@@ -1,0 +1,12 @@
+{
+  "$comment": [
+    "The words, images, links and lists of templates/page.collabs.json for this region. Its layout and styling are the theme's (templates/page.collabs.json), shared by every region.",
+    "Sections, top to bottom: apps. A switchable section appears only where \"shown\" is true.",
+    "A null value leaves that setting empty."
+  ],
+  "apps": {
+    "collabs_application_page": {
+      "heading": "Join the Scentspired community"
+    }
+  }
+}

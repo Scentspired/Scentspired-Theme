@@ -1,0 +1,202 @@
+/*
+ * Template layout, shared by every region: structure and design only.
+ * Its words, images, links and lists are each region's regions/<id>/content/page-about-us.json:
+ *   "@content:<page>.<path>"   a value from that file
+ *   "@shown": "<path>"         the section appears where that file says "shown": true
+ *   "@list:<page>.<path>"      one block per item of that list, styled by "block_designs"
+ * The build fills these in (scripts/compile-region.cjs). Edit design here, content there.
+ */
+{
+  "sections": {
+    "image_banner_AJECVx": {
+      "type": "media--image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "@content:page-about-us.image_banner_1.image",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-left",
+        "desktop_content_alignment": "left",
+        "show_text_box": false,
+        "color_scheme": "",
+        "stack_images_on_mobile": false,
+        "mobile_content_alignment": "left",
+        "show_text_below": false
+      },
+      "custom_css": [
+        ".banner__heading {margin-bottom: 0; margin-left: -80px; color: #000; font-family: \"PPEditorialNew Ultralight Italic\", serif; font-weight: 500; font-style: italic;}",
+        ".banner__text {margin-bottom: 0; margin-left: -80px; color: #fff; font-family: \"PPMori\", serif; font-weight: 500; max-width: 400px; font-size: 20px;}",
+        "@media screen and (min-width: 750px) {.page-width {margin: unset; padding: 1.5rem; }}",
+        "@media screen and (min-width: 750px) {.banner--desktop-transparent .banner__box {padding: 3rem 150px; }}",
+        "@media (max-width: 768px) {.banner {display: none; }}"
+      ],
+      "blocks": {
+        "heading_LnNWBM": {
+          "type": "heading",
+          "settings": {
+            "heading": "@content:page-about-us.image_banner_1.heading.heading",
+            "heading_size": "h0"
+          }
+        }
+      },
+      "block_order": [
+        "heading_LnNWBM"
+      ]
+    },
+    "image_banner_jaFHwQ": {
+      "type": "media--image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "@content:page-about-us.image_banner_2.image",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-left",
+        "desktop_content_alignment": "left",
+        "show_text_box": false,
+        "color_scheme": "",
+        "stack_images_on_mobile": false,
+        "mobile_content_alignment": "left",
+        "show_text_below": false
+      },
+      "custom_css": [
+        ".banner__heading {margin-bottom: 0; margin-left: 15px !important; color: #000 !important; font-family: \"PPEditorialNew Ultralight Italic\", serif; font-weight: 500; font-style: italic; margin-top: 300px !important;}",
+        ".banner__text {margin-bottom: 0; margin-left: 15px; color: #000; font-family: \"PPMori\", serif; font-weight: 500; max-width: 400px;}",
+        "@media (min-width: 768px) {.banner {display: none; }}",
+        ".banner__content {padding-top: 40px;}",
+        ".banner__media {height: auto;}",
+        ".banner__text {line-height: 23px;}"
+      ],
+      "blocks": {
+        "heading_rfzEzt": {
+          "type": "heading",
+          "settings": {
+            "heading": "@content:page-about-us.image_banner_2.heading.heading",
+            "heading_size": "h0"
+          }
+        }
+      },
+      "block_order": [
+        "heading_rfzEzt"
+      ]
+    },
+    "text_section_LbVkMh": {
+      "type": "editorial--text-section",
+      "name": "Text Section with Custom Font",
+      "custom_css": [
+        "@media screen and (min-width: 1024px) {.shopify-hardcoded-text-section-content {font-size: 20px !important; max-width: 800px !important; margin-left: 0px !important; } .shopify-hardcoded-text-section-wrapper {margin-bottom: -80px; }}",
+        ".shopify-hardcoded-text-section-content {font-size: 16px; margin-left: 0px; text-align: left;}",
+        "@media screen and (max-width: 1024px) {.shopify-hardcoded-text-section-wrapper {min-height: 200px; padding: 16px !important; }}"
+      ]
+    },
+    "video_text_Tmprbb": {
+      "type": "media--video-text",
+      "name": "Video with Text Section",
+      "settings": {
+        "video_url": "@content:page-about-us.video_text.video_url",
+        "text_content": "@content:page-about-us.video_text.text_content"
+      },
+      "custom_css": [
+        "@media screen and (min-width: 1441px) {.video-text-section .text-box {margin-top: -190px !important; }}",
+        "h1,.h1 {margin-bottom: 22px;}"
+      ]
+    },
+    "image_split_content_hG4Hwe": {
+      "type": "media--image-split",
+      "name": "Image Content Split",
+      "settings": {
+        "image": "@content:page-about-us.image_split_1.image",
+        "image_position": "right",
+        "section_height": "600px",
+        "eyebrow_text": "@content:page-about-us.image_split_1.eyebrow_text",
+        "heading": "@content:page-about-us.image_split_1.heading",
+        "description": "@content:page-about-us.image_split_1.description",
+        "button_text": "@content:page-about-us.image_split_1.button_text",
+        "button_url": "@content:page-about-us.image_split_1.button_url",
+        "background_color": "#ffffff",
+        "eyebrow_color": "#666666",
+        "heading_color": "#333333",
+        "text_color": "#000000"
+      },
+      "custom_css": [
+        ".content-section.content-right {justify-content: flex-end; padding-right: 50px; padding-left: 40px;}",
+        ".image-content-split {margin-top: 20px; margin-bottom: 0px !important;}",
+        "@media screen and (max-width: 768px) {.image-section {height: 550px; }}"
+      ]
+    },
+    "image_split_content_VxLmLH": {
+      "type": "media--image-split",
+      "name": "Image Content Split",
+      "settings": {
+        "image": "@content:page-about-us.image_split_2.image",
+        "image_position": "left",
+        "section_height": "600px",
+        "eyebrow_text": "@content:page-about-us.image_split_2.eyebrow_text",
+        "heading": "@content:page-about-us.image_split_2.heading",
+        "description": "@content:page-about-us.image_split_2.description",
+        "button_text": "@content:page-about-us.image_split_2.button_text",
+        "button_url": "@content:page-about-us.image_split_2.button_url",
+        "background_color": "#ffffff",
+        "eyebrow_color": "#666666",
+        "heading_color": "#333333",
+        "text_color": "#000000"
+      },
+      "custom_css": [
+        "@media screen and (min-width: 1441px) {.content-section.content-right {justify-content: flex-end; padding-right: 50px; padding-left: 40px; }}",
+        ".image-content-split {margin-top: 0px; margin-bottom: 50px;}",
+        "@media screen and (max-width: 768px) {.image-section {height: 550px; }}"
+      ]
+    },
+    "image_split_content_7Rprcz": {
+      "type": "media--image-split",
+      "name": "Image Content Split",
+      "settings": {
+        "image": "@content:page-about-us.image_split_3.image",
+        "image_position": "right",
+        "section_height": "600px",
+        "eyebrow_text": "@content:page-about-us.image_split_3.eyebrow_text",
+        "heading": "@content:page-about-us.image_split_3.heading",
+        "description": "@content:page-about-us.image_split_3.description",
+        "button_text": "@content:page-about-us.image_split_3.button_text",
+        "button_url": "@content:page-about-us.image_split_3.button_url",
+        "background_color": "#ffffff",
+        "eyebrow_color": "#666666",
+        "heading_color": "#333333",
+        "text_color": "#000000"
+      },
+      "custom_css": [
+        "@media screen and (min-width: 1441px) {.content-section.content-right {justify-content: flex-end; padding-right: 50px; padding-left: 40px; }}",
+        ".image-content-split {margin-top: -50px; margin-bottom: 0px;}",
+        "@media screen and (max-width: 768px) {.image-section {height: 550px; }}"
+      ]
+    },
+    "perfume_story_section_cBwpyY": {
+      "type": "editorial--perfume-story",
+      "name": "Perfume Story Section",
+      "settings": {
+        "main_headline": "@content:page-about-us.perfume_story.main_headline",
+        "story_text": "@content:page-about-us.perfume_story.story_text",
+        "tagline": "@content:page-about-us.perfume_story.tagline",
+        "button_text": "@content:page-about-us.perfume_story.button_text",
+        "button_link": "@content:page-about-us.perfume_story.button_link",
+        "hero_image": "@content:page-about-us.perfume_story.hero_image"
+      },
+      "custom_css": [
+        "@media screen and (min-width: 1024px) and (max-width: 1440px) {.perfume-story-image {height: 100%; width: 100% !important; order: 2; } .perfume-story-content {padding: 60px 0px; order: 1; margin-left: 10px; }}",
+        "@media screen and (max-width: 767px) {.shop-button {max-width: 310px; } .story-text {max-width: 320px; } .main-headline {width: 350px; margin-bottom: 40px; }}",
+        ".main-headline {max-width: 600px;}"
+      ]
+    }
+  },
+  "order": [
+    "image_banner_AJECVx",
+    "image_banner_jaFHwQ",
+    "text_section_LbVkMh",
+    "video_text_Tmprbb",
+    "image_split_content_hG4Hwe",
+    "image_split_content_VxLmLH",
+    "image_split_content_7Rprcz",
+    "perfume_story_section_cBwpyY"
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "$comment": [
+    "The words, images, links and lists of templates/index.json for this region. Its layout and styling are the theme's (templates/index.json), shared by every region.",
+    "Sections, top to bottom: video_banner, running_text_1, featured_collections, scent_stories, featured_scent, running_text_2 (switchable), scent_filter_banner, mobile_video_banner, best_sellers, scent_carousel_1, collection (switchable), scent_carousel_2, apps (switchable), scent_carousel_3, instagram_grid, newsletter_banner. A switchable section appears only where \"shown\" is true.",
+    "A null value leaves that setting empty."
+  ],
+  "video_banner": {
+    "main_title_part1": "A",
+    "main_title_part2": "Quiet",
+    "subtitle_part1": "",
+    "subtitle_part2": "Reinvention",
+    "side_text": "",
+    "button_text": "EXPLORE ALL PRODUCTS",
+    "button_link": "shopify://collections/shop"
+  },
+  "running_text_1": {
+    "text_left": "Long Lasting",
+    "text_center": "Extrait De Parfum",
+    "icon_image": "shopify://shop_images/Vector_4.png",
+    "text_right": "Up to 35% Concentration"
+  },
+  "featured_collections": {
+    "items": [
+      {
+        "collection": "women",
+        "video_url": "https://cdn.shopify.com/videos/c/o/v/c605d4dc6fe04f8aa3f2a5584207af28.mp4",
+        "title": "Women",
+        "button_text": "Shop women",
+        "button_link": "shopify://collections/women"
+      },
+      {
+        "collection": "men",
+        "video_url": "https://cdn.shopify.com/videos/c/o/v/efb55496eff0461a9c9aaa2632110d25.mp4",
+        "title": "Men",
+        "button_text": "Shop men",
+        "button_link": "shopify://collections/men"
+      },
+      {
+        "collection": "unisex",
+        "video_url": "https://cdn.shopify.com/videos/c/o/v/bd60dd4aa48c4125b414c543ba461da8.mp4",
+        "title": "Unisex",
+        "button_text": "Shop Unisex",
+        "button_link": "shopify://collections/unisex"
+      }
+    ]
+  },
+  "scent_stories": {
+    "title": ""
+  },
+  "featured_scent": {
+    "heading": "Luxury You Can Afford",
+    "subheading": "Signature Inspirations",
+    "collection": "featured-collection",
+    "view_all_link": "shopify://collections/shop"
+  },
+  "running_text_2": {
+    "shown": true,
+    "text_left": "Swiss Precision",
+    "text_center": "Reimagined Signatures",
+    "icon_image": "shopify://shop_images/Vector_4.png",
+    "text_right": "Premium Packaging"
+  },
+  "scent_filter_banner": {
+    "brand_heading_1": "Ysl",
+    "brand_collection_1": "ysl-1",
+    "brand_button_url_1": "shopify://collections/ysl-1",
+    "brand_heading_2": "Dior",
+    "brand_collection_2": "dior-1",
+    "brand_button_url_2": "shopify://collections/dior-1",
+    "brand_heading_3": "Chanel",
+    "brand_collection_3": "chanel",
+    "brand_button_url_3": "shopify://collections/chanel",
+    "brand_heading_4": "Tom Ford",
+    "brand_collection_4": "tom-ford",
+    "brand_button_url_4": "shopify://collections/tom-ford",
+    "brand_heading_5": "Louis Vuitton",
+    "brand_collection_5": "lv",
+    "brand_button_url_5": "shopify://collections/lv",
+    "brand_heading_6": "Maison Crivelli",
+    "brand_collection_6": "maison-crivelli",
+    "brand_button_url_6": "shopify://collections/maison-crivelli",
+    "notes_heading_1": "Flowery",
+    "notes_collection_1": "flowery",
+    "notes_button_url_1": "shopify://collections/flowery",
+    "notes_heading_2": "Fresh",
+    "notes_collection_2": "fresh",
+    "notes_button_url_2": "shopify://collections/fresh",
+    "notes_heading_3": "Earthy",
+    "notes_collection_3": "earthy",
+    "notes_button_url_3": "shopify://collections/earthy",
+    "notes_heading_4": "Herbal",
+    "notes_collection_4": "herbal",
+    "notes_button_url_4": "shopify://collections/herbal",
+    "notes_heading_5": "Warm",
+    "notes_collection_5": "warm",
+    "notes_button_url_5": "shopify://collections/warm",
+    "notes_heading_6": "Gourmand",
+    "notes_collection_6": "gourmand",
+    "notes_button_url_6": "shopify://collections/gourmand"
+  },
+  "mobile_video_banner": {
+    "heading_1": "Chanel",
+    "collection_1": "chanel",
+    "heading_2": "Dior",
+    "collection_2": "dior-1",
+    "heading_3": "Tom Ford",
+    "collection_3": "tom-ford",
+    "heading_4": "Louis Vuitton",
+    "collection_4": "lv",
+    "heading_5": "Ysl",
+    "collection_5": "ysl-1",
+    "heading_6": "Maison Crivelli",
+    "collection_6": "maison-crivelli",
+    "heading_notes_1": "Flowery",
+    "collection_notes_1": "flowery",
+    "heading_notes_2": "Fresh",
+    "collection_notes_2": "fresh",
+    "heading_notes_3": "Earthy",
+    "collection_notes_3": "earthy",
+    "heading_notes_4": "Herbal",
+    "collection_notes_4": "herbal",
+    "heading_notes_5": "Warm",
+    "collection_notes_5": "warm",
+    "heading_notes_6": "Gourmand",
+    "collection_notes_6": "gourmand"
+  },
+  "best_sellers": {
+    "section_title": "Best Sellers",
+    "collection": "bestsellers",
+    "subheading": "",
+    "featured_image": "shopify://shop_images/Website_-_Home.jpg",
+    "view_all_link": "shopify://collections/bestsellers"
+  },
+  "scent_carousel_1": {
+    "heading": "The Collection",
+    "subheading": "Better Value When Chosen Together"
+  },
+  "collection": {
+    "shown": false
+  },
+  "scent_carousel_2": {
+    "heading": "What People",
+    "subheading": "Say About Us"
+  },
+  "apps": {
+    "shown": false,
+    "firework_shoppable_video_ugc_firework_embed": {
+      "channel": "scentspired",
+      "playlist": "",
+      "embedtitle": "",
+      "hashtag": ""
+    }
+  },
+  "scent_carousel_3": {
+    "heading": "A sneak peek",
+    "subheading": "@thescentspired"
+  },
+  "instagram_grid": {
+    "instagram_grid": {
+      "instagram_url": "https://www.instagram.com/thescentspired/",
+      "image_1": null,
+      "image_2": null,
+      "image_3": null,
+      "image_4": null,
+      "image_5": null,
+      "image_6": null
+    }
+  },
+  "newsletter_banner": {
+    "background_image": "",
+    "heading": "Join the",
+    "subheading": "inner circle",
+    "description": "New launches, exclusive edits, and first access, straight to your inbox."
+  }
+}

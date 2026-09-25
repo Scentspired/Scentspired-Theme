@@ -1,0 +1,126 @@
+/*
+ * Template layout, shared by every region: structure and design only.
+ * Its words, images, links and lists are each region's regions/<id>/content/product.json:
+ *   "@content:<page>.<path>"   a value from that file
+ *   "@shown": "<path>"         the section appears where that file says "shown": true
+ *   "@list:<page>.<path>"      one block per item of that list, styled by "block_designs"
+ * The build fills these in (scripts/compile-region.cjs). Edit design here, content there.
+ */
+{
+  "sections": {
+    "main": {
+      "type": "catalog--product-custom",
+      "custom_css": [
+        ".ps-price {font-size: 24px; font-weight: 600;}",
+        "@media only screen and (max-width: 1023px) {.ps-vendor {font-size: 12px; font-weight: 500; } .ps-price {font-size: 20px; margin-top: -40px; }}",
+        ".ps-description {padding-top: 20px; padding-bottom: 20px;}"
+      ]
+    },
+    "product_info_tab_g9n4Qx": {
+      "type": "catalog--product-info-tab",
+      "name": "Product Info Tabs",
+      "settings": {
+        "about_image": "@content:product.product_info_tab.about_image",
+        "ingredients_image": "@content:product.product_info_tab.ingredients_image",
+        "faq_image": "@content:product.product_info_tab.faq_image",
+        "icon_1": "@content:product.product_info_tab.icon_1",
+        "icon_1_text": "@content:product.product_info_tab.icon_1_text",
+        "icon_2": "@content:product.product_info_tab.icon_2",
+        "icon_2_text": "@content:product.product_info_tab.icon_2_text",
+        "icon_3": "@content:product.product_info_tab.icon_3",
+        "icon_3_text": "@content:product.product_info_tab.icon_3_text",
+        "icon_4": "@content:product.product_info_tab.icon_4",
+        "icon_4_text": "@content:product.product_info_tab.icon_4_text",
+        "icon_5": "@content:product.product_info_tab.icon_5",
+        "icon_5_text": "@content:product.product_info_tab.icon_5_text",
+        "usage_image": "@content:product.product_info_tab.usage_image"
+      },
+      "custom_css": [
+        "@media screen and (min-width: 1024px) {.product-tabs-wrapper {margin-top: 70px !important; } .content-side p {width: 500px; }}",
+        "@media screen and (min-width: 1441px) {.tab-nav {max-width: 94% !important; width: 94% !important; } .tab-nav button {min-width: 350px !important; text-align: center !important; padding: 12px 170px !important; }}",
+        "h5,.h5 {font-size: calc(var(--font-heading-scale) * 1.3rem); color: #000; font-weight: 700;}",
+        "h3,.h3 {font-size: 20px; color: #000; text-align: center; font-weight: 600;}"
+      ],
+      "blocks": "@list:product.product_info_tab.items",
+      "block_designs": {
+        "faq": {
+          "settings": {}
+        },
+        "ingredient": {
+          "settings": {}
+        }
+      }
+    },
+    "scent_stories_collection_rG6xTg": {
+      "type": "editorial--scent-stories",
+      "name": "Scent Stories Section",
+      "@shown": "product.scent_stories.shown",
+      "settings": {
+        "title": "@content:product.scent_stories.title"
+      },
+      "custom_css": [
+        "@media only screen and (min-width: 1024px) and (max-width: 1439px) {.fragrance-layout {grid-template-columns: repeat(3, 1fr); gap: 20px; } .fragrance-item {height: 500px; width: 330px; } .fragrance-name {margin-left: 30px !important; width: 80%; } .fragrance-cost {top: 20px; } .fragrance-layout {display: grid; grid-template-columns: repeat(3, 1fr) !important; gap: 30px; margin-top: 40px; }}"
+      ]
+    },
+    "apps_8GiyRb": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true
+      },
+      "blocks": {
+        "judge_me_reviews_review_widget_b93EnB": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "real_data",
+            "max_width": 1200,
+            "show_shop_reviews": true,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_b93EnB"
+      ]
+    },
+    "featuredscent_jJNzkg": {
+      "type": "catalog--featured-scent",
+      "name": "Scent Collection",
+      "settings": {
+        "heading": "@content:product.featured_scent.heading",
+        "subheading": "@content:product.featured_scent.subheading",
+        "collection": "@content:product.featured_scent.collection",
+        "view_all_link": "@content:product.featured_scent.view_all_link"
+      },
+      "custom_css": [
+        ".fragrance-item:hover .fragrance-info {transform: none; color: black;}",
+        ".product-badge {color: #fff !important;}",
+        ".mobile-only {display: flex !important;}",
+        ".fragrance-rating {margin-left: -3px;}",
+        ".fragrance-name {margin-top: 0px;}",
+        ".variant-option-btn {padding: 6px 16px !important; background-color: #fff; border: 1px solid #ddd; border-radius: 20px; font-size: 11px !important; cursor: pointer; font-family: \"PPMori Regular\", sans-serif; transition: all 0.2s ease; color: #000; font-weight: 400;}"
+      ]
+    },
+    "newsletter_banner_BxBq7B": {
+      "type": "marketing--newsletter-banner",
+      "name": "Newsletter Banner",
+      "settings": {
+        "background_image": "@content:product.newsletter_banner.background_image",
+        "heading": "@content:product.newsletter_banner.heading",
+        "subheading": "@content:product.newsletter_banner.subheading",
+        "description": "@content:product.newsletter_banner.description"
+      },
+      "custom_css": [
+        "@media only screen and (min-width: 1024px) and (max-width: 1439px) {.newsletter-banner .newsletter-content {margin-right: 0px !important; }}",
+        "@media (max-width: 1023px) {.newsletter-banner button {width: 240px; height: 48px; margin-left: -323px; margin-top: 90px; } .newsletter-banner small {display: block; margin-top: 150px; font-size: 12px; color: #000; text-align: center; font-family: \"PPMori Regular\", sans-serif; line-height: 120%; } .newsletter-banner {height: 790px; } .newsletter-banner .newsletter-content {margin-bottom: 175px !important; }}"
+      ]
+    }
+  },
+  "order": [
+    "main",
+    "product_info_tab_g9n4Qx",
+    "scent_stories_collection_rG6xTg",
+    "apps_8GiyRb",
+    "featuredscent_jJNzkg",
+    "newsletter_banner_BxBq7B"
+  ]
+}

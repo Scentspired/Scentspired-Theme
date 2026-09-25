@@ -1,0 +1,105 @@
+/*
+ * Template layout, shared by every region: structure and design only.
+ * Its words, images, links and lists are each region's regions/<id>/content/article.json:
+ *   "@content:<page>.<path>"   a value from that file
+ *   "@shown": "<path>"         the section appears where that file says "shown": true
+ *   "@list:<page>.<path>"      one block per item of that list, styled by "block_designs"
+ * The build fills these in (scripts/compile-region.cjs). Edit design here, content there.
+ */
+{
+  "sections": {
+    "parts": {
+      "type": "article--parts"
+    },
+    "main": {
+      "type": "editorial--article",
+      "blocks": {
+        "breadcrumb": {
+          "type": "breadcrumb",
+          "settings": {
+            "show_home": true,
+            "show_blog": true,
+            "show_category": true
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "blog_show_date": true,
+            "blog_show_author": true,
+            "blog_show_reading_time": true
+          }
+        },
+        "featured_image": {
+          "type": "featured_image",
+          "settings": {
+            "image_height": "adapt"
+          }
+        },
+        "content": {
+          "type": "content"
+        },
+        "tags": {
+          "type": "tags",
+          "settings": {
+            "label": "@content:article.article.tags.label"
+          }
+        },
+        "share": {
+          "type": "share",
+          "settings": {
+            "share_label": "@content:article.article.share.share_label"
+          }
+        },
+        "author_bio": {
+          "type": "author_bio",
+          "settings": {
+            "show_avatar": true,
+            "bio_text": "@content:article.article.author_bio.bio_text"
+          }
+        },
+        "related_posts": {
+          "type": "related_posts",
+          "settings": {
+            "heading": "@content:article.article.related_posts.heading",
+            "posts_to_show": 3
+          }
+        },
+        "related_products": {
+          "type": "related_products",
+          "settings": {
+            "heading": "@content:article.article.related_products.heading",
+            "auto_related": true,
+            "products_to_show": 4
+          }
+        },
+        "newsletter": {
+          "type": "newsletter",
+          "settings": {
+            "heading": "@content:article.article.newsletter.heading",
+            "subtext": "@content:article.article.newsletter.subtext",
+            "placeholder": "@content:article.article.newsletter.placeholder",
+            "button_text": "@content:article.article.newsletter.button_text",
+            "success_message": "@content:article.article.newsletter.success_message"
+          }
+        }
+      },
+      "block_order": [
+        "breadcrumb",
+        "title",
+        "featured_image",
+        "content",
+        "tags",
+        "share",
+        "author_bio",
+        "related_posts",
+        "related_products",
+        "newsletter"
+      ]
+    }
+  },
+  "order": [
+    "parts",
+    "main"
+  ]
+}

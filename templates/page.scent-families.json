@@ -1,0 +1,180 @@
+/*
+ * Template layout, shared by every region: structure and design only.
+ * Its words, images, links and lists are each region's regions/<id>/content/page-scent-families.json:
+ *   "@content:<page>.<path>"   a value from that file
+ *   "@shown": "<path>"         the section appears where that file says "shown": true
+ *   "@list:<page>.<path>"      one block per item of that list, styled by "block_designs"
+ * The build fills these in (scripts/compile-region.cjs). Edit design here, content there.
+ */
+{
+  "sections": {
+    "image_banner_48FdGd": {
+      "type": "media--image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "@content:page-scent-families.image_banner_1.image",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-left",
+        "desktop_content_alignment": "left",
+        "show_text_box": false,
+        "color_scheme": "",
+        "stack_images_on_mobile": false,
+        "mobile_content_alignment": "center",
+        "show_text_below": false
+      },
+      "custom_css": [
+        ".banner__heading {margin-bottom: 0; margin-left: -80px; color: #fff; font-family: \"PPEditorialNew Ultralight Italic\", serif; font-weight: 500; font-style: italic;}",
+        ".banner__text {margin-bottom: 0; margin-left: -80px; color: #fff; font-family: \"PPMori\", serif; font-weight: 500; max-width: 400px; font-size: 20px;}",
+        "@media screen and (min-width: 750px) {.page-width {margin: unset; padding: 1.5rem; }}",
+        "@media screen and (min-width: 750px) {.banner--desktop-transparent .banner__box {padding: 3rem 150px; }}",
+        "@media (max-width: 768px) {.banner {display: none; }}"
+      ],
+      "blocks": {
+        "heading_pNDwxN": {
+          "type": "heading",
+          "settings": {
+            "heading": "@content:page-scent-families.image_banner_1.heading.heading",
+            "heading_size": "h1"
+          }
+        },
+        "text_EDVwQF": {
+          "type": "text",
+          "settings": {
+            "text": "@content:page-scent-families.image_banner_1.text.text",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_pNDwxN",
+        "text_EDVwQF"
+      ]
+    },
+    "image_banner_MD3XEm": {
+      "type": "media--image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "@content:page-scent-families.image_banner_2.image",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-left",
+        "desktop_content_alignment": "left",
+        "show_text_box": false,
+        "color_scheme": "",
+        "stack_images_on_mobile": false,
+        "mobile_content_alignment": "left",
+        "show_text_below": false
+      },
+      "custom_css": [
+        ".banner__heading {margin-bottom: 0; margin-left: 15px !important; color: #fff !important; font-family: \"PPEditorialNew Ultralight Italic\", serif; font-weight: 500; font-style: italic; margin-top: 260px !important;}",
+        ".banner__text {margin-bottom: 0; margin-left: 15px; color: #fff; font-family: \"PPMori\", serif; font-weight: 500; max-width: 400px;}",
+        "@media (min-width: 768px) {.banner {display: none; }}",
+        ".banner__content {padding-top: 40px;}",
+        ".banner__media {height: auto;}",
+        ".banner__text {line-height: 23px;}"
+      ],
+      "blocks": {
+        "heading_bzyj9C": {
+          "type": "heading",
+          "settings": {
+            "heading": "@content:page-scent-families.image_banner_2.heading.heading",
+            "heading_size": "h1"
+          }
+        },
+        "text_MAndHb": {
+          "type": "text",
+          "settings": {
+            "text": "@content:page-scent-families.image_banner_2.text.text",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_bzyj9C",
+        "text_MAndHb"
+      ]
+    },
+    "aroma_selector_VzMAwH": {
+      "type": "catalog--aroma-selector",
+      "name": "Aroma Selector (Abel Style)",
+      "custom_css": [
+        "@media (max-width: 768px) {.aroma-block {height: 175px; }}",
+        ".mobile-header {display: none;}",
+        "@media screen and (min-width: 1024px) and (max-width: 1440px) {.aroma-block h3 {font-size: 8px; }}",
+        ".select-aroma-section {margin-top: 100px;}",
+        "@media (min-width: 1440px) {.aroma-block h3 {font-size: 11px; }}",
+        ".product-title {display: none;}",
+        ".modal-product-title {display: none;}",
+        "@media (max-width: 1024px) {.modal-pagination-numbers {background-color: rgba(0, 0, 0, 0.3) !important; backdrop-filter: blur(10px) !important; padding: 10px; border-radius: 20px; }}"
+      ]
+    },
+    "rich_text_qzBDh6": {
+      "type": "editorial--rich-text",
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 0
+      },
+      "custom_css": [
+        ".rich-text__heading {font-family: \"PPEditorialNew Italic\", Georgia, serif; text-decoration: underline; text-decoration-color: #fadb95; text-decoration-thickness: 2px; text-underline-offset: 2px; font-style: italic;}",
+        "@media only screen and (min-width: 750px) {.h0 {font-size: 45px; }}",
+        "@media only screen and (max-width: 750px) {.h0 {font-size: 32px; }}"
+      ],
+      "blocks": {
+        "heading_NxziP8": {
+          "type": "heading",
+          "settings": {
+            "heading": "@content:page-scent-families.rich_text.heading.heading",
+            "heading_size": "h0"
+          }
+        }
+      },
+      "block_order": [
+        "heading_NxziP8"
+      ]
+    },
+    "featured_collections_yrD9TR": {
+      "type": "catalog--featured-collections",
+      "name": "Featured Collections",
+      "custom_css": [
+        "@media only screen and (max-width: 1023px) {.featured-collections-section {padding: 30px 20px; background: #fff; position: relative; overflow: hidden; }}",
+        "@media only screen and (min-width: 1023px) {.collection-button {position: absolute; bottom: -30px; left: -30px; background: #f4ff41; color: black; border: none; width: 105px; height: 40px; }}"
+      ],
+      "blocks": "@list:page-scent-families.featured_collections.items",
+      "block_designs": {
+        "collection_block": {
+          "settings": {}
+        }
+      }
+    },
+    "newsletter_banner_fBFiwz": {
+      "type": "marketing--newsletter-banner",
+      "name": "Newsletter Banner",
+      "settings": {
+        "background_image": "@content:page-scent-families.newsletter_banner.background_image",
+        "heading": "@content:page-scent-families.newsletter_banner.heading",
+        "subheading": "@content:page-scent-families.newsletter_banner.subheading",
+        "description": "@content:page-scent-families.newsletter_banner.description"
+      },
+      "custom_css": [
+        "@media only screen and (min-width: 1024px) and (max-width: 1439px) {.newsletter-banner .newsletter-content {margin-right: 0px !important; }}",
+        "@media (max-width: 1023px) {.newsletter-banner button {width: 240px; height: 48px; margin-left: -323px; margin-top: 90px; } .newsletter-banner small {display: block; margin-top: 150px; font-size: 12px; color: #000; text-align: center; font-family: \"PPMori Regular\", sans-serif; line-height: 120%; } .newsletter-banner {height: 790px; } .newsletter-banner .newsletter-content {margin-bottom: 175px !important; }}"
+      ]
+    }
+  },
+  "order": [
+    "image_banner_48FdGd",
+    "image_banner_MD3XEm",
+    "aroma_selector_VzMAwH",
+    "rich_text_qzBDh6",
+    "featured_collections_yrD9TR",
+    "newsletter_banner_fBFiwz"
+  ]
+}

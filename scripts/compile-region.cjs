@@ -55,7 +55,7 @@ const CORE_DIRS = ['assets', 'blocks', 'config', 'layout', 'locales', 'sections'
 // drop one in would let it fork a component — the same hole that is closed for
 // sections below. Everything a region needs is in its region.json, resolved at
 // build time into snippets/region--active.liquid.
-const OVERLAY_DIRS = ['templates', 'locales', 'config'];
+const OVERLAY_DIRS = ['locales', 'config'];
 
 console.log('╔══════════════════════════════════════════════════════════════╗');
 console.log(`║   📦 COMPILING REGIONAL THEME: ${target.toUpperCase().padEnd(30)}║`);
@@ -77,14 +77,15 @@ fs.mkdirSync(DIST_DIR, { recursive: true });
 // development theme before they are rewritten.
 const emitted = new Set();
 
-function copyTree(src, dest) {
+function copyTree(src, dest, skip = () => false) {
   if (!fs.existsSync(src)) return 0;
   let count = 0;
   for (const entry of fs.readdirSync(src, { withFileTypes: true })) {
     const from = path.join(src, entry.name);
     const to = path.join(dest, entry.name);
+    if (skip(entry)) continue;
     if (entry.isDirectory()) {
-      count += copyTree(from, to);
+      count += copyTree(from, to, skip);
     } else {
       fs.mkdirSync(path.dirname(to), { recursive: true });
       const next = fs.readFileSync(from);
@@ -119,8 +120,12 @@ function removeStale(dir) {
 const stats = {};
 
 console.log('>>> [1/6] Copying shared core...');
+// Template and section-group JSON are layouts, filled from the region's content
+// further down; copying them raw would put unfilled references in front of the
+// dev server.
+const isLayoutJson = (dir) => (entry) => (dir === 'templates' || dir === 'sections') && entry.isFile() && entry.name.endsWith('.json');
 for (const dir of CORE_DIRS) {
-  stats[dir] = copyTree(path.join(THEME_ROOT, dir), path.join(DIST_DIR, dir));
+  stats[dir] = copyTree(path.join(THEME_ROOT, dir), path.join(DIST_DIR, dir), isLayoutJson(dir));
   console.log(`  + ${dir.padEnd(12)}: ${stats[dir]} files`);
 }
 
@@ -215,19 +220,20 @@ if (fs.existsSync(regionSnippets) && fs.readdirSync(regionSnippets).length > 0) 
   process.exit(1);
 }
 
-const regionSections = path.join(REGION_DIR, 'sections');
-if (fs.existsSync(regionSections)) {
-  const forked = fs.readdirSync(regionSections).filter(f => f.endsWith('.liquid'));
-  if (forked.length > 0) {
-    console.error(`\n❌ regions/${target}/sections/ may only contain .json section groups.`);
-    console.error(`   Found component code: ${forked.join(', ')}`);
-    console.error('   A region overrides section DATA, never section CODE.\n');
+/**
+ * Templates and section groups are design — which sections a page has, in what
+ * order, how they are spaced and styled — and design is the theme's, the same in
+ * every region: templates/*.json and sections/*.json. A region brings only
+ * content (regions/<id>/content/<page>.json), so it may hold neither.
+ */
+for (const dir of ['templates', 'sections']) {
+  const abs = path.join(REGION_DIR, dir);
+  const found = fs.existsSync(abs) ? fs.readdirSync(abs) : [];
+  if (found.length) {
+    console.error(`\n❌ regions/${target}/${dir}/ may not exist. Found: ${found.join(', ')}`);
+    console.error(`   Layout and design are the theme's (${dir}/*.json), shared by every region.`);
+    console.error(`   A region's words, images, links and lists go in regions/${target}/content/<page>.json.\n`);
     process.exit(1);
-  }
-  const n = copyTree(regionSections, path.join(DIST_DIR, 'sections'));
-  if (n > 0) {
-    overlaid.sections = n;
-    console.log(`  ~ ${'sections'.padEnd(12)}: ${n} section group(s) overridden`);
   }
 }
 
@@ -301,6 +307,164 @@ emitted.add('snippets/region--active.liquid');
   }
   const pages = [...new Set(Object.keys(flat).map((k) => k.split('.')[0]))];
   console.log(`  + snippets/region--content.liquid (${Object.keys(flat).length} value(s) in ${pages.length} page file(s))`);
+
+  /*
+   * Templates and section groups are the theme's: templates/*.json and
+   * sections/*.json hold a page's structure and design, the same in every
+   * region. Their content is this region's content/<page>.json:
+   *
+   *   "@content:<page>.<path>"   that value; null leaves the setting out
+   *   "@shown": "<path>"         the section is on this region's page only where
+   *                              that value is true
+   *   "blocks": "@list:<path>"   one block per item of that list, each styled by
+   *                              the layout's "block_designs" for its "type"
+   *
+   * A template whose page this region has no content file for is not published
+   * here. A market override (a template with a "parent") keeps only sections
+   * its parent still has.
+   */
+  {
+    const content = readRegionContent(target);
+    const lookup = (key) => key.split('.').reduce((v, k) => (v !== null && typeof v === 'object' ? v[k] : undefined), content);
+    const OMIT = Symbol('omit');
+    const errors = [];
+    const fill = (node, where) => {
+      if (Array.isArray(node)) return node.map((x) => fill(x, where)).filter((x) => x !== OMIT);
+      if (node && typeof node === 'object') {
+        const out = {};
+        for (const [k, v] of Object.entries(node)) { const f = fill(v, where); if (f !== OMIT) out[k] = f; }
+        return out;
+      }
+      if (typeof node !== 'string' || !node.startsWith('@content:')) return node;
+      const value = lookup(node.slice('@content:'.length));
+      if (value === undefined) { errors.push(`${where}: ${node} is not in regions/${target}/content/`); return OMIT; }
+      return value === null ? OMIT : value;
+    };
+    const blockId = (type, n) => `${type.replace(/^[a-z]+--/, '').replace(/[^a-z0-9]+/gi, '_').toLowerCase()}_${n}`;
+
+    // A layout holds no content of its own. Every setting whose type is content
+    // — words, media, links, a picked product, collection or menu — must be a
+    // "@content:" reference; code (liquid) and sizes typed as text are design.
+    const CONTENT_TYPES = new Set(['text', 'textarea', 'richtext', 'inline_richtext', 'html', 'url', 'image_picker', 'video', 'video_url', 'collection', 'product', 'blog', 'page', 'link_list', 'collection_list', 'product_list', 'metaobject', 'metaobject_list', 'article']);
+    const APP_CONTENT = new Set(['channel', 'playlist', 'hashtag', 'embedtitle', 'heading']);   // an app's account data
+    const schemaTypes = (file) => {
+      const m = fs.existsSync(file) && fs.readFileSync(file, 'utf8').match(/\{%-?\s*schema\s*-?%\}([\s\S]*?)\{%-?\s*endschema\s*-?%\}/);
+      try { return m ? JSON.parse(m[1]) : {}; } catch { return {}; }
+    };
+    const settingType = (sectionType, blockType, id) => {
+      if (blockType && blockType.startsWith('shopify://apps/')) return APP_CONTENT.has(id) ? 'text' : null;
+      if (blockType && fs.existsSync(path.join(THEME_ROOT, 'blocks', `${blockType}.liquid`))) {
+        return ((schemaTypes(path.join(THEME_ROOT, 'blocks', `${blockType}.liquid`)).settings || []).find((x) => x.id === id) || {}).type;
+      }
+      const s = schemaTypes(path.join(THEME_ROOT, 'sections', `${sectionType}.liquid`));
+      const list = blockType ? ((s.blocks || []).find((b) => b.type === blockType) || {}).settings || [] : s.settings || [];
+      return (list.find((x) => x.id === id) || {}).type;
+    };
+    const isContentSetting = (type, id) => CONTENT_TYPES.has(type) && !(type === 'text' && /(^|_)(height|width|size|padding|margin|gap|radius|spacing)(_|$)/.test(id));
+    const literal = (v) => !(v === null || v === '' || (Array.isArray(v) && !v.length) || (typeof v === 'string' && v.startsWith('@content:')));
+    const contentInLayout = (rel, id, sec) => {
+      const found = [];
+      const check = (settings, blockType, where) => {
+        for (const [k, v] of Object.entries(settings || {})) if (isContentSetting(settingType(sec.type, blockType, k), k) && literal(v)) found.push(`${rel} ${where}.${k}: ${JSON.stringify(v).slice(0, 60)}`);
+      };
+      check(sec.settings, null, id);
+      if (sec.blocks && typeof sec.blocks === 'object') for (const [b, blk] of Object.entries(sec.blocks)) check(blk.settings, blk.type, `${id}.${b}`);
+      for (const [t, d] of Object.entries(sec.block_designs || {})) check(d.settings, t, `${id} list design ${t}`);
+      return found;
+    };
+    const misplaced = [];
+    const pageOfLayout = (rel) => {
+      const base = path.basename(rel, '.json');
+      if (rel.startsWith('sections/')) return base;
+      if (base === 'index') return 'home';
+      if (base === '404') return 'not-found';
+      return base.replace(/\./g, '-');
+    };
+
+    const built = {}; const skipped = []; const overrides = [];
+    const writeOut = (rel, doc) => {
+      const to = path.join(DIST_DIR, rel);
+      const text = JSON.stringify(doc, null, 2) + '\n';
+      fs.mkdirSync(path.dirname(to), { recursive: true });
+      if (!fs.existsSync(to) || fs.readFileSync(to, 'utf8') !== text) fs.writeFileSync(to, text);
+      emitted.add(rel);
+    };
+    for (const dir of ['templates', 'sections']) {
+      const abs = path.join(THEME_ROOT, dir);
+      if (!fs.existsSync(abs)) continue;
+      for (const f of fs.readdirSync(abs).filter((f) => f.endsWith('.json'))) {
+        const rel = `${dir}/${f}`;
+        // Only the header comment: custom_css strings may hold CSS comments of their own.
+        const layout = JSON.parse(fs.readFileSync(path.join(abs, f), 'utf8').replace(/^﻿?\s*\/\*[\s\S]*?\*\/\s*/, ''));
+        if (layout.parent) { overrides.push([rel, layout]); continue; }
+        const page = pageOfLayout(rel);
+        if (!(page in content)) { skipped.push(rel); continue; }
+        const out = { ...layout, sections: {}, order: [] };
+        for (const id of Object.keys(layout.sections)) misplaced.push(...contentInLayout(rel, id, layout.sections[id]));
+        for (const id of layout.order || Object.keys(layout.sections)) {
+          const sec = { ...layout.sections[id] };
+          const where = `${rel} ${id}`;
+          if ('@shown' in sec) {
+            const shown = lookup(sec['@shown']);
+            if (typeof shown !== 'boolean') { errors.push(`${where}: "${sec['@shown']}" must be true or false in regions/${target}/content/`); continue; }
+            const own = lookup(sec['@shown'].replace(/\.shown$/, '')) || {};
+            delete sec['@shown'];
+            if (!shown) {
+              // Off here. Kept, switched off, when this region has its content — a
+              // market override may switch it on — and left out when it has none.
+              if (!Object.keys(own).some((k) => k !== 'shown')) continue;
+              sec.disabled = true;
+            }
+          }
+          if (typeof sec.blocks === 'string' && sec.blocks.startsWith('@list:')) {
+            const key = sec.blocks.slice('@list:'.length);
+            const items = lookup(key);
+            const designs = sec.block_designs || {};
+            const only = Object.keys(designs).length === 1 ? Object.keys(designs)[0] : null;
+            sec.blocks = {}; sec.block_order = [];
+            if (!Array.isArray(items)) errors.push(`${where}: "${key}" must be a list in regions/${target}/content/`);
+            (Array.isArray(items) ? items : []).forEach((item, i) => {
+              const type = item.type || only;
+              if (!designs[type]) { errors.push(`${where}: ${key}[${i}] has type "${item.type}", which this section has no design for (${Object.keys(designs).join(', ')})`); return; }
+              const settings = { ...(designs[type].settings || {}) };
+              for (const [k, v] of Object.entries(item)) if (k !== 'type' && k !== 'shown' && v !== null) settings[k] = v;
+              const id2 = blockId(type, i + 1);
+              sec.blocks[id2] = { type, settings, ...(item.shown === false ? { disabled: true } : {}) };
+              sec.block_order.push(id2);
+            });
+            delete sec.block_designs;
+          }
+          out.sections[id] = fill(sec, where);
+          out.order.push(id);
+        }
+        built[rel] = out;
+        writeOut(rel, out);
+      }
+    }
+    for (const [rel, doc] of overrides) {
+      const parent = built[`templates/${doc.parent}`];
+      if (!parent) { skipped.push(rel); continue; }
+      const out = { ...doc, sections: Object.fromEntries(Object.entries(doc.sections || {}).filter(([id]) => id in parent.sections)) };
+      if (doc.order) out.order = doc.order.filter((id) => id in parent.sections);
+      writeOut(rel, out);
+    }
+    if (misplaced.length) {
+      console.error(`\n❌ ${misplaced.length} content value(s) are written into theme layouts:\n`);
+      for (const e of misplaced.slice(0, 30)) console.error(`   ${e}`);
+      if (misplaced.length > 30) console.error(`   … and ${misplaced.length - 30} more`);
+      console.error('\n   A layout is structure and design, the same in every region. Put each value in');
+      console.error('   regions/<id>/content/<page>.json and reference it: "@content:<page>.<path>".\n');
+      process.exit(1);
+    }
+    if (errors.length) {
+      console.error(`\n❌ ${errors.length} template value(s) have no content in regions/${target}/content/:\n`);
+      for (const e of errors.slice(0, 30)) console.error(`   ${e}`);
+      if (errors.length > 30) console.error(`   … and ${errors.length - 30} more`);
+      console.error('');
+      process.exit(1);
+    }
+    console.log(`  + ${Object.keys(built).length} template(s) and section group(s) filled from content/` + (skipped.length ? `; not published here (no content): ${skipped.join(', ')}` : ''));
+  }
 
   /*
    * One page per box. Every entry in content/boxes.json becomes

@@ -615,11 +615,32 @@ function renderContentSnippet(content, regionId) {
  * Writes region--content (and any chunks) for a region. Returns the content
  * as { key: value } and the snippet files written, for the build to keep.
  */
+/**
+ * The content pages theme code reads at render time: a page is read when some
+ * Liquid names a key under it ('global.…', 'boxes.' | append: …). Pages only a
+ * template layout reads (home, page-faqs, …) are filled in at build time and
+ * stay out of the lookup, which Liquid would otherwise search on every render.
+ */
+function liquidReadPages(pages) {
+  const read = new Set();
+  for (const dir of ['sections', 'snippets', 'blocks', 'layout']) {
+    const abs = path.join(THEME_ROOT, dir);
+    if (!fs.existsSync(abs)) continue;
+    for (const f of fs.readdirSync(abs)) {
+      if (!f.endsWith('.liquid') || f.startsWith('region--')) continue;
+      const src = fs.readFileSync(path.join(abs, f), 'utf8');
+      for (const p of pages) if (src.includes(`'${p}.`) || src.includes(`"${p}.`)) read.add(p);
+    }
+  }
+  return read;
+}
+
 function emitContentSnippet(regionId, distDir) {
   const content = readRegionContent(regionId);
   const dir = path.join(distDir, 'snippets');
   fs.mkdirSync(dir, { recursive: true });
-  const files = renderContentSnippets(content, regionId);
+  const read = liquidReadPages(Object.keys(content));
+  const files = renderContentSnippets(Object.fromEntries(Object.entries(content).filter(([p]) => read.has(p))), regionId);
   for (const [name, text] of Object.entries(files)) {
     const target = path.join(dir, `${name}.liquid`);
     if (!fs.existsSync(target) || fs.readFileSync(target, 'utf8') !== text) fs.writeFileSync(target, text);
