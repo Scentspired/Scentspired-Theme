@@ -44,7 +44,6 @@ const ga = r.analytics || {};
 L(`    analytics         GA4 ${ga.ga4_id || '(none)'}${own.analytics ? '' : '  (from regions/_defaults.json)'}` +
   '    → "analytics": { "ga4_id", ... }');
 if (r.bundles) L(`    bundle prices     ${Object.keys(r.bundles).join(', ')}    → "bundles": { ... }`);
-if (r.social) L(`    social links      ${Object.keys(r.social).join(', ')}    → "social": { ... }`);
 L('    every key and what it does: regions/_schema.json');
 
 L(`\n  CONTENT — all in ${dir}/`);

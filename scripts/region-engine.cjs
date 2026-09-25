@@ -206,7 +206,7 @@ function renderSnippet(region, regionId) {
     .join('\n');
 
   /*
-   * Nested objects are addressed with a dotted key, e.g. 'social.instagram'.
+   * Nested objects are addressed with a dotted key, e.g. 'trustpilot.url'.
    *
    * This recurses to any depth. It used to stop after one level, which meant
    * a two-level key like 'bundles.five_favourites.price_50' was never emitted
