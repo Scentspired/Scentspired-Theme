@@ -209,9 +209,9 @@ function renderSnippet(region, regionId) {
    * Nested objects are addressed with a dotted key, e.g. 'trustpilot.url'.
    *
    * This recurses to any depth. It used to stop after one level, which meant
-   * a two-level key like 'bundles.five_favourites.price_50' was never emitted
+   * a two-level key like 'analytics.ga4_id' inside a nested object was never emitted
    * and silently resolved to nothing — the caller got an empty string and no
-   * error. Bundle prices are two levels deep, so that shape has to work.
+   * error.
    */
   const flatten = (obj, prefix) =>
     Object.entries(obj).flatMap(([k, v]) => {
@@ -456,12 +456,12 @@ function consumedDataNames() {
  * sees — lives in human-friendly files, one per page, per region:
  *
  *   regions/<id>/content/global.json    header, footer, cart drawer (every page)
- *   regions/<id>/content/bundles.json   { "five_favourites": { "title": …, "labels": {…} } }
+ *   regions/<id>/content/boxes.json     { "five_favourites": { "box_name": …, "banner": {…} } }
  *
  * The theme reads a value by its path, page first:
  *
  *   {% render 'region--content', key: 'global.cart_drawer.empty.heading' %}
- *   '{% render 'region--content', key: 'bundles.five_favourites.labels.add_to_cart', js: true %}'
+ *   '{% render 'region--content', key: 'boxes.five_favourites.box_name', js: true %}'
  *
  * `js: true` returns the value escaped for use inside a JavaScript string. The
  * build fails, naming it, when the theme reads a path a region does not have —

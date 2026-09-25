@@ -43,7 +43,6 @@ L(`    trustpilot        ${tp.enabled ? `ON  (embed: ${tp.embed})  ${tp.url || '
 const ga = r.analytics || {};
 L(`    analytics         GA4 ${ga.ga4_id || '(none)'}${own.analytics ? '' : '  (from regions/_defaults.json)'}` +
   '    → "analytics": { "ga4_id", ... }');
-if (r.bundles) L(`    bundle prices     ${Object.keys(r.bundles).join(', ')}    → "bundles": { ... }`);
 L('    every key and what it does: regions/_schema.json');
 
 L(`\n  CONTENT — all in ${dir}/`);

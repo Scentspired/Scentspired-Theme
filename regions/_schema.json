@@ -129,10 +129,6 @@
       "type": "number",
       "description": "Local port for npm run dev:<region>. Each region gets its own so several can run at once; without this they all fight over 9292."
     },
-    "bundles": {
-      "type": "object",
-      "description": "Bundle pricing, which the storefronts deliberately differ on — USA is roughly double UK with a different discount split. { five_favourites, trio, discovery }, each carrying its own variant ids, prices, standard prices and savings. Taken from the live themes, where it was a runtime `if currency == USD` branch."
-    },
     "analytics": {
       "type": "object",
       "description": "Per-region Google tags. { ga4_id, ga4_password_page_id, google_site_verification }. An empty string renders no tag at all. _defaults.json carries the IDs every storefront used at the time of extraction (UK, USA and UAE all shared them), so a new region keeps reporting until it declares its own property."

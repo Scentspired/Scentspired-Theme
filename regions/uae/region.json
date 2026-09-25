@@ -30,17 +30,5 @@
     "enabled": false
   },
   "myshopify_domain": "scentspiredae.myshopify.com",
-  "dev_port": 9294,
-  "bundles": {
-    "five_favourites": {
-      "variant_50": 57083185922393,
-      "variant_100": 57083185955161,
-      "price_50": 64.99,
-      "price_100": 99.99,
-      "standard_50": 99.95,
-      "standard_100": 149.95,
-      "saving_50": 34.96,
-      "saving_100": 49.96
-    }
-  }
+  "dev_port": 9294
 }

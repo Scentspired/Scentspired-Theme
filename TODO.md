@@ -421,10 +421,11 @@ later: each is now reachable from one place.
   left over from before `/pages/five-favourites`. Nothing on the site links to
   it — not the menus, and its homepage card was switched off — but it can be
   reached by its address or from Google.
-- **Why it matters:** its prices are typed into `region.json`
-  (`bundles.five_favourites`) instead of coming from Shopify, and are out of
-  date: UK 50ml shows £64.99, while the cart adds the same Shopify product,
-  which costs £72.99. A shopper sees one price and is charged another.
+- **Why it matters (fixed 2026-09-25):** its prices used to be typed into
+  `region.json` (`bundles.five_favourites`) and were out of date. It now
+  prices exactly like the box builder: Shopify variant prices, and the
+  standard price from the variant's compare-at price or `boxes.json`.
+  `bundles` is gone from `region.json` and its schema.
 - **Decided (2026-09-24):** retire it. Five Favourites is served by the box
   system (`regions/<id>/content/boxes.json` → `/pages/five-favourites`).
 - **Order matters — store first, code second:**
@@ -432,10 +433,7 @@ later: each is now reachable from one place.
      "bundle-1" page, then add a URL redirect `/pages/bundle-1` →
      `/pages/five-favourites` (Online Store → Navigation → URL Redirects).
      Shopify only applies a redirect once the page no longer exists.
-  2. **Code (after 1 is done and checked):** delete
-     `sections/bundle--five-favourites.liquid`, `regions/*/templates/page.bundle.json`,
-     `bundles.five_favourites` in each `regions/*/region.json` (then the empty
-     `bundles` key), and the two crash-history entries for that file in
+  2. **Code (after 1 is done and checked):** delete `sections/bundle--five-favourites.liquid`, `regions/*/templates/page.bundle.json`, and the two crash-history entries for that file in
      `tests/dynamic/verify-clarity-detection.cjs`. Also delete what only it uses —
      **check each first**: `snippets/bundle--sidebar.liquid` (rendered 3× by
      it) and `regions/*/data/bundle-brands.json` (read by it through

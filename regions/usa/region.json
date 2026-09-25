@@ -36,17 +36,5 @@
   "is_default": true,
   "published": true,
   "myshopify_domain": "scentspired.myshopify.com",
-  "dev_port": 9293,
-  "bundles": {
-    "five_favourites": {
-      "variant_50": 45733941936311,
-      "variant_100": 45733941969079,
-      "price_50": 129.99,
-      "price_100": 179.99,
-      "standard_50": 199.95,
-      "standard_100": 249.95,
-      "saving_50": 69.96,
-      "saving_100": 69.96
-    }
-  }
+  "dev_port": 9293
 }
