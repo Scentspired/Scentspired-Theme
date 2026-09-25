@@ -203,7 +203,21 @@
       "cart_count": {
         "one": "{{ count }} item",
         "other": "{{ count }} items"
-      }
+      },
+      "search_placeholder": "Search scents, brands, ingredients",
+      "search_all_results_html": "See All Results for \"[term]\" ([count])",
+      "searching": "Searching...",
+      "search_no_results": "No products found. Try a different search term.",
+      "search_filter_all": "All",
+      "recent_searches": "Recent Searches",
+      "search_genders": "Gender",
+      "search_scent_families": "Scent Families",
+      "search_scent_notes": "Scent Notes",
+      "popular_products": "Most Popular Products",
+      "season_collections": "Shop By Season",
+      "add_to_cart": "Add to Cart",
+      "adding_to_cart": "Adding...",
+      "added_to_cart": "ADDED!"
     },
     "cart": {
       "title": "Your cart",

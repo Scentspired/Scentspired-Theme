@@ -99,8 +99,8 @@
     "ids": 0
   },
   "sections/content--collapsible.liquid": {
-    "total": 5,
-    "text": 5,
+    "total": 4,
+    "text": 4,
     "js-text": 0,
     "media": 0,
     "links": 0,
@@ -189,11 +189,11 @@
     "ids": 0
   },
   "sections/header--main.liquid": {
-    "total": 155,
-    "text": 27,
-    "js-text": 102,
-    "media": 14,
-    "links": 12,
+    "total": 3,
+    "text": 0,
+    "js-text": 0,
+    "media": 3,
+    "links": 0,
     "fallback": 0,
     "ids": 0
   },

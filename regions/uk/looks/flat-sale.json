@@ -1227,76 +1227,249 @@
       }
     },
     "header": {
+      "shop_dropdown": {
+        "sections": [
+          {
+            "title": null,
+            "boxes_shown_in": null,
+            "links": [
+              {
+                "label": null,
+                "url": null,
+                "image": null,
+                "image_alt": null
+              }
+            ]
+          },
+          {
+            "title": null,
+            "boxes_shown_in": null,
+            "links": [
+              {
+                "label": null,
+                "url": null,
+                "image": null,
+                "image_alt": null
+              },
+              {
+                "label": null,
+                "url": null,
+                "image": null,
+                "image_alt": null
+              },
+              {
+                "label": null,
+                "url": null,
+                "image": null,
+                "image_alt": null
+              }
+            ]
+          },
+          {
+            "title": null,
+            "boxes_shown_in": null,
+            "links": [
+              {
+                "label": null,
+                "url": null,
+                "image": null,
+                "image_alt": null
+              },
+              {
+                "label": null,
+                "url": null,
+                "image": null,
+                "image_alt": null
+              }
+            ]
+          },
+          {
+            "title": null,
+            "boxes_shown_in": null,
+            "links": []
+          }
+        ]
+      },
       "mobile_menu": {
         "shop": {
           "label": null,
-          "link": null,
-          "shop_all": {
+          "url": null,
+          "sections": [
+            {
+              "title": null,
+              "boxes_shown_in": null,
+              "links": [
+                {
+                  "label": null,
+                  "url": null,
+                  "image": null,
+                  "image_alt": null
+                }
+              ]
+            },
+            {
+              "title": null,
+              "boxes_shown_in": null,
+              "links": [
+                {
+                  "label": null,
+                  "url": null,
+                  "image": null,
+                  "image_alt": null
+                },
+                {
+                  "label": null,
+                  "url": null,
+                  "image": null,
+                  "image_alt": null
+                },
+                {
+                  "label": null,
+                  "url": null,
+                  "image": null,
+                  "image_alt": null
+                }
+              ]
+            },
+            {
+              "title": null,
+              "boxes_shown_in": null,
+              "links": [
+                {
+                  "label": null,
+                  "url": null,
+                  "image": null,
+                  "image_alt": null
+                },
+                {
+                  "label": null,
+                  "url": null,
+                  "image": null,
+                  "image_alt": null
+                }
+              ]
+            },
+            {
+              "title": null,
+              "boxes_shown_in": null,
+              "links": []
+            }
+          ]
+        },
+        "links": [
+          {
             "label": null,
-            "link": null,
-            "image": null,
-            "image_alt": null
+            "url": null
           },
-          "fragrances_for": {
-            "title": null,
-            "women": {
-              "label": null,
-              "link": null,
-              "image": null,
-              "image_alt": null
-            },
-            "men": {
-              "label": null,
-              "link": null,
-              "image": null,
-              "image_alt": null
-            },
-            "unisex": {
-              "label": null,
-              "link": null,
-              "image": null,
-              "image_alt": null
-            }
+          {
+            "label": null,
+            "url": null
           },
-          "more_ways": {
-            "title": null,
-            "bestsellers": {
-              "label": null,
-              "link": null,
-              "image": null,
-              "image_alt": null
-            },
-            "notes_seasons": {
-              "label": null,
-              "link": null,
-              "image": null,
-              "image_alt": null
-            }
-          },
-          "bundles": {
-            "title": null
+          {
+            "label": null,
+            "url": null
           }
-        },
-        "find_your_scent": {
-          "label": null,
-          "link": null
-        },
-        "about_us": {
-          "label": null,
-          "link": null
-        },
-        "scent_notes": {
-          "label": null,
-          "link": null
-        },
+        ],
         "bundles": {
           "label": null
         }
       },
-      "suggested_searches": [
-        null,
-        null
-      ]
+      "search": {
+        "suggested_searches": [
+          null,
+          null
+        ],
+        "genders": [
+          null,
+          null,
+          null
+        ],
+        "scent_families": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "scent_notes": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "popular_products_collection": null,
+        "season_collections": [
+          {
+            "label": null,
+            "image": null,
+            "url": null
+          },
+          {
+            "label": null,
+            "image": null,
+            "url": null
+          },
+          {
+            "label": null,
+            "image": null,
+            "url": null
+          },
+          {
+            "label": null,
+            "image": null,
+            "url": null
+          }
+        ]
+      }
     },
     "newsletter_banner": {
       "background_image": null,

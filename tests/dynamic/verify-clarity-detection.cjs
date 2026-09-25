@@ -126,7 +126,8 @@ for (const bug of clarityBugs) {
       isPatchedInCode = true;
     } else if (
       bug.pattern === "mobilecarttrigger" &&
-      content.includes(`getElementById('mobileCartTrigger')`)
+      // guarded lookup, or gone: the element and its handler were removed together
+      (content.includes(`getElementById('mobileCartTrigger')`) || !content.includes("mobileCartTrigger"))
     ) {
       isPatchedInCode = true;
     } else if (

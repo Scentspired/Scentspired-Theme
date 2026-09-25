@@ -95,6 +95,8 @@ function count(src, isJs, items) {
       .split(/<[^>]*>/)
       .flatMap((t) => t.split('\u0000'))
       .map((t) => t.replace(/&[a-z#0-9]+;/gi, ' ').replace(/\s+/g, ' ').trim())
+      // an image's sizes list captured into a variable ("(min-width: 750px) …px, 50vw") is CSS, not words
+      .filter((t) => !/^(?:[\s\d(),:.%]|(?:min|max)-width|px|vw)+$/.test(t))
       .filter((t) => /[A-Za-z]{2,}/.test(t)));
     c.text += note('attr', [...markup.matchAll(/\b(?:alt|title|placeholder|aria-label)="([^"{]*[A-Za-z]{2,}[^"{]*)"/g)].map((m) => m[0]));
   }
@@ -103,6 +105,7 @@ function count(src, isJs, items) {
     const body = s
       .replace(/\/\/[^\n]*|\/\*[\s\S]*?\*\//g, '')
       // not shown to a shopper: console messages, and key names a handler compares
+      // (a thrown message is still counted: bundle--five-favourites alerts err.message)
       .replace(/console\.(?:log|warn|error|info|debug)\((?:[^()]|\([^()]*\))*\)/g, '')
       .replace(/\.key\s*[!=]==?\s*(['"])[A-Za-z]+\1|(['"])(?:Enter|Escape|Tab|ArrowUp|ArrowDown|ArrowLeft|ArrowRight)\2\s*[!=]==?\s*[\w.]*key\b/g, '')
       // a >= / <= comparison, not markup

@@ -566,6 +566,24 @@ function listContentKeys(content) {
   return out;
 }
 
+/**
+ * '<path>.__json' is the entry at <path> as JSON, for a script to read in one
+ * lookup (the header's search lists). Only paths the theme reads that way are
+ * written, so the lookup never carries a copy of every list. '<' is escaped, so
+ * the JSON can sit inside <script type="application/json">.
+ *
+ *   <script type="application/json">{% render 'region--content', key: 'global.header.search.__json' %}</script>
+ */
+function jsonContentKeys(content) {
+  const out = {};
+  for (const key of consumedContentKeys().keys()) {
+    if (!key.endsWith('.__json')) continue;
+    const v = getPath(content, key.slice(0, -'.__json'.length));
+    if (v && typeof v === 'object') out[key] = JSON.stringify(v).replace(/</g, '\\u003c');
+  }
+  return out;
+}
+
 /** A value made safe to sit inside a JavaScript string literal, either quote. */
 const jsEscape = (s) =>
   s
@@ -588,7 +606,7 @@ const CHUNK_BYTES = 100 * 1024;
 const LIQUID_FILE_LIMIT = 256 * 1024;
 
 function renderContentSnippets(content, regionId) {
-  const flat = { ...flattenContent(content), ...listContentKeys(content) };
+  const flat = { ...flattenContent(content), ...listContentKeys(content), ...jsonContentKeys(content) };
   for (const [key, value] of Object.entries(flat)) {
     if (/\{\{|\{%/.test(value)) {
       const err = new Error(`content "${key}" contains "{{" or "{%" — Liquid would execute it`);
@@ -598,7 +616,8 @@ function renderContentSnippets(content, regionId) {
     }
   }
   const whenLine = (key, v) => {
-    const js = jsEscape(v);
+    // JSON is read whole into <script type="application/json">, never into a JS string
+    const js = key.endsWith('.__json') ? v : jsEscape(v);
     const out = js === v ? v : `{%- if js -%}${js}{%- else -%}${v}{%- endif -%}`;
     return `      {%- when '${key}' -%}${out}`;
   };
@@ -700,7 +719,7 @@ function emitContentSnippet(regionId, distDir) {
     const target = path.join(dir, `${name}.liquid`);
     if (!fs.existsSync(target) || fs.readFileSync(target, 'utf8') !== text) fs.writeFileSync(target, text);
   }
-  return { flat: { ...flattenContent(content), ...listContentKeys(content) }, snippets: Object.keys(files).map((n) => `snippets/${n}.liquid`) };
+  return { flat: { ...flattenContent(content), ...listContentKeys(content), ...jsonContentKeys(content) }, snippets: Object.keys(files).map((n) => `snippets/${n}.liquid`) };
 }
 
 /** Every content path the theme reads, mapped to the files that read it. */

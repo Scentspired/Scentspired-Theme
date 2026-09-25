@@ -27,76 +27,249 @@
     }
   },
   "header": {
+    "shop_dropdown": {
+      "sections": [
+        {
+          "title": "",
+          "boxes_shown_in": "",
+          "links": [
+            {
+              "label": "Shop All",
+              "url": "/collections/shop",
+              "image": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Website_-_Shop_All_799328f0-a349-4bba-a2e8-b9860554638b.png?v=1767011119",
+              "image_alt": "All Perfumes"
+            }
+          ]
+        },
+        {
+          "title": "FRAGRANCES FOR",
+          "boxes_shown_in": "",
+          "links": [
+            {
+              "label": "Women",
+              "url": "/collections/women",
+              "image": "https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Screenshot_2025-07-01_133909_1_2.webp?v=1772711912",
+              "image_alt": "Women"
+            },
+            {
+              "label": "Men",
+              "url": "/collections/men",
+              "image": "https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Screenshot_2025-07-01_134105_1_1.webp?v=1772711986",
+              "image_alt": "Men"
+            },
+            {
+              "label": "Unisex",
+              "url": "/collections/unisex",
+              "image": "https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Screenshot_2025-07-01_134204_1.webp?v=1772712073",
+              "image_alt": "Unisex"
+            }
+          ]
+        },
+        {
+          "title": "MORE WAYS TO SHOP",
+          "boxes_shown_in": "shop_menu_more_ways_to_shop",
+          "links": [
+            {
+              "label": "Bestsellers",
+              "url": "/collections/bestsellers",
+              "image": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Website_-_Shop_All_799328f0-a349-4bba-a2e8-b9860554638b.png?v=1767011119",
+              "image_alt": "Bestsellers"
+            },
+            {
+              "label": "Notes / Seasons",
+              "url": "/pages/scent-families",
+              "image": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_01_-_Banner_afefa9f0-db52-4f23-9567-ec1c0edbfa9a.jpg?v=1767011440",
+              "image_alt": "Scent Families"
+            }
+          ]
+        },
+        {
+          "title": "Bundles",
+          "boxes_shown_in": "shop_menu_bundles",
+          "links": []
+        }
+      ]
+    },
     "mobile_menu": {
       "shop": {
         "label": "SHOP",
-        "link": "/collections/shop",
-        "shop_all": {
-          "label": "Shop All",
-          "link": "/collections/shop",
-          "image": "https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Website_-_Shop_All_b5e05bba-d8ae-4641-b9e5-449348c1b35d.webp?v=1772787990",
-          "image_alt": "All Perfumes"
-        },
-        "fragrances_for": {
-          "title": "FRAGRANCES FOR",
-          "women": {
-            "label": "Women",
-            "link": "/collections/women",
-            "image": "https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Screenshot_2025-07-01_133909_1_3.webp?v=1772788038",
-            "image_alt": "Women"
+        "url": "/collections/shop",
+        "sections": [
+          {
+            "title": "",
+            "boxes_shown_in": "",
+            "links": [
+              {
+                "label": "Shop All",
+                "url": "/collections/shop",
+                "image": "https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Website_-_Shop_All_b5e05bba-d8ae-4641-b9e5-449348c1b35d.webp?v=1772787990",
+                "image_alt": "All Perfumes"
+              }
+            ]
           },
-          "men": {
-            "label": "Men",
-            "link": "/collections/men",
-            "image": "https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Screenshot_2025-07-01_134105_1_2.webp?v=1772788156",
-            "image_alt": "Men"
+          {
+            "title": "FRAGRANCES FOR",
+            "boxes_shown_in": "",
+            "links": [
+              {
+                "label": "Women",
+                "url": "/collections/women",
+                "image": "https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Screenshot_2025-07-01_133909_1_3.webp?v=1772788038",
+                "image_alt": "Women"
+              },
+              {
+                "label": "Men",
+                "url": "/collections/men",
+                "image": "https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Screenshot_2025-07-01_134105_1_2.webp?v=1772788156",
+                "image_alt": "Men"
+              },
+              {
+                "label": "Unisex",
+                "url": "/collections/unisex",
+                "image": "https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Screenshot_2025-07-01_134204_1_1.webp?v=1772788236",
+                "image_alt": "Unisex"
+              }
+            ]
           },
-          "unisex": {
-            "label": "Unisex",
-            "link": "/collections/unisex",
-            "image": "https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Screenshot_2025-07-01_134204_1_1.webp?v=1772788236",
-            "image_alt": "Unisex"
+          {
+            "title": "MORE WAYS TO SHOP",
+            "boxes_shown_in": "shop_menu_more_ways_to_shop",
+            "links": [
+              {
+                "label": "Bestsellers",
+                "url": "/collections/bestsellers",
+                "image": "https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Website_-_Shop_All_b5e05bba-d8ae-4641-b9e5-449348c1b35d_1.webp?v=1772788391",
+                "image_alt": "Bestsellers"
+              },
+              {
+                "label": "Notes/Seasons",
+                "url": "/pages/scent-notes",
+                "image": "https://cdn.shopify.com/s/files/1/0997/3714/1593/files/ScentSpired_-_Scent_Notes_01_-_Banner.webp?v=1772788464",
+                "image_alt": "Scent Families"
+              }
+            ]
+          },
+          {
+            "title": "BUNDLES",
+            "boxes_shown_in": "shop_menu_bundles",
+            "links": []
           }
+        ]
+      },
+      "links": [
+        {
+          "label": "FIND YOUR SCENT",
+          "url": "/collections/shop"
         },
-        "more_ways": {
-          "title": "MORE WAYS TO SHOP",
-          "bestsellers": {
-            "label": "Bestsellers",
-            "link": "/collections/bestsellers",
-            "image": "https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Website_-_Shop_All_b5e05bba-d8ae-4641-b9e5-449348c1b35d_1.webp?v=1772788391",
-            "image_alt": "Bestsellers"
-          },
-          "notes_seasons": {
-            "label": "Notes/Seasons",
-            "link": "/pages/scent-notes",
-            "image": "https://cdn.shopify.com/s/files/1/0997/3714/1593/files/ScentSpired_-_Scent_Notes_01_-_Banner.webp?v=1772788464",
-            "image_alt": "Scent Families"
-          }
+        {
+          "label": "ABOUT US",
+          "url": "/pages/about-us"
         },
-        "bundles": {
-          "title": "BUNDLES"
+        {
+          "label": "SCENT NOTES",
+          "url": "/pages/scent-notes"
         }
-      },
-      "find_your_scent": {
-        "label": "FIND YOUR SCENT",
-        "link": "/collections/shop"
-      },
-      "about_us": {
-        "label": "ABOUT US",
-        "link": "/pages/about-us"
-      },
-      "scent_notes": {
-        "label": "SCENT NOTES",
-        "link": "/pages/scent-notes"
-      },
+      ],
       "bundles": {
         "label": "BUNDLES"
       }
     },
-    "suggested_searches": [
-      "Amber",
-      "Women"
-    ]
+    "search": {
+      "suggested_searches": [
+        "Amber",
+        "Women"
+      ],
+      "genders": [
+        "Men",
+        "Women",
+        "Unisex"
+      ],
+      "scent_families": [
+        "Flowery",
+        "Fresh",
+        "Earthy",
+        "Herbal",
+        "Warm",
+        "Gourmand"
+      ],
+      "scent_notes": [
+        "Saffron",
+        "Jasmine",
+        "Amberwood",
+        "Ambergris",
+        "Fir Resin",
+        "Cedar",
+        "Bergamot",
+        "Black Currant",
+        "Apple",
+        "Lemon",
+        "Pink Pepper",
+        "Pineapple",
+        "Patchouli",
+        "Moroccan Jasmine",
+        "Birch",
+        "Musk",
+        "Oakmoss",
+        "Cedarwood",
+        "Ambroxan",
+        "Litchi",
+        "Rhubarb",
+        "Bergamot",
+        "Nutmeg",
+        "Turkish Rose",
+        "Peony",
+        "Musk",
+        "Petalia",
+        "Vanilla",
+        "Cashmeran",
+        "Incense",
+        "Cedar",
+        "Haitian Vetiver",
+        "Saffron",
+        "Nutmeg",
+        "Lavender",
+        "Agarwood (Oud)",
+        "Patchouli",
+        "Musk",
+        "Orange",
+        "Mandarin Orange",
+        "Bergamot",
+        "Orange Blossom",
+        "Turkish Rose",
+        "Jasmine",
+        "Mimosa",
+        "Ylang-Ylang",
+        "Patchouli",
+        "White Musk",
+        "Vanilla",
+        "Vetiver",
+        "Tonka Bean",
+        "Opoponax"
+      ],
+      "popular_products_collection": "bestsellers",
+      "season_collections": [
+        {
+          "label": "Summer",
+          "image": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/3_2.jpg?v=1767003409",
+          "url": "/collections/summer"
+        },
+        {
+          "label": "Winter",
+          "image": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/1_3.jpg?v=1767003409",
+          "url": "/collections/winter"
+        },
+        {
+          "label": "Autumn",
+          "image": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/2_6.jpg?v=1767003409",
+          "url": "/collections/autumn"
+        },
+        {
+          "label": "Spring",
+          "image": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/4_4.jpg?v=1767003409",
+          "url": "/collections/spring"
+        }
+      ]
+    }
   },
   "newsletter_banner": {
     "background_image": "shopify://shop_images/ScentSpired_-_Scent_Notes_06_-_Banner.png",

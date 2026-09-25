@@ -1,0 +1,92 @@
+{%- comment -%}
+  The SHOP menu's sections, from a list in the region's content
+  (global.header.shop_dropdown.sections on desktop, global.header.mobile_menu.shop.sections
+  in the menu drawer). Each section has an optional title, the boxes shown in it
+  (boxes.json "menu" -> "shown_in", listed first) and its links: label, url,
+  image, image_alt. A section or link added to the file shows up here with no
+  code change.
+
+  {% render 'header--shop-menu-sections', sections: 'global.header.shop_dropdown.sections', style: 'desktop' %}
+
+  style: desktop | mobile
+{%- endcomment -%}
+{%- liquid
+  assign keys_key = sections | append: '.__keys'
+  capture section_keys
+    render 'region--content', key: keys_key
+  endcapture
+  assign section_keys = section_keys | strip | split: ','
+  if style == 'desktop'
+    assign class_prefix = 'dropdown'
+  else
+    assign class_prefix = 'mobile-submenu'
+  endif
+-%}
+{%- for s in section_keys -%}
+  {%- liquid
+    assign section_key = sections | append: '.' | append: s
+    assign k = section_key | append: '.title'
+    capture section_title
+      render 'region--content', key: k
+    endcapture
+    assign k = section_key | append: '.boxes_shown_in'
+    capture boxes_shown_in
+      render 'region--content', key: k
+    endcapture
+    assign boxes_shown_in = boxes_shown_in | strip
+    assign k = section_key | append: '.links.__keys'
+    capture link_keys
+      render 'region--content', key: k
+    endcapture
+    assign link_keys = link_keys | strip | split: ','
+  -%}
+  {%- if section_title != blank -%}
+    <div class="{{ class_prefix }}-section-title">{{ section_title | strip | escape }}</div>
+  {%- endif -%}
+  <div class="{{ class_prefix }}-section">
+    {%- if boxes_shown_in != blank -%}
+      {%- render 'header--box-menu-items', place: boxes_shown_in, style: style -%}
+    {%- endif -%}
+    {%- for i in link_keys -%}
+      {%- liquid
+        assign link_key = section_key | append: '.links.' | append: i
+        assign k = link_key | append: '.label'
+        capture link_label
+          render 'region--content', key: k
+        endcapture
+        assign k = link_key | append: '.url'
+        capture link_url
+          render 'region--content', key: k
+        endcapture
+        assign k = link_key | append: '.image'
+        capture link_image
+          render 'region--content', key: k
+        endcapture
+        assign k = link_key | append: '.image_alt'
+        capture link_image_alt
+          render 'region--content', key: k
+        endcapture
+        assign link_label = link_label | strip | escape
+        assign link_url = link_url | strip | escape
+        assign link_image = link_image | strip | escape
+        assign link_image_alt = link_image_alt | strip | escape
+      -%}
+      {%- if style == 'desktop' -%}
+        <a href="{{ link_url }}" class="dropdown-item">
+          {{- '' -}}
+          <div class="dropdown-item-icon"><img src="{{ link_image }}" alt="{{ link_image_alt }}"></div>
+          {{- '' -}}
+          <div class="dropdown-item-content"><div class="dropdown-item-title">{{ link_label }}</div></div>
+          {{- '' -}}
+        </a>
+      {%- else -%}
+        <a href="{{ link_url }}" class="mobile-submenu-item">
+          <div class="mobile-submenu-icon">
+            <img src="{{ link_image }}" alt="{{ link_image_alt }}">
+          </div>
+          <span>{{ link_label }}</span>
+        </a>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+{%- endfor -%}

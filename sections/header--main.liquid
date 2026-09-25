@@ -148,7 +148,7 @@
             }}
           </div>
         {%- else -%}
-          <span class="h2">ScentSpired</span>
+          <span class="h2">{{ shop.name }}</span>
         {%- endif -%}
       </a>
       {%- if request.page_type == "index" -%}
@@ -173,76 +173,8 @@
               echo '<div class="dossier-dropdown">'
               echo '<div class="dossier-dropdown-content">'
 
-              # Shop All Section
-              echo '<div class="dropdown-section">'
-              echo '<a href="/collections/shop" class="dropdown-item">'
-              echo '<div class="dropdown-item-icon">'
-              echo '<img src="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Website_-_Shop_All_799328f0-a349-4bba-a2e8-b9860554638b.png?v=1767011119" alt="All Perfumes">'
-              echo "</div>"
-              echo '<div class="dropdown-item-content">'
-              echo '<div class="dropdown-item-title">Shop All </div>'
-              echo "</div>"
-              echo "</a>"
-              echo "</div>"
-
-              # Shop by Gender
-              echo '<div class="dropdown-section-title">FRAGRANCES FOR</div>'
-              echo '<div class="dropdown-section">'
-              echo '<a href="/collections/women" class="dropdown-item">'
-              echo '<div class="dropdown-item-icon">'
-              echo '<img src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Screenshot_2025-07-01_133909_1_2.webp?v=1772711912" alt="Women">'
-              echo "</div>"
-              echo '<div class="dropdown-item-content">'
-              echo '<div class="dropdown-item-title">Women</div>'
-              echo "</div>"
-              echo "</a>"
-              echo '<a href="/collections/men" class="dropdown-item">'
-              echo '<div class="dropdown-item-icon">'
-              echo '<img src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Screenshot_2025-07-01_134105_1_1.webp?v=1772711986" alt="Men">'
-              echo "</div>"
-              echo '<div class="dropdown-item-content">'
-              echo '<div class="dropdown-item-title">Men</div>'
-              echo "</div>"
-              echo "</a>"
-              echo '<a href="/collections/unisex" class="dropdown-item">'
-              echo '<div class="dropdown-item-icon">'
-              echo '<img src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Screenshot_2025-07-01_134204_1.webp?v=1772712073" alt="Unisex">'
-              echo "</div>"
-              echo '<div class="dropdown-item-content">'
-              echo '<div class="dropdown-item-title">Unisex</div>'
-              echo "</div>"
-              echo "</a>"
-              echo "</div>"
-
-              # More Ways to Shop
-              echo '<div class="dropdown-section-title">MORE WAYS TO SHOP</div>'
-              echo '<div class="dropdown-section">'
-              # Boxes: from regions/<id>/content/boxes.json (menu.shown_in)
-              render 'header--box-menu-items', place: 'shop_menu_more_ways_to_shop', style: 'desktop'
-              echo '<a href="/collections/bestsellers" class="dropdown-item">'
-              echo '<div class="dropdown-item-icon">'
-              echo '<img src="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Website_-_Shop_All_799328f0-a349-4bba-a2e8-b9860554638b.png?v=1767011119" alt="Bestsellers">'
-              echo "</div>"
-              echo '<div class="dropdown-item-content">'
-              echo '<div class="dropdown-item-title">Bestsellers</div>'
-              echo "</div>"
-              echo "</a>"
-              echo '<a href="/pages/scent-families" class="dropdown-item">'
-              echo '<div class="dropdown-item-icon">'
-              echo '<img src="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_01_-_Banner_afefa9f0-db52-4f23-9567-ec1c0edbfa9a.jpg?v=1767011440" alt="Scent Families">'
-              echo "</div>"
-              echo '<div class="dropdown-item-content">'
-              echo '<div class="dropdown-item-title">Notes / Seasons</div>'
-              echo "</div>"
-              echo "</a>"
-              echo "</div>"
-
-              echo '<div class="dropdown-section-title">Bundles</div>'
-              echo '<div class="dropdown-section">'
-              # Boxes: from regions/<id>/content/boxes.json (menu.shown_in)
-              render 'header--box-menu-items', place: 'shop_menu_bundles', style: 'desktop'
-
-              echo "</div>"
+              # Sections, links and images: regions/<id>/content/global.json (header.shop_dropdown)
+              render 'header--shop-menu-sections', sections: 'global.header.shop_dropdown.sections', style: 'desktop'
 
               # Discover Section
               echo "</div>"
@@ -404,7 +336,7 @@
         <div class="mobile-nav-ic" id="mobileMenuTrigger">
           <img
             src="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/hd-black-menu-burger-icon-transparent-background-701751695037028szh5wywnpo-removebg-preview.png?v=1770049325"
-            alt="Menu"
+            alt="{{ 'sections.header.menu' | t }}"
             class="nav-ic-img">
         </div>
       </div>
@@ -413,7 +345,7 @@
         <div class="mobile-nav-icon" id="mobileAccountTrigger">
           <img
             src="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Vector_1.svg?v=1764053807"
-            alt="Account"
+            alt="{{ 'customer.account_fallback' | t }}"
             class="nav-icon-img">
         </div>
       </div>
@@ -422,36 +354,11 @@
         <div class="mobile-nav-icon" id="mobileSearchTrigger">
           <img
             src="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Vector_5.png?v=1767880379"
-            alt="Search"
+            alt="{{ 'general.search.search' | t }}"
             class="nav-icon-img">
         </div>
       </div>
       <div class="mobile-nav-separator"></div>
-      {% comment %}
-        <div class="mobile-nav-item">
-          <div class="mobile-nav-icon" id="mobileCartTrigger">
-            <img src="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Layer_25.png?v=1767880410" alt="Cart" class="nav-icon-img">
-          </div>
-        </div>
-      {% endcomment %}
-      {% comment %}
-        <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
-          {% if cart == empty %}
-            <span class="svg-wrapper">{{ 'ui--icon-cart-empty.svg' | inline_asset_content }}</span>
-          {% else %}
-            <span class="svg-wrapper">{{ 'ui--icon-cart.svg' | inline_asset_content }}</span>
-          {% endif %}
-          <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
-          {%- if cart != empty -%}
-            <div class="cart-count-bubble">
-              {%- if cart.item_count < 100 -%}
-                <span aria-hidden="true">{{ cart.item_count }}</span>
-              {%- endif -%}
-              <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
-            </div>
-          {%- endif -%}
-        </a>
-      {% endcomment %}
       <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
         {% if cart == empty %}
           <span class="svg-wrapper">{{ "ui--icon-cart-empty.svg" | inline_asset_content }}</span>
@@ -470,10 +377,10 @@
       </a>
     </div>
 
-    <!-- Mobile Menu Drawer - HARDCODED MENU STRUCTURE -->
+    <!-- Mobile Menu Drawer: items from regions/<id>/content/global.json (header.mobile_menu) -->
     <div class="mobile-menu-drawer" id="mobileMenuDrawer">
       <div class="mobile-menu-header">
-        <div class="menu-drawer-title ui-label" style="margin: 0; font-family: var(--font-body);">Menu</div>
+        <div class="menu-drawer-title ui-label" style="margin: 0; font-family: var(--font-body);">{{ 'sections.header.menu' | t }}</div>
         <button class="mobile-menu-close" id="mobileMenuClose">
           <svg viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor">
             <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -485,7 +392,7 @@
         <!-- SHOP - WITH DROPDOWN -->
         <div class="mobile-menu-item-wrapper">
           <div class="mobile-menu-item-header">
-            <a href="{% render 'region--content', key: 'global.header.mobile_menu.shop.link' %}" class="mobile-menu-item">{% render 'region--content', key: 'global.header.mobile_menu.shop.label' %}</a>
+            <a href="{% render 'region--content', key: 'global.header.mobile_menu.shop.url' %}" class="mobile-menu-item">{% render 'region--content', key: 'global.header.mobile_menu.shop.label' %}</a>
             <button class="mobile-menu-toggle" onclick="toggleMobileSubmenu(this)">
               <svg
                 viewBox="0 0 24 24"
@@ -499,98 +406,29 @@
             </button>
           </div>
           <div class="mobile-submenu">
-            <!-- Shop All Section -->
-            <div class="mobile-submenu-section">
-              <a href="{% render 'region--content', key: 'global.header.mobile_menu.shop.shop_all.link' %}" class="mobile-submenu-item">
-                <div class="mobile-submenu-icon">
-                  <img
-                    src="{% render 'region--content', key: 'global.header.mobile_menu.shop.shop_all.image' %}"
-                    alt="{% render 'region--content', key: 'global.header.mobile_menu.shop.shop_all.image_alt' %}">
-                </div>
-                <span>{% render 'region--content', key: 'global.header.mobile_menu.shop.shop_all.label' %}</span>
-              </a>
-            </div>
-
-            <!-- Shop by Gender Section -->
-            <div class="mobile-submenu-section-title">{% render 'region--content', key: 'global.header.mobile_menu.shop.fragrances_for.title' %}</div>
-            <div class="mobile-submenu-section">
-              <a href="{% render 'region--content', key: 'global.header.mobile_menu.shop.fragrances_for.women.link' %}" class="mobile-submenu-item">
-                <div class="mobile-submenu-icon">
-                  <img
-                    src="{% render 'region--content', key: 'global.header.mobile_menu.shop.fragrances_for.women.image' %}"
-                    alt="{% render 'region--content', key: 'global.header.mobile_menu.shop.fragrances_for.women.image_alt' %}">
-                </div>
-                <span>{% render 'region--content', key: 'global.header.mobile_menu.shop.fragrances_for.women.label' %}</span>
-              </a>
-              <a href="{% render 'region--content', key: 'global.header.mobile_menu.shop.fragrances_for.men.link' %}" class="mobile-submenu-item">
-                <div class="mobile-submenu-icon">
-                  <img
-                    src="{% render 'region--content', key: 'global.header.mobile_menu.shop.fragrances_for.men.image' %}"
-                    alt="{% render 'region--content', key: 'global.header.mobile_menu.shop.fragrances_for.men.image_alt' %}">
-                </div>
-                <span>{% render 'region--content', key: 'global.header.mobile_menu.shop.fragrances_for.men.label' %}</span>
-              </a>
-              <a href="{% render 'region--content', key: 'global.header.mobile_menu.shop.fragrances_for.unisex.link' %}" class="mobile-submenu-item">
-                <div class="mobile-submenu-icon">
-                  <img
-                    src="{% render 'region--content', key: 'global.header.mobile_menu.shop.fragrances_for.unisex.image' %}"
-                    alt="{% render 'region--content', key: 'global.header.mobile_menu.shop.fragrances_for.unisex.image_alt' %}">
-                </div>
-                <span>{% render 'region--content', key: 'global.header.mobile_menu.shop.fragrances_for.unisex.label' %}</span>
-              </a>
-            </div>
-
-            <!-- More Ways to Shop Section -->
-            <div class="mobile-submenu-section-title">{% render 'region--content', key: 'global.header.mobile_menu.shop.more_ways.title' %}</div>
-            <div class="mobile-submenu-section">
-              {%- comment -%} Boxes: from regions/<id>/content/boxes.json (menu.shown_in) {%- endcomment -%}
-              {%- render 'header--box-menu-items', place: 'shop_menu_more_ways_to_shop', style: 'mobile' -%}
-              <a href="{% render 'region--content', key: 'global.header.mobile_menu.shop.more_ways.bestsellers.link' %}" class="mobile-submenu-item">
-                <div class="mobile-submenu-icon">
-                  <img
-                    src="{% render 'region--content', key: 'global.header.mobile_menu.shop.more_ways.bestsellers.image' %}"
-                    alt="{% render 'region--content', key: 'global.header.mobile_menu.shop.more_ways.bestsellers.image_alt' %}">
-                </div>
-                <span>{% render 'region--content', key: 'global.header.mobile_menu.shop.more_ways.bestsellers.label' %}</span>
-              </a>
-              <a href="{% render 'region--content', key: 'global.header.mobile_menu.shop.more_ways.notes_seasons.link' %}" class="mobile-submenu-item">
-                <div class="mobile-submenu-icon">
-                  <img
-                    src="{% render 'region--content', key: 'global.header.mobile_menu.shop.more_ways.notes_seasons.image' %}"
-                    alt="{% render 'region--content', key: 'global.header.mobile_menu.shop.more_ways.notes_seasons.image_alt' %}">
-                </div>
-                <span>{% render 'region--content', key: 'global.header.mobile_menu.shop.more_ways.notes_seasons.label' %}</span>
-              </a>
-            </div>
-
-            <div class="mobile-submenu-section-title">{% render 'region--content', key: 'global.header.mobile_menu.shop.bundles.title' %}</div>
-            <div class="mobile-submenu-section">
-              {%- comment -%} Boxes: from regions/<id>/content/boxes.json (menu.shown_in) {%- endcomment -%}
-              {%- render 'header--box-menu-items', place: 'shop_menu_bundles', style: 'mobile' -%}
-            </div>
+            {%- render 'header--shop-menu-sections', sections: 'global.header.mobile_menu.shop.sections', style: 'mobile' -%}
           </div>
         </div>
 
-        <!-- FIND YOUR SCENT - NO DROPDOWN -->
-        <div class="mobile-menu-item-wrapper">
-          <div class="mobile-menu-item-header">
-            <a href="{% render 'region--content', key: 'global.header.mobile_menu.find_your_scent.link' %}" class="mobile-menu-item">{% render 'region--content', key: 'global.header.mobile_menu.find_your_scent.label' %}</a>
+        {%- capture menu_link_keys -%}{%- render 'region--content', key: 'global.header.mobile_menu.links.__keys' -%}{%- endcapture -%}
+        {%- assign menu_link_keys = menu_link_keys | strip | split: ',' -%}
+        {%- for i in menu_link_keys -%}
+          {%- liquid
+            assign k = 'global.header.mobile_menu.links.' | append: i | append: '.url'
+            capture menu_link_url
+              render 'region--content', key: k
+            endcapture
+            assign k = 'global.header.mobile_menu.links.' | append: i | append: '.label'
+            capture menu_link_label
+              render 'region--content', key: k
+            endcapture
+          -%}
+          <div class="mobile-menu-item-wrapper">
+            <div class="mobile-menu-item-header">
+              <a href="{{ menu_link_url | strip | escape }}" class="mobile-menu-item">{{ menu_link_label | strip | escape }}</a>
+            </div>
           </div>
-        </div>
-
-        <!-- ABOUT US - NO DROPDOWN -->
-        <div class="mobile-menu-item-wrapper">
-          <div class="mobile-menu-item-header">
-            <a href="{% render 'region--content', key: 'global.header.mobile_menu.about_us.link' %}" class="mobile-menu-item">{% render 'region--content', key: 'global.header.mobile_menu.about_us.label' %}</a>
-          </div>
-        </div>
-
-        <!-- SCENT FAMILIES - NO DROPDOWN -->
-        <div class="mobile-menu-item-wrapper">
-          <div class="mobile-menu-item-header">
-            <a href="{% render 'region--content', key: 'global.header.mobile_menu.scent_notes.link' %}" class="mobile-menu-item">{% render 'region--content', key: 'global.header.mobile_menu.scent_notes.label' %}</a>
-          </div>
-        </div>
+        {% endfor %}
 
         {%- comment -%} Boxes: from regions/<id>/content/boxes.json (menu.shown_in) {%- endcomment -%}
         {%- render 'header--box-menu-items', place: 'mobile_menu_own_link', style: 'mobile_top_level' -%}
@@ -638,7 +476,7 @@
         <input
           type="text"
           id="customSearchInput"
-          placeholder="Search scents, brands, ingredients"
+          placeholder="{{ 'sections.header.search_placeholder' | t }}"
           class="custom-search-input">
         <button id="customCloseBtn" class="custom-close-btn">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -662,7 +500,7 @@
       <div id="customSearchResults" class="custom-search-results">
         <div class="custom-search-results-header">
           <div class="custom-search-results-count" id="searchResultsCount">
-            See All Results for "<span id="searchTerm"></span>" (0)
+            {{ 'sections.header.search_all_results_html' | t | replace: '[term]', '<span id="searchTerm"></span>' | replace: '[count]', '0' }}
           </div>
         </div>
         <div class="custom-search-results-grid" id="searchResultsGrid"></div>
@@ -670,12 +508,12 @@
 
       <!-- Loading State -->
       <div id="customSearchLoading" class="custom-search-loading">
-        <p>Searching...</p>
+        <p>{{ 'sections.header.searching' | t }}</p>
       </div>
 
       <!-- No Results State -->
       <div id="customSearchNoResults" class="custom-search-no-results">
-        <p>No products found. Try a different search term.</p>
+        <p>{{ 'sections.header.search_no_results' | t }}</p>
       </div>
 
       <!-- Main Content -->
@@ -690,12 +528,16 @@
                   <circle cx="12" cy="12" r="10"></circle>
                   <polyline points="12,6 12,12 16,14"></polyline>
                 </svg>
-                <div class="search-recent-title ui-label">Recent Searches</div>
+                <div class="search-recent-title ui-label">{{ 'sections.header.recent_searches' | t }}</div>
               </div>
             </div>
             <div class="custom-pill-container" id="customRecentSearches">
-              <button class="custom-pill" onclick="customSearchOverlay.handlePillClick('{% render 'region--content', key: 'global.header.suggested_searches.0', js: true %}')">{% render 'region--content', key: 'global.header.suggested_searches.0' %}</button>
-              <button class="custom-pill" onclick="customSearchOverlay.handlePillClick('{% render 'region--content', key: 'global.header.suggested_searches.1', js: true %}')">{% render 'region--content', key: 'global.header.suggested_searches.1' %}</button>
+              {%- capture suggested_keys -%}{%- render 'region--content', key: 'global.header.search.suggested_searches.__keys' -%}{%- endcapture -%}
+              {%- assign suggested_keys = suggested_keys | strip | split: ',' -%}
+              {%- for i in suggested_keys -%}
+                {%- assign k = 'global.header.search.suggested_searches.' | append: i %}
+              <button class="custom-pill" onclick="customSearchOverlay.handlePillClick('{% render 'region--content', key: k, js: true %}')">{% render 'region--content', key: k %}</button>
+              {%- endfor %}
             </div>
           </div>
 
@@ -710,7 +552,7 @@
                   <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
                   <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                 </svg>
-                <h3>Gender</h3>
+                <h3>{{ 'sections.header.search_genders' | t }}</h3>
               </div>
               <div class="custom-nav-arrows" style="display:none !important;">
                 <button class="custom-nav-arrow" id="customGenderPrev">
@@ -728,32 +570,6 @@
             <div class="custom-pill-container" id="customGender"></div>
           </div>
 
-          <!-- Brands -->
-          <div class="custom-search-section" style="display: none;">
-            <div class="custom-section-header">
-              <div class="custom-section-title">
-                <svg class="custom-section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
-                  <line x1="7" y1="7" x2="7.01" y2="7"></line>
-                </svg>
-                <h3>Inspired By</h3>
-              </div>
-              <div class="custom-nav-arrows">
-                <button class="custom-nav-arrow" id="customBrandsPrev">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="15,18 9,12 15,6"></polyline>
-                  </svg>
-                </button>
-                <button class="custom-nav-arrow" id="customBrandsNext">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="9,18 15,12 9,6"></polyline>
-                  </svg>
-                </button>
-              </div>
-            </div>
-            <div class="custom-pill-container" id="customBrands"></div>
-          </div>
-
           <!-- Trending Search -->
           <div class="custom-search-section">
             <div class="custom-section-header">
@@ -762,7 +578,7 @@
                   <polyline points="23,6 13.5,15.5 8.5,10.5 1,18"></polyline>
                   <polyline points="17,6 23,6 23,12"></polyline>
                 </svg>
-                <h3>Scent Families</h3>
+                <h3>{{ 'sections.header.search_scent_families' | t }}</h3>
               </div>
               <div class="custom-nav-arrows" style="display:none !important;">
                 <button class="custom-nav-arrow" id="customTrendingPrev">
@@ -790,7 +606,7 @@
                   <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
                   <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                 </svg>
-                <h3>Scent Notes</h3>
+                <h3>{{ 'sections.header.search_scent_notes' | t }}</h3>
               </div>
               <div class="custom-nav-arrows">
                 <button class="custom-nav-arrow" id="customScentNotesPrev">
@@ -818,7 +634,7 @@
                 <svg class="custom-section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon>
                 </svg>
-                <h3>Most Popular Products</h3>
+                <h3>{{ 'sections.header.popular_products' | t }}</h3>
               </div>
               <div class="custom-nav-arrows">
                 <button class="custom-nav-arrow" id="customProductsPrev">
@@ -835,23 +651,42 @@
             </div>
             <div class="custom-products-grid" id="customProductsGrid"></div>
           </div>
-
-          <!-- Promotional Banner -->
-          <div class="custom-promo-banner" id="customPromoBanner"></div>
-          <div class="custom-promo-banner" id="customPromoBanner"></div>
         </div>
       </div>
 
       <!-- Collections Section - Full Width -->
       <div class="custom-collections-section" id="customCollectionsSection">
-        <h3>Shop By Season</h3>
+        <h3>{{ 'sections.header.season_collections' | t }}</h3>
         <div class="custom-collections-grid" id="customCollectionsGrid"></div>
       </div>
     </div>
   </div>
 </div>
 
+{%- comment -%}
+  The search overlay's lists (regions/<id>/content/global.json, header.search)
+  and interface wording (locale, sections.header), for the script below.
+{%- endcomment -%}
+<script type="application/json" id="headerSearchData">
+  {%- render 'region--content', key: 'global.header.search.__json' -%}
+</script>
+<script type="application/json" id="headerStrings">
+  {
+    "allResults": {{ 'sections.header.search_all_results_html' | t | json }},
+    "filterAll": {{ 'sections.header.search_filter_all' | t | json }},
+    "addToCart": {{ 'sections.header.add_to_cart' | t | json }},
+    "adding": {{ 'sections.header.adding_to_cart' | t | json }},
+    "added": {{ 'sections.header.added_to_cart' | t | json }}
+  }
+</script>
+
 {% javascript %}
+  // Interface wording from the locale, written into the page by the section (#headerStrings).
+  function headerStrings() {
+    if (!headerStrings.cache) headerStrings.cache = JSON.parse(document.getElementById('headerStrings').textContent);
+    return headerStrings.cache;
+  }
+
   class StickyHeader extends HTMLElement {
     constructor() {
       super();
@@ -1021,10 +856,9 @@
     }
 
     async addToCartAndOpenDrawer(variantId, button) {
-      let originalText = 'Add to Cart';
+      const originalText = button ? button.textContent : '';
       if (button) {
-        originalText = button.textContent;
-        button.textContent = 'Adding...';
+        button.textContent = headerStrings().adding;
         button.disabled = true;
       }
 
@@ -1042,11 +876,11 @@
         });
 
         if (!response.ok) {
-          throw new Error('Failed to add to cart');
+          throw new Error(`cart/add.js ${response.status}`);
         }
 
         const addResponse = await response.json();
-        if (button) button.textContent = 'ADDED!';
+        if (button) button.textContent = headerStrings().added;
 
         const cartResponse = await fetch('/cart.js');
         if (cartResponse.ok) {
@@ -1111,12 +945,6 @@
     }
   }
 
-  const GENDER_TAG_MAP = {
-    Men: 'gender-men',
-    Women: 'gender-women',
-    Unisex: 'gender-unisex',
-  };
-
   // Custom Search Overlay JavaScript - ENHANCED WITH PROPER ADD TO CART
   class CustomSearchOverlay {
     constructor() {
@@ -1139,130 +967,16 @@
       this.activeFilter = 'all';
       this.searchCategories = {};
 
-      // Data arrays
-      this.trendingSearches = ['Flowery', 'Fresh', 'Earthy', 'Herbal', 'Warm', 'Gourmand'];
-
-      this.brands = [
-        'Tom Ford',
-        'Chanel',
-        'LV',
-        'By Kilian',
-        'Byredo',
-        'Dior',
-        'Maison Crivelli',
-        'Creed',
-        'Le Labo',
-        'YSL',
-        'Burberry',
-        "Ex Nihilo's",
-        'Parfums',
-        'Bvlgari',
-        'Carolina Herrera',
-        'Diptyque',
-        'Giorgio Armani',
-        'Gucci',
-        'Hermès',
-        'Initio',
-        'Lancôme',
-        'MFK',
-        'Narciso',
-        "Nasomatto's",
-        'Nishane',
-        'Paco Rabanne',
-      ];
-
-      this.scentNotes = [
-        'Saffron',
-        'Jasmine',
-        'Amberwood',
-        'Ambergris',
-        'Fir Resin',
-        'Cedar',
-        'Bergamot',
-        'Black Currant',
-        'Apple',
-        'Lemon',
-        'Pink Pepper',
-        'Pineapple',
-        'Patchouli',
-        'Moroccan Jasmine',
-        'Birch',
-        'Musk',
-        'Oakmoss',
-        'Cedarwood',
-        'Ambroxan',
-        'Litchi',
-        'Rhubarb',
-        'Bergamot',
-        'Nutmeg',
-        'Turkish Rose',
-        'Peony',
-        'Musk',
-        'Petalia',
-        'Vanilla',
-        'Cashmeran',
-        'Incense',
-        'Cedar',
-        'Haitian Vetiver',
-        'Saffron',
-        'Nutmeg',
-        'Lavender',
-        'Agarwood (Oud)',
-        'Patchouli',
-        'Musk',
-        'Orange',
-        'Mandarin Orange',
-        'Bergamot',
-        'Orange Blossom',
-        'Turkish Rose',
-        'Jasmine',
-        'Mimosa',
-        'Ylang-Ylang',
-        'Patchouli',
-        'White Musk',
-        'Vanilla',
-        'Vetiver',
-        'Tonka Bean',
-        'Opoponax',
-      ];
-
-      this.genderOptions = ['Men', 'Women', 'Unisex'];
-
-      // CONFIGURE YOUR COLLECTION FOR MOST POPULAR PRODUCTS
-      // Change this to your actual Shopify collection handle
-      this.featuredCollectionHandle = 'bestsellers'; // CHANGE THIS TO YOUR COLLECTION HANDLE
-
-      // MANUALLY CONFIGURABLE COLLECTIONS - Edit these to match your Shopify collections
-      this.collections = [
-        {
-          id: 1,
-          name: 'Summer',
-          image: 'https://cdn.shopify.com/s/files/1/0698/9398/0343/files/3_2.jpg?v=1767003409',
-          link: '/collections/summer',
-        },
-        {
-          id: 2,
-          name: 'Winter',
-          image: 'https://cdn.shopify.com/s/files/1/0698/9398/0343/files/1_3.jpg?v=1767003409',
-          link: '/collections/winter',
-        },
-        {
-          id: 3,
-          name: 'Autumn',
-          image: 'https://cdn.shopify.com/s/files/1/0698/9398/0343/files/2_6.jpg?v=1767003409',
-          link: '/collections/autumn',
-        },
-        {
-          id: 4,
-          name: 'Spring',
-          image: 'https://cdn.shopify.com/s/files/1/0698/9398/0343/files/4_4.jpg?v=1767003409',
-          link: '/collections/spring',
-        },
-      ];
+      // Lists from the region's content (global.json, header.search)
+      const searchData = JSON.parse(document.getElementById('headerSearchData').textContent);
+      this.scentFamilies = searchData.scent_families;
+      this.scentNotes = searchData.scent_notes;
+      this.genderOptions = searchData.genders;
+      this.popularProductsCollection = searchData.popular_products_collection;
+      this.seasonCollections = searchData.season_collections;
 
       // State for navigation
       this.trendingStartIndex = 0;
-      this.brandsStartIndex = 0;
       this.scentNotesStartIndex = 0;
       this.genderStartIndex = 0;
       this.productsStartIndex = 0;
@@ -1274,7 +988,6 @@
     init() {
       this.bindEvents();
       this.renderTrendingSearches();
-      this.renderBrands();
       this.renderScentNotes();
       this.renderGender();
       this.loadFeaturedProducts();
@@ -1309,10 +1022,6 @@
       if (trendingPrev) trendingPrev.addEventListener('click', () => this.navigateTrending('prev'));
       const trendingNext = document.getElementById('customTrendingNext');
       if (trendingNext) trendingNext.addEventListener('click', () => this.navigateTrending('next'));
-      const brandsPrev = document.getElementById('customBrandsPrev');
-      if (brandsPrev) brandsPrev.addEventListener('click', () => this.navigateBrands('prev'));
-      const brandsNext = document.getElementById('customBrandsNext');
-      if (brandsNext) brandsNext.addEventListener('click', () => this.navigateBrands('next'));
       const scentNotesPrev = document.getElementById('customScentNotesPrev');
       if (scentNotesPrev) scentNotesPrev.addEventListener('click', () => this.navigateScentNotes('prev'));
       const scentNotesNext = document.getElementById('customScentNotesNext');
@@ -1325,10 +1034,6 @@
       if (productsPrev) productsPrev.addEventListener('click', () => this.navigateProducts('prev'));
       const productsNext = document.getElementById('customProductsNext');
       if (productsNext) productsNext.addEventListener('click', () => this.navigateProducts('next'));
-
-      // Promo banner click
-      const promoBanner = document.getElementById('customPromoBanner');
-      if (promoBanner) promoBanner.addEventListener('click', () => this.handlePromoBannerClick());
 
       // Search input with debounce
       this.searchInput.addEventListener('input', e => {
@@ -1455,7 +1160,7 @@
                   const image = p.image || (p.featured_image ? p.featured_image.src : null);
                   return {
                     id: p.id,
-                    title: p.title || 'Unknown Product',
+                    title: p.title || '',
                     handle: p.handle,
                     price_min: price,
                     compare_at_price_min: p.compare_at_price
@@ -1463,7 +1168,7 @@
                         ? parseFloat(p.compare_at_price.replace(/[^0-9.]/g, '')) * 100
                         : p.compare_at_price
                       : 0,
-                    vendor: (p.vendor && p.vendor.trim()) || (p.brand && p.brand.trim()) || 'Brand Name',
+                    vendor: (p.vendor && p.vendor.trim()) || (p.brand && p.brand.trim()) || '',
                     description: p.body || p.description || '',
                     featured_image: image,
                     images: p.images || (image ? [image] : []),
@@ -1630,7 +1335,7 @@
         handle: p.handle,
         price_min: price,
         compare_at_price_min: comparePrice,
-        vendor: p.vendor || 'Brand Name',
+        vendor: p.vendor || '',
         product_type: p.product_type || '',
         tags: tags,
         description: description,
@@ -1913,7 +1618,7 @@
       // All products pill
       pills.push({
         key: 'all',
-        label: 'All',
+        label: headerStrings().filterAll,
         count: this.searchCategories.all,
       });
 
@@ -2064,7 +1769,9 @@
       if (st) st.textContent = query;
       const src = document.getElementById('searchResultsCount');
       if (src)
-        src.innerHTML = `See All Results for "<span id="searchTerm">${query}</span>" (${this.filteredResults.length})`;
+        src.innerHTML = headerStrings()
+          .allResults.replace('[term]', () => `<span id="searchTerm">${query}</span>`)
+          .replace('[count]', () => this.filteredResults.length);
 
       this.displayFilteredResults();
       this.showSearchResults();
@@ -2149,11 +1856,11 @@
           const comparePriceElement = element.querySelector('.price__compare, .price--compare, .price-item--compare');
           const imageElement = element.querySelector('img');
           const vendorElement = element.querySelector(
-            '.vendor, .product__vendor, .custom-search-result-vendor .card__vendor, [data-vendor], .brand, .product-brand, .card-brand, .product-meta__vendor, .product__brand'
+            '[data-card-vendor], .vendor, .product__vendor, .custom-search-result-vendor .card__vendor, [data-vendor], .brand, .product-brand, .card-brand, .product-meta__vendor, .product__brand'
           );
 
           const title = titleElement ? titleElement.textContent.trim() : null;
-          let vendor = 'Brand Name';
+          let vendor = '';
           if (vendorElement && vendorElement.textContent) {
             vendor = vendorElement.textContent.trim();
           }
@@ -2165,7 +1872,7 @@
           const comparePrice = comparePriceElement ? this.extractPriceFromText(comparePriceElement.textContent) : 0;
 
           // Validation: Skip products with missing or invalid data
-          if (!title || title === 'Unknown Product' || price === 0) {
+          if (!title || price === 0) {
             console.log('[v0] Skipping product with invalid data - Title:', title, 'Price:', price);
             return;
           }
@@ -2203,7 +1910,7 @@
             handle: handle,
             price_min: price,
             compare_at_price_min: comparePrice,
-            vendor: vendor || 'Brand Name',
+            vendor: vendor,
             description: description,
             featured_image: images[0] || null,
             images: images,
@@ -2241,7 +1948,7 @@
 
     renderSearchResultCard(product) {
       // Validation: Skip products with missing critical data
-      if (!product.title || product.title === 'Unknown Product') {
+      if (!product.title) {
         console.log('[v0] Skipping product with invalid title:', product);
         return '';
       }
@@ -2264,8 +1971,7 @@
         return '';
       }
 
-      const vendor =
-        product.vendor && product.vendor.trim() && product.vendor !== 'Unknown Brand' ? product.vendor : 'Brand Name';
+      const vendor = (product.vendor && product.vendor.trim()) || '';
 
       // Handle image URLs with better fallbacks
       let image =
@@ -2286,7 +1992,7 @@
           <img src="${image}" alt="${product.title}" class="custom-search-result-image" onerror="this.src='/placeholder.svg?height=120&width=120';">
           <img src="${hoverImage}" alt="${product.title}" class="custom-search-result-image-hover" onerror="this.src='/placeholder.svg?height=120&width=120';">
           <button class="custom-search-add-to-cart" data-variant-id="${variantId}" onclick="event.stopPropagation(); customSearchOverlay.addToCartFromSearch(this.dataset.variantId, this)">
-            Add to Cart
+            ${headerStrings().addToCart}
           </button>
         </div>
         <div class="custom-search-result-content">
@@ -2340,8 +2046,8 @@
 
     async loadFeaturedProducts() {
       try {
-        const response = await fetch(`/collections/${this.featuredCollectionHandle}/products.json`);
-        if (!response.ok) throw new Error('Failed to load featured products');
+        const response = await fetch(`/collections/${this.popularProductsCollection}/products.json`);
+        if (!response.ok) throw new Error(`products.json ${response.status}`);
         const data = await response.json();
         this.featuredProducts = (data.products || []).map(product => ({
           id: product.id,
@@ -2410,7 +2116,7 @@
           <div class="custom-product-info">
             <div class="custom-product-title-section">
               <div class="custom-product-name">${product.name}</div>
-              <div class="custom-product-vendor">${product.vendor || 'Brand Name'}</div>
+              <div class="custom-product-vendor">${product.vendor || ''}</div>
             </div>
             <div class="custom-product-price">${this.formatPrice(product.price)}</div>
           </div>
@@ -2525,7 +2231,7 @@
     // Navigation methods
     navigateTrending(direction) {
       const maxVisible = 5;
-      if (direction === 'next' && this.trendingStartIndex + maxVisible < this.trendingSearches.length) {
+      if (direction === 'next' && this.trendingStartIndex + maxVisible < this.scentFamilies.length) {
         this.trendingStartIndex++;
       } else if (direction === 'prev' && this.trendingStartIndex > 0) {
         this.trendingStartIndex--;
@@ -2537,7 +2243,7 @@
       const container = document.getElementById('customTrendingSearches');
       if (!container) return;
       const maxVisible = 6;
-      const visibleItems = this.trendingSearches.slice(this.trendingStartIndex, this.trendingStartIndex + maxVisible);
+      const visibleItems = this.scentFamilies.slice(this.trendingStartIndex, this.trendingStartIndex + maxVisible);
 
       container.innerHTML = visibleItems
         .map(
@@ -2549,36 +2255,7 @@
       const prevBtn = document.getElementById('customTrendingPrev');
       if (prevBtn) prevBtn.disabled = this.trendingStartIndex === 0;
       const nextBtn = document.getElementById('customTrendingNext');
-      if (nextBtn) nextBtn.disabled = this.trendingStartIndex + maxVisible >= this.trendingSearches.length;
-    }
-
-    navigateBrands(direction) {
-      const maxVisible = 4;
-      if (direction === 'next' && this.brandsStartIndex + maxVisible < this.brands.length) {
-        this.brandsStartIndex++;
-      } else if (direction === 'prev' && this.brandsStartIndex > 0) {
-        this.brandsStartIndex--;
-      }
-      this.renderBrands();
-    }
-
-    renderBrands() {
-      const container = document.getElementById('customBrands');
-      if (!container) return;
-      const maxVisible = 10;
-      const visibleItems = this.brands.slice(this.brandsStartIndex, this.brandsStartIndex + maxVisible);
-
-      container.innerHTML = visibleItems
-        .map(
-          brand =>
-            `<button class="custom-pill" data-term="${brand}" onclick="customSearchOverlay.handlePillClick(this.dataset.term)">${brand}</button>`
-        )
-        .join('');
-
-      const prevBtn = document.getElementById('customBrandsPrev');
-      if (prevBtn) prevBtn.disabled = this.brandsStartIndex === 0;
-      const nextBtn = document.getElementById('customBrandsNext');
-      if (nextBtn) nextBtn.disabled = this.brandsStartIndex + maxVisible >= this.brands.length;
+      if (nextBtn) nextBtn.disabled = this.trendingStartIndex + maxVisible >= this.scentFamilies.length;
     }
 
     navigateScentNotes(direction) {
@@ -2653,18 +2330,18 @@
       const container = document.getElementById('customCollectionsGrid');
       if (!container) return;
 
-      container.innerHTML = this.collections
+      container.innerHTML = this.seasonCollections
         .map(
           collection => `
         <div class="custom-collection-card"
-             data-link="${collection.link}"
+             data-link="${collection.url}"
              onclick="window.location.href=this.dataset.link">
           <div class="custom-collection-content">
             <div class="custom-collection-image">
-              <img src="${collection.image}" alt="${collection.name}">
+              <img src="${collection.image}" alt="${collection.label}">
             </div>
             <div class="col-button">
-              ${collection.name}
+              ${collection.label}
             </div>
           </div>
         </div>
@@ -2680,7 +2357,7 @@
       this.searchInput.value = term;
 
       // Check if it's a gender filter - search using Shopify product tags
-      if (['Men', 'Women', 'Unisex'].includes(term)) {
+      if (this.genderOptions.includes(term)) {
         this.currentSearchTerm = term;
         // Search by tag format to match Shopify product tags (e.g., "tag:men")
         const tagSearchQuery = `tag:${term.toLowerCase()}`;
@@ -2717,7 +2394,9 @@
       if (st) st.textContent = this.currentSearchTerm + ' - ' + this.capitalizeFirst(gender);
       const src = document.getElementById('searchResultsCount');
       if (src)
-        src.innerHTML = `See All Results for "<span id="searchTerm">${this.currentSearchTerm}</span>" (${this.filteredResults.length})`;
+        src.innerHTML = headerStrings()
+          .allResults.replace('[term]', () => `<span id="searchTerm">${this.currentSearchTerm}</span>`)
+          .replace('[count]', () => this.filteredResults.length);
     }
 
     getProductGenders(product) {
@@ -2791,25 +2470,14 @@
 
     handleProductClick(productHandle) {
       // Redirect to product page in Shopify
-      window.location.href = `/products/${productHandle}`;
-    }
-
-    handleCollectionClick(collectionHandle) {
-      // Redirect to collection page in Shopify
-      window.location.href = `/collections/${collectionHandle}`;
-    }
-
-    handlePromoBannerClick() {
-      // Redirect to promo page - customize this URL
-      window.location.href = '/pages/special-offer';
+      window.location.href = `${window.Shopify.routes.root}products/${productHandle}`;
     }
 
     // ENHANCED: Specialized add to cart function for search results
     async addToCartFromSearch(variantId, button) {
-      let originalText = 'Add to Cart';
+      const originalText = button ? button.textContent : '';
       if (button) {
-        originalText = button.textContent;
-        button.textContent = 'Adding...';
+        button.textContent = headerStrings().adding;
         button.disabled = true;
       }
 
@@ -2827,7 +2495,7 @@
         });
 
         if (!response.ok) {
-          throw new Error('Add to cart failed.');
+          throw new Error(`cart/add.js ${response.status}`);
         }
 
         const data = await response.json();
@@ -2850,7 +2518,7 @@
           window.headerCartManager.updateCartCount();
         }
 
-        if (button) button.textContent = 'ADDED!';
+        if (button) button.textContent = headerStrings().added;
         setTimeout(() => {
           if (button) button.textContent = originalText;
         }, 2000);
@@ -2894,9 +2562,9 @@
             window.location.href = accountLink.href;
           } else {
             if (typeof customer !== 'undefined' && customer) {
-              window.location.href = '/account';
+              window.location.href = `${window.Shopify.routes.root}account`;
             } else {
-              window.location.href = '/account/login';
+              window.location.href = `${window.Shopify.routes.root}account/login`;
             }
           }
         });
@@ -2907,22 +2575,6 @@
         searchTrigger.addEventListener('click', () => {
           if (window.customSearchOverlay) {
             window.customSearchOverlay.openOverlay();
-          }
-        });
-      }
-
-      const cartTrigger = document.getElementById('mobileCartTrigger');
-      if (cartTrigger) {
-        cartTrigger.addEventListener('click', () => {
-          if (typeof window.openDossierCart === 'function') {
-            window.openDossierCart();
-          } else {
-            const desktopCartIcon = document.getElementById('cart-icon-bubble');
-            if (desktopCartIcon) {
-              desktopCartIcon.click();
-            } else {
-              window.location.href = '/cart';
-            }
           }
         });
       }
