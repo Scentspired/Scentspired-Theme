@@ -174,25 +174,9 @@
       },
       "title": "Arama sonuçları",
       "page": "Sayfa",
-      "products": "Ürünler",
-      "search_for": "\"{{ terms }}\" için arama yap",
       "results_with_count_and_term": {
         "one": "\"{{ terms }}\" için {{ count }} sonuç bulundu",
         "other": "\"{{ terms }}\" için {{ count }} sonuç bulundu"
-      },
-      "results_pages_with_count": {
-        "one": "{{ count }} sayfa",
-        "other": "{{ count }} sayfa"
-      },
-      "results_products_with_count": {
-        "one": "{{ count }} ürün",
-        "other": "{{ count }} ürün"
-      },
-      "suggestions": "Öneriler",
-      "pages": "Sayfalar",
-      "results_suggestions_with_count": {
-        "one": "{{ count }} öneri",
-        "other": "{{ count }} öneri"
       }
     },
     "cart": {

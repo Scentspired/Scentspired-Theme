@@ -11,7 +11,6 @@
  *   Suite W: Product Info & Volume Pricing Rule Engine
  *   Suite X: Media Gallery & Modal Synchronizer
  *   Suite Y: Facets & Multi-Facet Collection Filter Query Builder
- *   Suite Z: Predictive Search Engine & Regex Escape Safety
  *   Suite AA: Multi-Currency & Locale Formatter
  *   Suite AB: Rapid Add-to-Cart Concurrency & Double-Click Lockout
  *   Suite AC: Network Dropout, 422 Unprocessable Entity, & Corrupt HTML Recovery
@@ -301,45 +300,6 @@ assert(
   queryString.includes("sort_by=price-ascending"),
   "Y1.4: Sort parameter included in URL state",
   "SUITE Y"
-);
-
-// ─────────────────────────────────────────────────────────────────────────────
-// SUITE Z: Predictive Search Engine & Regex Escape Safety
-// ─────────────────────────────────────────────────────────────────────────────
-console.log("┌──────────────────────────────────────────────────────────────┐");
-console.log("│ SUITE Z: Predictive Search Engine & Regex Escape Safety      │");
-console.log("└──────────────────────────────────────────────────────────────┘");
-
-function safeRegexMatch(text, searchPattern) {
-  if (!text || !searchPattern) return false;
-  const escaped = searchPattern.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  try {
-    const rx = new RegExp(escaped, "i");
-    return rx.test(text);
-  } catch (e) {
-    return false;
-  }
-}
-
-assert(
-  safeRegexMatch("Tom Ford (Tobacco Vanille) [50ml]", "Ford (Tobacco") === true,
-  "Z1.1: Dangerous unescaped parentheses matched cleanly without SyntaxError",
-  "SUITE Z"
-);
-assert(
-  safeRegexMatch("YSL + Libre *Special*", "+ Libre *") === true,
-  "Z1.2: Dangerous asterisks and plus signs matched safely without regex quantifier crash",
-  "SUITE Z"
-);
-assert(
-  safeRegexMatch("Creed Aventus", "[") === false,
-  "Z1.3: Single unmatched square bracket safely handled without invalid character set crash",
-  "SUITE Z"
-);
-assert(
-  safeRegexMatch("", "anything") === false,
-  "Z1.4: Empty target string safely returns false without exception",
-  "SUITE Z"
 );
 
 // ─────────────────────────────────────────────────────────────────────────────

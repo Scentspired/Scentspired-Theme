@@ -84,12 +84,6 @@ const clarityBugs = [
     file: "bundle--box.liquid",
     pattern: "totaldisplay",
   },
-  {
-    name: "SyntaxError: Invalid RegExp in predictive-search",
-    file: "search--predictive.js",
-    altFile: "predictive-search.js",
-    pattern: "escaperegexp",
-  },
 ];
 
 console.log("");
@@ -167,11 +161,6 @@ for (const bug of clarityBugs) {
     } else if (
       bug.pattern === "totaldisplay" &&
       (content.match(/const totalDisplay\b/g) || []).length <= 1
-    ) {
-      isPatchedInCode = true;
-    } else if (
-      bug.pattern === "escaperegexp" &&
-      content.includes("replace(/[.*+?^${}()|[\\]\\\\]/g")
     ) {
       isPatchedInCode = true;
     }

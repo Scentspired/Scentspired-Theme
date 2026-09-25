@@ -27,12 +27,15 @@ const shape = (v) => {
   if (v && typeof v === 'object') return Object.fromEntries(Object.entries(v).filter(([k]) => !SKIP_KEYS.has(k)).map(([k, x]) => [k, shape(x)]));
   return null;
 };
+const isEmpty = (v) => v === null || v === undefined || (typeof v === 'object' && Object.values(v).every(isEmpty));
 const keep = (skeleton, filled) => {                        // the skeleton, with filled-in values carried over
   if (filled === null || filled === undefined) return skeleton;
   if (Array.isArray(skeleton) && Array.isArray(filled)) return filled.map((x, i) => keep(skeleton[i] === undefined ? null : skeleton[i], x));
   if (skeleton && typeof skeleton === 'object' && filled && typeof filled === 'object') {
     const out = { ...skeleton };
-    for (const [k, v] of Object.entries(filled)) out[k] = keep(k in skeleton ? skeleton[k] : null, v);
+    // a field the content no longer has (a page removed) goes when the look left it empty;
+    // a value there stays, and the build names it
+    for (const [k, v] of Object.entries(filled)) if (k in skeleton || !isEmpty(v)) out[k] = keep(k in skeleton ? skeleton[k] : null, v);
     return out;
   }
   return filled;

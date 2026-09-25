@@ -76,8 +76,6 @@ class FacetFiltersForm extends HTMLElement {
         FacetFiltersForm.renderFilters(html, event);
         FacetFiltersForm.renderProductGridContainer(html);
         FacetFiltersForm.renderProductCount(html);
-        if (typeof initializeScrollAnimationTrigger === "function")
-          initializeScrollAnimationTrigger(html);
       })
       .catch(err => {
         console.error("Error fetching facets section:", err);
@@ -100,8 +98,6 @@ class FacetFiltersForm extends HTMLElement {
     FacetFiltersForm.renderFilters(html, event);
     FacetFiltersForm.renderProductGridContainer(html);
     FacetFiltersForm.renderProductCount(html);
-    if (typeof initializeScrollAnimationTrigger === "function")
-      initializeScrollAnimationTrigger(html);
   }
 
   static renderProductGridContainer(html) {
@@ -112,12 +108,6 @@ class FacetFiltersForm extends HTMLElement {
     const newPgc = parsed.getElementById("ProductGridContainer");
     if (newPgc && pgc) {
       pgc.innerHTML = newPgc.innerHTML;
-    }
-
-    if (pgc) {
-      pgc.querySelectorAll(".scroll-trigger").forEach(element => {
-        element.classList.add("scroll-trigger--cancel");
-      });
     }
   }
 

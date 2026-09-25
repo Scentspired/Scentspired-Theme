@@ -19,7 +19,7 @@
 {%- assign cta_button = button_text | default: "Subscribe" -%}
 {%- assign cta_success = success_message | default: "Thanks for subscribing!" -%}
 
-<div class="blog-newsletter page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+<div class="blog-newsletter page-width page-width--narrow">
   <div class="blog-newsletter__inner">
     {%- if cta_heading != blank -%}
       <h3 class="blog-newsletter__heading">{{ cta_heading | escape }}</h3>

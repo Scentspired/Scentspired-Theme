@@ -211,9 +211,6 @@
     "animations": {
       "name": "Animations",
       "settings": {
-        "animations_reveal_on_scroll": {
-          "label": "Reveal sections on scroll"
-        },
         "animations_hover_elements": {
           "options__1": {
             "label": "None"
@@ -267,22 +264,6 @@
         "social_vimeo_link": {
           "label": "Vimeo",
           "info": "https://vimeo.com/shopify"
-        }
-      }
-    },
-    "search_input": {
-      "name": "Search behavior",
-      "settings": {
-        "predictive_search_enabled": {
-          "label": "Search suggestions"
-        },
-        "predictive_search_show_vendor": {
-          "label": "Product vendor",
-          "info": "Shown when search suggestions enabled"
-        },
-        "predictive_search_show_price": {
-          "label": "Product price",
-          "info": "Shown when search suggestions enabled"
         }
       }
     },

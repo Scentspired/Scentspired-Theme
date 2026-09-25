@@ -2056,7 +2056,7 @@
     }
 
     /* Hide default Shopify search */
-    .search-modal, .search-popup, .predictive-search, .search-drawer {
+    .search-modal, .search-popup, .search-drawer {
       display: none !important;
     }
 

@@ -22,7 +22,7 @@
   <div class="main-blog page-width section-{{ section.id }}-padding">
 
     {%- comment -%} Blog Header ─────────────────────────────── {%- endcomment -%}
-    <div class="main-blog__header{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+    <div class="main-blog__header">
       <h1 class="main-blog__title">{{ blog.title | escape }}</h1>
       {%- if section.settings.show_description and blog.metafields.custom.description != blank -%}
         <p class="main-blog__description">{{ blog.metafields.custom.description }}</p>
@@ -38,11 +38,7 @@
     <div class="main-blog__grid">
       {%- for article in blog.articles -%}
         <div
-          class="main-blog__article{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-          {% if settings.animations_reveal_on_scroll %}
-            data-cascade
-            style="--animation-order: {{ forloop.index }};"
-          {% endif %}>
+          class="main-blog__article">
           {%- if forloop.first and section.settings.show_featured_hero and paginate.current_page == 1 -%}
             {%- render "blog--listing--card",
               article: article,

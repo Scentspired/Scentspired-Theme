@@ -25,7 +25,7 @@ function checkPaths(pages) {
 async function fetchPage(base, page, country) {
   const u = new URL(page, base);
   u.searchParams.set('country', country);
-  for (let attempt = 0; attempt < 12; attempt++) {
+  for (let attempt = 0; attempt < 24; attempt++) {   // up to two minutes: the session can flap that long
     try {
       const r = await fetch(u);
       const html = await r.text();

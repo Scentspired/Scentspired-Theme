@@ -174,25 +174,9 @@
       },
       "title": "Hakutulokset",
       "page": "Sivu",
-      "products": "Tuotteet",
-      "search_for": "Hae kohdetta \"{{ terms }}\"",
       "results_with_count_and_term": {
         "one": "{{ count }} tulos hakuehdolla \"{{ terms }}\"",
         "other": "{{ count }} tulosta hakuehdolla \"{{ terms }}\""
-      },
-      "results_pages_with_count": {
-        "one": "{{ count }} sivu",
-        "other": "{{ count }} sivua"
-      },
-      "results_products_with_count": {
-        "one": "{{ count }} tuote",
-        "other": "{{ count }} tuotetta"
-      },
-      "suggestions": "Ehdotukset",
-      "pages": "Sivut",
-      "results_suggestions_with_count": {
-        "one": "{{ count }} ehdotus",
-        "other": "{{ count }} ehdotusta"
       }
     },
     "cart": {

@@ -184,33 +184,11 @@
         "many": "Počet výsledkov: {{ count }}"
       },
       "page": "Strana",
-      "products": "Produkty",
-      "search_for": "Vyhľadať výraz „{{ terms }}“",
       "results_with_count_and_term": {
         "one": "Pre výraz „{{ terms }}“ sa našiel {{ count }} výsledok",
         "other": "Pre výraz „{{ terms }}“ sa našiel tento počet výsledkov: {{ count }}",
         "few": "Pre výraz „{{ terms }}“ sa našiel tento počet výsledkov: {{ count }}",
         "many": "Pre výraz „{{ terms }}“ sa našiel tento počet výsledkov: {{ count }}"
-      },
-      "results_pages_with_count": {
-        "one": "{{ count }} stránka",
-        "other": "Počet stránok: {{ count }}",
-        "few": "Počet stránok: {{ count }}",
-        "many": "Počet stránok: {{ count }}"
-      },
-      "results_products_with_count": {
-        "one": "{{ count }} produkt",
-        "other": "Počet produktov: {{ count }}",
-        "few": "Počet produktov: {{ count }}",
-        "many": "Počet produktov: {{ count }}"
-      },
-      "suggestions": "Návrhy",
-      "pages": "Stránky",
-      "results_suggestions_with_count": {
-        "one": "{{ count }} návrh",
-        "other": "Počet návrhov: {{ count }}",
-        "few": "Počet návrhov: {{ count }}",
-        "many": "Počet návrhov: {{ count }}"
       }
     },
     "cart": {

@@ -132,22 +132,6 @@
         }
       }
     },
-    "search_input": {
-      "name": "พฤติกรรมการค้นหา",
-      "settings": {
-        "predictive_search_enabled": {
-          "label": "คำแนะนำการค้นหา"
-        },
-        "predictive_search_show_vendor": {
-          "label": "ผู้ขายสินค้า",
-          "info": "แสดงผลเมื่อเปิดใช้งานคำแนะการค้นหา"
-        },
-        "predictive_search_show_price": {
-          "label": "ราคาสินค้า",
-          "info": "แสดงผลเมื่อเปิดใช้งานคำแนะการค้นหา"
-        }
-      }
-    },
     "global": {
       "settings": {
         "header__border": {
@@ -323,9 +307,6 @@
     "animations": {
       "name": "ภาพเคลื่อนไหว",
       "settings": {
-        "animations_reveal_on_scroll": {
-          "label": "แสดงส่วนเมื่อเลื่อนหน้าจอ"
-        },
         "animations_hover_elements": {
           "options__1": {
             "label": "ไม่มี"

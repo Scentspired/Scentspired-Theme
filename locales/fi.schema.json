@@ -132,22 +132,6 @@
         }
       }
     },
-    "search_input": {
-      "name": "Hakukäyttäytyminen",
-      "settings": {
-        "predictive_search_enabled": {
-          "label": "Hakuehdotukset"
-        },
-        "predictive_search_show_vendor": {
-          "label": "Tuotteen myyjä",
-          "info": "Näytetään, kun hakuehdotukset ovat käytössä"
-        },
-        "predictive_search_show_price": {
-          "label": "Tuotteen hinta",
-          "info": "Näytetään, kun hakuehdotukset ovat käytössä"
-        }
-      }
-    },
     "global": {
       "settings": {
         "header__border": {
@@ -323,9 +307,6 @@
     "animations": {
       "name": "Animaatiot",
       "settings": {
-        "animations_reveal_on_scroll": {
-          "label": "Näytä osiot vierittämällä"
-        },
         "animations_hover_elements": {
           "options__1": {
             "label": "Ei mitään"

@@ -132,22 +132,6 @@
         }
       }
     },
-    "search_input": {
-      "name": "Chování hledání",
-      "settings": {
-        "predictive_search_enabled": {
-          "label": "Návrhy hledaných výrazů"
-        },
-        "predictive_search_show_vendor": {
-          "label": "Dodavatel produktu",
-          "info": "Zobrazuje se, když jsou povoleny návrhy vyhledávání"
-        },
-        "predictive_search_show_price": {
-          "label": "Cena produktu",
-          "info": "Zobrazuje se, když jsou povoleny návrhy vyhledávání"
-        }
-      }
-    },
     "global": {
       "settings": {
         "header__border": {
@@ -323,9 +307,6 @@
     "animations": {
       "name": "Animace",
       "settings": {
-        "animations_reveal_on_scroll": {
-          "label": "Zobrazit sekce při skrolování"
-        },
         "animations_hover_elements": {
           "options__1": {
             "label": "Žádný"

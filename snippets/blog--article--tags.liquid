@@ -13,7 +13,7 @@
 
 {%- if article.tags.size > 0 -%}
   {%- assign tag_label = label | default: "Tags" -%}
-  <div class="page-width page-width--narrow blog-tags{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+  <div class="page-width page-width--narrow blog-tags">
     <span class="blog-tags__label">{{ tag_label | escape }}:</span>
     <div class="blog-tags__list">
       {%- for tag in article.tags -%}

@@ -132,22 +132,6 @@
         }
       }
     },
-    "search_input": {
-      "name": "Arama davranışı",
-      "settings": {
-        "predictive_search_enabled": {
-          "label": "Arama önerileri"
-        },
-        "predictive_search_show_vendor": {
-          "label": "Ürün satıcısı",
-          "info": "Arama önerileri etkin durumdayken gösterilir"
-        },
-        "predictive_search_show_price": {
-          "label": "Ürün fiyatı",
-          "info": "Arama önerileri etkin durumdayken gösterilir"
-        }
-      }
-    },
     "global": {
       "settings": {
         "header__border": {
@@ -323,9 +307,6 @@
     "animations": {
       "name": "Animasyonlar",
       "settings": {
-        "animations_reveal_on_scroll": {
-          "label": "Kaydırırken bölümleri göster"
-        },
         "animations_hover_elements": {
           "options__1": {
             "label": "Yok"

@@ -174,26 +174,10 @@
       },
       "title": "Suchergebnisse",
       "page": "Seite",
-      "products": "Produkte",
-      "search_for": "Nach \"{{ terms }}\" suchen",
       "results_with_count_and_term": {
         "one": "{{ count }} Ergebnis für \"{{ terms }}\" gefunden",
         "other": "{{ count }} Ergebnisse für \"{{ terms }}\" gefunden"
-      },
-      "results_pages_with_count": {
-        "one": "{{ count }} Seite",
-        "other": "{{ count }} Seiten"
-      },
-      "results_suggestions_with_count": {
-        "one": "{{ count }} Vorschlag",
-        "other": "{{ count }} Vorschläge"
-      },
-      "results_products_with_count": {
-        "one": "{{ count }} Produkt",
-        "other": "{{ count }} Produkte"
-      },
-      "suggestions": "Vorschläge",
-      "pages": "Seiten"
+      }
     },
     "cart": {
       "cart": "Warenkorb"

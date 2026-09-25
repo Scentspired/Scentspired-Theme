@@ -174,25 +174,9 @@
       },
       "title": "Αποτελέσματα αναζήτησης",
       "page": "Σελίδα",
-      "products": "Προϊόντα",
-      "search_for": "Αναζήτηση για «{{ terms }}»",
       "results_with_count_and_term": {
         "one": "Βρέθηκε {{ count }} αποτέλεσμα για «{{ terms }}»",
         "other": "Βρέθηκαν {{ count }} αποτελέσματα για «{{ terms }}»"
-      },
-      "results_pages_with_count": {
-        "one": "{{ count }} σελίδα",
-        "other": "{{ count }} σελίδες"
-      },
-      "results_products_with_count": {
-        "one": "{{ count }} προϊόν",
-        "other": "{{ count }} προϊόντα"
-      },
-      "suggestions": "Προτάσεις",
-      "pages": "Σελίδες",
-      "results_suggestions_with_count": {
-        "one": "{{ count }} πρόταση",
-        "other": "{{ count }} προτάσεις"
       }
     },
     "cart": {

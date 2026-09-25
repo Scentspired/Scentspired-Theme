@@ -28,7 +28,7 @@
   endif
 -%}
 
-<div class="facets-container{% if filter_type == 'drawer' %} facets-container-drawer{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+<div class="facets-container{% if filter_type == 'drawer' %} facets-container-drawer{% endif %}">
   {%- if filter_type == "vertical" or filter_type == "horizontal" -%}
     <facet-filters-form class="facets small-hide">
       <form
@@ -137,8 +137,7 @@
                           {{- filter.label | escape }}
                           {%- if filter_type == "vertical" -%}
                             <span class="facets__selected{% if filter.active_values.size == 0 %} hidden{% endif %}">
-                              ({{ filter.active_values.size }})</span
-                            >
+                              ({{ filter.active_values.size }})</span>
                           {%- endif -%}
                         </span>
                         {%- if filter_type == "vertical" and filter.operator == "AND" -%}

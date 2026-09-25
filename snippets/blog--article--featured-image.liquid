@@ -12,7 +12,7 @@
 {% endcomment %}
 
 {%- if image -%}
-  <div class="blog-featured-image{% if image_height and image_height != 'adapt' %} blog-featured-image--{{ image_height }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+  <div class="blog-featured-image{% if image_height and image_height != 'adapt' %} blog-featured-image--{{ image_height }}{% endif %}">
     <img
       srcset="
         {% if image.width >= 350 %}{{ image | image_url: width: 350 }} 350w,{% endif %}

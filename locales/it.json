@@ -179,29 +179,10 @@
         "many": "{{ count }} risultati"
       },
       "title": "Risultati della ricerca",
-      "products": "Prodotti",
-      "search_for": "Cerca \"{{ terms }}\"",
       "results_with_count_and_term": {
         "one": "{{ count }} risultato trovato per \"{{ terms }}\"",
         "other": "{{ count }} risultati trovati per \"{{ terms }}\"",
         "many": "{{ count }} risultati trovati per \"{{ terms }}\""
-      },
-      "results_pages_with_count": {
-        "one": "{{ count }} pagina",
-        "other": "{{ count }} pagine",
-        "many": "{{ count }} pagine"
-      },
-      "results_products_with_count": {
-        "one": "{{ count }} prodotto",
-        "other": "{{ count }} prodotti",
-        "many": "{{ count }} prodotti"
-      },
-      "suggestions": "Suggerimenti",
-      "pages": "Pagine",
-      "results_suggestions_with_count": {
-        "one": "{{ count }} suggerimento",
-        "other": "{{ count }} suggerimenti",
-        "many": "{{ count }} suggerimenti"
       }
     },
     "cart": {

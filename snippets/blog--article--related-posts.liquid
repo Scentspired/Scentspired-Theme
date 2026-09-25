@@ -17,7 +17,7 @@
   {%- assign heading_text = heading | default: "You might also enjoy" -%}
   {%- assign posts_shown = 0 -%}
 
-  <div class="blog-related{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+  <div class="blog-related">
     <h2 class="blog-related__heading">{{ heading_text | escape }}</h2>
     <div class="blog-related__grid">
       {%- comment -%} Pass 1: Articles sharing the primary tag {%- endcomment -%}

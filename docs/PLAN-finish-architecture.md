@@ -52,9 +52,12 @@ answers it from another theme and `shopify theme dev` exits (it did, 2026-09-25)
 everywhere; UK's `page.waitlist` and `page.llms`. Templates no live URL renders (every
 page, collection, blog and article in both live sitemaps, matched on the dev stores;
 all 244 products use `product`): `page.scent-2`, `page.scent-notes` (the live
-/pages/scent-notes uses `page.scent-families`), `index.context.pk` (`?country=PK` renders
-the plain homepage on both stores: no PK market), and `page.launching-soon` (identical to
-`page`, which Shopify falls back to). Then what only they used. Features switched off in
+/pages/scent-notes uses `page.scent-families`) and `page.launching-soon` (identical to
+`page`, which Shopify falls back to). Then what only they used. **Not** removed:
+`index.context.pk` looked unused (`?country=PK` changes nothing) but a market override
+applies by the market's *handle*, and the USA store's market is called "pk" — the live
+scentspired.com homepage shows the section only that override switches on. The page
+comparison caught it; `template-usage.cjs` now detects overrides that way. Features switched off in
 the theme's own settings, whose code can never run: predictive search, reveal-on-scroll
 animation, the commented-out `cart-drawer.js`. Kept, with the reason: Shopify's system
 pages (password, gift card, classic customer accounts) and code that runs on a state the

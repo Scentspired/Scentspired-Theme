@@ -80,6 +80,10 @@ checked: they render on different pages — aroma-selector on `page.scent-2`
 and `page.scent-families`, catalog--aroma-notes on `page.scent-notes` — and
 share only 15 distinct asset URLs. Both need migrating; neither is redundant.
 
+*2026-09-25:* `page.scent-notes`, and with it `blocks/catalog--aroma-notes.liquid`,
+were removed — no live page on either store rendered that template. Only
+`aroma-selector` remains of the two.
+
 ## Assets, in full
 
 | kind | store | asset |

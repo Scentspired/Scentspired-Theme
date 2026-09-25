@@ -132,22 +132,6 @@
         }
       }
     },
-    "search_input": {
-      "name": "検索行動",
-      "settings": {
-        "predictive_search_enabled": {
-          "label": "検索候補"
-        },
-        "predictive_search_show_vendor": {
-          "label": "商品の販売元",
-          "info": "検索候補が有効になっている場合に表示されます"
-        },
-        "predictive_search_show_price": {
-          "label": "商品価格",
-          "info": "検索候補が有効になっている場合に表示されます"
-        }
-      }
-    },
     "global": {
       "settings": {
         "header__border": {
@@ -323,9 +307,6 @@
     "animations": {
       "name": "アニメーション",
       "settings": {
-        "animations_reveal_on_scroll": {
-          "label": "スクロールでセクションを表示する"
-        },
         "animations_hover_elements": {
           "options__1": {
             "label": "なし"

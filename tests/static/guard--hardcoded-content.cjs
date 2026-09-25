@@ -43,7 +43,7 @@ const BASELINE = rootArg ? null : path.join(__dirname, 'baseline-hardcoded-conte
 
 // Third-party and platform code we do not author (Dawn base JS, app output).
 const THIRD_PARTY =
-  /^(assets\/(global|pubsub|constants|details-|cart|product-|facets|predictive-search|quick-add|search-form|share|show-more|localization|media-gallery|animations|magnify|customer|price-per-item|recipient-form|theme-editor)|sections\/(pagefly|ecom-)|snippets\/(pagefly|ecom))/;
+  /^assets\/(global|pubsub|constants|details-disclosure|details-modal|cart|cart-notification|facets|search-form|show-more|localization-form|customer|theme-editor)\.js$/;
 
 function themeFiles() {
   const out = [];

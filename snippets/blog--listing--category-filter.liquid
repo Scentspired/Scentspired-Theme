@@ -11,7 +11,7 @@
 {% endcomment %}
 
 {%- if blog.all_tags.size > 0 -%}
-  <nav class="main-blog__categories{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}" aria-label="Blog categories">
+  <nav class="main-blog__categories" aria-label="Blog categories">
     <!-- "All" Pill -->
     <a
       href="{{ blog.url }}"

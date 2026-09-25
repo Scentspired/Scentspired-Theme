@@ -132,22 +132,6 @@
         }
       }
     },
-    "search_input": {
-      "name": "검색 행동",
-      "settings": {
-        "predictive_search_enabled": {
-          "label": "검색 제안"
-        },
-        "predictive_search_show_vendor": {
-          "label": "제품 공급업체",
-          "info": "검색 제안이 활성화된 경우 표시됩니다"
-        },
-        "predictive_search_show_price": {
-          "label": "제품 가격",
-          "info": "검색 제안이 활성화된 경우 표시됩니다"
-        }
-      }
-    },
     "global": {
       "settings": {
         "header__border": {
@@ -323,9 +307,6 @@
     "animations": {
       "name": "애니메이션",
       "settings": {
-        "animations_reveal_on_scroll": {
-          "label": "스크롤 시 섹션 표시"
-        },
         "animations_hover_elements": {
           "options__1": {
             "label": "없음"

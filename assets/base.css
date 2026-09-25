@@ -620,8 +620,6 @@ details > * {
   --duration-extra-longer: 750ms;
   --duration-extended: 3s;
   --ease-out-slow: cubic-bezier(0, 0, 0.3, 1);
-  --animation-slide-in: slideIn var(--duration-extra-long) var(--ease-out-slow) forwards;
-  --animation-fade-in: fadeIn var(--duration-extra-long) var(--ease-out-slow);
 }
 
 .underlined-link,
@@ -1014,16 +1012,6 @@ summary::-webkit-details-marker {
     margin: 0;
   }
 
-  .slider.slider--tablet .scroll-trigger.animate--slide-in,
-  .slider.slider--mobile .scroll-trigger.animate--slide-in {
-    animation: none;
-    opacity: 1;
-    transform: inherit;
-  }
-
-  .scroll-trigger:not(.scroll-trigger--offscreen) .slider--tablet {
-    animation: var(--animation-slide-in);
-  }
 }
 
 @media screen and (min-width: 990px) {
@@ -1052,15 +1040,6 @@ summary::-webkit-details-marker {
     max-width: calc(50% - var(--grid-desktop-horizontal-spacing) / 2);
   }
 
-  .slider.slider--desktop .scroll-trigger.animate--slide-in {
-    animation: none;
-    opacity: 1;
-    transform: inherit;
-  }
-
-  .scroll-trigger:not(.scroll-trigger--offscreen) .slider--desktop {
-    animation: var(--animation-slide-in);
-  }
 }
 
 @media screen and (min-width: 990px) {
@@ -3348,59 +3327,6 @@ details-disclosure > details {
       transform: rotate(360deg) translateX(1em) rotate(-360deg) scale(1.2);
     }
   }
-
-  .scroll-trigger.animate--fade-in,
-  .scroll-trigger.animate--slide-in {
-    opacity: 0.01;
-  }
-
-  .scroll-trigger.animate--slide-in {
-    transform: translateY(2rem);
-  }
-
-  .scroll-trigger:not(.scroll-trigger--offscreen).animate--fade-in {
-    opacity: 1;
-    animation: var(--animation-fade-in);
-  }
-
-  .scroll-trigger:not(.scroll-trigger--offscreen).animate--slide-in {
-    animation: var(--animation-slide-in);
-    animation-delay: calc(var(--animation-order) * 75ms);
-  }
-
-  .scroll-trigger.scroll-trigger--design-mode.animate--fade-in,
-  .scroll-trigger.scroll-trigger--design-mode.animate--slide-in,
-  .scroll-trigger.scroll-trigger--design-mode .slider,
-  .scroll-trigger:not(.scroll-trigger--offscreen).scroll-trigger--cancel {
-    opacity: 1;
-    animation: none;
-    transition: none;
-    transform: none;
-  }
-
-  .scroll-trigger.scroll-trigger--design-mode.animate--slide-in {
-    transform: translateY(0);
-  }
-
-  @keyframes slideIn {
-    from {
-      transform: translateY(2rem);
-      opacity: 0.01;
-    }
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0.01;
-    }
-    to {
-      opacity: 1;
-    }
-  }
 }
 
 /* Element Hovers: Vertical Lift, 3d Lift */
@@ -4271,14 +4197,7 @@ body:not(.homepage) .announcement-bar-section {
 
 /* Remove underline from search results links */
 .search-modal a,
-.search-modal .search-results a,
-.search-modal .predictive-search a {
-  text-decoration: none !important;
-}
-
-/* Remove underline from search suggestions */
-.search-modal .predictive-search__item a,
-.search-modal .predictive-search__item-heading a {
+.search-modal .search-results a {
   text-decoration: none !important;
 }
 
@@ -4301,8 +4220,7 @@ body:not(.homepage) .announcement-bar-section {
 
 /* Remove underline from any search-related links on hover */
 .search-modal a:hover,
-.search-modal .search-results a:hover,
-.search-modal .predictive-search a:hover {
+.search-modal .search-results a:hover {
   text-decoration: none !important;
 }
 

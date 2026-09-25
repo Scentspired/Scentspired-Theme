@@ -132,22 +132,6 @@
         }
       }
     },
-    "search_input": {
-      "name": "Søgeadfærd",
-      "settings": {
-        "predictive_search_enabled": {
-          "label": "Søgeforslag"
-        },
-        "predictive_search_show_vendor": {
-          "label": "Produktforhandler",
-          "info": "Vises, når søgeforslag er aktiveret"
-        },
-        "predictive_search_show_price": {
-          "label": "Produktpris",
-          "info": "Vises, når søgeforslag er aktiveret"
-        }
-      }
-    },
     "global": {
       "settings": {
         "header__border": {
@@ -323,9 +307,6 @@
     "animations": {
       "name": "Animationer",
       "settings": {
-        "animations_reveal_on_scroll": {
-          "label": "Afslør afsnit ved rulning"
-        },
         "animations_hover_elements": {
           "options__1": {
             "label": "Ingen"

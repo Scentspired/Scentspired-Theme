@@ -132,22 +132,6 @@
         }
       }
     },
-    "search_input": {
-      "name": "Comportement de recherche",
-      "settings": {
-        "predictive_search_enabled": {
-          "label": "Suggestions de recherche"
-        },
-        "predictive_search_show_vendor": {
-          "label": "Fournisseur de produit",
-          "info": "Affiché lorsque les suggestions de recherche sont activées"
-        },
-        "predictive_search_show_price": {
-          "label": "Prix du produit",
-          "info": "Affiché lorsque les suggestions de recherche sont activées"
-        }
-      }
-    },
     "global": {
       "settings": {
         "header__border": {
@@ -323,9 +307,6 @@
     "animations": {
       "name": "Animations",
       "settings": {
-        "animations_reveal_on_scroll": {
-          "label": "Afficher les sections lors du défilement"
-        },
         "animations_hover_elements": {
           "options__1": {
             "label": "Aucun"

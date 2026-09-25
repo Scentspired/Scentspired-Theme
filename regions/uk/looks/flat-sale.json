@@ -324,6 +324,13 @@
       "view_all_link": null
     }
   },
+  "customers-account": {},
+  "customers-activate_account": {},
+  "customers-addresses": {},
+  "customers-login": {},
+  "customers-order": {},
+  "customers-register": {},
+  "customers-reset_password": {},
   "footer-group": {
     "footer": {
       "brand_description": null,
@@ -1130,7 +1137,6 @@
     }
   },
   "page-fragrance-finder": {},
-  "page-launching-soon": {},
   "page-privacy-policy": {
     "privacy_policy": {
       "page_title": null,
@@ -1164,67 +1170,6 @@
         "section_title": null,
         "section_content": null
       }
-    },
-    "newsletter_banner": {
-      "background_image": null,
-      "heading": null,
-      "subheading": null,
-      "description": null
-    }
-  },
-  "page-scent-2": {
-    "radical": {
-      "title": null,
-      "description": null,
-      "button_text": null,
-      "button_url": null,
-      "desktop_image": null,
-      "mobile_image": null
-    },
-    "custom_collection": {
-      "section_heading": null,
-      "items": [
-        {
-          "collection": null,
-          "collection_title": null,
-          "collection_description": null,
-          "collection_image": null,
-          "collection_url": null,
-          "button_text": null
-        },
-        {
-          "collection": null,
-          "collection_title": null,
-          "collection_description": null,
-          "collection_image": null,
-          "collection_url": null,
-          "button_text": null
-        },
-        {
-          "collection": null,
-          "collection_title": null,
-          "collection_description": null,
-          "collection_image": null,
-          "collection_url": null,
-          "button_text": null
-        }
-      ]
-    },
-    "image_split_1": {
-      "image": null,
-      "eyebrow_text": null,
-      "heading": null,
-      "description": null,
-      "button_text": null,
-      "button_url": null
-    },
-    "image_split_2": {
-      "image": null,
-      "eyebrow_text": null,
-      "heading": null,
-      "description": null,
-      "button_text": null,
-      "button_url": null
     },
     "newsletter_banner": {
       "background_image": null,
@@ -1294,59 +1239,6 @@
       "heading": null,
       "subheading": null,
       "description": null
-    }
-  },
-  "page-scent-notes": {
-    "image_banner_1": {
-      "image": null,
-      "heading": {
-        "heading": null
-      },
-      "text": {
-        "text": null
-      }
-    },
-    "image_banner_2": {
-      "image": null,
-      "heading": {
-        "heading": null
-      },
-      "text": {
-        "text": null
-      }
-    },
-    "rich_text": {
-      "heading": {
-        "heading": null
-      }
-    },
-    "featured_collections": {
-      "items": [
-        {
-          "collection": null,
-          "title": null,
-          "button_text": null,
-          "button_link": null
-        },
-        {
-          "collection": null,
-          "title": null,
-          "button_text": null,
-          "button_link": null
-        },
-        {
-          "collection": null,
-          "title": null,
-          "button_text": null,
-          "button_link": null
-        },
-        {
-          "collection": null,
-          "title": null,
-          "button_text": null,
-          "button_link": null
-        }
-      ]
     }
   },
   "page-termsncondition": {

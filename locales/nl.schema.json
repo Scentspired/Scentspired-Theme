@@ -132,22 +132,6 @@
         }
       }
     },
-    "search_input": {
-      "name": "Zoekgedrag",
-      "settings": {
-        "predictive_search_enabled": {
-          "label": "Zoeksuggesties"
-        },
-        "predictive_search_show_vendor": {
-          "label": "Productverkoper",
-          "info": "Weergegeven als zoeksuggesties zijn ingeschakeld"
-        },
-        "predictive_search_show_price": {
-          "label": "Productprijs",
-          "info": "Weergegeven als zoeksuggesties zijn ingeschakeld"
-        }
-      }
-    },
     "global": {
       "settings": {
         "header__border": {
@@ -323,9 +307,6 @@
     "animations": {
       "name": "Animaties",
       "settings": {
-        "animations_reveal_on_scroll": {
-          "label": "Secties laten zien bij scrollen"
-        },
         "animations_hover_elements": {
           "options__1": {
             "label": "Geen"

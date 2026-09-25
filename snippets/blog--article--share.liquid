@@ -15,7 +15,7 @@
 {%- assign share_title = article.title | url_encode -%}
 {%- assign share_url_encoded = share_url | url_encode -%}
 
-<div class="page-width page-width--narrow blog-share{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+<div class="page-width page-width--narrow blog-share">
   <span class="blog-share__label">{{ label_text | escape }}</span>
   <div class="blog-share__buttons">
     <!-- Twitter/X -->

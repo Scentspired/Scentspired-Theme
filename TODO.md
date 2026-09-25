@@ -154,7 +154,10 @@ later: each is now reachable from one place.
 
 ### 0.8 Aroma-note imagery is hardcoded to one store's CDN
 
-- **Status:** OPEN — accepted by the region-literal guard, count frozen at 60
+- **Status:** CLOSED 2026-09-25 — the block was removed with `page.scent-notes`, the
+  only template that placed it: no live page on either store renders that template
+  (the live /pages/scent-notes uses `page.scent-families`). The region-literal
+  baseline is now 0.
 - **What:** `blocks/catalog--aroma-notes.liquid` embeds 60 absolute URLs of the
   form `https://scentspired.com/cdn/shop/files/<name>.jpg?v=…`.
 - **Why it is not a bug today:** an absolute CDN URL loads from any origin, so

@@ -18,7 +18,7 @@
 {%- assign auto_match = auto_related | default: true -%}
 
 {%- if collection != blank -%}
-  <div class="blog-related{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+  <div class="blog-related">
     <h2 class="blog-related__heading">{{ heading_text | escape }}</h2>
     <div class="blog-related__grid">
       {%- for product in collection.products limit: max_products -%}
@@ -59,7 +59,7 @@
   {%- endcapture -%}
 
   {%- if products_shown > 0 -%}
-    <div class="blog-related{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+    <div class="blog-related">
       <h2 class="blog-related__heading">{{ heading_text | escape }}</h2>
       <div class="blog-related__grid">
         {{ products_html }}

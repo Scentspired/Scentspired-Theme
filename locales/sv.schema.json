@@ -132,22 +132,6 @@
         }
       }
     },
-    "search_input": {
-      "name": "Sökbeteende",
-      "settings": {
-        "predictive_search_enabled": {
-          "label": "Sökförslag"
-        },
-        "predictive_search_show_vendor": {
-          "label": "Produktsäljare",
-          "info": "Visas när sökförslag är aktiverat"
-        },
-        "predictive_search_show_price": {
-          "label": "Produktpris",
-          "info": "Visas när sökförslag är aktiverat"
-        }
-      }
-    },
     "global": {
       "settings": {
         "header__border": {
@@ -323,9 +307,6 @@
     "animations": {
       "name": "Animeringar",
       "settings": {
-        "animations_reveal_on_scroll": {
-          "label": "Visa avsnitt under bläddring"
-        },
         "animations_hover_elements": {
           "options__1": {
             "label": "Inga"

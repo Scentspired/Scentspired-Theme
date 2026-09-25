@@ -71,15 +71,6 @@
     "fallback": 0,
     "ids": 0
   },
-  "sections/catalog--custom-collection.liquid": {
-    "total": 2,
-    "text": 0,
-    "js-text": 0,
-    "media": 0,
-    "links": 0,
-    "fallback": 2,
-    "ids": 0
-  },
   "sections/catalog--featured-scent.liquid": {
     "total": 7,
     "text": 1,
@@ -564,15 +555,6 @@
     "media": 0,
     "links": 0,
     "fallback": 1,
-    "ids": 0
-  },
-  "blocks/catalog--aroma-notes.liquid": {
-    "total": 26,
-    "text": 17,
-    "js-text": 9,
-    "media": 0,
-    "links": 0,
-    "fallback": 0,
     "ids": 0
   },
   "blocks/footer--copyright.liquid": {

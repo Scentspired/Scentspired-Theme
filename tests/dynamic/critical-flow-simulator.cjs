@@ -883,112 +883,6 @@ async function runSuiteM() {
 }
 
 // ============================================================================
-// SUITE N: Predictive Search & Autocomplete Engine
-// ============================================================================
-
-async function runSuiteN() {
-  console.log("\n┌──────────────────────────────────────────────────────────────┐");
-  console.log("│ SUITE N: Predictive Search & Regex Escape Simulation         │");
-  console.log("└──────────────────────────────────────────────────────────────┘");
-
-  // Test N1: Regex special character escaping in search terms
-  {
-    function escapeRegExp(string) {
-      return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    }
-
-    const dangerousSearchTerms = [
-      "vanilla [50ml]",
-      "amber (extrait)",
-      "rose * oud",
-      "oud + cedar",
-      "cologne? test",
-      "100% {pure}",
-    ];
-
-    let allEscapedSafely = true;
-    for (const term of dangerousSearchTerms) {
-      try {
-        const escaped = escapeRegExp(term);
-        const regex = new RegExp(`(${escaped})`, "gi");
-        const testStr = `Product title with ${term} in stock`;
-        const replaced = testStr.replace(regex, "<b>$1</b>");
-        if (!replaced.includes(`<b>${term}</b>`)) {
-          allEscapedSafely = false;
-        }
-      } catch (err) {
-        allEscapedSafely = false;
-      }
-    }
-
-    assert(
-      allEscapedSafely,
-      "N1.1: Special characters in search query safely escaped without RegExp crash"
-    );
-  }
-
-  // Test N2: Empty search query does not fire unnecessary network request
-  {
-    let fetchCount = 0;
-    function queryPredictiveSearch(searchTerm) {
-      const trimmed = (searchTerm || "").trim();
-      if (!trimmed || trimmed.length < 2) {
-        return Promise.resolve({ resources: { results: { products: [] } } });
-      }
-      fetchCount++;
-      return Promise.resolve({
-        resources: { results: { products: [{ id: 1, title: "Sample" }] } },
-      });
-    }
-
-    await queryPredictiveSearch("");
-    await queryPredictiveSearch("   ");
-    await queryPredictiveSearch("a");
-    assert(
-      fetchCount === 0,
-      "N2.1: Search queries < 2 chars short-circuit before network dispatch"
-    );
-
-    await queryPredictiveSearch("amber");
-    assert(fetchCount === 1, "N2.2: Valid 5-char search query dispatches to /search/suggest");
-  }
-
-  // Test N3: Predictive Search dropdown rendering with null-safe results container
-  {
-    const container = new MockElement("div");
-    container.classList.add("predictive-search-results");
-
-    function renderResults(results, el) {
-      if (!el) return false;
-      if (!results || !results.length) {
-        el.innerHTML = '<div class="no-results">No products found</div>';
-        return true;
-      }
-      el.innerHTML = results
-        .map(r => `<div class="search-item" data-id="${r.id}">${r.title}</div>`)
-        .join("");
-      return true;
-    }
-
-    const safeNullCall = renderResults([], null);
-    assert(safeNullCall === false, "N3.1: Null element gracefully returns false without exception");
-
-    renderResults(
-      [
-        { id: 101, title: "Smoky Leather" },
-        { id: 102, title: "Amber Floral" },
-      ],
-      container
-    );
-    assert(
-      container.innerHTML.includes("Smoky Leather") &&
-        container.innerHTML.includes('data-id="101"'),
-      "N3.2: Search items render into container with valid markup"
-    );
-  }
-}
-
-// ============================================================================
 // SUITE O: Mobile Navigation & Header State Machine
 // ============================================================================
 
@@ -1586,7 +1480,6 @@ async function runAllSuites() {
   await runSuiteK();
   await runSuiteL();
   await runSuiteM();
-  await runSuiteN();
   await runSuiteO();
   await runSuiteP();
   await runSuiteQ();

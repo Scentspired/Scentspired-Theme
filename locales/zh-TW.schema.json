@@ -132,22 +132,6 @@
         }
       }
     },
-    "search_input": {
-      "name": "搜尋行為",
-      "settings": {
-        "predictive_search_enabled": {
-          "label": "搜尋建議"
-        },
-        "predictive_search_show_vendor": {
-          "label": "商品廠商",
-          "info": "啟用搜尋建議時顯示"
-        },
-        "predictive_search_show_price": {
-          "label": "商品價格",
-          "info": "啟用搜尋建議時顯示"
-        }
-      }
-    },
     "global": {
       "settings": {
         "header__border": {
@@ -323,9 +307,6 @@
     "animations": {
       "name": "動畫",
       "settings": {
-        "animations_reveal_on_scroll": {
-          "label": "捲動時顯示區段"
-        },
         "animations_hover_elements": {
           "options__1": {
             "label": "無"

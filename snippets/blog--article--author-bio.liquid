@@ -15,7 +15,7 @@
 {%- assign show_av = show_avatar | default: true -%}
 {%- assign author_name = article.author | default: "Scentspired Editorial" -%}
 
-<div class="page-width page-width--narrow blog-author-bio{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}" itemscope itemtype="https://schema.org/Person">
+<div class="page-width page-width--narrow blog-author-bio" itemscope itemtype="https://schema.org/Person">
   {%- if show_av and avatar != blank -%}
     <img
       src="{{ avatar | image_url: width: 144 }}"

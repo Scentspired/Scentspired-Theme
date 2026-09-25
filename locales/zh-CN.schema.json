@@ -132,22 +132,6 @@
         }
       }
     },
-    "search_input": {
-      "name": "搜索行为",
-      "settings": {
-        "predictive_search_enabled": {
-          "label": "搜索建议"
-        },
-        "predictive_search_show_vendor": {
-          "label": "产品厂商",
-          "info": "在启用搜索建议时可见"
-        },
-        "predictive_search_show_price": {
-          "label": "产品价格",
-          "info": "在启用搜索建议时可见"
-        }
-      }
-    },
     "global": {
       "settings": {
         "header__border": {
@@ -323,9 +307,6 @@
     "animations": {
       "name": "动画",
       "settings": {
-        "animations_reveal_on_scroll": {
-          "label": "在滚动时显示分区"
-        },
         "animations_hover_elements": {
           "options__1": {
             "label": "无"

@@ -8,7 +8,11 @@
  * is an unchanged page.
  *
  *   node scripts/snapshot-pages.cjs save <dir> --url=http://127.0.0.1:9293 --country=US <path> <path> …
- *   node scripts/snapshot-pages.cjs compare <before-dir> <after-dir>
+ *   node scripts/snapshot-pages.cjs compare <before-dir> <after-dir> [--ws]
+ *
+ * --ws ignores whitespace between tags and collapses runs of whitespace: for a
+ * change that removes Liquid tags, whose whitespace control shifts line breaks
+ * without changing any element, attribute or text. Read the strict diff first.
  *
  * A path may carry ?view=<template> to render an alternate template.
  */
@@ -26,6 +30,13 @@ for (let i = src.indexOf('{', start); i < src.length; i++) {
 }
 // eslint-disable-next-line no-new-func
 const normalize = new Function(`${src.slice(start, end)}; return normalize;`)();
+// What the dev server varies on top of that: it serves assets from /cdn/… or
+// //<shop>.myshopify.com/cdn/… at random, and a restart gives templates new ids,
+// which the article parts fold into class names (template21386080125111partsp0).
+const normalizeDev = (html) => normalize(html)
+  .replace(/(https?:)?\/\/[a-z0-9-]+\.myshopify\.com(\/cdn\/)/g, '$2')
+  .replace(/https?:\/cdn\//g, '/cdn/')
+  .replace(/template\d{8,}/g, 'templateX');
 
 const [cmd, ...rest] = process.argv.slice(2);
 const opt = (n) => (rest.find((a) => a.startsWith(`--${n}=`)) || '').split('=').slice(1).join('=');
@@ -36,17 +47,20 @@ async function save(dir, base, country, pages) {
   fs.mkdirSync(dir, { recursive: true });
   for (const p of pages) {
     const html = await fetchPage(base, p, country);
-    // the dev server serves assets from /cdn/… or //<shop>.myshopify.com/cdn/… at random
-    fs.writeFileSync(path.join(dir, `${slug(p)}.html`), normalize(html).replace(/(https?:)?\/\/[a-z0-9-]+\.myshopify\.com(\/cdn\/)/g, '$2').replace(/https?:\/cdn\//g, '/cdn/'));
+    fs.writeFileSync(path.join(dir, `${slug(p)}.html`), normalizeDev(html));
     console.log(`  saved ${p}`);
   }
 }
 
-function compare(a, b) {
+function compare(a, b, ws) {
   let same = 0, diff = 0;
+  const read = (file) => {
+    const t = fs.readFileSync(file, 'utf8');
+    return ws ? t.replace(/>\s+</g, '><').replace(/\s+/g, ' ').replace(/></g, '>\n<') : t;
+  };
   for (const f of fs.readdirSync(a).filter((f) => f.endsWith('.html'))) {
-    const x = fs.readFileSync(path.join(a, f), 'utf8');
-    const y = fs.existsSync(path.join(b, f)) ? fs.readFileSync(path.join(b, f), 'utf8') : null;
+    const x = read(path.join(a, f));
+    const y = fs.existsSync(path.join(b, f)) ? read(path.join(b, f)) : null;
     if (x === y) { same++; console.log(`  ✓ ${f}`); continue; }
     diff++;
     if (y === null) { console.log(`  ✗ ${f}: missing after`); continue; }
@@ -62,6 +76,6 @@ function compare(a, b) {
 
 (async () => {
   if (cmd === 'save') await save(rest[0], opt('url') || 'http://127.0.0.1:9293', opt('country') || 'US', rest.slice(1).filter((a) => !a.startsWith('--')));
-  else if (cmd === 'compare') compare(rest[0], rest[1]);
+  else if (cmd === 'compare') compare(rest[0], rest[1], rest.includes('--ws'));
   else { console.error('usage: save <dir> --url= --country= <paths…> | compare <before> <after>'); process.exit(2); }
 })().catch((e) => { console.error(`❌ ${e.message}`); process.exit(1); });
