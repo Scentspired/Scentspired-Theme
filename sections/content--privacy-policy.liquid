@@ -6,54 +6,7 @@
       <h1 class="faq-title">{{ section.settings.page_title | default: "Privacy Policy" }}</h1>
     </div>
     <div class="faq-content">
-      <aside class="faq-sidebar">
-        <ul>
-          {% comment %}
-            Removed the Liquid 'active' class logic here.
-            The active class will now be added by JavaScript based on the current URL.
-          {% endcomment %}
-          {% if section.settings.link_1_text != blank %}
-            <li>
-              <a href="{{ section.settings.link_1_url }}">{{ section.settings.link_1_text }}</a>
-            </li>
-          {% endif %}
-          {% if section.settings.link_2_text != blank %}
-            <li>
-              <a href="{{ section.settings.link_2_url }}">{{ section.settings.link_2_text }}</a>
-            </li>
-          {% endif %}
-          {% if section.settings.link_3_text != blank %}
-            <li>
-              <a href="{{ section.settings.link_3_url }}">{{ section.settings.link_3_text }}</a>
-            </li>
-          {% endif %}
-          {% if section.settings.link_4_text != blank %}
-            <li>
-              <a href="{{ section.settings.link_4_url }}">{{ section.settings.link_4_text }}</a>
-            </li>
-          {% endif %}
-          {% if section.settings.link_5_text != blank %}
-            <li>
-              <a href="{{ section.settings.link_5_url }}">{{ section.settings.link_5_text }}</a>
-            </li>
-          {% endif %}
-          {% if section.settings.link_6_text != blank %}
-            <li>
-              <a href="{{ section.settings.link_6_url }}">{{ section.settings.link_6_text }}</a>
-            </li>
-          {% endif %}
-          {% if section.settings.link_7_text != blank %}
-            <li>
-              <a href="{{ section.settings.link_7_url }}">{{ section.settings.link_7_text }}</a>
-            </li>
-          {% endif %}
-          {% if section.settings.link_8_text != blank %}
-            <li>
-              <a href="{{ section.settings.link_8_url }}">{{ section.settings.link_8_text }}</a>
-            </li>
-          {% endif %}
-        </ul>
-      </aside>
+      {% render 'content--info-sidebar', section_settings: section.settings %}
       <main class="faq-main">
         {% for block in section.blocks %}
           <div class="faq-category">

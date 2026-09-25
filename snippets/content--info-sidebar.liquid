@@ -1,0 +1,51 @@
+{%- comment -%}
+  The sidebar of the info pages (content--faq, content--privacy-policy,
+  content--contact): up to eight links, each shown when its text is set.
+  Which link is the current page is marked by each section's own script.
+
+  Usage: {% render 'content--info-sidebar', section_settings: section.settings %}
+{%- endcomment -%}
+<aside class="faq-sidebar">
+        <ul>
+          {% if section_settings.link_1_text != blank %}
+            <li>
+              <a href="{{ section_settings.link_1_url }}">{{ section_settings.link_1_text }}</a>
+            </li>
+          {% endif %}
+          {% if section_settings.link_2_text != blank %}
+            <li>
+              <a href="{{ section_settings.link_2_url }}">{{ section_settings.link_2_text }}</a>
+            </li>
+          {% endif %}
+          {% if section_settings.link_3_text != blank %}
+            <li>
+              <a href="{{ section_settings.link_3_url }}">{{ section_settings.link_3_text }}</a>
+            </li>
+          {% endif %}
+          {% if section_settings.link_4_text != blank %}
+            <li>
+              <a href="{{ section_settings.link_4_url }}">{{ section_settings.link_4_text }}</a>
+            </li>
+          {% endif %}
+          {% if section_settings.link_5_text != blank %}
+            <li>
+              <a href="{{ section_settings.link_5_url }}">{{ section_settings.link_5_text }}</a>
+            </li>
+          {% endif %}
+          {% if section_settings.link_6_text != blank %}
+            <li>
+              <a href="{{ section_settings.link_6_url }}">{{ section_settings.link_6_text }}</a>
+            </li>
+          {% endif %}
+          {% if section_settings.link_7_text != blank %}
+            <li>
+              <a href="{{ section_settings.link_7_url }}">{{ section_settings.link_7_text }}</a>
+            </li>
+          {% endif %}
+          {% if section_settings.link_8_text != blank %}
+            <li>
+              <a href="{{ section_settings.link_8_url }}">{{ section_settings.link_8_text }}</a>
+            </li>
+          {% endif %}
+        </ul>
+      </aside>
