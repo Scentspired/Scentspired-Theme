@@ -280,6 +280,38 @@ emitted.add('snippets/region--active.liquid');
   if (live.length) console.log(`  ~ read live from the store (no data file): ${live.join(', ')}`);
 }
 
+// A region's content is words, media, links, lists and switches. Design —
+// spacing, sizes, colours, CSS — is the theme's, the same in every region, so a
+// region file carrying it fails the build. (app_embeds in theme-settings.json are
+// the store's own app configuration, and are left alone.)
+{
+  const DESIGN_KEY = /(^|_)(padding|margin|font_size|font_family|font_weight|line_height|letter_spacing|border|radius|opacity|z_index|custom_css|css|class_name|shadow)(_|$)/;
+  const CSS_VALUE = /^\s*(-?\d+(\.\d+)?(px|rem|em|vh|vw)|#[0-9a-f]{3}|#[0-9a-f]{6}|#[0-9a-f]{8}|rgba?\(.*\)|hsla?\(.*\))\s*$/i;
+  const found = [];
+  const dir = path.join(REGION_DIR, 'content');
+  for (const f of fs.existsSync(dir) ? fs.readdirSync(dir).filter((x) => x.endsWith('.json')) : []) {
+    const walk = (v, where) => {
+      if (Array.isArray(v)) return v.forEach((x, i) => walk(x, `${where}[${i}]`));
+      if (v && typeof v === 'object') {
+        for (const [k, x] of Object.entries(v)) {
+          if (k === '$comment' || k === 'app_embeds') continue;
+          if (DESIGN_KEY.test(k)) found.push(`${where}.${k}`);
+          walk(x, `${where}.${k}`);
+        }
+      } else if (typeof v === 'string' && CSS_VALUE.test(v)) found.push(`${where} = ${JSON.stringify(v)}`);
+    };
+    walk(JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8').replace(/^\uFEFF/, '')), `content/${f.replace(/\.json$/, '')}`);
+  }
+  if (found.length) {
+    console.error(`\n❌ regions/${target}/content/ holds design, which is the theme's:\n`);
+    for (const x of found.slice(0, 20)) console.error(`   ${x}`);
+    console.error('\n   Spacing, sizes, colours and CSS go in the theme — the layouts in templates/*.json,');
+    console.error('   sections/*.json, config/settings_data.json, or the section\'s stylesheet — the same');
+    console.error('   for every region. A region file holds words, images, links, lists and switches.\n');
+    process.exit(1);
+  }
+}
+
 // Page content from regions/<id>/content/*.json, read through
 // {% render 'region--content', key: '<page>.<section>.<field>' %}. Every path
 // the theme reads must exist in this region's files: shoppers see the
