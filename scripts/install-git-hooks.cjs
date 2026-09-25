@@ -5,9 +5,9 @@
  * SCENTSPIRED THEME GUARDIAN — Automated Git Hook Installer
  * ============================================================================
  *
- * Installs pre-commit and pre-push git hooks into .git/hooks
- * guaranteeing that every developer runs the 10-Layer Master Quality Gate
- * before any commit or push is allowed to leave their machine.
+ * Installs the commit-msg and pre-push git hooks into .git/hooks: every commit
+ * and push is Ahmad Hassan's alone (scripts/guard-git-identity.cjs), never goes
+ * to a locked live repository, and passes the quality gate before it leaves.
  * ============================================================================
  */
 
@@ -21,7 +21,8 @@ if (fs.existsSync(gitHooksDir)) {
 # ============================================================================
 # SCENTSPIRED THEME GUARDIAN — Pre-Push Quality Gate Interceptor
 # ============================================================================
-# Git passes the remote name as $1 and the remote URL as $2.
+# Git passes the remote name as $1 and the remote URL as $2, and the refs on stdin.
+node scripts/guard-git-identity.cjs --pre-push || exit 1
 node scripts/guard-live-repos.cjs --remote "$2" || exit 1
 
 echo ""
@@ -46,4 +47,11 @@ exit 0
   const hookPath = path.join(gitHooksDir, 'pre-push');
   fs.writeFileSync(hookPath, prePushScript, { mode: 0o755 });
   console.log('  🛡️  Pre-push Quality Gate Hook installed successfully at .git/hooks/pre-push');
+
+  // Every commit is Ahmad Hassan's alone: no other identity, no co-author trailer.
+  const commitMsgScript = `#!/usr/bin/env bash
+node scripts/guard-git-identity.cjs --commit-msg "$1" || exit 1
+`;
+  fs.writeFileSync(path.join(gitHooksDir, 'commit-msg'), commitMsgScript, { mode: 0o755 });
+  console.log('  🛡️  Commit identity hook installed at .git/hooks/commit-msg');
 }
