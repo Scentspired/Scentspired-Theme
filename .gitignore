@@ -6,3 +6,6 @@ tests/reports/archive/
 tests/reporting/reports/archive/
 dist/
 .build/
+
+# Scan reports the gate writes on every run (generated, not source)
+tests/reporting/reports/

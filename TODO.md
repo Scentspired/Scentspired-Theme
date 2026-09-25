@@ -42,13 +42,12 @@ later: each is now reachable from one place.
 
 ### 0.4 Bare `PPMori` is not a real family
 
-- **Status:** INTENTIONALLY NOT MIGRATED
-- **Where:** `sections/discovery-set.liquid` — `font-family: 'PPMori', -apple-system, …`
-- **What:** no `@font-face` declares `PPMori` (without `Regular`), so this element
-  paints in the system font. It is deliberately excluded from the token map: pointing
-  it at `--font-body` would start rendering PPMori Regular, a real visual change.
-  The exclusion is commented in `scripts/migrate-fonts.cjs` so it cannot be
-  reintroduced by accident.
+- **Status:** RESOLVED (2026-09-25) — the section that carried it, `bundle--discovery-set`,
+  was used by no page and was removed with the other dead files; the font migration
+  script, whose exclusion list recorded this, was removed as finished.
+- **Was:** `sections/discovery-set.liquid` — `font-family: 'PPMori', -apple-system, …`.
+  No `@font-face` declares `PPMori` (without `Regular`), so it painted in the system
+  font, and was deliberately left out of the token map.
 
 ### 0.5 Fonts are loaded 46 times from 19 files, in two formats
 
