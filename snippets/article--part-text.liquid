@@ -19,10 +19,9 @@
   ──────────────────────────────────────────────────────────
   Canonical rich text section for blog article pages.
   Replaces: blogtextliquid.liquid, text-blog.liquid
-  CSS is loaded from the shared blog typography system.
+  Styled by blog--typography.css, which layout/theme.liquid loads on every
+  article page.
 {% endcomment %}
-
-{{ "section-blog-typography.css" | asset_url | stylesheet_tag }}
 
 {%- liquid
   assign text_size = 'body' | default: 'body'

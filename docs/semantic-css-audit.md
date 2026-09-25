@@ -19,7 +19,7 @@ Preserving awareness of these type selectors ensures that future template refact
 | `assets/customer.css:351` | `.login h3` | Sub-heading typography on login template | Protected & Verified |
 | `assets/section-footer.css:267` | `.footer__localization h2` | Localization / currency picker heading in footer | Protected & Verified |
 | `assets/section-bundle-builder.css:53` | `.sidebar-header h2` | Bundle builder sidebar heading | Protected & Verified |
-| `assets/section-blog-typography.css:76-97` | `.blog-rte h2`, `.blog-rte h3`, `.blog-rte h4` | Editorial article content headings generated via rich text editor | Protected & Verified |
+| `assets/blog--typography.css:82-110` | `.blog-rte h2`, `.blog-rte h3`, `.blog-rte h4` | Editorial article content headings generated via rich text editor | Protected & Verified |
 | `assets/component-totals.css:12` | `.totals > h2` | Cart subtotal & totals label | Protected & Verified |
 | `sections/main-account.liquid:11` | `.customer.account h1, h2, h3` | Inline heading margin normalization in account dashboard | Protected & Verified |
 | `sections/bundlescomingsoon.liquid:29` | `#coming-soon-overlay .coming-soon-heading, #coming-soon-overlay h1, #coming-soon-overlay h2` | Full-screen countdown overlay heading | Protected & Verified |
