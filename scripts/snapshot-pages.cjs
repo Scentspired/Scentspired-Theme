@@ -14,6 +14,7 @@
  */
 const fs = require('fs');
 const path = require('path');
+const { checkPaths, fetchPage } = require('./dev-page.cjs');
 
 // the harness's normaliser, lifted out of render-snapshot.cjs without running it
 const src = fs.readFileSync(path.join(__dirname, 'render-snapshot.cjs'), 'utf8');
@@ -31,23 +32,12 @@ const opt = (n) => (rest.find((a) => a.startsWith(`--${n}=`)) || '').split('=').
 const slug = (p) => p.replace(/^\//, '').replace(/[^a-z0-9]+/gi, '_') || 'home';
 
 async function save(dir, base, country, pages) {
+  checkPaths(pages);
   fs.mkdirSync(dir, { recursive: true });
   for (const p of pages) {
-    const u = new URL(p, base);
-    u.searchParams.set('country', country);
-    let html = '';
-    for (let attempt = 0; attempt < 12; attempt++) {
-      try {
-        html = await (await fetch(u)).text();
-      } catch {
-        html = ''; // the dev server drops a connection now and then
-      }
-      if (html.length > 2000 && !/Failed to Upload Theme Files|access token provided is expired|Failed to render storefront|Bad Gateway/.test(html)) break;
-      await new Promise((r) => setTimeout(r, 5000)); // the CLI session flaps between 200 and 401
-    }
-    if (html.length <= 2000 || /Failed to Upload Theme Files|access token provided is expired|Failed to render storefront|Bad Gateway/.test(html)) throw new Error(`${p}: the dev server returned an error page`);
+    const html = await fetchPage(base, p, country);
     // the dev server serves assets from /cdn/… or //<shop>.myshopify.com/cdn/… at random
-    fs.writeFileSync(path.join(dir, `${slug(p)}.html`), normalize(html).replace(/\/\/[a-z0-9-]+\.myshopify\.com(\/cdn\/)/g, '$1'));
+    fs.writeFileSync(path.join(dir, `${slug(p)}.html`), normalize(html).replace(/(https?:)?\/\/[a-z0-9-]+\.myshopify\.com(\/cdn\/)/g, '$2').replace(/https?:\/cdn\//g, '/cdn/'));
     console.log(`  saved ${p}`);
   }
 }
