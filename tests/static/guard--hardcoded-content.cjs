@@ -49,7 +49,7 @@ const THIRD_PARTY =
 // Code whose words no shopper reads: the telemetry's error texts are browser
 // messages it matches, its 'Shopify' a Sentry context name, and its panel an
 // admin HUD opened only by Ctrl+Shift+L. Not content, and the same everywhere.
-const DEVELOPER_ONLY = /^(assets\/core--telemetry\.js|snippets\/core--telemetry\.liquid)$/;
+const DEVELOPER_ONLY = /^(assets\/core--telemetry\.js|assets\/core--telemetry-config\.js|snippets\/core--telemetry\.liquid)$/;
 
 function themeFiles() {
   const out = [];
