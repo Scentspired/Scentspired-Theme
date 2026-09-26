@@ -1,0 +1,69 @@
+/* The "two columns" part of an article (snippets/article--part-two-columns.liquid), the same for every article. Its classes end in -two-columns, so no other part kind shares them. Moved from the snippet. */
+  .ai-editorial-section-two-columns {
+    display: block;
+    width: 100%;
+    background-color: #f9f6f1;
+    padding: 60px 40px 60px;
+  }
+
+  .ai-editorial-container-two-columns {
+    max-width: 80%;
+    margin: 0 auto;
+  }
+
+  .ai-editorial-heading-two-columns {
+    font-family: var(--font-display-italic);
+    font-style: italic;
+    font-size: 56px;
+    line-height: 1;
+    color: #000000;
+    margin: 0 0 50px 0;
+    text-align: left;
+    width: 100%;
+  }
+
+  .ai-editorial-columns-two-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+  }
+
+  .ai-editorial-column-two-columns {
+    font-family: var(--font-body);
+    font-size: 24px;
+    line-height: 1.6;
+    color: #000000;
+    text-align: left;
+  }
+
+  .ai-editorial-column-two-columns p {
+    margin: 0 0 10px 0;
+  }
+
+  .ai-editorial-column-two-columns p:last-child {
+    margin-bottom: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-editorial-section-two-columns {
+      padding: 40px 20px 40px;
+    }
+
+    .ai-editorial-heading-two-columns {
+      font-size: 32px;
+      margin-bottom: 30px;
+    }
+
+    .ai-editorial-columns-two-columns {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    .ai-editorial-column-two-columns {
+      font-size: 14px;
+    }
+    
+  }
+
+  /* Was per-article custom CSS in every template using this part. */
+  .ai-editorial-heading-two-columns { max-width: 625px; }

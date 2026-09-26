@@ -149,277 +149,18 @@
   endcapture
   assign part_protip_text = part_protip_text | strip
 -%}
-{% assign ai_gen_id = part_id %}
 
-{% style %}
-  .ai-fragrance-guide-{{ ai_gen_id }} {
-    display: block;
-    width: 100%;
-    background-color: #ffffff;
-    padding: 0;
-    margin: 0;
-  }
+{{ 'article--part-fragrance-guide.css' | asset_url | stylesheet_tag }}
 
-  .ai-fragrance-guide-header-{{ ai_gen_id }} {
-    background-color: #f9f6f1;
-    padding: 40px 20px;
-    text-align: center;
-  }
-
-  .ai-fragrance-guide-title-{{ ai_gen_id }} {
-    font-size: 32px;
-    font-weight: 700;
-    color: #000000;
-    margin: 0 0 12px 0;
-    letter-spacing: 0.5px;
-    text-transform: capitalize;
-    font-family: var(--font-display-italic);
-    font-style: italic;
-  }
-
-  .ai-fragrance-guide-subtitle-{{ ai_gen_id }} {
-    font-family: var(--font-body);
-    font-size: 16px;
-    font-weight: 400;
-    color: #000000;
-    margin: 0;
-  }
-
-  .ai-fragrance-guide-content-{{ ai_gen_id }} {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 60px 20px;
-    display: flex;
-    gap: 60px;
-    align-items: flex-start;
-  }
-
-  .ai-fragrance-guide-left-{{ ai_gen_id }} {
-    flex: 1;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .ai-fragrance-guide-divider-{{ ai_gen_id }} {
-    width: 1px;
-    background-color: #000000;
-    align-self: stretch;
-  }
-
-  .ai-fragrance-guide-right-{{ ai_gen_id }} {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-  }
-
-  .ai-fragrance-guide-illustration-{{ ai_gen_id }} {
-    position: relative;
-    max-width: 400px;
-    width: 100%;
-  }
-
-  .ai-fragrance-guide-illustration-{{ ai_gen_id }} img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-
-  .ai-fragrance-guide-badge-{{ ai_gen_id }} {
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: #f9f6f1;
-    color: #000000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-body);
-    font-size: 18px;
-    font-weight: 700;
-    box-shadow: 0 0 0 8px #f9f6f1;
-    transform: translate(-50%, -50%);
-  }
-
-  .ai-fragrance-guide-badge-1-{{ ai_gen_id }} {
-    top: 17%;
-    left: 50%;
-  }
-
-  .ai-fragrance-guide-badge-2-{{ ai_gen_id }} {
-    top: 35%;
-    left: 29%;
-  }
-
-  .ai-fragrance-guide-badge-3-{{ ai_gen_id }} {
-    top: 50%;
-    left: 25%;
-  }
-
-  .ai-fragrance-guide-badge-4-{{ ai_gen_id }} {
-    top: 71%;
-    left: 39%;
-  }
-
-  .ai-fragrance-guide-point-{{ ai_gen_id }} {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
-
-  .ai-fragrance-guide-point-number-{{ ai_gen_id }} {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background-color: #f9f6f1;
-    color: #000000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-body);
-    font-size: 20px;
-    font-weight: 700;
-    flex-shrink: 0;
-  }
-
-  .ai-fragrance-guide-point-sketch-{{ ai_gen_id }} {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background-color: #ffffff;
-    border: 2px solid #000000;
-    flex-shrink: 0;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .ai-fragrance-guide-point-sketch-{{ ai_gen_id }} img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .ai-fragrance-guide-point-text-{{ ai_gen_id }} {
-    flex: 1;
-  }
-
-  .ai-fragrance-guide-point-title-{{ ai_gen_id }} {
-    font-family: var(--font-body);
-    font-size: 18px;
-    font-weight: 700;
-    color: #000000;
-    margin: 0 0 8px 0;
-  }
-
-  .ai-fragrance-guide-point-description-{{ ai_gen_id }} {
-    font-family: var(--font-body);
-    font-size: 14px;
-    font-weight: 400;
-    color: #000000;
-    margin: 0;
-    line-height: 1.6;
-  }
-
-  .ai-fragrance-guide-protip-{{ ai_gen_id }} {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    padding: 20px;
-    border: 2px solid #000000;
-    border-radius: 12px;
-    background-color: #ffffff;
-    margin-top: 20px;
-  }
-
-  .ai-fragrance-guide-protip-icon-{{ ai_gen_id }} {
-    width: 32px;
-    height: 32px;
-    flex-shrink: 0;
-    color: #000000;
-  }
-
-  .ai-fragrance-guide-protip-content-{{ ai_gen_id }} {
-    flex: 1;
-  }
-
-  .ai-fragrance-guide-protip-heading-{{ ai_gen_id }} {
-    font-family: var(--font-body);
-    font-size: 16px;
-    font-weight: 700;
-    color: #000000;
-    margin: 0 0 8px 0;
-  }
-
-  .ai-fragrance-guide-protip-text-{{ ai_gen_id }} {
-    font-family: var(--font-body);
-    font-size: 14px;
-    font-weight: 400;
-    color: #000000;
-    margin: 0;
-    line-height: 1.6;
-  }
-
-  @media screen and (max-width: 749px) {
-    .ai-fragrance-guide-content-{{ ai_gen_id }} {
-      flex-direction: column;
-      gap: 40px;
-      padding: 40px 20px;
-    }
-
-    .ai-fragrance-guide-divider-{{ ai_gen_id }} {
-      display: none;
-    }
-
-    .ai-fragrance-guide-title-{{ ai_gen_id }} {
-      font-size: 24px;
-    }
-
-    .ai-fragrance-guide-subtitle-{{ ai_gen_id }} {
-      font-size: 14px;
-    }
-
-    .ai-fragrance-guide-badge-{{ ai_gen_id }} {
-      width: {{ 30 | times: 0.8 }}px;
-      height: {{ 30 | times: 0.8 }}px;
-      font-size: 14px;
-      box-shadow: 0 0 0 6px #f9f6f1;
-    }
-
-    .ai-fragrance-guide-point-number-{{ ai_gen_id }} {
-      width: 40px;
-      height: 40px;
-      font-size: 16px;
-    }
-
-    .ai-fragrance-guide-point-sketch-{{ ai_gen_id }} {
-      width: 60px;
-      height: 60px;
-    }
-
-    .ai-fragrance-guide-point-title-{{ ai_gen_id }} {
-      font-size: 16px;
-    }
-
-    .ai-fragrance-guide-point-description-{{ ai_gen_id }} {
-      font-size: 13px;
-    }
-  }
-{% endstyle %}
-
-<fragrance-guide-{{ ai_gen_id }} class="ai-fragrance-guide-{{ ai_gen_id }}">
-  <div class="ai-fragrance-guide-header-{{ ai_gen_id }}">
-    <h2 class="ai-fragrance-guide-title-{{ ai_gen_id }}">{{ part_title }}</h2>
-    <p class="ai-fragrance-guide-subtitle-{{ ai_gen_id }}">{{ part_subtitle }}</p>
+<fragrance-guide-fragrance-guide class="ai-fragrance-guide-fragrance-guide">
+  <div class="ai-fragrance-guide-header-fragrance-guide">
+    <h2 class="ai-fragrance-guide-title-fragrance-guide">{{ part_title }}</h2>
+    <p class="ai-fragrance-guide-subtitle-fragrance-guide">{{ part_subtitle }}</p>
   </div>
 
-  <div class="ai-fragrance-guide-content-{{ ai_gen_id }}">
-    <div class="ai-fragrance-guide-left-{{ ai_gen_id }}">
-      <div class="ai-fragrance-guide-illustration-{{ ai_gen_id }}">
+  <div class="ai-fragrance-guide-content-fragrance-guide">
+    <div class="ai-fragrance-guide-left-fragrance-guide">
+      <div class="ai-fragrance-guide-illustration-fragrance-guide">
         {% if part_body_illustration %}
           <img
             src="{{ part_body_illustration | image_url: width: 800 }}"
@@ -433,19 +174,19 @@
           </div>
         {% endif %}
 
-        <div class="ai-fragrance-guide-badge-{{ ai_gen_id }} ai-fragrance-guide-badge-1-{{ ai_gen_id }}">1</div>
-        <div class="ai-fragrance-guide-badge-{{ ai_gen_id }} ai-fragrance-guide-badge-2-{{ ai_gen_id }}">2</div>
-        <div class="ai-fragrance-guide-badge-{{ ai_gen_id }} ai-fragrance-guide-badge-3-{{ ai_gen_id }}">3</div>
-        <div class="ai-fragrance-guide-badge-{{ ai_gen_id }} ai-fragrance-guide-badge-4-{{ ai_gen_id }}">4</div>
+        <div class="ai-fragrance-guide-badge-fragrance-guide ai-fragrance-guide-badge-1-fragrance-guide">1</div>
+        <div class="ai-fragrance-guide-badge-fragrance-guide ai-fragrance-guide-badge-2-fragrance-guide">2</div>
+        <div class="ai-fragrance-guide-badge-fragrance-guide ai-fragrance-guide-badge-3-fragrance-guide">3</div>
+        <div class="ai-fragrance-guide-badge-fragrance-guide ai-fragrance-guide-badge-4-fragrance-guide">4</div>
       </div>
     </div>
 
-    <div class="ai-fragrance-guide-divider-{{ ai_gen_id }}"></div>
+    <div class="ai-fragrance-guide-divider-fragrance-guide"></div>
 
-    <div class="ai-fragrance-guide-right-{{ ai_gen_id }}">
-      <div class="ai-fragrance-guide-point-{{ ai_gen_id }}">
-        <div class="ai-fragrance-guide-point-number-{{ ai_gen_id }}">1</div>
-        <div class="ai-fragrance-guide-point-sketch-{{ ai_gen_id }}">
+    <div class="ai-fragrance-guide-right-fragrance-guide">
+      <div class="ai-fragrance-guide-point-fragrance-guide">
+        <div class="ai-fragrance-guide-point-number-fragrance-guide">1</div>
+        <div class="ai-fragrance-guide-point-sketch-fragrance-guide">
           {% if part_sketch_1 %}
             <img
               src="{{ part_sketch_1 | image_url: width: 160 }}"
@@ -455,15 +196,15 @@
             {{ "image" | placeholder_svg_tag }}
           {% endif %}
         </div>
-        <div class="ai-fragrance-guide-point-text-{{ ai_gen_id }}">
-          <h3 class="ai-fragrance-guide-point-title-{{ ai_gen_id }}">{{ part_point_1_title }}</h3>
-          <p class="ai-fragrance-guide-point-description-{{ ai_gen_id }}">{{ part_point_1_description }}</p>
+        <div class="ai-fragrance-guide-point-text-fragrance-guide">
+          <h3 class="ai-fragrance-guide-point-title-fragrance-guide">{{ part_point_1_title }}</h3>
+          <p class="ai-fragrance-guide-point-description-fragrance-guide">{{ part_point_1_description }}</p>
         </div>
       </div>
 
-      <div class="ai-fragrance-guide-point-{{ ai_gen_id }}">
-        <div class="ai-fragrance-guide-point-number-{{ ai_gen_id }}">2</div>
-        <div class="ai-fragrance-guide-point-sketch-{{ ai_gen_id }}">
+      <div class="ai-fragrance-guide-point-fragrance-guide">
+        <div class="ai-fragrance-guide-point-number-fragrance-guide">2</div>
+        <div class="ai-fragrance-guide-point-sketch-fragrance-guide">
           {% if part_sketch_2 %}
             <img
               src="{{ part_sketch_2 | image_url: width: 160 }}"
@@ -473,15 +214,15 @@
             {{ "image" | placeholder_svg_tag }}
           {% endif %}
         </div>
-        <div class="ai-fragrance-guide-point-text-{{ ai_gen_id }}">
-          <h3 class="ai-fragrance-guide-point-title-{{ ai_gen_id }}">{{ part_point_2_title }}</h3>
-          <p class="ai-fragrance-guide-point-description-{{ ai_gen_id }}">{{ part_point_2_description }}</p>
+        <div class="ai-fragrance-guide-point-text-fragrance-guide">
+          <h3 class="ai-fragrance-guide-point-title-fragrance-guide">{{ part_point_2_title }}</h3>
+          <p class="ai-fragrance-guide-point-description-fragrance-guide">{{ part_point_2_description }}</p>
         </div>
       </div>
 
-      <div class="ai-fragrance-guide-point-{{ ai_gen_id }}">
-        <div class="ai-fragrance-guide-point-number-{{ ai_gen_id }}">3</div>
-        <div class="ai-fragrance-guide-point-sketch-{{ ai_gen_id }}">
+      <div class="ai-fragrance-guide-point-fragrance-guide">
+        <div class="ai-fragrance-guide-point-number-fragrance-guide">3</div>
+        <div class="ai-fragrance-guide-point-sketch-fragrance-guide">
           {% if part_sketch_3 %}
             <img
               src="{{ part_sketch_3 | image_url: width: 160 }}"
@@ -491,15 +232,15 @@
             {{ "image" | placeholder_svg_tag }}
           {% endif %}
         </div>
-        <div class="ai-fragrance-guide-point-text-{{ ai_gen_id }}">
-          <h3 class="ai-fragrance-guide-point-title-{{ ai_gen_id }}">{{ part_point_3_title }}</h3>
-          <p class="ai-fragrance-guide-point-description-{{ ai_gen_id }}">{{ part_point_3_description }}</p>
+        <div class="ai-fragrance-guide-point-text-fragrance-guide">
+          <h3 class="ai-fragrance-guide-point-title-fragrance-guide">{{ part_point_3_title }}</h3>
+          <p class="ai-fragrance-guide-point-description-fragrance-guide">{{ part_point_3_description }}</p>
         </div>
       </div>
 
-      <div class="ai-fragrance-guide-point-{{ ai_gen_id }}">
-        <div class="ai-fragrance-guide-point-number-{{ ai_gen_id }}">4</div>
-        <div class="ai-fragrance-guide-point-sketch-{{ ai_gen_id }}">
+      <div class="ai-fragrance-guide-point-fragrance-guide">
+        <div class="ai-fragrance-guide-point-number-fragrance-guide">4</div>
+        <div class="ai-fragrance-guide-point-sketch-fragrance-guide">
           {% if part_sketch_4 %}
             <img
               src="{{ part_sketch_4 | image_url: width: 160 }}"
@@ -509,15 +250,15 @@
             {{ "image" | placeholder_svg_tag }}
           {% endif %}
         </div>
-        <div class="ai-fragrance-guide-point-text-{{ ai_gen_id }}">
-          <h3 class="ai-fragrance-guide-point-title-{{ ai_gen_id }}">{{ part_point_4_title }}</h3>
-          <p class="ai-fragrance-guide-point-description-{{ ai_gen_id }}">{{ part_point_4_description }}</p>
+        <div class="ai-fragrance-guide-point-text-fragrance-guide">
+          <h3 class="ai-fragrance-guide-point-title-fragrance-guide">{{ part_point_4_title }}</h3>
+          <p class="ai-fragrance-guide-point-description-fragrance-guide">{{ part_point_4_description }}</p>
         </div>
       </div>
 
       {% if true %}
-        <div class="ai-fragrance-guide-protip-{{ ai_gen_id }}">
-          <div class="ai-fragrance-guide-protip-icon-{{ ai_gen_id }}">
+        <div class="ai-fragrance-guide-protip-fragrance-guide">
+          <div class="ai-fragrance-guide-protip-icon-fragrance-guide">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -531,14 +272,14 @@
               <path d="M12 22a7 7 0 0 0 7-7c0-4.3-7-13-7-13S5 10.7 5 15a7 7 0 0 0 7 7z"/>
             </svg>
           </div>
-          <div class="ai-fragrance-guide-protip-content-{{ ai_gen_id }}">
-            <h4 class="ai-fragrance-guide-protip-heading-{{ ai_gen_id }}">{{ part_protip_heading }}</h4>
-            <p class="ai-fragrance-guide-protip-text-{{ ai_gen_id }}">{{ part_protip_text }}</p>
+          <div class="ai-fragrance-guide-protip-content-fragrance-guide">
+            <h4 class="ai-fragrance-guide-protip-heading-fragrance-guide">{{ part_protip_heading }}</h4>
+            <p class="ai-fragrance-guide-protip-text-fragrance-guide">{{ part_protip_text }}</p>
           </div>
         </div>
       {% endif %}
     </div>
   </div>
-</fragrance-guide-{{ ai_gen_id }}>
+</fragrance-guide-fragrance-guide>
 
 

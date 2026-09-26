@@ -39,149 +39,24 @@
   endcapture
   assign part_body_text = part_body_text | strip
 -%}
-{% assign ai_gen_id = part_id %}
 
-{% style %}
-  .ai-split-editorial-{{ ai_gen_id }} {
-    display: block;
-    width: 100%;
-    background-color: #ffffff;
-    padding: 40px 0 35px;
-  }
+{{ 'article--part-closing.css' | asset_url | stylesheet_tag }}
 
-  .ai-split-editorial-container-{{ ai_gen_id }} {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-
-  .ai-split-editorial-wrapper-{{ ai_gen_id }} {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 40px;
-  }
-
-  .ai-split-editorial-left-{{ ai_gen_id }} {
-    max-width: 45%;
-  }
-
-  .ai-split-editorial-right-{{ ai_gen_id }} {
-    max-width: 72%;
-  }
-
-  .ai-split-editorial-heading-line1-{{ ai_gen_id }} {
-    margin: 0 0 4px;
-    line-height: 1;
-    letter-spacing: -0.02em;
-  }
-
-  .ai-split-editorial-prefix-{{ ai_gen_id }} {
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-style: normal;
-    font-size: 50px;
-    color: #000000;
-  }
-
-  .ai-split-editorial-brand-scent-{{ ai_gen_id }} {
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-style: normal;
-    font-size: 50px;
-    color: #000000;
-  }
-
-  .ai-split-editorial-brand-spired-{{ ai_gen_id }} {
-    font-family: var(--font-display-ultralight-italic);
-    font-weight: 400;
-    font-style: italic;
-    font-size: 50px;
-    color: #000000;
-  }
-
-  .ai-split-editorial-heading-line2-{{ ai_gen_id }} {
-    margin: 0;
-    line-height: 1;
-    letter-spacing: -0.02em;
-  }
-
-  .ai-split-editorial-start-{{ ai_gen_id }} {
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-style: normal;
-    font-size: 36px;
-    color: #000000;
-    margin-right: 5px;
-  }
-
-  .ai-split-editorial-bestsellers-{{ ai_gen_id }} {
-    font-family: var(--font-display-italic);
-    font-weight: 400;
-    font-style: italic;
-    font-size: 40px;
-    color: #000000;
-  }
-
-  .ai-split-editorial-body-{{ ai_gen_id }} {
-    font-family: var(--font-body);
-    font-weight: 400;
-    font-style: normal;
-    font-size: 25px;
-    line-height: 1.3;
-    color: #000000;
-    margin: 0;
-  }
-
-  @media screen and (max-width: 749px) {
-    .ai-split-editorial-wrapper-{{ ai_gen_id }} {
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .ai-split-editorial-left-{{ ai_gen_id }},
-    .ai-split-editorial-right-{{ ai_gen_id }} {
-      max-width: 100%;
-    }
-
-    .ai-split-editorial-prefix-{{ ai_gen_id }} {
-      font-size: calc(50px * 0.6);
-    }
-
-    .ai-split-editorial-brand-scent-{{ ai_gen_id }},
-    .ai-split-editorial-brand-spired-{{ ai_gen_id }} {
-      font-size: calc(50px * 0.6);
-    }
-
-    .ai-split-editorial-start-{{ ai_gen_id }} {
-      font-size: calc(36px * 0.6);
-    }
-
-    .ai-split-editorial-bestsellers-{{ ai_gen_id }} {
-      font-size: calc(40px * 0.6);
-    }
-
-    .ai-split-editorial-body-{{ ai_gen_id }} {
-      font-size: calc(25px * 0.6);
-    }
-  }
-{% endstyle %}
-
-<div class="ai-split-editorial-{{ ai_gen_id }}">
-  <div class="ai-split-editorial-container-{{ ai_gen_id }}">
-    <div class="ai-split-editorial-wrapper-{{ ai_gen_id }}">
-      <div class="ai-split-editorial-left-{{ ai_gen_id }}">
-        <h2 class="ai-split-editorial-heading-line1-{{ ai_gen_id }}">
-          <span class="ai-split-editorial-prefix-{{ ai_gen_id }}">{{ part_prefix_text }}</span>
-          <span class="ai-split-editorial-brand-scent-{{ ai_gen_id }}">{{ part_brand_scent_text }}</span><span class="ai-split-editorial-brand-spired-{{ ai_gen_id }}">{{ part_brand_spired_text }}</span>
+<div class="ai-split-editorial-closing">
+  <div class="ai-split-editorial-container-closing">
+    <div class="ai-split-editorial-wrapper-closing">
+      <div class="ai-split-editorial-left-closing">
+        <h2 class="ai-split-editorial-heading-line1-closing">
+          <span class="ai-split-editorial-prefix-closing">{{ part_prefix_text }}</span>
+          <span class="ai-split-editorial-brand-scent-closing">{{ part_brand_scent_text }}</span><span class="ai-split-editorial-brand-spired-closing">{{ part_brand_spired_text }}</span>
         </h2>
-        <p class="ai-split-editorial-heading-line2-{{ ai_gen_id }}">
-          <span class="ai-split-editorial-start-{{ ai_gen_id }}">{{ part_start_text }}</span>
-          <span class="ai-split-editorial-bestsellers-{{ ai_gen_id }}">{{ part_bestsellers_text }}</span>
+        <p class="ai-split-editorial-heading-line2-closing">
+          <span class="ai-split-editorial-start-closing">{{ part_start_text }}</span>
+          <span class="ai-split-editorial-bestsellers-closing">{{ part_bestsellers_text }}</span>
         </p>
       </div>
-      <div class="ai-split-editorial-right-{{ ai_gen_id }}">
-        <p class="ai-split-editorial-body-{{ ai_gen_id }}">{{ part_body_text }}</p>
+      <div class="ai-split-editorial-right-closing">
+        <p class="ai-split-editorial-body-closing">{{ part_body_text }}</p>
       </div>
     </div>
   </div>

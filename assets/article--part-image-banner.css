@@ -1,0 +1,126 @@
+/* The "image banner" part of an article (snippets/article--part-image-banner.liquid), the same for every article. Its classes end in -image-banner, so no other part kind shares them. Moved from the snippet. */
+  .ai-editorial-banner-image-banner {
+    position: relative;
+    width: 100%;
+    display: block;
+  }
+
+  .ai-editorial-banner__image-wrapper-image-banner {
+    position: relative;
+    width: 100%;
+    height: auto;
+  }
+
+  .ai-editorial-banner__image-image-banner {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .ai-editorial-banner__image-placeholder-image-banner {
+    background-color: #f4f4f4;
+    width: 100%;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .ai-editorial-banner__image-placeholder-image-banner svg {
+    width: 100%;
+    height: 100%;
+    max-width: 500px;
+    max-height: 500px;
+  }
+
+  .ai-editorial-banner__empty-state-image-banner {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 20px;
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  .ai-editorial-banner__content-image-banner {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%);
+    max-width: 700px;
+    padding: 0 20px;
+    z-index: 2;
+  }
+
+  .ai-editorial-banner__text-image-banner {
+    font-family: var(--font-display);
+    font-size: 36px;
+    line-height: 1;
+    text-align: left;
+    margin: 0;
+  }
+
+  .ai-editorial-banner__line-1-image-banner {
+    display: block;
+  }
+
+  .ai-editorial-banner__line-1-part-1-image-banner {
+    font-family: var(--font-display);
+    font-style: normal;
+    color: #2b2b2b;
+  }
+
+  .ai-editorial-banner__line-1-part-2-image-banner {
+    font-family: var(--font-display-italic);
+    font-style: italic;
+    color: #8B1D22;
+    font-size: 60px;
+  }
+
+  .ai-editorial-banner__line-2-image-banner {
+    display: block;
+    font-family: var(--font-display);
+    font-style: normal;
+    color: #2b2b2b;
+  }
+
+  .ai-editorial-banner__mobile-image-image-banner {
+    display: none;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-editorial-banner__desktop-image-image-banner {
+      display: none;
+    }
+
+    .ai-editorial-banner__mobile-image-image-banner {
+      display: block;
+    }
+
+    .ai-editorial-banner__content-image-banner {
+      max-width: calc(100% - 40px);
+    }
+
+    .ai-editorial-banner__text-image-banner {
+      font-family: var(--font-display);
+      font-size: 13px;
+      line-height: 1;
+      text-align: left;
+      margin: 0;
+    }
+
+    .ai-editorial-banner__line-1-part-2-image-banner {
+      font-family: var(--font-display-italic);
+      font-style: italic;
+      color: #8B1D22;
+      font-size: 25px;
+    }
+
+    .ai-editorial-banner__content-image-banner {
+      left: 0%;
+    }
+  }

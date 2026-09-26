@@ -1,0 +1,258 @@
+/* The "fragrance guide" part of an article (snippets/article--part-fragrance-guide.liquid), the same for every article. Its classes end in -fragrance-guide, so no other part kind shares them. Moved from the snippet. */
+  .ai-fragrance-guide-fragrance-guide {
+    display: block;
+    width: 100%;
+    background-color: #ffffff;
+    padding: 0;
+    margin: 0;
+  }
+
+  .ai-fragrance-guide-header-fragrance-guide {
+    background-color: #f9f6f1;
+    padding: 40px 20px;
+    text-align: center;
+  }
+
+  .ai-fragrance-guide-title-fragrance-guide {
+    font-size: 32px;
+    font-weight: 700;
+    color: #000000;
+    margin: 0 0 12px 0;
+    letter-spacing: 0.5px;
+    text-transform: capitalize;
+    font-family: var(--font-display-italic);
+    font-style: italic;
+  }
+
+  .ai-fragrance-guide-subtitle-fragrance-guide {
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 400;
+    color: #000000;
+    margin: 0;
+  }
+
+  .ai-fragrance-guide-content-fragrance-guide {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    display: flex;
+    gap: 60px;
+    align-items: flex-start;
+  }
+
+  .ai-fragrance-guide-left-fragrance-guide {
+    flex: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .ai-fragrance-guide-divider-fragrance-guide {
+    width: 1px;
+    background-color: #000000;
+    align-self: stretch;
+  }
+
+  .ai-fragrance-guide-right-fragrance-guide {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .ai-fragrance-guide-illustration-fragrance-guide {
+    position: relative;
+    max-width: 400px;
+    width: 100%;
+  }
+
+  .ai-fragrance-guide-illustration-fragrance-guide img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .ai-fragrance-guide-badge-fragrance-guide {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #f9f6f1;
+    color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-body);
+    font-size: 18px;
+    font-weight: 700;
+    box-shadow: 0 0 0 8px #f9f6f1;
+    transform: translate(-50%, -50%);
+  }
+
+  .ai-fragrance-guide-badge-1-fragrance-guide {
+    top: 17%;
+    left: 50%;
+  }
+
+  .ai-fragrance-guide-badge-2-fragrance-guide {
+    top: 35%;
+    left: 29%;
+  }
+
+  .ai-fragrance-guide-badge-3-fragrance-guide {
+    top: 50%;
+    left: 25%;
+  }
+
+  .ai-fragrance-guide-badge-4-fragrance-guide {
+    top: 71%;
+    left: 39%;
+  }
+
+  .ai-fragrance-guide-point-fragrance-guide {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .ai-fragrance-guide-point-number-fragrance-guide {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: #f9f6f1;
+    color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-body);
+    font-size: 20px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .ai-fragrance-guide-point-sketch-fragrance-guide {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    border: 2px solid #000000;
+    flex-shrink: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-fragrance-guide-point-sketch-fragrance-guide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-fragrance-guide-point-text-fragrance-guide {
+    flex: 1;
+  }
+
+  .ai-fragrance-guide-point-title-fragrance-guide {
+    font-family: var(--font-body);
+    font-size: 18px;
+    font-weight: 700;
+    color: #000000;
+    margin: 0 0 8px 0;
+  }
+
+  .ai-fragrance-guide-point-description-fragrance-guide {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 400;
+    color: #000000;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .ai-fragrance-guide-protip-fragrance-guide {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px;
+    border: 2px solid #000000;
+    border-radius: 12px;
+    background-color: #ffffff;
+    margin-top: 20px;
+  }
+
+  .ai-fragrance-guide-protip-icon-fragrance-guide {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    color: #000000;
+  }
+
+  .ai-fragrance-guide-protip-content-fragrance-guide {
+    flex: 1;
+  }
+
+  .ai-fragrance-guide-protip-heading-fragrance-guide {
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 700;
+    color: #000000;
+    margin: 0 0 8px 0;
+  }
+
+  .ai-fragrance-guide-protip-text-fragrance-guide {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 400;
+    color: #000000;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-fragrance-guide-content-fragrance-guide {
+      flex-direction: column;
+      gap: 40px;
+      padding: 40px 20px;
+    }
+
+    .ai-fragrance-guide-divider-fragrance-guide {
+      display: none;
+    }
+
+    .ai-fragrance-guide-title-fragrance-guide {
+      font-size: 24px;
+    }
+
+    .ai-fragrance-guide-subtitle-fragrance-guide {
+      font-size: 14px;
+    }
+
+    .ai-fragrance-guide-badge-fragrance-guide {
+      width: 24px;
+      height: 24px;
+      font-size: 14px;
+      box-shadow: 0 0 0 6px #f9f6f1;
+    }
+
+    .ai-fragrance-guide-point-number-fragrance-guide {
+      width: 40px;
+      height: 40px;
+      font-size: 16px;
+    }
+
+    .ai-fragrance-guide-point-sketch-fragrance-guide {
+      width: 60px;
+      height: 60px;
+    }
+
+    .ai-fragrance-guide-point-title-fragrance-guide {
+      font-size: 16px;
+    }
+
+    .ai-fragrance-guide-point-description-fragrance-guide {
+      font-size: 13px;
+    }
+  }

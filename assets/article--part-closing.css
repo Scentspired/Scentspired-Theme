@@ -1,0 +1,124 @@
+/* The "closing" part of an article (snippets/article--part-closing.liquid), the same for every article. Its classes end in -closing, so no other part kind shares them. Moved from the snippet. */
+  .ai-split-editorial-closing {
+    display: block;
+    width: 100%;
+    background-color: #ffffff;
+    padding: 40px 0 35px;
+  }
+
+  .ai-split-editorial-container-closing {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .ai-split-editorial-wrapper-closing {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+  }
+
+  .ai-split-editorial-left-closing {
+    max-width: 45%;
+  }
+
+  .ai-split-editorial-right-closing {
+    max-width: 72%;
+  }
+
+  .ai-split-editorial-heading-line1-closing {
+    margin: 0 0 4px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .ai-split-editorial-prefix-closing {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-style: normal;
+    font-size: 50px;
+    color: #000000;
+  }
+
+  .ai-split-editorial-brand-scent-closing {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-style: normal;
+    font-size: 50px;
+    color: #000000;
+  }
+
+  .ai-split-editorial-brand-spired-closing {
+    font-family: var(--font-display-ultralight-italic);
+    font-weight: 400;
+    font-style: italic;
+    font-size: 50px;
+    color: #000000;
+  }
+
+  .ai-split-editorial-heading-line2-closing {
+    margin: 0;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .ai-split-editorial-start-closing {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-style: normal;
+    font-size: 36px;
+    color: #000000;
+    margin-right: 5px;
+  }
+
+  .ai-split-editorial-bestsellers-closing {
+    font-family: var(--font-display-italic);
+    font-weight: 400;
+    font-style: italic;
+    font-size: 40px;
+    color: #000000;
+  }
+
+  .ai-split-editorial-body-closing {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-style: normal;
+    font-size: 25px;
+    line-height: 1.3;
+    color: #000000;
+    margin: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-split-editorial-wrapper-closing {
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .ai-split-editorial-left-closing,
+    .ai-split-editorial-right-closing {
+      max-width: 100%;
+    }
+
+    .ai-split-editorial-prefix-closing {
+      font-size: calc(50px * 0.6);
+    }
+
+    .ai-split-editorial-brand-scent-closing,
+    .ai-split-editorial-brand-spired-closing {
+      font-size: calc(50px * 0.6);
+    }
+
+    .ai-split-editorial-start-closing {
+      font-size: calc(36px * 0.6);
+    }
+
+    .ai-split-editorial-bestsellers-closing {
+      font-size: calc(40px * 0.6);
+    }
+
+    .ai-split-editorial-body-closing {
+      font-size: calc(25px * 0.6);
+    }
+  }

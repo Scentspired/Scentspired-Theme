@@ -1,0 +1,79 @@
+/* The "comparison table" part of an article (snippets/article--part-comparison-table.liquid), the same for every article. Its classes end in -comparison-table, so no other part kind shares them. Moved from the snippet. */
+  .ai-comparison-table-wrapper-comparison-table {
+    display: block;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 20px;
+  }
+
+  .ai-comparison-table-container-comparison-table {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-comparison-table-container-comparison-table {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .ai-comparison-table-container-comparison-table::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .ai-comparison-table-comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-body);
+    background-color: #ffffff;
+  }
+
+  .ai-comparison-table-comparison-table thead {
+    background-color: #000000;
+  }
+
+  .ai-comparison-table-comparison-table thead th {
+    color: #ffffff;
+    font-weight: bold;
+    padding: 16px;
+    text-align: left;
+    border: 1px solid #e0e0e0;
+  }
+
+  .ai-comparison-table-comparison-table thead th:first-child {
+    background-color: #000000;
+  }
+
+  .ai-comparison-table-comparison-table tbody tr {
+    background-color: #f9f9f9;
+  }
+
+  .ai-comparison-table-comparison-table tbody td {
+    padding: 16px;
+    border: 1px solid #e0e0e0;
+    text-align: left;
+    font-weight: normal;
+    white-space: normal;
+    color: #121212;
+  }
+
+  .ai-comparison-table-comparison-table tbody td:first-child {
+    font-weight: normal;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-comparison-table-comparison-table thead th,
+    .ai-comparison-table-comparison-table tbody td {
+      min-width: 180px;
+    }
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-comparison-table-comparison-table thead th,
+    .ai-comparison-table-comparison-table tbody td {
+      min-width: auto;
+    }
+  }

@@ -1,0 +1,198 @@
+/* The "feature banner" part of an article (snippets/article--part-feature-banner.liquid), the same for every article. Its classes end in -feature-banner, so no other part kind shares them. The text colour over the photo arrives as --part-text-color on the part. The image's shape arrives as --part-image-shape. Moved from the snippet. */
+  /* ─── Outer white border wrapper ─── */
+  .lux-wrap-feature-banner {
+    display: block;
+    width: 100%;
+    background: #ffffff;
+    padding: 16px;
+    box-sizing: border-box;
+  }
+
+  /* ─── Inner banner: key trick — padding-top % creates height relative to WIDTH ─── */
+  /*   The image is 16:9 (1328×747 px approx). ratio = 747/1328 = 56.25%               */
+  .lux-banner-feature-banner {
+    position: relative;
+    width: 100%;
+    /* Adapt to actual image aspect ratio */
+    padding-top: var(--part-image-shape);
+    overflow: hidden;
+    background: #2d0a0f;
+  }
+
+  /* ─── Background image fills the ratio box exactly ─── */
+  .lux-bg-feature-banner {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+    z-index: 1;
+  }
+
+  /* ─── Placeholder when no image uploaded ─── */
+  .lux-bg-placeholder-feature-banner {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, #3d0a10 0%, #7a1520 45%, #2a0508 100%);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.3);
+    font-size: 14px;
+    font-family: sans-serif;
+  }
+
+  /* ─── Spotlight overlays ─── */
+  .lux-spot-feature-banner {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .lux-spot-feature-banner::before,
+  .lux-spot-feature-banner::after {
+    content: '';
+    position: absolute;
+    top: -30%;
+    width: 55%;
+    height: 80%;
+    border-radius: 50%;
+    filter: blur(120px);
+  }
+  .lux-spot-feature-banner::before {
+    left: -8%;
+    background: radial-gradient(circle, rgba(255,255,255,0.18) 0%, transparent 70%);
+  }
+  .lux-spot-feature-banner::after {
+    right: -8%;
+    background: radial-gradient(circle, rgba(255,255,255,0.13) 0%, transparent 70%);
+  }
+
+  /* ─── Text layer — absolute, fills the ratio box ─── */
+  .lux-text-layer-feature-banner {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    /* 
+      CORE FIX:
+      We use a coordinate system where the banner is treated as if it were always
+      the "design width" (1440px in this case). By expressing left/top as percentages
+      they move proportionally with the banner's width AND height (since height is
+      locked by padding-top % to the same aspect ratio). This means the text always
+      sits at the same relative position in the image, regardless of screen width.
+    */
+  }
+
+  /* ─── Line 1: "That is where" ─── */
+  /*
+    In the 1440px reference:
+      - Visually starts around x=270px  → 270/1440 = 18.75%
+      - Visually at y≈475px in a ~750px tall banner → 475/750 = 63.3%
+    Using left + no transform so it anchors from its own left edge.
+  */
+  .lux-line1-feature-banner {
+    position: absolute;
+    top: 61%;
+    left: 21%;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    /* 
+      Font size scales with banner WIDTH via vw — but clamped so it doesn't get
+      too large or too small. At 1440px wide we want ~52px → 52/1440 = 3.6vw
+    */
+    font-size: clamp(22px, 3.9vw, 68px);
+    color: var(--part-text-color);
+    letter-spacing: 0.03em;
+    line-height: 1;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  /* ─── Line 2: "Scentspired" hero text ─── */
+  /*
+    In the 1440px reference:
+      - Center of text around x=700px → left ~42%
+      - y ≈ 520px → 520/750 = 69.3%
+    Font: ~110px at 1440px → 110/1440 = 7.64vw
+  */
+  .lux-line2-feature-banner {
+    position: absolute;
+    top: 2%;
+    left: 29%;
+    font-size: clamp(42px, 3.6vw, 145px);
+    letter-spacing: -0.02em;
+    line-height: 0.9;
+    color: var(--part-text-color);
+    text-shadow: 0 4px 30px rgba(0,0,0,0.6);
+    white-space: nowrap;
+    pointer-events: none;
+  }
+  .lux-line2-regular-feature-banner {
+    font-family: 'PP Editorial New', 'Cormorant Garamond', Georgia, serif;
+    font-style: normal;
+    font-weight: 300;
+  }
+  .lux-line2-italic-feature-banner {
+    font-family: var(--font-display-ultralight-italic);
+    font-style: italic;
+    font-weight: 300;
+  }
+
+  /* ─── Line 3: "comes in." ─── */
+  /*
+    In the 1440px reference:
+      - Starts around x=880px → 880/1440 = 61%
+      - y ≈ 620px → 620/750 = 82.7%
+    Font: ~48px at 1440px → 48/1440 = 3.33vw
+  */
+  .lux-line3-feature-banner {
+    position: absolute;
+    top: 85%;
+    left: 61%;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(18px, 7.3vw, 73px);
+    color: var(--part-text-color);
+    letter-spacing: 0.04em;
+    line-height: 1;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  /* ─── Mobile: below 480px keep things readable ─── */
+  @media (max-width: 480px) {
+    .lux-spot-feature-banner::before,
+    .lux-spot-feature-banner::after {
+      filter: blur(60px);
+    }
+    @media (max-width: 768px) {
+    .lux-line1-feature-banner {
+    font-size: clamp(13px, 0.6vw, 68px);
+}
+.lux-line2-feature-banner {
+    position: absolute;
+    top: 2%;
+    left: 4%;
+}
+.lux-line2-feature-banner {
+    font-size: clamp(25px, 7.6vw, 145px);
+}
+.lux-line3-feature-banner {
+    font-size: clamp(18px, 4.3vw, 73px);
+}
+  }
+
+  /* Was per-article custom CSS in every template using this part. */
+  @media screen and (max-width: 768px) {
+    .lux-line2-feature-banner { position: absolute; top: 2%; left: 15%; }
+  }
+/* Closes "@media (max-width: 480px) {" above, which the part's CSS never closed: browsers close it
+   at the end of the stylesheet, so everything after it (the 768px rules included) applies below 480px only. */
+}

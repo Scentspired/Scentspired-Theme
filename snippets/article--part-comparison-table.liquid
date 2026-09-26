@@ -10,95 +10,15 @@
 {%- liquid
 
 -%}
-{% assign ai_gen_id = part_id %}
 
-{% style %}
-  .ai-comparison-table-wrapper-{{ ai_gen_id }} {
-    display: block;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px 20px;
-  }
+{{ 'article--part-comparison-table.css' | asset_url | stylesheet_tag }}
 
-  .ai-comparison-table-container-{{ ai_gen_id }} {
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  @media screen and (max-width: 749px) {
-    .ai-comparison-table-container-{{ ai_gen_id }} {
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-    }
-
-    .ai-comparison-table-container-{{ ai_gen_id }}::-webkit-scrollbar {
-      display: none;
-    }
-  }
-
-  .ai-comparison-table-{{ ai_gen_id }} {
-    width: 100%;
-    border-collapse: collapse;
-    font-family: var(--font-body);
-    background-color: #ffffff;
-  }
-
-  .ai-comparison-table-{{ ai_gen_id }} thead {
-    background-color: #000000;
-  }
-
-  .ai-comparison-table-{{ ai_gen_id }} thead th {
-    color: #ffffff;
-    font-weight: bold;
-    padding: 16px;
-    text-align: left;
-    border: 1px solid #e0e0e0;
-  }
-
-  .ai-comparison-table-{{ ai_gen_id }} thead th:first-child {
-    background-color: #000000;
-  }
-
-  .ai-comparison-table-{{ ai_gen_id }} tbody tr {
-    background-color: #f9f9f9;
-  }
-
-  .ai-comparison-table-{{ ai_gen_id }} tbody td {
-    padding: 16px;
-    border: 1px solid #e0e0e0;
-    text-align: left;
-    font-weight: normal;
-    white-space: normal;
-    color: #121212;
-  }
-
-  .ai-comparison-table-{{ ai_gen_id }} tbody td:first-child {
-    font-weight: normal;
-  }
-
-  @media screen and (max-width: 749px) {
-    .ai-comparison-table-{{ ai_gen_id }} thead th,
-    .ai-comparison-table-{{ ai_gen_id }} tbody td {
-      min-width: 180px;
-    }
-  }
-
-  @media screen and (min-width: 750px) {
-    .ai-comparison-table-{{ ai_gen_id }} thead th,
-    .ai-comparison-table-{{ ai_gen_id }} tbody td {
-      min-width: auto;
-    }
-  }
-{% endstyle %}
-
-<fragrance-comparison-table-{{ ai_gen_id }}
-  class="ai-comparison-table-wrapper-{{ ai_gen_id }}"
+<fragrance-comparison-table-comparison-table
+  class="ai-comparison-table-wrapper-comparison-table"
   style="display: block;"
 >
-  <div class="ai-comparison-table-container-{{ ai_gen_id }}">
-    <table class="ai-comparison-table-{{ ai_gen_id }}">
+  <div class="ai-comparison-table-container-comparison-table">
+    <table class="ai-comparison-table-comparison-table">
       {%- liquid
         assign k = content_key | append: 'label_heading'
         capture table_label_heading
@@ -139,6 +59,6 @@
       </tbody>
     </table>
   </div>
-</fragrance-comparison-table-{{ ai_gen_id }}>
+</fragrance-comparison-table-comparison-table>
 
 

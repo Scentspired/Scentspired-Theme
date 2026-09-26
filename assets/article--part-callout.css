@@ -1,0 +1,133 @@
+/* The "callout" part of an article (snippets/article--part-callout.liquid), the same for every article. Its classes end in -callout, so no other part kind shares them. Moved from the snippet. */
+  .ai-editorial-section-callout {
+    display: block;
+    width: 100%;
+    background-color: #f5f3ee;
+    padding: 60px 10px 58px;
+  }
+
+  .ai-editorial-container-callout {
+    padding: 0px 70px;
+  }
+
+  .ai-editorial-grid-callout {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .ai-editorial-left-callout {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .ai-editorial-heading-callout {
+    font-family: var(--font-display-ultralight-italic);
+    font-weight: 400;
+    font-size: 54px;
+    color: #000000;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin: 0;
+    padding-left: 15px;
+  }
+
+  .ai-editorial-image-wrapper-callout {
+    width: 100%;
+    max-width: 600px;
+  }
+
+  .ai-editorial-image-callout {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  .ai-editorial-image-placeholder-callout {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .ai-editorial-image-placeholder-callout svg {
+    width: 100%;
+    height: 100%;
+    max-width: 300px;
+    max-height: 300px;
+  }
+
+  .ai-editorial-empty-state-callout {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 20px;
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  .ai-editorial-right-callout {
+    padding-top: 100px;
+  }
+
+  .ai-editorial-text-callout {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 24px;
+    color: #111111;
+    line-height: 1.6;
+    max-width: 920px;
+  }
+
+  .ai-editorial-text-callout p {
+    margin: 0 0 30px 0;
+  }
+
+  .ai-editorial-text-callout p:last-child {
+    margin-bottom: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-editorial-section-callout {
+      padding: 60px 0 60px;
+    }
+
+    .ai-editorial-container-callout {
+      padding: 0 20px;
+    }
+
+    .ai-editorial-grid-callout {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .ai-editorial-heading-callout {
+      font-size: 38px;
+      padding-left: 15px;
+    }
+
+    .ai-editorial-left-callout {
+      gap: 25px;
+    }
+
+    .ai-editorial-right-callout {
+      padding-top: 0;
+    }
+
+    .ai-editorial-text-callout {
+      font-size: 16px;
+    }
+
+    .ai-editorial-text-callout p {
+      margin-bottom: 15px;
+    }
+  }

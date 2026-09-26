@@ -56,139 +56,12 @@
   endcapture
   assign part_heading_line_2 = part_heading_line_2 | strip
 -%}
-{% assign ai_gen_id = part_id %}
 
-{% style %}
-  .ai-editorial-banner-{{ ai_gen_id }} {
-    position: relative;
-    width: 100%;
-    display: block;
-  }
+{{ 'article--part-image-banner.css' | asset_url | stylesheet_tag }}
 
-  .ai-editorial-banner__image-wrapper-{{ ai_gen_id }} {
-    position: relative;
-    width: 100%;
-    height: auto;
-  }
-
-  .ai-editorial-banner__image-{{ ai_gen_id }} {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-
-  .ai-editorial-banner__image-placeholder-{{ ai_gen_id }} {
-    background-color: #f4f4f4;
-    width: 100%;
-    min-height: 400px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-  }
-
-  .ai-editorial-banner__image-placeholder-{{ ai_gen_id }} svg {
-    width: 100%;
-    height: 100%;
-    max-width: 500px;
-    max-height: 500px;
-  }
-
-  .ai-editorial-banner__empty-state-{{ ai_gen_id }} {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 12px 20px;
-    font-size: 14px;
-    color: #666;
-    text-align: center;
-    pointer-events: none;
-  }
-
-  .ai-editorial-banner__content-{{ ai_gen_id }} {
-    position: absolute;
-    top: 50%;
-    left: 10%;
-    transform: translateY(-50%);
-    max-width: 700px;
-    padding: 0 20px;
-    z-index: 2;
-  }
-
-  .ai-editorial-banner__text-{{ ai_gen_id }} {
-    font-family: var(--font-display);
-    font-size: 36px;
-    line-height: 1;
-    text-align: left;
-    margin: 0;
-  }
-
-  .ai-editorial-banner__line-1-{{ ai_gen_id }} {
-    display: block;
-  }
-
-  .ai-editorial-banner__line-1-part-1-{{ ai_gen_id }} {
-    font-family: var(--font-display);
-    font-style: normal;
-    color: #2b2b2b;
-  }
-
-  .ai-editorial-banner__line-1-part-2-{{ ai_gen_id }} {
-    font-family: var(--font-display-italic);
-    font-style: italic;
-    color: #8B1D22;
-    font-size: 60px;
-  }
-
-  .ai-editorial-banner__line-2-{{ ai_gen_id }} {
-    display: block;
-    font-family: var(--font-display);
-    font-style: normal;
-    color: #2b2b2b;
-  }
-
-  .ai-editorial-banner__mobile-image-{{ ai_gen_id }} {
-    display: none;
-  }
-
-  @media screen and (max-width: 749px) {
-    .ai-editorial-banner__desktop-image-{{ ai_gen_id }} {
-      display: none;
-    }
-
-    .ai-editorial-banner__mobile-image-{{ ai_gen_id }} {
-      display: block;
-    }
-
-    .ai-editorial-banner__content-{{ ai_gen_id }} {
-      max-width: calc(100% - 40px);
-    }
-
-    .ai-editorial-banner__text-{{ ai_gen_id }} {
-      font-family: var(--font-display);
-      font-size: 13px;
-      line-height: 1;
-      text-align: left;
-      margin: 0;
-    }
-
-    .ai-editorial-banner__line-1-part-2-{{ ai_gen_id }} {
-      font-family: var(--font-display-italic);
-      font-style: italic;
-      color: #8B1D22;
-      font-size: 25px;
-    }
-
-    .ai-editorial-banner__content-{{ ai_gen_id }} {
-      left: 0%;
-    }
-  }
-{% endstyle %}
-
-<editorial-banner-{{ ai_gen_id }}
-  class="ai-editorial-banner-{{ ai_gen_id }}">
-  <div class="ai-editorial-banner__image-wrapper-{{ ai_gen_id }}">
+<editorial-banner-image-banner
+  class="ai-editorial-banner-image-banner">
+  <div class="ai-editorial-banner__image-wrapper-image-banner">
     {% if part_desktop_image %}
       <img
         src="{{ part_desktop_image | image_url: width: 2000 }}"
@@ -196,11 +69,11 @@
         loading="lazy"
         width="{{ part_desktop_image.width }}"
         height="{{ part_desktop_image.height }}"
-        class="ai-editorial-banner__image-{{ ai_gen_id }} ai-editorial-banner__desktop-image-{{ ai_gen_id }}">
+        class="ai-editorial-banner__image-image-banner ai-editorial-banner__desktop-image-image-banner">
     {% else %}
-      <div class="ai-editorial-banner__image-placeholder-{{ ai_gen_id }} ai-editorial-banner__desktop-image-{{ ai_gen_id }}">
+      <div class="ai-editorial-banner__image-placeholder-image-banner ai-editorial-banner__desktop-image-image-banner">
         {{ "hero-apparel-1" | placeholder_svg_tag }}
-        <div class="ai-editorial-banner__empty-state-{{ ai_gen_id }}">{{ 'sections.article_parts.add_desktop_image' | t }}</div>
+        <div class="ai-editorial-banner__empty-state-image-banner">{{ 'sections.article_parts.add_desktop_image' | t }}</div>
       </div>
     {% endif %}
 
@@ -211,35 +84,35 @@
         loading="lazy"
         width="{{ part_mobile_image.width }}"
         height="{{ part_mobile_image.height }}"
-        class="ai-editorial-banner__image-{{ ai_gen_id }} ai-editorial-banner__mobile-image-{{ ai_gen_id }}">
+        class="ai-editorial-banner__image-image-banner ai-editorial-banner__mobile-image-image-banner">
     {% else %}
-      <div class="ai-editorial-banner__image-placeholder-{{ ai_gen_id }} ai-editorial-banner__mobile-image-{{ ai_gen_id }}">
+      <div class="ai-editorial-banner__image-placeholder-image-banner ai-editorial-banner__mobile-image-image-banner">
         {{ "hero-apparel-1" | placeholder_svg_tag }}
-        <div class="ai-editorial-banner__empty-state-{{ ai_gen_id }}">{{ 'sections.article_parts.add_mobile_image' | t }}</div>
+        <div class="ai-editorial-banner__empty-state-image-banner">{{ 'sections.article_parts.add_mobile_image' | t }}</div>
       </div>
     {% endif %}
 
-    <div class="ai-editorial-banner__content-{{ ai_gen_id }}">
-      <p class="ai-editorial-banner__text-{{ ai_gen_id }}">
+    <div class="ai-editorial-banner__content-image-banner">
+      <p class="ai-editorial-banner__text-image-banner">
         {% if part_heading_line_1_part_1 != blank or part_heading_line_1_part_2 != blank %}
-          <span class="ai-editorial-banner__line-1-{{ ai_gen_id }}">
+          <span class="ai-editorial-banner__line-1-image-banner">
             {% if part_heading_line_1_part_1 != blank %}
-              <span class="ai-editorial-banner__line-1-part-1-{{ ai_gen_id }}">
+              <span class="ai-editorial-banner__line-1-part-1-image-banner">
                 {{- part_heading_line_1_part_1 -}}
               </span>
             {% endif %}
             {% if part_heading_line_1_part_2 != blank %}
-              <span class="ai-editorial-banner__line-1-part-2-{{ ai_gen_id }}">
+              <span class="ai-editorial-banner__line-1-part-2-image-banner">
                 {{ part_heading_line_1_part_2 -}}
               </span>
             {% endif %}
           </span>
         {% endif %}
         {% if part_heading_line_2 != blank %}
-          <span class="ai-editorial-banner__line-2-{{ ai_gen_id }}">{{ part_heading_line_2 }}</span>
+          <span class="ai-editorial-banner__line-2-image-banner">{{ part_heading_line_2 }}</span>
         {% endif %}
       </p>
     </div>
   </div>
-</editorial-banner-{{ ai_gen_id }}>
+</editorial-banner-image-banner>
 

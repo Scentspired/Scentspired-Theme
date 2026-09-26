@@ -61,147 +61,12 @@
     assign part_text_color = '#ffffff'
   endif
 -%}
-{% assign ai_gen_id = part_id %}
 
-{% style %}
-  .ai-luxury-banner-outer-{{ ai_gen_id }} {
-    background-color: #ffffff;
-    padding: 20px;
-    width: 100%;
-    display: block;
-  }
+{{ 'article--part-hero-banner.css' | asset_url | stylesheet_tag }}
 
-  .ai-luxury-banner-container-{{ ai_gen_id }} {
-    background-color: #f5f3f0;
-    margin: 0 auto;
-    width: 100%;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .ai-luxury-banner-image-wrapper-{{ ai_gen_id }} {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-
-  .ai-luxury-banner-image-{{ ai_gen_id }} {
-    width: 100%;
-    height: auto;
-    display: block;
-    object-fit: cover;
-  }
-
-  .ai-luxury-banner-image-placeholder-{{ ai_gen_id }} {
-    width: 100%;
-    aspect-ratio: 16/9;
-    background-color: #f4f4f4;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-  }
-
-  .ai-luxury-banner-image-placeholder-{{ ai_gen_id }} svg {
-    width: 100%;
-    height: 100%;
-    max-width: 400px;
-    max-height: 400px;
-  }
-
-  .ai-luxury-banner-empty-state-{{ ai_gen_id }} {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 12px 20px;
-    font-size: 14px;
-    color: #666;
-    text-align: center;
-    pointer-events: none;
-  }
-
-  .ai-luxury-banner-content-overlay-{{ ai_gen_id }} {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 40px;
-  }
-
-  .ai-luxury-banner-content-{{ ai_gen_id }} {
-    max-width: 640px;
-    text-align: left;
-    text-transform: capitalize;
-  }
-
-  .ai-luxury-banner-heading-{{ ai_gen_id }} {
-    font-family: var(--font-display);
-    font-size: 48px;
-    line-height: 1.1;
-    color: {{ part_text_color }};
-    margin: 0;
-    font-weight: 400;
-    letter-spacing: -0.02em;
-  }
-
-  .ai-luxury-banner-heading-{{ ai_gen_id }} .italic-text {
-    font-family: var(--font-display-ultralight-italic);
-    font-style: italic;
-  }
-
-  .ai-luxury-banner-paragraph-{{ ai_gen_id }} {
-    font-size: 44px;
-    line-height: 1;
-    color: {{ part_text_color }};
-    margin: 0;
-    font-weight: 400;
-    font-family: var(--font-display);
-  }
-
-  .ai-luxury-banner-paragraph-{{ ai_gen_id }} p {
-    margin: 0;
-  }
-
-  @media screen and (max-width: 749px) {
-    .ai-luxury-banner-outer-{{ ai_gen_id }} {
-      padding: 15px;
-    }
-
-    .ai-luxury-banner-content-overlay-{{ ai_gen_id }} {
-      padding: 30px;
-      align-items: center;
-      justify-content: flex-start;
-    }
-
-    .ai-luxury-banner-content-{{ ai_gen_id }} {
-      max-width: 57%;
-      text-align: left;
-    }
-
-    .ai-luxury-banner-heading-{{ ai_gen_id }} {
-      font-size: 16px;
-    }
-
-    .ai-luxury-banner-paragraph-{{ ai_gen_id }} {
-      font-size: 16px;
-    }
-  }
-
-  /* Was per-article custom CSS in every template using this part. */
-  .ai-luxury-banner-heading-{{ ai_gen_id }} { margin-bottom: -53px; }
-  @media screen and (max-width: 749px) {
-    .ai-luxury-banner-heading-{{ ai_gen_id }} { margin-bottom: -19px; }
-  }
-{% endstyle %}
-
-<luxury-banner-{{ ai_gen_id }} class="ai-luxury-banner-outer-{{ ai_gen_id }}">
-  <div class="ai-luxury-banner-container-{{ ai_gen_id }}">
-    <div class="ai-luxury-banner-image-wrapper-{{ ai_gen_id }}">
+<luxury-banner-hero-banner class="ai-luxury-banner-outer-hero-banner" style="--part-text-color: {{ part_text_color }};">
+  <div class="ai-luxury-banner-container-hero-banner">
+    <div class="ai-luxury-banner-image-wrapper-hero-banner">
       {% if part_desktop_image != blank %}
         <picture>
           {% if part_mobile_image != blank %}
@@ -216,35 +81,35 @@
             loading="lazy"
             width="{{ part_desktop_image.width }}"
             height="{{ part_desktop_image.height }}"
-            class="ai-luxury-banner-image-{{ ai_gen_id }}"
+            class="ai-luxury-banner-image-hero-banner"
           >
         </picture>
       {% else %}
-        <div class="ai-luxury-banner-image-placeholder-{{ ai_gen_id }}">
+        <div class="ai-luxury-banner-image-placeholder-hero-banner">
           {{ 'image' | placeholder_svg_tag }}
-          <div class="ai-luxury-banner-empty-state-{{ ai_gen_id }}">
+          <div class="ai-luxury-banner-empty-state-hero-banner">
             {{ 'sections.article_parts.add_image_next' | t }}
           </div>
         </div>
       {% endif %}
     </div>
 
-    <div class="ai-luxury-banner-content-overlay-{{ ai_gen_id }}">
-      <div class="ai-luxury-banner-content-{{ ai_gen_id }}">
+    <div class="ai-luxury-banner-content-overlay-hero-banner">
+      <div class="ai-luxury-banner-content-hero-banner">
         {% if part_heading != blank %}
-          <h2 class="ai-luxury-banner-heading-{{ ai_gen_id }}" data-brand-italic>
+          <h2 class="ai-luxury-banner-heading-hero-banner" data-brand-italic>
             {{ part_heading }}
           </h2>
         {% endif %}
         {% if part_paragraph != blank %}
-          <div class="ai-luxury-banner-paragraph-{{ ai_gen_id }}">
+          <div class="ai-luxury-banner-paragraph-hero-banner">
             {{ part_paragraph }}
           </div>
         {% endif %}
       </div>
     </div>
   </div>
-</luxury-banner-{{ ai_gen_id }}>
+</luxury-banner-hero-banner>
 
 {% # theme-check-disable ParserBlockingScript %}
 <script src="{{ 'article--part-hero-banner.js' | asset_url }}"></script>

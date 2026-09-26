@@ -1,0 +1,97 @@
+/* The "staggered heading" part of an article (snippets/article--part-staggered-heading.liquid), the same for every article. Its classes end in -staggered-heading, so no other part kind shares them. Moved from the snippet. */
+  .ai-staggered-typography-staggered-heading {
+    display: block;
+    width: 100%;
+    background-color: #ffffff;
+    padding: 60px 20px 60px;
+    overflow-x: hidden;
+  }
+
+  .ai-staggered-typography-container-staggered-heading {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .ai-staggered-typography-header-staggered-heading {
+    margin-bottom: 40px;
+    line-height: 0.85;
+  }
+
+  .ai-staggered-typography-line-1-staggered-heading {
+    font-family: var(--font-display-italic);
+    font-style: italic;
+    font-size: 40px;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+    color: #121212;
+    transform: translateX(-20px);
+    margin: 0 0 -20px 0;
+  }
+
+  .ai-staggered-typography-line-2-staggered-heading {
+    font-family: var(--font-display);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 80px;
+    text-align: center;
+    margin: -20px 0 0 0;
+    padding: 0;
+    color: #121212;
+    transform: translateX(-60px);
+  }
+
+  .ai-staggered-typography-line-3-staggered-heading {
+    font-family: var(--font-display-italic);
+    font-style: italic;
+    font-size: 40px;
+    text-align: right;
+    margin: -4px 0 0 0;
+    padding: 0;
+    color: #121212;
+    transform: translateX(40px);
+  }
+
+  .ai-staggered-typography-body-staggered-heading {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1.6;
+    text-align: center;
+    max-width: 1000px;
+    margin: 0 auto;
+    color: #121212;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-staggered-typography-staggered-heading {
+      padding: 36px 16px 36px;
+    }
+
+    .ai-staggered-typography-line-1-staggered-heading {
+      font-size: 20px;
+      transform: translateX(15px);
+      margin: 0 0 0px 0;
+    }
+
+    .ai-staggered-typography-line-2-staggered-heading {
+      font-size: 40px;
+      margin-top: -10px;
+      transform: translateX(-30px);
+    }
+
+    .ai-staggered-typography-line-3-staggered-heading {
+      font-size: 20px;
+      margin-top: -2px;
+      transform: translateX(-20px);
+    }
+
+    .ai-staggered-typography-body-staggered-heading {
+      font-size: 21.6px;
+      max-width: 100%;
+    }
+
+    .ai-staggered-typography-header-staggered-heading {
+      margin-bottom: 24px;
+    }
+  }

@@ -1,0 +1,149 @@
+/* The "products" part of an article (snippets/article--part-products.liquid), the same for every article. Its classes end in -products, so no other part kind shares them. Moved from the snippet. */
+ 
+
+  .ai-product-grid-container-products {
+    display: block;
+    width: 100%;
+    padding: 0 40px 70px 40px;
+        margin: 0 auto;
+    max-width: 1200px;
+  }
+
+  .ai-product-grid-products {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .ai-product-card-products {
+    background-color: #F2F2F2;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s ease;
+    overflow: hidden;
+  }
+
+  .ai-product-card-products:hover {
+    transform: translateY(-2px);
+  }
+
+  .ai-product-image-wrapper-products {
+    flex: 0 0 50%;
+    width: 50%;
+    aspect-ratio: 1 / 1;
+    position: relative;
+    padding: 8px;
+    box-sizing: border-box;
+  }
+
+  .ai-product-image-products {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-color: #ffffff;
+    border: 2px solid #ffffff;
+    box-sizing: border-box;
+  }
+
+  .ai-product-image-placeholder-products {
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    border: 2px solid #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-product-image-placeholder-products svg {
+    width: 60%;
+    height: 60%;
+    opacity: 0.3;
+  }
+
+  .ai-product-details-products {
+    flex: 0 0 50%;
+    width: 50%;
+    padding: 20px 15px 20px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  .ai-product-title-products {
+    font-family: var(--font-body);
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin: 0 0 8px 0;
+    color: #000000;
+  }
+
+  .ai-product-vendor-products {
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .ai-vendor-inspired-products {
+    font-family: var(--font-display-italic);
+    font-size: 15px;
+    font-style: italic;
+    color: #000000;
+  }
+
+  .ai-vendor-brand-products {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 400;
+    color: #000000;
+  }
+
+  .ai-empty-state-products {
+    text-align: center;
+    padding: 60px 20px;
+    color: #666666;
+    font-size: 16px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-product-grid-products {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+      .ai-product-grid-container-products {
+    padding: 0 20px;
+  }
+
+    .ai-product-card-products {
+      flex-direction: row;
+    }
+
+    .ai-product-image-wrapper-products {
+      flex: 0 0 45%;
+      width: 45%;
+      padding: 6px;
+    }
+
+    .ai-product-details-products {
+      flex: 0 0 55%;
+      width: 55%;
+      padding: 12px 16px 12px 20px;
+    }
+
+    .ai-product-title-products {
+      font-size: 18px;
+      margin: 0 0 6px 0;
+    }
+
+    .ai-vendor-inspired-products,
+    .ai-vendor-brand-products {
+      font-size: 14px;
+    }
+  }
