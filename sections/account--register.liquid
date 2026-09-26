@@ -21,7 +21,7 @@
 {%- endstyle -%}
 
 <div class="customer register section-{{ section.id }}-padding">
-  <h1>Create Account</h1>
+  <h1>{{ 'sections.account_register.title' | t }}</h1>
 
   {%- form "create_customer", novalidate: "novalidate" -%}
     {%- if form.errors -%}

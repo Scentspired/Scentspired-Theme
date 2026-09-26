@@ -1819,7 +1819,12 @@
         "heading": null
       }
     },
+    "text_section": {
+      "heading": null,
+      "body": null
+    },
     "video_text": {
+      "heading": null,
       "video_url": null,
       "text_content": null
     },
@@ -1869,7 +1874,12 @@
         "heading": null
       }
     },
+    "text_section": {
+      "heading": null,
+      "body": null
+    },
     "video_text": {
+      "heading": null,
       "video_url": null,
       "text_content": null
     },

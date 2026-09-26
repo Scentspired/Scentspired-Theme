@@ -1,23 +1,8 @@
 {% comment %}
-  Shopify Section: Hardcoded Text Section with Specific Font Styling
-
-  This section displays a fixed text block with custom font styles
-  for both mobile and desktop views, as specified by the user.
-  The text content is hardcoded within this file and cannot be changed
-  via the Shopify Theme Customizer.
-
-  To use the 'PP Editorial New' font:
-  1. Upload your font files (e.g., .woff2, .ttf) to your Shopify theme's Assets folder.
-     (Shopify Admin -> Online Store -> Themes -> Actions -> Edit code -> Assets)
-  2. Add an @font-face rule in your theme's main CSS file (e.g., theme.scss.liquid or core--base.css).
-     Example @font-face rule (adjust filename and format as per your uploaded font):
-     @font-face {
-       font-family: 'PP Editorial New';
-       src: url({{ 'PPEditorialNew-Ultralight.woff2' | asset_url }}) format('woff2');
-       font-weight: 200; /* Corresponds to 'Ultralight' */
-       font-style: normal;
-       font-display: swap; /* Ensures text is visible while font loads */
-     }
+  A heading and a passage in the editorial type (the about page's "Luxury,
+  Reinvented"). Its words are the region's: the template fills heading and body
+  from content/page-about-us.json (page-about.json on UAE), text_section.
+  The class names still say "hardcoded" because the page's custom CSS targets them.
 {% endcomment %}
 
 <style>
@@ -70,20 +55,21 @@
 
 <div class="shopify-hardcoded-text-section-wrapper">
   <div class="shopify-hardcoded-text-section-content">
-    <h2 class="main-heading">Luxury, Reinvented</h2>
-    In a world filled with constant movement and distraction, we believe in the quiet, enduring power of scent. A single
-    fragrance can slow a moment, awaken emotion, and reconnect us to memories that feel deeply personal.<br>
-    <br>
-    At Scentspired, fragrance is not about excess or statements, it is about expression, feeling, and presence.
+    <h2 class="main-heading">{{ section.settings.heading }}</h2>
+    {{ section.settings.body }}
   </div>
 </div>
 
 {% schema %}
 {
-  "name": "Hardcoded Text Section",
+  "name": "Text section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading" },
+    { "type": "html", "id": "body", "label": "Text" }
+  ],
   "presets": [
     {
-      "name": "Hardcoded Text Section"
+      "name": "Text section"
     }
   ]
 }

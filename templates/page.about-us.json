@@ -84,6 +84,10 @@
     "text_section_LbVkMh": {
       "type": "editorial--text-section",
       "name": "Text Section with Custom Font",
+      "settings": {
+        "heading": "@content:page-about-us.text_section.heading",
+        "body": "@content:page-about-us.text_section.body"
+      },
       "custom_css": [
         "@media screen and (min-width: 1024px) {.shopify-hardcoded-text-section-content {font-size: 20px !important; max-width: 800px !important; margin-left: 0px !important; } .shopify-hardcoded-text-section-wrapper {margin-bottom: -80px; }}",
         ".shopify-hardcoded-text-section-content {font-size: 16px; margin-left: 0px; text-align: left;}",
@@ -94,6 +98,7 @@
       "type": "media--video-text",
       "name": "Video with Text Section",
       "settings": {
+        "heading": "@content:page-about-us.video_text.heading",
         "video_url": "@content:page-about-us.video_text.video_url",
         "text_content": "@content:page-about-us.video_text.text_content"
       },

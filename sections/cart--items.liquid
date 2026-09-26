@@ -131,7 +131,7 @@
           body: JSON.stringify({ updates, sections, sections_url: window.location.pathname }),
         })
           .then(response => {
-            if (!response.ok) throw new Error('Cart update error');
+            if (!response.ok) throw new Error(`cart/update.js ${response.status}`);
             return response.json();
           })
           .then(cart => this.render(cart, input && input.id))
@@ -177,7 +177,7 @@
 <cart-items class="gradient color-{{ section.settings.color_scheme }} isolate{% if cart == empty %} is-empty{% else %} section-{{ section.id }}-padding{% endif %}">
   <div class="page-width">
     <div class="title-wrapper-with-link">
-      <h1 class="title title--primary">ORDER SUMMARY</h1>
+      <h1 class="title title--primary">{{ 'sections.cart_page.order_summary' | t }}</h1>
       <a href="{{ routes.all_products_collection_url }}" class="underlined-link">
         {{- "general.continue_shopping" | t -}}
       </a>

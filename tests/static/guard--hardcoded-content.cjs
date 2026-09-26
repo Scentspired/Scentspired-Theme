@@ -82,6 +82,8 @@ function count(src, isJs, items) {
         ...[...src.matchAll(/\{%-?\s*javascript\s*-?%\}([\s\S]*?)\{%-?\s*endjavascript\s*-?%\}/g)].map((m) => m[1]),
       ];
   const noSchema = src.replace(/\{%-?\s*schema\s*-?%\}[\s\S]*?\{%-?\s*endschema\s*-?%\}/g, '');
+  // what renders: a comment (a usage note's example URLs) is never sent to a shopper
+  const rendered = noSchema.replace(/\{%-?\s*comment\s*-?%\}[\s\S]*?\{%-?\s*endcomment\s*-?%\}/g, '');
 
   if (!isJs) {
     const markup = noSchema
@@ -105,10 +107,13 @@ function count(src, isJs, items) {
       .split(/<[^>]*>/)
       .flatMap((t) => t.split('\u0000'))
       .map((t) => t.replace(/&[a-z#0-9]+;/gi, ' ').replace(/\s+/g, ' ').trim())
-      // an image's sizes list captured into a variable ("(min-width: 750px) …px, 50vw") is CSS, not words
-      .filter((t) => !/^(?:[\s\d(),:.%]|(?:min|max)-width|px|vw)+$/.test(t))
+      // an image's sizes list captured into a variable ("(min-width: 750px) calc((100vw - …px) / 2)") is CSS, not words
+      .filter((t) => !/^(?:[\s\d(),:.%/*+-]|(?:min|max)-width|px|vw|calc)+$/.test(t))
       .filter((t) => /[A-Za-z]{2,}/.test(t)));
-    c.text += note('attr', [...markup.matchAll(/\b(?:alt|title|placeholder|aria-label)="([^"{]*[A-Za-z]{2,}[^"{]*)"/g)].map((m) => m[0]));
+    c.text += note('attr', [...markup.matchAll(/\b(?:alt|title|placeholder|aria-label)="([^"{]*[A-Za-z]{2,}[^"{]*)"/g)]
+      // alt="' | append: box_image_alt | append: '" is Liquid building the attribute, not its words
+      .filter((m) => !/'\s*\|/.test(m[1]))
+      .map((m) => m[0]));
   }
 
   for (const s of scripts) {
@@ -138,20 +143,20 @@ function count(src, isJs, items) {
   }
 
   c.media += note('media', [
-    ...noSchema.matchAll(
+    ...rendered.matchAll(
       /(https?:)?\/\/[^\s"'`)]+\.(?:jpe?g|png|webp|gif|svg|mp4|webm|avif)(\?[^\s"'`)]*)?|\/cdn\/shop\/files\/[^\s"'`)]+/gi
     ),
   ].map((m) => m[0]));
-  c.links += note('link', [...noSchema
+  c.links += note('link', [...rendered
     // a preconnect / dns-prefetch hint names a host to warm up, not a page to visit
     .replace(/<link[^>]*rel=["'](?:preconnect|dns-prefetch)["'][^>]*>/g, '')
     .matchAll(/href=["'](\/(?:pages|collections|products|blogs|policies)\/[^"'{]+|https?:\/\/[^"'{]+)["']/g)].map((m) => m[1]));
-  c.links += note('link', [...noSchema.matchAll(/(?:location\.href|window\.location)\s*=\s*['"`](\/[a-z][^'"`]*)['"`]/g)].map((m) => m[1]));
-  c.fallback += note('fallback', [...noSchema.matchAll(/\|\s*default:\s*['"]([^'"]*[A-Za-z]{2,}[^'"]*)['"]/g)]
+  c.links += note('link', [...rendered.matchAll(/(?:location\.href|window\.location)\s*=\s*['"`](\/[a-z][^'"`]*)['"`]/g)].map((m) => m[1]));
+  c.fallback += note('fallback', [...rendered.matchAll(/\|\s*default:\s*['"]([^'"]*[A-Za-z]{2,}[^'"]*)['"]/g)]
     .map((m) => m[1])
     // a style's default ('light', 'left', '#ffffff') or an id's ('cta') is a design value, not words
     .filter((v) => !/^[a-z0-9_-]+$|^#[0-9a-f]{3,8}$/i.test(v)));
-  c.ids += note('id', [...noSchema.matchAll(/\b\d{13,14}\b/g)].map((m) => m[0]));
+  c.ids += note('id', [...rendered.matchAll(/\b\d{13,14}\b/g)].map((m) => m[0]));
   return c;
 }
 

@@ -116,7 +116,7 @@
           class="ai-instagram-link-{{ ai_gen_id }}"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Visit our Instagram profile">
+          aria-label="{{ 'sections.instagram_grid.profile_link' | t }}">
       {% endif %}
 
       {% if image %}
@@ -130,7 +130,7 @@
       {% else %}
         <div class="ai-instagram-placeholder-{{ ai_gen_id }}">
           {{ "image" | placeholder_svg_tag }}
-          <div class="ai-instagram-empty-state-{{ ai_gen_id }}">Add image {{ forloop.index }}</div>
+          <div class="ai-instagram-empty-state-{{ ai_gen_id }}">{{ 'sections.instagram_grid.add_image' | t: number: forloop.index }}</div>
         </div>
       {% endif -%}
       {%- if section.settings.instagram_url != blank %}

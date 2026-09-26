@@ -217,6 +217,7 @@
     "header": {
       "announcement": "Announcement",
       "menu": "Menu",
+      "search_label": "SEARCH",
       "cart_count": {
         "one": "{{ count }} item",
         "other": "{{ count }} items"
@@ -271,6 +272,40 @@
       "social_pinterest": "Pinterest",
       "home_link": "{{ brand }} home",
       "powered_by_shopify_html": "Powered by <a href=\"https://www.shopify.com\" class=\"[link_class]\" target=\"_blank\" rel=\"noopener\">Shopify</a>"
+    },
+    "password": {
+      "early_access": "Early Access Code",
+      "enter_code_heading": "Enter Your Early Access Code",
+      "enter_code": "Enter Early Access Code",
+      "shopify_label": "Shopify"
+    },
+    "running_text": {
+      "icon_alt": "icon"
+    },
+    "cart_page": {
+      "order_summary": "ORDER SUMMARY"
+    },
+    "zigzag_blog": {
+      "navigation": "Article navigation"
+    },
+    "instagram_grid": {
+      "profile_link": "Visit our Instagram profile",
+      "add_image": "Add image {{ number }}"
+    },
+    "account_register": {
+      "title": "Create Account"
+    },
+    "image_banner": {
+      "link_label": "Banner link"
+    },
+    "image_split": {
+      "add_image": "Add Image"
+    },
+    "trustpilot": {
+      "link_text": "Trustpilot"
+    },
+    "video_text": {
+      "video_unsupported": "Your browser does not support the video tag."
     },
     "contact_form": {
       "name": "First name",

@@ -65,7 +65,13 @@
     data-banner-link-new-tab="{{ section.settings.open_in_new_tab }}"
     tabindex="0"
     role="link"
-    aria-label="{{ section.settings.banner_link_label | default: section.settings.heading | strip_html | default: 'Banner link' | escape }}"
+    {%- liquid
+      assign banner_label = section.settings.banner_link_label | default: section.settings.heading | strip_html
+      if banner_label == blank
+        assign banner_label = 'sections.image_banner.link_label' | t
+      endif
+    %}
+    aria-label="{{ banner_label | escape }}"
   {%- endif %}>
   {%- if section.settings.image != blank -%}
     <div class="banner__media media{% if section.settings.image == blank and section.settings.image_2 == blank %} placeholder{% endif %}{% if section.settings.image_2 != blank %} banner__media-half{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}">

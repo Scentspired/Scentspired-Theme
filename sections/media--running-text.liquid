@@ -75,15 +75,15 @@
         <span class="marquee-spacer"></span>
         <span>{{ section.settings.text_left }}</span>
         {% if section.settings.icon_image != blank %}
-          <img src="{{ section.settings.icon_image | image_url: width: 60 }}" alt="icon" />
+          <img src="{{ section.settings.icon_image | image_url: width: 60 }}" alt="{{ 'sections.running_text.icon_alt' | t }}" />
         {% endif %}
         <span>{{ section.settings.text_center }}</span>
         {% if section.settings.icon_image != blank %}
-          <img src="{{ section.settings.icon_image | image_url: width: 60 }}" alt="icon" />
+          <img src="{{ section.settings.icon_image | image_url: width: 60 }}" alt="{{ 'sections.running_text.icon_alt' | t }}" />
         {% endif %}
         <span>{{ section.settings.text_right }}</span>
         {% if section.settings.icon_image != blank %}
-          <img src="{{ section.settings.icon_image | image_url: width: 60 }}" alt="icon" />
+          <img src="{{ section.settings.icon_image | image_url: width: 60 }}" alt="{{ 'sections.running_text.icon_alt' | t }}" />
         {% endif %}
       </div>
     {% endfor %}

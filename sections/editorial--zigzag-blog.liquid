@@ -73,7 +73,7 @@
             {% endif %}
             {% if block.settings.link != blank %}
               <a href="{{ block.settings.link }}" class="prf-item__link">
-                {{ block.settings.link_label | default: 'Read Article' }}
+                {{ block.settings.link_label }}
                 <span class="prf-link-line"></span>
               </a>
             {% endif %}
@@ -86,7 +86,7 @@
   </div>
 </section>
 
-<nav class="prf-progress" id="prf-progress-{{ section.id }}" aria-label="Article navigation">
+<nav class="prf-progress" id="prf-progress-{{ section.id }}" aria-label="{{ 'sections.zigzag_blog.navigation' | t }}">
   {% for block in section.blocks %}
     <div class="prf-pdot" data-target="{{ forloop.index }}" title="{{ block.settings.title }}"></div>
   {% endfor %}
