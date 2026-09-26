@@ -355,7 +355,7 @@
 
       {% comment %} Inspired By Filter {% endcomment %}
       <details style="padding-left: 10px; margin-top: 6px; display: none;">
-        <summary>{{ 'sections.collection_grid.filter_inspired_by' | t }}</summary>
+        <summary>{{ 'products.product.inspired_by' | t }}</summary>
         <div style="padding-left: 10px; margin-top: 6px; display: none;">
           {%- render 'catalog--filter-options', list: 'collection-grid.filters.inspired_by', input_class: 'filter-type' %}
         </div>
@@ -398,9 +398,9 @@
     "showFilters": {{ 'sections.collection_grid.show_filters_html' | t | json }},
     "hideFilters": {{ 'sections.collection_grid.hide_filters_html' | t | json }},
     "noRecentSearches": {{ 'sections.collection_grid.no_recent_searches' | t | json }},
-    "noProducts": {{ 'sections.collection_grid.no_products' | t | json }},
-    "addToCart": {{ 'sections.collection_grid.add_to_cart' | t | json }},
-    "soldOut": {{ 'sections.collection_grid.sold_out' | t | json }}
+    "noProducts": {{ 'sections.collection_template.empty' | t | json }},
+    "addToCart": {{ 'products.product.add_to_cart' | t | json }},
+    "soldOut": {{ 'products.product.sold_out' | t | json }}
   }
 </script>
 {% # theme-check-disable ParserBlockingScript %}

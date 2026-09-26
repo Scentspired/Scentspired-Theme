@@ -196,7 +196,7 @@
         <div class="sp-cart-container">
           <div class="sp-cart-header-section">
             <div class="sp-section-number">1</div>
-            <div class="sp-cart-title ui-label">{{ 'sections.cart_drawer.your_cart' | t }}</div>
+            <div class="sp-cart-title ui-label">{{ 'sections.cart.title' | t }}</div>
           </div>
 
           <div class="sp-cart-items-list" id="sp-cart-items-list">
@@ -343,7 +343,7 @@
                     <div class="sp-rec-price">{{ region_currency_symbol }}{{ product.price | money_without_currency }}</div>
                   </a>
                   <button class="sp-add-to-cart-btn" onclick="addDossierRecommended('{{ product.variants.first.id }}', '{{ product.title | escape }}', '{{ product.featured_image | img_url: '120x120' }}', {{ product.price }}, {{ product.compare_at_price | default: product.price }})">
-                    {{ 'sections.cart_drawer.add_to_cart' | t }}
+                    {{ 'products.product.add_to_cart' | t }}
                   </button>
                 </div>
               </div>
@@ -374,7 +374,7 @@
     "cartCount": {{ 'sections.cart_drawer.cart_count' | t | json }},
     "addUnavailable": {{ 'sections.cart_drawer.add_unavailable' | t | json }},
     "addFailed": {{ 'sections.cart_drawer.add_failed' | t | json }},
-    "error": {{ 'sections.cart_drawer.error' | t | json }}
+    "error": {{ 'accessibility.error' | t | json }}
   }
 </script>
 {%- comment -%} Box products (regions/<id>/content/boxes.json): their cart lines are not linked {%- endcomment -%}

@@ -55,11 +55,13 @@
     },
     "slider": {
       "of": "of"
-    }
+    },
+    "go_back": "Go Back",
+    "continue": "Continue"
   },
   "newsletter": {
     "label": "Email",
-    "success": "Thanks for subscribing",
+    "success": "Thanks for subscribing!",
     "button_label": "Subscribe"
   },
   "accessibility": {
@@ -113,7 +115,7 @@
   },
   "products": {
     "product": {
-      "add_to_cart": "Add to cart",
+      "add_to_cart": "Add to Cart",
       "choose_options": "Choose options",
       "choose_product_options": "Choose options for {{ product_name }}",
       "on_sale": "Sale",
@@ -141,11 +143,14 @@
         "sale_price": "Sale price",
         "unit_price": "Unit price"
       },
-      "sold_out": "Sold out",
+      "sold_out": "Sold Out",
       "unavailable": "Unavailable",
       "vendor": "Vendor",
       "value_unavailable": "{{ option_value }} - Unavailable",
-      "view_full_details": "View full details"
+      "view_full_details": "View full details",
+      "adding_to_cart": "Adding...",
+      "added_to_cart": "Added!",
+      "inspired_by": "Inspired By"
     },
     "facets": {
       "filter_and_operator_subtitle": "Match all",
@@ -154,7 +159,6 @@
       "clear_all": "Remove all",
       "from": "From",
       "filter_and_sort": "Filter and sort",
-      "filter_by_label": "Filter:",
       "filter_button": "Filter",
       "filters_selected": {
         "one": "{{ count }} selected",
@@ -217,7 +221,6 @@
     "header": {
       "announcement": "Announcement",
       "menu": "Menu",
-      "search_label": "SEARCH",
       "cart_count": {
         "one": "{{ count }} item",
         "other": "{{ count }} items"
@@ -232,10 +235,7 @@
       "search_scent_families": "Scent Families",
       "search_scent_notes": "Scent Notes",
       "popular_products": "Most Popular Products",
-      "season_collections": "Shop By Season",
-      "add_to_cart": "Add to Cart",
-      "adding_to_cart": "Adding...",
-      "added_to_cart": "ADDED!"
+      "season_collections": "Shop By Season"
     },
     "cart_drawer": {
       "back": "Back",
@@ -247,29 +247,21 @@
       "go_to_summary": "Go to Order Summary",
       "view_account": "View Account",
       "log_in": "Login",
-      "your_cart": "YOUR CART",
       "inspired_by_html": "Inspired by {{ name }}",
       "order_summary": "ORDER SUMMARY",
       "subtotal": "Cart Subtotal",
       "shipping": "Shipping",
       "tax_note": "Tax is calculated at next step",
-      "add_to_cart": "ADD TO CART",
       "checkout": "GO TO CHECKOUT",
       "free": "FREE",
       "quantity_limit": "You can only add up to [quantity] of this item.",
       "minimum_quantity": "Minimum quantity is 1",
       "cart_count": "Cart count: [count]",
       "add_unavailable": "Unable to add this product. Please try again.",
-      "add_failed": "Failed to add product to cart. Please try again.",
-      "error": "ERROR"
+      "add_failed": "Failed to add product to cart. Please try again."
     },
     "footer": {
-      "social_facebook": "Facebook",
-      "social_instagram": "Instagram",
-      "social_tiktok": "Tiktok",
       "social_threads": "Threads",
-      "social_youtube": "YouTube",
-      "social_pinterest": "Pinterest",
       "home_link": "{{ brand }} home",
       "powered_by_shopify_html": "Powered by <a href=\"https://www.shopify.com\" class=\"[link_class]\" target=\"_blank\" rel=\"noopener\">Shopify</a>"
     },
@@ -292,9 +284,7 @@
       "profile_link": "Visit our Instagram profile",
       "add_image": "Add image {{ number }}"
     },
-    "account_register": {
-      "title": "Create Account"
-    },
+    "account_register": {},
     "image_banner": {
       "link_label": "Banner link"
     },
@@ -308,7 +298,6 @@
       "video_unsupported": "Your browser does not support the video tag."
     },
     "contact_form": {
-      "name": "First name",
       "email": "Email",
       "phone": "Phone number",
       "phone_placeholder": "Your phone number (optional)",
@@ -320,7 +309,6 @@
       "placeholder": "Enter your email address",
       "submit": "Submit",
       "submitting": "Submitting…",
-      "thanks": "Thanks for subscribing!",
       "try_again": "Please try again",
       "note": "No spam. Just the good stuff."
     },
@@ -337,7 +325,6 @@
       "add_image_next": "Next, add an image",
       "add_desktop_image": "Next, add a desktop image",
       "add_mobile_image": "Next, add a mobile image",
-      "inspired_by": "Inspired By",
       "empty_collection": "This collection has no products yet. Add products to see them here.",
       "choose_collection": "Select a collection to display products",
       "pulse_points_alt": "Body illustration showing pulse points",
@@ -350,15 +337,9 @@
       "badge_men": "Men",
       "badge_women": "Women",
       "badge_unisex": "Unisex",
-      "sold_out": "Sold Out",
-      "sold_out_upper": "SOLD OUT",
-      "add_to_cart": "Add to Cart",
-      "add_to_cart_upper": "ADD TO CART",
       "select_variant": "Please select a variant",
       "add_failed": "Failed to add to cart",
-      "add_failed_retry": "Failed to add to cart. Please try again.",
-      "adding": "Adding...",
-      "added": "ADDED!"
+      "add_failed_retry": "Failed to add to cart. Please try again."
     },
     "product_list": {
       "view_all": "View All Products"
@@ -367,7 +348,6 @@
       "quantity": "QTY"
     },
     "scent_banner": {
-      "inspired_by": "INSPIRED BY",
       "shop_now": "SHOP NOW",
       "selector_label": "Video product selector",
       "video_unsupported": "Your browser does not support the video tag.",
@@ -382,17 +362,12 @@
       "five_status_complete": "Your Five Favourites are complete!",
       "select_a_product": "Select a product",
       "selections_remaining": "[count] Selections Remaining",
-      "add_to_cart": "Add to Cart",
-      "sidebar_add_to_cart": "Add to cart",
       "standard_price": "Standard Price:",
       "total_saving": "Total Saving",
-      "go_back": "Go back",
       "select_size": "Select Size",
       "select_product": "Select Product",
       "select_brand": "Select Brand",
-      "search": "Search",
       "no_results": "No products found matching your search.",
-      "sold_out": "SOLD OUT",
       "product_not_found": "Product not found",
       "size_not_configured": "Size not configured",
       "select_size_first": "Please select a size first.",
@@ -403,8 +378,6 @@
       "invalid_size": "Please select a valid size ([sizes]).",
       "add_failed_five": "Failed to add Five Favourites to cart",
       "add_failed_five_short": "Failed to add Five Favourites.",
-      "adding": "Adding...",
-      "added": "ADDED!",
       "add_error": "Error adding [box] to cart. Please try again."
     },
     "account_dashboard": {
@@ -417,12 +390,8 @@
       "total": "Total",
       "no_orders": "You have no orders yet.",
       "account_details": "Account Details",
-      "email": "Email:",
-      "first_name": "First Name:",
-      "last_name": "Last Name:",
       "edit_account": "Edit Account Details",
       "addresses": "Addresses",
-      "default_address": "(Default)",
       "no_addresses": "You have no saved addresses.",
       "manage_addresses": "Manage Addresses",
       "log_out": "Log Out"
@@ -451,8 +420,6 @@
     },
     "fragrance_finder": {
       "step_count": "[current] of [total]",
-      "continue": "CONTINUE",
-      "go_back": "GO BACK",
       "loading": "Finding your perfect fragrance...",
       "results_title": "Your Perfect Match,",
       "head_notes": "HEAD NOTES",
@@ -464,7 +431,7 @@
       "reason_fallback": "Based on your preferences for [scent_family] scents and [category] fragrances, [name] is your perfect match."
     },
     "cart": {
-      "title": "Your cart",
+      "title": "Your Cart",
       "remove_title": "Remove {{ title }}",
       "estimated_total": "Estimated total",
       "new_estimated_total": "New estimated total",
@@ -493,7 +460,7 @@
       }
     },
     "collection_template": {
-      "empty": "No products found",
+      "empty": "No products found.",
       "use_fewer_filters_html": "Use fewer filters or <a class=\"{{ class }}\" href=\"{{ link }}\">remove all</a>"
     },
     "slideshow": {
@@ -530,7 +497,6 @@
       "recent_searches": "Recent Searches",
       "no_recent_searches": "No recent searches.",
       "trending_searches": "Trending Search",
-      "no_products": "No products found.",
       "no_image": "No Image",
       "products_per_row": "Products per row:",
       "filters": "FILTERS",
@@ -538,16 +504,12 @@
       "filter_size": "Size",
       "filter_gender": "Gender",
       "filter_scent_families": "Scent Families",
-      "filter_inspired_by": "Inspired By",
-      "filter_ingredients": "Ingredients",
-      "add_to_cart": "Add to Cart",
-      "sold_out": "Sold Out"
+      "filter_ingredients": "Ingredients"
     }
   },
   "localization": {
     "country_label": "Country/region",
     "language_label": "Language",
-    "search": "Search",
     "popular_countries_regions": "Popular countries/regions",
     "country_results_count": "{{ count }} countries/regions found"
   },
@@ -591,10 +553,9 @@
     "log_in": "Log in",
     "login_page": {
       "cancel": "Cancel",
-      "create_account": "Create account",
+      "create_account": "Create Account",
       "email": "Email",
       "forgot_password": "Forgot your password?",
-      "guest_continue": "Continue",
       "guest_title": "Continue as a guest",
       "password": "Password",
       "title": "Login",

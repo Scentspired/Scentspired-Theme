@@ -55,14 +55,14 @@ document.addEventListener('DOMContentLoaded', async function () {
     plusBtn.disabled = true;
     minusBtn.disabled = true;
     addBtn.disabled = true;
-    addBtn.textContent = cardStrings.soldOutUpper;
+    addBtn.textContent = cardStrings.soldOut;
   }
 
   function enableQty() {
     plusBtn.disabled = false;
     minusBtn.disabled = false;
     addBtn.disabled = false;
-    addBtn.textContent = cardStrings.addToCartUpper;
+    addBtn.textContent = cardStrings.addToCart;
   }
 
   // Function to check and update plus button state
@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
         submitBtn.textContent = cardStrings.added;
         setTimeout(() => {
-          submitBtn.textContent = cardStrings.addToCartUpper;
+          submitBtn.textContent = cardStrings.addToCart;
           isSubmitting = false;
         }, 1500);
 
@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       } catch (err) {
         console.error(err);
         submitBtn.disabled = false;
-        submitBtn.textContent = cardStrings.addToCartUpper;
+        submitBtn.textContent = cardStrings.addToCart;
         isSubmitting = false;
       }
     });

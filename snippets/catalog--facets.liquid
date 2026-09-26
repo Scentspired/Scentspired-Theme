@@ -48,7 +48,7 @@
             {% endif %}>
             {%- if filter_type == "horizontal" and results.filters != empty -%}
               <h2 class="facets__heading caption-large text-body" id="verticalTitle" tabindex="-1">
-                {{ "products.facets.filter_by_label" | t }}
+                {{ "products.facets.filter_button" | t }}:
               </h2>
             {%- endif -%}
             {% comment %} Pills are right below the title for filter type vertical {% endcomment %}
@@ -60,7 +60,7 @@
                       class="facets__heading facets__heading--vertical caption-large text-body"
                       id="verticalTitle"
                       tabindex="-1">
-                      {{ "products.facets.filter_by_label" | t }}
+                      {{ "products.facets.filter_button" | t }}:
                     </h2>
                   {%- endunless -%}
                   <facet-remove class="active-facets__button-wrapper">

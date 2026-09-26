@@ -239,7 +239,7 @@
               cartBtn.style.pointerEvents = 'none';
             } else {
               cartBtn.classList.remove('sold-out');
-              cartBtn.innerText = cardStrings.addToCartUpper;
+              cartBtn.innerText = cardStrings.addToCart;
               cartBtn.disabled = false;
               cartBtn.style.pointerEvents = 'auto';
 
@@ -321,7 +321,7 @@
           if (idInput) idInput.value = '';
         } else {
           cartBtn.classList.remove('sold-out');
-          cartBtn.innerText = cardStrings.addToCartUpper;
+          cartBtn.innerText = cardStrings.addToCart;
           cartBtn.disabled = false;
           cartBtn.style.pointerEvents = 'auto';
 
@@ -448,7 +448,7 @@
 
               setTimeout(() => {
                 if (submitBtn) {
-                  submitBtn.innerHTML = cardStrings.addToCartUpper;
+                  submitBtn.innerHTML = cardStrings.addToCart;
                   submitBtn.disabled = false;
                 }
                 formSubmissionInProgress.set(formId, false);
@@ -458,7 +458,7 @@
               console.error('Error adding to cart:', err);
               if (submitBtn) {
                 submitBtn.disabled = false;
-                submitBtn.innerHTML = cardStrings.addToCartUpper;
+                submitBtn.innerHTML = cardStrings.addToCart;
               }
               formSubmissionInProgress.set(formId, false);
               alert(cardStrings.addFailedRetry);

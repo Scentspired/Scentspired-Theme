@@ -40,13 +40,13 @@
             {%- endif -%}
 
             <div class="contact-form-field">
-              <label for="ContactForm-name">{{ 'sections.contact_form.name' | t }}</label>
+              <label for="ContactForm-name">{{ 'customer.register.first_name' | t }}</label>
               <input
                 type="text"
                 id="ContactForm-name"
                 name="contact[name]"
                 value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
-                placeholder="{{ 'sections.contact_form.name' | t }}">
+                placeholder="{{ 'customer.register.first_name' | t }}">
             </div>
 
             <div class="contact-form-field">

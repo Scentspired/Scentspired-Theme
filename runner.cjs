@@ -326,9 +326,17 @@ const CORE_LAYERS = [
     failMsg: "A workflow file does not parse or lacks what Actions needs: CI would not run",
   },
   {
+    // The same button read "Add to Cart", "Add to cart" and "ADD TO CART" by
+    // section, each from its own translation key. One wording, one key.
+    name: "Layer 23: One Wording, One Key (translation consistency)",
+    cmd: "node",
+    args: [path.join(TESTS_DIR, "static", "guard--wording.cjs")],
+    failMsg: "A storefront label exists in two casings or spellings: make it one key",
+  },
+  {
     // The guards above are only worth their exit code if they have been seen
     // to fail. Each fixture plants defects and asserts they are caught.
-    name: "Layer 23: Guard Fixtures (red/green verification)",
+    name: "Layer 24: Guard Fixtures (red/green verification)",
     cmd: "node",
     args: [path.join(TESTS_DIR, "static", "run-guard-fixtures.cjs")],
     failMsg: "A guard no longer catches what it claims to catch",

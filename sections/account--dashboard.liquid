@@ -41,9 +41,9 @@
   <!-- Account Details Section -->
   <div class="section account-details">
     <h2>{{ 'sections.account_dashboard.account_details' | t }}</h2>
-    <p><strong>{{ 'sections.account_dashboard.email' | t }}</strong> {{ customer.email }}</p>
-    <p><strong>{{ 'sections.account_dashboard.first_name' | t }}</strong> {{ customer.first_name }}</p>
-    <p><strong>{{ 'sections.account_dashboard.last_name' | t }}</strong> {{ customer.last_name }}</p>
+    <p><strong>{{ 'customer.register.email' | t }}:</strong> {{ customer.email }}</p>
+    <p><strong>{{ 'customer.register.first_name' | t }}:</strong> {{ customer.first_name }}</p>
+    <p><strong>{{ 'customer.register.last_name' | t }}:</strong> {{ customer.last_name }}</p>
 
     <a href="{{ routes.account_edit_url }}">{{ 'sections.account_dashboard.edit_account' | t }}</a>
   </div>
@@ -56,7 +56,7 @@
         {% for address in customer.addresses %}
           <li>
             {{ address.name }} — {{ address.address1 }}, {{ address.city }}, {{ address.country }}
-            {% if address.default %}{{ 'sections.account_dashboard.default_address' | t }}{% endif %}
+            {% if address.default %}({{ 'customer.addresses.default' | t }}){% endif %}
           </li>
         {% endfor %}
       </ul>

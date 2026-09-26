@@ -1434,7 +1434,7 @@
             <img src="${product.image}" alt="${product.name}" class="custom-product-image">
             <img src="${product.hoverImage}" alt="${product.name}" class="custom-product-image-hover">
             <button class="custom-add-to-cart-btn" data-variant-id="${product.variantId}" onclick="event.stopPropagation(); customSearchOverlay.addToCartFromSearch(this.dataset.variantId, this)">
-              Add to Cart
+              ${headerStrings().addToCart}
             </button>
           </div>
           <div class="custom-product-info">

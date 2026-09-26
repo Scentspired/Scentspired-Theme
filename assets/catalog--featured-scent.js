@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
           cartBtn.disabled = true
           cartBtn.classList.add("disabled")
-          cartBtn.innerHTML = cardStrings.soldOutUpper
+          cartBtn.innerHTML = cardStrings.soldOut
         }
       }
     })
@@ -201,14 +201,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
           setTimeout(() => {
             submitBtn.disabled = false;
-            submitBtn.innerHTML = cardStrings.addToCartUpper;
+            submitBtn.innerHTML = cardStrings.addToCart;
             isSubmitting = false;
           }, 2000);
         })
         .catch((err) => {
           console.error("Add to cart error:", err);
           submitBtn.disabled = false;
-          submitBtn.innerHTML = cardStrings.addToCartUpper;
+          submitBtn.innerHTML = cardStrings.addToCart;
           isSubmitting = false;
         });
     });
