@@ -44,8 +44,9 @@
         <div class="slot-item empty" data-index="{{ forloop.index0 }}" onclick="openSelector({{ forloop.index0 }})">
           <div class="slot-placeholder-icon">+</div>
           <div class="slot-placeholder-text">
-            <span class="primary">Select a product</span>
-            <span class="unlock"> {{ capacity | minus: forloop.index | plus: 1 }} Selections Remaining</span>
+            {%- assign remaining = capacity | minus: forloop.index | plus: 1 %}
+            <span class="primary">{{ 'sections.bundle.select_a_product' | t }}</span>
+            <span class="unlock"> {{ 'sections.bundle.selections_remaining' | t | replace: '[count]', remaining }}</span>
           </div>
         </div>
       {%- endfor -%}
@@ -55,13 +56,13 @@
   <div class="sidebar-footer">
     <div class="cart">
       <button class="add-to-cart-btn" id="MainActionBtn" disabled onclick="handleCheckout()">
-        <span>Add to cart</span>
+        <span>{{ 'sections.bundle.sidebar_add_to_cart' | t }}</span>
         <span id="TotalDisplay">$ 0</span>
       </button>
     </div>
     {%- if show_savings -%}
-      <div class="savings-row">Standard Price: <span class="saving">$0</span></div>
-      <div class="save-row">Total Saving <span>$0</span></div>
+      <div class="savings-row">{{ 'sections.bundle.standard_price' | t }} <span class="saving">$0</span></div>
+      <div class="save-row">{{ 'sections.bundle.total_saving' | t }} <span>$0</span></div>
     {%- endif -%}
   </div>
 </div>

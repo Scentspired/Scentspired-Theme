@@ -1,26 +1,8 @@
 {
-  "sections/account--dashboard.liquid": {
-    "total": 18,
-    "text": 18,
-    "js-text": 0,
-    "media": 0,
-    "links": 0,
-    "fallback": 0,
-    "ids": 0
-  },
   "sections/account--register.liquid": {
     "total": 1,
     "text": 1,
     "js-text": 0,
-    "media": 0,
-    "links": 0,
-    "fallback": 0,
-    "ids": 0
-  },
-  "sections/bundle--box.liquid": {
-    "total": 17,
-    "text": 11,
-    "js-text": 6,
     "media": 0,
     "links": 0,
     "fallback": 0,
@@ -35,15 +17,6 @@
     "fallback": 0,
     "ids": 0
   },
-  "sections/bundle--five-favourites.liquid": {
-    "total": 12,
-    "text": 0,
-    "js-text": 10,
-    "media": 0,
-    "links": 0,
-    "fallback": 2,
-    "ids": 0
-  },
   "sections/cart--items.liquid": {
     "total": 2,
     "text": 1,
@@ -54,9 +27,9 @@
     "ids": 0
   },
   "sections/catalog--best-sellers.liquid": {
-    "total": 11,
+    "total": 10,
     "text": 2,
-    "js-text": 9,
+    "js-text": 8,
     "media": 0,
     "links": 0,
     "fallback": 0,
@@ -416,24 +389,6 @@
   "snippets/blog--listing--category-filter.liquid": {
     "total": 2,
     "text": 2,
-    "js-text": 0,
-    "media": 0,
-    "links": 0,
-    "fallback": 0,
-    "ids": 0
-  },
-  "snippets/bundle--product-grid.liquid": {
-    "total": 5,
-    "text": 5,
-    "js-text": 0,
-    "media": 0,
-    "links": 0,
-    "fallback": 0,
-    "ids": 0
-  },
-  "snippets/bundle--sidebar.liquid": {
-    "total": 5,
-    "text": 5,
     "js-text": 0,
     "media": 0,
     "links": 0,

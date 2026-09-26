@@ -12,9 +12,11 @@
 
 <div class="perfume-bundle-section">
   <div class="builder-layout">
-    {% render 'bundle--sidebar', title: section.settings.heading, default: 'Add 5 items to complete your five favourites', subtitle: section.settings.subheading, capacity: 5, show_savings: true %}
+    {%- comment -%} The sizes, and each size's perfume collection: boxes.json, five_favourites {%- endcomment -%}
+    {%- capture fb_sizes -%}{%- render 'region--content', key: 'boxes.five_favourites.perfume_collection_per_size.__keys' -%}{%- endcapture -%}
+    {% render 'bundle--sidebar', title: section.settings.heading, subtitle: section.settings.subheading, capacity: 5, show_savings: true %}
 
-    {% render "bundle--product-grid", show_size_step: true %}
+    {% render "bundle--product-grid", show_size_step: true, sizes: fb_sizes %}
   </div>
 </div>
 
@@ -73,7 +75,9 @@
   endcapture
 -%}
 
+{% render 'bundle--strings' %}
 <script>
+  var bundleStrings = JSON.parse(document.getElementById('bundleStrings').textContent);
   let activeSize = null;
   let currentStep = 'Step-Size';        // Tracks which step is open
 let hasAddedFirstProduct = false;     // Becomes true after first product is added
@@ -85,36 +89,15 @@ const PRICING = { {{ fb_pricing_js }} };
 // Five Favourites' variant per size, from Shopify
 const DISCOVERY_SET_VARIANT = { {{ fb_variants_js }} };
 
-  // Load all products from the 'shop' collection
+  // Each size's perfumes: its collection in boxes.json (five_favourites, perfume_collection_per_size)
   const PRODUCTS_BY_SIZE = {
-  "50ml": [
-    {% paginate collections['bundle-50ml'].products by 100 %}
-      {% for product in collections['bundle-50ml'].products %}
-        {
-          id: {{ product.id }},
-          title: {{ product.title | json }},
-          vendor: {{ product.vendor | json }},
-          image: {{ product.featured_image | img_url: '300x300' | json }},
-          tags: {{ product.tags | json }},
-variants: [
-  {% for variant in product.variants %}
-    {
-      id: {{ variant.id }},
-      title: {{ variant.title | json }},
-      price: {{ variant.price }},
-      sku: {{ variant.sku | json }},
-      available: {{ variant.available | json }}
-    }{% unless forloop.last %},{% endunless %}
-  {% endfor %}
-]
-        }{% unless forloop.last %},{% endunless %}
-      {% endfor %}
-    {% endpaginate %}
-  ],
-
-  "100ml": [
-    {% paginate collections['bundle-100ml'].products by 100 %}
-      {% for product in collections['bundle-100ml'].products %}
+  {%- assign size_list = fb_sizes | split: ',' -%}
+  {%- for size in size_list %}
+  {%- assign k = 'boxes.five_favourites.perfume_collection_per_size.' | append: size -%}
+  {%- capture size_collection -%}{%- render 'region--content', key: k -%}{%- endcapture %}
+  {{ size | json }}: [
+    {% paginate collections[size_collection].products by 100 %}
+      {% for product in collections[size_collection].products %}
         {
           id: {{ product.id }},
           title: {{ product.title | json }},
@@ -132,11 +115,11 @@ variants: [
     }{% unless forloop.last %},{% endunless %}
   {% endfor %}
 ]
-
         }{% unless forloop.last %},{% endunless %}
       {% endfor %}
     {% endpaginate %}
-  ]
+  ]{% unless forloop.last %},{% endunless %}
+  {%- endfor %}
 };
 
 
@@ -190,10 +173,10 @@ variants: [
 
     if (id === 'Step-Size') {
       if (backArrowBtn) backArrowBtn.style.display = 'none';
-      if (drawerHeadline) drawerHeadline.innerText = 'Select Size';
+      if (drawerHeadline) drawerHeadline.innerText = bundleStrings.selectSize;
     } else if (id === 'Step-Product') {
       if (backArrowBtn) backArrowBtn.style.display = hasAddedFirstProduct ? 'none' : 'flex';
-      if (drawerHeadline) drawerHeadline.innerText = 'Select Product';
+      if (drawerHeadline) drawerHeadline.innerText = bundleStrings.selectProduct;
       renderProducts();
       initSearchListener();
     }
@@ -251,7 +234,8 @@ variants: [
     }
 
     if (displayProducts.length === 0) {
-      grid.innerHTML = '<div class="no-results-message">No products found matching your search.</div>';
+      grid.innerHTML = '<div class="no-results-message"></div>';
+      grid.firstChild.textContent = bundleStrings.noResults;
       return;
     }
 
@@ -260,9 +244,9 @@ variants: [
       const isAvailable = variant && variant.available !== false;
       if (!isAvailable) {
         return `
-          <div class="option-item is-sold-out" style="opacity: 0.5; cursor: not-allowed; filter: grayscale(0.8);" onclick="alert('Sorry, &quot;${p.title}&quot; (${activeSize}) is currently out of stock. Please select another fragrance.')">
+          <div class="option-item is-sold-out" style="opacity: 0.5; cursor: not-allowed; filter: grayscale(0.8);" data-message="${bundleStrings.outOfStockSelect.replace('[product]', () => p.title).replace('[size]', () => activeSize).replace(/&/g, '&amp;').replace(/"/g, '&quot;')}" onclick="alert(this.dataset.message)">
             <div class="item-thumb"><img src="${p.image}" alt=""></div>
-            <span>${p.title} (${p.vendor}) <small style="display:inline-block; background:#d32f2f; color:#fff; font-size:9px; padding:2px 5px; border-radius:3px; font-weight:700; margin-left:4px;">SOLD OUT</small></span>
+            <span>${p.title} (${p.vendor}) <small style="display:inline-block; background:#d32f2f; color:#fff; font-size:9px; padding:2px 5px; border-radius:3px; font-weight:700; margin-left:4px;">${bundleStrings.soldOut}</small></span>
           </div>
         `;
       }
@@ -276,13 +260,13 @@ variants: [
   }
 
   function addProductToBundle(id, size) {
-    if (!PRODUCTS_BY_SIZE[size]) return alert('Size not configured');
+    if (!PRODUCTS_BY_SIZE[size]) return alert(bundleStrings.sizeNotConfigured);
     const product = PRODUCTS_BY_SIZE[size].find(p => p.id === id);
-    if (!product) return alert('Product not found');
+    if (!product) return alert(bundleStrings.productNotFound);
 
     const variant = product.variants.find(v => v.title.toLowerCase().includes(size.toLowerCase())) || product.variants[0];
     if (!variant || variant.available === false) {
-      alert(`Sorry, "${product.title}" (${size}) is currently out of stock. Please choose an in-stock fragrance.`);
+      alert(bundleStrings.outOfStockChoose.replace('[product]', () => product.title).replace('[size]', () => size));
       return;
     }
 
@@ -356,8 +340,8 @@ variants: [
         el.innerHTML = `
           <div class="slot-placeholder-icon">+</div>
           <div class="slot-placeholder-text">
-            <span class="primary">Select a product</span>
-            <span class="unlock"> ${5 - i} Selections Remaining</span>
+            <span class="primary">${bundleStrings.selectAProduct}</span>
+            <span class="unlock"> ${bundleStrings.selectionsRemaining.replace('[count]', () => 5 - i)}</span>
           </div>
         `;
       }
@@ -385,7 +369,7 @@ variants: [
       totalDisplay.style.visibility = 'hidden';
     }
 
-    const statusText = count < 5 ? `Add ${5 - count} more items to complete your Five favourites` : `Your Fifer Favourites are complete!`;
+    const statusText = count < 5 ? bundleStrings.fiveStatusMore.replace('[count]', () => 5 - count) : bundleStrings.fiveStatusComplete;
     const bundleStatusText = document.getElementById('BundleStatusText');
     if (bundleStatusText) bundleStatusText.innerText = statusText;
 
@@ -427,7 +411,7 @@ variants: [
     }
 
     if (!activeSize || bundle.filter(x => x).length !== 5) {
-      alert('Please complete your Five Box.');
+      alert(bundleStrings.completeFiveBox);
       return;
     }
 
@@ -435,7 +419,7 @@ variants: [
 
     window.isProcessingCartAction = true;
     btn.disabled = true;
-    if (priceSpan) priceSpan.innerText = "Adding...";
+    if (priceSpan) priceSpan.innerText = bundleStrings.adding;
 
     const properties = {};
     bundle.forEach((item, index) => {
@@ -447,7 +431,7 @@ variants: [
 
     try {
       if (!variantId) {
-        throw new Error('Please select a valid size (50ml or 100ml).');
+        throw new Error(bundleStrings.invalidSize.replace('[sizes]', () => Object.keys(PRODUCTS_BY_SIZE).join(' or ')));
       }
 
       const response = await fetch('/cart/add.js', {
@@ -465,7 +449,7 @@ variants: [
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.description || errorData.message || 'Failed to add Five Favourites to cart');
+        throw new Error(errorData.description || errorData.message || bundleStrings.addFailedFive);
       }
 
       console.log('Five Favourites added successfully');
@@ -474,7 +458,7 @@ variants: [
       if (typeof updateUI === 'function') updateUI();
 
       btn.disabled = false;
-      if (priceSpan) priceSpan.innerText = "ADDED!";
+      if (priceSpan) priceSpan.innerText = bundleStrings.added;
 
       const cartResponse = await fetch('/cart.js');
       if (cartResponse.ok) {
@@ -491,7 +475,7 @@ variants: [
 
     } catch (err) {
       console.error('Add to cart error:', err);
-      alert(err.message || 'Failed to add Five Favourites.');
+      alert(err.message || bundleStrings.addFailedFiveShort);
       btn.disabled = false;
       const defaultPrice = (activeSize && PRICING[activeSize]) ? `${PRICING[activeSize].total}` : '';
       if (priceSpan) priceSpan.innerText = defaultPrice;
@@ -530,22 +514,3 @@ variants: [
   ]
 }
 {% endschema %}
-{% comment %}
-
-This file has been rewritten to preserve the original behavior.
-
----
-Changes:
-- from: |-
-    {%
-          render 'bundle--sidebar',
-          title: section.settings.heading | default: 'Build Your Own Five Favourites',
-          subtitle: section.settings.subheading | default: 'Add 5 items to complete your five favourites',
-          capacity: 5,
-          show_savings: true
-        %}
-  to: "{% render 'bundle--sidebar', title: section.settings.heading, default: 'Add
-    5 items to complete your five favourites', subtitle: section.settings.subheading,
-    capacity: 5, show_savings: true %}"
-  position: 514..705
-{% endcomment %}

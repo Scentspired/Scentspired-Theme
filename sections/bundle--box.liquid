@@ -115,7 +115,7 @@
       <div class="sidebar-header">
         {%- comment -%} The page's one H1: the banners above it are H2s. {%- endcomment -%}
         <h1>{{ box_heading }}</h1>
-        <p id="BundleStatusText">Add {{ perfumes_per_box }} items to complete your {{ box_name }}</p>
+        <p id="BundleStatusText">{{ 'sections.bundle.status_start' | t | replace: '[count]', perfumes_per_box | replace: '[box]', box_name }}</p>
       </div>
 
       <div class="slots-wrapper">
@@ -141,8 +141,9 @@
             <div class="slot-item empty" data-index="{{ forloop.index0 }}" onclick="openSelector({{ forloop.index0 }})">
               <div class="slot-placeholder-icon">+</div>
               <div class="slot-placeholder-text">
-                <span class="primary">Select a product</span>
-                <span class="unlock"> {{ perfumes_per_box | minus: forloop.index | plus: 1 }} Selections Remaining</span>
+                {%- assign remaining = perfumes_per_box | minus: forloop.index | plus: 1 %}
+                <span class="primary">{{ 'sections.bundle.select_a_product' | t }}</span>
+                <span class="unlock"> {{ 'sections.bundle.selections_remaining' | t | replace: '[count]', remaining }}</span>
               </div>
             </div>
           {% endfor %}
@@ -152,16 +153,16 @@
       <div class="sidebar-footer">
         <div class="cart">
           <button class="add-to-cart-btn" id="MainActionBtn" disabled onclick="handleCheckout()">
-            <span>Add to Cart</span>
+            <span>{{ 'sections.bundle.add_to_cart' | t }}</span>
             <span id="TotalDisplay">{{ 0 | money_without_trailing_zeros | strip_html }}</span>
           </button>
         </div>
         {%- comment -%} No standard price for any size: no saving to show. {%- endcomment -%}
         <div class="savings-row"{% unless has_standard %} style="display: none;"{% endunless %}>
-          Standard Price: <span class="saving">{{ 0 | money_without_trailing_zeros | strip_html }}</span>
+          {{ 'sections.bundle.standard_price' | t }} <span class="saving">{{ 0 | money_without_trailing_zeros | strip_html }}</span>
         </div>
         <div class="save-row"{% unless has_standard %} style="display: none;"{% endunless %}>
-          Total Saving <span>{{ 0 | money_without_trailing_zeros | strip_html }}</span>
+          {{ 'sections.bundle.total_saving' | t }} <span>{{ 0 | money_without_trailing_zeros | strip_html }}</span>
         </div>
       </div>
     </div>
@@ -170,12 +171,12 @@
     <div class="selection-drawer" id="SelectionDrawer">
       <div class="drawer-title">
         <div class="drawer-title-content">
-          <button onclick="goBackToStep()" class="back-arrow-btn" id="BackArrowBtn" title="Go back">
+          <button onclick="goBackToStep()" class="back-arrow-btn" id="BackArrowBtn" title="{{ 'sections.bundle.go_back' | t }}">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="15 18 9 12 15 6"></polyline>
             </svg>
           </button>
-          <span class="drawer-title-text" id="DrawerHeadline">{% if box_sizes > 1 %}Select Size{% else %}Select Product{% endif %}</span>
+          <span class="drawer-title-text" id="DrawerHeadline">{% if box_sizes > 1 %}{{ 'sections.bundle.select_size' | t }}{% else %}{{ 'sections.bundle.select_product' | t }}{% endif %}</span>
         </div>
         <button onclick="closeSelector()" style="background: none; border: none; cursor: pointer; font-size: 25px;">×</button>
       </div>
@@ -196,7 +197,7 @@
       <div id="Step-Product" class="step-container"{% if box_sizes > 1 %} style="display: none;"{% endif %}>
         <div class="search-bar-wrapper">
           <div class="search-input-container">
-            <input type="text" id="ProductSearch" placeholder="Search" />
+            <input type="text" id="ProductSearch" placeholder="{{ 'sections.bundle.search' | t }}" />
             <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="11" cy="11" r="8"></circle>
               <path d="m21 21-4.35-4.35"></path>
@@ -212,7 +213,9 @@
   </div>
 </div>
 
+{% render 'bundle--strings' %}
 <script>
+  var bundleStrings = JSON.parse(document.getElementById('bundleStrings').textContent);
   // The box: how many perfumes it holds, its name, and — per size — the variant of the
   // box product that is added to the cart, the price the store charges for it,
   // and the standard price and saving where one exists (see the top of this file).
@@ -295,11 +298,11 @@
     if (!backArrowBtn) return;
 
     if (id === 'Step-Size') {
-      document.getElementById('DrawerHeadline').innerText = 'Select Size';
+      document.getElementById('DrawerHeadline').innerText = bundleStrings.selectSize;
       backArrowBtn.style.display = 'none';
     }
     if (id === 'Step-Product') {
-      document.getElementById('DrawerHeadline').innerText = 'Select Product';
+      document.getElementById('DrawerHeadline').innerText = bundleStrings.selectProduct;
       // The back arrow goes back to the sizes, so only while there is a size to
       // change: more than one, and no perfume chosen yet (that fixes the size).
       backArrowBtn.style.display = !ONE_SIZE && !hasAddedFirstProduct ? 'flex' : 'none';
@@ -337,7 +340,8 @@
     }
 
     if (shown.length === 0) {
-      grid.innerHTML = '<div class="no-results-message">No products found matching your search.</div>';
+      grid.innerHTML = '<div class="no-results-message"></div>';
+      grid.firstChild.textContent = bundleStrings.noResults;
       return;
     }
 
@@ -367,7 +371,7 @@
 
   function addProductToBundle(id, size) {
     const product = (PRODUCTS_BY_SIZE[size] || []).find((p) => p.id === id);
-    if (!product) return alert('Product not found');
+    if (!product) return alert(bundleStrings.productNotFound);
 
     const variant =
       product.variants.find((v) => v.title.toLowerCase().includes(size.toLowerCase())) || product.variants[0];
@@ -422,8 +426,8 @@
         el.innerHTML = `
           <div class="slot-placeholder-icon">+</div>
           <div class="slot-placeholder-text">
-            <span class="primary">Select a product</span>
-            <span class="unlock"> ${PERFUMES_PER_BOX - i} Selections Remaining</span>
+            <span class="primary">${bundleStrings.selectAProduct}</span>
+            <span class="unlock"> ${bundleStrings.selectionsRemaining.replace('[count]', () => PERFUMES_PER_BOX - i)}</span>
           </div>
         `;
       }
@@ -453,8 +457,8 @@
 
     document.getElementById('BundleStatusText').innerText =
       count < PERFUMES_PER_BOX
-        ? `Add ${PERFUMES_PER_BOX - count} more items to complete your ${BOX_NAME}`
-        : `Your ${BOX_NAME} is complete!`;
+        ? bundleStrings.statusMore.replace('[count]', () => PERFUMES_PER_BOX - count).replace('[box]', () => BOX_NAME)
+        : bundleStrings.statusComplete.replace('[box]', () => BOX_NAME);
 
     document.querySelectorAll('.progress-marker, .progress-label').forEach((el) => el.classList.remove('active'));
     for (let i = 0; i < count; i++) {
@@ -476,18 +480,18 @@
       return;
     }
     if (!activeSize) {
-      alert('Please select a size first.');
+      alert(bundleStrings.selectSizeFirst);
       return;
     }
     const boxVariant = BOX_VARIANTS[activeSize];
     if (!boxVariant) {
-      alert('Variant not found.');
+      alert(bundleStrings.variantNotFound);
       return;
     }
 
     window.isProcessingCartAction = true;
     btn.disabled = true;
-    if (priceSpan) priceSpan.innerText = 'Adding...';
+    if (priceSpan) priceSpan.innerText = bundleStrings.adding;
 
     // One line item — the box — carrying the perfumes chosen as properties.
     const properties = {};
@@ -504,7 +508,7 @@
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({ id: boxVariant.id, quantity: 1, properties }),
       });
-      if (!response.ok) throw new Error('Add to cart failed');
+      if (!response.ok) throw new Error(`cart/add.js ${response.status}`);
 
       bundle = bundle.map(() => null);
       activeSize = ONE_SIZE;
@@ -513,7 +517,7 @@
       openSelector(0);
 
       btn.disabled = false;
-      if (priceSpan) priceSpan.innerText = 'ADDED!';
+      if (priceSpan) priceSpan.innerText = bundleStrings.added;
 
       const cart = await (await fetch('/cart.js')).json();
       if (typeof updateDossierCartUI === 'function') updateDossierCartUI(cart);
@@ -525,7 +529,7 @@
       }, 2000);
     } catch (err) {
       console.error('Add to cart error:', err);
-      alert(`Error adding ${BOX_NAME} to cart. Please try again.`);
+      alert(bundleStrings.addError.replace('[box]', () => BOX_NAME));
       btn.disabled = false;
       if (priceSpan) priceSpan.innerText = originalPrice;
       window.isProcessingCartAction = false;

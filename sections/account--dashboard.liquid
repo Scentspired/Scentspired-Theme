@@ -44,20 +44,20 @@
 {%- endstyle -%}
 
 <div class="customer account">
-  <div class="welcome">Welcome, {{ customer.first_name }}!</div>
+  <div class="welcome">{{ 'sections.account_dashboard.welcome' | t: name: customer.first_name }}</div>
 
   <!-- Orders Section -->
   <div class="section orders">
-    <h2>Your Orders</h2>
+    <h2>{{ 'sections.account_dashboard.orders' | t }}</h2>
     {% if customer.orders_count > 0 %}
       <table>
         <thead>
           <tr>
-            <th>Order #</th>
-            <th>Date</th>
-            <th>Payment</th>
-            <th>Fulfillment</th>
-            <th>Total</th>
+            <th>{{ 'sections.account_dashboard.order_number' | t }}</th>
+            <th>{{ 'sections.account_dashboard.date' | t }}</th>
+            <th>{{ 'sections.account_dashboard.payment' | t }}</th>
+            <th>{{ 'sections.account_dashboard.fulfillment' | t }}</th>
+            <th>{{ 'sections.account_dashboard.total' | t }}</th>
           </tr>
         </thead>
         <tbody>
@@ -75,41 +75,41 @@
         </tbody>
       </table>
     {% else %}
-      <p>You have no orders yet.</p>
+      <p>{{ 'sections.account_dashboard.no_orders' | t }}</p>
     {% endif %}
   </div>
 
   <!-- Account Details Section -->
   <div class="section account-details">
-    <h2>Account Details</h2>
-    <p><strong>Email:</strong> {{ customer.email }}</p>
-    <p><strong>First Name:</strong> {{ customer.first_name }}</p>
-    <p><strong>Last Name:</strong> {{ customer.last_name }}</p>
+    <h2>{{ 'sections.account_dashboard.account_details' | t }}</h2>
+    <p><strong>{{ 'sections.account_dashboard.email' | t }}</strong> {{ customer.email }}</p>
+    <p><strong>{{ 'sections.account_dashboard.first_name' | t }}</strong> {{ customer.first_name }}</p>
+    <p><strong>{{ 'sections.account_dashboard.last_name' | t }}</strong> {{ customer.last_name }}</p>
 
-    <a href="{{ routes.account_edit_url }}">Edit Account Details</a>
+    <a href="{{ routes.account_edit_url }}">{{ 'sections.account_dashboard.edit_account' | t }}</a>
   </div>
 
   <!-- Addresses Section -->
   <div class="section addresses">
-    <h2>Addresses</h2>
+    <h2>{{ 'sections.account_dashboard.addresses' | t }}</h2>
     {% if customer.addresses_count > 0 %}
       <ul>
         {% for address in customer.addresses %}
           <li>
             {{ address.name }} — {{ address.address1 }}, {{ address.city }}, {{ address.country }}
-            {% if address.default %}(Default){% endif %}
+            {% if address.default %}{{ 'sections.account_dashboard.default_address' | t }}{% endif %}
           </li>
         {% endfor %}
       </ul>
     {% else %}
-      <p>You have no saved addresses.</p>
+      <p>{{ 'sections.account_dashboard.no_addresses' | t }}</p>
     {% endif %}
 
-    <a href="{{ routes.account_addresses_url }}">Manage Addresses</a>
+    <a href="{{ routes.account_addresses_url }}">{{ 'sections.account_dashboard.manage_addresses' | t }}</a>
   </div>
 
   <!-- Logout -->
   <div class="section logout">
-    <a href="{{ routes.account_logout_url }}">Log Out</a>
+    <a href="{{ routes.account_logout_url }}">{{ 'sections.account_dashboard.log_out' | t }}</a>
   </div>
 </div>

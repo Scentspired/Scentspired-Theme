@@ -1,0 +1,34 @@
+{%- comment -%}
+  The box builders' interface wording (locale, sections.bundle), for their
+  scripts: sections/bundle--box.liquid and sections/bundle--five-favourites.liquid.
+  Tokens in [brackets] are filled in by the script.
+
+  {% render 'bundle--strings' %}
+{%- endcomment -%}
+<script type="application/json" id="bundleStrings">
+  {
+    "selectSize": {{ 'sections.bundle.select_size' | t | json }},
+    "selectProduct": {{ 'sections.bundle.select_product' | t | json }},
+    "selectAProduct": {{ 'sections.bundle.select_a_product' | t | json }},
+    "selectionsRemaining": {{ 'sections.bundle.selections_remaining' | t | json }},
+    "noResults": {{ 'sections.bundle.no_results' | t | json }},
+    "soldOut": {{ 'sections.bundle.sold_out' | t | json }},
+    "productNotFound": {{ 'sections.bundle.product_not_found' | t | json }},
+    "sizeNotConfigured": {{ 'sections.bundle.size_not_configured' | t | json }},
+    "selectSizeFirst": {{ 'sections.bundle.select_size_first' | t | json }},
+    "variantNotFound": {{ 'sections.bundle.variant_not_found' | t | json }},
+    "outOfStockSelect": {{ 'sections.bundle.out_of_stock_select_html' | t | json }},
+    "outOfStockChoose": {{ 'sections.bundle.out_of_stock_choose_html' | t | json }},
+    "completeFiveBox": {{ 'sections.bundle.complete_five_box' | t | json }},
+    "invalidSize": {{ 'sections.bundle.invalid_size' | t | json }},
+    "addFailedFive": {{ 'sections.bundle.add_failed_five' | t | json }},
+    "addFailedFiveShort": {{ 'sections.bundle.add_failed_five_short' | t | json }},
+    "statusMore": {{ 'sections.bundle.status_more' | t | json }},
+    "statusComplete": {{ 'sections.bundle.status_complete' | t | json }},
+    "fiveStatusMore": {{ 'sections.bundle.five_status_more' | t | json }},
+    "fiveStatusComplete": {{ 'sections.bundle.five_status_complete' | t | json }},
+    "adding": {{ 'sections.bundle.adding' | t | json }},
+    "added": {{ 'sections.bundle.added' | t | json }},
+    "addError": {{ 'sections.bundle.add_error' | t | json }}
+  }
+</script>

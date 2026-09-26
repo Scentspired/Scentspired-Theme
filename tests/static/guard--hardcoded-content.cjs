@@ -112,6 +112,9 @@ function count(src, isJs, items) {
       .replace(/[<>]=/g, ' ');
     for (const m of body.matchAll(/(['"`])((?:(?!\1)[^\\\n]|\\.){2,120})\1/g)) {
       const v = m[2].trim();
+      // an object's key ({ 'Accept': 'application/json' }), not text; a ternary's
+      // branch (? 'FREE' : …) follows a ?, so it still counts
+      if (/[{,]\s*$/.test(body.slice(0, m.index)) && /^\s*:/.test(body.slice(m.index + m[0].length))) continue;
       if (/[.#\[:>]|^\s*$|\$\{|https?:|\/|=|\(|;|^[A-Z_]+$/.test(v)) continue;
       if (/^[A-Z][a-z]+( [A-Za-z']+)+[.!?]?$|^[A-Z ]{3,}$|^[A-Z][a-z']+[.!?]?$/.test(v)) c['js-text'] += note('js-text', [v]);
     }
