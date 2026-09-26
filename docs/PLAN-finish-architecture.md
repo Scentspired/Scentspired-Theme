@@ -55,9 +55,11 @@ all 244 products use `product`): `page.scent-2`, `page.scent-notes` (the live
 /pages/scent-notes uses `page.scent-families`) and `page.launching-soon` (identical to
 `page`, which Shopify falls back to). Then what only they used. **Not** removed:
 `index.context.pk` looked unused (`?country=PK` changes nothing) but a market override
-applies by the market's *handle*, and the USA store's market is called "pk" — the live
+applies by the market's *handle*, and the USA store's market handle is "pk" (a leftover of
+setting the store up while testing; nothing to do with the regions) — the live
 scentspired.com homepage shows the section only that override switches on. The page
-comparison caught it; `template-usage.cjs` now detects overrides that way. Features switched off in
+comparison caught it. *(Phase 6 then removed the override: that homepage difference is
+USA's content, `home.scent_stories.shown`.)* Features switched off in
 the theme's own settings, whose code can never run: predictive search, reveal-on-scroll
 animation, the commented-out `cart-drawer.js`. Kept, with the reason: Shopify's system
 pages (password, gift card, classic customer accounts) and code that runs on a state the
@@ -153,23 +155,105 @@ and exercised in the browser. How it went:
   a finder nav, promo banners, a brands block, a curve image on a Vercel blob,
   `desktop_video` code that read unset settings and printed a stray "c", two
   unused Google fonts.
-- **What remains visible and deliberate.** Two casings of the card's button labels
-  ("Add to Cart", "ADD TO CART") are both kept, as the host sections wrote them.
-  Unifying them is part of phase 6.
+- **What remained visible.** Two casings of the card's button labels ("Add to Cart",
+  "ADD TO CART"): made one in phase 6.
 - **Dev-server lesson.** A new section setting plus its template value can reach the
   store in the wrong order. The store then drops the unknown setting, and the fix is
   a forced re-upload (in memory).
 
-**6. Behaviour and styling out of the markup.** Scripts without Liquid move to
-`assets/<component>.js` as they are; the Liquid values they need arrive as data
-attributes or a JSON config block. Styles without Liquid move to
-`assets/<component>.css`; styles that need a per-block value use CSS custom properties
-set on the element. Stays inline, documented: the font and token setup in
-`layout/theme.liquid` (Shopify font objects) and tiny per-instance style hooks.
+**6. Behaviour and styling out of the markup.** *(done)* Scripts without Liquid moved to
+`assets/<component>.js` as they were, loaded where the inline script ran (synchronous,
+so the order holds; deferred where Shopify's section bundle was deferred); the Liquid
+values they need arrive as `data-` attributes or JSON blocks (`#bestSellersProducts-…`,
+`#bundleBoxData`, `#telemetryConfig`, …), each data set verified identical old literal
+vs new JSON on both stores. Styles without Liquid moved to `assets/<component>.css`
+at the same place (best sellers' `{% stylesheet %}` where Shopify's bundle loaded it);
+styles needing a per-instance value use custom properties on the element (footer,
+copyright, image split, Instagram grid, the 12 article parts). Stay inline, documented:
+the brand's `@font-face` and the typography tokens (fonts found without waiting for a
+stylesheet), and per-instance hooks that need `section.id`.
+- **Proof.** In-page A/B (old text put back where it was, every element's computed style):
+  0 differences on home, collection, product, search, FAQ, about and 404 at 1440 and 390;
+  cross-build captures for converted blocks: 0 differences except the renamed
+  keyframes. Article parts: all 12 kinds on three USA articles, 0 differences.
+- **Inconsistencies made right** (these do change what shows, on purpose):
+  - one wording, one key: "Add to Cart" / "Add to cart" / "ADD TO CART" (seven keys),
+    Sold Out, Adding..., Added!, and 15 more labels in two casings; buttons, headings and
+    short labels Title Case, form labels sentence case, messages as sentences;
+  - the product card looks the same on every page: only `card--product-carousel.css`
+    styles its insides; hosts size their own cards from their own section (the price was
+    17px on home and 18px elsewhere, the brand 10px in the grid, corners 12px wherever the
+    mobile banner's CSS loaded, line height 1.6 in the grid and 1.8 elsewhere);
+  - numbered settings became lists or role names (image banner buttons, video banner title).
+- **Found and fixed on the way.** USA's 15 designed articles showed as plain articles:
+  their entries named handles the store no longer has (renamed live, no redirects); they
+  now name the live handles. CSS browsers ignore (Tailwind source pasted into
+  `core--base.css`, a stray `}` that dropped a whole media block, unitless media widths,
+  a `//` comment that killed the white-header rule) removed, after checking the CSSOM.
+  The cart drawer's markup that Theme Check rejects rewritten to what browsers built.
+  UAE's robots.txt pointed crawlers at the USA sitemap. `pk` (the USA store's market
+  handle, nothing to do with the regions) and its market override removed: the homepage
+  difference is USA's content.
 
-**7. Guards, so it stays done** (each seen failing on a fixture): no regional copy in
-theme code (the ratchet at zero); `domain--component` names; no numbered setting
-families; no inline script or style block without Liquid; nothing unloaded (crawler).
+**7. Guards, so it stays done** *(done)*. The gate had never run: `testing_enabled` was
+false, so CI and the pre-push hook printed "BYPASS" and passed; Shopify Theme Check and
+Stylelint were declared but not installed, and "skipped" as a pass. Now the gate is on,
+CI builds every region and fails if testing is ever switched off, a missing checker
+fails its layer, and Theme Check runs on core and each compiled region (0 errors).
+Gate layers added, each with a fixture that plants the defects and the legitimate forms:
+Theme Check (12, now real), Stylelint (13, real), GitHub Actions workflows (22), one
+wording one key (23), the card looks the same everywhere (24), no numbered settings (25),
+no inline script/style without Liquid (26), nothing unloaded (27), no unread settings
+(28), `domain--component` naming (29), every region the same shape (30). The content
+ratchet (21) stays at zero. The compiler refuses a region `locales/` (translations go in
+`translations/`: a one-key `locales/en.default.json` made the editor report every key
+missing), a region `config/`, market overrides and any region entry but the six allowed.
 
-**8. Final proof and docs.** Full-tree diff against the phase-0 baseline, the HTML
-matrix, the dev-store behaviour checklist, the gate; README/ARCHITECTURE and memory.
+**8. Final proof and docs.** *(done)* Full-tree accounting of all three builds against
+the phase-0 baseline (every folder and file type, recursive): every added, removed and
+changed file is one a phase named. The page matrix is clean on UK and USA, and the
+behaviour checklist passes on both: size switching, filters, sliders, add to cart and
+the cart drawer. The gate passes with every layer real. UK's render baseline is
+re-recorded (20 pages), and `parity:check` finds no page changed. USA's is not yet.
+In 11 attempts the USA dev server answered 401 on 2 to 8 of the 20 pages, and the
+harness refuses to write a partial baseline. So `tests/parity/baseline-usa` is still
+the 2026-09-24 recording. Re-record with `npm run parity:baseline:usa` once that
+server is steady.
+- **The parity harness pinned two 404s.** `page-terms` asked for
+  `/pages/termsncondition`, a handle neither store has, so the baseline recorded the
+  404 page twice. The route is now the region's own sidebar link to its terms page.
+  `account-login` renders the 404 page on UK and USA, because both use new customer
+  accounts (COMPATIBILITY 9).
+- **A link check that asks the store** (`npm run links:check`, `links:check:usa`).
+  It opens every page linked from the home page and requests every link on those.
+  A region linking another store's handle is invisible to any static check. It found:
+  - UK's footer linked `/pages/terms-and-conditions`, USA's handle, which is a 404 on
+    UK. UK's is `-condition`, and UK's own sidebar already used it.
+  - The menu's "Notes / Seasons" linked `/pages/scent-families`, which is a 404 on UK
+    and a redirect on USA. The page is `/pages/scent-notes`, which the same menus
+    already linked twice. Fixed for UK, USA and UAE.
+  - The 15 article links on USA's `/pages/blogs` named the pre-rename handles (404
+    live too). They now name the live handles, from the 41cf620 mapping.
+  - UK now passes: 113 links, all open.
+- **UK's terms page had the white header** while the other info pages had the black
+  one: the header's URL list lacked UK's handle. It is added. The list itself is
+  COMPATIBILITY 13.
+- **Docs.**
+  - README, ARCHITECTURE, the naming and layering rules (CRITICAL) and
+    `regions/README.md` are rewritten for the model as it now is. They had described
+    the two-tier live repos, a 7- or 12-layer gate, region strategy snippets,
+    `regions/<id>/locales/`, and "a region has no templates/".
+  - The regional-sync workflow no longer claims UAE deploys automatically.
+
+**9. Compatibility register.** *(done)* [docs/COMPATIBILITY.md](COMPATIBILITY.md): 24
+things kept so the live stores behave as they do, each with why it stays, the risk and
+the fix. Documented, not fixed; these are the long-term goals. Three need action
+before anything relies on them:
+- the UAE deploy engine ships unbuilt core instead of `dist/uae`;
+- `sync:pull` writes files the build refuses;
+- designed articles are bound by handle, so a renamed article loses its design
+  silently.
+
+**Plan status: DONE (2026-09-26).** Phases 0–9 are complete, each committed and pushed
+to Theme `main`. The live UK and USA repositories are untouched. One
+housekeeping item is open: re-recording the USA render baseline (phase 8).
