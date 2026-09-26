@@ -53,15 +53,6 @@
     "fallback": 0,
     "ids": 0
   },
-  "sections/catalog--aroma-selector.liquid": {
-    "total": 31,
-    "text": 17,
-    "js-text": 14,
-    "media": 0,
-    "links": 0,
-    "fallback": 0,
-    "ids": 0
-  },
   "sections/catalog--best-sellers.liquid": {
     "total": 11,
     "text": 2,

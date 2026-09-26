@@ -115,7 +115,10 @@ function count(src, isJs, items) {
       if (/[.#\[:>]|^\s*$|\$\{|https?:|\/|=|\(|;|^[A-Z_]+$/.test(v)) continue;
       if (/^[A-Z][a-z]+( [A-Za-z']+)+[.!?]?$|^[A-Z ]{3,}$|^[A-Z][a-z']+[.!?]?$/.test(v)) c['js-text'] += note('js-text', [v]);
     }
-    c['js-text'] += note('js-html', [...body.matchAll(/>([^<>${}\n]*[A-Za-z]{2,}[^<>${}\n]*)</g)].filter((m) => m[1].trim()).map((m) => m[1]));
+    c['js-text'] += note('js-html', [...body.matchAll(/>([^<>${}\n]*[A-Za-z]{2,}[^<>${}\n]*)</g)]
+      // "> 0 && index <" is two comparisons, not markup around words
+      .filter((m) => m[1].trim() && !/&&|\|\||[=;()]/.test(m[1]))
+      .map((m) => m[1]));
   }
 
   c.media += note('media', [

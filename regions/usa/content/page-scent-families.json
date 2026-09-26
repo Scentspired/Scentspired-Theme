@@ -22,6 +22,59 @@
       "text": "From the first impression to the lasting trail, our fragrance notes are carefully composed to evoke mood, memory, and character."
     }
   },
+  "aroma_selector": {
+    "heading": "SELECT AROMA",
+    "notes": [
+      {
+        "label": "Saffron",
+        "category": "citrus"
+      },
+      {
+        "label": "Vanilla",
+        "category": "green"
+      },
+      {
+        "label": "Jasmine",
+        "category": "water"
+      },
+      {
+        "label": "Cedarwood",
+        "category": "musk"
+      },
+      {
+        "label": "Amber",
+        "category": "fruit"
+      },
+      {
+        "label": "Musk",
+        "category": "floral"
+      },
+      {
+        "label": "Patchouli",
+        "category": "spice"
+      },
+      {
+        "label": "Tonka Bean",
+        "category": "wood"
+      },
+      {
+        "label": "Rose",
+        "category": "amber"
+      },
+      {
+        "label": "Bergamot",
+        "category": "gourmand"
+      },
+      {
+        "label": "Ambergris",
+        "category": "leather"
+      },
+      {
+        "label": "Orange Blossom",
+        "category": "Orange"
+      }
+    ]
+  },
   "rich_text": {
     "heading": {
       "heading": "Find Your Season's Scent"

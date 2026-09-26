@@ -245,6 +245,13 @@
       "add_failed": "Failed to add product to cart. Please try again.",
       "error": "ERROR"
     },
+    "aroma_selector": {
+      "top": "TOP",
+      "heart": "HEART",
+      "base": "BASE",
+      "mood": "MOOD",
+      "shop": "SHOP [name]"
+    },
     "fragrance_finder": {
       "step_count": "[current] of [total]",
       "continue": "CONTINUE",

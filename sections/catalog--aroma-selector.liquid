@@ -1,82 +1,64 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Select Aroma Interactive Section</title>
-    {{ 'catalog--aroma-selector.css' | asset_url | stylesheet_tag }}
-  </head>
-  <body>
+{%- comment -%}
+  Scent notes to explore: pick a note, see the perfumes built on it. The notes
+  (label, and the category of regions/<id>/data/aroma-selector.json they show)
+  and the heading are the region's content/page-scent-families.json,
+  aroma_selector; a note added there gets its block and dot. Four blocks to a
+  row. Interface wording is the locale's, sections.aroma_selector.
+{%- endcomment -%}
+{%- liquid
+  capture aroma_heading
+    render 'region--content', key: 'page-scent-families.aroma_selector.heading'
+  endcapture
+  capture note_keys
+    render 'region--content', key: 'page-scent-families.aroma_selector.notes.__keys'
+  endcapture
+  assign note_keys = note_keys | strip | split: ','
+  assign note_categories = ''
+-%}
+{{ 'catalog--aroma-selector.css' | asset_url | stylesheet_tag }}
     <section class="select-aroma-section">
       <div class="mobile-header">
-        <h2>SELECT AROMA</h2>
+        <h2>{{ aroma_heading }}</h2>
       </div>
       <div class="select-aroma-container">
         <div class="aroma-categories" id="aromaCategories">
-          <div class="blocks-row row-1">
-            <div class="aroma-block active" data-category="citrus" onclick="selectAroma('citrus', this)">
-              <h3>Saffron</h3>
+          {%- for i in note_keys -%}
+            {%- liquid
+              assign k = 'page-scent-families.aroma_selector.notes.' | append: i | append: '.category'
+              capture note_category
+                render 'region--content', key: k
+              endcapture
+              assign note_category = note_category | strip
+              assign k = 'page-scent-families.aroma_selector.notes.' | append: i | append: '.label'
+              capture note_label
+                render 'region--content', key: k
+              endcapture
+              assign row = forloop.index0 | divided_by: 4 | plus: 1
+              assign column = forloop.index0 | modulo: 4
+            -%}
+            {%- if column == 0 %}
+          <div class="blocks-row row-{{ row }}">
+            {%- endif %}
+            <div class="aroma-block{% if forloop.first %} active{% endif %}" data-category="{{ note_category | escape }}" onclick="selectAroma(this.dataset.category, this)">
+              <h3>{{ note_label }}</h3>
             </div>
-            <div class="aroma-block" data-category="green" onclick="selectAroma('green', this)">
-              <h3>Vanilla</h3>
-            </div>
-            <div class="aroma-block" data-category="water" onclick="selectAroma('water', this)">
-              <h3>Jasmine</h3>
-            </div>
-            <div class="aroma-block" data-category="musk" onclick="selectAroma('musk', this)">
-              <h3>Cedarwood</h3>
-            </div>
+            {%- if column == 3 or forloop.last %}
           </div>
-          <div class="blocks-row row-2">
-            <div class="aroma-block" data-category="fruit" onclick="selectAroma('fruit', this)">
-              <h3>Amber</h3>
-            </div>
-            <div class="aroma-block" data-category="floral" onclick="selectAroma('floral', this)">
-              <h3>Musk</h3>
-            </div>
-            <div class="aroma-block" data-category="spice" onclick="selectAroma('spice', this)">
-              <h3>Patchouli</h3>
-            </div>
-            <div class="aroma-block" data-category="wood" onclick="selectAroma('wood', this)">
-              <h3>Tonka Bean</h3>
-            </div>
-          </div>
-          <div class="blocks-row row-3">
-            <div class="aroma-block" data-category="amber" onclick="selectAroma('amber', this)">
-              <h3>Rose</h3>
-            </div>
-            <div class="aroma-block" data-category="gourmand" onclick="selectAroma('gourmand', this)">
-              <h3>Bergamot</h3>
-            </div>
-            <div class="aroma-block" data-category="leather" onclick="selectAroma('leather', this)">
-              <h3>Ambergris</h3>
-            </div>
-            <div class="aroma-block" data-category="Orange" onclick="selectAroma('Orange', this)">
-              <h3>Orange Blossom</h3>
-            </div>
-          </div>
+            {%- endif %}
+          {%- endfor %}
         </div>
         <div class="aroma-image default-state" id="aromaImage">
-          <h1 class="product-title" id="productTitle">SELECT AROMA</h1>
-          <div class="pagination-numbers" id="paginationNumbers" style="display: none;">
-            Numbers will be dynamically generated here
-          </div>
+          <h1 class="product-title" id="productTitle" data-default-title="{{ aroma_heading | strip | escape }}">{{ aroma_heading }}</h1>
+          <div class="pagination-numbers" id="paginationNumbers" style="display: none;"></div>
           <div class="pagination-dots" id="categoryDots">
-            <div class="pagination-dot active" onclick="selectAroma('citrus')"></div>
-            <div class="pagination-dot" onclick="selectAroma('green')"></div>
-            <div class="pagination-dot" onclick="selectAroma('water')"></div>
-            <div class="pagination-dot" onclick="selectAroma('musk')"></div>
-            <div class="pagination-dot" onclick="selectAroma('fruit')"></div>
-            <div class="pagination-dot" onclick="selectAroma('floral')"></div>
-            <div class="pagination-dot" onclick="selectAroma('spice')"></div>
-            <div class="pagination-dot" onclick="selectAroma('wood')"></div>
-            <div class="pagination-dot" onclick="selectAroma('amber')"></div>
-            <div class="pagination-dot" onclick="selectAroma('gourmand')"></div>
-            <div class="pagination-dot" onclick="selectAroma('leather')"></div>
-            <div class="pagination-dot" onclick="selectAroma('Orange')"></div>
+            {%- for i in note_keys -%}
+              {%- assign k = 'page-scent-families.aroma_selector.notes.' | append: i | append: '.category' -%}
+              {%- capture note_category -%}{%- render 'region--content', key: k -%}{%- endcapture %}
+            <div class="pagination-dot{% if forloop.first %} active{% endif %}" data-category="{{ note_category | strip | escape }}" onclick="selectAroma(this.dataset.category)"></div>
+            {%- endfor %}
           </div>
         </div>
-        <div class="aroma-details" id="aromaDetails">Content will be dynamically loaded here</div>
+        <div class="aroma-details" id="aromaDetails"></div>
       </div>
     </section>
 
@@ -87,8 +69,18 @@
       </div>
     </div>
 
+    <script type="application/json" id="aromaStrings">
+      {
+        "top": {{ 'sections.aroma_selector.top' | t | json }},
+        "heart": {{ 'sections.aroma_selector.heart' | t | json }},
+        "base": {{ 'sections.aroma_selector.base' | t | json }},
+        "mood": {{ 'sections.aroma_selector.mood' | t | json }},
+        "shop": {{ 'sections.aroma_selector.shop' | t | json }}
+      }
+    </script>
     <script>
       const aromaData = {% render 'region--data', name: 'aroma-selector' %};
+      const aromaStrings = JSON.parse(document.getElementById('aromaStrings').textContent);
 
       let activeExpandedContent = null;
       let currentProductIndex = {};
@@ -121,7 +113,7 @@
 
         centerImage.style.backgroundImage = 'none';
         centerImage.classList.add('default-state');
-        productTitle.textContent = 'SELECT AROMA';
+        productTitle.textContent = productTitle.dataset.defaultTitle;
 
         paginationNumbers.style.display = 'none';
         categoryDots.style.display = 'flex';
@@ -289,26 +281,26 @@
               detailsDiv.innerHTML = `
                             <div class="fragrance-notes">
                                 <div class="note-row">
-                                    <span class="note-label">TOP</span>
+                                    <span class="note-label">${aromaStrings.top}</span>
                                     <span class="note-value">${currentProduct.topNote}</span>
                                 </div>
                                 <div class="note-row">
-                                    <span class="note-label">HEART</span>
+                                    <span class="note-label">${aromaStrings.heart}</span>
                                     <span class="note-value">${currentProduct.heartNote}</span>
                                 </div>
                                 <div class="note-row">
-                                    <span class="note-label">BASE</span>
+                                    <span class="note-label">${aromaStrings.base}</span>
                                     <span class="note-value">${currentProduct.baseNote}</span>
                                 </div>
                             </div>
                             <div class="mood-section">
-                                <div class="mood-label">MOOD</div>
+                                <div class="mood-label">${aromaStrings.mood}</div>
                                 <div class="mood-description">
                                     ${currentProduct.moodDescription}
                                 </div>
                             </div>
                             <a href="${currentProduct.productUrl}" class="shop-button">
-                                SHOP ${currentProduct.productName}
+                                ${aromaStrings.shop.replace('[name]', () => currentProduct.productName)}
                             </a>
                         `;
             }
@@ -370,26 +362,26 @@
           detailsContent.innerHTML = `
                     <div class="fragrance-notes">
                         <div class="note-row">
-                            <span class="note-label">TOP</span>
+                            <span class="note-label">${aromaStrings.top}</span>
                             <span class="note-value">${initialProduct.topNote}</span>
                         </div>
                         <div class="note-row">
-                            <span class="note-label">HEART</span>
+                            <span class="note-label">${aromaStrings.heart}</span>
                             <span class="note-value">${initialProduct.heartNote}</span>
                         </div>
                         <div class="note-row">
-                            <span class="note-label">BASE</span>
+                            <span class="note-label">${aromaStrings.base}</span>
                             <span class="note-value">${initialProduct.baseNote}</span>
                         </div>
                     </div>
                     <div class="mood-section">
-                        <div class="mood-label">MOOD</div>
+                        <div class="mood-label">${aromaStrings.mood}</div>
                         <div class="mood-description">
                             ${initialProduct.moodDescription}
                         </div>
                     </div>
                     <a href="${initialProduct.productUrl}" class="shop-button">
-                        SHOP ${initialProduct.productName}
+                        ${aromaStrings.shop.replace('[name]', () => initialProduct.productName)}
                     </a>
                 `;
           modalContent.appendChild(detailsContent);
@@ -446,26 +438,26 @@
             aromaDetails.innerHTML = `
                         <div class="fragrance-notes">
                             <div class="note-row">
-                                <span class="note-label">TOP</span>
+                                <span class="note-label">${aromaStrings.top}</span>
                                 <span class="note-value">${data.topNote}</span>
                             </div>
                             <div class="note-row">
-                                <span class="note-label">HEART</span>
+                                <span class="note-label">${aromaStrings.heart}</span>
                                 <span class="note-value">${data.heartNote}</span>
                             </div>
                             <div class="note-row">
-                                <span class="note-label">BASE</span>
+                                <span class="note-label">${aromaStrings.base}</span>
                                 <span class="note-value">${data.baseNote}</span>
                             </div>
                         </div>
                         <div class="mood-section">
-                            <div class="mood-label">MOOD</div>
+                            <div class="mood-label">${aromaStrings.mood}</div>
                             <div class="mood-description">
                                 ${data.moodDescription}
                             </div>
                         </div>
                         <a href="${data.productUrl}" class="shop-button">
-                            SHOP ${data.productName}
+                            ${aromaStrings.shop.replace('[name]', () => data.productName)}
                         </a>
                     `;
           }
@@ -552,5 +544,3 @@
         });
       }
     </script>
-  </body>
-</html>

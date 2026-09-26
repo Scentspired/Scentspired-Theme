@@ -2380,6 +2380,59 @@
         "text": null
       }
     },
+    "aroma_selector": {
+      "heading": null,
+      "notes": [
+        {
+          "label": null,
+          "category": null
+        },
+        {
+          "label": null,
+          "category": null
+        },
+        {
+          "label": null,
+          "category": null
+        },
+        {
+          "label": null,
+          "category": null
+        },
+        {
+          "label": null,
+          "category": null
+        },
+        {
+          "label": null,
+          "category": null
+        },
+        {
+          "label": null,
+          "category": null
+        },
+        {
+          "label": null,
+          "category": null
+        },
+        {
+          "label": null,
+          "category": null
+        },
+        {
+          "label": null,
+          "category": null
+        },
+        {
+          "label": null,
+          "category": null
+        },
+        {
+          "label": null,
+          "category": null
+        }
+      ]
+    },
     "rich_text": {
       "heading": {
         "heading": null
