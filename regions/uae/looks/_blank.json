@@ -1228,6 +1228,10 @@
   "global": {
     "cart_drawer": {
       "empty_cart": {
+        "heading": null,
+        "message": null,
+        "help": null,
+        "shop_all_button": null,
         "shop_all_collection": null,
         "featured_collections": [
           {
@@ -1247,6 +1251,10 @@
             "name": null
           }
         ]
+      },
+      "recommendations": {
+        "heading": null,
+        "collection": null
       },
       "offer": {
         "label": null,

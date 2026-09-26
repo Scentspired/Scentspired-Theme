@@ -22,6 +22,10 @@
 {% comment %}
   Renders cart drawer with empty state collections and all other sections.
   Usage: {% render 'cart--drawer' %}
+
+  Its copy (the empty cart's words and collections, the recommendations) is the
+  region's content/global.json, cart_drawer; interface wording is the locale's,
+  sections.cart_drawer.
 {% endcomment %}
 
 <!-- Cart Drawer Overlay -->
@@ -37,7 +41,7 @@
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
           <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        Back
+        {{ 'sections.cart_drawer.back' | t }}
       </button>
     </div>
 
@@ -45,23 +49,30 @@
       <!-- Empty Cart State - Full Drawer -->
       <div class="sp-empty-cart-full-container" id="sp-empty-cart-full-container">
         <div class="sp-empty-cart-content">
-          <div class="sp-empty-title ui-label">Oops...</div>
-          <p class="sp-empty-subtitle">You have no items in your bag.</p>
-          <p class="sp-empty-help">Let us help!</p>
+          <div class="sp-empty-title ui-label">{% render 'region--content', key: 'global.cart_drawer.empty_cart.heading' %}</div>
+          <p class="sp-empty-subtitle">{% render 'region--content', key: 'global.cart_drawer.empty_cart.message' %}</p>
+          <p class="sp-empty-help">{% render 'region--content', key: 'global.cart_drawer.empty_cart.help' %}</p>
 
           <!-- Collections Grid -->
           <div class="sp-collections-grid">
             {% comment %} The collections offered in an empty cart: regions/<id>/content/global.json › cart_drawer.empty_cart.featured_collections {% endcomment %}
-            {% capture collection_handles %}{% render 'region--content', key: 'global.cart_drawer.empty_cart.featured_collections.0.handle' %},{% render 'region--content', key: 'global.cart_drawer.empty_cart.featured_collections.1.handle' %},{% render 'region--content', key: 'global.cart_drawer.empty_cart.featured_collections.2.handle' %},{% render 'region--content', key: 'global.cart_drawer.empty_cart.featured_collections.3.handle' %}{% endcapture %}
-            {% capture collection_names %}{% render 'region--content', key: 'global.cart_drawer.empty_cart.featured_collections.0.name' %},{% render 'region--content', key: 'global.cart_drawer.empty_cart.featured_collections.1.name' %},{% render 'region--content', key: 'global.cart_drawer.empty_cart.featured_collections.2.name' %},{% render 'region--content', key: 'global.cart_drawer.empty_cart.featured_collections.3.name' %}{% endcapture %}
-            {% assign collection_handles = collection_handles | split: ',' %}
-            {% assign collection_names = collection_names | split: ',' %}
+            {%- capture featured_keys -%}{%- render 'region--content', key: 'global.cart_drawer.empty_cart.featured_collections.__keys' -%}{%- endcapture -%}
+            {% assign featured_keys = featured_keys | strip | split: ',' %}
 
-            {% for handle in collection_handles %}
-              {% assign collection = collections[handle] %}
-              {% assign collection_name = collection_names[forloop.index0] %}
+            {% for i in featured_keys %}
+              {%- liquid
+                assign k = 'global.cart_drawer.empty_cart.featured_collections.' | append: i | append: '.handle'
+                capture handle
+                  render 'region--content', key: k
+                endcapture
+                assign k = 'global.cart_drawer.empty_cart.featured_collections.' | append: i | append: '.name'
+                capture collection_name
+                  render 'region--content', key: k
+                endcapture
+                assign collection = collections[handle]
+              -%}
 
-              <a href="{{ collection.url | default: '/collections/all' }}" class="sp-collection-card" onclick="closeDossierCart()">
+              <a href="{{ collection.url | default: routes.all_products_collection_url }}" class="sp-collection-card" onclick="closeDossierCart()">
                 <div class="sp-collection-image">
                   {% if collection.image %}
                     <img src="{{ collection.image | img_url: '120x120' }}" alt="{{ collection_name }}" loading="lazy">
@@ -104,11 +115,11 @@
           {%- endcomment %}
           <!-- Shop All Button -->
           <a href="{{ routes.collections_url }}/{% render 'region--content', key: 'global.cart_drawer.empty_cart.shop_all_collection' %}" class="sp-shop-all-btn" onclick="closeDossierCart()">
-            SHOP ALL PERFUMES
+            {% render 'region--content', key: 'global.cart_drawer.empty_cart.shop_all_button' %}
           </a>
 
           <!-- Free Shipping Text -->
-          <p class="sp-free-shipping-text">Free Shipping over {{ region_free_shipping }} </p>
+          <p class="sp-free-shipping-text">{{ 'sections.cart_drawer.free_shipping_over' | t: amount: region_free_shipping }} </p>
         </div>
       </div>
 
@@ -126,7 +137,7 @@
           <div class="sp-bundle-header">
 <img 
   src="{{ settings.logo | image_url: width: 200 }}" 
-  alt="Scentspired" 
+  alt="{{ shop.name | escape }}" 
   class="sp-logo-image"
 />
 
@@ -142,12 +153,12 @@
           <!-- Updated bundle tiers from 3 to 5 tiers with new discount and shipping structure -->
           <div class="sp-bundle-tiers">
             <div class="sp-tier" data-items="1">
-              <div class="sp-tier-items">Below {{ region_free_shipping }}</div>
-              <div class="sp-tier-discount">{{ region_shipping_cost }} Shipping</div>
+              <div class="sp-tier-items">{{ 'sections.cart_drawer.tier_below' | t: amount: region_free_shipping }}</div>
+              <div class="sp-tier-discount">{{ 'sections.cart_drawer.tier_shipping' | t: amount: region_shipping_cost }}</div>
             </div>
             <div class="sp-tier" data-items="2">
               <div class="sp-tier-items">{{ region_free_shipping }}+</div>
-              <div class="sp-tier-discount">FreeShipping</div>
+              <div class="sp-tier-discount">{{ 'sections.cart_drawer.tier_free_shipping' | t }}</div>
             </div>
           </div>
           <!-- Free Shipping Threshold -->
@@ -158,7 +169,7 @@
                 <circle cx="8" cy="8" r="3" fill="#666"/>
               </svg>
             </div>
-            <span><strong>FREE</strong> shipping on orders over {{ region_free_shipping }} | {{ region_shipping_cost }} shipping under {{ region_free_shipping }}</span>
+            <span>{{ 'sections.cart_drawer.shipping_rates_html' | t: threshold: region_free_shipping, cost: region_shipping_cost }}</span>
           </div>
         </div>
       </div>
@@ -167,16 +178,16 @@
       <div class="sp-login-section">
   <div class="sp-login-header">
     <button class="sp-go-to-summary" onclick="scrollToOrderSummary()">
-      <span>Go to Order Summary</span>
+      <span>{{ 'sections.cart_drawer.go_to_summary' | t }}</span>
       <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
         <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </button>
 
     {% if customer %}
-      <a href="/account" class="sp-login-link">View Account</a>
+      <a href="{{ routes.account_url }}" class="sp-login-link">{{ 'sections.cart_drawer.view_account' | t }}</a>
     {% else %}
-      <a href="/account/login" class="sp-login-link">Login</a>
+      <a href="{{ routes.account_login_url }}" class="sp-login-link">{{ 'sections.cart_drawer.log_in' | t }}</a>
     {% endif %}
   </div>
 </div>
@@ -186,21 +197,12 @@
         <div class="sp-cart-container">
           <div class="sp-cart-header-section">
             <div class="sp-section-number">1</div>
-            <div class="sp-cart-title ui-label">YOUR CART</div>
+            <div class="sp-cart-title ui-label">{{ 'sections.cart_drawer.your_cart' | t }}</div>
           </div>
 
           <div class="sp-cart-items-list" id="sp-cart-items-list">
             {% comment %} This content will be dynamically updated by JavaScript {% endcomment %}
             {% comment %} Initial render based on Liquid for first load {% endcomment %}
-            {% assign total_cart_quantity = 0 %}
-            {% for item in cart.items %}
-              {% assign total_cart_quantity = total_cart_quantity | plus: item.quantity %}
-            {% endfor %}
-
-            <!-- SHIPPING LOGIC ONLY: No Discounts -->
-            {% assign bundle_discount_percentage = 0 %}
-            {% assign shipping_cost_cents = 499 %}
-
             {% for item in cart.items %}
               <div class="sp-product-item" data-key="{{ item.key }}" data-variant-id="{{ item.variant.id }}" data-inventory="{{ item.variant.inventory_quantity | default: 999 }}">
                 <div class="sp-product-image-container">
@@ -221,21 +223,17 @@
                     </div>
                   </div>
 
+                  {%- if item.product.description != blank %}
                   <div class="sp-product-description">
-                    {% if item.product.description != blank %}
                       {{ item.product.description | strip_html | truncate: 60 }}
-                    {% else %}
-                      Eau de Parfum, Size: {{ item.variant.option1 | default: '50ml' }} / 1.7oz
-                    {% endif %}
                   </div>
+                  {%- endif %}
 
                   <div class="sp-product-vendor">
                     {% if item.product.metafields.custom.inspired_by != blank %}
-                      Inspired by {{ item.product.metafields.custom.inspired_by }}
-                    {% elsif item.vendor != blank and item.vendor != 'Your Store' %}
-                      {{ item.vendor }}
+                      {{ 'sections.cart_drawer.inspired_by_html' | t: name: item.product.metafields.custom.inspired_by }}
                     {% else %}
-                      Dossier Perfumes
+                      {{ item.vendor }}
                     {% endif %}
                   </div>
 
@@ -273,17 +271,17 @@
         <div class="sp-summary-box">
           <div class="sp-section-header">
             <span class="sp-section-number">2</span>
-            <div class="sp-section-title ui-label">ORDER SUMMARY</div>
+            <div class="sp-section-title ui-label">{{ 'sections.cart_drawer.order_summary' | t }}</div>
           </div>
 
           <div class="sp-summary-details">
             <div class="sp-summary-line">
-              <span class="sp-summary-label"> Cart Subtotal </span>
+              <span class="sp-summary-label"> {{ 'sections.cart_drawer.subtotal' | t }} </span>
               <span class="sp-summary-price" id="summary-initial-price">{{ region_currency_symbol }}0.00</span>
             </div>
 
             <div class="sp-summary-line">
-              <span class="sp-summary-label">Shipping</span>
+              <span class="sp-summary-label">{{ 'sections.cart_drawer.shipping' | t }}</span>
               <span class="sp-summary-price" id="sp-shipping-cost">{{ region_shipping_cost }}</span>
             </div>
 
@@ -293,7 +291,7 @@
             </div>
 
             <div class="sp-tax-note" style="display: none;">
-              <span>Tax is calculated at next step</span>
+              <span>{{ 'sections.cart_drawer.tax_note' | t }}</span>
             </div>
           </div>
         </div>
@@ -312,11 +310,11 @@
 
       <!-- You Might Like to Add Section -->
       <div class="sp-recommendations-section">
-        <div class="sp-recommendations-title ui-label">You might like to add</div>
+        <div class="sp-recommendations-title ui-label">{% render 'region--content', key: 'global.cart_drawer.recommendations.heading' %}</div>
 
         <div class="sp-recommended-products">
-          {% comment %} Get products from most-popular collection {% endcomment %}
-          {% assign recommended_collection = collections['bestsellers'] %}
+          {%- capture recommended_handle -%}{%- render 'region--content', key: 'global.cart_drawer.recommendations.collection' -%}{%- endcapture -%}
+          {% assign recommended_collection = collections[recommended_handle] %}
           {% if recommended_collection.products.size > 0 %}
             {% for product in recommended_collection.products limit: 10 %}
               <div class="sp-recommended-item" data-product-id="{{ product.id }}">
@@ -333,78 +331,19 @@
                 <div class="sp-rec-details">
                   <h4>{{ product.title | upcase }}</h4>
                   <p class="sp-rec-vendor">
-                    {% if product.vendor and product.vendor != 'Your Store' %}
                       {{ product.vendor }}
-                    {% else %}
-                      Dossier Perfumes
-                    {% endif %}
                   </p>
                   {% if product.metafields.custom.inspired_by %}
-                    <p class="sp-rec-inspired">Inspired by {{ product.metafields.custom.inspired_by }}</p>
+                    <p class="sp-rec-inspired">{{ 'sections.cart_drawer.inspired_by_html' | t: name: product.metafields.custom.inspired_by }}</p>
                   {% endif %}
                   <div class="sp-rec-price">{{ region_currency_symbol }}{{ product.price | money_without_currency }}</div>
                 </a>
                   <button class="sp-add-to-cart-btn" onclick="addDossierRecommended('{{ product.variants.first.id }}', '{{ product.title | escape }}', '{{ product.featured_image | img_url: '120x120' }}', {{ product.price }}, {{ product.compare_at_price | default: product.price }})">
-                    ADD TO CART
+                    {{ 'sections.cart_drawer.add_to_cart' | t }}
                   </button>
                 </div>
               </div>
             {% endfor %}
-          {% else %}
-            {% comment %} Fallback products if collection doesn't exist {% endcomment %}
-            <div class="sp-recommended-item">
-              <div class="sp-rec-image">
-                <div class="sp-rec-placeholder">
-                  <div class="sp-bottles-group">
-                    <div class="sp-bottle"></div>
-                    <div class="sp-bottle"></div>
-                    <div class="sp-bottle"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="sp-rec-details">
-                <h4>DISCOVERY SET</h4>
-                <p class="sp-rec-vendor">Dossier Perfumes</p>
-                <div class="sp-rec-price">{{ region_currency_symbol }}99</div>
-                <button class="sp-add-to-cart-btn" onclick="addDossierRecommended('discovery-set')">
-                  ADD TO CART
-                </button>
-              </div>
-            </div>
-
-            <div class="sp-recommended-item">
-              <div class="sp-rec-image">
-                <div class="sp-rec-placeholder">
-                  <div class="sp-single-bottle"></div>
-                </div>
-              </div>
-              <div class="sp-rec-details">
-                <h4>WOODY SAGE</h4>
-                <p class="sp-rec-vendor">Inspired by</p>
-                <p class="sp-rec-inspired">Jo Malone's Wood Sage & Sea Salt</p>
-                <div class="sp-rec-price">{{ region_currency_symbol }}29</div>
-                <button class="sp-add-to-cart-btn" onclick="addDossierRecommended('woody-sage')">
-                  ADD TO CART
-                </button>
-              </div>
-            </div>
-
-            <div class="sp-recommended-item">
-              <div class="sp-rec-image">
-                <div class="sp-rec-placeholder">
-                  <div class="sp-single-bottle citrus"></div>
-                </div>
-              </div>
-              <div class="sp-rec-details">
-                <h4>FLORA LAVENDER</h4>
-                <p class="sp-rec-vendor">Inspired by</p>
-                <p class="sp-rec-inspired">YSL's Libre</p>
-                <div class="sp-rec-price">{{ region_currency_symbol }}29</div>
-                <button class="sp-add-to-cart-btn" onclick="addDossierRecommended('flora-lavender')">
-                  ADD TO CART
-                </button>
-              </div>
-            </div>
           {% endif %}
         </div>
       </div>
@@ -412,7 +351,7 @@
       <!-- Checkout Button -->
       <div class="sp-checkout-section">
         <button class="sp-checkout-btn" onclick="proceedToDossierCheckout()">
-          GO TO CHECKOUT
+          {{ 'sections.cart_drawer.checkout' | t }}
           <span class="sp-checkout-total" id="checkout-total">{{ region_currency_symbol }}0.00</span>
         </button>
 
@@ -423,24 +362,43 @@
   </div>
 </div>
 
+<script type="application/json" id="cartDrawerStrings">
+  {
+    "free": {{ 'sections.cart_drawer.free' | t | json }},
+    "quantityLimit": {{ 'sections.cart_drawer.quantity_limit' | t | json }},
+    "minimumQuantity": {{ 'sections.cart_drawer.minimum_quantity' | t | json }},
+    "cartCount": {{ 'sections.cart_drawer.cart_count' | t | json }},
+    "addUnavailable": {{ 'sections.cart_drawer.add_unavailable' | t | json }},
+    "addFailed": {{ 'sections.cart_drawer.add_failed' | t | json }},
+    "error": {{ 'sections.cart_drawer.error' | t | json }}
+  }
+</script>
+{%- comment -%} Box products (regions/<id>/content/boxes.json): their cart lines are not linked {%- endcomment -%}
+{%- capture box_ids -%}{%- render 'region--content', key: 'boxes.__keys' -%}{%- endcapture -%}
+{%- assign box_ids = box_ids | strip | split: ',' -%}
+{%- capture box_product_handles -%}
+  {%- for box_id in box_ids -%}
+    {%- assign k = 'boxes.' | append: box_id | append: '.product_handle' -%}
+    {%- unless forloop.first %},{% endunless -%}
+    {%- render 'region--content', key: k -%}
+  {%- endfor -%}
+{%- endcapture -%}
 <script>
   // var, not const: several sections declare this and a top-level const is a
   // global lexical binding, so the second one on the page throws and takes the
   // rest of its script with it.
   var currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '{{ cart.currency.symbol }}' || '$';
 // Global variables
-let isUserLoggedIn = false;
-let currentShopMethod = 'guest';
 let isProcessingCartAction = false; // Added flag to prevent duplicate submissions
+const cartDrawerStrings = JSON.parse(document.getElementById('cartDrawerStrings').textContent);
+const cartDrawerBoxHandles = {{ box_product_handles | strip | split: ',' | json }};
 
 // Helper function to generate HTML for a single cart item
 function generateCartItemHtml(item) {
   const originalPricePerItem = item.original_price;
   const totalDiscountedLinePrice = originalPricePerItem * item.quantity;
 
-  const categoryBadge = 'Unisex';
-  const description = `Eau de Parfum, Size: ${item.variant_options[0] || '50ml'} / 1.7oz`;
-  const vendor = item.vendor && item.vendor !== 'Your Store' ? item.vendor : 'Dossier Perfumes';
+  const vendor = item.vendor || '';
 
   return `
     <div class="sp-product-item" data-key="${item.key}" data-variant-id="${item.variant_id}" data-inventory="${item.variant_inventory_quantity || 999}">
@@ -458,10 +416,8 @@ function generateCartItemHtml(item) {
            <div class="sp-product-header">
   <h3 class="sp-product-title">
     ${
-      // Keywords that make the title non-clickable
-      !['SET', 'FAVOURITES', 'SIGNATURE', 'DISCOVERY SET'].some(keyword =>
-        item.title.toUpperCase().includes(keyword)
-      )
+      // A box's line is not linked (its product is not a page to visit)
+      !cartDrawerBoxHandles.includes(item.handle)
         ? `<a href="${item.url}" style="text-decoration: none; color: inherit;">
             ${item.title.toUpperCase()}
           </a>`
@@ -549,7 +505,7 @@ cart.items.forEach(item => {
       const maxQty = item.variant_inventory_quantity;
 
       if (item.variant_inventory_policy === 'deny' && currentQty >= maxQty) {
-        showCartDrawerMessage(`You can only add up to ${maxQty} of this item.`);
+        showCartDrawerMessage(cartDrawerStrings.quantityLimit.replace('[quantity]', () => maxQty));
         return; // stop
       }
 
@@ -612,7 +568,7 @@ cartIconBubbles.forEach(cartIcon => {
       
       const srSpan = document.createElement('span');
       srSpan.className = 'visually-hidden';
-      srSpan.textContent = `Cart count: ${cart.item_count}`;
+      srSpan.textContent = cartDrawerStrings.cartCount.replace('[count]', () => cart.item_count);
       
       cartCountBubble.appendChild(countSpan);
       cartCountBubble.appendChild(srSpan);
@@ -626,7 +582,7 @@ cartIconBubbles.forEach(cartIcon => {
       
       const cartCountSR = cartCountBubble.querySelector('.visually-hidden');
       if (cartCountSR) {
-        cartCountSR.textContent = `Cart count: ${cart.item_count}`;
+        cartCountSR.textContent = cartDrawerStrings.cartCount.replace('[count]', () => cart.item_count);
       }
       
       cartCountBubble.style.display = 'block';
@@ -669,7 +625,7 @@ function enforceInventoryButtons(cart) {
       minusBtn.style.opacity = '0.3';
       minusBtn.style.pointerEvents = 'none';
       minusBtn.style.cursor = 'not-allowed';
-      minusBtn.setAttribute('title', 'Minimum quantity is 1');
+      minusBtn.setAttribute('title', cartDrawerStrings.minimumQuantity);
     } else {
       minusBtn.disabled = false;
       minusBtn.style.opacity = '1';
@@ -684,22 +640,11 @@ function enforceInventoryButtons(cart) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  // Check if customer is logged in
-  {% if customer %}
-    isUserLoggedIn = true;
-  {% else %}
-    isUserLoggedIn = false;
-  {% endif %}
-
   // Initial UI update based on current cart state
   fetch('/cart.js')
     .then(response => response.json())
     .then(cart => {
       updateDossierCartUI(cart);
-      // Set default selection based on login status after initial UI update
-      if (!isUserLoggedIn) {
-        selectShopMethod('guest');
-      }
     })
     .catch(error => console.error('Error fetching initial cart:', error));
 
@@ -723,7 +668,7 @@ function openDossierCart() {
     setTimeout(() => {
       fetch('/cart.js')
         .then(res => {
-          if (!res.ok) throw new Error('Failed to fetch cart');
+          if (!res.ok) throw new Error(`cart.js ${res.status}`);
           return res.json();
         })
         .then(cart => {
@@ -761,13 +706,6 @@ function showCartDrawerMessage(message) {
 }
 
 
-function toggleDossierBenefits() {
-  const benefits = document.querySelector('.sp-benefits');
-  if (benefits) {
-    benefits.classList.toggle('sp-expanded');
-  }
-}
-
 // Function to scroll to order summary section
 function scrollToOrderSummary() {
   const orderSummary = document.getElementById('sp-order-summary');
@@ -777,40 +715,6 @@ function scrollToOrderSummary() {
       block: 'start'
     });
   }
-}
-
-function selectShopMethod(method) {
-  // If user is not logged in and tries to select sp+, redirect to login
-  if (method === 'sp-plus' && !isUserLoggedIn) {
-    alert('Please log in to your account to access Sp+ benefits and get an additional 10% off.');
-    window.location.href = '/account/login';
-    return;
-  }
-
-  currentShopMethod = method;
-
-  // Update UI
-  const options = document.querySelectorAll('.sp-shop-option');
-  options.forEach(option => {
-    option.classList.remove('sp-option-selected');
-    const radio = option.querySelector('input[type="radio"]');
-    if (radio) radio.checked = false;
-  });
-
-  const selectedOption = document.querySelector(`[data-method="${method}"]`);
-  if (selectedOption) {
-    selectedOption.classList.add('sp-option-selected');
-    const radio = selectedOption.querySelector('input[type="radio"]');
-    if (radio) radio.checked = true;
-  }
-
-  // Update pricing immediately with single fetch
-  fetch('/cart.js')
-    .then(res => res.json())
-    .then(cart => {
-      updateAllDossierDynamicElements(cart);
-    })
-    .catch(err => console.error('Error updating pricing:', err));
 }
 
 // OPTIMIZED: Single function to update all dynamic elements with one fetch
@@ -880,7 +784,7 @@ function updateOrderSummary(subtotal, shipping) {
   const shippingCost = document.getElementById('sp-shipping-cost');
   if (shippingCost) {
     shippingCost.textContent = shipping === 0
-      ? 'FREE'
+      ? cartDrawerStrings.free
       : `${currSym}${(shipping / 100).toFixed(2)}`;
   }
 
@@ -1005,7 +909,7 @@ function addDossierRecommended(variantId, productTitle, productImage, productPri
   const numericVariantId = parseInt(variantId, 10);
   if (isNaN(numericVariantId)) {
     console.error('Invalid variant ID:', variantId);
-    alert('Unable to add this product. Please try again.');
+    alert(cartDrawerStrings.addUnavailable);
     return;
   }
 
@@ -1046,7 +950,7 @@ function addDossierRecommended(variantId, productTitle, productImage, productPri
     const button = document.querySelector(`button[onclick*="${variantId}"]`);
     if (button) {
       const originalText = button.textContent;
-      button.textContent = 'ERROR';
+      button.textContent = cartDrawerStrings.error;
       button.style.background = '#f44336';
       button.style.color = 'white';
       button.style.borderColor = '#f44336';
@@ -1067,7 +971,7 @@ function addDossierRecommended(variantId, productTitle, productImage, productPri
 
 
 function proceedToDossierCheckout() {
-  window.location.href = '/checkout';
+  window.location.href = `${window.Shopify.routes.root}checkout`;
 }
 
 function initializeDossierCartTriggers() {
@@ -1143,13 +1047,13 @@ function initializeDossierCartTriggers() {
           })
         })
         .then(response => {
-          if (!response.ok) throw new Error('Add to cart failed');
+          if (!response.ok) throw new Error(`cart/add.js ${response.status}`);
           return response.json();
         })
         .then(data => {
           fetch('/cart.js')
             .then(res => {
-              if (!res.ok) throw new Error('Cart refresh failed');
+              if (!res.ok) throw new Error(`cart.js ${res.status}`);
               return res.json();
             })
             .then(cart => {
@@ -1160,7 +1064,7 @@ function initializeDossierCartTriggers() {
         })
         .catch(error => {
           console.error('Error adding to cart:', error);
-          alert('Failed to add product to cart. Please try again.');
+          alert(cartDrawerStrings.addFailed);
         })
         .finally(() => {
           isProcessingCartAction = false;

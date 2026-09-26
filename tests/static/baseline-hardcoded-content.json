@@ -467,15 +467,6 @@
     "fallback": 0,
     "ids": 0
   },
-  "snippets/cart--drawer.liquid": {
-    "total": 52,
-    "text": 41,
-    "js-text": 7,
-    "media": 0,
-    "links": 2,
-    "fallback": 2,
-    "ids": 0
-  },
   "snippets/catalog--facets.liquid": {
     "total": 6,
     "text": 6,

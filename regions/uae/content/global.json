@@ -1,6 +1,10 @@
 {
   "cart_drawer": {
     "empty_cart": {
+      "heading": "Oops...",
+      "message": "You have no items in your bag.",
+      "help": "Let us help!",
+      "shop_all_button": "SHOP ALL PERFUMES",
       "shop_all_collection": "shop",
       "featured_collections": [
         {
@@ -20,6 +24,10 @@
           "name": "Unisex Inspired Impression"
         }
       ]
+    },
+    "recommendations": {
+      "heading": "You might like to add",
+      "collection": "bestsellers"
     },
     "offer": {
       "label": "Discount: 10% OFF",
