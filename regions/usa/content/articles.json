@@ -27,7 +27,7 @@
     "The look of every part is set once in the theme (snippets/article--part-<kind>.liquid), the same for every article."
   ],
   "the_best_cologne_for_men_chosen_for_you": {
-    "article_handle": "the-best-cologne-for-men-chosen-for-you-a-gift-guide-for-when-what-do-you-even-want-gets-you-nowhere",
+    "article_handle": "best-cologne-for-men-a-gift-guide-for-hard-to-shop-guys",
     "parts": [
       {
         "part": "hero_banner",
@@ -91,7 +91,7 @@
     ]
   },
   "fragrance_layering_explained_how_to_turn": {
-    "article_handle": "fragrance-layering-explained-how-to-turn-two-colognes-into-a-signature-scent-no-one-else-is-wearing",
+    "article_handle": "fragrance-layering-guide-how-to-create-a-signature-scent",
     "parts": [
       {
         "part": "hero_banner",
@@ -154,7 +154,7 @@
     ]
   },
   "the_scent_of_an_american_summer": {
-    "article_handle": "the-scent-of-an-american-summer-sunscreen-you-swear-you-applied-a-screen-door-slamming-and-the-fragrance-that-ties-the-whole-season-together",
+    "article_handle": "best-summer-fragrances-the-scent-of-an-american-summer",
     "parts": [
       {
         "part": "hero_banner",
@@ -217,7 +217,7 @@
     ]
   },
   "the_fragrance_gift_guide_for_people_who": {
-    "article_handle": "the-fragrance-gift-guide-for-people-who-refuse-to-give-boring-presents-luxury-inspired-perfumes-sorted-by-personality-not-price",
+    "article_handle": "fragrance-gift-guide-perfume-gifts-picked-by-personality",
     "parts": [
       {
         "part": "hero_banner",
@@ -278,7 +278,7 @@
     ]
   },
   "what_you_are_actually_paying_for_in_a": {
-    "article_handle": "what-you-are-actually-paying-for-in-a-300-luxury-perfume-brand-bottle-the-real-cost-breakdown-nobody-talks-about",
+    "article_handle": "why-is-luxury-perfume-so-expensive-the-real-cost-breakdown",
     "parts": [
       {
         "part": "hero_banner",
@@ -360,7 +360,7 @@
     ]
   },
   "americas_love_of_gourmand_fragrance_why": {
-    "article_handle": "americas-love-of-gourmand-fragrance-why-the-best-perfume-for-women-now-smells-like-something-absolutely-delicious",
+    "article_handle": "gourmand-perfume-for-women-why-sweet-scents-are-trending",
     "parts": [
       {
         "part": "hero_banner",
@@ -419,7 +419,7 @@
     ]
   },
   "top_notes_heart_notes_base_notes_the": {
-    "article_handle": "top-notes-heart-notes-base-notes-the-only-fragrance-guide-you-need-before-your-next-perfume-haul",
+    "article_handle": "top-heart-base-notes-explained-a-fragrance-notes-guide",
     "parts": [
       {
         "part": "hero_banner",
@@ -509,7 +509,7 @@
     ]
   },
   "six_perfume_myths_it_is_time_to_leave": {
-    "article_handle": "six-perfume-myths-it-is-time-to-leave-behind-because-you-deserve-fragrance-advice-that-actually-holds-up",
+    "article_handle": "6-perfume-myths-debunked-fragrance-advice-that-holds-up",
     "parts": [
       {
         "part": "hero_banner",
@@ -571,7 +571,7 @@
     ]
   },
   "edt_edp_or_parfum_the_label_that": {
-    "article_handle": "edt-edp-or-parfum-the-label-that-determines-whether-your-fragrance-lasts-all-day-or-ghosts-you-by-noon",
+    "article_handle": "edt-vs-edp-vs-parfum-which-fragrance-lasts-longest",
     "parts": [
       {
         "part": "hero_banner",
@@ -668,7 +668,7 @@
     ]
   },
   "first_date_fragrance_the_best_cologne": {
-    "article_handle": "first-date-fragrance-the-best-cologne-for-men-and-luxury-perfumes-for-women-that-make-the-night-completely-unforgettable",
+    "article_handle": "best-first-date-fragrance-colognes-perfumes-that-impress",
     "parts": [
       {
         "part": "hero_banner",
@@ -736,7 +736,7 @@
     ]
   },
   "the_coachella_fragrance_survival_kit_the": {
-    "article_handle": "the-coachella-fragrance-survival-kit-the-best-perfume-for-women-who-refuse-to-let-the-heat-be-an-excuse",
+    "article_handle": "best-coachella-perfumes-for-women-that-survive-the-heat",
     "parts": [
       {
         "part": "hero_banner",
@@ -812,7 +812,7 @@
     ]
   },
   "how_to_make_your_fragrance_last_all_day": {
-    "article_handle": "how-to-make-your-fragrance-last-all-day-because-great-scent-should-not-quit-before-you-do",
+    "article_handle": "how-to-make-perfume-last-longer-tips-for-all-day-scent",
     "parts": [
       {
         "part": "hero_banner",
@@ -896,7 +896,7 @@
     ]
   },
   "we_put_our_luxury_inspired_perfumes_up": {
-    "article_handle": "we-put-our-luxury-inspired-perfumes-up-against-the-originals-an-honest-breakdown-for-first-time-buyers-who-want-the-truth",
+    "article_handle": "inspired-perfumes-vs-originals-an-honest-comparison",
     "parts": [
       {
         "part": "hero_banner",
@@ -973,7 +973,7 @@
     ]
   },
   "the_ultimate_guide_to_buying_luxury": {
-    "article_handle": "the-ultimate-guide-to-buying-luxury-perfumes-on-a-budget-because-smelling-iconic-really-should-not-require-a-payment-plan",
+    "article_handle": "how-to-buy-luxury-perfume-on-a-budget-the-ultimate-guide",
     "parts": [
       {
         "part": "hero_banner",
@@ -1033,7 +1033,7 @@
     ]
   },
   "meet_scentspired_because_incredible": {
-    "article_handle": "meet-scentspired-because-incredible-fragrance-should-be-something-everyone-gets-to-wear-every-day",
+    "article_handle": "meet-scentspired-luxury-inspired-perfume-for-every-day",
     "parts": [
       {
         "part": "hero_banner",
