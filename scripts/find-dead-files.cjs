@@ -15,10 +15,13 @@
  *
  *   node scripts/find-dead-files.cjs            report
  *   node scripts/find-dead-files.cjs --json     machine-readable
+ *   node scripts/find-dead-files.cjs --check    the gate: exits 1 on any unreached file or broken request
+ *   --root=<theme>                              another theme (the fixture's)
  */
 const fs = require('fs');
 const path = require('path');
-const ROOT = path.resolve(__dirname, '..');
+const rootArg = process.argv.find((a) => a.startsWith('--root='));
+const ROOT = rootArg ? path.resolve(rootArg.slice(7)) : path.resolve(__dirname, '..');
 
 const read = (rel) => fs.readFileSync(path.join(ROOT, rel), 'utf8');
 const exists = (rel) => fs.existsSync(path.join(ROOT, rel));
@@ -211,3 +214,5 @@ if (process.argv.includes('--json')) {
     }
   }
 }
+
+if (process.argv.includes('--check') && (unreached.length || brokenRequests.length)) process.exit(1);

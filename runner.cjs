@@ -342,9 +342,32 @@ const CORE_LAYERS = [
     failMsg: "A host restyles the product card's insides, or a bare card rule reaches other hosts' cards",
   },
   {
+    // The image banner took exactly two buttons (button_label_1 / _2): a list
+    // is blocks, filled from a content list, so it grows with the content.
+    name: "Layer 25: No Numbered Setting Families",
+    cmd: "node",
+    args: [path.join(TESTS_DIR, "static", "guard--numbered-settings.cjs")],
+    failMsg: "A schema numbers its settings (x_1, x_2): make the list blocks, or name each by its role",
+  },
+  {
+    // Code with no Liquid is an asset: cached, linted, not shipped in every page.
+    name: "Layer 26: No Inline Script or Style Without Liquid",
+    cmd: "node",
+    args: [path.join(TESTS_DIR, "static", "guard--inline-code.cjs")],
+    failMsg: "An inline script or style block has no Liquid: move it to assets/, linked where it was",
+  },
+  {
+    // Nothing unloaded: every section, block, snippet and asset is reached from
+    // what Shopify renders (templates, section groups, layouts, region content).
+    name: "Layer 27: Nothing Unloaded (dead files)",
+    cmd: "node",
+    args: [path.join(GUARDIAN_ROOT, "scripts", "find-dead-files.cjs"), "--check"],
+    failMsg: "A theme file nothing renders, or a section asks for something that does not exist",
+  },
+  {
     // The guards above are only worth their exit code if they have been seen
     // to fail. Each fixture plants defects and asserts they are caught.
-    name: "Layer 25: Guard Fixtures (red/green verification)",
+    name: "Layer 28: Guard Fixtures (red/green verification)",
     cmd: "node",
     args: [path.join(TESTS_DIR, "static", "run-guard-fixtures.cjs")],
     failMsg: "A guard no longer catches what it claims to catch",
