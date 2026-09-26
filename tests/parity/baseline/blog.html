@@ -43,16 +43,14 @@
         font-display: swap;
       }
     </style>
-<meta charset="utf-8">
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="theme-color" content="">
     <link rel="canonical" href="https://scentspired.co.uk/blogs/news">
 <link rel="alternate" hreflang="en-gb" href="https://scentspired.co.uk/blogs/news">
     <link rel="alternate" hreflang="en-us" href="https://scentspired.com/blogs/news">
-    <link rel="alternate" hreflang="x-default" href="https://scentspired.com/blogs/news">
-<link rel="icon" type="image/png" href="/cdn/shop/files/favicon_3.png?crop=center&height=32&v=1767109479&width=32"><link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin><title>News
- &ndash; Scentspired UK</title>
+    <link rel="alternate" hreflang="x-default" href="https://scentspired.com/blogs/news"><link rel="icon" type="image/png" href="/cdn/shop/files/favicon_3.png?crop=center&height=32&v=1767109479&width=32"><link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin><title>News &ndash; Scentspired UK</title>
     <script>
       window.__STORE_CONFIG = {
         region: "UK",
@@ -70,95 +68,65 @@
 <meta property="og:description" content="Discover Scentspired Luxury – Inspired perfumes for men, women &amp; unisex, made with high-quality, long-lasting Swiss oils for a refined, enduring impression."><meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="News">
 <meta name="twitter:description" content="Discover Scentspired Luxury – Inspired perfumes for men, women &amp; unisex, made with high-quality, long-lasting Swiss oils for a refined, enduring impression.">
-    <script src="/cdn/shop/t/X/assets/constants.js?v=X" defer="defer"></script>
-    <script src="/cdn/shop/t/X/assets/pubsub.js?v=X" defer="defer"></script>
-    <script src="/cdn/shop/t/X/assets/global.js?v=X" defer="defer"></script>
-    <script src="/cdn/shop/t/X/assets/details-disclosure.js?v=X" defer="defer"></script>
-    <script src="/cdn/shop/t/X/assets/details-modal.js?v=X" defer="defer"></script>
-    <script src="/cdn/shop/t/X/assets/search-form.js?v=X" defer="defer"></script><!-- iOS WebKit Native Bridge Shield (Prevents window.webkit.messageHandlers runtime exceptions) -->
-<script>
-  (function () {
-    try {
-      if (typeof window !== 'undefined') {
-        if (!window.webkit) {
-          window.webkit = { messageHandlers: {} };
-        } else if (!window.webkit.messageHandlers) {
-          window.webkit.messageHandlers = {};
-        }
-      }
-    } catch (_) {}
-  })();
-</script>
+    <script src="/cdn/shop/t/X/assets/core--constants.js?v=X" defer="defer"></script>
+    <script src="/cdn/shop/t/X/assets/core--pubsub.js?v=X" defer="defer"></script>
+    <script src="/cdn/shop/t/X/assets/core--global.js?v=X" defer="defer"></script>
+    <script src="/cdn/shop/t/X/assets/ui--details-disclosure.js?v=X" defer="defer"></script>
+    <script src="/cdn/shop/t/X/assets/ui--details-modal.js?v=X" defer="defer"></script>
+    <script src="/cdn/shop/t/X/assets/search--form.js?v=X" defer="defer"></script>
+    <script src="/cdn/shop/t/X/assets/card--product.js?v=X" defer="defer"></script>
+    <!-- iOS WebKit Native Bridge Shield (Prevents window.webkit.messageHandlers runtime exceptions) -->
+<script src="/cdn/shop/t/X/assets/core--webkit-shield.js?v=X"></script>
 <!-- Sentry.io Enterprise Observability Loader -->
-<script src="/cdn/shop/t/X/assets/sentry-telemetry-loader.min.js?v=X" defer="defer"></script>
-<script>
-  window.__SCENTSPIRED_TELEMETRY__ = {
-    template: "blog",
-    customerId: null,
-    customerEmail: null,
-    cartItemCount: 0,
-    cartTotalPrice: 0,
-    currency: "GBP",
-    themeId: THEME_ID,
-    storeUrl: "scentspireduk.myshopify.com"
-  };
-  // Initialize Sentry SDK on load
-  if (window.Sentry && window.Sentry.onLoad) {
-    window.Sentry.onLoad(function() {
-      window.Sentry.init({
-        dsn: "https://314455254b3e53ad0250625ccba3fd29@o4511982699806720.ingest.us.sentry.io/4511982711275520",
-        tracesSampleRate: 1.0,
-        ignoreErrors: [
-          'Failed to fetch dynamically imported module',
-          'Importing a module script failed',
-          'asset.fwcdn3.com',
-          'ResizeObserver loop limit exceeded',
-          'ResizeObserver loop completed with undelivered notifications',
-          'Non-Error promise rejection captured',
-          'Script error.',
-          'NetworkError: Load failed',
-          'Load failed',
-          'network error',
-          'Failed to fetch'
-        ],
-        denyUrls: [
-          /asset\.fwcdn3\.com/i,
-          /connect\.facebook\.net/i,
-          /clarity\.ms/i,
-          /google-analytics\.com/i,
-          /doubleclick\.net/i,
-          /azurefd\.net/i,
-          /linktr\.ee/i,
-          /googletagmanager\.com/i
-        ],
-        beforeSend(event, hint) {
-          const error = hint && hint.originalException;
-          const msg = error && (error.message || String(error)) || '';
-          if (
-            /fwcdn3|azurefd|clarity|facebook|doubleclick|linktr\.ee|Script error/i.test(msg) ||
-            (event.message && /Script error|Load failed/i.test(event.message))
-          ) {
-            return null;
-          }
-          return event;
-        }
-      });
-      window.Sentry.setContext('Shopify', {
-        template: "blog",
-        cartItemCount: 0,
-        currency: "GBP"
-      });
-    });
+<script src="/cdn/shop/t/X/assets/core--telemetry-sentry.min.js?v=X" defer="defer"></script>
+<script type="application/json" id="telemetryConfig">
+  {
+    "template": "blog",
+    "customerId": null,
+    "customerEmail": null,
+    "cartItemCount": 0,
+    "cartTotalPrice": 0,
+    "currency": "GBP",
+    "themeId": THEME_ID,
+    "storeUrl": "scentspireduk.myshopify.com"
   }
-  // ── GitHub Issues Auto-Filer (Secure Private Repo Ingestion) ────────────
-  window.__SCENTSPIRED_GITHUB_CONFIG__ = {
-    endpoint: 'https://scentspired-telemetry.ahmadhassan-bted.workers.dev'
-  };
 </script>
-<script src="/cdn/shop/t/X/assets/scentspired-telemetry.js?v=X" defer></script>
+<script src="/cdn/shop/t/X/assets/core--telemetry-config.js?v=X"></script>
+<script src="/cdn/shop/t/X/assets/core--telemetry.js?v=X" defer></script>
+<script>
+      /* The theme's one sale rule in the browser, as snippets/sale--badge.liquid is in
+         Liquid: a product is on sale when Shopify's compare-at price is above its price.
+         The wording is content (global.json sale_badge), which a look may change. */
+      window.ScentspiredSale = {
+        badgeText: "Sale",
+        showsWasPrice: function (price, compareAtPrice) {
+          return Number(compareAtPrice) > Number(price);
+        },
+        badge: function (price, compareAtPrice) {
+          price = Number(price);
+          compareAtPrice = Number(compareAtPrice);
+          if (compareAtPrice > price) return this.badgeText.replace('[percent]', Math.floor(((compareAtPrice - price) * 100) / compareAtPrice));
+          return '';
+        },
+      };
+    </script>
+    <script type="application/json" id="cardStrings">
+  {
+    "badgeMen": "Men",
+    "badgeWomen": "Women",
+    "badgeUnisex": "Unisex",
+    "soldOut": "Sold Out",
+    "addToCart": "Add to Cart",
+    "selectVariant": "Please select a variant",
+    "addFailed": "Failed to add to cart",
+    "addFailedRetry": "Failed to add to cart. Please try again.",
+    "adding": "Adding...",
+    "added": "Added!"
+  }
+</script>
     <script>window.performance && window.performance.mark && window.performance.mark('shopify.content_for_header.start');</script><meta name="google-site-verification" content="V4J1OvioF4cXy_trw5C720ELhfmLi2qHYKVG7BDJSn0">
 <meta id="shopify-digital-wallet" name="shopify-digital-wallet" content="/99737141593/digital_wallets/dialog">
-<link rel="alternate" type="application/atom+xml" title="Feed" href="/blogs/news.atom" />
+<link rel="ucp" href="/.well-known/ucp" version="2026-08-25"><link rel="alternate" type="application/atom+xml" title="Feed" href="/blogs/news.atom" />
 <link rel="next" href="/blogs/news?page=2">
 <script async="async" src="/checkouts/internal/preloads.js?locale=en-GB"></script>
 <link rel="preconnect" href="https://shop.app" crossorigin="anonymous">
@@ -271,8 +239,7 @@ Shopify.SignInWithShop.User.recognized = false;</script>
   box-shadow: none;
 }
       </style>
-<script id="sections-script" data-sections="header" defer="defer" src="/cdn/shop/t/X/compiled_assets/scripts.js?v=X"></script>
-<script id="shopify-cfh-end">window.performance && window.performance.mark && window.performance.mark('shopify.content_for_header.end');</script>
+<script id="shopify-cfh-end">window.performance && window.performance.mark && window.performance.mark('shopify.content_for_header.end');</script><link href="/cdn/shop/t/X/assets/catalog--best-sellers.css?v=X" rel="stylesheet" type="text/css" media="all" />
     <style data-shopify>
       @font-face {
   font-family: Assistant;
@@ -517,8 +484,7 @@ Shopify.SignInWithShop.User.recognized = false;</script>
           font-size: 1.6rem;
         }
       }
-    </style>
-<style data-shopify>:root {
+    </style><style data-shopify>:root {
     --font-body: 'PPMori Regular', sans-serif;
     --font-body-light: 'PPMori Extralight', sans-serif;
     --font-body-semibold: 'PPMori SemiBold', sans-serif;
@@ -531,82 +497,20 @@ Shopify.SignInWithShop.User.recognized = false;</script>
     --font-theme-body: var(--font-body-family);
     --font-theme-heading: var(--font-heading-family);
   }</style>
-    <link href="/cdn/shop/t/X/assets/base.css?v=X" rel="stylesheet" type="text/css" media="all" />
-<link href="/cdn/shop/t/X/assets/blog--typography.css?v=X" rel="stylesheet" type="text/css" media="all" />
-<link rel="stylesheet" href="/cdn/shop/t/X/assets/component-cart-items.css?v=X" media="print" onload="this.media='all'"><link href="/cdn/shop/t/X/assets/component-cart-drawer.css?v=X" rel="stylesheet" type="text/css" media="all" />
-      <link href="/cdn/shop/t/X/assets/component-cart.css?v=X" rel="stylesheet" type="text/css" media="all" />
-      <link href="/cdn/shop/t/X/assets/component-totals.css?v=X" rel="stylesheet" type="text/css" media="all" />
-      <link href="/cdn/shop/t/X/assets/component-price.css?v=X" rel="stylesheet" type="text/css" media="all" />
-      <link href="/cdn/shop/t/X/assets/component-discounts.css?v=X" rel="stylesheet" type="text/css" media="all" />
+    <link href="/cdn/shop/t/X/assets/core--base.css?v=X" rel="stylesheet" type="text/css" media="all" /><link href="/cdn/shop/t/X/assets/card--product-carousel.css?v=X" rel="stylesheet" type="text/css" media="all" /><link href="/cdn/shop/t/X/assets/blog--typography.css?v=X" rel="stylesheet" type="text/css" media="all" /><link rel="stylesheet" href="/cdn/shop/t/X/assets/cart--line-items.css?v=X" media="print" onload="this.media='all'">
+    <link href="/cdn/shop/t/X/assets/cart--drawer-base.css?v=X" rel="stylesheet" type="text/css" media="all" />
+    <link href="/cdn/shop/t/X/assets/cart--layout.css?v=X" rel="stylesheet" type="text/css" media="all" />
+    <link href="/cdn/shop/t/X/assets/cart--totals.css?v=X" rel="stylesheet" type="text/css" media="all" />
+    <link href="/cdn/shop/t/X/assets/catalog--price.css?v=X" rel="stylesheet" type="text/css" media="all" />
+    <link href="/cdn/shop/t/X/assets/cart--discounts.css?v=X" rel="stylesheet" type="text/css" media="all" />
       <link rel="preload" as="font" href="/cdn/fonts/assistant/assistant_n4.9120912a469cad1cc292572851508ca49d12e768.woff2" type="font/woff2" crossorigin>
+      
       <link rel="preload" as="font" href="/cdn/fonts/assistant/assistant_n4.9120912a469cad1cc292572851508ca49d12e768.woff2" type="font/woff2" crossorigin>
-<script>
-      if (Shopify.designMode) {
-        document.documentElement.classList.add('shopify-design-mode');
-      }
-    </script>
-    <script>
-      (function () {
-        // Normalize URL
-        const currentUrl = window.location.pathname.replace(/\/$/, '') || '/';
-        // Pages that should have BLACK header
-        const blackHeaderExact = [
-          '/',
-          '/pages/privacy-policy',
-          '/pages/faq',
-          '/pages/faqs',
-          '/pages/contact',
-          '/pages/terms',
-          '/pages/terms-and-conditions',
-          '/pages/return',
-          '/pages/returns',
-          '/pages/fragrance-finder',
-          '/pages/bundle-1',
-          '/pages/disclaimer',
-          '/account',
-          '/account/login',
-          '/account/register',
-          '/account/addresses',
-          '/cart',
-        ];
-        // Pages that should be black if URL starts with this
-        const blackHeaderStartsWith = ['/products/'];
-        const shouldBeBlack =
-          blackHeaderExact.includes(currentUrl) || blackHeaderStartsWith.some(path => currentUrl.startsWith(path));
-        if (shouldBeBlack) {
-          document.documentElement.classList.add('black-header');
-          document.documentElement.classList.remove('white-header');
-        } else {
-          document.documentElement.classList.add('white-header');
-          document.documentElement.classList.remove('black-header');
-        }
-      })();
-    </script>
-<script>
-      (async function () {
-        // Country -> storefront table, generated from the published regions.
-        // Adding a storefront changes this data, never this code.
-        var REGIONS = [{"country":"GB","url":"https://scentspired.co.uk"},{"country":"US","url":"https://scentspired.com"}];
-        // Skip redirect for search engine crawlers so each storefront stays indexable
-        var ua = navigator.userAgent.toLowerCase();
-        var isBot =
-          /bot|googlebot|crawler|spider|crawling|bingbot|yandex|baiduspider|duckduckbot|slurp|facebookexternalhit/.test(
-            ua
-          );
-        if (isBot) return;
-        try {
-          const res = await fetch('https://ipapi.co/json/');
-          const data = await res.json();
-          if (!data || !data.country) return;
-          const match = REGIONS.find(function (r) { return r.country === data.country; });
-          if (!match) return;
-          const host = match.url.replace(/^https?:\/\//, '');
-          if (!location.hostname.includes(host)) {
-            location.replace(match.url + location.pathname);
-          }
-        } catch (e) {}
-      })();
-    </script>
+      
+    <script src="/cdn/shop/t/X/assets/core--page-classes.js?v=X"></script>
+    <script type="application/json" id="regionGeoMap">[{"country":"GB","url":"https://scentspired.co.uk"},{"country":"US","url":"https://scentspired.com"}]</script>
+    <script src="/cdn/shop/t/X/assets/core--region-redirect.js?v=X"></script>
+    
     <meta name="google-site-verification" content="google2d3d4ccd9457489c.html" />
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-7G717SKL2C"></script>
     <script>
@@ -625,20 +529,20 @@ Shopify.SignInWithShop.User.recognized = false;</script>
         "url": "https://scentspired.co.uk",
         "logo": "/cdn/shop/files/Scentspired_logo_1.png?v=X&width=500",
         "sameAs": [
-          "https://www.facebook.com/profile.php?id=61568107508172&sk=about",
-          "https://www.instagram.com/thescentspired/",
-          "https://www.tiktok.com/@thescentspireduk?"
+          "https:\/\/www.facebook.com\/profile.php?id=61568107508172\u0026sk=about",
+          "https:\/\/www.instagram.com\/thescentspired\/",
+          "https:\/\/www.tiktok.com\/@thescentspireduk?"
         ]
       }
     </script>
-    <script src="https://analytics.ahrefs.com/analytics.js" data-key="VwQqpLi0JY7J65Y0OLlFfw" async></script>
+    <script src="https://analytics.ahrefs.com/analytics.js" data-key="VwQqpLi0JY7J65Y0OLlFfw" async></script>
   <!-- APP BLOCK --><!-- APP BLOCK --><!-- APP BLOCK --><!-- APP BLOCK --><!-- APP BLOCK -->
 <link href="https://monorail-edge.shopifysvc.com" rel="dns-prefetch">
 <script>(function(){if ("sendBeacon" in navigator && "performance" in window) {try {var session_token_from_headers = performance.getEntriesByType('navigation')[0].serverTiming.find(x => x.name == '_s').description;} catch {var session_token_from_headers = undefined;}var session_cookie_matches = document.cookie.match(/_shopify_s=([^;]*)/);var session_token_from_cookie = session_cookie_matches && session_cookie_matches.length === 2 ? session_cookie_matches[1] : "";var session_token = session_token_from_headers || session_token_from_cookie || "";function handle_abandonment_event(e) {var entries = performance.getEntries().filter(function(entry) {return /monorail-edge.shopifysvc.com/.test(entry.name);});if (!window.abandonment_tracked && entries.length === 0) {window.abandonment_tracked = true;var currentMs = Date.now();var navigation_start = performance.timing.navigationStart;var payload = {shop_id: 99737141593,url: window.location.href,navigation_start,duration: currentMs - navigation_start,session_token,page_type: "blog"};window.navigator.sendBeacon("https://monorail-edge.shopifysvc.com/v1/produce", JSON.stringify({schema_id: "online_store_buyer_site_abandonment/1.1",payload: payload,metadata: {event_created_at_ms: currentMs,event_sent_at_ms: currentMs}}));}}window.addEventListener('pagehide', handle_abandonment_event);}}());</script>
 <script>
   window.__TREKKIE_SHIM_QUEUE = window.__TREKKIE_SHIM_QUEUE || [];
 </script>
-<script>(function(){var wpmLoader=function(){"use strict";var e=/Googlebot|Storebot-Google|bingbot|Baiduspider|YandexBot|DuckDuckBot|Slurp|facebookexternalhit|Twitterbot|LinkedInBot|Applebot|AdsBot-Google|Mediapartners-Google|APIs-Google|PetalBot|SemrushBot|AhrefsBot|MJ12bot|DotBot|Acunetix|PerplexityBot|Perplexity-User/i,t=/bytedance/i;function i(){try{var e=document.cookie;if(!e||"string"!=typeof e)return;for(var t=0,i=e.split(";");t<i.length;t++){var n=i[t],r=n.indexOf("=");if(-1!==r){var o=n.slice(0,r).trim();if(o){var a=void 0;try{a=decodeURIComponent(o)}catch(e){a=o}if("_shopify_s"===a){var d=n.slice(r+1).trim();try{return decodeURIComponent(d)}catch(e){return d}}}}}return}catch(e){return}}function n(e){try{"undefined"!=typeof console&&"function"==typeof console.warn&&console.warn(e)}catch(e){}}function r(e,t){return"string"==typeof e&&e.length>0&&e.length<=t?e:void 0}function o(e){var t;switch(null==(t=null==e?void 0:e.navigation)?void 0:t.type){case 0:return"navigate";case 1:return"reload";case 2:return"back_forward";default:return}}function a(){var e,t,i;try{var n=null==(i=null==(t=null==(e=self.ShopifyAnalytics)?void 0:e.lib)?void 0:t.trekkie)?void 0:i.state;return"awaiting-consent"===n||"initialized"===n?n:void 0}catch(e){return}}return function(d,s,u,l){var c=arguments.length>4&&void 0!==arguments[4]?arguments[4]:{};try{var p=c.trekkieShim;!0!==p&&"true"!==p||null!=window.__TREKKIE_SHIM_QUEUE||(window.__TREKKIE_SHIM_QUEUE=[])}catch(e){}var f,v,h,y,g=(v=(f={modern:/Edge?\/(1{2}[4-9]|1[2-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|Firefox\/(1{2}[4-9]|1[2-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|Chrom(ium|e)\/(9{2}|\d{3,})\.\d+(\.\d+|)|(Maci|X1{2}).+ Version\/(15\.\d+|(1[6-9]|[2-9]\d|\d{3,})\.\d+)([,.]\d+|)( \(\w+\)|)( Mobile\/\w+|) Safari\/|Chrome.+OPR\/(9{2}|\d{3,})\.\d+\.\d+|(CPU[ +]OS|iPhone[ +]OS|CPU[ +]iPhone|CPU IPhone OS|CPU iPad OS)[ +]+(15[._]\d+|(1[6-9]|[2-9]\d|\d{3,})[._]\d+)([._]\d+|)|Android:?[ /-](14[89]|1[5-9]\d|[2-9]\d{2}|\d{4,})(\.\d+|)(\.\d+|)|Android.+Firefox\/(15\d|1[6-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|Android.+Chrom(ium|e)\/(14[89]|1[5-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|SamsungBrowser\/([2-9]\d|\d{3,})\.\d+/,legacy:/Edge?\/(1[6-9]|[2-9]\d|\d{3,})\.\d+(\.\d+|)|Firefox\/(5[4-9]|[6-9]\d|\d{3,})\.\d+(\.\d+|)|Chrom(ium|e)\/(5[1-9]|[6-9]\d|\d{3,})\.\d+(\.\d+|)([\d.]+$|.*Safari\/(?![\d.]+ Edge\/[\d.]+$))|(Maci|X1{2}).+ Version\/(10\.\d+|(1[1-9]|[2-9]\d|\d{3,})\.\d+)([,.]\d+|)( \(\w+\)|)( Mobile\/\w+|) Safari\/|Chrome.+OPR\/(3[89]|[4-9]\d|\d{3,})\.\d+\.\d+|(CPU[ +]OS|iPhone[ +]OS|CPU[ +]iPhone|CPU IPhone OS|CPU iPad OS)[ +]+(10[._]\d+|(1[1-9]|[2-9]\d|\d{3,})[._]\d+)([._]\d+|)|Android:?[ /-](14[89]|1[5-9]\d|[2-9]\d{2}|\d{4,})(\.\d+|)(\.\d+|)|Mobile Safari.+OPR\/([89]\d|\d{3,})\.\d+\.\d+|Android.+Firefox\/(15\d|1[6-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|Android.+Chrom(ium|e)\/(14[89]|1[5-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|Android.+(UC? ?Browser|UCWEB|U3)[ /]?(15\.([5-9]|\d{2,})|(1[6-9]|[2-9]\d|\d{3,})\.\d+)\.\d+|SamsungBrowser\/(5\.\d+|([6-9]|\d{2,})\.\d+)|Android.+MQ{2}Browser\/(14(\.(9|\d{2,})|)|(1[5-9]|[2-9]\d|\d{3,})(\.\d+|))(\.\d+|)|K[Aa][Ii]OS\/(3\.\d+|([4-9]|\d{2,})\.\d+)(\.\d+|)/}).modern,h=f.legacy,(y=navigator.userAgent).match(e)?"bot":y.match(v)?"modern":y.match(h)?"legacy":y.match(t)?"bot":"unknown"),m=function(e){var t,i,n=r(e,128);try{var a=window.performance,d=null==(t=null==a?void 0:a.getEntriesByType)?void 0:t.call(a,"navigation")[0];if(!d)return{requestId:n,navigationType:o(a)};var s="type"in d?r(d.type,64):void 0,u="serverTiming"in d&&Array.isArray(d.serverTiming)?d.serverTiming:[];return{requestId:null!=n?n:r(null==(i=u.find(function(e){return"requestID"===e.name}))?void 0:i.description,128),navigationType:s}}catch(e){return{requestId:n}}}(c.requestId),w=function(e){var t=e.version,r=e.browserTarget,o=e.surface,a=e.shopId,d=e.monorailEndpoint,s=window.location.href;return{emit:function(e){var u=e.status,l=e.errorMsg,c=e.failureReason,p=e.useKeepaliveFallback,f=void 0!==p&&p,v=e.navigationType,h=e.pagehidePersisted,y=e.requestId,g=e.trekkieState;if(d){var m,w;try{var b=(new Date).getTime();m=JSON.stringify({metadata:{event_sent_at_ms:b},events:[{schema_id:"web_pixels_manager_load/3.3",payload:{version:t,bundle_target:r,page_url:s,status:u,surface:o,error_msg:l,failure_reason:c,navigation_type:v,pagehide_persisted:h,request_id:y,trekkie_state:g,shop_id:a,visit_token:i()},metadata:{event_created_at_ms:b}}]})}catch(e){return}try{if("function"==typeof window.navigator.sendBeacon&&-1===(w=window.navigator.userAgent).indexOf("iPhone; CPU iPhone OS 12_")&&-1===w.indexOf("iPad; CPU OS 12_")&&-1===w.indexOf("iPod touch; CPU iPhone OS 12_")&&window.navigator.sendBeacon.bind(window.navigator)(d,m))return}catch(e){}if(f)try{"function"==typeof window.fetch&&window.fetch(d,{method:"POST",headers:{"Content-Type":"text/plain"},body:m,keepalive:!0}).catch(function(){})}catch(e){}else try{var _=new XMLHttpRequest;_.open("POST",d,!0),_.setRequestHeader("Content-Type","text/plain"),_.send(m)}catch(e){n("[Web Pixels Manager] Got an unhandled error while logging to Monorail.")}}else n("[Web Pixels Manager] No Monorail endpoint provided, skipping logging.")}}}({version:u,browserTarget:g,surface:d.surface,shopId:d.shopId,monorailEndpoint:d.monorailEndpoint});if(Boolean(null==(_=null==(b=window.Shopify)?void 0:b.analytics)?void 0:_.replayQueue))w.emit({status:"setup-skipped",errorMsg:"replay queue already initialized."});else{var b,_;w.emit({status:"setup-started"}),window.Shopify=window.Shopify||{};var S=window.Shopify;S.analytics=S.analytics||{};var P=S.analytics;P.replayQueue=[],P.publish=function(e,t,i){return P.replayQueue.push([e,t,i]),!0};try{self.performance.mark("wpm:start")}catch(e){}var k,C="modern"===g?"modern":"legacy",E=(null!=l?l:{modern:"",legacy:""})[C],I=[(k={baseUrl:s,hashVersion:u,buildTarget:C}).baseUrl,"/wpm","/b",k.hashVersion,"modern"===k.buildTarget?"m":"l",".js"].join(""),O=!1,T=!1;try{c.browserTarget=g,function(){O=!0;try{window.addEventListener("pagehide",M)}catch(e){O=!1}}(),R(function(){try{R(x)}catch(e){D(e)}}),w.emit({status:"loading",requestId:m.requestId,navigationType:m.navigationType,trekkieState:a()})}catch(e){D(e)}}function U(){var e;if(q(),!function(){var e,t;return Boolean(null==(t=null==(e=window.Shopify)?void 0:e.analytics)?void 0:t.initialized)}()){var t,i,n;try{if("function"!=typeof(null==(e=window.webPixelsManager)?void 0:e.init))return void A();if(!(null!==(n=i=t=window.webPixelsManager.init(d))&&"function"!=typeof n&&Object(n)===n&&"publish"in i&&"function"==typeof i.publish&&"publishCustomEvent"in i&&"function"==typeof i.publishCustomEvent&&"visitor"in i&&"function"==typeof i.visitor))return void A()}catch(e){return void A(e)}var r=window.Shopify.analytics;r.replayQueue.forEach(function(e){var i=e[0],n=e[1],r=e[2];t.publishCustomEvent(i,n,r)}),r.replayQueue=[],r.publish=t.publishCustomEvent,r.visitor=t.visitor,r.initialized=!0}}function A(e){B("manager_api_unavailable",void 0===e?void 0:Q(e))}function x(){B("script_load_failed","".concat(I," has failed to load"))}function B(e,t){T||(T=!0,q(),w.emit({status:"failed",errorMsg:t,failureReason:e,requestId:m.requestId,navigationType:m.navigationType,trekkieState:a()}))}function M(e){O&&(q(),w.emit({status:"pagehide-while-loading",useKeepaliveFallback:!0,pagehidePersisted:e.persisted,requestId:m.requestId,navigationType:m.navigationType,trekkieState:a()}))}function q(){O=!1;try{window.removeEventListener("pagehide",M)}catch(e){}}function R(e){var t;!function(e){var t=e.src,i=e.async,n=void 0===i||i,r=e.onload,o=e.onerror,a=e.sri,d=e.scriptDataAttributes,s=void 0===d?{}:d,u=document.createElement("script"),l=document.querySelector("head"),c=document.querySelector("body");if(u.async=n,u.src=t,a&&(u.integrity=a,u.crossOrigin="anonymous"),s)for(var p in s)if(Object.prototype.hasOwnProperty.call(s,p))try{u.dataset[p]=String(s[p])}catch(e){}if(r&&u.addEventListener("load",r),o&&u.addEventListener("error",o),l)l.appendChild(u);else{if(!c)throw new Error("Did not find a head or body element to append the script");c.appendChild(u)}}({src:I,async:!0,onload:U,onerror:e,sri:(t=E,"string"==typeof t&&/^sha384-[A-Za-z0-9+/=]+$/.test(t)?E:""),scriptDataAttributes:c})}function D(e){B("script_append_failed",Q(e))}function Q(e){return e instanceof Error?e.message:"Unknown error"}}}();wpmLoader({shopId: 99737141593,storefrontBaseUrl: "https://scentspired.co.uk",extensionsBaseUrl: "https://extensions.shopifycdn.com/cdn/shopifycloud/web-pixels-manager",monorailEndpoint: "https://scentspireduk.myshopify.com/.well-known/shopify/monorail/unstable/produce_batch",surface: "storefront-renderer",enabledBetaFlags: ["16072cab","8450a54b"],webPixelsConfigList: [{"id":"4441997657","configuration":"{\"myshopifyDomain\":\"scentspireduk.myshopify.com\"}","eventPayloadVersion":"v1","runtimeContext":"STRICT","scriptVersion":"23b97d18e2aa74363140dc29c9284e87","type":"APP","apiClientId":2775569,"privacyPurposes":["ANALYTICS","MARKETING","SALE_OF_DATA"],"dataSharingAdjustments":{"protectedCustomerApprovalScopes":["read_customer_address","read_customer_email","read_customer_name","read_customer_phone","read_customer_personal_data"],"dataSharingControls":["share_all_events"]},"dataSharingState":"optimized"},{"id":"4128342361","configuration":"{\"webPixelName\":\"Judge.me\"}","eventPayloadVersion":"v1","runtimeContext":"STRICT","scriptVersion":"8acc938b1a30dc7624e304493ca567d7","type":"APP","apiClientId":683015,"privacyPurposes":["ANALYTICS"],"dataSharingAdjustments":{"protectedCustomerApprovalScopes":["read_customer_email","read_customer_name","read_customer_personal_data","read_customer_phone"],"dataSharingControls":["share_all_events"]},"dataSharingState":"unrestricted"},{"id":"4091806041","configuration":"{\"accountID\":\"1848772\"}","eventPayloadVersion":"v1","runtimeContext":"STRICT","scriptVersion":"c67c427e35bed2216d156eaeeacde779","type":"APP","apiClientId":4870017,"privacyPurposes":["ANALYTICS","MARKETING","SALE_OF_DATA"],"dataSharingAdjustments":{"protectedCustomerApprovalScopes":["read_customer_email","read_customer_personal_data"],"dataSharingControls":["share_all_events"]},"dataSharingState":"optimized"},{"id":"3993665881","configuration":"{\"projectId\":\"vb6luqqm3k\"}","eventPayloadVersion":"v1","runtimeContext":"STRICT","scriptVersion":"d8a2bb2ccbb513dc8e8b6937f4b8033e","type":"APP","apiClientId":240074326017,"privacyPurposes":[],"capabilities":["advanced_dom_events"],"dataSharingAdjustments":{"protectedCustomerApprovalScopes":["read_customer_personal_data"],"dataSharingControls":["share_all_events"]},"dataSharingState":"unrestricted"},{"id":"3735912793","configuration":"{\"config\":\"{\\\"google_tag_ids\\\":[\\\"AW-17838417885\\\",\\\"GT-5RF9HJ5S\\\"],\\\"target_country\\\":\\\"ZZ\\\",\\\"gtag_events\\\":[{\\\"type\\\":\\\"begin_checkout\\\",\\\"action_label\\\":\\\"AW-17838417885\\\/bqZsCPWWoPsbEN3PgrpC\\\"},{\\\"type\\\":\\\"search\\\",\\\"action_label\\\":\\\"AW-17838417885\\\/cvnkCO6ervsbEN3PgrpC\\\"},{\\\"type\\\":\\\"view_item\\\",\\\"action_label\\\":[\\\"AW-17838417885\\\/InymCOuervsbEN3PgrpC\\\",\\\"MC-1HP81P7EDN\\\"]},{\\\"type\\\":\\\"purchase\\\",\\\"action_label\\\":[\\\"AW-17838417885\\\/9C_ECPKWoPsbEN3PgrpC\\\",\\\"MC-1HP81P7EDN\\\"]},{\\\"type\\\":\\\"page_view\\\",\\\"action_label\\\":[\\\"AW-17838417885\\\/KLUhCOiervsbEN3PgrpC\\\",\\\"MC-1HP81P7EDN\\\"]},{\\\"type\\\":\\\"add_payment_info\\\",\\\"action_label\\\":\\\"AW-17838417885\\\/cLzMCPGervsbEN3PgrpC\\\"},{\\\"type\\\":\\\"add_to_cart\\\",\\\"action_label\\\":\\\"AW-17838417885\\\/S9KkCOWervsbEN3PgrpC\\\"}],\\\"enable_monitoring_mode\\\":false}\"}","eventPayloadVersion":"v1","runtimeContext":"OPEN","scriptVersion":"a3321ca85cf5aaf6b57585fcd8d67b3a","type":"APP","apiClientId":1780363,"privacyPurposes":[],"dataSharingAdjustments":{"protectedCustomerApprovalScopes":["read_customer_address","read_customer_email","read_customer_name","read_customer_personal_data","read_customer_phone"],"dataSharingControls":["share_all_events"]},"dataSharingState":"optimized","enabledFlags":["9a3ed68a"]},{"id":"3735519577","configuration":"{\"pixel_id\":\"4112973102349662\",\"pixel_type\":\"facebook_pixel\"}","eventPayloadVersion":"v1","runtimeContext":"OPEN","scriptVersion":"96420dbe9ea96c426a1b7f364f977719","type":"APP","apiClientId":2329312,"privacyPurposes":["ANALYTICS","MARKETING","SALE_OF_DATA"],"dataSharingAdjustments":{"protectedCustomerApprovalScopes":["read_customer_address","read_customer_email","read_customer_name","read_customer_personal_data","read_customer_phone"],"dataSharingControls":["share_all_events"]},"dataSharingState":"optimized","enabledFlags":["9a3ed68a"]},{"id":"shopify-app-pixel","configuration":"{}","eventPayloadVersion":"v1","runtimeContext":"STRICT","scriptVersion":"0530","apiClientId":"shopify-pixel","type":"APP","privacyPurposes":["ANALYTICS","MARKETING"]},{"id":"shopify-custom-pixel","eventPayloadVersion":"v1","runtimeContext":"LAX","scriptVersion":"0530","apiClientId":"shopify-pixel","type":"CUSTOM","privacyPurposes":["ANALYTICS","MARKETING"]}],isMerchantRequest: true,initData: {"shop":{"name":"Scentspired UK","paymentSettings":{"currencyCode":"GBP"},"myshopifyDomain":"scentspireduk.myshopify.com","countryCode":"GB","storefrontUrl":"https:\/\/scentspired.co.uk"},"customer":null,"cart":null,"checkout":null,"productVariants":[],"products":[{"id":"15995021164889","handle":"luminous-wonder","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863904137561","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995021361497","handle":"silk-odyssey","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863904465241","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995021590873","handle":"iconic-desire","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863904760153","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995021787481","handle":"feminine-fancy","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863904923993","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995026637145","handle":"visionary","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863914983769","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995026800985","handle":"liberty","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863915540825","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995027030361","handle":"wanderer","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863915868505","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995027194201","handle":"marine","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863916523865","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995027358041","handle":"fierce","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863916949849","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995027554649","handle":"eternal-verde","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863917637977","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995027718489","handle":"majesty","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863917801817","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995027849561","handle":"mirage","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863918293337","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995028046169","handle":"fate","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863918489945","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995028177241","handle":"black-poison","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863918817625","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995028341081","handle":"cool-alpine","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863919276377","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995028537689","handle":"timeless-grace","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863919735129","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995028668761","handle":"supreme-power","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863919866201","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995028832601","handle":"pink-whisper","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863920324953","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995028963673","handle":"invictor","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863920587097","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995029193049","handle":"addiction","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863920783705","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]}],"purchasingCompany":null},},"https://scentspireduk.myshopify.com/cdn","c8540278we853e1abpb62b2c4amde256306",{"modern":"","legacy":""},{"trekkieShim":true,"agentContext":true,"apiClientId":"580111","facebookCapiEnabled":"true","themeId":"THEME_ID","themePublished":"false","eventMetadataId":"UUID","pageType":"blog","resourceId":"123810021721","shopId":"99737141593","storefrontBaseUrl":"https:\/\/scentspired.co.uk","extensionBaseUrl":"https:\/\/extensions.shopifycdn.com\/cdn\/shopifycloud\/web-pixels-manager","surface":"storefront-renderer","enabledBetaFlags":"[\"16072cab\", \"8450a54b\"]","isMerchantRequest":"true","hashVersion":"c8540278we853e1abpb62b2c4amde256306","publish":"custom","events":"[[\"page_viewed\",{}]]"});})();</script><script>
+<script>(function(){var wpmLoader=function(){"use strict";var e=/Googlebot|Storebot-Google|bingbot|Baiduspider|YandexBot|DuckDuckBot|Slurp|facebookexternalhit|Twitterbot|LinkedInBot|Applebot|AdsBot-Google|Mediapartners-Google|APIs-Google|PetalBot|SemrushBot|AhrefsBot|MJ12bot|DotBot|Acunetix|PerplexityBot|Perplexity-User/i,t=/bytedance/i;function i(){try{var e=document.cookie;if(!e||"string"!=typeof e)return;for(var t=0,i=e.split(";");t<i.length;t++){var n=i[t],r=n.indexOf("=");if(-1!==r){var o=n.slice(0,r).trim();if(o){var a=void 0;try{a=decodeURIComponent(o)}catch(e){a=o}if("_shopify_s"===a){var d=n.slice(r+1).trim();try{return decodeURIComponent(d)}catch(e){return d}}}}}return}catch(e){return}}function n(e){try{"undefined"!=typeof console&&"function"==typeof console.warn&&console.warn(e)}catch(e){}}function r(e,t){return"string"==typeof e&&e.length>0&&e.length<=t?e:void 0}function o(e){var t;switch(null==(t=null==e?void 0:e.navigation)?void 0:t.type){case 0:return"navigate";case 1:return"reload";case 2:return"back_forward";default:return}}function a(){var e,t,i;try{var n=null==(i=null==(t=null==(e=self.ShopifyAnalytics)?void 0:e.lib)?void 0:t.trekkie)?void 0:i.state;return"awaiting-consent"===n||"initialized"===n?n:void 0}catch(e){return}}return function(d,s,u,l){var c=arguments.length>4&&void 0!==arguments[4]?arguments[4]:{};try{var p=c.trekkieShim;!0!==p&&"true"!==p||null!=window.__TREKKIE_SHIM_QUEUE||(window.__TREKKIE_SHIM_QUEUE=[])}catch(e){}var f,v,h,y,g=(v=(f={modern:/Edge?\/(1{2}[4-9]|1[2-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|Firefox\/(1{2}[4-9]|1[2-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|Chrom(ium|e)\/(9{2}|\d{3,})\.\d+(\.\d+|)|(Maci|X1{2}).+ Version\/(15\.\d+|(1[6-9]|[2-9]\d|\d{3,})\.\d+)([,.]\d+|)( \(\w+\)|)( Mobile\/\w+|) Safari\/|Chrome.+OPR\/(9{2}|\d{3,})\.\d+\.\d+|(CPU[ +]OS|iPhone[ +]OS|CPU[ +]iPhone|CPU IPhone OS|CPU iPad OS)[ +]+(15[._]\d+|(1[6-9]|[2-9]\d|\d{3,})[._]\d+)([._]\d+|)|Android:?[ /-](14[89]|1[5-9]\d|[2-9]\d{2}|\d{4,})(\.\d+|)(\.\d+|)|Android.+Firefox\/(15\d|1[6-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|Android.+Chrom(ium|e)\/(14[89]|1[5-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|SamsungBrowser\/([2-9]\d|\d{3,})\.\d+/,legacy:/Edge?\/(1[6-9]|[2-9]\d|\d{3,})\.\d+(\.\d+|)|Firefox\/(5[4-9]|[6-9]\d|\d{3,})\.\d+(\.\d+|)|Chrom(ium|e)\/(5[1-9]|[6-9]\d|\d{3,})\.\d+(\.\d+|)([\d.]+$|.*Safari\/(?![\d.]+ Edge\/[\d.]+$))|(Maci|X1{2}).+ Version\/(10\.\d+|(1[1-9]|[2-9]\d|\d{3,})\.\d+)([,.]\d+|)( \(\w+\)|)( Mobile\/\w+|) Safari\/|Chrome.+OPR\/(3[89]|[4-9]\d|\d{3,})\.\d+\.\d+|(CPU[ +]OS|iPhone[ +]OS|CPU[ +]iPhone|CPU IPhone OS|CPU iPad OS)[ +]+(10[._]\d+|(1[1-9]|[2-9]\d|\d{3,})[._]\d+)([._]\d+|)|Android:?[ /-](14[89]|1[5-9]\d|[2-9]\d{2}|\d{4,})(\.\d+|)(\.\d+|)|Mobile Safari.+OPR\/([89]\d|\d{3,})\.\d+\.\d+|Android.+Firefox\/(15\d|1[6-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|Android.+Chrom(ium|e)\/(14[89]|1[5-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|Android.+(UC? ?Browser|UCWEB|U3)[ /]?(15\.([5-9]|\d{2,})|(1[6-9]|[2-9]\d|\d{3,})\.\d+)\.\d+|SamsungBrowser\/(5\.\d+|([6-9]|\d{2,})\.\d+)|Android.+MQ{2}Browser\/(14(\.(9|\d{2,})|)|(1[5-9]|[2-9]\d|\d{3,})(\.\d+|))(\.\d+|)|K[Aa][Ii]OS\/(3\.\d+|([4-9]|\d{2,})\.\d+)(\.\d+|)/}).modern,h=f.legacy,(y=navigator.userAgent).match(e)?"bot":y.match(v)?"modern":y.match(h)?"legacy":y.match(t)?"bot":"unknown"),m=function(e){var t,i,n=r(e,128);try{var a=window.performance,d=null==(t=null==a?void 0:a.getEntriesByType)?void 0:t.call(a,"navigation")[0];if(!d)return{requestId:n,navigationType:o(a)};var s="type"in d?r(d.type,64):void 0,u="serverTiming"in d&&Array.isArray(d.serverTiming)?d.serverTiming:[];return{requestId:null!=n?n:r(null==(i=u.find(function(e){return"requestID"===e.name}))?void 0:i.description,128),navigationType:s}}catch(e){return{requestId:n}}}(c.requestId),w=function(e){var t=e.version,r=e.browserTarget,o=e.surface,a=e.shopId,d=e.monorailEndpoint,s=window.location.href;return{emit:function(e){var u=e.status,l=e.errorMsg,c=e.failureReason,p=e.useKeepaliveFallback,f=void 0!==p&&p,v=e.navigationType,h=e.pagehidePersisted,y=e.requestId,g=e.trekkieState;if(d){var m,w;try{var b=(new Date).getTime();m=JSON.stringify({metadata:{event_sent_at_ms:b},events:[{schema_id:"web_pixels_manager_load/3.3",payload:{version:t,bundle_target:r,page_url:s,status:u,surface:o,error_msg:l,failure_reason:c,navigation_type:v,pagehide_persisted:h,request_id:y,trekkie_state:g,shop_id:a,visit_token:i()},metadata:{event_created_at_ms:b}}]})}catch(e){return}try{if("function"==typeof window.navigator.sendBeacon&&-1===(w=window.navigator.userAgent).indexOf("iPhone; CPU iPhone OS 12_")&&-1===w.indexOf("iPad; CPU OS 12_")&&-1===w.indexOf("iPod touch; CPU iPhone OS 12_")&&window.navigator.sendBeacon.bind(window.navigator)(d,m))return}catch(e){}if(f)try{"function"==typeof window.fetch&&window.fetch(d,{method:"POST",headers:{"Content-Type":"text/plain"},body:m,keepalive:!0}).catch(function(){})}catch(e){}else try{var _=new XMLHttpRequest;_.open("POST",d,!0),_.setRequestHeader("Content-Type","text/plain"),_.send(m)}catch(e){n("[Web Pixels Manager] Got an unhandled error while logging to Monorail.")}}else n("[Web Pixels Manager] No Monorail endpoint provided, skipping logging.")}}}({version:u,browserTarget:g,surface:d.surface,shopId:d.shopId,monorailEndpoint:d.monorailEndpoint});if(Boolean(null==(_=null==(b=window.Shopify)?void 0:b.analytics)?void 0:_.replayQueue))w.emit({status:"setup-skipped",errorMsg:"replay queue already initialized."});else{var b,_;w.emit({status:"setup-started"}),window.Shopify=window.Shopify||{};var S=window.Shopify;S.analytics=S.analytics||{};var P=S.analytics;P.replayQueue=[],P.publish=function(e,t,i){return P.replayQueue.push([e,t,i]),!0};try{self.performance.mark("wpm:start")}catch(e){}var k,C="modern"===g?"modern":"legacy",E=(null!=l?l:{modern:"",legacy:""})[C],I=[(k={baseUrl:s,hashVersion:u,buildTarget:C}).baseUrl,"/wpm","/b",k.hashVersion,"modern"===k.buildTarget?"m":"l",".js"].join(""),O=!1,T=!1;try{c.browserTarget=g,function(){O=!0;try{window.addEventListener("pagehide",M)}catch(e){O=!1}}(),R(function(){try{R(x)}catch(e){D(e)}}),w.emit({status:"loading",requestId:m.requestId,navigationType:m.navigationType,trekkieState:a()})}catch(e){D(e)}}function U(){var e;if(q(),!function(){var e,t;return Boolean(null==(t=null==(e=window.Shopify)?void 0:e.analytics)?void 0:t.initialized)}()){var t,i,n;try{if("function"!=typeof(null==(e=window.webPixelsManager)?void 0:e.init))return void A();if(!(null!==(n=i=t=window.webPixelsManager.init(d))&&"function"!=typeof n&&Object(n)===n&&"publish"in i&&"function"==typeof i.publish&&"publishCustomEvent"in i&&"function"==typeof i.publishCustomEvent&&"visitor"in i&&"function"==typeof i.visitor))return void A()}catch(e){return void A(e)}var r=window.Shopify.analytics;r.replayQueue.forEach(function(e){var i=e[0],n=e[1],r=e[2];t.publishCustomEvent(i,n,r)}),r.replayQueue=[],r.publish=t.publishCustomEvent,r.visitor=t.visitor,r.initialized=!0}}function A(e){B("manager_api_unavailable",void 0===e?void 0:Q(e))}function x(){B("script_load_failed","".concat(I," has failed to load"))}function B(e,t){T||(T=!0,q(),w.emit({status:"failed",errorMsg:t,failureReason:e,requestId:m.requestId,navigationType:m.navigationType,trekkieState:a()}))}function M(e){O&&(q(),w.emit({status:"pagehide-while-loading",useKeepaliveFallback:!0,pagehidePersisted:e.persisted,requestId:m.requestId,navigationType:m.navigationType,trekkieState:a()}))}function q(){O=!1;try{window.removeEventListener("pagehide",M)}catch(e){}}function R(e){var t;!function(e){var t=e.src,i=e.async,n=void 0===i||i,r=e.onload,o=e.onerror,a=e.sri,d=e.scriptDataAttributes,s=void 0===d?{}:d,u=document.createElement("script"),l=document.querySelector("head"),c=document.querySelector("body");if(u.async=n,u.src=t,a&&(u.integrity=a,u.crossOrigin="anonymous"),s)for(var p in s)if(Object.prototype.hasOwnProperty.call(s,p))try{u.dataset[p]=String(s[p])}catch(e){}if(r&&u.addEventListener("load",r),o&&u.addEventListener("error",o),l)l.appendChild(u);else{if(!c)throw new Error("Did not find a head or body element to append the script");c.appendChild(u)}}({src:I,async:!0,onload:U,onerror:e,sri:(t=E,"string"==typeof t&&/^sha384-[A-Za-z0-9+/=]+$/.test(t)?E:""),scriptDataAttributes:c})}function D(e){B("script_append_failed",Q(e))}function Q(e){return e instanceof Error?e.message:"Unknown error"}}}();wpmLoader({shopId: 99737141593,storefrontBaseUrl: "https://scentspired.co.uk",extensionsBaseUrl: "https://extensions.shopifycdn.com/cdn/shopifycloud/web-pixels-manager",monorailEndpoint: "https://scentspireduk.myshopify.com/.well-known/shopify/monorail/unstable/produce_batch",surface: "storefront-renderer",enabledBetaFlags: ["16072cab","8450a54b","7ee89bf1"],webPixelsConfigList: [{"id":"4441997657","configuration":"{\"myshopifyDomain\":\"scentspireduk.myshopify.com\"}","eventPayloadVersion":"v1","runtimeContext":"STRICT","scriptVersion":"23b97d18e2aa74363140dc29c9284e87","type":"APP","apiClientId":2775569,"privacyPurposes":["ANALYTICS","MARKETING","SALE_OF_DATA"],"dataSharingAdjustments":{"protectedCustomerApprovalScopes":["read_customer_address","read_customer_email","read_customer_name","read_customer_phone","read_customer_personal_data"],"dataSharingControls":["share_all_events"]},"dataSharingState":"optimized"},{"id":"4128342361","configuration":"{\"webPixelName\":\"Judge.me\"}","eventPayloadVersion":"v1","runtimeContext":"STRICT","scriptVersion":"8acc938b1a30dc7624e304493ca567d7","type":"APP","apiClientId":683015,"privacyPurposes":["ANALYTICS"],"dataSharingAdjustments":{"protectedCustomerApprovalScopes":["read_customer_email","read_customer_name","read_customer_personal_data","read_customer_phone"],"dataSharingControls":["share_all_events"]},"dataSharingState":"unrestricted"},{"id":"4091806041","configuration":"{\"accountID\":\"1848772\"}","eventPayloadVersion":"v1","runtimeContext":"STRICT","scriptVersion":"c67c427e35bed2216d156eaeeacde779","type":"APP","apiClientId":4870017,"privacyPurposes":["ANALYTICS","MARKETING","SALE_OF_DATA"],"dataSharingAdjustments":{"protectedCustomerApprovalScopes":["read_customer_email","read_customer_personal_data"],"dataSharingControls":["share_all_events"]},"dataSharingState":"optimized"},{"id":"3993665881","configuration":"{\"projectId\":\"vb6luqqm3k\"}","eventPayloadVersion":"v1","runtimeContext":"STRICT","scriptVersion":"d8a2bb2ccbb513dc8e8b6937f4b8033e","type":"APP","apiClientId":240074326017,"privacyPurposes":[],"capabilities":["advanced_dom_events"],"dataSharingAdjustments":{"protectedCustomerApprovalScopes":["read_customer_personal_data"],"dataSharingControls":["share_all_events"]},"dataSharingState":"unrestricted"},{"id":"3735912793","configuration":"{\"config\":\"{\\\"google_tag_ids\\\":[\\\"AW-17838417885\\\",\\\"GT-5RF9HJ5S\\\"],\\\"target_country\\\":\\\"ZZ\\\",\\\"gtag_events\\\":[{\\\"type\\\":\\\"begin_checkout\\\",\\\"action_label\\\":\\\"AW-17838417885\\\/bqZsCPWWoPsbEN3PgrpC\\\"},{\\\"type\\\":\\\"search\\\",\\\"action_label\\\":\\\"AW-17838417885\\\/cvnkCO6ervsbEN3PgrpC\\\"},{\\\"type\\\":\\\"view_item\\\",\\\"action_label\\\":[\\\"AW-17838417885\\\/InymCOuervsbEN3PgrpC\\\",\\\"MC-1HP81P7EDN\\\"]},{\\\"type\\\":\\\"purchase\\\",\\\"action_label\\\":[\\\"AW-17838417885\\\/9C_ECPKWoPsbEN3PgrpC\\\",\\\"MC-1HP81P7EDN\\\"]},{\\\"type\\\":\\\"page_view\\\",\\\"action_label\\\":[\\\"AW-17838417885\\\/KLUhCOiervsbEN3PgrpC\\\",\\\"MC-1HP81P7EDN\\\"]},{\\\"type\\\":\\\"add_payment_info\\\",\\\"action_label\\\":\\\"AW-17838417885\\\/cLzMCPGervsbEN3PgrpC\\\"},{\\\"type\\\":\\\"add_to_cart\\\",\\\"action_label\\\":\\\"AW-17838417885\\\/S9KkCOWervsbEN3PgrpC\\\"}],\\\"enable_monitoring_mode\\\":false}\"}","eventPayloadVersion":"v1","runtimeContext":"OPEN","scriptVersion":"a3321ca85cf5aaf6b57585fcd8d67b3a","type":"APP","apiClientId":1780363,"privacyPurposes":[],"dataSharingAdjustments":{"protectedCustomerApprovalScopes":["read_customer_address","read_customer_email","read_customer_name","read_customer_personal_data","read_customer_phone"],"dataSharingControls":["share_all_events"]},"dataSharingState":"optimized","enabledFlags":["9a3ed68a"]},{"id":"3735519577","configuration":"{\"pixel_id\":\"4112973102349662\",\"pixel_type\":\"facebook_pixel\"}","eventPayloadVersion":"v1","runtimeContext":"OPEN","scriptVersion":"96420dbe9ea96c426a1b7f364f977719","type":"APP","apiClientId":2329312,"privacyPurposes":["ANALYTICS","MARKETING","SALE_OF_DATA"],"dataSharingAdjustments":{"protectedCustomerApprovalScopes":["read_customer_address","read_customer_email","read_customer_name","read_customer_personal_data","read_customer_phone"],"dataSharingControls":["share_all_events"]},"dataSharingState":"optimized","enabledFlags":["9a3ed68a"]},{"id":"shopify-app-pixel","configuration":"{}","eventPayloadVersion":"v1","runtimeContext":"STRICT","scriptVersion":"0530","apiClientId":"shopify-pixel","type":"APP","privacyPurposes":["ANALYTICS","MARKETING"]},{"id":"shopify-custom-pixel","eventPayloadVersion":"v1","runtimeContext":"LAX","scriptVersion":"0530","apiClientId":"shopify-pixel","type":"CUSTOM","privacyPurposes":["ANALYTICS","MARKETING"]}],isMerchantRequest: true,initData: {"shop":{"name":"Scentspired UK","paymentSettings":{"currencyCode":"GBP"},"myshopifyDomain":"scentspireduk.myshopify.com","countryCode":"GB","storefrontUrl":"https:\/\/scentspired.co.uk"},"customer":null,"cart":null,"checkout":null,"productVariants":[],"products":[{"id":"15995021164889","handle":"luminous-wonder","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863904137561","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995021361497","handle":"silk-odyssey","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863904465241","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995021590873","handle":"iconic-desire","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863904760153","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995021787481","handle":"feminine-fancy","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863904923993","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995026637145","handle":"visionary","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863914983769","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995026800985","handle":"liberty","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863915540825","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995027030361","handle":"wanderer","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863915868505","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995027194201","handle":"marine","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863916523865","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995027358041","handle":"fierce","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863916949849","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995027554649","handle":"eternal-verde","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863917637977","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995027718489","handle":"majesty","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863917801817","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995027849561","handle":"mirage","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863918293337","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995028046169","handle":"fate","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863918489945","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995028177241","handle":"black-poison","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863918817625","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995028341081","handle":"cool-alpine","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863919276377","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995028537689","handle":"timeless-grace","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863919735129","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995028668761","handle":"supreme-power","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863919866201","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995028832601","handle":"pink-whisper","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863920324953","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995028963673","handle":"invictor","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863920587097","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]},{"id":"15995029193049","handle":"addiction","isCollective":null,"title":null,"type":null,"untranslatedTitle":null,"url":null,"vendor":null,"remoteShopId":null,"variants":[{"id":"56863920783705","image":null,"price":null,"sku":null,"title":null,"untranslatedTitle":null}]}],"purchasingCompany":null},},"https://scentspireduk.myshopify.com/cdn","c8540278we853e1abpb62b2c4amde256306",{"modern":"","legacy":""},{"trekkieShim":true,"agentContext":true,"apiClientId":"580111","facebookCapiEnabled":"true","themeId":"THEME_ID","themePublished":"false","eventMetadataId":"UUID","pageType":"blog","resourceId":"123810021721","shopId":"99737141593","storefrontBaseUrl":"https:\/\/scentspired.co.uk","extensionBaseUrl":"https:\/\/extensions.shopifycdn.com\/cdn\/shopifycloud\/web-pixels-manager","surface":"storefront-renderer","enabledBetaFlags":"[\"16072cab\", \"8450a54b\", \"7ee89bf1\"]","isMerchantRequest":"true","hashVersion":"c8540278we853e1abpb62b2c4amde256306","publish":"custom","events":"[[\"page_viewed\",{}]]"});})();</script><script>
   window.ShopifyAnalytics = window.ShopifyAnalytics || {};
   window.ShopifyAnalytics.meta = window.ShopifyAnalytics.meta || {};
   window.ShopifyAnalytics.meta.currency = 'GBP';
@@ -692,6 +596,14 @@ Shopify.SignInWithShop.User.recognized = false;</script>
         args.unshift(method);
         trekkie.push(args);
         if (method == 'track' || method == 'page') {
+          var pageUrl;
+          try {
+            pageUrl = window.location.href;
+          } catch (e) {}
+          var pageReferrer;
+          try {
+            pageReferrer = document.referrer;
+          } catch (e) {}
           try {
             if (window.__TREKKIE_SHIM_QUEUE == null) {
               window.__TREKKIE_SHIM_QUEUE = [];
@@ -699,7 +611,11 @@ Shopify.SignInWithShop.User.recognized = false;</script>
             window.__TREKKIE_SHIM_QUEUE.push({
               from: 'trekkie-stub',
               method: method,
-              args: args.slice(1)
+              args: args.slice(1),
+              pageContext: {
+                url: pageUrl,
+                referrer: pageReferrer
+              }
             });
           } catch (e) {
             // no-op
@@ -776,7 +692,7 @@ script.src = '/cdn/s/trekkie.storefront.X.min.js';
 first.parentNode.insertBefore(script, first);
     };
     trekkie.load(
-      {"Trekkie":{"appName":"storefront","development":false,"defaultAttributes":{"shopId":99737141593,"isMerchantRequest":null,"themeId":THEME_ID,"themeCityHash":"X","contentLanguage":"en","currency":"GBP","eventMetadataId":"UUID"},"isServerSideCookieWritingEnabled":true,"monorailRegion":"shop_domain","enabledBetaFlags":["764d78cb","8450a54b"]},"Session Attribution":{},"S2S":{"facebookCapiEnabled":true,"source":"trekkie-storefront-renderer","apiClientId":580111}}
+      {"Trekkie":{"appName":"storefront","development":false,"defaultAttributes":{"shopId":99737141593,"isMerchantRequest":null,"themeId":THEME_ID,"themeCityHash":"X","contentLanguage":"en","currency":"GBP","eventMetadataId":"UUID"},"isServerSideCookieWritingEnabled":true,"monorailRegion":"shop_domain","enabledBetaFlags":["764d78cb","8450a54b","7ee89bf1"]},"Session Attribution":{},"S2S":{"facebookCapiEnabled":true,"source":"trekkie-storefront-renderer","apiClientId":580111}}
     );
     var loaded = false;
     trekkie.ready(function() {
@@ -844,25 +760,25 @@ first.parentNode.insertBefore(script, first);
           <p class="sp-empty-help">Let us help!</p>
           <!-- Collections Grid -->
           <div class="sp-collections-grid">
-              <a href="/collections/men" class="sp-collection-card" onclick="closeDossierCart()">
+<a href="/collections/men" class="sp-collection-card" onclick="closeDossierCart()">
                 <div class="sp-collection-image">
                     <img src="/cdn/shop/collections/ScentSpired_-_Homepage_02_-_Man_120x120.png?v=X" alt="Men Inspired Impressions" loading="lazy">
                 </div>
                 <h3 class="sp-collection-name">Men Inspired Impressions</h3>
               </a>
-              <a href="/collections/women" class="sp-collection-card" onclick="closeDossierCart()">
+<a href="/collections/women" class="sp-collection-card" onclick="closeDossierCart()">
                 <div class="sp-collection-image">
                     <img src="/cdn/shop/collections/ScentSpired_-_Homepage_02_-_Woman_120x120.png?v=X" alt="Women Inspired Impressions" loading="lazy">
                 </div>
                 <h3 class="sp-collection-name">Women Inspired Impressions</h3>
               </a>
-              <a href="/collections/bestsellers" class="sp-collection-card" onclick="closeDossierCart()">
+<a href="/collections/bestsellers" class="sp-collection-card" onclick="closeDossierCart()">
                 <div class="sp-collection-image">
                     <img src="/cdn/shop/collections/Website_-_Shop_All_UUID_120x120.webp?v=X" alt="Best-sellers" loading="lazy">
                 </div>
                 <h3 class="sp-collection-name">Best-sellers</h3>
               </a>
-              <a href="/collections/unisex" class="sp-collection-card" onclick="closeDossierCart()">
+<a href="/collections/unisex" class="sp-collection-card" onclick="closeDossierCart()">
                 <div class="sp-collection-image">
                     <img src="/cdn/shop/collections/ScentSpired_-_Homepage_02_-_Unisex_120x120.png?v=X" alt="Unisex Inspired Impression" loading="lazy">
                 </div>
@@ -884,8 +800,8 @@ first.parentNode.insertBefore(script, first);
         <div class="sp-bundle-container">
           <div class="sp-bundle-header">
 <img 
-  src="https://scentspired.com/cdn/shop/files/Scentspired_logo.png?v=X&width=200" 
-  alt="Scentspired" 
+  src="/cdn/shop/files/Scentspired_logo_1.png?v=X&width=200" 
+  alt="Scentspired UK" 
   class="sp-logo-image"
 />
             <div class="sp-info-icon">
@@ -927,7 +843,7 @@ first.parentNode.insertBefore(script, first);
         <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </button>
-      <a href="/account/login" class="sp-login-link">Login</a>
+      <a href="https://scentspired.co.uk/customer_authentication/redirect?locale=en&region_country=GB" class="sp-login-link">Login</a>
   </div>
 </div>
       <!-- Your Cart Section - ALL PRODUCTS VERTICAL -->
@@ -935,10 +851,9 @@ first.parentNode.insertBefore(script, first);
         <div class="sp-cart-container">
           <div class="sp-cart-header-section">
             <div class="sp-section-number">1</div>
-            <div class="sp-cart-title ui-label">YOUR CART</div>
+            <div class="sp-cart-title ui-label">Your Cart</div>
           </div>
           <div class="sp-cart-items-list" id="sp-cart-items-list">
-            <!-- SHIPPING LOGIC ONLY: No Discounts -->
           </div>
         </div>
       </div>
@@ -982,173 +897,183 @@ first.parentNode.insertBefore(script, first);
       <div class="sp-recommendations-section">
         <div class="sp-recommendations-title ui-label">You might like to add</div>
         <div class="sp-recommended-products">
-              <div class="sp-recommended-item" data-product-id="15995021164889">
-                <a href="/products/luminous-wonder" class="sp-rec-link">
-                <div class="sp-rec-image">
-                    <img src="/cdn/shop/files/SS-Website-LuminousWonder01_200x200.jpg?v=X" alt="Luminous Wonder" class="sp-rec-product-image">
-                </div>
-                <div class="sp-rec-details">
-                  <h4>LUMINOUS WONDER</h4>
-                  <p class="sp-rec-vendor">
-                      Inspired By J’Adore
-                  </p>
-                  <div class="sp-rec-price">£15.99</div>
+              <div class="sp-recommended-item" data-product-id="15995021164889"><a href="/products/luminous-wonder" class="sp-rec-link">
+                  <div class="sp-rec-image">
+                      <img src="/cdn/shop/files/SS-Website-LuminousWonder01_200x200.jpg?v=X" alt="Luminous Wonder" class="sp-rec-product-image">
+                  </div>
                 </a>
+                <div class="sp-rec-details">
+                  <a href="/products/luminous-wonder" class="sp-rec-link">
+                    <h4>LUMINOUS WONDER</h4>
+                    <p class="sp-rec-vendor">
+                        Inspired By J’Adore
+                    </p>
+                    <div class="sp-rec-price">£15.99</div>
+                  </a>
                   <button class="sp-add-to-cart-btn" onclick="addDossierRecommended('56863904137561', 'Luminous Wonder', '/cdn/shop/files/SS-Website-LuminousWonder01_120x120.jpg?v=X', 1599, 2599)">
-                    ADD TO CART
+                    Add to Cart
                   </button>
                 </div>
               </div>
-              <div class="sp-recommended-item" data-product-id="15995021361497">
-                <a href="/products/silk-odyssey" class="sp-rec-link">
-                <div class="sp-rec-image">
-                    <img src="/cdn/shop/files/SS-Website-SilkOdyssery01_200x200.jpg?v=X" alt="Silk Odyssey" class="sp-rec-product-image">
-                </div>
-                <div class="sp-rec-details">
-                  <h4>SILK ODYSSEY</h4>
-                  <p class="sp-rec-vendor">
-                      Inspired By Oud Satin Mood
-                  </p>
-                  <div class="sp-rec-price">£15.99</div>
+              <div class="sp-recommended-item" data-product-id="15995021361497"><a href="/products/silk-odyssey" class="sp-rec-link">
+                  <div class="sp-rec-image">
+                      <img src="/cdn/shop/files/SS-Website-SilkOdyssery01_200x200.jpg?v=X" alt="Silk Odyssey" class="sp-rec-product-image">
+                  </div>
                 </a>
+                <div class="sp-rec-details">
+                  <a href="/products/silk-odyssey" class="sp-rec-link">
+                    <h4>SILK ODYSSEY</h4>
+                    <p class="sp-rec-vendor">
+                        Inspired By Oud Satin Mood
+                    </p>
+                    <div class="sp-rec-price">£15.99</div>
+                  </a>
                   <button class="sp-add-to-cart-btn" onclick="addDossierRecommended('56863904465241', 'Silk Odyssey', '/cdn/shop/files/SS-Website-SilkOdyssery01_120x120.jpg?v=X', 1599, 2599)">
-                    ADD TO CART
+                    Add to Cart
                   </button>
                 </div>
               </div>
-              <div class="sp-recommended-item" data-product-id="15995021590873">
-                <a href="/products/iconic-desire" class="sp-rec-link">
-                <div class="sp-rec-image">
-                    <img src="/cdn/shop/files/SS-Website-IconicDesire01_1_200x200.jpg?v=X" alt="Iconic Desire" class="sp-rec-product-image">
-                </div>
-                <div class="sp-rec-details">
-                  <h4>ICONIC DESIRE</h4>
-                  <p class="sp-rec-vendor">
-                      Inspired By Santal 33
-                  </p>
-                  <div class="sp-rec-price">£15.99</div>
+              <div class="sp-recommended-item" data-product-id="15995021590873"><a href="/products/iconic-desire" class="sp-rec-link">
+                  <div class="sp-rec-image">
+                      <img src="/cdn/shop/files/SS-Website-IconicDesire01_1_200x200.jpg?v=X" alt="Iconic Desire" class="sp-rec-product-image">
+                  </div>
                 </a>
+                <div class="sp-rec-details">
+                  <a href="/products/iconic-desire" class="sp-rec-link">
+                    <h4>ICONIC DESIRE</h4>
+                    <p class="sp-rec-vendor">
+                        Inspired By Santal 33
+                    </p>
+                    <div class="sp-rec-price">£15.99</div>
+                  </a>
                   <button class="sp-add-to-cart-btn" onclick="addDossierRecommended('56863904760153', 'Iconic Desire', '/cdn/shop/files/SS-Website-IconicDesire01_1_120x120.jpg?v=X', 1599, 2599)">
-                    ADD TO CART
+                    Add to Cart
                   </button>
                 </div>
               </div>
-              <div class="sp-recommended-item" data-product-id="15995021787481">
-                <a href="/products/feminine-fancy" class="sp-rec-link">
-                <div class="sp-rec-image">
-                    <img src="/cdn/shop/files/SS-Website-FeiminineFancy01_200x200.jpg?v=X" alt="Feminine Fancy" class="sp-rec-product-image">
-                </div>
-                <div class="sp-rec-details">
-                  <h4>FEMININE FANCY</h4>
-                  <p class="sp-rec-vendor">
-                      Inspired By Good Girl
-                  </p>
-                  <div class="sp-rec-price">£15.99</div>
+              <div class="sp-recommended-item" data-product-id="15995021787481"><a href="/products/feminine-fancy" class="sp-rec-link">
+                  <div class="sp-rec-image">
+                      <img src="/cdn/shop/files/SS-Website-FeiminineFancy01_200x200.jpg?v=X" alt="Feminine Fancy" class="sp-rec-product-image">
+                  </div>
                 </a>
+                <div class="sp-rec-details">
+                  <a href="/products/feminine-fancy" class="sp-rec-link">
+                    <h4>FEMININE FANCY</h4>
+                    <p class="sp-rec-vendor">
+                        Inspired By Good Girl
+                    </p>
+                    <div class="sp-rec-price">£15.99</div>
+                  </a>
                   <button class="sp-add-to-cart-btn" onclick="addDossierRecommended('56863904923993', 'Feminine Fancy', '/cdn/shop/files/SS-Website-FeiminineFancy01_120x120.jpg?v=X', 1599, 2599)">
-                    ADD TO CART
+                    Add to Cart
                   </button>
                 </div>
               </div>
-              <div class="sp-recommended-item" data-product-id="15995026637145">
-                <a href="/products/visionary" class="sp-rec-link">
-                <div class="sp-rec-image">
-                    <img src="/cdn/shop/files/SS-Website-Visionary01_200x200.jpg?v=X" alt="Visionary" class="sp-rec-product-image">
-                </div>
-                <div class="sp-rec-details">
-                  <h4>VISIONARY</h4>
-                  <p class="sp-rec-vendor">
-                      Inspired By Imagination
-                  </p>
-                  <div class="sp-rec-price">£15.99</div>
+              <div class="sp-recommended-item" data-product-id="15995026637145"><a href="/products/visionary" class="sp-rec-link">
+                  <div class="sp-rec-image">
+                      <img src="/cdn/shop/files/SS-Website-Visionary01_200x200.jpg?v=X" alt="Visionary" class="sp-rec-product-image">
+                  </div>
                 </a>
+                <div class="sp-rec-details">
+                  <a href="/products/visionary" class="sp-rec-link">
+                    <h4>VISIONARY</h4>
+                    <p class="sp-rec-vendor">
+                        Inspired By Imagination
+                    </p>
+                    <div class="sp-rec-price">£15.99</div>
+                  </a>
                   <button class="sp-add-to-cart-btn" onclick="addDossierRecommended('56863914983769', 'Visionary', '/cdn/shop/files/SS-Website-Visionary01_120x120.jpg?v=X', 1599, 2599)">
-                    ADD TO CART
+                    Add to Cart
                   </button>
                 </div>
               </div>
-              <div class="sp-recommended-item" data-product-id="15995026800985">
-                <a href="/products/liberty" class="sp-rec-link">
-                <div class="sp-rec-image">
-                    <img src="/cdn/shop/files/SS-Website-Liberty01_200x200.jpg?v=X" alt="Liberty" class="sp-rec-product-image">
-                </div>
-                <div class="sp-rec-details">
-                  <h4>LIBERTY</h4>
-                  <p class="sp-rec-vendor">
-                      Inspired By Libre
-                  </p>
-                  <div class="sp-rec-price">£15.99</div>
+              <div class="sp-recommended-item" data-product-id="15995026800985"><a href="/products/liberty" class="sp-rec-link">
+                  <div class="sp-rec-image">
+                      <img src="/cdn/shop/files/SS-Website-Liberty01_200x200.jpg?v=X" alt="Liberty" class="sp-rec-product-image">
+                  </div>
                 </a>
+                <div class="sp-rec-details">
+                  <a href="/products/liberty" class="sp-rec-link">
+                    <h4>LIBERTY</h4>
+                    <p class="sp-rec-vendor">
+                        Inspired By Libre
+                    </p>
+                    <div class="sp-rec-price">£15.99</div>
+                  </a>
                   <button class="sp-add-to-cart-btn" onclick="addDossierRecommended('56863915540825', 'Liberty', '/cdn/shop/files/SS-Website-Liberty01_120x120.jpg?v=X', 1599, 2599)">
-                    ADD TO CART
+                    Add to Cart
                   </button>
                 </div>
               </div>
-              <div class="sp-recommended-item" data-product-id="15995027030361">
-                <a href="/products/wanderer" class="sp-rec-link">
-                <div class="sp-rec-image">
-                    <img src="/cdn/shop/files/SS-Website-Wanderer01_200x200.jpg?v=X" alt="Wanderer" class="sp-rec-product-image">
-                </div>
-                <div class="sp-rec-details">
-                  <h4>WANDERER</h4>
-                  <p class="sp-rec-vendor">
-                      Inspired By Ombre Nomade
-                  </p>
-                  <div class="sp-rec-price">£15.99</div>
+              <div class="sp-recommended-item" data-product-id="15995027030361"><a href="/products/wanderer" class="sp-rec-link">
+                  <div class="sp-rec-image">
+                      <img src="/cdn/shop/files/SS-Website-Wanderer01_200x200.jpg?v=X" alt="Wanderer" class="sp-rec-product-image">
+                  </div>
                 </a>
+                <div class="sp-rec-details">
+                  <a href="/products/wanderer" class="sp-rec-link">
+                    <h4>WANDERER</h4>
+                    <p class="sp-rec-vendor">
+                        Inspired By Ombre Nomade
+                    </p>
+                    <div class="sp-rec-price">£15.99</div>
+                  </a>
                   <button class="sp-add-to-cart-btn" onclick="addDossierRecommended('56863915868505', 'Wanderer', '/cdn/shop/files/SS-Website-Wanderer01_120x120.jpg?v=X', 1599, 2599)">
-                    ADD TO CART
+                    Add to Cart
                   </button>
                 </div>
               </div>
-              <div class="sp-recommended-item" data-product-id="15995027194201">
-                <a href="/products/marine" class="sp-rec-link">
-                <div class="sp-rec-image">
-                    <img src="/cdn/shop/files/SS-Website-Marine01_200x200.jpg?v=X" alt="Marine" class="sp-rec-product-image">
-                </div>
-                <div class="sp-rec-details">
-                  <h4>MARINE</h4>
-                  <p class="sp-rec-vendor">
-                      Inspired By Bleu de Chanel
-                  </p>
-                  <div class="sp-rec-price">£15.99</div>
+              <div class="sp-recommended-item" data-product-id="15995027194201"><a href="/products/marine" class="sp-rec-link">
+                  <div class="sp-rec-image">
+                      <img src="/cdn/shop/files/SS-Website-Marine01_200x200.jpg?v=X" alt="Marine" class="sp-rec-product-image">
+                  </div>
                 </a>
+                <div class="sp-rec-details">
+                  <a href="/products/marine" class="sp-rec-link">
+                    <h4>MARINE</h4>
+                    <p class="sp-rec-vendor">
+                        Inspired By Bleu de Chanel
+                    </p>
+                    <div class="sp-rec-price">£15.99</div>
+                  </a>
                   <button class="sp-add-to-cart-btn" onclick="addDossierRecommended('56863916523865', 'Marine', '/cdn/shop/files/SS-Website-Marine01_120x120.jpg?v=X', 1599, 2599)">
-                    ADD TO CART
+                    Add to Cart
                   </button>
                 </div>
               </div>
-              <div class="sp-recommended-item" data-product-id="15995027358041">
-                <a href="/products/fierce" class="sp-rec-link">
-                <div class="sp-rec-image">
-                    <img src="/cdn/shop/files/SS-Website-Fierce01_200x200.jpg?v=X" alt="Fierce" class="sp-rec-product-image">
-                </div>
-                <div class="sp-rec-details">
-                  <h4>FIERCE</h4>
-                  <p class="sp-rec-vendor">
-                      Inspired By Sauvage (Parfum)
-                  </p>
-                  <div class="sp-rec-price">£15.99</div>
+              <div class="sp-recommended-item" data-product-id="15995027358041"><a href="/products/fierce" class="sp-rec-link">
+                  <div class="sp-rec-image">
+                      <img src="/cdn/shop/files/SS-Website-Fierce01_200x200.jpg?v=X" alt="Fierce" class="sp-rec-product-image">
+                  </div>
                 </a>
+                <div class="sp-rec-details">
+                  <a href="/products/fierce" class="sp-rec-link">
+                    <h4>FIERCE</h4>
+                    <p class="sp-rec-vendor">
+                        Inspired By Sauvage (Parfum)
+                    </p>
+                    <div class="sp-rec-price">£15.99</div>
+                  </a>
                   <button class="sp-add-to-cart-btn" onclick="addDossierRecommended('56863916949849', 'Fierce', '/cdn/shop/files/SS-Website-Fierce01_120x120.jpg?v=X', 1599, 2599)">
-                    ADD TO CART
+                    Add to Cart
                   </button>
                 </div>
               </div>
-              <div class="sp-recommended-item" data-product-id="15995027554649">
-                <a href="/products/eternal-verde" class="sp-rec-link">
-                <div class="sp-rec-image">
-                    <img src="/cdn/shop/files/SS-Website-EternalVerde01_200x200.jpg?v=X" alt="Eternal Verde" class="sp-rec-product-image">
-                </div>
-                <div class="sp-rec-details">
-                  <h4>ETERNAL VERDE</h4>
-                  <p class="sp-rec-vendor">
-                      Inspired By Hacivat
-                  </p>
-                  <div class="sp-rec-price">£15.99</div>
+              <div class="sp-recommended-item" data-product-id="15995027554649"><a href="/products/eternal-verde" class="sp-rec-link">
+                  <div class="sp-rec-image">
+                      <img src="/cdn/shop/files/SS-Website-EternalVerde01_200x200.jpg?v=X" alt="Eternal Verde" class="sp-rec-product-image">
+                  </div>
                 </a>
+                <div class="sp-rec-details">
+                  <a href="/products/eternal-verde" class="sp-rec-link">
+                    <h4>ETERNAL VERDE</h4>
+                    <p class="sp-rec-vendor">
+                        Inspired By Hacivat
+                    </p>
+                    <div class="sp-rec-price">£15.99</div>
+                  </a>
                   <button class="sp-add-to-cart-btn" onclick="addDossierRecommended('56863917637977', 'Eternal Verde', '/cdn/shop/files/SS-Website-EternalVerde01_120x120.jpg?v=X', 1599, 2599)">
-                    ADD TO CART
+                    Add to Cart
                   </button>
                 </div>
               </div>
@@ -1164,638 +1089,25 @@ first.parentNode.insertBefore(script, first);
     </div>
   </div>
 </div>
-<script>
-  // var, not const: several sections declare this and a top-level const is a
-  // global lexical binding, so the second one on the page throws and takes the
-  // rest of its script with it.
-  var currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '£' || '$';
-// Global variables
-let isUserLoggedIn = false;
-let currentShopMethod = 'guest';
-let isProcessingCartAction = false; // Added flag to prevent duplicate submissions
-// Helper function to generate HTML for a single cart item
-function generateCartItemHtml(item) {
-  const originalPricePerItem = item.original_price;
-  const totalDiscountedLinePrice = originalPricePerItem * item.quantity;
-  const categoryBadge = 'Unisex';
-  const description = `Eau de Parfum, Size: ${item.variant_options[0] || '50ml'} / 1.7oz`;
-  const vendor = item.vendor && item.vendor !== 'Your Store' ? item.vendor : 'Dossier Perfumes';
-  return `
-    <div class="sp-product-item" data-key="${item.key}" data-variant-id="${item.variant_id}" data-inventory="${item.variant_inventory_quantity || 999}">
-      <div class="sp-product-image-container">
-        <img
-          src="${item.image.replace(/(\.[^.]*)$/, '_200x$1')}"
-          alt="${item.title}"
-          class="sp-product-image"
-          loading="lazy"
-          width="80"
-          height="100">
-      </div>
-      <div class="sp-product-details">
-           <div class="sp-product-header">
-  <h3 class="sp-product-title">
-    ${
-      // Keywords that make the title non-clickable
-      !['SET', 'FAVOURITES', 'SIGNATURE', 'DISCOVERY SET'].some(keyword =>
-        item.title.toUpperCase().includes(keyword)
-      )
-        ? `<a href="${item.url}" style="text-decoration: none; color: inherit;">
-            ${item.title.toUpperCase()}
-          </a>`
-        : item.title.toUpperCase()
-    }
-  </h3>
-  <div class="sp-product-pricing">
-    <span class="sp-discounted-price">
-      £<span class="price-value"
-        data-single-price="${(originalPricePerItem / 100).toFixed(2)}"
-        data-original-single="${(originalPricePerItem / 100).toFixed(2)}"
-        data-discount="0">${(totalDiscountedLinePrice / 100).toFixed(2)}
-      </span>
-    </span>
-  </div>
-</div>
-        <div class="sp-product-vendor">${vendor}</div>
-        <!-- quantity and remove buttons -->
-        <div class="sp-product-actions">
-                  <div class="sp-quantity-section">
-                      <button class="sp-qty-decrease">
-                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                          <path d="M3 7h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                        </svg>
-                      </button>
-                      <span class="sp-quantity-display" data-quantity="${item.quantity}">${item.quantity}</span>
-                      <button class="sp-qty-increase">
-                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                          <path d="M7 3v8M3 7h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                        </svg>
-                      </button>
-                    </div>
-          <button class="sp-remove-product" data-key="${item.key}" onclick="removeDossierCartItem(this.dataset.key)">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-              <path d="M2.25 4.5h13.5M6 4.5V3a1.5 1.5 0 011.5-1.5h3A1.5 1.5 0 0112 3v1.5m3 0v10.5a1.5 1.5 0 01-1.5 1.5h-9A1.5 1.5 0 013 15V4.5h12z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-        </div>
-      </div>
-    </div>
-  `;
-}
-// Main function to update the entire cart UI based on new cart data
-function updateDossierCartUI(cart) {
-  const emptyCartContainer = document.getElementById('sp-empty-cart-full-container');
-  const fullCartSections = document.getElementById('sp-full-cart-sections');
-  const cartItemsList = document.getElementById('sp-cart-items-list');
-  if (cart.item_count === 0) {
-    if (emptyCartContainer) emptyCartContainer.style.display = 'flex';
-    if (fullCartSections) fullCartSections.style.display = 'none';
-  } else {
-    if (emptyCartContainer) emptyCartContainer.style.display = 'none';
-    if (fullCartSections) fullCartSections.style.display = 'block';
-    // Re-render cart items
-    let itemsHtml = '';
-    cart.items.forEach(item => {
-      itemsHtml += generateCartItemHtml(item);
-    });
-   if (cartItemsList) {
-  cartItemsList.innerHTML = itemsHtml;
-  // Add click listeners for qty buttons
-cart.items.forEach(item => {
-  const itemEl = document.querySelector(`[data-key="${item.key}"]`);
-  if (!itemEl) return;
-  const plusBtn = itemEl.querySelector('.sp-qty-increase');
-  const minusBtn = itemEl.querySelector('.sp-qty-decrease');
-  if (plusBtn) {
-    plusBtn.onclick = async () => {
-      const quantityEl = itemEl.querySelector('.sp-quantity-display');
-      let currentQty = parseInt(quantityEl?.textContent || '0', 10);
-      const maxQty = item.variant_inventory_quantity;
-      if (item.variant_inventory_policy === 'deny' && currentQty >= maxQty) {
-        showCartDrawerMessage(`You can only add up to ${maxQty} of this item.`);
-        return; // stop
-      }
-      // Disable button instantly for better UX
-      plusBtn.disabled = true;
-      plusBtn.classList.add('sp-qty-disabled');
-      plusBtn.style.pointerEvents = 'none';
-      plusBtn.style.cursor = 'not-allowed';
-      await updateDossierItemQuantity(item.key, currentQty + 1);
-    };
+<script type="application/json" id="cartDrawerStrings">
+  {
+    "free": "FREE",
+    "quantityLimit": "You can only add up to [quantity] of this item.",
+    "minimumQuantity": "Minimum quantity is 1",
+    "cartCount": "Cart count: [count]",
+    "addUnavailable": "Unable to add this product. Please try again.",
+    "addFailed": "Failed to add product to cart. Please try again.",
+    "error": "Error"
   }
-  if (minusBtn) {
-    minusBtn.onclick = async () => {
-      const quantityEl = itemEl.querySelector('.sp-quantity-display');
-      let currentQty = parseInt(quantityEl?.textContent || '0', 10);
-      if (currentQty <= 1) return; // stop at 1
-      // Disable button instantly for better UX
-      minusBtn.disabled = true;
-      minusBtn.classList.add('sp-qty-disabled');
-      minusBtn.style.pointerEvents = 'none';
-      await updateDossierItemQuantity(item.key, currentQty - 1);
-    };
+</script><script type="application/json" id="cartDrawerData">
+  {
+    "boxProductHandles": ["the-signature-trio","the-five-favourites","discovery-set"]
   }
-});
-  // CRITICAL: Enforce inventory limits AFTER event listeners are attached
-  // This will properly disable buttons that are at max quantity
-  enforceInventoryButtons(cart);
-}
-}
-  // Update global cart count
-// Update global cart count - FIXED FOR MULTIPLE CART ICONS
-// Update global cart count - FIXED FOR EMPTY CART
-const cartIconBubbles = document.querySelectorAll('#cart-icon-bubble');
-cartIconBubbles.forEach(cartIcon => {
-  if (cart.item_count > 0) {
-    // Check if cart-count-bubble already exists
-    let cartCountBubble = cartIcon.querySelector('.cart-count-bubble');
-    if (!cartCountBubble) {
-      // Create the bubble if it doesn't exist (cart was empty)
-      cartCountBubble = document.createElement('div');
-      cartCountBubble.className = 'cart-count-bubble';
-      const countSpan = document.createElement('span');
-      countSpan.setAttribute('aria-hidden', 'true');
-      countSpan.textContent = cart.item_count;
-      const srSpan = document.createElement('span');
-      srSpan.className = 'visually-hidden';
-      srSpan.textContent = `Cart count: ${cart.item_count}`;
-      cartCountBubble.appendChild(countSpan);
-      cartCountBubble.appendChild(srSpan);
-      cartIcon.appendChild(cartCountBubble);
-    } else {
-      // Update existing bubble
-      const cartCountSpan = cartCountBubble.querySelector('span[aria-hidden="true"]');
-      if (cartCountSpan) {
-        cartCountSpan.textContent = cart.item_count;
-      }
-      const cartCountSR = cartCountBubble.querySelector('.visually-hidden');
-      if (cartCountSR) {
-        cartCountSR.textContent = `Cart count: ${cart.item_count}`;
-      }
-      cartCountBubble.style.display = 'block';
-    }
-  } else {
-    // Remove or hide the bubble when cart is empty
-    const cartCountBubble = cartIcon.querySelector('.cart-count-bubble');
-    if (cartCountBubble) {
-      cartCountBubble.remove();
-    }
-  }
-});
-function enforceInventoryButtons(cart) {
-  if (!cart || !cart.items) return;
-  cart.items.forEach(item => {
-    const itemEl = document.querySelector(`[data-key="${item.key}"]`);
-    if (!itemEl) return;
-    const plusBtn = itemEl.querySelector('.sp-qty-increase');
-    const minusBtn = itemEl.querySelector('.sp-qty-decrease');
-    if (!plusBtn || !minusBtn) return;
-    // Get inventory from HTML data attribute (set during page render)
-    const inventory = parseInt(itemEl.getAttribute('data-inventory') || '999');
-  // Disable + if quantity reaches max inventory using CSS class
-  if (item.quantity >= inventory) {
-  plusBtn.classList.add('sp-qty-disabled');
-  plusBtn.disabled = true;
-  } else {
-  plusBtn.classList.remove('sp-qty-disabled');
-  plusBtn.disabled = false;
-  }
-    // Disable - if quantity 1
-    if (item.quantity <= 1) {
-      minusBtn.disabled = true;
-      minusBtn.style.opacity = '0.3';
-      minusBtn.style.pointerEvents = 'none';
-      minusBtn.style.cursor = 'not-allowed';
-      minusBtn.setAttribute('title', 'Minimum quantity is 1');
-    } else {
-      minusBtn.disabled = false;
-      minusBtn.style.opacity = '1';
-      minusBtn.style.pointerEvents = 'auto';
-      minusBtn.style.cursor = 'pointer';
-      minusBtn.removeAttribute('title');
-    }
-  });
-}
-  // Update all dynamic elements with a single fetch
-  updateAllDossierDynamicElements(cart);
-}
-document.addEventListener('DOMContentLoaded', function() {
-  // Check if customer is logged in
-    isUserLoggedIn = false;
-  // Initial UI update based on current cart state
-  fetch('/cart.js')
-    .then(response => response.json())
-    .then(cart => {
-      updateDossierCartUI(cart);
-      // Set default selection based on login status after initial UI update
-      if (!isUserLoggedIn) {
-        selectShopMethod('guest');
-      }
-    })
-    .catch(error => console.error('Error fetching initial cart:', error));
-  // Delay to ensure all other theme scripts have loaded before overriding
-  setTimeout(function() {
-    initializeDossierCartTriggers();
-  }, 500); // Reduced delay, adjust if needed
-});
-// Dossier Cart Drawer Functions
-function openDossierCart() {
-  const drawer = document.getElementById('sp-cart-drawer');
-  const overlay = document.getElementById('sp-cart-overlay');
-  if (drawer) drawer.classList.add('sp-active');
-  if (overlay) overlay.classList.add('sp-active');
-  if (drawer || overlay) {
-    document.body.style.overflow = 'hidden';
-    // Update pricing when cart opens
-    setTimeout(() => {
-      fetch('/cart.js')
-        .then(res => {
-          if (!res.ok) throw new Error('Failed to fetch cart');
-          return res.json();
-        })
-        .then(cart => {
-          updateAllDossierDynamicElements(cart);
-        })
-        .catch(err => console.error('Error updating pricing:', err));
-    }, 100);
-  }
-}
-function closeDossierCart() {
-  const drawer = document.getElementById('sp-cart-drawer');
-  const overlay = document.getElementById('sp-cart-overlay');
-  if (drawer) drawer.classList.remove('sp-active');
-  if (overlay) overlay.classList.remove('sp-active');
-  document.body.style.overflow = '';
-}
-function showCartDrawerMessage(message) {
-  const cartDrawer = document.getElementById('sp-cart-drawer');
-  if (!cartDrawer) return alert(message); // fallback
-  // Create message element
-  const msgElem = document.createElement('div');
-  msgElem.style.padding = '1rem';
-  msgElem.style.background = '#ffe0e0';
-  msgElem.style.color = '#900';
-  msgElem.style.marginBottom = '1rem';
-  msgElem.textContent = message;
-  cartDrawer.querySelector('.sp-cart-items')?.prepend(msgElem); // prepend inside drawer
-  openDossierCart();
-  setTimeout(() => msgElem.remove(), 3000); // auto remove after 3s
-}
-function toggleDossierBenefits() {
-  const benefits = document.querySelector('.sp-benefits');
-  if (benefits) {
-    benefits.classList.toggle('sp-expanded');
-  }
-}
-// Function to scroll to order summary section
-function scrollToOrderSummary() {
-  const orderSummary = document.getElementById('sp-order-summary');
-  if (orderSummary) {
-    orderSummary.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
-    });
-  }
-}
-function selectShopMethod(method) {
-  // If user is not logged in and tries to select sp+, redirect to login
-  if (method === 'sp-plus' && !isUserLoggedIn) {
-    alert('Please log in to your account to access Sp+ benefits and get an additional 10% off.');
-    window.location.href = '/account/login';
-    return;
-  }
-  currentShopMethod = method;
-  // Update UI
-  const options = document.querySelectorAll('.sp-shop-option');
-  options.forEach(option => {
-    option.classList.remove('sp-option-selected');
-    const radio = option.querySelector('input[type="radio"]');
-    if (radio) radio.checked = false;
-  });
-  const selectedOption = document.querySelector(`[data-method="${method}"]`);
-  if (selectedOption) {
-    selectedOption.classList.add('sp-option-selected');
-    const radio = selectedOption.querySelector('input[type="radio"]');
-    if (radio) radio.checked = true;
-  }
-  // Update pricing immediately with single fetch
-  fetch('/cart.js')
-    .then(res => res.json())
-    .then(cart => {
-      updateAllDossierDynamicElements(cart);
-    })
-    .catch(err => console.error('Error updating pricing:', err));
-}
-// OPTIMIZED: Single function to update all dynamic elements with one fetch
-function updateAllDossierDynamicElements(cart) {
-  // Calculate totals once
-  let totalItems = 0;
-  let subtotal = 0;
-  cart.items.forEach(item => {
-    totalItems += item.quantity;
-    subtotal += item.original_line_price;
-  });
-  // 1. Update Progress Lines
-  const effectiveItems = Math.max(0, totalItems - 2);
-  const progressLines = document.querySelectorAll('.sp-progress-line');
-  progressLines.forEach((line, index) => {
-    if (index < effectiveItems) {
-      line.classList.add('sp-active');
-    } else {
-      line.classList.remove('sp-active');
-    }
-  });
-  // 2. Update Bundle Tier
-  const tiers = document.querySelectorAll('.sp-tier');
-  tiers.forEach(tier => tier.classList.remove('sp-tier-active'));
-  const freeShippingThreshold = (window.__STORE_CONFIG && window.__STORE_CONFIG.freeShippingThreshold) || 0;
-  const flatShippingCost = (window.__STORE_CONFIG && window.__STORE_CONFIG.shippingCost) || 0;
-  if (subtotal >= freeShippingThreshold) { // region's free-shipping threshold
-    const tier2 = document.querySelector('[data-items="2"]');
-    if (tier2) tier2.classList.add('sp-tier-active');
-  } else { // below it
-    const tier1 = document.querySelector('[data-items="1"]');
-    if (tier1) tier1.classList.add('sp-tier-active');
-  }
-  // 3. Update Pricing Display
-  let shipping = 0;
-  if (subtotal < freeShippingThreshold) {
-    shipping = flatShippingCost;
-  } else {
-    shipping = 0; // FREE
-  }
-  const finalTotal = subtotal + shipping;
-  const checkoutTotal = document.getElementById('checkout-total');
-  if (checkoutTotal) {
-    checkoutTotal.textContent = `${currSym}${(finalTotal / 100).toFixed(2)}`;
-  }
-  // Update order summary
-  updateOrderSummary(subtotal, shipping);
-}
-// Update order summary - No Discounts
-function updateOrderSummary(subtotal, shipping) {
-  // Show initial price (no discounts)
-  const initialPrice = document.getElementById('summary-initial-price');
-  if (initialPrice) {
-    initialPrice.textContent = `${currSym}${(subtotal / 100).toFixed(2)}`;
-  }
-  // Update shipping UI
-  const shippingCost = document.getElementById('sp-shipping-cost');
-  if (shippingCost) {
-    shippingCost.textContent = shipping === 0
-      ? 'FREE'
-      : `${currSym}${(shipping / 100).toFixed(2)}`;
-  }
-  // Hide discount lines since there are no discounts
-  const memberDiscountLine = document.getElementById('member-discount-line');
-  if (memberDiscountLine) {
-    memberDiscountLine.style.display = 'none';
-  }
-  // Hide discount notice
-  const discountNotice = document.getElementById('discount-notice');
-  if (discountNotice) {
-    discountNotice.style.display = 'none';
-  }
-}
-async function updateDossierItemQuantity(key, newQuantity) {
-  if (isProcessingCartAction) return;
-  isProcessingCartAction = true;
-  try {
-    await fetch('/cart/change.js', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id: key, quantity: newQuantity })
-    });
-    const cart = await fetch('/cart.js').then(r => r.json());
-    // Find the item element and its inventory
-    const itemEl = document.querySelector(`[data-key="${key}"]`);
-    if (itemEl) {
-      const cartItem = cart.items.find(item => item.key === key);
-      const inventory = parseInt(itemEl.getAttribute('data-inventory') || '999', 10);
-      const plusBtn = itemEl.querySelector('.sp-qty-increase');
-      if (plusBtn) {
-        if (cartItem && cartItem.quantity >= inventory) {
-          plusBtn.classList.add('sp-qty-disabled');
-          plusBtn.disabled = true;
-        } else {
-          plusBtn.classList.remove('sp-qty-disabled');
-          plusBtn.disabled = false;
-        }
-      }
-    }
-    // Update the full UI - this will call enforceInventoryButtons
-    updateDossierCartUI(cart);
-  } catch (err) {
-    console.error(err);
-  }
-  isProcessingCartAction = false;
-}
-function removeDossierCartItem(key) {
-  if (isProcessingCartAction) {
-    console.warn('Cart action already in progress');
-    return;
-  }
-  isProcessingCartAction = true;
-  // Remove item from UI immediately
-  const productItem = document.querySelector(`[data-key="${key}"]`);
-  if (productItem) {
-    productItem.style.opacity = '0.5';
-    productItem.style.pointerEvents = 'none';
-  }
-  fetch('/cart/change.js', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      id: key,
-      quantity: 0
-    })
-  })
-  .then(response => response.json())
-  .then(cart => {
-    // Remove item from DOM
-    if (productItem) {
-      productItem.remove();
-    }
-    // Update all prices and UI
-    updateDossierCartUI(cart); // Use the new comprehensive update function
-    // If cart is now empty, reload to fully reset to the empty state (optional, but ensures Liquid re-eval)
-    if (cart.item_count === 0) {
-      location.reload();
-    }
-  })
-  .catch(error => {
-    console.error('Error removing item:', error);
-    // Revert UI changes on error
-    if (productItem) {
-      productItem.style.opacity = '1';
-      productItem.style.pointerEvents = 'auto';
-    }
-  })
-  .finally(() => {
-    isProcessingCartAction = false;
-  });
-}
-function addDossierRecommended(variantId, productTitle, productImage, productPrice, originalPrice) {
-  if (isProcessingCartAction) {
-    console.warn('Cart action already in progress');
-    return;
-  }
-  // Convert variantId to number if it's a string (variant IDs are numeric)
-  const numericVariantId = parseInt(variantId, 10);
-  if (isNaN(numericVariantId)) {
-    console.error('Invalid variant ID:', variantId);
-    alert('Unable to add this product. Please try again.');
-    return;
-  }
-  isProcessingCartAction = true;
-  // Add the product to cart
-  fetch('/cart/add.js', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      id: numericVariantId,
-      quantity: 1
-    })
-  })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    return response.json();
-  })
-  .then(data => {
-    console.log("[v0] Product added successfully:", productTitle);
-    // Update UI and open drawer, no page reload
-    fetch('/cart.js') // Fetch latest cart state
-      .then(res => res.json())
-      .then(cart => {
-        console.log("[v0] Cart updated, item count:", cart.item_count);
-        updateDossierCartUI(cart); // Update all UI elements
-        openDossierCart(); // Ensure drawer is open
-      });
-  })
-  .catch(error => {
-    console.error('Error adding recommended product to cart:', error);
-    // Show error feedback
-    const button = document.querySelector(`button[onclick*="${variantId}"]`);
-    if (button) {
-      const originalText = button.textContent;
-      button.textContent = 'ERROR';
-      button.style.background = '#f44336';
-      button.style.color = 'white';
-      button.style.borderColor = '#f44336';
-      setTimeout(() => {
-        button.textContent = originalText;
-        button.style.background = '';
-        button.style.color = '';
-        button.style.borderColor = '';
-      }, 1500);
-    }
-  })
-  .finally(() => {
-    isProcessingCartAction = false;
-  });
-}
-function proceedToDossierCheckout() {
-  window.location.href = '/checkout';
-}
-function initializeDossierCartTriggers() {
-  if (window.spCartTriggersInitialized) {
-    return;
-  }
-  window.spCartTriggersInitialized = true;
-  // Find all possible cart triggers
-  const cartSelectors = [
-    'a[href="/cart"]',
-    'a[href*="/cart"]',
-    '.cart-icon',
-    '.cart-link',
-    '.header-cart',
-    '.cart-toggle',
-    '.js-cart-trigger',
-    '[data-cart-trigger]',
-    '.cart-count-bubble',
-    '.site-header__cart',
-    '.header__icon--cart',
-    '.cart-drawer-toggle',
-    '.header-cart-link',
-    '.cart-icon-wrapper'
-  ];
-  cartSelectors.forEach(selector => {
-    const elements = document.querySelectorAll(selector);
-    elements.forEach(element => {
-      if (!element.hasAttribute('data-sp-listener')) {
-        element.setAttribute('data-sp-listener', 'true');
-        // Add click handler to open the drawer
-        element.addEventListener('click', function(e) {
-          e.preventDefault(); // Prevent default navigation to cart page
-          e.stopPropagation();
-          e.stopImmediatePropagation(); // Stop other listeners on this element
-          openDossierCart();
-          return false; // Ensure no further action
-        }, true); // Use capture phase to ensure it runs before other handlers
-      }
-    });
-  });
-  const cartForms = document.querySelectorAll('form[action="/cart/add"], form[action*="/cart/add"]');
-  cartForms.forEach(form => {
-    if (!form.hasAttribute('data-sp-form-listener')) {
-      form.setAttribute('data-sp-form-listener', 'true');
-      form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        if (isProcessingCartAction) {
-          console.warn('Form submission already in progress');
-          return;
-        }
-        isProcessingCartAction = true;
-        const formData = new FormData(this);
-        const variantId = formData.get('id');
-        const quantity = parseInt(formData.get('quantity')) || 1;
-        fetch('/cart/add.js', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            id: variantId,
-            quantity: quantity
-          })
-        })
-        .then(response => {
-          if (!response.ok) throw new Error('Add to cart failed');
-          return response.json();
-        })
-        .then(data => {
-          fetch('/cart.js')
-            .then(res => {
-              if (!res.ok) throw new Error('Cart refresh failed');
-              return res.json();
-            })
-            .then(cart => {
-              updateDossierCartUI(cart);
-              openDossierCart();
-            })
-            .catch(cartError => console.error('Error fetching cart after add:', cartError));
-        })
-        .catch(error => {
-          console.error('Error adding to cart:', error);
-          alert('Failed to add product to cart. Please try again.');
-        })
-        .finally(() => {
-          isProcessingCartAction = false;
-        });
-      }, true);
-    }
-  });
-}
 </script>
+<script src="/cdn/shop/t/X/assets/cart--drawer.js?v=X"></script>
 <!-- BEGIN sections: header-group -->
-<div id="shopify-section-X__announcement-bar" class="shopify-section shopify-section-group-header-group announcement-bar-section"><link href="/cdn/shop/t/X/assets/component-slideshow.css?v=X" rel="stylesheet" type="text/css" media="all" />
-<link href="/cdn/shop/t/X/assets/component-slider.css?v=X" rel="stylesheet" type="text/css" media="all" />
+<div id="shopify-section-X__announcement-bar" class="shopify-section shopify-section-group-header-group announcement-bar-section"><link href="/cdn/shop/t/X/assets/ui--slideshow.css?v=X" rel="stylesheet" type="text/css" media="all" />
+<link href="/cdn/shop/t/X/assets/ui--slider.css?v=X" rel="stylesheet" type="text/css" media="all" />
 <div
   class="utility-bar color-scheme-4 gradient utility-bar--bottom-border">
   <div class="page-width utility-bar__grid"><div
@@ -1808,20 +1120,14 @@ function initializeDossierCartTriggers() {
 </div>
   </div>
 </div>
-<style> #shopify-section-X__announcement-bar .announcement-bar {padding-top: 1px; padding-bottom: 0px; margin-bottom: 0px;} #shopify-section-X__announcement-bar .announcement-bar__message {line-height: 0.2; font-size: 12px; /* optional: adjust text size */ font-weight: 400;} @media only screen and (max-width: 767px) {#shopify-section-X__announcement-bar .announcement-bar__message {line-height: 01.6; font-size: 8px; }} </style></div><div id="shopify-section-X__header" class="shopify-section shopify-section-group-header-group section-header"><link rel="stylesheet" href="/cdn/shop/t/X/assets/component-list-menu.css?v=X" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="/cdn/shop/t/X/assets/component-search.css?v=X" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="/cdn/shop/t/X/assets/component-menu-drawer.css?v=X" media="print" onload="this.media='all'">
-<link
-  rel="stylesheet"
-  href="/cdn/shop/t/X/assets/component-cart-notification.css?v=X"
-  media="print"
-  onload="this.media='all'"><style>@media screen and (min-width: 1025) {
+<style> #shopify-section-X__announcement-bar .announcement-bar {padding-top: 1px; padding-bottom: 0px; margin-bottom: 0px;} #shopify-section-X__announcement-bar .announcement-bar__message {line-height: 0.2; font-size: 12px; /* optional: adjust text size */ font-weight: 400;} @media only screen and (max-width: 767px) {#shopify-section-X__announcement-bar .announcement-bar__message {line-height: 01.6; font-size: 8px; }} </style></div><div id="shopify-section-X__header" class="shopify-section shopify-section-group-header-group section-header"><link rel="stylesheet" href="/cdn/shop/t/X/assets/header--list-menu.css?v=X" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="/cdn/shop/t/X/assets/search--form.css?v=X" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="/cdn/shop/t/X/assets/header--menu-drawer.css?v=X" media="print" onload="this.media='all'"><style>@media screen and (min-width: 1025px) {
         header-drawer {
           display: none;
         }
       }</style>
-<link href="/cdn/shop/t/X/assets/header.css?v=X" rel="stylesheet" type="text/css" media="all" />
-<style data-shopify>.header {
+<link href="/cdn/shop/t/X/assets/header--main.css?v=X" rel="stylesheet" type="text/css" media="all" /><style data-shopify>.header {
       padding: 18px 3rem 0px 3rem;
     }
     .section-header {
@@ -1860,7 +1166,7 @@ function initializeDossierCartTriggers() {
     justify-content: center;
     font-family: var(--font-body);
     white-space: nowrap; /* prevents line break */
-  }</style><script src="/cdn/shop/t/X/assets/cart-notification.js?v=X" defer="defer"></script>
+  }</style>
 <sticky-header
     data-sticky-type="on-scroll-up"
   class="header-wrapper color-scheme-2 gradient"><header class="header header--middle-left header--mobile-center page-width header--has-menu header--has-account">
@@ -1964,10 +1270,8 @@ function initializeDossierCartTriggers() {
 </header-drawer>
 <a href="/" class="header__heading-link link link--text focus-inset"><div class="header__heading-logo-wrapper">
             <img src="/cdn/shop/files/Scentspired_logo_1.png?v=X&amp;width=600" alt="Scentspired UK" srcset="/cdn/shop/files/Scentspired_logo_1.png?v=X&amp;width=200 200w, /cdn/shop/files/Scentspired_logo_1.png?v=X&amp;width=300 300w, /cdn/shop/files/Scentspired_logo_1.png?v=X&amp;width=400 400w" width="200" height="44.945697577276526" loading="eager" class="header__heading-logo motion-reduce" sizes="(max-width: 400px) 50vw, 200px">
-          </div></a><nav class="header__inline-menu"><ul class="list-menu list-menu--inline" role="list"><li class="header__menu-item header__menu-item--has-dropdown"><a href="/collections/shop" class="header__menu-item-link list-menu__item list-menu__item--link">SHOP</a><div class="dossier-dropdown"><div class="dossier-dropdown-content"><div class="dropdown-section"><a href="/collections/shop" class="dropdown-item"><div class="dropdown-item-icon"><img src="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Website_-_Shop_All_UUID.png?v=X" alt="All Perfumes"></div><div class="dropdown-item-content"><div class="dropdown-item-title">Shop All </div></div></a></div><div class="dropdown-section-title">FRAGRANCES FOR</div><div class="dropdown-section"><a href="/collections/women" class="dropdown-item"><div class="dropdown-item-icon"><img src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Screenshot_2025-07-01_133909_1_2.webp?v=X" alt="Women"></div><div class="dropdown-item-content"><div class="dropdown-item-title">Women</div></div></a><a href="/collections/men" class="dropdown-item"><div class="dropdown-item-icon"><img src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Screenshot_2025-07-01_134105_1_1.webp?v=X" alt="Men"></div><div class="dropdown-item-content"><div class="dropdown-item-title">Men</div></div></a><a href="/collections/unisex" class="dropdown-item"><div class="dropdown-item-icon"><img src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Screenshot_2025-07-01_134204_1.webp?v=X" alt="Unisex"></div><div class="dropdown-item-content"><div class="dropdown-item-title">Unisex</div></div></a></div><div class="dropdown-section-title">MORE WAYS TO SHOP</div><div class="dropdown-section"><a href="/pages/discovery-set" class="dropdown-item"><div class="dropdown-item-icon"><img src="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Website_-_Discovery_Box_01_UUID.png?v=X" alt="New Arrivals"></div><div class="dropdown-item-content"><div class="dropdown-item-title">Discovery Box</div></div></a><a href="/collections/bestsellers" class="dropdown-item"><div class="dropdown-item-icon"><img src="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Website_-_Shop_All_UUID.png?v=X" alt="Bestsellers"></div><div class="dropdown-item-content"><div class="dropdown-item-title">Bestsellers</div></div></a><a href="/pages/scent-families" class="dropdown-item"><div class="dropdown-item-icon"><img src="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_01_-_Banner_UUID.jpg?v=X" alt="Scent Families"></div><div class="dropdown-item-content"><div class="dropdown-item-title">Notes / Seasons</div></div></a></div><div class="dropdown-section-title">Bundles</div><div class="dropdown-section"><a href="/pages/trio" class="dropdown-item"><div class="dropdown-item-icon"><img src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/M5_UUID.webp?v=X" alt="New Arrivals"></div><div class="dropdown-item-content"><div class="dropdown-item-title">The Signature Trio</div></div></a><a href="/pages/fifer-box" class="dropdown-item"><div class="dropdown-item-icon"><img src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/2_UUID.webp?v=X" alt="Bestsellers"></div><div class="dropdown-item-content"><div class="dropdown-item-title">The Five Favorites</div></div></a></div></div></li><li class="header__menu-item"><a href="/collections/shop" class="header__menu-item-link list-menu__item list-menu__item--link">FIND YOUR SCENT</a></li><li class="header__menu-item"><a href="/pages/about-us" class="header__menu-item-link list-menu__item list-menu__item--link">ABOUT US</a></li><li class="header__menu-item"><a href="/pages/scent-notes" class="header__menu-item-link list-menu__item list-menu__item--link">SCENT NOTES</a></li><li class="header__menu-item"><a href="/pages/discovery-set" class="header__menu-item-link list-menu__item list-menu__item--link">DISCOVERY BOX</a></li><li class="header__menu-item header__menu-item--has-dropdown"><a href="/pages/bundle-1" class="header__menu-item-link list-menu__item list-menu__item--link">BUNDLES</a><div class="dossier-dropdown"><div class="dossier-dropdown-content"><div class="dropdown-section-title"></div><div class="dropdown-section"><a href="/pages/trio" class="dropdown-item"><div class="dropdown-item-icon"><img src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/M5_1.webp?v=X" alt="Item 2"></div><div class="dropdown-item-content"><div class="dropdown-item-title">The Signature Trio</div></div></a><a href="/pages/fifer-box" class="dropdown-item"><div class="dropdown-item-icon"><img src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/2_UUID_1.webp?v=X" alt="Item 3"></div><div class="dropdown-item-content"><div class="dropdown-item-title">The Five Favourites</div></div></a></div></div></div></li></ul></nav>
-<div class="header__icons">
-      <div class="desktop-localization-wrapper">
-</div>
+          </div></a><nav class="header__inline-menu"><ul class="list-menu list-menu--inline" role="list"><li class="header__menu-item header__menu-item--has-dropdown"><a href="/collections/shop" class="header__menu-item-link list-menu__item list-menu__item--link">SHOP</a><div class="dossier-dropdown"><div class="dossier-dropdown-content"><div class="dropdown-section"><a href="/collections/shop" class="dropdown-item"><div class="dropdown-item-icon"><img src="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Website_-_Shop_All_UUID.png?v=X" alt="All Perfumes"></div><div class="dropdown-item-content"><div class="dropdown-item-title">Shop All</div></div></a></div><div class="dropdown-section-title">FRAGRANCES FOR</div><div class="dropdown-section"><a href="/collections/women" class="dropdown-item"><div class="dropdown-item-icon"><img src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Screenshot_2025-07-01_133909_1_2.webp?v=X" alt="Women"></div><div class="dropdown-item-content"><div class="dropdown-item-title">Women</div></div></a><a href="/collections/men" class="dropdown-item"><div class="dropdown-item-icon"><img src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Screenshot_2025-07-01_134105_1_1.webp?v=X" alt="Men"></div><div class="dropdown-item-content"><div class="dropdown-item-title">Men</div></div></a><a href="/collections/unisex" class="dropdown-item"><div class="dropdown-item-icon"><img src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Screenshot_2025-07-01_134204_1.webp?v=X" alt="Unisex"></div><div class="dropdown-item-content"><div class="dropdown-item-title">Unisex</div></div></a></div><div class="dropdown-section-title">MORE WAYS TO SHOP</div><div class="dropdown-section"><a href="/pages/discovery-set" class="dropdown-item"><div class="dropdown-item-icon"><img src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Website_-_Discovery_Box_01_UUID.webp?v=X" alt="Discovery Box"></div><div class="dropdown-item-content"><div class="dropdown-item-title">Discovery Box</div></div></a><a href="/collections/bestsellers" class="dropdown-item"><div class="dropdown-item-icon"><img src="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Website_-_Shop_All_UUID.png?v=X" alt="Bestsellers"></div><div class="dropdown-item-content"><div class="dropdown-item-title">Bestsellers</div></div></a><a href="/pages/scent-notes" class="dropdown-item"><div class="dropdown-item-icon"><img src="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/ScentSpired_-_Scent_Notes_01_-_Banner_UUID.jpg?v=X" alt="Scent Families"></div><div class="dropdown-item-content"><div class="dropdown-item-title">Notes / Seasons</div></div></a></div><div class="dropdown-section-title">Bundles</div><div class="dropdown-section"><a href="/pages/trio" class="dropdown-item"><div class="dropdown-item-icon"><img src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/M5_2.webp?v=X" alt="The Signature Trio"></div><div class="dropdown-item-content"><div class="dropdown-item-title">The Signature Trio</div></div></a><a href="/pages/five-favourites" class="dropdown-item"><div class="dropdown-item-icon"><img src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/2_UUID_2.webp?v=X" alt="The Five Favourites"></div><div class="dropdown-item-content"><div class="dropdown-item-title">The Five Favourites</div></div></a></div></div></li><li class="header__menu-item"><a href="/collections/shop" class="header__menu-item-link list-menu__item list-menu__item--link">FIND YOUR SCENT</a></li><li class="header__menu-item"><a href="/pages/about-us" class="header__menu-item-link list-menu__item list-menu__item--link">ABOUT US</a></li><li class="header__menu-item"><a href="/pages/scent-notes" class="header__menu-item-link list-menu__item list-menu__item--link">SCENT NOTES</a></li><li class="header__menu-item"><a href="/pages/discovery-set" class="header__menu-item-link list-menu__item list-menu__item--link">DISCOVERY BOX</a></li><li class="header__menu-item header__menu-item--has-dropdown"><a href="/pages/bundle-1" class="header__menu-item-link list-menu__item list-menu__item--link">BUNDLES</a><div class="dossier-dropdown"><div class="dossier-dropdown-content"><div class="dropdown-section-title"></div><div class="dropdown-section"><a href="/pages/trio" class="dropdown-item"><div class="dropdown-item-icon"><img src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/M5_2.webp?v=X" alt="The Signature Trio"></div><div class="dropdown-item-content"><div class="dropdown-item-title">The Signature Trio</div></div></a><a href="/pages/five-favourites" class="dropdown-item"><div class="dropdown-item-icon"><img src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/2_UUID_2.webp?v=X" alt="The Five Favourites"></div><div class="dropdown-item-content"><div class="dropdown-item-title">The Five Favourites</div></div></a></div></div></div></li></ul></nav><div class="header__icons">
+      <div class="desktop-localization-wrapper"></div>
 <details-modal class="header__search">
   <details>
     <summary
@@ -1979,7 +1283,7 @@ function initializeDossierCartTriggers() {
 </span>
         <span class="svg-wrapper header__icon-close"><svg xmlns="http://www.w3.org/2000/svg" fill="none" class="icon icon-close" viewBox="0 0 18 17"><path fill="currentColor" d="M.865 15.978a.5.5 0 0 0 .707.707l7.433-7.431 7.579 7.282a.501.501 0 0 0 .846-.37.5.5 0 0 0-.153-.351L9.712 8.546l7.417-7.416a.5.5 0 1 0-.707-.708L8.991 7.853 1.413.573a.5.5 0 1 0-.693.72l7.563 7.268z"/></svg>
 </span>
-        <span class="search-label-text">SEARCH</span>
+        <span class="search-label-text">Search</span>
       </span>
     </summary>
     <div
@@ -1990,7 +1294,9 @@ function initializeDossierCartTriggers() {
       <div class="modal-overlay"></div>
       <div
         class="search-modal__content search-modal__content-bottom"
-        tabindex="-1"><search-form class="search-modal__form"><form action="/search" method="get" role="search" class="search search-modal__form">
+        tabindex="-1">
+        <search-form class="search-modal__form">
+        <form action="/search" method="get" role="search" class="search search-modal__form">
           <div class="field">
             <input
               class="search__input field__input"
@@ -2012,7 +1318,10 @@ function initializeDossierCartTriggers() {
               <span class="svg-wrapper"><svg fill="none" class="icon icon-search" viewBox="0 0 18 19"><path fill="currentColor" fill-rule="evenodd" d="M11.03 11.68A5.784 5.784 0 1 1 2.85 3.5a5.784 5.784 0 0 1 8.18 8.18m.26 1.12a6.78 6.78 0 1 1 .72-.7l5.4 5.4a.5.5 0 1 1-.71.7z" clip-rule="evenodd"/></svg>
 </span>
             </button>
-          </div></form></search-form><button
+          </div>
+        </form>
+        </search-form>
+        <button
           type="button"
           class="search-modal__close-button modal__close-button link link--text focus-inset"
           aria-label="Close">
@@ -2037,7 +1346,7 @@ function initializeDossierCartTriggers() {
       <div class="mobile-nav-item">
         <div class="mobile-nav-ic" id="mobileMenuTrigger">
           <img
-            src="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/hd-black-menu-burger-icon-transparent-background-701751695037028szh5wywnpo-removebg-preview.png?v=X"
+            src="/cdn/shop/t/X/assets/ui--icon-nav-menu.png?v=X"
             alt="Menu"
             class="nav-ic-img">
         </div>
@@ -2046,7 +1355,7 @@ function initializeDossierCartTriggers() {
       <div class="mobile-nav-item">
         <div class="mobile-nav-icon" id="mobileAccountTrigger">
           <img
-            src="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Vector_1.svg?v=X"
+            src="/cdn/shop/t/X/assets/ui--icon-nav-account.svg?v=X"
             alt="Account"
             class="nav-icon-img">
         </div>
@@ -2055,7 +1364,7 @@ function initializeDossierCartTriggers() {
       <div class="mobile-nav-item">
         <div class="mobile-nav-icon" id="mobileSearchTrigger">
           <img
-            src="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Vector_5.png?v=X"
+            src="/cdn/shop/t/X/assets/ui--icon-nav-search.png?v=X"
             alt="Search"
             class="nav-icon-img">
         </div>
@@ -2066,7 +1375,7 @@ function initializeDossierCartTriggers() {
 </span>
         <span class="visually-hidden">Cart</span></a>
     </div>
-    <!-- Mobile Menu Drawer - HARDCODED MENU STRUCTURE -->
+    <!-- Mobile Menu Drawer: items from regions/<id>/content/global.json (header.mobile_menu) -->
     <div class="mobile-menu-drawer" id="mobileMenuDrawer">
       <div class="mobile-menu-header">
         <div class="menu-drawer-title ui-label" style="margin: 0; font-family: var(--font-body);">Menu</div>
@@ -2094,119 +1403,53 @@ function initializeDossierCartTriggers() {
               </svg>
             </button>
           </div>
-          <div class="mobile-submenu">
-            <!-- Shop All Section -->
-            <div class="mobile-submenu-section">
-              <a href="/collections/shop" class="mobile-submenu-item">
-                <div class="mobile-submenu-icon">
-                  <img
-                    src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Website_-_Shop_All_UUID.webp?v=X"
-                    alt="All Perfumes">
-                </div>
-                <span>Shop All</span>
-              </a>
-            </div>
-            <!-- Shop by Gender Section -->
-            <div class="mobile-submenu-section-title">FRAGRANCES FOR</div>
-            <div class="mobile-submenu-section">
-              <a href="/collections/women" class="mobile-submenu-item">
-                <div class="mobile-submenu-icon">
-                  <img
-                    src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Screenshot_2025-07-01_133909_1_3.webp?v=X"
-                    alt="Women">
-                </div>
-                <span>Women</span>
-              </a>
-              <a href="/collections/men" class="mobile-submenu-item">
-                <div class="mobile-submenu-icon">
-                  <img
-                    src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Screenshot_2025-07-01_134105_1_2.webp?v=X"
-                    alt="Men">
-                </div>
-                <span>Men</span>
-              </a>
-              <a href="/collections/unisex" class="mobile-submenu-item">
-                <div class="mobile-submenu-icon">
-                  <img
-                    src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Screenshot_2025-07-01_134204_1_1.webp?v=X"
-                    alt="Unisex">
-                </div>
-                <span>Unisex</span>
-              </a>
-            </div>
-            <!-- More Ways to Shop Section -->
-            <div class="mobile-submenu-section-title">MORE WAYS TO SHOP</div>
-            <div class="mobile-submenu-section">
-              <a href="/pages/discovery-set" class="mobile-submenu-item">
-                <div class="mobile-submenu-icon">
-                  <img
-                    src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Website_-_Discovery_Box_01_UUID.webp?v=X"
-                    alt="New Arrivals">
-                </div>
-                <span>Discovery Box</span>
-              </a>
-              <a href="/collections/bestsellers" class="mobile-submenu-item">
-                <div class="mobile-submenu-icon">
-                  <img
-                    src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Website_-_Shop_All_UUID_1.webp?v=X"
-                    alt="Bestsellers">
-                </div>
-                <span>Bestsellers</span>
-              </a>
-              <a href="/pages/scent-notes" class="mobile-submenu-item">
-                <div class="mobile-submenu-icon">
-                  <img
-                    src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/ScentSpired_-_Scent_Notes_01_-_Banner.webp?v=X"
-                    alt="Scent Families">
-                </div>
-                <span>Notes/Seasons</span>
-              </a>
-            </div>
-            <div class="mobile-submenu-section-title">BUNDLES</div>
-            <div class="mobile-submenu-section">
-              <a href="/pages/trio" class="mobile-submenu-item">
-                <div class="mobile-submenu-icon">
-                  <img
-                    src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/M5_2.webp?v=X"
-                    alt="All Perfumes">
-                </div>
-                <span>The Signature Trio</span>
-              </a>
-              <a href="/pages/fifer-box" class="mobile-submenu-item">
-                <div class="mobile-submenu-icon">
-                  <img
-                    src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/2_UUID_2.webp?v=X"
-                    alt="All Perfumes">
-                </div>
-                <span>The Five Favourites</span>
-              </a>
+          <div class="mobile-submenu"><div class="mobile-submenu-section"><a href="/collections/shop" class="mobile-submenu-item">
+          <div class="mobile-submenu-icon">
+            <img src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Website_-_Shop_All_UUID.webp?v=X" alt="All Perfumes">
+          </div>
+          <span>Shop All</span>
+        </a></div><div class="mobile-submenu-section-title">FRAGRANCES FOR</div><div class="mobile-submenu-section"><a href="/collections/women" class="mobile-submenu-item">
+          <div class="mobile-submenu-icon">
+            <img src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Screenshot_2025-07-01_133909_1_3.webp?v=X" alt="Women">
+          </div>
+          <span>Women</span>
+        </a><a href="/collections/men" class="mobile-submenu-item">
+          <div class="mobile-submenu-icon">
+            <img src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Screenshot_2025-07-01_134105_1_2.webp?v=X" alt="Men">
+          </div>
+          <span>Men</span>
+        </a><a href="/collections/unisex" class="mobile-submenu-item">
+          <div class="mobile-submenu-icon">
+            <img src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Screenshot_2025-07-01_134204_1_1.webp?v=X" alt="Unisex">
+          </div>
+          <span>Unisex</span>
+        </a></div><div class="mobile-submenu-section-title">MORE WAYS TO SHOP</div><div class="mobile-submenu-section"><a href="/pages/discovery-set" class="mobile-submenu-item"><div class="mobile-submenu-icon"><img src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Website_-_Discovery_Box_01_UUID.webp?v=X" alt="Discovery Box"></div><span>Discovery Box</span></a><a href="/collections/bestsellers" class="mobile-submenu-item">
+          <div class="mobile-submenu-icon">
+            <img src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Website_-_Shop_All_UUID_1.webp?v=X" alt="Bestsellers">
+          </div>
+          <span>Bestsellers</span>
+        </a><a href="/pages/scent-notes" class="mobile-submenu-item">
+          <div class="mobile-submenu-icon">
+            <img src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/ScentSpired_-_Scent_Notes_01_-_Banner.webp?v=X" alt="Scent Families">
+          </div>
+          <span>Notes/Seasons</span>
+        </a></div><div class="mobile-submenu-section-title">BUNDLES</div><div class="mobile-submenu-section"><a href="/pages/trio" class="mobile-submenu-item"><div class="mobile-submenu-icon"><img src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/M5_2.webp?v=X" alt="The Signature Trio"></div><span>The Signature Trio</span></a><a href="/pages/five-favourites" class="mobile-submenu-item"><div class="mobile-submenu-icon"><img src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/2_UUID_2.webp?v=X" alt="The Five Favourites"></div><span>The Five Favourites</span></a></div></div>
+        </div><div class="mobile-menu-item-wrapper">
+            <div class="mobile-menu-item-header">
+              <a href="/collections/shop" class="mobile-menu-item">FIND YOUR SCENT</a>
             </div>
           </div>
-        </div>
-        <!-- FIND YOUR SCENT - NO DROPDOWN -->
         <div class="mobile-menu-item-wrapper">
-          <div class="mobile-menu-item-header">
-            <a href="/collections/shop" class="mobile-menu-item">FIND YOUR SCENT</a>
+            <div class="mobile-menu-item-header">
+              <a href="/pages/about-us" class="mobile-menu-item">ABOUT US</a>
+            </div>
           </div>
-        </div>
-        <!-- ABOUT US - NO DROPDOWN -->
         <div class="mobile-menu-item-wrapper">
-          <div class="mobile-menu-item-header">
-            <a href="/pages/about-us" class="mobile-menu-item">ABOUT US</a>
+            <div class="mobile-menu-item-header">
+              <a href="/pages/scent-notes" class="mobile-menu-item">SCENT NOTES</a>
+            </div>
           </div>
-        </div>
-        <!-- SCENT FAMILIES - NO DROPDOWN -->
-        <div class="mobile-menu-item-wrapper">
-          <div class="mobile-menu-item-header">
-            <a href="/pages/scent-notes" class="mobile-menu-item">SCENT NOTES</a>
-          </div>
-        </div>
-        <div class="mobile-menu-item-wrapper">
-          <div class="mobile-menu-item-header">
-            <a href="/pages/discovery-set" class="mobile-menu-item">DISCOVERY BOX</a>
-          </div>
-        </div>
-        <div class="mobile-menu-item-wrapper">
+        <div class="mobile-menu-item-wrapper"><div class="mobile-menu-item-header"><a href="/pages/discovery-set" class="mobile-menu-item">DISCOVERY BOX</a></div></div><div class="mobile-menu-item-wrapper">
           <div class="mobile-menu-item-header">
             <a href="#" class="mobile-menu-item">BUNDLES</a>
             <button class="mobile-menu-toggle" onclick="toggleMobileSubmenu(this)">
@@ -2223,29 +1466,13 @@ function initializeDossierCartTriggers() {
           </div>
           <div class="mobile-submenu">
             <!-- Shop All Section -->
-            <div class="mobile-submenu-section">
-              <a href="/pages/trio" class="mobile-submenu-item">
-                <div class="mobile-submenu-icon">
-                  <img
-                    src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/M5_2.webp?v=X"
-                    alt="All Perfumes">
-                </div>
-                <span>The Signature Trio</span>
-              </a>
-              <a href="/pages/fifer-box" class="mobile-submenu-item">
-                <div class="mobile-submenu-icon">
-                  <img
-                    src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/2_UUID_2.webp?v=X"
-                    alt="All Perfumes">
-                </div>
-                <span>The Five Favourites</span>
-              </a>
-            </div>
+            <div class="mobile-submenu-section"><a href="/pages/trio" class="mobile-submenu-item"><div class="mobile-submenu-icon"><img src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/M5_2.webp?v=X" alt="The Signature Trio"></div><span>The Signature Trio</span></a><a href="/pages/five-favourites" class="mobile-submenu-item"><div class="mobile-submenu-icon"><img src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/2_UUID_2.webp?v=X" alt="The Five Favourites"></div><span>The Five Favourites</span></a></div>
           </div>
         </div>
       </div>
     </div>
-  </header><!-- Move the closing dynamic header tag to after all header content -->
+  </header>
+  <!-- Move the closing dynamic header tag to after all header content -->
 </sticky-header>
 <!-- Custom Search Overlay -->
 <div id="customSearchOverlay" class="custom-search-overlay">
@@ -2342,31 +1569,6 @@ function initializeDossierCartTriggers() {
             </div>
             <div class="custom-pill-container" id="customGender"></div>
           </div>
-          <!-- Brands -->
-          <div class="custom-search-section" style="display: none;">
-            <div class="custom-section-header">
-              <div class="custom-section-title">
-                <svg class="custom-section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
-                  <line x1="7" y1="7" x2="7.01" y2="7"></line>
-                </svg>
-                <h3>Inspired By</h3>
-              </div>
-              <div class="custom-nav-arrows">
-                <button class="custom-nav-arrow" id="customBrandsPrev">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="15,18 9,12 15,6"></polyline>
-                  </svg>
-                </button>
-                <button class="custom-nav-arrow" id="customBrandsNext">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="9,18 15,12 9,6"></polyline>
-                  </svg>
-                </button>
-              </div>
-            </div>
-            <div class="custom-pill-container" id="customBrands"></div>
-          </div>
           <!-- Trending Search -->
           <div class="custom-search-section">
             <div class="custom-section-header">
@@ -2446,9 +1648,6 @@ function initializeDossierCartTriggers() {
             </div>
             <div class="custom-products-grid" id="customProductsGrid"></div>
           </div>
-          <!-- Promotional Banner -->
-          <div class="custom-promo-banner" id="customPromoBanner"></div>
-          <div class="custom-promo-banner" id="customPromoBanner"></div>
         </div>
       </div>
       <!-- Collections Section - Full Width -->
@@ -2458,7 +1657,17 @@ function initializeDossierCartTriggers() {
       </div>
     </div>
   </div>
-</div>
+</div><script type="application/json" id="headerSearchData">{"suggested_searches":["Amber","Women"],"genders":["Men","Women","Unisex"],"scent_families":["Flowery","Fresh","Earthy","Herbal","Warm","Gourmand"],"scent_notes":["Saffron","Jasmine","Amberwood","Ambergris","Fir Resin","Cedar","Bergamot","Black Currant","Apple","Lemon","Pink Pepper","Pineapple","Patchouli","Moroccan Jasmine","Birch","Musk","Oakmoss","Cedarwood","Ambroxan","Litchi","Rhubarb","Bergamot","Nutmeg","Turkish Rose","Peony","Musk","Petalia","Vanilla","Cashmeran","Incense","Cedar","Haitian Vetiver","Saffron","Nutmeg","Lavender","Agarwood (Oud)","Patchouli","Musk","Orange","Mandarin Orange","Bergamot","Orange Blossom","Turkish Rose","Jasmine","Mimosa","Ylang-Ylang","Patchouli","White Musk","Vanilla","Vetiver","Tonka Bean","Opoponax"],"popular_products_collection":"bestsellers","season_collections":[{"label":"Summer","image":"https://cdn.shopify.com/s/files/1/0698/9398/0343/files/3_2.jpg?v=X","url":"/collections/summer"},{"label":"Winter","image":"https://cdn.shopify.com/s/files/1/0698/9398/0343/files/1_3.jpg?v=X","url":"/collections/winter"},{"label":"Autumn","image":"https://cdn.shopify.com/s/files/1/0698/9398/0343/files/2_6.jpg?v=X","url":"/collections/autumn"},{"label":"Spring","image":"https://cdn.shopify.com/s/files/1/0698/9398/0343/files/4_4.jpg?v=X","url":"/collections/spring"}]}</script>
+<script type="application/json" id="headerStrings">
+  {
+    "allResults": "See All Results for \"[term]\" ([count])",
+    "filterAll": "All",
+    "addToCart": "Add to Cart",
+    "adding": "Adding...",
+    "added": "Added!"
+  }
+</script>
+<script src="/cdn/shop/t/X/assets/header--main.js?v=X" defer="defer"></script>
 <style> #shopify-section-X__header .header {position: absolute; max-width: 2100px; width: 100%; z-index: 1000;} @media only screen and (min-width: 1440px) {#shopify-section-X__header .header__inline-menu {padding-left: 300px !important; }} @media only screen and (min-width: 1251px) and (max-width: 1329px) {#shopify-section-X__header .header__inline-menu {padding-left: 70px !important; }} @media only screen and (min-width: 1440px) and (max-width: 1510px) {#shopify-section-X__header .header__inline-menu {padding-left: 163px !important; }} @media only screen and (min-width: 1330px) and (max-width: 1439px) {#shopify-section-X__header .header__inline-menu {padding-left: 110px !important; }} </style></div>
 <!-- END sections: header-group -->
     <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
@@ -2477,8 +1686,7 @@ function initializeDossierCartTriggers() {
   }</style><div class="main-blog page-width section-X__main-padding"><div class="main-blog__header">
       <h1 class="main-blog__title">News</h1></div>
 <div class="main-blog__grid"><div
-          class="main-blog__article"
-          >
+          class="main-blog__article">
 <div class="article-card-wrapper article-card-wrapper--featured">
     <a href="/blogs/news/top-perfume-for-men-the-gift-guide-for-anyone-who-has-absolutely-no-idea-what-to-buy-the-men-in-their-lives" class="article-card" aria-label="Top perfume for men: the gift guide for anyone who has absolutely no idea what to buy the men in their lives"><div class="article-card__content"><h3 class="article-card__title">
           Top perfume for men: the gift guide for anyone who has absolutely no idea wha...
@@ -2493,8 +1701,7 @@ function initializeDossierCartTriggers() {
       </div>
     </a>
   </div></div><div
-          class="main-blog__article"
-          >
+          class="main-blog__article">
 <div class="article-card-wrapper">
     <a href="/blogs/news/fragrance-layering-explained-how-to-turn-two-bottles-into-a-signature-scent-nobody-else-is-wearing" class="article-card" aria-label="Fragrance layering, explained: how to turn two bottles into a signature scent nobody else is wearing"><div class="article-card__content"><h3 class="article-card__title">
           Fragrance layering, explained: how to turn two bottles into a signature scent...
@@ -2509,8 +1716,7 @@ function initializeDossierCartTriggers() {
       </div>
     </a>
   </div></div><div
-          class="main-blog__article"
-          >
+          class="main-blog__article">
 <div class="article-card-wrapper">
     <a href="/blogs/news/the-scent-of-a-british-summer-sunshine-sunscreen-applied-way-too-late-and-a-fragrance-that-somehow-captures-all-of-it" class="article-card" aria-label="The scent of a British summer: sunshine, sunscreen applied way too late, and a fragrance that somehow captures all of it"><div class="article-card__content"><h3 class="article-card__title">
           The scent of a British summer: sunshine, sunscreen applied way too late, and ...
@@ -2525,8 +1731,7 @@ function initializeDossierCartTriggers() {
       </div>
     </a>
   </div></div><div
-          class="main-blog__article"
-          >
+          class="main-blog__article">
 <div class="article-card-wrapper">
     <a href="/blogs/news/forget-the-scented-candle-the-fragrance-gift-guide-sorted-by-personality-not-price" class="article-card" aria-label="Forget the scented candle: the fragrance gift guide sorted by personality, not price"><div class="article-card__content"><h3 class="article-card__title">
           Forget the scented candle: the fragrance gift guide sorted by personality, no...
@@ -2541,8 +1746,7 @@ function initializeDossierCartTriggers() {
       </div>
     </a>
   </div></div><div
-          class="main-blog__article"
-          >
+          class="main-blog__article">
 <div class="article-card-wrapper">
     <a href="/blogs/news/how-luxury-unisex-perfumes-became-the-most-searched-scent-category-in-the-uk-and-why-everyone-is-obsessed" class="article-card" aria-label="How luxury unisex perfumes became the most searched scent category in the UK and why everyone is obsessed"><div class="article-card__content"><h3 class="article-card__title">
           How luxury unisex perfumes became the most searched scent category in the UK ...
@@ -2557,8 +1761,7 @@ function initializeDossierCartTriggers() {
       </div>
     </a>
   </div></div><div
-          class="main-blog__article"
-          >
+          class="main-blog__article">
 <div class="article-card-wrapper">
     <a href="/blogs/news/how-to-choose-a-scent-to-attract-the-person-you-are-completely-obsessed-with-the-fragrance-guide-nobody-talks-about" class="article-card" aria-label="How to choose a scent to attract the person you are completely obsessed with: the fragrance guide nobody talks about"><div class="article-card__content"><h3 class="article-card__title">
           How to choose a scent to attract the person you are completely obsessed with:...
@@ -2573,8 +1776,7 @@ function initializeDossierCartTriggers() {
       </div>
     </a>
   </div></div><div
-          class="main-blog__article"
-          >
+          class="main-blog__article">
 <div class="article-card-wrapper">
     <a href="/blogs/news/top-notes-heart-notes-base-notes-the-only-fragrance-guide-you-needed-before-your-last-very-expensive-mistake" class="article-card" aria-label="Top notes, heart notes, base notes: the only fragrance guide you needed before your last very expensive mistake"><div class="article-card__content"><h3 class="article-card__title">
           Top notes, heart notes, base notes: the only fragrance guide you needed befor...
@@ -2589,8 +1791,7 @@ function initializeDossierCartTriggers() {
       </div>
     </a>
   </div></div><div
-          class="main-blog__article"
-          >
+          class="main-blog__article">
 <div class="article-card-wrapper">
     <a href="/blogs/news/six-perfume-myths-that-are-completely-wrong-including-the-wrist-rubbing-thing-you-have-been-confidently-doing-for-years" class="article-card" aria-label="Six perfume myths that are completely wrong, including the wrist-rubbing thing you have been confidently doing for years"><div class="article-card__content"><h3 class="article-card__title">
           Six perfume myths that are completely wrong, including the wrist-rubbing thin...
@@ -2605,8 +1806,7 @@ function initializeDossierCartTriggers() {
       </div>
     </a>
   </div></div><div
-          class="main-blog__article"
-          >
+          class="main-blog__article">
 <div class="article-card-wrapper">
     <a href="/blogs/news/edt-edp-parfum-the-label-nobody-explains-the-question-nobody-asks-and-the-reason-you-smell-incredible-at-9am-and-of-absolutely-nothing-by-lunch" class="article-card" aria-label="EDT, EDP, Parfum: the label nobody explains, the question nobody asks, and the reason you smell incredible at 9am and of absolutely nothing by lunch"><div class="article-card__content"><h3 class="article-card__title">
           EDT, EDP, Parfum: the label nobody explains, the question nobody asks, and th...
@@ -2621,7 +1821,7 @@ function initializeDossierCartTriggers() {
       </div>
     </a>
   </div></div></div>
-<link href="/cdn/shop/t/X/assets/component-pagination.css?v=X" rel="stylesheet" type="text/css" media="all" />
+<link href="/cdn/shop/t/X/assets/ui--pagination.css?v=X" rel="stylesheet" type="text/css" media="all" />
 <div class="pagination-wrapper" data-page="1">
     <nav class="pagination" role="navigation" aria-label="Pagination">
       <ul class="pagination__list list-unstyled" role="list"><li><a
@@ -2647,7 +1847,10 @@ function initializeDossierCartTriggers() {
     </main>
     <!-- BEGIN sections: footer-group -->
 <div id="shopify-section-X__footer" class="shopify-section shopify-section-group-footer-group">
-<footer class="custom-footer">
+<link href="/cdn/shop/t/X/assets/footer--main.css?v=X" rel="stylesheet" type="text/css" media="all" />
+<footer
+  class="custom-footer"
+  style="--footer-background-color: #121212; --footer-text-color: #ffffff;">
   <div class="footer-container">
     <div class="footer-content">
       <!-- Left Column - Brand Description -->
@@ -2669,7 +1872,7 @@ function initializeDossierCartTriggers() {
   <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
 </svg>
             </a>
-            <a href="https://www.tiktok.com/@thescentspireduk?" target="_blank" rel="noopener" aria-label="Tiktok">
+            <a href="https://www.tiktok.com/@thescentspireduk?" target="_blank" rel="noopener" aria-label="TikTok">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tiktok" viewBox="0 0 16 16">
   <path d="M9 0h1.98c.144.715.54 1.617 1.235 2.512C12.895 3.389 13.797 4 15 4v2c-1.753 0-3.07-.814-4-1.829V11a5 5 0 1 1-5-5v2a3 3 0 1 0 3 3z"/>
 </svg>
@@ -2715,7 +1918,7 @@ function initializeDossierCartTriggers() {
               <li><a href="/pages/faqs">FAQs</a></li>
               <li><a href="/pages/privacy-policy">PRIVACY POLICY</a></li>
               <li><a href="/pages/returns">RETURNS</a></li>
-              <li><a href="/pages/terms-and-conditions">TERMS AND CONDITIONS</a></li>
+              <li><a href="/pages/terms-and-condition">TERMS AND CONDITIONS</a></li>
         </ul>
       </div>
       <!-- Additional Links -->
@@ -2738,345 +1941,19 @@ function initializeDossierCartTriggers() {
 </div>
   </div>
 </footer>
-<style>
-.custom-footer {
-  background-color: #121212;
-  color: #ffffff;
-  padding: 60px 0 80px;
-  position: relative;
-  overflow: hidden;
-}
-.footer-background-link {
-  text-decoration: none;
-  color: inherit;
-}
-.footer-background-link:link,
-.footer-background-link:visited {
-  color: inherit;
-}
-.footer-background-image {
-    width: calc(100vw - 40px);
-    margin-left: calc(-50vw + 50% + 20px);
-    padding: 70px 0;
-    text-align: center;
-}
-.footer-container {
-  max-width: 1650px;
-  margin: 0 auto;
-  padding: 0px 50px;
-  position: relative;
-  z-index: 2;
-    margin-left: 260px !important;
-  height: 323px;
-}
-.footer-content {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
-  gap: 40px;
-  align-items: start;
-  color: #fff;
-}
-@media (max-width: 1024px) {
-  .footer-content {
-    grid-template-columns: 1fr;
-    gap: 30px;
-    margin-left: -290px;
-  }
-  .footer-column h4 {
-  margin-bottom: 8px !important;
-}
-.footer-brand {
- padding-top: 25px;
-}
-}
-.footer-column h4 {
-  font-size: 14px;
-  font-weight: 700;
-  margin-bottom: 20px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  color: #fff;
-}
-.brand-description {
-  font-size: 14px;
-  line-height: 1.6;
-  margin-bottom: 20px;
-  max-width: 300px;
-  color: #fff;
-}
-.brand-tagline {
-  font-size: 16px;
-  font-weight: 700;
-  margin: 0;
-  color: #fff;
-}
-.social-icons {
-  display: flex;
-  gap: 15px;
-  margin-bottom: 20px;
-  color: #fff;
-}
-.social-icons a {
-  transition: opacity 0.3s ease;
-  color: #fff;
-}
-.social-icons a:hover {
-  opacity: 0.7;
-}
-.footer-auth-links {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  color: #fff;
-}
-.footer-auth-links a {
-  font-size: 14px;
-  text-decoration: none;
-  font-weight: 500;
-  color: #fff;
-}
-.footer-auth-links a:hover {
-  text-decoration: underline;
-}
-.footer-links {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  color: #fff;
-}
-.footer-links li {
-  margin-bottom: 12px;
-  color: #fff;
-}
-.footer-links a {
-  color: currentColor;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
-  transition: opacity 0.3s ease;
-  color: #fff;
-}
-.footer-links a:hover {
-  opacity: 0.7;
-}
-.footer-background-text {
-  position: absolute;
-  bottom: 50px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  font-size: clamp(420px, 14vw, 550px);
-  font-weight: 900;
-  color: rgba(255, 255, 255, 0.08) !important;
-  white-space: nowrap;
-  pointer-events: none;
-  z-index: 1;
-  line-height: 0.8;
-  margin-left: -120px;
-  font-family: var(--font-display-ultrabold);
-  margin-top: -140px;
-  font-weight: 600;
-}
-@media (max-width: 1000px) {
-  .footer-background-text {
-    font-size: clamp(80px, 25vw, 150px);
-    bottom: -15px;
-  }
-}
-  @media only screen and (min-width: 1024px) and (max-width: 1439px) {
-    .footer-container {
-  max-width: 1650px;
-  margin: 0 auto;
-  padding: 0px 50px;
-  position: relative;
-  z-index: 2;
-    margin-left: 90px !important;
-}
-.footer-background-text {
-  position: absolute;
-  bottom: 150px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  font-size: clamp(300px, 14vw, 650px);
-  font-weight: 900;
-  color: rgba(255, 255, 255, 0.08) !important;
-  white-space: nowrap;
-  pointer-events: none;
-  z-index: 1;
-  line-height: 0.8;
-  margin-left: -120px;
-  font-family: var(--font-display-ultrabold);
-  margin-top: -140px !important;
-  font-weight: 600;
-  margin-bottom: 90px;
-}
-}
- @media only screen and (min-width: 1081px) and (max-width: 1099px) {
-    .footer-background-text {
-        position: absolute;
-         bottom: -315px !important;
-         left: 35% !important;
-        right: 0;
-        text-align: center;
-        font-size: clamp(108px, 21vw, 615px);
-        font-weight: 900;
-        color: rgba(255, 255, 255, 0.08) !important;
-        white-space: nowrap;
-        pointer-events: none;
-        z-index: 1;
-        line-height: 0.8;
-        margin-left: -120px;
-        font-family: var(--font-display-ultrabold);
-        margin-top: -140px !important;
-        font-weight: 600;
-        margin-bottom: 90px;
-    }
- }
- @media only screen and (min-width: 1400px) {
-    .footer-background-text {
-        position: absolute;
-         bottom: -450px !important;
-         left: 50% !important;
-        right: 0;
-        text-align: center;
-        font-size: clamp(289px, 21vw, 615px);
-        font-weight: 900;
-        color: rgba(255, 255, 255, 0.08) !important;
-        white-space: nowrap;
-        pointer-events: none;
-        z-index: 1;
-        line-height: 0.8;
-        margin-left: -120px;
-        font-family: var(--font-display-ultrabold);
-        margin-top: -140px !important;
-        font-weight: 600;
-        margin-bottom: 90px;
-    }
- }
- .footer-background-image {
-    width: calc(100vw - 40px);
-    margin-left: calc(-36vw + 68% + 20px);
-    padding: 10px 0;
-    text-align: center;
-}
-@media only screen and (min-width: 768px) and (max-width: 1024px) {
- .custom-footer {
-    padding: 30px 0 750px !important;
-    position: relative;
-    overflow: hidden;
-}
-.footer-background-text {
-    position: absolute;
-    bottom: -765px !important;
-    left: 45%;
-    z-index: 1;
-  }
-}
-.footer-background-link {
-  display: inline-block;
-  position: relative;
-  z-index: 10;
-  pointer-events: auto;
-}
-.footer-background-image {
-  pointer-events: auto;
-}
-</style>
- <style> #shopify-section-X__footer .footer-background-text {position: absolute; bottom: -370px; left: 55%; transform: translateX(-50%); font-weight: 900; color: rgba(0, 0, 0, 0.1); white-space: nowrap; pointer-events: none; z-index: 1;} #shopify-section-X__footer .custom-footer {padding: 30px 0 320px; position: relative; overflow: hidden;} @media only screen and (max-width: 900px) {#shopify-section-X__footer .custom-footer {padding: 0px 0 61px; position: relative; overflow: hidden; } #shopify-section-X__footer .footer-background-text {position: absolute; bottom: -40px; left: 40%; z-index: 1; }} #shopify-section-X__footer .brand-tagline {font-size: 12px;} </style></div><div id="shopify-section-X__17677801892897efa9" class="shopify-section shopify-section-group-footer-group">
-<style data-shopify>
-    .ai-footer-copyright-AIGEN_aigenblockefb927cwgwqka {
-      display: block;
-      width: 100%;
-      padding: 50px 0 20px;
-      background-color: #121212;
-    }
-    .ai-footer-copyright__container-AIGEN_aigenblockefb927cwgwqka {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-    .ai-footer-copyright__content-AIGEN_aigenblockefb927cwgwqka {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-    .ai-footer-copyright__text-AIGEN_aigenblockefb927cwgwqka {
-      color: #ffffff;
-      font-size: 14px;
-      margin: 0;
-    }
-    .ai-footer-copyright__link-AIGEN_aigenblockefb927cwgwqka {
-      color: #ffffff;
-      text-decoration: none;
-    }
-    .ai-footer-copyright__link-AIGEN_aigenblockefb927cwgwqka:hover {
-      color: #cccccc;
-      text-decoration: underline;
-    }
-     @media screen and (min-width: 1024px) {
-    .ai-footer-copyright__rcontent-AIGEN_aigenblockefb927cwgwqka {
-    justify-self: end;
-    text-align: right;
-  }
-  .ai-footer-copyright__right-AIGEN_aigenblockefb927cwgwqka {
-    color: #fff;
-    font-size: 14px;
-    margin: 0;
-    margin-top: -26px;
-    margin-left: auto;
-    text-align: right;
-  }
-      .ai-footer-copyright__text-AIGEN_aigenblockefb927cwgwqka {
-      color: #fff;
-      font-size: 14px;
-      margin: 0;
-       margin-top: -26px;
-    }
-     }
-    @media screen and (max-width: 1024px) {
-      .ai-footer-copyright__content-AIGEN_aigenblockefb927cwgwqka {
-            padding-bottom: 60px;
-      }
-      .ai-footer-copyright-AIGEN_aigenblockefb927cwgwqka {
-      display: block;
-      width: 100%;
-      padding: 20px 0 70px;
-      background-color: #121212;
-  }
-    }
-      .ai-footer-copyright__rcontent-AIGEN_aigenblockefb927cwgwqka {
-      display: flex;
-      align-items: left;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-      .ai-footer-copyright__right-AIGEN_aigenblockefb927cwgwqka {
-      color: #fff;
-      font-size: 14px;
-      margin: 0;
-       margin-top: -26px;
-    }
-      @media screen and (max-width: 1024px) {
-      .ai-footer-copyright__rcontent-AIGEN_aigenblockefb927cwgwqka {
-            padding-bottom: 100px;
-      }
-          .ai-footer-copyright__right-AIGEN_aigenblockefb927cwgwqka {
-      margin-top: 0px;
-    }
-    }
-</style>
-<footer-copyright-AIGEN_aigenblockefb927cwgwqka class="ai-footer-copyright-AIGEN_aigenblockefb927cwgwqka" >
-  <div class="ai-footer-copyright__container-AIGEN_aigenblockefb927cwgwqka">
-    <div class="ai-footer-copyright__content-AIGEN_aigenblockefb927cwgwqka">
-      <p class="ai-footer-copyright__text-AIGEN_aigenblockefb927cwgwqka">
+ <style> #shopify-section-X__footer .footer-background-text {position: absolute; bottom: -370px; left: 55%; transform: translateX(-50%); font-weight: 900; color: rgba(0, 0, 0, 0.1); white-space: nowrap; pointer-events: none; z-index: 1;} #shopify-section-X__footer .custom-footer {padding: 30px 0 320px; position: relative; overflow: hidden;} @media only screen and (max-width: 900px) {#shopify-section-X__footer .custom-footer {padding: 0px 0 61px; position: relative; overflow: hidden; } #shopify-section-X__footer .footer-background-text {position: absolute; bottom: -40px; left: 40%; z-index: 1; }} #shopify-section-X__footer .brand-tagline {font-size: 12px;} </style></div><div id="shopify-section-X__17677801892897efa9" class="shopify-section shopify-section-group-footer-group"><link href="/cdn/shop/t/X/assets/footer--copyright.css?v=X" rel="stylesheet" type="text/css" media="all" />
+<footer-copyright
+  class="ai-footer-copyright"
+  style="--copyright-padding-top: 50px; --copyright-padding-bottom: 20px; --copyright-background-color: #121212; --copyright-container-width: 1000px; --copyright-text-color: #ffffff; --copyright-font-size: 14px; --copyright-link-color: #ffffff; --copyright-link-hover-color: #cccccc;"
+  >
+  <div class="ai-footer-copyright__container">
+    <div class="ai-footer-copyright__content">
+      <p class="ai-footer-copyright__text">
         © 
         2026 
           Scentspired UK
-        All rights reserved. All logos, trademarks and brand names are the property of their respective trademark
-        owners. Powered By
+        All rights reserved. All logos, trademarks and brand names are the property of their respective trademark owners.
+        Powered By
         <a
           href="https://github.com/AhmadHassan-BTed"
           target="_blank"
@@ -3087,18 +1964,8 @@ function initializeDossierCartTriggers() {
       </p>
     </div>
   </div>
-</footer-copyright-AIGEN_aigenblockefb927cwgwqka>
-<script>
-  (function() {
-    class FooterCopyrightAIGEN_aigenblockefb927cwgwqka extends HTMLElement {
-      constructor() {
-        super();
-      }
-    }
-    customElements.define('footer-copyright-AIGEN_aigenblockefb927cwgwqka', FooterCopyrightAIGEN_aigenblockefb927cwgwqka);
-  })();
-</script>
-<style> #shopify-section-X__17677801892897efa9 .ai-footer-copyright__container-AIGEN_aigenblockefb927cwgwqka {max-width: 100%; margin: 0 auto; padding: 0px 35px;} #shopify-section-X__17677801892897efa9 .footer-credit-link {color: inherit; /* no color change */ text-decoration: underline;} #shopify-section-X__17677801892897efa9 .footer-credit-link:hover, #shopify-section-X__17677801892897efa9 .footer-credit-link:visited, #shopify-section-X__17677801892897efa9 .footer-credit-link:active {color: inherit; /* prevent default link colors */} </style></div>
+</footer-copyright>
+<style> #shopify-section-X__17677801892897efa9 .footer-credit-link {color: inherit; /* no color change */ text-decoration: underline;} #shopify-section-X__17677801892897efa9 .footer-credit-link:hover, #shopify-section-X__17677801892897efa9 .footer-credit-link:visited, #shopify-section-X__17677801892897efa9 .footer-credit-link:active {color: inherit; /* prevent default link colors */} </style></div>
 <!-- END sections: footer-group -->
     <ul hidden>
       <li id="a11y-refresh-page-message">Choosing a selection results in a full page refresh.</li>
@@ -3111,15 +1978,14 @@ function initializeDossierCartTriggers() {
         cart_change_url: '/cart/change',
         cart_update_url: '/cart/update',
         cart_url: '/cart',
-        predictive_search_url: '/search/suggest',
       };
       window.cartStrings = {
         error: `There was an error while updating your cart. Please try again.`,
         quantityError: `You can only add [quantity] of this item to your cart.`,
       };
       window.variantStrings = {
-        addToCart: `Add to cart`,
-        soldOut: `Sold out`,
+        addToCart: `Add to Cart`,
+        soldOut: `Sold Out`,
         unavailable: `Unavailable`,
         unavailable_with_option: `[value] - Unavailable`,
       };
@@ -3143,167 +2009,9 @@ function initializeDossierCartTriggers() {
         recipientFormCollapsed: `Gift card recipient form collapsed`,
         countrySelectorSearchCount: `[count] countries/regions found`,
       };
-    </script><script>
-      document.addEventListener('DOMContentLoaded', function () {
-        document.querySelectorAll('.item-form').forEach(function (form) {
-          form.addEventListener('submit', function (e) {
-            e.preventDefault();
-            const submitBtn = form.querySelector('[type="submit"]') || form.querySelector('button');
-            if (submitBtn) submitBtn.disabled = true;
-            const formData = new FormData(form);
-            fetch('/cart/add.js', {
-              method: 'POST',
-              body: formData,
-              headers: {
-                Accept: 'application/json',
-              },
-            })
-              .then(res => {
-                if (!res.ok) throw new Error('Add to cart failed.');
-                return res.json();
-              })
-              .then(data => {
-                // Synchronize with Scentspired Custom Cart Drawer (#sp-cart-drawer)
-                if (typeof window.updateDossierCartUI === 'function' || typeof window.openDossierCart === 'function') {
-                  fetch('/cart.js')
-                    .then(res => res.json())
-                    .then(cartData => {
-                      if (typeof window.updateDossierCartUI === 'function') {
-                        window.updateDossierCartUI(cartData);
-                      }
-                      setTimeout(() => {
-                        if (typeof window.openDossierCart === 'function') {
-                          window.openDossierCart();
-                        }
-                      }, 100);
-                    })
-                    .catch(cartErr => console.error('Error fetching cart after add:', cartErr));
-                } else {
-                  const cartBubble = document.getElementById('cart-icon-bubble');
-                  if (cartBubble) cartBubble.click();
-                }
-              })
-              .catch(error => {
-                console.error('Error adding to cart:', error);
-              })
-              .finally(() => {
-                if (submitBtn) submitBtn.disabled = false;
-              });
-          });
-        });
-      });
     </script>
-    <script>
-      (function () {
-        let lastScroll = 0;
-        const header = document.querySelector('.header');
-        if (!header) return;
-        window.addEventListener('scroll', () => {
-          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-          if (window.innerWidth <= 768) return;
-          if (scrollTop > lastScroll && scrollTop > 50) {
-            header.classList.add('scroll-hidden');
-          } else if (scrollTop < lastScroll) {
-            header.classList.remove('scroll-hidden');
-          }
-          if (scrollTop <= 0) {
-            header.classList.remove('scroll-hidden');
-          }
-          lastScroll = scrollTop;
-        });
-      })();
-    </script>
-    <script>
-      (function () {
-        // Wait for DOM ready
-        document.addEventListener('DOMContentLoaded', function () {
-          // 1) Find header candidates and decide which is main desktop header
-          // Try to find .section-header .header first (common in Dawn-like themes)
-          var candidate =
-            document.querySelector('.section-header .header') ||
-            document.querySelector('.section-header') ||
-            document.querySelector('.header');
-          if (!candidate) return;
-          // Ensure a stable "main-desktop-header" class exists
-          // If candidate is nested (like .section-header .header), we want the topmost header element.
-          var mainHeader = candidate.closest('.section-header') || candidate;
-          mainHeader.classList.add('main-desktop-header');
-          // 2) Locate mobile bottom nav element(s)
-          var mobileNav =
-            document.querySelector('.mobile-bottom-nav') || document.querySelector('[data-mobile-bottom-nav]');
-          // If mobile nav exists and is inside the header, move it to body so it doesn't get hidden with header
-          if (mobileNav) {
-            if (mainHeader.contains(mobileNav)) {
-              // move node to body end
-              document.body.appendChild(mobileNav);
-            }
-            // ensure the mobile nav has the class
-            mobileNav.classList.add('mobile-bottom-nav');
-          }
-          // 3) Scroll-up behavior only affects desktop header
-          var header = document.querySelector('.main-desktop-header');
-          if (!header) return;
-          var lastScroll = window.pageYOffset || document.documentElement.scrollTop || 0;
-          var ticking = false;
-          // Debounced rAF-driven scroll handler for smoothness
-          function onScroll() {
-            if (window.innerWidth <= 768) {
-              // On mobile we don't hide the header — ensure visible
-              header.classList.remove('scroll-hidden');
-              lastScroll = window.pageYOffset || document.documentElement.scrollTop || 0;
-              return;
-            }
-            var scrollTop = window.pageYOffset || document.documentElement.scrollTop || 0;
-            if (scrollTop > lastScroll && scrollTop > 60) {
-              // scrolling down -> hide
-              header.classList.add('scroll-hidden');
-            } else if (scrollTop < lastScroll) {
-              // scrolling up -> show
-              header.classList.remove('scroll-hidden');
-            }
-            // always show at very top
-            if (scrollTop <= 0) {
-              header.classList.remove('scroll-hidden');
-            }
-            lastScroll = scrollTop;
-            ticking = false;
-          }
-          window.addEventListener(
-            'scroll',
-            function () {
-              if (!ticking) {
-                window.requestAnimationFrame(onScroll);
-                ticking = true;
-              }
-            },
-            { passive: true }
-          );
-          // Extra safety: if the header is re-rendered by theme scripts later,
-          // re-apply class and re-append mobile nav (in case DOM was replaced)
-          var observer = new MutationObserver(function (mutations) {
-            mutations.forEach(function (m) {
-              // if header lost the class, re-add it
-              if (!document.querySelector('.main-desktop-header')) {
-                var newCandidate =
-                  document.querySelector('.section-header .header') ||
-                  document.querySelector('.section-header') ||
-                  document.querySelector('.header');
-                if (newCandidate) {
-                  var newMain = newCandidate.closest('.section-header') || newCandidate;
-                  newMain.classList.add('main-desktop-header');
-                  header = document.querySelector('.main-desktop-header');
-                }
-              }
-              if (mobileNav && !document.body.contains(mobileNav)) {
-                // re-append if removed
-                document.body.appendChild(mobileNav);
-              }
-            });
-          });
-          observer.observe(document.body, { childList: true, subtree: true });
-        }); // DOMContentLoaded
-      })();
-    </script><style> @media only screen and (min-width: 801px) and (max-width: 1024px) {.fragrance-brand {margin: 0; font-size: 10px; font-family: "PPMori Regular", sans-serif; font-weight: 400; text-align: left; color: #666; } .bs-featured-image {width: 100%; height: 900px; border-radius: 16px; overflow: hidden; }} #share-coupon-small.right .share-coupon-small-wrapper {padding: 0px 6px !important; height: 35px;} .share-coupon-small-wrapper {font-size: 14px !important;} fw-embed-feed {display: none;} </style>
+    <script src="/cdn/shop/t/X/assets/header--scroll.js?v=X"></script>
+  <style> @media only screen and (min-width: 801px) and (max-width: 1024px) {.fragrance-brand {margin: 0; font-size: 10px; font-family: "PPMori Regular", sans-serif; font-weight: 400; text-align: left; color: #666; } .bs-featured-image {width: 100%; height: 900px; border-radius: 16px; overflow: hidden; }} #share-coupon-small.right .share-coupon-small-wrapper {padding: 0px 6px !important; height: 35px;} .share-coupon-small-wrapper {font-size: 14px !important;} </style>
 <div id="shopify-block-ARmdJYm5ib3ZldUxsd__1679441073093641486" class="shopify-block shopify-app-block"><script>
     window.kaktusAppData = {
         customerId: null,

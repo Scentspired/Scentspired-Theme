@@ -16,6 +16,7 @@
           '/pages/faqs',
           '/pages/contact',
           '/pages/terms',
+          '/pages/terms-and-condition',
           '/pages/terms-and-conditions',
           '/pages/return',
           '/pages/returns',

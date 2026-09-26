@@ -19,7 +19,7 @@ const fs = require('fs');
 const path = require('path');
 
 const THEME_ROOT = path.resolve(__dirname, '..');
-const { readRegionFile, DEFAULT_REGION } = require('./region-engine.cjs');
+const { readRegionFile, readRegionContent, DEFAULT_REGION } = require('./region-engine.cjs');
 /**
  * Which baseline set to read or write. The core region lives in tests/parity/baseline; a
  * second region needs its own, because the same page legitimately differs
@@ -67,6 +67,21 @@ const COUNTRY = countryArg
   ? countryArg.split('=')[1]
   : (regionData.geo_countries && regionData.geo_countries[0]) || 'GB';
 
+/**
+ * The terms page's handle is the store's own (terms-and-condition on UK,
+ * terms-and-conditions on USA), so its route is the region's sidebar link to
+ * it. A fixed route here once pinned a 404 page under the name page-terms.
+ */
+function termsRoute() {
+  const links = (readRegionContent(REGION || DEFAULT_REGION)['info-pages'] || {}).sidebar_links || [];
+  const terms = links.find((l) => /^\/pages\/terms/.test(l.url || ''));
+  if (!terms) {
+    console.error(`\n  ✗ regions/${REGION || DEFAULT_REGION}/content/info-pages.json links no /pages/terms… page.\n`);
+    process.exit(1);
+  }
+  return terms.url;
+}
+
 // The page set. Every surface whose markup we intend to keep stable.
 const PAGES = {
   home: '/',
@@ -89,7 +104,7 @@ const PAGES = {
   'page-contact': '/pages/contact',
   'page-privacy': '/pages/privacy-policy',
   'page-returns': '/pages/returns',
-  'page-terms': '/pages/termsncondition',
+  'page-terms': termsRoute(),
   'not-found': '/this-page-does-not-exist',
   'account-login': '/account/login',
 };
@@ -191,13 +206,22 @@ function normalize(html) {
   );
 }
 
+// A 401 is the dev server's CLI session flapping (the 87-byte expired-token
+// body), not the page: it is asked again before it counts. A server that keeps
+// answering 401 is still refused below.
 async function fetchPage(route) {
   const url = new URL(BASE_URL + route);
   url.searchParams.set('country', COUNTRY);
-  const res = await fetch(url, {
-    headers: { 'User-Agent': 'scentspired-parity-harness' },
-    redirect: 'follow',
-  });
+  let res;
+  for (let attempt = 0; attempt < 4; attempt++) {
+    res = await fetch(url, {
+      headers: { 'User-Agent': 'scentspired-parity-harness' },
+      redirect: 'follow',
+    });
+    if (res.status !== 401 || attempt === 3) break;
+    await res.text();
+    await new Promise((r) => setTimeout(r, 2000 * (attempt + 1)));
+  }
   return { status: res.status, html: await res.text() };
 }
 

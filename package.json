@@ -84,6 +84,8 @@
     "guard:refs": "node tests/static/guard--section-refs.cjs",
     "parity:baseline:usa": "node scripts/render-snapshot.cjs --region=usa --url=http://127.0.0.1:9293 --country=US",
     "parity:check:usa": "node scripts/render-snapshot.cjs --check --region=usa --url=http://127.0.0.1:9293 --country=US",
+    "links:check": "node scripts/check-links.cjs",
+    "links:check:usa": "node scripts/check-links.cjs --region=usa",
     "looks:refresh": "node scripts/looks-refresh.cjs"
   },
   "devDependencies": {
