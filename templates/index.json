@@ -177,16 +177,14 @@
       ]
     },
     "bundle_heading_wRwayJ": {
-      "type": "media--scent-carousel",
+      "type": "editorial--section-heading",
       "name": "Bundle Heading",
       "settings": {
-        "heading": "@content:home.scent_carousel_1.heading",
-        "subheading": "@content:home.scent_carousel_1.subheading",
-        "subheading_style": "scent-sub",
-        "show_carousel": true
+        "heading": "@content:home.bundles_heading.heading",
+        "subheading": "@content:home.bundles_heading.subheading",
+        "subheading_style": "scent-sub"
       },
       "custom_css": [
-        ".carousel-container {display: none;}",
         ".scent-header {margin-bottom: -50px;}",
         ".scent-header {text-align: center; padding: 0rem 7rem; margin-top: 0px;}",
         ".scent-sub {text-decoration: underline !important; text-decoration-color: #fadb95 !important; text-decoration-thickness: 2px !important; text-underline-offset: 2px !important;}"
@@ -202,16 +200,14 @@
       ]
     },
     "instagram_section_m4ApUx": {
-      "type": "media--scent-carousel",
+      "type": "editorial--section-heading",
       "name": "Instagram Videos",
       "settings": {
-        "heading": "@content:home.scent_carousel_2.heading",
-        "subheading": "@content:home.scent_carousel_2.subheading",
-        "subheading_style": "scent-sub",
-        "show_carousel": false
+        "heading": "@content:home.reviews_heading.heading",
+        "subheading": "@content:home.reviews_heading.subheading",
+        "subheading_style": "scent-sub"
       },
       "custom_css": [
-        ".carousel-container {display: none;}",
         ".scent-header {margin-bottom: -50px;}",
         ".scent-header {text-align: center; padding: 0rem 7rem; margin-top: 0px;}",
         ".scent-sub {text-decoration: underline !important; text-decoration-color: #fadb95 !important; text-decoration-thickness: 2px !important; text-underline-offset: 2px !important;}"
@@ -249,16 +245,14 @@
       ]
     },
     "instagram_feed_6XcCWT": {
-      "type": "media--scent-carousel",
+      "type": "editorial--section-heading",
       "name": "Instagram Feed Section",
       "settings": {
-        "heading": "@content:home.scent_carousel_3.heading",
-        "subheading": "@content:home.scent_carousel_3.subheading",
-        "subheading_style": "scent-subtitle",
-        "show_carousel": true
+        "heading": "@content:home.instagram_heading.heading",
+        "subheading": "@content:home.instagram_heading.subheading",
+        "subheading_style": "scent-subtitle"
       },
       "custom_css": [
-        ".carousel-container {display: none;}",
         ".scent-header {margin-bottom: -120px;}",
         ".scent-header {text-align: center; padding: 4rem 1rem; margin-top: 0px;}",
         ".scent-subtitle {text-decoration: underline !important; text-decoration-color: #fadb95 !important; text-decoration-thickness: 2px !important; text-underline-offset: 2px !important;}"

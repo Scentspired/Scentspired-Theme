@@ -161,6 +161,15 @@
     "fallback": 6,
     "ids": 0
   },
+  "sections/editorial--section-heading.liquid": {
+    "total": 1,
+    "text": 0,
+    "js-text": 0,
+    "media": 0,
+    "links": 0,
+    "fallback": 1,
+    "ids": 0
+  },
   "sections/editorial--text-section.liquid": {
     "total": 3,
     "text": 3,
@@ -241,15 +250,6 @@
     "links": 0,
     "fallback": 0,
     "ids": 0
-  },
-  "sections/media--scent-carousel.liquid": {
-    "total": 32,
-    "text": 18,
-    "js-text": 4,
-    "media": 8,
-    "links": 0,
-    "fallback": 1,
-    "ids": 1
   },
   "sections/media--scent-filter-banner.liquid": {
     "total": 12,
