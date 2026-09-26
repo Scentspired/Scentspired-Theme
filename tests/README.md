@@ -1,96 +1,89 @@
-# 🛡️ Theme Guardian — Scentspired Automated Testing & Detection Toolkit
+# Tests
 
-> **Mission:** Zero errors slipped to production. Guarantee 100% purchase funnel continuity and multi-store resilience across Scentspired Global Stores.
+The quality gate (`runner.cjs`) and everything it runs. Every layer must pass,
+except formatting (Layer 1), which is reported. A checker that is not installed
+fails its layer. The master switch is `config/test-settings.json`
+(`testing_enabled`), and CI fails if it is ever off.
 
----
+```bash
+node runner.cjs --scope=all   # core, then each dist/<id> (build first: npm run compile:all)
+npm test                      # core only
+npm run test:region -- usa    # one built region
+npm run guard:fixtures        # every guard's fixture (Layer 31)
+```
 
-## 🏗️ Modular Test Suite Architecture
-
-Following enterprise software engineering principles (Separation of Concerns, Functional Cohesion, Clean Abstractions), the test suite is organized into distinct functional domains:
+## Layout
 
 ```
 tests/
-├── config/                                 # Centralized Test Configuration & Rules
-│   ├── config.json                         # 16 Static analysis rules & exceptions
-│   └── remediation-queue.json              # Scheduled remediation task queue
-│
-├── static/                                 # Static Analysis, AST & Schema Linters
-│   ├── syntax-validator.cjs                # Layer 2: JavaScript AST & Script Compiler
-│   ├── static-analysis.cjs                 # Layer 3: Rule engine (Null guards, variant IDs, etc.)
-│   ├── json-schema-validator.cjs           # Layer 8: JSON templates & section schema validator
-│   ├── locale-integrity-validator.cjs      # Layer 9: Translation key dictionary integrity
-│   ├── asset-snippet-integrity.cjs         # Layer 11: Physical asset & snippet reference check
-│   └── asset-size-budget-guard.cjs         # Layer 12: Bundle size & asset performance budgets
-│
-├── dynamic/                                # Flow Simulators, Integration & Chaos Suites
-│   ├── critical-flow-simulator.cjs         # Layer 4: Purchase funnel simulations (PDP, Bundles, Drawer)
-│   ├── chaos-simulation-tests.cjs          # Layer 5: Concurrency, flood, race conditions, fuzzing
-│   ├── rigorous-integration-tests.cjs      # Comprehensive integration test suites
-│   └── verify-clarity-detection.cjs        # Layer 6: Clarity historical crash defense
-│
-├── live/                                   # Live Storefront & Catalog Probing
-│   ├── live-catalog-probe.cjs              # Layer 10: Multi-store catalog & bundle API probe
-│   └── live-smoke-test.cjs                 # Live storefront smoke tests
-│
-├── release/                                # Release Management & Remediation Automation
-│   ├── daily-release-manager.cjs           # Daily gated release coordinator
-│   ├── build-remediation-queue.cjs         # Remediation task queue builder
-│   ├── generate-full-87day-changelog.cjs   # Release history builder
-│   └── run-all.sh                          # Universal test runner shell script
-│
-├── reporting/                              # Report & Catalog Generators
-│   ├── generate-report.cjs                 # Layer 7: Master scan report generator
-│   ├── generate-master-catalog.cjs         # Master catalog generator
-│   └── reports/                            # Generated reports & archive
-│       ├── LATEST_SCAN_REPORT.md
-│       ├── latest_scan_report.json
-│       └── archive/
-│
-└── README.md                               # Test architecture documentation
+├── config/
+│   ├── test-settings.json         master switch, per-layer skips (none)
+│   ├── config.json                static-analysis rules and approved exceptions
+│   └── remediation-queue.json     release tooling's queue
+├── static/                        read files, need no store
+│   ├── guard--*.cjs               one architectural rule each (layers 15–30)
+│   ├── guard--*.fixture.cjs       plants the defect and the legitimate forms
+│   ├── tooling--*.fixture.cjs     proves Theme Check and Stylelint really run
+│   ├── baseline-*.json            ratchets: recorded counts that can only fall
+│   └── …                          syntax, static analysis, schema, locale, asset checks
+├── dynamic/                       simulated flows, chaos cases, crash regressions,
+│                                  region output parity (Layer 14)
+├── regions/                       per-region suite and catalog probes
+├── live/                          read-only probes of the live storefronts (not in the gate)
+├── parity/                        render baselines (baseline/, baseline-usa/) and font inventory
+├── release/                       release and remediation tooling
+└── reporting/                     scan report and catalog generators (reports/ is generated)
 ```
 
----
+## The layers
 
-## 🚀 Quick Start Commands
+| layer | script | checks |
+| :--- | :--- | :--- |
+| 1 | Prettier | formatting, reported, not blocking |
+| 2 | `static/syntax-validator.cjs` | every inline script and JS asset parses |
+| 3 | `static/static-analysis.cjs` | rule engine: null guards, variant IDs, escaping (ratchet: `baseline-violations.json`) |
+| 4 | `dynamic/critical-flow-simulator.cjs` | product page, quick add, boxes and cart drawer flows |
+| 5 | `dynamic/chaos-simulation-tests.cjs` | concurrency floods, hostile payloads, storage failures |
+| 6 | `dynamic/verify-clarity-detection.cjs` | the recorded Clarity crash patterns stay fixed |
+| 7 | `reporting/generate-report.cjs` | writes the scan report |
+| 8 | `static/json-schema-validator.cjs` | templates and section schemas (ratchet: `baseline-schema-violations.json`) |
+| 9 | `static/locale-integrity-validator.cjs` | every `\| t` key exists |
+| 10 | `static/asset-snippet-integrity.cjs` | every referenced asset and snippet exists |
+| 11 | `static/asset-size-budget-guard.cjs` | JS and CSS size budgets |
+| 12 | `static/theme-check-runner.cjs` | Shopify Theme Check on core and each `dist/<id>` (`.theme-check.yml`) |
+| 13 | `static/stylelint-runner.cjs` | Stylelint (`.stylelintrc.json`) |
+| 14 | `dynamic/verify-live-output-parity.cjs` | each region's currency, thresholds, domains, SEO match its confirmed live values |
+| 15 | `guard--region-literals` | no domain, currency symbol or country code in shared code |
+| 16 | `guard--image-url` | every settings `image_url` is guarded against blank |
+| 17 | `guard--headings` | one H1 per page, no heading tags on interface labels |
+| 18 | `guard--section-refs` | every section and snippet a file names exists |
+| 19 | `guard--script-globals` | no top-level `const`/`let` declared in two files |
+| 20 | `guard--region-onboarding` | a region has everything shared code reads |
+| 21 | `guard--hardcoded-content` | no shopper-facing content in code (ratchet at 0) |
+| 22 | `guard--workflows` | GitHub Actions YAML parses and has jobs, runners, steps |
+| 23 | `guard--wording` | one wording, one translation key |
+| 24 | `guard--card-look` | only the card's stylesheet styles the card's insides |
+| 25 | `guard--numbered-settings` | no `thing_1`, `thing_2`, … setting families |
+| 26 | `guard--inline-code` | no inline script or style that uses no Liquid |
+| 27 | `scripts/find-dead-files.cjs --check` | every theme file is reached from a page |
+| 28 | `guard--unread-settings` | every schema setting is read |
+| 29 | `guard--naming` | `<domain>--<component>` file names |
+| 30 | `guard--region-shape` | every region has the same shape; no market overrides |
+| 31 | `static/run-guard-fixtures.cjs` | every fixture: each guard seen red and green |
 
-```bash
-# Run Full 12-Layer Quality Gate
-npm test
+## Adding a rule
 
-# Run Specific Test Layers
-npm run test:scanner    # Layer 3: Static AST Analysis Rules (16 active rules)
-npm run test:syntax     # Layer 2: JavaScript V8 AST Compiler
-npm run test:flows      # Layer 4: Critical Purchase Funnel Simulator (93 assertions)
-npm run test:chaos      # Layer 5: Chaos, Fuzzing & Concurrency Engine
-npm run test:clarity    # Layer 6: Historical Clarity Crash Defense Verifier
-npm run report:scan     # Layer 7: Generate Scan Markdown & JSON Reports
-```
+1. Write `static/guard--<rule>.cjs`: exit 1 with the file and the reason, and take
+   `--root=<dir>` so a fixture can point it at a temporary theme.
+2. Write `static/guard--<rule>.fixture.cjs`: the defects it must flag and the
+   legitimate forms it must pass. Layer 31 picks it up by name.
+3. Add the layer to `runner.cjs`, and a line to the table above and to README.md.
 
----
+A guard is evidence only once it has been seen failing. Twice on this project, a
+check passed for the wrong reason.
 
-## 🛡️ The 12-Layer Quality Gate
+## Checks that need a running dev store
 
-| Layer | Domain | Tool / Script | Purpose |
-| :--- | :--- | :--- | :--- |
-| **Layer 1** | Formatting | `prettier --check` | Enforces uniform Liquid, JS, JSON & CSS styling. |
-| **Layer 2** | Static | `tests/static/syntax-validator.cjs` | Compiles all inline `<script>` and JS files via V8 AST parser. |
-| **Layer 3** | Static | `tests/static/static-analysis.cjs` | Evaluates 16 rules (null guards, variant IDs, unescaped strings). |
-| **Layer 4** | Dynamic | `tests/dynamic/critical-flow-simulator.cjs` | Simulates PDP, Quick-Add, Bundles, and Cart Drawer funnels. |
-| **Layer 5** | Dynamic | `tests/dynamic/chaos-simulation-tests.cjs` | 50-request concurrent floods, XSS payloads, Safari Private Mode. |
-| **Layer 6** | Dynamic | `tests/dynamic/verify-clarity-detection.cjs` | Verifies protection against all 14 historical Clarity crash vectors. |
-| **Layer 7** | Reporting | `tests/reporting/generate-report.cjs` | Generates timestamped audit logs (`LATEST_SCAN_REPORT.md`). |
-| **Layer 8** | Static | `tests/static/json-schema-validator.cjs` | Validates JSON templates and section schema definitions. |
-| **Layer 9** | Static | `tests/static/locale-integrity-validator.cjs` | Ensures 100% of Liquid `{{ 'key' \| t }}` exist in locale files. |
-| **Layer 10**| Live | `tests/live/live-catalog-probe.cjs` | Probes live US & UK catalog endpoints and bundle variants. |
-| **Layer 11**| Static | `tests/static/asset-snippet-integrity.cjs` | Verifies all referenced snippets and assets exist on disk. |
-| **Layer 12**| Static | `tests/static/asset-size-budget-guard.cjs` | Prevents performance regressions by enforcing JS/CSS size budgets. |
-
----
-
-## ⚙️ How to Maintain as the Site Evolves
-
-1. **To add/modify a static rule:** Edit `tests/config/config.json` and add the scanner to `tests/static/static-analysis.cjs`.
-2. **To whitelist an approved pattern:** Add the file path and rule name to `approvedExceptions` in `tests/config/config.json`.
-3. **To add a purchase journey assertion:** Add tests to `tests/dynamic/critical-flow-simulator.cjs`.
-4. **To adjust performance thresholds:** Update `tests/static/asset-size-budget-guard.cjs`.
-
+These are not in the gate, because only the store knows its pages and handles:
+`npm run parity:check[:usa]` (rendered HTML vs `parity/baseline*`) and
+`npm run links:check[:usa]` (every internal link opens). The README has details.

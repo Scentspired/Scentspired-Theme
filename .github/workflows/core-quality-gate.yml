@@ -8,7 +8,7 @@ on:
 
 jobs:
   quality-gate:
-    name: 7-Layer Core Quality Gate
+    name: Quality Gate (core and every region)
     runs-on: ubuntu-latest
 
     steps:

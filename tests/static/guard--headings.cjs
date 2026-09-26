@@ -21,8 +21,8 @@
  * now; this keeps them that way.
  *
  * Accepted exceptions live in baseline-headings.json with the reason. Articles
- * are there: all 19 article templates disable main-article, so no article has
- * an H1, and fixing that changes visible content. See TODO.md 0.13.
+ * are there: a designed article's title is the hero part's <h2> (live UK's
+ * markup), so no article page has an H1. See docs/COMPATIBILITY.md (25).
  *
  * Usage
  *   node tests/static/guard--headings.cjs            gate

@@ -215,10 +215,19 @@ HardcodedRoutes and LiquidComplexity by their header. **Fix:** `image_url`,
 | static analysis (Layer 3) | 22: unguarded `getElementById` 9, `querySelector` 5, DOM variable 7, bundle inventory guard 1 |
 | template schema (Layer 8) | 39: negative margins 15, ghost sections 24 |
 | script globals (Layer 19) | 6 accepted shared names |
-| headings (Layer 17) | 1 accepted: articles render no title heading. The reason recorded predates `article--parts` and needs re-checking |
+| headings (Layer 17) | 1 accepted: article pages have no `<h1>` (entry 25) |
 | hardcoded content (Layer 21), region literals (Layer 15) | 0 |
 
 ### 24. Formatting is reported, not enforced
 Layer 1 (Prettier) is `optional`: most files were never formatted, and formatting
 them would churn every line. **Fix:** format in one commit that changes nothing
 else, then make Layer 1 blocking.
+
+### 25. Article pages have no H1
+A designed article (`sections/article--parts.liquid`) shows its title in the hero part
+as an `<h2 class="ai-luxury-banner-heading-hero-banner">`, which is live UK's markup.
+So no article page has an `<h1>`: the one page type where search engines weigh it
+most. Layer 17 accepts it by name (`baseline-headings.json`). **Fix:** render the
+hero part's heading as the page's `<h1>` with the same class, and prove with an
+in-page A/B that the computed style is unchanged (the class sets size and weight;
+check the browser's `h1` margins). Then remove the accepted exception.
