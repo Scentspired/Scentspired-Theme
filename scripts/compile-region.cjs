@@ -48,19 +48,37 @@ const REGION_DIR = path.join(REGIONS_DIR, target);
 const CORE_DIRS = ['assets', 'blocks', 'config', 'layout', 'locales', 'sections', 'snippets', 'templates'];
 
 // Region payload directories overlaid on top of the core, in this order.
-// All of these hold DATA: translated strings (translations/ -> locales/) and
-// theme settings (config).
+// They hold DATA: translated strings (translations/ -> locales/).
 //
 // snippets/ is deliberately absent. A snippet is code, and letting a region
 // drop one in would let it fork a component — the same hole that is closed for
 // sections below. Everything a region needs is in its region.json, resolved at
 // build time into snippets/region--active.liquid.
-const OVERLAY_DIRS = ['translations', 'config'];
+const OVERLAY_DIRS = ['translations'];
 
 // A region's translations hold only the keys it changes, so they must not sit in a
 // folder called locales/: Shopify's Liquid editor extension takes any open
 // locales/*.default.json as the theme's whole default locale, and with a one-key
 // file open it reported every other translation key in the theme as missing.
+// Every region is the same shape: these entries and no others, so no region grows a folder
+// the others do not have (a config/markets.json once sat in two regions and not the third).
+const REGION_ENTRIES = new Set(['region.json', 'content', 'data', 'looks', 'translations', 'templates']);
+{
+  const stray = fs.readdirSync(REGION_DIR).filter((e) => !REGION_ENTRIES.has(e) && !['config', 'locales'].includes(e));
+  if (stray.length) {
+    console.error(`\n❌ regions/${target}/ holds ${stray.join(', ')}: a region holds only ${[...REGION_ENTRIES].join(', ')}.\n`);
+    process.exit(1);
+  }
+}
+// A region has no config/: its theme settings are content/theme-settings.json, and it
+// sells to one market, so it has no config/markets.json (no market overrides).
+if (fs.existsSync(path.join(REGION_DIR, 'config'))) {
+  console.error(`
+❌ regions/${target}/config/ — a region's theme settings are regions/${target}/content/theme-settings.json,`);
+  console.error(`   and its pages differ by content, not by market (no config/markets.json).
+`);
+  process.exit(1);
+}
 if (fs.existsSync(path.join(REGION_DIR, 'locales'))) {
   console.error(`\n❌ regions/${target}/locales/ — a region's translations go in regions/${target}/translations/`);
   console.error(`   (same file names as the theme's locales/, holding only the keys that differ).\n`);
@@ -379,8 +397,8 @@ emitted.add('snippets/region--active.liquid');
    *                              a list per block type (brands, then notes), in order
    *
    * A template whose page this region has no content file for is not published
-   * here. A market override (a template with a "parent") keeps only sections
-   * its parent still has.
+   * here. There are no market overrides (a template with "parent" / "context"):
+   * a region's page differs by its content, and each store sells to one market.
    */
   {
     const content = readRegionContent(target);
@@ -441,7 +459,7 @@ emitted.add('snippets/region--active.liquid');
       return base.replace(/\./g, '-');
     };
 
-    const built = {}; const skipped = []; const overrides = [];
+    const built = {}; const skipped = [];
     const writeOut = (rel, doc) => {
       const to = path.join(DIST_DIR, rel);
       const text = JSON.stringify(doc, null, 2) + '\n';
@@ -463,7 +481,10 @@ emitted.add('snippets/region--active.liquid');
         const rel = `${dir}/${f}`;
         // Only the header comment: custom_css strings may hold CSS comments of their own.
         const layout = JSON.parse(fs.readFileSync(path.join(abs, f), 'utf8').replace(/^﻿?\s*\/\*[\s\S]*?\*\/\s*/, ''));
-        if (layout.parent) { overrides.push([rel, layout]); continue; }
+        if (layout.parent || layout.context) {
+          errors.push(`${rel} is a market override ("parent" / "context"): a region's page differs by its content (regions/<id>/content, "@shown"), not by market`);
+          continue;
+        }
         const page = pageOfLayout(rel);
         if (!(page in content)) { skipped.push(rel); continue; }
         const out = { ...layout, sections: {}, order: [] };
@@ -477,8 +498,8 @@ emitted.add('snippets/region--active.liquid');
             const own = lookup(sec['@shown'].replace(/\.shown$/, '')) || {};
             delete sec['@shown'];
             if (!shown) {
-              // Off here. Kept, switched off, when this region has its content — a
-              // market override may switch it on — and left out when it has none.
+              // Off here: kept, switched off, when this region has content for it,
+              // and left out when it has none.
               if (!Object.keys(own).some((k) => k !== 'shown')) continue;
               sec.disabled = true;
             }
@@ -537,13 +558,6 @@ emitted.add('snippets/region--active.liquid');
         built[rel] = out;
         writeOut(rel, out);
       }
-    }
-    for (const [rel, doc] of overrides) {
-      const parent = built[`templates/${doc.parent}`];
-      if (!parent) { skipped.push(rel); continue; }
-      const out = { ...doc, sections: Object.fromEntries(Object.entries(doc.sections || {}).filter(([id]) => id in parent.sections)) };
-      if (doc.order) out.order = doc.order.filter((id) => id in parent.sections);
-      writeOut(rel, out);
     }
     // Theme settings: design shared (config/settings_data.json), content from
     // content/theme-settings.json — the logo, social links, the store's app embeds.

@@ -209,25 +209,16 @@ if (isPull) {
     let pulledTemplates = syncDirectory(path.join(targetPath, 'templates'), path.join(localRegionDir, 'templates'), isDryRun);
     let pulledLocales = syncDirectory(path.join(targetPath, 'locales'), path.join(localRegionDir, 'translations'), isDryRun);
 
-    let pulledSettings = 0;
-    for (const confFile of ['settings_data.json', 'markets.json']) {
-      const srcSettings = path.join(targetPath, 'config', confFile);
-      const destSettings = path.join(localRegionDir, 'config', confFile);
-      if (fs.existsSync(srcSettings)) {
-        const res = syncFile(srcSettings, destSettings, isDryRun);
-        if (res.changed) pulledSettings++;
-      }
-    }
+    // No config/: a region's theme settings are content/theme-settings.json and it has no
+    // market overrides (scripts/compile-region.cjs refuses regions/<id>/config/).
 
     console.log(`  Templates: ${pulledTemplates.added} added, ${pulledTemplates.updated} updated`);
-    console.log(`  Locales:   ${pulledLocales.added} added, ${pulledLocales.updated} updated`);
-    console.log(`  Config:    ${pulledSettings} updated\n`);
+    console.log(`  Locales:   ${pulledLocales.added} added, ${pulledLocales.updated} updated\n`);
 
     pullSummary.push({
       region: target.id.toUpperCase(),
       templatesChanged: pulledTemplates.added + pulledTemplates.updated,
-      localesChanged: pulledLocales.added + pulledLocales.updated,
-      settingsUpdated: pulledSettings > 0
+      localesChanged: pulledLocales.added + pulledLocales.updated
     });
   }
 
@@ -391,16 +382,6 @@ for (const target of targets) {
       const stats = syncDirectory(srcDir, destDir, isDryRun);
       addedCount += stats.added;
       updatedCount += stats.updated;
-    }
-
-    for (const confFile of ['settings_data.json', 'markets.json']) {
-      const srcSettings = path.join(localRegionDir, 'config', confFile);
-      const destSettings = path.join(targetPath, 'config', confFile);
-      if (fs.existsSync(srcSettings)) {
-        const res = syncFile(srcSettings, destSettings, isDryRun);
-        if (res.isNew) addedCount++;
-        else if (res.changed) updatedCount++;
-      }
     }
   }
 

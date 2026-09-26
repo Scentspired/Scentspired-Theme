@@ -46,6 +46,7 @@
     ]
   },
   "scent_stories": {
+    "shown": false,
     "title": "Scent Stories"
   },
   "featured_scent": {

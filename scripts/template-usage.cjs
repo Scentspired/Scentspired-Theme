@@ -12,12 +12,6 @@
  * the template whose enabled sections are exactly those, else every template that
  * holds them all. Templates with the same sections (collection.men and collection)
  * differ only in content: tell them apart by what the page shows.
- *
- * A market override (index.context.pk.json: "parent" + "context") renders its
- * parent's sections, switched on or off for one market. It applies by the market's
- * handle, not the visitor's country — the USA store's market is called "pk" — so
- * ?country= cannot test it. It counts as used when a page shows a section that
- * only the override switches on.
  */
 const fs = require('fs');
 const path = require('path');
@@ -41,15 +35,7 @@ const all = walk(path.join(dist, 'templates')).filter((f) => f.endsWith('.json')
     on: keys.filter((k) => !j.sections[k].disabled).sort().join(','),
   };
 });
-const templates = all.filter((t) => !t.json.parent);
-// each override's tell-tale: sections its parent switches off and it switches on
-const overrides = all.filter((t) => t.json.parent).map((t) => {
-  const parent = templates.find((p) => `${p.name}.json` === t.json.parent);
-  const switchedOn = Object.entries(t.json.sections || {})
-    .filter(([k, v]) => v.disabled === false && parent && parent.json.sections[k] && parent.json.sections[k].disabled)
-    .map(([k]) => k);
-  return { name: t.name, switchedOn };
-});
+const templates = all;
 
 (async () => {
   if (!list) throw new Error('usage: --dist= --url= --country= <urls-file>');
@@ -63,11 +49,8 @@ const overrides = all.filter((t) => t.json.parent).map((t) => {
     const fits = exact.length ? exact : templates.filter((t) => keys.length && keys.every((k) => t.all.has(k))).sort((a, b) => a.all.size - b.all.size);
     const name = fits.length ? fits.map((t) => t.name).join(' | ') : `(no template sections: a Liquid template) ${keys.join(',')}`;
     (used[name] = used[name] || []).push(u);
-    for (const o of overrides) if (o.switchedOn.some((k) => keys.includes(k))) (used[o.name] = used[o.name] || []).push(u);
   }
   for (const [k, v] of Object.entries(used).sort()) console.log(`${k}: ${v.length}  ${v.slice(0, 4).join(' ')}${v.length > 4 ? ' …' : ''}`);
   const hit = new Set(Object.keys(used).flatMap((k) => k.split(' | ')));
   console.log(`\nNo URL rendered with: ${all.map((t) => t.name).filter((n) => !hit.has(n)).join(', ') || 'none'}`);
-  const blind = overrides.filter((o) => !o.switchedOn.length && !hit.has(o.name));
-  if (blind.length) console.log(`Overrides that switch nothing on, so no page can show them (check by hand): ${blind.map((o) => o.name).join(', ')}`);
 })().catch((e) => { console.error(`❌ ${e.message}`); process.exit(1); });

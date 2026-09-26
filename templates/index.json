@@ -60,8 +60,8 @@
     },
     "scent_stories_collection_dXw6Vf": {
       "type": "editorial--scent-stories",
+      "@shown": "home.scent_stories.shown",
       "name": "Scent Stories Section",
-      "disabled": true,
       "settings": {
         "title": "@content:home.scent_stories.title",
         "heading_size": "h1"
