@@ -174,7 +174,7 @@
     {% if collection.products.size > 0 %}
       <div class="ai-product-grid-{{ ai_gen_id }}">
         {% for product in collection.products limit: 3 %}
-          <a href="{{ product.url }}" class="ai-product-card-{{ ai_gen_id }}">
+          <a href="{{ product.url }}" class="ai-product-card-{{ ai_gen_id }}" role="link">
             <div class="ai-product-image-wrapper-{{ ai_gen_id }}">
               {% if product.featured_image %}
                 <img
@@ -235,26 +235,4 @@
   {% endif %}
 </product-collection-grid-{{ ai_gen_id }}>
 
-<script>
-  (function() {
-    class ProductCollectionGrid{{ ai_gen_id }} extends HTMLElement {
-      constructor() {
-        super();
-      }
-
-      connectedCallback() {
-        this.setupAccessibility();
-      }
-
-      setupAccessibility() {
-        const cards = this.querySelectorAll('.ai-product-card-{{ ai_gen_id }}');
-        cards.forEach(card => {
-          card.setAttribute('role', 'link');
-        });
-      }
-    }
-
-    customElements.define('product-collection-grid-{{ ai_gen_id }}', ProductCollectionGrid{{ ai_gen_id }});
-  })();
-</script>
 

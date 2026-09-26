@@ -232,7 +232,7 @@
     <div class="ai-luxury-banner-content-overlay-{{ ai_gen_id }}">
       <div class="ai-luxury-banner-content-{{ ai_gen_id }}">
         {% if part_heading != blank %}
-          <h2 class="ai-luxury-banner-heading-{{ ai_gen_id }}">
+          <h2 class="ai-luxury-banner-heading-{{ ai_gen_id }}" data-brand-italic>
             {{ part_heading }}
           </h2>
         {% endif %}
@@ -246,32 +246,5 @@
   </div>
 </luxury-banner-{{ ai_gen_id }}>
 
-<script>
-  (function() {
-    class LuxuryBanner{{ ai_gen_id }} extends HTMLElement {
-      constructor() {
-        super();
-      }
-
-      connectedCallback() {
-        this.processHeading();
-      }
-
-      processHeading() {
-        const heading = this.querySelector('.ai-luxury-banner-heading-{{ ai_gen_id }}');
-        if (!heading) return;
-
-        const text = heading.textContent.trim();
-        const scentspiredMatch = text.match(/Scentspired/i);
-        
-        if (scentspiredMatch) {
-          const newHTML = text.replace(/(Scent)(spired)/i, '$1<span class="italic-text">$2</span>');
-          heading.innerHTML = newHTML;
-        }
-      }
-    }
-
-    customElements.define('luxury-banner-{{ ai_gen_id }}', LuxuryBanner{{ ai_gen_id }});
-  })();
-</script>
+<script src="{{ 'article--part-hero-banner.js' | asset_url }}"></script>
 

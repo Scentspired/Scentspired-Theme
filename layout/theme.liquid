@@ -421,35 +421,8 @@
     <script src="{{ 'core--page-classes.js' | asset_url }}"></script>
 
     {%- capture region_geo_map -%}{%- render 'region--registry', mode: 'geo_map' -%}{%- endcapture -%}
-    <script>
-      (async function () {
-        // Country -> storefront table, generated from the published regions.
-        // Adding a storefront changes this data, never this code.
-        var REGIONS = {{ region_geo_map | strip }};
-
-        // Skip redirect for search engine crawlers so each storefront stays indexable
-        var ua = navigator.userAgent.toLowerCase();
-        var isBot =
-          /bot|googlebot|crawler|spider|crawling|bingbot|yandex|baiduspider|duckduckbot|slurp|facebookexternalhit/.test(
-            ua
-          );
-        if (isBot) return;
-
-        try {
-          const res = await fetch('https://ipapi.co/json/');
-          const data = await res.json();
-          if (!data || !data.country) return;
-
-          const match = REGIONS.find(function (r) { return r.country === data.country; });
-          if (!match) return;
-
-          const host = match.url.replace(/^https?:\/\//, '');
-          if (!location.hostname.includes(host)) {
-            location.replace(match.url + location.pathname);
-          }
-        } catch (e) {}
-      })();
-    </script>
+    <script type="application/json" id="regionGeoMap">{{ region_geo_map | strip }}</script>
+    <script src="{{ 'core--region-redirect.js' | asset_url }}"></script>
 
     {%- comment -%}
       Search Console and GA4 come from region data (analytics.*), so a region
@@ -541,65 +514,7 @@
         {% endif %}
         }
       </script>
-      <script>
-        (function () {
-
-        function addJudgeMeReviews() {
-
-          if (
-            typeof jdgm === "undefined" ||
-            !jdgm.data ||
-            !jdgm.data.reviewWidget
-          ) {
-            setTimeout(addJudgeMeReviews, 500);
-            return;
-          }
-
-          var productId = {{ product.id }};
-          var jdgmProduct = jdgm.data.reviewWidget[productId];
-
-          if (
-            !jdgmProduct ||
-            !jdgmProduct.reviews ||
-            !jdgmProduct.reviews.length
-          ) {
-            return;
-          }
-
-          var reviews = jdgmProduct.reviews.map(function(review){
-            return {
-              "@type": "Review",
-              "author": {
-                "@type": "Person",
-                "name": review.reviewer_name
-              },
-              "datePublished": review.created_at,
-              "reviewBody": review.body,
-              "reviewRating": {
-                "@type": "Rating",
-                "ratingValue": review.rating,
-                "bestRating": "5",
-                "worstRating": "1"
-              }
-            };
-          });
-
-          var scriptTag = document.getElementById("product-schema-{{ product.id }}");
-          if (!scriptTag) return;
-
-          try {
-            var productSchema = JSON.parse(scriptTag.textContent);
-            productSchema.review = reviews;
-            scriptTag.textContent = JSON.stringify(productSchema);
-          } catch (e) {
-            console.error("Failed to merge Judge.me reviews into Product schema:", e);
-          }
-        }
-
-        addJudgeMeReviews();
-
-        })();
-      </script>
+      <script src="{{ 'product--review-schema.js' | asset_url }}"></script>
     {% endif %}
     <script type="application/ld+json">
       {

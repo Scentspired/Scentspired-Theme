@@ -95,6 +95,7 @@
 
 <fragrance-comparison-table-{{ ai_gen_id }}
   class="ai-comparison-table-wrapper-{{ ai_gen_id }}"
+  style="display: block;"
 >
   <div class="ai-comparison-table-container-{{ ai_gen_id }}">
     <table class="ai-comparison-table-{{ ai_gen_id }}">
@@ -140,19 +141,4 @@
   </div>
 </fragrance-comparison-table-{{ ai_gen_id }}>
 
-<script>
-  (function() {
-    class FragranceComparisonTable{{ ai_gen_id }} extends HTMLElement {
-      constructor() {
-        super();
-      }
-
-      connectedCallback() {
-        this.style.display = 'block';
-      }
-    }
-
-    customElements.define('fragrance-comparison-table-{{ ai_gen_id }}', FragranceComparisonTable{{ ai_gen_id }});
-  })();
-</script>
 
