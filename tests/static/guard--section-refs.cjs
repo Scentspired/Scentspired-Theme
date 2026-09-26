@@ -118,7 +118,7 @@ for (const file of files) {
    * Liquid accepts single OR double quotes, and the theme uses both. Matching
    * only one style made this guard report 37 renders when the real number is
    * several times that — it walked straight past every
-   * {% render "blog--article--header" %} in editorial--article.liquid.
+   * {% render "blog--article-header" %} in editorial--article.liquid.
    */
   for (const m of src.matchAll(/\{%-?\s*section\s+['"]([^'"]+)['"]/g)) {
     checkedSections++;

@@ -14,18 +14,20 @@ To maintain maximum modularity, zero coupling, single-file blast radius, and cle
 
 ### Formal Grammar:
 ```
-[domain]--[layer/subsystem]--[component].[ext]
+[domain]--[component].[ext]
 ```
+One double hyphen, after the domain. A component with parts joins them with single hyphens
+(`article-share`), so every name has the same two levels and sorts under its domain.
+`tests/static/guard--naming.cjs` (gate Layer 29) enforces it for sections, snippets, blocks and
+assets; layouts, templates and section groups keep the names Shopify gives them.
 
 ### Examples:
-- `snippets/blog--article--breadcrumb.liquid`  *(Represents `blog/article/breadcrumb`)*
-- `snippets/blog--article--header.liquid`      *(Represents `blog/article/header`)*
-- `snippets/blog--article--share.liquid`       *(Represents `blog/article/share`)*
-- `snippets/blog--listing--category-filter.liquid` *(Represents `blog/listing/category-filter`)*
-- `snippets/blog--listing--card.liquid`        *(Represents `blog/listing/card`)*
-- `assets/blog--typography.css`                *(Represents `blog/typography.css`)*
-- `assets/blog--listing.css`                   *(Represents `blog/listing.css`)*
-- `assets/blog--card.css`                      *(Represents `blog/card.css`)*
+- `snippets/blog--article-breadcrumb.liquid`
+- `snippets/blog--article-share.liquid`
+- `snippets/blog--listing-card.liquid`
+- `sections/catalog--best-sellers.liquid`
+- `assets/card--product-carousel.css`
+- `assets/blog--typography.css`
 
 ### Why `--` (Double Hyphen)?
 1. **Virtual Folder Tree Sorting:** In VS Code, GitHub, and terminal `ls`, all files prefixed with `blog--` sort consecutively, visually forming an isolated folder.
@@ -93,7 +95,7 @@ To ensure visual discrepancies, negative-margin hacks, and ghost-section spacing
 │  - Defensive rendering: handles disabled blocks gracefully             │
 ├────────────────────────────────────────────────────────────────────────┤
 │  LAYER 2: ATOMIC VIRTUAL PACKAGE SNIPPETS                              │
-│  - snippets/blog--article--*.liquid                                    │
+│  - snippets/blog--article-*.liquid                                    │
 │  - Pure functional components, strict prop interfaces, zero side effects│
 ├────────────────────────────────────────────────────────────────────────┤
 │  LAYER 1: FOUNDATION & DEFENSIVE DESIGN SYSTEM                         │
@@ -112,7 +114,7 @@ To ensure visual discrepancies, negative-margin hacks, and ghost-section spacing
 ### Layer 2: Atomic Virtual Package Snippets (`snippets/`)
 - **Single Responsibility:** Pure presentation rendering using standard semantic HTML.
 - **Independence Contract:** Accepts explicit parameters (`article: article, blog: blog, ...`). Never reads or mutates global scope. Zero side effects.
-- **Single-File Blast Radius:** Editing `snippets/blog--article--share.liquid` has zero blast radius on headers, breadcrumbs, or content sections.
+- **Single-File Blast Radius:** Editing `snippets/blog--article-share.liquid` has zero blast radius on headers, breadcrumbs, or content sections.
 
 ### Layer 3: Section Orchestrators (`sections/`)
 - **Single Responsibility:** Bridge between Shopify Section/Block schemas and Layer 2 Snippets.

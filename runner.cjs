@@ -373,9 +373,24 @@ const CORE_LAYERS = [
     failMsg: "A section, block or theme setting is declared but never read: remove it with its values",
   },
   {
+    // The architecture is read from the file names: <domain>--<component>.
+    name: "Layer 29: <domain>--<component> Naming",
+    cmd: "node",
+    args: [path.join(TESTS_DIR, "static", "guard--naming.cjs")],
+    failMsg: "A section, snippet, block or asset is not named <domain>--<component>",
+  },
+  {
+    // A regional difference lives in the region's content, and every region has
+    // the same shape (a config/markets.json once sat in two regions of three).
+    name: "Layer 30: Every Region Has the Same Shape",
+    cmd: "node",
+    args: [path.join(TESTS_DIR, "static", "guard--region-shape.cjs")],
+    failMsg: "A region holds something the others cannot (config/, locales/, ...), or a template is a market override",
+  },
+  {
     // The guards above are only worth their exit code if they have been seen
     // to fail. Each fixture plants defects and asserts they are caught.
-    name: "Layer 29: Guard Fixtures (red/green verification)",
+    name: "Layer 31: Guard Fixtures (red/green verification)",
     cmd: "node",
     args: [path.join(TESTS_DIR, "static", "run-guard-fixtures.cjs")],
     failMsg: "A guard no longer catches what it claims to catch",

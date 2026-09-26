@@ -19,7 +19,7 @@
 
       {%- when "breadcrumb" -%}
         <div {{ block.shopify_attributes }}>
-          {%- render "blog--article--breadcrumb",
+          {%- render "blog--article-breadcrumb",
             article: article,
             blog: blog,
             show_home: block.settings.show_home,
@@ -30,7 +30,7 @@
 
       {%- when "category_badge" -%}
         <div {{ block.shopify_attributes }}>
-          {%- render "blog--article--header",
+          {%- render "blog--article-header",
             article: article,
             show_category: true,
             show_author: false,
@@ -41,7 +41,7 @@
 
       {%- when "title" -%}
         <div {{ block.shopify_attributes }}>
-          {%- render "blog--article--header",
+          {%- render "blog--article-header",
             article: article,
             show_category: false,
             show_author: block.settings.blog_show_author,
@@ -52,7 +52,7 @@
 
       {%- when "featured_image" -%}
         <div {{ block.shopify_attributes }}>
-          {%- render "blog--article--featured-image",
+          {%- render "blog--article-featured-image",
             image: article.image,
             title: article.title,
             image_height: block.settings.image_height
@@ -69,7 +69,7 @@
 
       {%- when "tags" -%}
         <div {{ block.shopify_attributes }}>
-          {%- render "blog--article--tags",
+          {%- render "blog--article-tags",
             article: article,
             blog: blog,
             label: block.settings.label
@@ -78,7 +78,7 @@
 
       {%- when "share" -%}
         <div {{ block.shopify_attributes }}>
-          {%- render "blog--article--share",
+          {%- render "blog--article-share",
             article: article,
             share_label: block.settings.share_label
           -%}
@@ -86,7 +86,7 @@
 
       {%- when "author_bio" -%}
         <div {{ block.shopify_attributes }}>
-          {%- render "blog--article--author-bio",
+          {%- render "blog--article-author-bio",
             article: article,
             show_avatar: block.settings.show_avatar,
             avatar: block.settings.avatar,
@@ -96,7 +96,7 @@
 
       {%- when "related_posts" -%}
         <div {{ block.shopify_attributes }}>
-          {%- render "blog--article--related-posts",
+          {%- render "blog--article-related-posts",
             article: article,
             blog: blog,
             heading: block.settings.heading,
@@ -106,7 +106,7 @@
 
       {%- when "related_products" -%}
         <div {{ block.shopify_attributes }}>
-          {%- render "blog--article--related-products",
+          {%- render "blog--article-related-products",
             article: article,
             collection: block.settings.collection,
             auto_related: block.settings.auto_related,
@@ -117,7 +117,7 @@
 
       {%- when "newsletter" -%}
         <div {{ block.shopify_attributes }}>
-          {%- render "blog--article--newsletter-cta",
+          {%- render "blog--article-newsletter-cta",
             heading: block.settings.heading,
             subtext: block.settings.subtext,
             placeholder: block.settings.placeholder,

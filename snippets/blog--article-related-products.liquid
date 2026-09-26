@@ -10,7 +10,7 @@
   - products_to_show: {Number} Max products to display (default: 4)
 
   Usage:
-  {% render 'blog--article--related-products', article: article, collection: block.settings.collection, auto_related: true, products_to_show: 4 %}
+  {% render 'blog--article-related-products', article: article, collection: block.settings.collection, auto_related: true, products_to_show: 4 %}
 {% endcomment %}
 
 {%- assign max_products = products_to_show | default: 4 -%}
