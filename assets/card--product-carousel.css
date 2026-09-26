@@ -7,6 +7,12 @@
  * grid's filters), the card is no longer a flex box, and an inline image link
  * collapses to nothing, leaving the badge over the product name. */
 
+/* The card sets its own line height, so no host's container decides it (the collection grid's
+   is 1.6, the page's 1.8). [data-card-root] is the card only: other sections reuse its class names. */
+[data-card-root] {
+  line-height: calc(1 + 0.8 / var(--font-body-scale));
+}
+
 /* The card rules that were in catalog--best-sellers.css, loaded on every page before the theme's
    stylesheets; here first, in their order, so the card is defined in one file. */
 /* Updated Card Design Styles from form-aRxqB.tsx */
@@ -324,7 +330,7 @@
   text-align: left;
   line-height: 1.3;
   color: #000;
-  margin-top: -10px;
+  margin-top: 0;
 }
 
 /* Vendor text - left aligned, NO hover effects */

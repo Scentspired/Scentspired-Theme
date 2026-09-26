@@ -51,9 +51,7 @@
       "settings": {
         "title": "@content:product.scent_stories.title"
       },
-      "custom_css": [
-        "@media only screen and (min-width: 1024px) and (max-width: 1439px) {.fragrance-layout {grid-template-columns: repeat(3, 1fr); gap: 20px; } .fragrance-item {height: 500px; width: 330px; } .fragrance-name {margin-left: 30px !important; width: 80%; } .fragrance-cost {top: 20px; } .fragrance-layout {display: grid; grid-template-columns: repeat(3, 1fr) !important; gap: 30px; margin-top: 40px; }}"
-      ]
+      "custom_css": []
     },
     "apps_8GiyRb": {
       "type": "core--apps",
@@ -85,12 +83,7 @@
         "view_all_link": "@content:product.featured_scent.view_all_link"
       },
       "custom_css": [
-        ".fragrance-item:hover .fragrance-info {transform: none; color: black;}",
-        ".product-badge {color: #fff !important;}",
-        ".mobile-only {display: flex !important;}",
-        ".fragrance-rating {margin-left: -3px;}",
-        ".fragrance-name {margin-top: 0px;}",
-        ".variant-option-btn {padding: 6px 16px !important; background-color: #fff; border: 1px solid #ddd; border-radius: 20px; font-size: 11px !important; cursor: pointer; font-family: \"PPMori Regular\", sans-serif; transition: all 0.2s ease; color: #000; font-weight: 400;}"
+        ".mobile-only {display: flex !important;}"
       ]
     },
     "newsletter_banner_BxBq7B": {

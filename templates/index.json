@@ -79,10 +79,7 @@
         "heading_level": "h1"
       },
       "custom_css": [
-        ".fragrance-item:hover .fragrance-info {transform: none; color: black;}",
-        ".product-badge {color: #fff !important;}",
         ".mobile-only {display: flex !important;}",
-        ".fragrance-rating {margin-left: -3px;}",
         "@media (min-width: 800px) and (max-width: 1024px) {.fragrance-item {width: 100% !important; }}"
       ]
     },
@@ -111,11 +108,7 @@
         "notes_label": "@content:home.scent_filter_banner.notes_label"
       },
       "custom_css": [
-        "@media only screen and (min-width: 1024px) and (max-width: 1439px) {.scent-right {margin-right: 0px; } .product-nav {top: 40%; width: calc(100% + 138px); left: -86px; } .scent-left {margin-left: 0px; margin-bottom: -125px; } .product-nav {width: calc(100% + 138px); left: -86px; } .scent-heading {font-size: 68px !important; }}",
-        ".fragrance-image-wrap:hover .product-hover-image {opacity: 1;}",
-        ".fragrance-image-wrap:hover .product-main-image {opacity: 0;}",
-        ".fragrance-item:hover .fragrance-info {transform: none;}",
-        ".product-badge {color: #fff !important;}"
+        "@media only screen and (min-width: 1024px) and (max-width: 1439px) {.scent-right {margin-right: 0px; } .product-nav {top: 40%; width: calc(100% + 138px); left: -86px; } .scent-left {margin-left: 0px; margin-bottom: -125px; } .product-nav {width: calc(100% + 138px); left: -86px; } .scent-heading {font-size: 68px !important; }}"
       ],
       "blocks": {
         "brand": "@list:home.scent_filter_banner.brands",
@@ -138,10 +131,7 @@
       },
       "custom_css": [
         "@media screen and (min-width: 1024px) {.mvps-section {display: none; }}",
-        ".fragrance-item:hover .fragrance-info {transform: none;}",
-        ".mobile-only {display: flex !important;}",
-        ".fragrance-rating {display: none;}",
-        ".product-badge {background-color: #ffffff; color: #fff !important;}"
+        ".mobile-only {display: flex !important;}"
       ],
       "blocks": {
         "brand": "@list:home.mobile_video_banner.brands",
@@ -170,10 +160,7 @@
         "@media only screen and (min-width: 1024px) {.bs-featured-image {height: 900px !important; }}",
         ".bs-image-side {height: auto; padding-top: 0px;}",
         ".bs-featured-image {border-radius: 0px;}",
-        ".fragrance-item:hover .fragrance-info {transform: none;}",
-        ".product-badge {color: #fff !important;}",
         ".bs-subheading {display: none;}",
-        "@media screen and (max-width: 990px) {.cart-button {font-size: 12px; padding: 10px 12px; }}",
         "@media only screen and (max-width: 1024px) {.fragrance-item {width: 100% !important; }}",
         ".bs-title {}"
       ]

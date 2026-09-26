@@ -334,9 +334,17 @@ const CORE_LAYERS = [
     failMsg: "A storefront label exists in two casings or spellings: make it one key",
   },
   {
+    // The card's price was 17px on home and 18px elsewhere: host stylesheets and
+    // template custom CSS restyled it. Only the card's stylesheet may.
+    name: "Layer 24: Product Card Looks the Same Everywhere",
+    cmd: "node",
+    args: [path.join(TESTS_DIR, "static", "guard--card-look.cjs")],
+    failMsg: "A host restyles the product card's insides, or a bare card rule reaches other hosts' cards",
+  },
+  {
     // The guards above are only worth their exit code if they have been seen
     // to fail. Each fixture plants defects and asserts they are caught.
-    name: "Layer 24: Guard Fixtures (red/green verification)",
+    name: "Layer 25: Guard Fixtures (red/green verification)",
     cmd: "node",
     args: [path.join(TESTS_DIR, "static", "run-guard-fixtures.cjs")],
     failMsg: "A guard no longer catches what it claims to catch",

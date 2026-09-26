@@ -108,8 +108,6 @@
         "@media only screen and (min-width: 1024px) {.collection-title {font-size: 35px; margin: 10px 0 10px; text-align: left; margin-left: 300px; }}",
         ".scent-stars {margin-top: 0px;}",
         ".hover-variant-wrapper {margin-bottom: -5px;}",
-        ".product-badge {color: #fff !important;}",
-        ".product-badges {position: absolute !important;}",
         ".scent-main-title {display: none;}"
       ]
     },
@@ -137,8 +135,6 @@
         "view_all_link": "@content:collection-women.featured_scent.view_all_link"
       },
       "custom_css": [
-        ".fragrance-item:hover .fragrance-info {transform: none; color: black;}",
-        ".product-badge {color: #fff !important;}",
         ".mobile-only {display: flex !important;}",
         ".fragrance-container {display: none;}"
       ]

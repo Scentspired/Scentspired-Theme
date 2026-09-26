@@ -508,7 +508,8 @@
           return variantBtns.length > s.variantIndex && variantBtns[s.variantIndex] !== undefined;
         });
 
-        card.style.display = (matchPrice && matchGender && matchType && matchIngredient && matchSize) ? 'block' : 'none';
+        // '' hands display back to the card's own CSS (flex), as on every other page
+        card.style.display = (matchPrice && matchGender && matchType && matchIngredient && matchSize) ? '' : 'none';
 
         if (matchPrice && matchGender && matchType && matchIngredient && matchSize) {
           const variantBtns = card.querySelectorAll('.variant-option-btn');

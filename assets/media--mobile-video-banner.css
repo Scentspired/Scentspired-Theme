@@ -253,14 +253,8 @@
       transition: opacity 0.4s;
       z-index: 1;
     }
-    .mvps-fragrance-item .secondary-image {
-      opacity: 0;
-      transition: opacity 0.4s;
-      z-index: 2;
-    }
-    .mvps-fragrance-item:hover .secondary-image {
-      opacity: 1;
-    }
+
+
     .mvps-fragrance-cost {
       position: absolute;
       top: 20px;
@@ -279,10 +273,7 @@
       text-align: center;
       transition: 0.3s;
     }
-    .mvps-fragrance-item:hover .fragrance-info {
-      transform: translateY(-40px);
-      color: white;
-    }
+
     .mvps-fragrance-name {
       font-size: 16px;
       font-weight: 400;
@@ -338,12 +329,11 @@
         touch-action: pan-x;
         overscroll-behavior-x: contain;
       }
-      .fragrance-item {
+      .mvps-section .fragrance-item {
         flex: 0 0 50% !important; /* roughly half of the row */
         width: 50% !important; /* match flex-basis */
         max-width: 100%;
         scroll-snap-align: start !important; /* optional: align items at start */
-        border-radius: 12px;
         margin-bottom: 16px !important; /* spacing between rows */
         box-sizing: border-box;
       }
@@ -366,16 +356,15 @@
         font-size: 11px;
         padding-left: 20px;
       }
-      .fragrance-layout {
+      .mvps-section .fragrance-layout {
         gap: 0;
         padding: 0;
       }
-      .fragrance-item {
+      .mvps-section .fragrance-item {
         flex: 0 0 100%;
         width: 100%;
         max-width: 100%;
         scroll-snap-align: center;
-        border-radius: 12px;
       }
     }
     @media screen and (min-width: 1025px) {

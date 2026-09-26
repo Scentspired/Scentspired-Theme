@@ -1,31 +1,7 @@
 /* Extracted from sections/catalog--collection-grid.liquid.
- * Inline CSS is re-downloaded with the HTML on every page that renders
- * that file and can never be cached. Edit this file, not the .liquid.
- * Blocks still in the .liquid are the ones that contain Liquid. */
 
-    /* Font Imports */
-    @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;1,500&family=Libre+Bodoni:ital,wght@0,400;0,500;1,400;1,500&display=swap');
 
-    /* Custom Font Faces */
-    /* ========== SIDEBAR STYLES ========== */
 
-    .fragrance-rating {
-      margin-top: 0px !important;
-  }
-
-  .product-badge {
-    background-color: #FFFFFF;
-    color: #000000 !important;
-    font-family: var(--font-body);
-    font-weight: 400 !important;
-    font-size: 12px !important;
-    padding: 2px 20px !important;
-    border-radius: 20px;
-    white-space: nowrap;
-    text-transform: capitalize;
-    display: inline-block;
-  }
 
     .scent-sidebar details summary {
       font-family: var(--font-body);
@@ -1951,11 +1927,7 @@
   }
 
 
-  .variant-option-btn.disabled {
-    text-decoration: line-through !important;
-    text-decoration-color: #000 !important;
-    text-decoration-thickness: 2px !important;
-  }
+
 
   @media screen and (min-width: 341px) and (max-width: 350px) {
     .scent-grid.mobile-single-column .scent-card {

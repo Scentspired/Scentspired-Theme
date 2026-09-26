@@ -35,7 +35,7 @@
 }
 
 /* Grid layout with 4 products per row, flexible sizing */
-.fragrance-layout {
+.fragrance-container .fragrance-layout {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
@@ -44,22 +44,11 @@
 }
 
 /* Stars - left aligned, NO hover effects */
-.fragrance-rating {
-  font-size: 24px;
-  color: #cbdd00;
-  letter-spacing: -2px;
-  margin: 0;
-  text-align: left;
-  margin-top: -20px;
-}
 
-.rating-star.filled {
-  color: #cbdd00;
-}
 
-.rating-star:not(.filled) {
-  color: #E0E0E0;
-}
+
+
+
 
 /* View All Button */
 .show-all-btn {
@@ -101,7 +90,7 @@
     display: block;
   }
   /* 2 columns for mobile */
-  .fragrance-layout {
+  .fragrance-container .fragrance-layout {
     display: flex;
     gap: 12px;
     overflow-x: auto;
@@ -112,10 +101,10 @@
   }
 
   /* Hide scrollbar */
-  .fragrance-layout::-webkit-scrollbar {
+  .fragrance-container .fragrance-layout::-webkit-scrollbar {
     display: none;
   }
-  .fragrance-layout {
+  .fragrance-container .fragrance-layout {
     scrollbar-width: none;
   }
   .mobile-only {
@@ -144,7 +133,7 @@
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
-  .fragrance-layout {
+  .fragrance-container .fragrance-layout {
     padding: 0px 180px !important;
   }
 }

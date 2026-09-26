@@ -4165,9 +4165,6 @@ body:not(.homepage) .announcement-bar-section {
 .cart-count-bubble {
   font-size: 1.3rem;
 }
-.fragrance-name {
-  margin-top: 0px !important;
-}
 header-drawer {
   /* justify-self: start; */
   /* margin-left: -1.2rem; */
