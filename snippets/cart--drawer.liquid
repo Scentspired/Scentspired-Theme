@@ -124,12 +124,11 @@
       </div>
 
       <!-- Hidden sections when cart is empty -->
-      <div id="sp-full-cart-sections" style="display: none;">
     {% else %}
       <!-- Visible sections when cart has items -->
       <div id="sp-empty-cart-full-container" style="display: none;"></div>
-      <div id="sp-full-cart-sections">
     {% endif %}
+      <div id="sp-full-cart-sections"{% if cart.items.size == 0 %} style="display: none;"{% endif %}>
 
       <!-- Bundle Offers Section -->
       <div class="sp-bundle-section">
@@ -318,26 +317,31 @@
           {% if recommended_collection.products.size > 0 %}
             {% for product in recommended_collection.products limit: 10 %}
               <div class="sp-recommended-item" data-product-id="{{ product.id }}">
+                {%- comment -%} Two links to the product, around the image and around the text, as
+                  browsers have always built it from the old markup, which closed one link inside the
+                  details. {%- endcomment -%}
                 <a href="{{ product.url }}" class="sp-rec-link">
-                <div class="sp-rec-image">
-                  {% if product.featured_image %}
-                    <img src="{{ product.featured_image | img_url: '200x200' }}" alt="{{ product.title }}" class="sp-rec-product-image">
-                  {% else %}
-                    <div class="sp-rec-placeholder">
-                      <div class="sp-single-bottle"></div>
-                    </div>
-                  {% endif %}
-                </div>
-                <div class="sp-rec-details">
-                  <h4>{{ product.title | upcase }}</h4>
-                  <p class="sp-rec-vendor">
-                      {{ product.vendor }}
-                  </p>
-                  {% if product.metafields.custom.inspired_by %}
-                    <p class="sp-rec-inspired">{{ 'sections.cart_drawer.inspired_by_html' | t: name: product.metafields.custom.inspired_by }}</p>
-                  {% endif %}
-                  <div class="sp-rec-price">{{ region_currency_symbol }}{{ product.price | money_without_currency }}</div>
+                  <div class="sp-rec-image">
+                    {% if product.featured_image %}
+                      <img src="{{ product.featured_image | img_url: '200x200' }}" alt="{{ product.title }}" class="sp-rec-product-image">
+                    {% else %}
+                      <div class="sp-rec-placeholder">
+                        <div class="sp-single-bottle"></div>
+                      </div>
+                    {% endif %}
+                  </div>
                 </a>
+                <div class="sp-rec-details">
+                  <a href="{{ product.url }}" class="sp-rec-link">
+                    <h4>{{ product.title | upcase }}</h4>
+                    <p class="sp-rec-vendor">
+                        {{ product.vendor }}
+                    </p>
+                    {% if product.metafields.custom.inspired_by %}
+                      <p class="sp-rec-inspired">{{ 'sections.cart_drawer.inspired_by_html' | t: name: product.metafields.custom.inspired_by }}</p>
+                    {% endif %}
+                    <div class="sp-rec-price">{{ region_currency_symbol }}{{ product.price | money_without_currency }}</div>
+                  </a>
                   <button class="sp-add-to-cart-btn" onclick="addDossierRecommended('{{ product.variants.first.id }}', '{{ product.title | escape }}', '{{ product.featured_image | img_url: '120x120' }}', {{ product.price }}, {{ product.compare_at_price | default: product.price }})">
                     {{ 'sections.cart_drawer.add_to_cart' | t }}
                   </button>
@@ -388,4 +392,6 @@
     "boxProductHandles": {{ box_product_handles | strip | split: ',' | json }}
   }
 </script>
+{% # theme-check-disable ParserBlockingScript %}
 <script src="{{ 'cart--drawer.js' | asset_url }}"></script>
+{% # theme-check-enable ParserBlockingScript %}
