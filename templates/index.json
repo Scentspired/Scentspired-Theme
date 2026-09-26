@@ -13,10 +13,10 @@
       "name": "Video Banner",
       "settings": {
         "video_url": "@content:home.video_banner.video_url",
-        "main_title_part1": "@content:home.video_banner.main_title_part1",
-        "main_title_part2": "@content:home.video_banner.main_title_part2",
-        "subtitle_part1": "@content:home.video_banner.subtitle_part1",
-        "subtitle_part2": "@content:home.video_banner.subtitle_part2",
+        "main_title_editorial": "@content:home.video_banner.main_title_editorial",
+        "main_title_sans": "@content:home.video_banner.main_title_sans",
+        "subtitle_sans": "@content:home.video_banner.subtitle_sans",
+        "subtitle_editorial": "@content:home.video_banner.subtitle_editorial",
         "side_text": "@content:home.video_banner.side_text",
         "button_text": "@content:home.video_banner.button_text",
         "button_link": "@content:home.video_banner.button_link"

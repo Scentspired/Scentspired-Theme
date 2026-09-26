@@ -1540,10 +1540,10 @@
   "home": {
     "video_banner": {
       "video_url": null,
-      "main_title_part1": null,
-      "main_title_part2": null,
-      "subtitle_part1": null,
-      "subtitle_part2": null,
+      "main_title_editorial": null,
+      "main_title_sans": null,
+      "subtitle_sans": null,
+      "subtitle_editorial": null,
       "side_text": null,
       "button_text": null,
       "button_link": null
