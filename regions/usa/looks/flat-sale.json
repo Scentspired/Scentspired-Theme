@@ -2356,7 +2356,136 @@
       "description": null
     }
   },
-  "page-fragrance-finder": {},
+  "page-fragrance-finder": {
+    "hero": {
+      "label": null,
+      "heading": null,
+      "start_button": null,
+      "image": null,
+      "image_alt": null
+    },
+    "quiz": {
+      "name_question": {
+        "title": null,
+        "subtitle": null,
+        "placeholder": null
+      },
+      "questions": [
+        {
+          "title": null,
+          "subtitle": null,
+          "matches_perfume_field": null,
+          "points_for_match": null,
+          "answers": [
+            {
+              "label": null,
+              "value": null
+            },
+            {
+              "label": null,
+              "value": null
+            },
+            {
+              "label": null,
+              "value": null,
+              "suits_every_answer": null
+            }
+          ]
+        },
+        {
+          "title": null,
+          "subtitle": null,
+          "matches_perfume_field": null,
+          "points_for_match": null,
+          "answers": [
+            {
+              "label": null,
+              "value": null
+            },
+            {
+              "label": null,
+              "value": null
+            },
+            {
+              "label": null,
+              "value": null
+            },
+            {
+              "label": null,
+              "value": null
+            },
+            {
+              "label": null,
+              "value": null
+            },
+            {
+              "label": null,
+              "value": null
+            }
+          ]
+        },
+        {
+          "title": null,
+          "subtitle": null,
+          "answers": [
+            {
+              "label": null,
+              "value": null,
+              "points": null,
+              "for_scent_families": [
+                null,
+                null
+              ]
+            },
+            {
+              "label": null,
+              "value": null,
+              "points": null,
+              "for_scent_families": []
+            },
+            {
+              "label": null,
+              "value": null,
+              "points": null,
+              "for_scent_families": [
+                null,
+                null
+              ]
+            }
+          ]
+        },
+        {
+          "title": null,
+          "subtitle": null,
+          "answers": [
+            {
+              "label": null,
+              "value": null,
+              "points": null,
+              "for_scent_families": [
+                null
+              ]
+            },
+            {
+              "label": null,
+              "value": null,
+              "points": null,
+              "for_scent_families": [
+                null,
+                null
+              ]
+            },
+            {
+              "label": null,
+              "value": null,
+              "points": null,
+              "for_scent_families": []
+            }
+          ]
+        }
+      ]
+    }
+  },
   "page-privacy-policy": {
     "privacy_policy": {
       "page_title": null,

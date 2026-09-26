@@ -1,35 +1,62 @@
 {% comment %}
-  AI-Powered Perfume Recommendation Quiz Section - REDESIGNED
-  Premium card-based interface with user name personalization
+  Fragrance finder: a hero, then a quiz that recommends a perfume.
+  Words, image and the quiz itself (its questions, answers and how each answer
+  scores) come from the region's content/page-fragrance-finder.json; interface
+  wording (Continue, Go back, the result labels) from the locale,
+  sections.fragrance_finder. A question or answer added to the file is asked
+  and scored with no code change.
 {% endcomment %}
+{%- liquid
+  capture hero_label
+    render 'region--content', key: 'page-fragrance-finder.hero.label'
+  endcapture
+  capture hero_heading
+    render 'region--content', key: 'page-fragrance-finder.hero.heading'
+  endcapture
+  capture hero_start_button
+    render 'region--content', key: 'page-fragrance-finder.hero.start_button'
+  endcapture
+  capture hero_image
+    render 'region--content', key: 'page-fragrance-finder.hero.image'
+  endcapture
+  capture hero_image_alt
+    render 'region--content', key: 'page-fragrance-finder.hero.image_alt'
+  endcapture
+  capture name_title
+    render 'region--content', key: 'page-fragrance-finder.quiz.name_question.title'
+  endcapture
+  capture name_subtitle
+    render 'region--content', key: 'page-fragrance-finder.quiz.name_question.subtitle'
+  endcapture
+  capture name_placeholder
+    render 'region--content', key: 'page-fragrance-finder.quiz.name_question.placeholder'
+  endcapture
+  capture question_keys
+    render 'region--content', key: 'page-fragrance-finder.quiz.questions.__keys'
+  endcapture
+  assign question_keys = question_keys | strip | split: ','
+  assign step_total = question_keys.size | plus: 1
+-%}
 
 <div class="perfume-quiz-wrapper">
   <div class="hero-section">
     <div class="hero-content-wrapper">
       <div class="hero-image-container">
         <img
-          src="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Website_-_ScentFinder_Footer_01.png?v=1767001740"
+          src="{{ hero_image | strip | escape }}"
           class="hero-image"
-          alt="Fragrance">
+          alt="{{ hero_image_alt | strip | escape }}">
       </div>
       <div class="hero-text-container">
-        <p class="fragrance-finder-text">Fragrance Finder</p>
+        <p class="fragrance-finder-text">{{ hero_label }}</p>
         {%- comment -%}
           This is the page's main heading and the page had no h1 at all.
           .hero-heading sets its own font-size, weight, colour and spacing, so
           the tag change is semantic only.
         {%- endcomment -%}
-        <h1 class="hero-heading">Discover the Scent That Defines You — Scentspired</h1>
-        <button id="quiz-trigger-btn" class="show-all-btn">START THE QUIZ</button>
+        <h1 class="hero-heading">{{ hero_heading }}</h1>
+        <button id="quiz-trigger-btn" class="show-all-btn">{{ hero_start_button }}</button>
       </div>
-    </div>
-    <div class="hero-bottom-nav">
-      <a href="#" class="nav-item">NURTURE</a>
-      <a href="#" class="nav-item">BLACK ANISE</a>
-      <a href="#" class="nav-item">CYAN NORI</a>
-      <a href="#" class="nav-item">THE APARTMENT</a>
-      <a href="#" class="nav-item">PINK IRIS</a>
-      <a href="#" class="nav-item">PAUSE</a>
     </div>
   </div>
 
@@ -47,178 +74,129 @@
           </div>
           <div class="quiz-step-content">
             <div class="quiz-step-header">
-              <span class="quiz-step-number">1 of 5</span>
-              <h3 class="quiz-title-main">What's your name?</h3>
-              <p class="quiz-subtitle">Let us personalize your fragrance journey</p>
+              <span class="quiz-step-number">{{ 'sections.fragrance_finder.step_count' | t | replace: '[current]', '1' | replace: '[total]', step_total }}</span>
+              <h3 class="quiz-title-main">{{ name_title }}</h3>
+              <p class="quiz-subtitle">{{ name_subtitle }}</p>
             </div>
             <div class="quiz-input-group">
               <input
                 type="text"
                 id="user-name-input"
                 class="quiz-name-input"
-                placeholder="Enter your name..."
+                placeholder="{{ name_placeholder | strip | escape }}"
                 maxlength="50">
             </div>
-            <button class="quiz-next-btn" id="name-next-btn">CONTINUE</button>
+            <button class="quiz-next-btn" id="name-next-btn">{{ 'sections.fragrance_finder.continue' | t }}</button>
           </div>
         </div>
 
-        {% comment %} Question 1: Gender {% endcomment %}
-        <div class="quiz-step hidden" data-step="1">
-          <div class="quiz-progress">
-            <div class="progress-bar" style="width: 28%"></div>
-          </div>
-          <div class="quiz-step-content">
-            <div class="quiz-step-header">
-              <span class="quiz-step-number">2 of 5</span>
-              <h3 class="quiz-title-main">What's your gender preference?</h3>
-              <p class="quiz-subtitle">This helps us narrow down your perfect match</p>
+        {%- for q in question_keys -%}
+          {%- liquid
+            assign question_key = 'page-fragrance-finder.quiz.questions.' | append: q
+            assign k = question_key | append: '.title'
+            capture question_title
+              render 'region--content', key: k
+            endcapture
+            assign k = question_key | append: '.subtitle'
+            capture question_subtitle
+              render 'region--content', key: k
+            endcapture
+            assign k = question_key | append: '.matches_perfume_field'
+            capture matches_perfume_field
+              render 'region--content', key: k
+            endcapture
+            assign matches_perfume_field = matches_perfume_field | strip
+            assign k = question_key | append: '.points_for_match'
+            capture points_for_match
+              render 'region--content', key: k
+            endcapture
+            assign k = question_key | append: '.answers.__keys'
+            capture answer_keys
+              render 'region--content', key: k
+            endcapture
+            assign answer_keys = answer_keys | strip | split: ','
+            assign step_number = forloop.index | plus: 1
+          -%}
+          <div
+            class="quiz-step hidden"
+            data-step="{{ forloop.index }}"
+            data-question
+            {%- if matches_perfume_field != blank %}
+              data-matches-perfume-field="{{ matches_perfume_field | escape }}"
+              data-points-for-match="{{ points_for_match | strip | escape }}"
+            {%- endif %}>
+            <div class="quiz-progress">
+              <div class="progress-bar" style="width: {{ step_number | times: 14 }}%"></div>
             </div>
-            <div class="quiz-cards-grid">
-              <button class="quiz-card" data-answer="Men">
-                <div class="card-inner">
-                  <div class="card-content">Men</div>
-                </div>
-              </button>
-              <button class="quiz-card" data-answer="Women">
-                <div class="card-inner">
-                  <div class="card-content">Women</div>
-                </div>
-              </button>
-              <button class="quiz-card" data-answer="Unisex">
-                <div class="card-inner">
-                  <div class="card-content">Unisex</div>
-                </div>
-              </button>
-            </div>
-            <div class="quiz-nav">
-              <button class="quiz-back-btn" data-back="true">GO BACK</button>
-            </div>
-          </div>
-        </div>
-
-        {% comment %} Question 2: Scent Family {% endcomment %}
-        <div class="quiz-step hidden" data-step="2">
-          <div class="quiz-progress">
-            <div class="progress-bar" style="width: 42%"></div>
-          </div>
-          <div class="quiz-step-content">
-            <div class="quiz-step-header">
-              <span class="quiz-step-number">3 of 5</span>
-              <h3 class="quiz-title-main">What's your preferred scent family?</h3>
-              <p class="quiz-subtitle">Choose the fragrance profile that speaks to you</p>
-            </div>
-            <div class="quiz-cards-grid">
-              <button class="quiz-card" data-answer="Fresh">
-                <div class="card-inner">
-                  <div class="card-content">Fresh</div>
-                </div>
-              </button>
-              <button class="quiz-card" data-answer="Flowery">
-                <div class="card-inner">
-                  <div class="card-content">Flowery</div>
-                </div>
-              </button>
-              <button class="quiz-card" data-answer="Warm">
-                <div class="card-inner">
-                  <div class="card-content">Warm</div>
-                </div>
-              </button>
-              <button class="quiz-card" data-answer="Earthy">
-                <div class="card-inner">
-                  <div class="card-content">Earthy</div>
-                </div>
-              </button>
-              <button class="quiz-card" data-answer="Gourmand">
-                <div class="card-inner">
-                  <div class="card-content">Gourmand</div>
-                </div>
-              </button>
-              <button class="quiz-card" data-answer="Herbal">
-                <div class="card-inner">
-                  <div class="card-content">Herbal</div>
-                </div>
-              </button>
-            </div>
-            <div class="quiz-nav">
-              <button class="quiz-back-btn" data-back="true">GO BACK</button>
-            </div>
-          </div>
-        </div>
-
-        {% comment %} Question 3: Intensity {% endcomment %}
-        <div class="quiz-step hidden" data-step="3">
-          <div class="quiz-progress">
-            <div class="progress-bar" style="width: 56%"></div>
-          </div>
-          <div class="quiz-step-content">
-            <div class="quiz-step-header">
-              <span class="quiz-step-number">4 of 5</span>
-              <h3 class="quiz-title-main">What's your desired intensity?</h3>
-              <p class="quiz-subtitle">Select how bold or subtle you prefer your scent</p>
-            </div>
-            <div class="quiz-cards-grid">
-              <button class="quiz-card" data-answer="Light">
-                <div class="card-inner">
-                  <div class="card-content">Light & Fresh</div>
-                </div>
-              </button>
-              <button class="quiz-card" data-answer="Medium">
-                <div class="card-inner">
-                  <div class="card-content">Balanced & Elegant</div>
-                </div>
-              </button>
-              <button class="quiz-card" data-answer="Strong">
-                <div class="card-inner">
-                  <div class="card-content">Bold & Intense</div>
-                </div>
-              </button>
-            </div>
-            <div class="quiz-nav">
-              <button class="quiz-back-btn" data-back="true">GO BACK</button>
+            <div class="quiz-step-content">
+              <div class="quiz-step-header">
+                <span class="quiz-step-number">{{ 'sections.fragrance_finder.step_count' | t | replace: '[current]', step_number | replace: '[total]', step_total }}</span>
+                <h3 class="quiz-title-main">{{ question_title }}</h3>
+                <p class="quiz-subtitle">{{ question_subtitle }}</p>
+              </div>
+              <div class="quiz-cards-grid">
+                {%- for a in answer_keys -%}
+                  {%- liquid
+                    assign answer_key = question_key | append: '.answers.' | append: a
+                    assign k = answer_key | append: '.label'
+                    capture answer_label
+                      render 'region--content', key: k
+                    endcapture
+                    assign k = answer_key | append: '.value'
+                    capture answer_value
+                      render 'region--content', key: k
+                    endcapture
+                    assign k = answer_key | append: '.suits_every_answer'
+                    capture suits_every_answer
+                      render 'region--content', key: k
+                    endcapture
+                    assign k = answer_key | append: '.points'
+                    capture answer_points
+                      render 'region--content', key: k
+                    endcapture
+                    assign k = answer_key | append: '.for_scent_families.__keys'
+                    capture family_keys
+                      render 'region--content', key: k
+                    endcapture
+                    assign family_keys = family_keys | strip | split: ','
+                    assign for_scent_families = ''
+                    for f in family_keys
+                      assign k = answer_key | append: '.for_scent_families.' | append: f
+                      capture family
+                        render 'region--content', key: k
+                      endcapture
+                      unless forloop.first
+                        assign for_scent_families = for_scent_families | append: ','
+                      endunless
+                      assign for_scent_families = for_scent_families | append: family
+                    endfor
+                  -%}
+                  <button
+                    class="quiz-card"
+                    data-answer="{{ answer_value | strip | escape }}"
+                    {%- if suits_every_answer contains 'true' %} data-suits-every-answer{% endif %}
+                    {%- if answer_points != blank %}
+                      data-points="{{ answer_points | strip | escape }}"
+                      data-for-scent-families="{{ for_scent_families | escape }}"
+                    {%- endif %}>
+                    <div class="card-inner">
+                      <div class="card-content">{{ answer_label }}</div>
+                    </div>
+                  </button>
+                {%- endfor %}
+              </div>
+              <div class="quiz-nav">
+                <button class="quiz-back-btn" data-back="true">{{ 'sections.fragrance_finder.go_back' | t }}</button>
+              </div>
             </div>
           </div>
-        </div>
-
-        {% comment %} Question 4: Occasion {% endcomment %}
-        <div class="quiz-step hidden" data-step="4">
-          <div class="quiz-progress">
-            <div class="progress-bar" style="width: 70%"></div>
-          </div>
-          <div class="quiz-step-content">
-            <div class="quiz-step-header">
-              <span class="quiz-step-number">5 of 5</span>
-              <h3 class="quiz-title-main">What's your preferred occasion?</h3>
-              <p class="quiz-subtitle">Tell us when you'll wear your signature scent</p>
-            </div>
-            <div class="quiz-cards-grid">
-              <button class="quiz-card" data-answer="Daily">
-                <div class="card-inner">
-                  <div class="card-content">Daily Wear</div>
-                </div>
-              </button>
-              <button class="quiz-card" data-answer="Evening">
-                <div class="card-inner">
-                  <div class="card-content">Evening & Special</div>
-                </div>
-              </button>
-              <button class="quiz-card" data-answer="Versatile">
-                <div class="card-inner">
-                  <div class="card-content">Versatile & All-Time</div>
-                </div>
-              </button>
-            </div>
-            <div class="quiz-nav">
-              <button class="quiz-back-btn" data-back="true">GO BACK</button>
-            </div>
-          </div>
-        </div>
+        {%- endfor %}
 
         {% comment %} Loading State {% endcomment %}
         <div class="quiz-step hidden" data-step="loading">
           <div class="loading-container">
             <div class="spinner"></div>
-            <p class="loading-text">Finding your perfect fragrance...</p>
+            <p class="loading-text">{{ 'sections.fragrance_finder.loading' | t }}</p>
           </div>
         </div>
 
@@ -226,7 +204,7 @@
         <div class="quiz-step hidden" data-step="results">
           <div class="results-container">
             <div class="results-header">
-              <h3 class="results-title">Your Perfect Match,</h3>
+              <h3 class="results-title">{{ 'sections.fragrance_finder.results_title' | t }}</h3>
               <p class="results-name" id="result-user-name"></p>
             </div>
             <div id="result-card" class="result-card">
@@ -234,23 +212,23 @@
               <p id="result-inspired-by" class="inspired-by"></p>
               <div class="result-details">
                 <div class="detail-section">
-                  <p class="detail-label">HEAD NOTES</p>
+                  <p class="detail-label">{{ 'sections.fragrance_finder.head_notes' | t }}</p>
                   <p id="result-head-notes" class="detail-content"></p>
                 </div>
                 <div class="detail-section">
-                  <p class="detail-label">HEART NOTES</p>
+                  <p class="detail-label">{{ 'sections.fragrance_finder.heart_notes' | t }}</p>
                   <p id="result-heart-notes" class="detail-content"></p>
                 </div>
                 <div class="detail-section">
-                  <p class="detail-label">BASE NOTES</p>
+                  <p class="detail-label">{{ 'sections.fragrance_finder.base_notes' | t }}</p>
                   <p id="result-base-notes" class="detail-content"></p>
                 </div>
               </div>
               <p id="result-ai-reason" class="ai-reason"></p>
             </div>
             <div class="result-actions">
-              <a id="view-product-btn" href="#" class="view-product-btn">EXPLORE FRAGRANCE</a>
-              <button id="restart-quiz-btn" class="restart-quiz-btn">TRY AGAIN</button>
+              <a id="view-product-btn" href="#" class="view-product-btn">{{ 'sections.fragrance_finder.explore' | t }}</a>
+              <button id="restart-quiz-btn" class="restart-quiz-btn">{{ 'sections.fragrance_finder.try_again' | t }}</button>
             </div>
           </div>
         </div>
@@ -258,6 +236,13 @@
     </div>
   </div>
 </div>
+
+<script type="application/json" id="finderStrings">
+  {
+    "inspiredBy": {{ 'sections.fragrance_finder.inspired_by' | t | json }},
+    "reasonFallback": {{ 'sections.fragrance_finder.reason_fallback' | t | json }}
+  }
+</script>
 
 {{ 'media--hero.css' | asset_url | stylesheet_tag }}
 
@@ -284,10 +269,10 @@
    * none carries `available`.
    */
   (function useLiveCatalogue() {
-    const answers = (step) =>
-      [...document.querySelectorAll(`.quiz-step[data-step="${step}"] [data-answer]`)].map((b) => b.dataset.answer);
-    const genders = answers(1);
-    const families = answers(2);
+    const answers = (field) =>
+      [...document.querySelectorAll(`.quiz-step[data-matches-perfume-field="${field}"] [data-answer]`)].map((b) => b.dataset.answer);
+    const genders = answers('category');
+    const families = answers('scent_family');
     for (let i = perfumeDatabase.length - 1; i >= 0; i--) {
       const p = perfumeDatabase[i];
       const tags = p.tags || [];
@@ -297,14 +282,11 @@
     }
   })();
 
-  // <CHANGE> UPDATED QUIZ LOGIC - Name input + personalized results
-  let quizAnswers = {
-    userName: '',
-    gender: null,
-    scent_family: null,
-    intensity: null,
-    occasion: null,
-  };
+  // The questions, from the region's content (rendered above); answers[i] is the
+  // card chosen for questionSteps[i].
+  const questionSteps = [...document.querySelectorAll('.quiz-step[data-question]')];
+  const finderStrings = JSON.parse(document.getElementById('finderStrings').textContent);
+  let quizAnswers = { userName: '', answers: [] };
 
   let currentStep = 0;
   let recommendedPerfume = null;
@@ -365,15 +347,10 @@
       siblings.forEach(s => s.classList.remove('selected'));
       card.classList.add('selected');
 
-      const answer = card.getAttribute('data-answer');
-
-      if (currentStep === 1) quizAnswers.gender = answer;
-      if (currentStep === 2) quizAnswers.scent_family = answer;
-      if (currentStep === 3) quizAnswers.intensity = answer;
-      if (currentStep === 4) quizAnswers.occasion = answer;
+      quizAnswers.answers[currentStep - 1] = card;
 
       setTimeout(() => {
-        if (currentStep < 4) {
+        if (currentStep < questionSteps.length) {
           currentStep++;
           showStep(currentStep);
         } else {
@@ -401,31 +378,33 @@
   }
 
   function getRecommendation() {
-    recommendedPerfume = findBestMatch(quizAnswers);
+    recommendedPerfume = findBestMatch(quizAnswers.answers);
     displayRecommendation(recommendedPerfume);
   }
 
+  /*
+   * Each question scores from its content: one with matches_perfume_field gives
+   * points_for_match when the chosen answer (or an answer that suits every
+   * answer, like Unisex) equals that field of the perfume; any other gives the
+   * chosen answer's points to perfumes in its for_scent_families (empty: all).
+   */
   function findBestMatch(answers) {
     let scores = perfumeDatabase.map(perfume => {
       let score = 0;
-
-      // Gender matching
-      if (perfume.category === 'Unisex') score += 30;
-      else if (perfume.category === answers.gender) score += 30;
-
-      // Scent family matching
-      if (perfume.scent_family === answers.scent_family) score += 40;
-
-      // Intensity preference
-      if (answers.intensity === 'Light' && ['Fresh', 'Herbal'].includes(perfume.scent_family)) score += 5;
-      else if (answers.intensity === 'Strong' && ['Warm', 'Earthy'].includes(perfume.scent_family)) score += 5;
-      else if (answers.intensity === 'Medium') score += 3;
-
-      // Occasion preference
-      if (answers.occasion === 'Daily' && perfume.scent_family === 'Fresh') score += 5;
-      else if (answers.occasion === 'Evening' && ['Warm', 'Earthy'].includes(perfume.scent_family)) score += 5;
-      else if (answers.occasion === 'Versatile') score += 3;
-
+      questionSteps.forEach((step, i) => {
+        const chosen = answers[i];
+        if (!chosen) return;
+        const field = step.dataset.matchesPerfumeField;
+        if (field) {
+          const suitsEvery = [...step.querySelectorAll('[data-suits-every-answer]')].map(c => c.dataset.answer);
+          if (suitsEvery.includes(perfume[field]) || perfume[field] === chosen.dataset.answer) {
+            score += Number(step.dataset.pointsForMatch) || 0;
+          }
+        } else {
+          const families = (chosen.dataset.forScentFamilies || '').split(',').filter(Boolean);
+          if (!families.length || families.includes(perfume.scent_family)) score += Number(chosen.dataset.points) || 0;
+        }
+      });
       return { perfume, score };
     });
 
@@ -443,7 +422,7 @@
     const pName = document.getElementById('result-perfume-name');
     if (pName) pName.textContent = perfume.name;
     const pInsp = document.getElementById('result-inspired-by');
-    if (pInsp) pInsp.textContent = perfume.originalName ? `Inspired by: ${perfume.originalName}` : '';
+    if (pInsp) pInsp.textContent = perfume.originalName ? finderStrings.inspiredBy.replace('[name]', () => perfume.originalName) : '';
     const pHead = document.getElementById('result-head-notes');
     if (pHead) pHead.textContent = perfume.head_notes;
     const pHeart = document.getElementById('result-heart-notes');
@@ -454,7 +433,10 @@
     if (pAi) {
       pAi.textContent =
         reasons[perfume.scent_family] ||
-        `Based on your preferences for ${perfume.scent_family} scents and ${perfume.gender} fragrances, ${perfume.name} is your perfect match.`;
+        finderStrings.reasonFallback
+          .replace('[scent_family]', () => perfume.scent_family)
+          .replace('[category]', () => perfume.category)
+          .replace('[name]', () => perfume.name);
     }
 
     if (viewProductBtn) {
@@ -462,7 +444,7 @@
       // does not, so its link is still derived from the name — which is why
       // "Heaven's Pour" and "L'Infini" 404 there and not on the live path.
       const productHandle = (perfume.name || '').toLowerCase().replace(/\s+/g, '-');
-      viewProductBtn.href = perfume.url || `/products/${productHandle}`;
+      viewProductBtn.href = perfume.url || `${window.Shopify.routes.root}products/${productHandle}`;
     }
 
     showStep('results');
@@ -470,7 +452,7 @@
 
   if (restartBtn) {
     restartBtn.addEventListener('click', () => {
-      quizAnswers = { userName: '', gender: null, scent_family: null, intensity: null, occasion: null };
+      quizAnswers = { userName: '', answers: [] };
       currentStep = 0;
       if (nameInput) nameInput.value = '';
       document.querySelectorAll('.quiz-card').forEach(card => card.classList.remove('selected'));

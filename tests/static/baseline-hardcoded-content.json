@@ -206,15 +206,6 @@
     "fallback": 0,
     "ids": 0
   },
-  "sections/media--hero.liquid": {
-    "total": 68,
-    "text": 53,
-    "js-text": 14,
-    "media": 1,
-    "links": 0,
-    "fallback": 0,
-    "ids": 0
-  },
   "sections/media--image-banner.liquid": {
     "total": 1,
     "text": 0,
