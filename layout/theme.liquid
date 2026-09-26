@@ -167,6 +167,8 @@
     {% render 'card--strings' %}
 
     {{ content_for_header }}
+    {%- comment -%} Where Shopify's bundle of section {% stylesheet %} tags loaded: see the file. {%- endcomment -%}
+    {{ 'catalog--best-sellers.css' | asset_url | stylesheet_tag }}
 
     {%- liquid
       assign body_font_bold = settings.type_body_font | font_modify: "weight", "bold"

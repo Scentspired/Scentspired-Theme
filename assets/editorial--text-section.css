@@ -1,0 +1,46 @@
+/* The text section (the about page's "Luxury, Reinvented"). Moved from sections/editorial--text-section.liquid. */
+  /*
+    CSS for the text section.
+    This is embedded directly in the Liquid file for simplicity,
+    but in a larger theme, you might put this in a separate CSS file
+    and link it.
+  */
+  .shopify-hardcoded-text-section-wrapper {
+    display: flex;
+    justify-content: center; /* Centers the content horizontally */
+    align-items: center; /* Centers the content vertically */
+    min-height: 400px; /* Minimum height for the section, adjust as needed */
+    background-color: #ffffff; /* White background as per the image */
+    padding: 16px; /* Default padding for mobile */
+  }
+
+  .shopify-hardcoded-text-section-content {
+    font-family: var(--font-display); /* Your custom font, with a generic serif fallback */
+    font-weight: 200 !important; /* 'Ultralight' weight */
+    font-style: normal; /* Ensures it's not italic, as 'Ultralight' is a weight */
+    font-size: 20px; /* Font size for mobile devices */
+    line-height: 1; /* 100% line-height */
+    letter-spacing: 0.02em; /* 2% letter-spacing */
+    color: #000000; /* Black text color */
+    max-width: 900px; /* Maximum width for the text block for readability */
+    text-align: left; /* Aligns text to the left, as seen in your image */
+    margin: 0 auto; /* Centers the text block itself within its wrapper */
+    /*
+      Note on leading-trim: CAP_HEIGHT:
+      This is an experimental CSS property and is not widely supported.
+      The 'line-height: 1;' and 'letter-spacing: 0.02em;' are standard
+      CSS properties that achieve the visual effect as closely as possible.
+      For pixel-perfect alignment, you might need to manually adjust
+      padding or margin around the text in your theme's CSS.
+    */
+  }
+
+  /* Media query for desktop styles (applies for screens 768px wide and above) */
+  @media (min-width: 768px) {
+    .shopify-hardcoded-text-section-wrapper {
+      padding: 48px; /* More padding for desktop */
+    }
+    .shopify-hardcoded-text-section-content {
+      font-size: 78px; /* Larger font size for desktop view */
+    }
+  }

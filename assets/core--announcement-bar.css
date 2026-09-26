@@ -1,0 +1,6 @@
+/* The announcement bar. Moved from sections/core--announcement-bar.liquid. */
+          /* theme editor power preview fix */
+          .announcement-bar-slider .slider__slide[aria-hidden='true'] {
+            visibility: hidden;
+          }
+        

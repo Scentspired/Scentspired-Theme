@@ -1,14 +1,4 @@
-<style type="text/css">
-  .template-404 .title + * {
-    margin-top: 1rem;
-  }
-
-  @media screen and (min-width: 750px) {
-    .template-404 .title + * {
-      margin-top: 2rem;
-    }
-  }
-</style>
+{{ 'content--not-found.css' | asset_url | stylesheet_tag }}
 
 <div class="template-404 page-width page-margin center">
   <p>

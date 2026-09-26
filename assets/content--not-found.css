@@ -1,0 +1,10 @@
+/* The 404 page. Moved from sections/content--not-found.liquid. */
+  .template-404 .title + * {
+    margin-top: 1rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .template-404 .title + * {
+      margin-top: 2rem;
+    }
+  }
