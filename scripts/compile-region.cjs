@@ -48,14 +48,24 @@ const REGION_DIR = path.join(REGIONS_DIR, target);
 const CORE_DIRS = ['assets', 'blocks', 'config', 'layout', 'locales', 'sections', 'snippets', 'templates'];
 
 // Region payload directories overlaid on top of the core, in this order.
-// All of these hold DATA: page content and section settings (templates),
-// translated strings (locales), and theme settings (config).
+// All of these hold DATA: translated strings (translations/ -> locales/) and
+// theme settings (config).
 //
 // snippets/ is deliberately absent. A snippet is code, and letting a region
 // drop one in would let it fork a component — the same hole that is closed for
 // sections below. Everything a region needs is in its region.json, resolved at
 // build time into snippets/region--active.liquid.
-const OVERLAY_DIRS = ['locales', 'config'];
+const OVERLAY_DIRS = ['translations', 'config'];
+
+// A region's translations hold only the keys it changes, so they must not sit in a
+// folder called locales/: Shopify's Liquid editor extension takes any open
+// locales/*.default.json as the theme's whole default locale, and with a one-key
+// file open it reported every other translation key in the theme as missing.
+if (fs.existsSync(path.join(REGION_DIR, 'locales'))) {
+  console.error(`\n❌ regions/${target}/locales/ — a region's translations go in regions/${target}/translations/`);
+  console.error(`   (same file names as the theme's locales/, holding only the keys that differ).\n`);
+  process.exit(1);
+}
 
 console.log('╔══════════════════════════════════════════════════════════════╗');
 console.log(`║   📦 COMPILING REGIONAL THEME: ${target.toUpperCase().padEnd(30)}║`);
@@ -193,8 +203,8 @@ console.log(`\n>>> [2/6] Overlaying ${target.toUpperCase()} data payload...`);
 const overlaid = {};
 for (const dir of OVERLAY_DIRS) {
   const n =
-    dir === 'locales'
-      ? mergeLocales(path.join(REGION_DIR, dir), path.join(DIST_DIR, dir))
+    dir === 'translations'
+      ? mergeLocales(path.join(REGION_DIR, dir), path.join(DIST_DIR, 'locales'))
       : copyTree(path.join(REGION_DIR, dir), path.join(DIST_DIR, dir));
   if (n > 0) {
     overlaid[dir] = n;

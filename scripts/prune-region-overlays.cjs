@@ -120,7 +120,7 @@ for (const rel of coreContent) {
 // ─── 2. LOCALES: regional translation files hold only the keys that differ ─
 for (const id of regions) {
   const dir = path.join(REGIONS_DIR, id);
-  for (const abs of walk(path.join(dir, 'locales'))) {
+  for (const abs of walk(path.join(dir, 'translations'))) {
     const name = path.basename(abs);
     if (!fs.existsSync(coreFile(`locales/${name}`))) continue;
     const core = parse(coreFile(`locales/${name}`));
@@ -133,11 +133,11 @@ for (const id of regions) {
     if (after === before) continue;
     tally.keys += before - after;
     if (delta === undefined) {
-      findings.push(`regions/${id}/locales/${name}  no key differs from core`);
+      findings.push(`regions/${id}/translations/${name}  no key differs from core`);
       if (!DRY) fs.unlinkSync(abs);
       tally.pruned++;
     } else {
-      findings.push(`regions/${id}/locales/${name}  ${before} keys -> ${after} that differ`);
+      findings.push(`regions/${id}/translations/${name}  ${before} keys -> ${after} that differ`);
       if (!DRY) fs.writeFileSync(abs, JSON.stringify(delta, null, 2) + '\n');
       tally.reduced++;
     }

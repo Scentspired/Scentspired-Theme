@@ -207,7 +207,7 @@ if (isPull) {
     }
 
     let pulledTemplates = syncDirectory(path.join(targetPath, 'templates'), path.join(localRegionDir, 'templates'), isDryRun);
-    let pulledLocales = syncDirectory(path.join(targetPath, 'locales'), path.join(localRegionDir, 'locales'), isDryRun);
+    let pulledLocales = syncDirectory(path.join(targetPath, 'locales'), path.join(localRegionDir, 'translations'), isDryRun);
 
     let pulledSettings = 0;
     for (const confFile of ['settings_data.json', 'markets.json']) {
@@ -382,10 +382,12 @@ for (const target of targets) {
   // B. Synchronize Regional Package from SSOT regions/<id>/
   const localRegionDir = path.join(THEME_ROOT, 'regions', target.id);
   if (fs.existsSync(localRegionDir)) {
-    const regionalDirs = ['templates', 'locales', 'snippets'];
-    for (const rDir of regionalDirs) {
+    // [region folder, target folder]: a region's translations live in translations/
+    // (see scripts/compile-region.cjs), a theme's in locales/.
+    const regionalDirs = [['templates', 'templates'], ['translations', 'locales'], ['snippets', 'snippets']];
+    for (const [rDir, tDir] of regionalDirs) {
       const srcDir = path.join(localRegionDir, rDir);
-      const destDir = path.join(targetPath, rDir);
+      const destDir = path.join(targetPath, tDir);
       const stats = syncDirectory(srcDir, destDir, isDryRun);
       addedCount += stats.added;
       updatedCount += stats.updated;

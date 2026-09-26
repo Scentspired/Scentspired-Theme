@@ -67,8 +67,8 @@ for (const [k, list] of Object.entries(kinds)) {
   const names = list.map((t) => t.replace(/\.(json|liquid)$/, '').replace(/^page\./, ''));
   L(`      ${(k + ':').padEnd(18)}${names.join(', ')}`);
 }
-const locales = fs.existsSync(path.join(REGIONS_DIR, id, 'locales')) ? fs.readdirSync(path.join(REGIONS_DIR, id, 'locales')) : [];
-L(`    translations    ${locales.length ? `${dir}/locales/ (${locales.join(', ')}) over the theme's` : "the theme's locales/"}`);
+const locales = fs.existsSync(path.join(REGIONS_DIR, id, 'translations')) ? fs.readdirSync(path.join(REGIONS_DIR, id, 'translations')) : [];
+L(`    translations    ${locales.length ? `${dir}/translations/ (${locales.join(', ')}) over the theme's` : "the theme's locales/"}`);
 
 L('\n  TO CHANGE SOMETHING');
 L(`    a setting or Trustpilot   ${dir}/region.json`);
