@@ -13,7 +13,16 @@
 {% endcomment %}
 
 {%- assign show_av = show_avatar | default: true -%}
-{%- assign author_name = article.author | default: "Scentspired Editorial" -%}
+{%- liquid
+  # An article always has an author in Shopify; the brand's editorial name stands in if not.
+  assign author_name = article.author
+  if author_name == blank
+    capture brand_name
+      render 'region--active', key: 'brand_name'
+    endcapture
+    assign author_name = 'blogs.article.editorial_author' | t: brand: brand_name
+  endif
+-%}
 
 <div class="page-width page-width--narrow blog-author-bio" itemscope itemtype="https://schema.org/Person">
   {%- if show_av and avatar != blank -%}

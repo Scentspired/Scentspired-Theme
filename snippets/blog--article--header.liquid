@@ -56,7 +56,7 @@
       {%- assign words = article.content | strip_html | split: ' ' | size -%}
       {%- assign reading_time = words | divided_by: 200 -%}
       {%- if reading_time < 1 -%}{%- assign reading_time = 1 -%}{%- endif -%}
-      <span class="blog-article-header__reading-time">{{ reading_time }} min read</span>
+      <span class="blog-article-header__reading-time">{{ 'blogs.article.reading_time' | t: minutes: reading_time }}</span>
     {%- endif -%}
   </div>
 </header>

@@ -200,7 +200,7 @@
     {% else %}
       <div class="ai-editorial-banner__image-placeholder-{{ ai_gen_id }} ai-editorial-banner__desktop-image-{{ ai_gen_id }}">
         {{ "hero-apparel-1" | placeholder_svg_tag }}
-        <div class="ai-editorial-banner__empty-state-{{ ai_gen_id }}">Next, add a desktop image</div>
+        <div class="ai-editorial-banner__empty-state-{{ ai_gen_id }}">{{ 'sections.article_parts.add_desktop_image' | t }}</div>
       </div>
     {% endif %}
 
@@ -215,7 +215,7 @@
     {% else %}
       <div class="ai-editorial-banner__image-placeholder-{{ ai_gen_id }} ai-editorial-banner__mobile-image-{{ ai_gen_id }}">
         {{ "hero-apparel-1" | placeholder_svg_tag }}
-        <div class="ai-editorial-banner__empty-state-{{ ai_gen_id }}">Next, add a mobile image</div>
+        <div class="ai-editorial-banner__empty-state-{{ ai_gen_id }}">{{ 'sections.article_parts.add_mobile_image' | t }}</div>
       </div>
     {% endif %}
 

@@ -6,7 +6,7 @@
   - article: {Object} Current article object (required)
   - collection: {Object} Optional curated collection to draw products from
   - auto_related: {Boolean} Automatically match products by tag if collection is blank (default: true)
-  - heading: {String} Section heading (default: "Shop the scents")
+  - heading: {String} Section heading (the region's: content/article.json, article.related_products)
   - products_to_show: {Number} Max products to display (default: 4)
 
   Usage:
@@ -14,7 +14,7 @@
 {% endcomment %}
 
 {%- assign max_products = products_to_show | default: 4 -%}
-{%- assign heading_text = heading | default: "Shop the scents" -%}
+{%- assign heading_text = heading -%}
 {%- assign auto_match = auto_related | default: true -%}
 
 {%- if collection != blank -%}

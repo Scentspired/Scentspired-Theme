@@ -6,7 +6,7 @@
   ],
   "article": {
     "tags": {
-      "label": null
+      "label": "Tags"
     },
     "share": {
       "share_label": "Share"
@@ -15,17 +15,17 @@
       "bio_text": null
     },
     "related_posts": {
-      "heading": null
+      "heading": "You might also enjoy"
     },
     "related_products": {
-      "heading": null
+      "heading": "Shop the scents"
     },
     "newsletter": {
-      "heading": null,
-      "subtext": null,
-      "placeholder": null,
-      "button_text": null,
-      "success_message": null
+      "heading": "Stay in the know",
+      "subtext": "Join the Scentspired community for fragrance insights, new arrivals, and exclusive offers.",
+      "placeholder": "Enter your email",
+      "button_text": "Subscribe",
+      "success_message": "Thanks for subscribing!"
     }
   }
 }

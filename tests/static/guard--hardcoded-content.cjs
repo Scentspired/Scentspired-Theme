@@ -86,7 +86,9 @@ function count(src, isJs, items) {
       .replace(/\{%-?\s*stylesheet\s*-?%\}[\s\S]*?\{%-?\s*endstylesheet\s*-?%\}/g, '')
       .replace(/<script[\s\S]*?<\/script>/g, '')
       .replace(/\{%-?\s*javascript\s*-?%\}[\s\S]*?\{%-?\s*endjavascript\s*-?%\}/g, '')
-      .replace(/<!--[\s\S]*?-->/g, '');
+      .replace(/<!--[\s\S]*?-->/g, '')
+      // an event handler attribute is script (its "=>" is not the end of a tag)
+      .replace(/\son[a-z]+="[^"]*"/g, '');
     c.text += note('text', markup
       // JSON keys ("name": …) in a snippet that emits data are structure, not
       // words a shopper reads — snippets/catalog--finder-products.liquid.
@@ -138,7 +140,10 @@ function count(src, isJs, items) {
     .replace(/<link[^>]*rel=["'](?:preconnect|dns-prefetch)["'][^>]*>/g, '')
     .matchAll(/href=["'](\/(?:pages|collections|products|blogs|policies)\/[^"'{]+|https?:\/\/[^"'{]+)["']/g)].map((m) => m[1]));
   c.links += note('link', [...noSchema.matchAll(/(?:location\.href|window\.location)\s*=\s*['"`](\/[a-z][^'"`]*)['"`]/g)].map((m) => m[1]));
-  c.fallback += note('fallback', [...noSchema.matchAll(/\|\s*default:\s*['"]([^'"]*[A-Za-z]{2,}[^'"]*)['"]/g)].map((m) => m[1]));
+  c.fallback += note('fallback', [...noSchema.matchAll(/\|\s*default:\s*['"]([^'"]*[A-Za-z]{2,}[^'"]*)['"]/g)]
+    .map((m) => m[1])
+    // a style's default ('light', 'left', '#ffffff') or an id's ('cta') is a design value, not words
+    .filter((v) => !/^[a-z0-9_-]+$|^#[0-9a-f]{3,8}$/i.test(v)));
   c.ids += note('id', [...noSchema.matchAll(/\b\d{13,14}\b/g)].map((m) => m[0]));
   return c;
 }

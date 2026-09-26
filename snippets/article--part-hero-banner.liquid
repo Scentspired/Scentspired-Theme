@@ -223,7 +223,7 @@
         <div class="ai-luxury-banner-image-placeholder-{{ ai_gen_id }}">
           {{ 'image' | placeholder_svg_tag }}
           <div class="ai-luxury-banner-empty-state-{{ ai_gen_id }}">
-            Next, add an image
+            {{ 'sections.article_parts.add_image_next' | t }}
           </div>
         </div>
       {% endif %}
@@ -265,7 +265,7 @@
         const scentspiredMatch = text.match(/Scentspired/i);
         
         if (scentspiredMatch) {
-          const newHTML = text.replace(/Scentspired/i, 'Scent<span class="italic-text">spired</span>');
+          const newHTML = text.replace(/(Scent)(spired)/i, '$1<span class="italic-text">$2</span>');
           heading.innerHTML = newHTML;
         }
       }

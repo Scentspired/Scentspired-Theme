@@ -423,7 +423,7 @@
         {% if part_body_illustration %}
           <img
             src="{{ part_body_illustration | image_url: width: 800 }}"
-            alt="Body illustration showing pulse points"
+            alt="{{ 'sections.article_parts.pulse_points_alt' | t }}"
             loading="lazy"
             width="{{ part_body_illustration.width }}"
             height="{{ part_body_illustration.height }}">
@@ -449,7 +449,7 @@
           {% if part_sketch_1 %}
             <img
               src="{{ part_sketch_1 | image_url: width: 160 }}"
-              alt="Neck detail"
+              alt="{{ 'sections.article_parts.neck_alt' | t }}"
               loading="lazy">
           {% else %}
             {{ "image" | placeholder_svg_tag }}
@@ -467,7 +467,7 @@
           {% if part_sketch_2 %}
             <img
               src="{{ part_sketch_2 | image_url: width: 160 }}"
-              alt="Inner elbow detail"
+              alt="{{ 'sections.article_parts.inner_elbow_alt' | t }}"
               loading="lazy">
           {% else %}
             {{ "image" | placeholder_svg_tag }}
@@ -485,7 +485,7 @@
           {% if part_sketch_3 %}
             <img
               src="{{ part_sketch_3 | image_url: width: 160 }}"
-              alt="Wrist detail"
+              alt="{{ 'sections.article_parts.wrist_alt' | t }}"
               loading="lazy">
           {% else %}
             {{ "image" | placeholder_svg_tag }}
@@ -503,7 +503,7 @@
           {% if part_sketch_4 %}
             <img
               src="{{ part_sketch_4 | image_url: width: 160 }}"
-              alt="Knee detail"
+              alt="{{ 'sections.article_parts.knee_alt' | t }}"
               loading="lazy">
           {% else %}
             {{ "image" | placeholder_svg_tag }}

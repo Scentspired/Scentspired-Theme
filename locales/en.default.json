@@ -78,7 +78,20 @@
     "collapsible_content_title": "Collapsible content"
   },
   "blogs": {
+    "listing": {
+      "categories": "Blog categories",
+      "all": "All",
+      "read_more": "Read more"
+    },
     "article": {
+      "share_x": "Share on X (Twitter)",
+      "share_facebook": "Share on Facebook",
+      "share_pinterest": "Share on Pinterest",
+      "copy_link": "Copy link to clipboard",
+      "editorial_author": "{{ brand }} Editorial",
+      "breadcrumb": "Breadcrumb",
+      "home": "Home",
+      "reading_time": "{{ minutes }} min read",
       "comments": {
         "one": "{{ count }} comment",
         "other": "{{ count }} comments"
@@ -248,6 +261,21 @@
       "add_unavailable": "Unable to add this product. Please try again.",
       "add_failed": "Failed to add product to cart. Please try again.",
       "error": "ERROR"
+    },
+    "article_parts": {
+      "add_image": "Add an editorial image",
+      "add_background_image": "Upload a background image in theme editor",
+      "add_image_next": "Next, add an image",
+      "add_desktop_image": "Next, add a desktop image",
+      "add_mobile_image": "Next, add a mobile image",
+      "inspired_by": "Inspired By",
+      "empty_collection": "This collection has no products yet. Add products to see them here.",
+      "choose_collection": "Select a collection to display products",
+      "pulse_points_alt": "Body illustration showing pulse points",
+      "neck_alt": "Neck detail",
+      "inner_elbow_alt": "Inner elbow detail",
+      "wrist_alt": "Wrist detail",
+      "knee_alt": "Knee detail"
     },
     "product_card": {
       "badge_men": "Men",

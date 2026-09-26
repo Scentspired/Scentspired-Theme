@@ -5,19 +5,19 @@
   Accepts:
   - article: {Object} Article object (required)
   - blog: {Object} Blog object (optional)
-  - label: {String} Label text (default: "Tags")
+  - label: {String} Label text (the region's: content/article.json, article.tags)
 
   Usage:
   {% render 'blog--article--tags', article: article, blog: blog, label: "Filed under" %}
 {% endcomment %}
 
 {%- if article.tags.size > 0 -%}
-  {%- assign tag_label = label | default: "Tags" -%}
+  {%- assign tag_label = label -%}
   <div class="page-width page-width--narrow blog-tags">
     <span class="blog-tags__label">{{ tag_label | escape }}:</span>
     <div class="blog-tags__list">
       {%- for tag in article.tags -%}
-        <a href="{{ blog.url | default: '/blogs/news' }}/tagged/{{ tag | handle }}" class="blog-tags__tag">
+        <a href="{{ blog.url }}/tagged/{{ tag | handle }}" class="blog-tags__tag">
           {{ tag | escape }}
         </a>
       {%- endfor -%}

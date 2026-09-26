@@ -11,13 +11,13 @@
 {% endcomment %}
 
 {%- if blog.all_tags.size > 0 -%}
-  <nav class="main-blog__categories" aria-label="Blog categories">
+  <nav class="main-blog__categories" aria-label="{{ 'blogs.listing.categories' | t }}">
     <!-- "All" Pill -->
     <a
       href="{{ blog.url }}"
       class="main-blog__category-pill{% if current_tags == blank %} main-blog__category-pill--active{% endif %}"
       aria-current="{% if current_tags == blank %}page{% endif %}">
-      All
+      {{ 'blogs.listing.all' | t }}
     </a>
 
     <!-- Category Tag Pills -->

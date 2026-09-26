@@ -209,7 +209,7 @@
                     {% endif %}
                     
                     {% if parts.size > 1 %}
-                      <span class="ai-vendor-inspired-{{ ai_gen_id }}">Inspired By<br></span>
+                      <span class="ai-vendor-inspired-{{ ai_gen_id }}">{{ 'sections.article_parts.inspired_by' | t }}<br></span>
                       <span class="ai-vendor-brand-{{ ai_gen_id }}">{{ parts[1] | strip }}</span>
                     {% else %}
                       <span class="ai-vendor-brand-{{ ai_gen_id }}">{{ product.vendor }}</span>
@@ -225,12 +225,12 @@
       </div>
     {% else %}
       <div class="ai-empty-state-{{ ai_gen_id }}">
-        This collection has no products yet. Add products to see them here.
+        {{ 'sections.article_parts.empty_collection' | t }}
       </div>
     {% endif %}
   {% else %}
     <div class="ai-empty-state-{{ ai_gen_id }}">
-      Select a collection to display products
+      {{ 'sections.article_parts.choose_collection' | t }}
     </div>
   {% endif %}
 </product-collection-grid-{{ ai_gen_id }}>

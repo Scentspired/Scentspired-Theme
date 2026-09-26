@@ -36,12 +36,12 @@
     "ids": 0
   },
   "sections/content--contact.liquid": {
-    "total": 10,
+    "total": 9,
     "text": 9,
     "js-text": 0,
     "media": 0,
     "links": 0,
-    "fallback": 1,
+    "fallback": 0,
     "ids": 0
   },
   "sections/content--faq.liquid": {
@@ -89,15 +89,6 @@
     "fallback": 6,
     "ids": 0
   },
-  "sections/editorial--section-heading.liquid": {
-    "total": 1,
-    "text": 0,
-    "js-text": 0,
-    "media": 0,
-    "links": 0,
-    "fallback": 1,
-    "ids": 0
-  },
   "sections/editorial--text-section.liquid": {
     "total": 3,
     "text": 3,
@@ -117,12 +108,12 @@
     "ids": 0
   },
   "sections/footer--main.liquid": {
-    "total": 8,
+    "total": 7,
     "text": 7,
     "js-text": 0,
     "media": 0,
     "links": 0,
-    "fallback": 1,
+    "fallback": 0,
     "ids": 0
   },
   "sections/header--main.liquid": {
@@ -153,12 +144,12 @@
     "ids": 0
   },
   "sections/media--image-split.liquid": {
-    "total": 3,
+    "total": 1,
     "text": 1,
     "js-text": 0,
     "media": 0,
     "links": 0,
-    "fallback": 2,
+    "fallback": 0,
     "ids": 0
   },
   "sections/media--running-text.liquid": {
@@ -197,159 +188,6 @@
     "fallback": 0,
     "ids": 0
   },
-  "snippets/article--part-callout.liquid": {
-    "total": 1,
-    "text": 1,
-    "js-text": 0,
-    "media": 0,
-    "links": 0,
-    "fallback": 0,
-    "ids": 0
-  },
-  "snippets/article--part-feature-banner.liquid": {
-    "total": 2,
-    "text": 1,
-    "js-text": 0,
-    "media": 0,
-    "links": 0,
-    "fallback": 1,
-    "ids": 0
-  },
-  "snippets/article--part-fragrance-guide.liquid": {
-    "total": 5,
-    "text": 5,
-    "js-text": 0,
-    "media": 0,
-    "links": 0,
-    "fallback": 0,
-    "ids": 0
-  },
-  "snippets/article--part-hero-banner.liquid": {
-    "total": 3,
-    "text": 1,
-    "js-text": 1,
-    "media": 0,
-    "links": 0,
-    "fallback": 1,
-    "ids": 0
-  },
-  "snippets/article--part-image-banner.liquid": {
-    "total": 2,
-    "text": 2,
-    "js-text": 0,
-    "media": 0,
-    "links": 0,
-    "fallback": 0,
-    "ids": 0
-  },
-  "snippets/article--part-products.liquid": {
-    "total": 3,
-    "text": 3,
-    "js-text": 0,
-    "media": 0,
-    "links": 0,
-    "fallback": 0,
-    "ids": 0
-  },
-  "snippets/article--part-text.liquid": {
-    "total": 3,
-    "text": 0,
-    "js-text": 0,
-    "media": 0,
-    "links": 0,
-    "fallback": 3,
-    "ids": 0
-  },
-  "snippets/blog--article--author-bio.liquid": {
-    "total": 1,
-    "text": 0,
-    "js-text": 0,
-    "media": 0,
-    "links": 0,
-    "fallback": 1,
-    "ids": 0
-  },
-  "snippets/blog--article--breadcrumb.liquid": {
-    "total": 2,
-    "text": 2,
-    "js-text": 0,
-    "media": 0,
-    "links": 0,
-    "fallback": 0,
-    "ids": 0
-  },
-  "snippets/blog--article--header.liquid": {
-    "total": 1,
-    "text": 1,
-    "js-text": 0,
-    "media": 0,
-    "links": 0,
-    "fallback": 0,
-    "ids": 0
-  },
-  "snippets/blog--article--newsletter-cta.liquid": {
-    "total": 11,
-    "text": 0,
-    "js-text": 0,
-    "media": 0,
-    "links": 0,
-    "fallback": 11,
-    "ids": 0
-  },
-  "snippets/blog--article--related-posts.liquid": {
-    "total": 1,
-    "text": 0,
-    "js-text": 0,
-    "media": 0,
-    "links": 0,
-    "fallback": 1,
-    "ids": 0
-  },
-  "snippets/blog--article--related-products.liquid": {
-    "total": 1,
-    "text": 0,
-    "js-text": 0,
-    "media": 0,
-    "links": 0,
-    "fallback": 1,
-    "ids": 0
-  },
-  "snippets/blog--article--share.liquid": {
-    "total": 6,
-    "text": 5,
-    "js-text": 0,
-    "media": 0,
-    "links": 0,
-    "fallback": 1,
-    "ids": 0
-  },
-  "snippets/blog--article--tags.liquid": {
-    "total": 2,
-    "text": 0,
-    "js-text": 0,
-    "media": 0,
-    "links": 0,
-    "fallback": 2,
-    "ids": 0
-  },
-  "snippets/blog--listing--card.liquid": {
-    "total": 1,
-    "text": 1,
-    "js-text": 0,
-    "media": 0,
-    "links": 0,
-    "fallback": 0,
-    "ids": 0
-  },
-  "snippets/blog--listing--category-filter.liquid": {
-    "total": 2,
-    "text": 2,
-    "js-text": 0,
-    "media": 0,
-    "links": 0,
-    "fallback": 0,
-    "ids": 0
-  },
   "snippets/catalog--facets.liquid": {
     "total": 6,
     "text": 6,
@@ -359,22 +197,13 @@
     "fallback": 0,
     "ids": 0
   },
-  "snippets/catalog--swatch-input.liquid": {
-    "total": 1,
-    "text": 0,
-    "js-text": 0,
-    "media": 0,
-    "links": 0,
-    "fallback": 1,
-    "ids": 0
-  },
   "snippets/core--telemetry.liquid": {
-    "total": 7,
+    "total": 5,
     "text": 0,
     "js-text": 5,
     "media": 0,
     "links": 0,
-    "fallback": 2,
+    "fallback": 0,
     "ids": 0
   },
   "snippets/header--box-menu-items.liquid": {
@@ -396,30 +225,21 @@
     "ids": 0
   },
   "snippets/widget--trustpilot-embed.liquid": {
-    "total": 2,
+    "total": 1,
     "text": 1,
     "js-text": 0,
     "media": 0,
     "links": 0,
-    "fallback": 1,
-    "ids": 0
-  },
-  "snippets/widget--trustpilot.liquid": {
-    "total": 1,
-    "text": 0,
-    "js-text": 0,
-    "media": 0,
-    "links": 0,
-    "fallback": 1,
+    "fallback": 0,
     "ids": 0
   },
   "blocks/footer--copyright.liquid": {
-    "total": 6,
+    "total": 5,
     "text": 3,
     "js-text": 0,
     "media": 0,
     "links": 1,
-    "fallback": 2,
+    "fallback": 1,
     "ids": 0
   },
   "assets/core--telemetry.js": {

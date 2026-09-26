@@ -17,13 +17,13 @@
 {%- assign show_blog_link = show_blog | default: true -%}
 {%- assign show_cat_link = show_category | default: true -%}
 
-<nav class="page-width page-width--narrow blog-breadcrumb" aria-label="Breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<nav class="page-width page-width--narrow blog-breadcrumb" aria-label="{{ 'blogs.article.breadcrumb' | t }}" itemscope itemtype="https://schema.org/BreadcrumbList">
   {%- assign position = 1 -%}
 
   {%- if show_home_link -%}
     <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-      <a href="{{ routes.root_url | default: '/' }}" itemprop="item">
-        <span itemprop="name">Home</span>
+      <a href="{{ routes.root_url }}" itemprop="item">
+        <span itemprop="name">{{ 'blogs.article.home' | t }}</span>
       </a>
       <meta itemprop="position" content="{{ position }}">
     </span>

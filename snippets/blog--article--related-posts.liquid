@@ -5,7 +5,7 @@
   Accepts:
   - article: {Object} Current article object to exclude (required)
   - blog: {Object} Blog object containing articles (required)
-  - heading: {String} Section heading (default: "You might also enjoy")
+  - heading: {String} Section heading (the region's: content/article.json, article.related_posts)
   - posts_to_show: {Number} Max posts to show (default: 3)
 
   Usage:
@@ -14,7 +14,7 @@
 
 {%- if blog.articles_count > 1 -%}
   {%- assign max_posts = posts_to_show | default: 3 -%}
-  {%- assign heading_text = heading | default: "You might also enjoy" -%}
+  {%- assign heading_text = heading -%}
   {%- assign posts_shown = 0 -%}
 
   <div class="blog-related">

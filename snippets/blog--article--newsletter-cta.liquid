@@ -2,22 +2,23 @@
   Renders isolated newsletter subscription call-to-action for blog articles.
   Blast Radius: Strictly this file for blog email capture markup, inputs, and feedback messages.
 
-  Accepts:
-  - heading: {String} Call to action headline (default: "Stay in the know")
-  - subtext: {String} Supporting descriptive copy (optional)
-  - placeholder: {String} Input field placeholder (default: "Enter your email")
-  - button_text: {String} Submit button text (default: "Subscribe")
-  - success_message: {String} Post-submission feedback (default: "Thanks for subscribing!")
+  Accepts (the words are the region's: templates/article.json fills them from
+  content/article.json, article.newsletter; one left blank is not shown):
+  - heading: {String} Call to action headline
+  - subtext: {String} Supporting descriptive copy
+  - placeholder: {String} Input field placeholder
+  - button_text: {String} Submit button text
+  - success_message: {String} Post-submission feedback
 
   Usage:
   {% render 'blog--article--newsletter-cta', heading: "Join Scentspired", subtext: "Exclusive offers & insights" %}
 {% endcomment %}
 
-{%- assign cta_heading = heading | default: "Stay in the know" -%}
-{%- assign cta_subtext = subtext | default: "Join the Scentspired community for fragrance insights, new arrivals, and exclusive offers." -%}
-{%- assign cta_placeholder = placeholder | default: "Enter your email" -%}
-{%- assign cta_button = button_text | default: "Subscribe" -%}
-{%- assign cta_success = success_message | default: "Thanks for subscribing!" -%}
+{%- assign cta_heading = heading -%}
+{%- assign cta_subtext = subtext -%}
+{%- assign cta_placeholder = placeholder -%}
+{%- assign cta_button = button_text -%}
+{%- assign cta_success = success_message -%}
 
 <div class="blog-newsletter page-width page-width--narrow">
   <div class="blog-newsletter__inner">
