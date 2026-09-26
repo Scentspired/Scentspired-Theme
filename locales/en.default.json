@@ -245,6 +245,21 @@
       "add_failed": "Failed to add product to cart. Please try again.",
       "error": "ERROR"
     },
+    "product_info_tab": {
+      "about": "About",
+      "ingredients": "Ingredients",
+      "notes": "Notes",
+      "faqs": "FAQ's",
+      "faqs_mobile": "FAQs",
+      "about_heading": "About the product",
+      "highlight_notes": "Highlight Notes",
+      "faq_heading": "Frequently Asked Questions",
+      "about_image_alt": "About Image",
+      "ingredients_image_alt": "Ingredients Image",
+      "usage_image_alt": "Usage Image",
+      "faq_image_alt": "FAQ Image",
+      "icon_alt": "Icon {{ number }}"
+    },
     "aroma_selector": {
       "top": "TOP",
       "heart": "HEART",

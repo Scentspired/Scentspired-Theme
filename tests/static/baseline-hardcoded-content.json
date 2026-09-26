@@ -80,15 +80,6 @@
     "fallback": 0,
     "ids": 0
   },
-  "sections/catalog--product-info-tab.liquid": {
-    "total": 76,
-    "text": 71,
-    "js-text": 1,
-    "media": 4,
-    "links": 0,
-    "fallback": 0,
-    "ids": 0
-  },
   "sections/content--collapsible.liquid": {
     "total": 4,
     "text": 4,

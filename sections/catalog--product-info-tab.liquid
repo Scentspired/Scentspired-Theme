@@ -66,16 +66,25 @@
   ]
 }
 {% endschema %}
+{%- comment -%}
+  The product's About, Ingredients, Notes and FAQ tabs. Each tab's copy and
+  image is the product's (custom.* metafields), else the section's setting;
+  a product with neither shows none. The demo copy that stood in (skin-care
+  text, a sample FAQ, images from another store) showed only on the size
+  products (-5ml, -50ml, -100ml) that layout/theme.liquid redirects to their
+  main product, and to search engines reading those pages.
+  Interface wording is the locale's, sections.product_info_tab.
+{%- endcomment -%}
 {%- assign icon_blocks = section.blocks | where: 'type', 'icon' -%}
 
 {{ 'catalog--product-info-tab.css' | asset_url | stylesheet_tag }}
 
 <div class="product-tabs-wrapper">
   <div class="tab-nav">
-    <button class="active" data-tab="about">About</button>
-    <button data-tab="ingredients">Ingredients</button>
-    <button data-tab="usage">Notes</button>
-    <button data-tab="faq">FAQ's</button>
+    <button class="active" data-tab="about">{{ 'sections.product_info_tab.about' | t }}</button>
+    <button data-tab="ingredients">{{ 'sections.product_info_tab.ingredients' | t }}</button>
+    <button data-tab="usage">{{ 'sections.product_info_tab.notes' | t }}</button>
+    <button data-tab="faq">{{ 'sections.product_info_tab.faqs' | t }}</button>
   </div>
 
   <div class="tab-panel active" id="about">
@@ -84,20 +93,13 @@
         Use metafield for about image with fallback to section settings
       {%- endcomment -%}
       {% if product.metafields.custom.about_image %}
-        <img src="{{ product.metafields.custom.about_image | image_url }}" alt="About Image" width="600" height="600" loading="lazy">
+        <img src="{{ product.metafields.custom.about_image | image_url }}" alt="{{ 'sections.product_info_tab.about_image_alt' | t }}" width="600" height="600" loading="lazy">
       {% elsif section.settings.about_image %}
-        <img src="{{ section.settings.about_image | image_url }}" alt="About Image" width="600" height="600" loading="lazy">
-      {% else %}
-        <img
-          src="https://cdn.shopify.com/s/files/1/0680/4150/7113/files/perfume.jpg?v=1666767765"
-          alt="Default About Image"
-          width="600"
-          height="600"
-          loading="lazy">
+        <img src="{{ section.settings.about_image | image_url }}" alt="{{ 'sections.product_info_tab.about_image_alt' | t }}" width="600" height="600" loading="lazy">
       {% endif %}
     </div>
     <div class="content-side">
-      <h4>About the product</h4>
+      <h4>{{ 'sections.product_info_tab.about_heading' | t }}</h4>
 
       {% assign about_mf = product.metafields.custom.about %}
       {% if about_mf != blank %}
@@ -136,31 +138,6 @@
             {% endif %}
           </div>
         {% endif %}
-      {% else %}
-        <p>
-          A boost of antioxidant-rich nourishing renewal for dull, dry and tired skin. This super-absorbable oil helps
-          clear dark spots & blemishes and creates a brighter complexion.
-        </p>
-
-        <div class="two-column-section">
-          <div class="column">
-            <h4>Recommended for</h4>
-            <ul>
-              <li>Dull Skin</li>
-              <li>Hyper Pigmentation</li>
-              <li>Uneven Skin Tone</li>
-              <li>Excess Oil</li>
-              <li>Enlarged Pores</li>
-            </ul>
-          </div>
-          <div class="column">
-            <h4>Suitable for</h4>
-            <ul>
-              <li>Unisex skin care for all Skin Types</li>
-              <li>Pregnancy Safe</li>
-            </ul>
-          </div>
-        </div>
       {% endif %}
 
       {%- comment -%}
@@ -175,9 +152,9 @@
           -%}
           <div class="icon-item" {{ block.shopify_attributes }}>
             {% if product.metafields.custom[icon_image_field] %}
-              <img src="{{ product.metafields.custom[icon_image_field] | image_url }}" alt="Icon {{ position }}" width="48" height="48" loading="lazy">
+              <img src="{{ product.metafields.custom[icon_image_field] | image_url }}" alt="{{ 'sections.product_info_tab.icon_alt' | t: number: position }}" width="48" height="48" loading="lazy">
             {% elsif block.settings.image %}
-              <img src="{{ block.settings.image | image_url }}" alt="Icon {{ position }}" width="48" height="48" loading="lazy">
+              <img src="{{ block.settings.image | image_url }}" alt="{{ 'sections.product_info_tab.icon_alt' | t: number: position }}" width="48" height="48" loading="lazy">
             {% endif %}
             <span>
               {% if product.metafields.custom[icon_text_field] %}
@@ -198,16 +175,9 @@
         Use metafield for ingredients image with fallback to section settings
       {%- endcomment -%}
       {% if product.metafields.custom.ingredients_image %}
-        <img src="{{ product.metafields.custom.ingredients_image | image_url }}" alt="Ingredients Image" width="600" height="600" loading="lazy">
+        <img src="{{ product.metafields.custom.ingredients_image | image_url }}" alt="{{ 'sections.product_info_tab.ingredients_image_alt' | t }}" width="600" height="600" loading="lazy">
       {% elsif section.settings.ingredients_image %}
-        <img src="{{ section.settings.ingredients_image | image_url }}" alt="Ingredients Image" width="600" height="600" loading="lazy">
-      {% else %}
-        <img
-          src="https://cdn.shopify.com/s/files/1/0680/4150/7113/files/oil.jpg?v=1666767775"
-          alt="Default Ingredients Image"
-          width="600"
-          height="600"
-          loading="lazy">
+        <img src="{{ section.settings.ingredients_image | image_url }}" alt="{{ 'sections.product_info_tab.ingredients_image_alt' | t }}" width="600" height="600" loading="lazy">
       {% endif %}
     </div>
     <div class="content-side">
@@ -217,32 +187,6 @@
         {%- endcomment -%}
         {% if product.metafields.custom.ingriedient_content %}
           {{ product.metafields.custom.ingriedient_content | metafield_tag }}
-        {% else %}
-          <div class="usage-section">
-            <h4>When to Apply</h4>
-            <p>Night Wear</p>
-          </div>
-
-          <div class="usage-section">
-            <h4>How to Use</h4>
-            <p>
-              Apply a small amount to wet skin. Work into a lather & massage into skin for 60 Seconds. Rinse thoroughly
-              & pat dry.
-            </p>
-          </div>
-
-          <div class="usage-section">
-            <h4>Good to Know</h4>
-            <p>
-              Increases your skin's sensitivity to the sun. Follow up with SPF. Not recommended for sensitive skin.
-              Patch test advised
-            </p>
-          </div>
-
-          <div class="usage-section">
-            <h4>Precautions</h4>
-            <p>External use only.</p>
-          </div>
         {% endif %}
       </div>
     </div>
@@ -254,16 +198,9 @@
       Use metafield for usage image with fallback to section settings
     {%- endcomment -%}
     {% if product.metafields.custom.usage_image %}
-      <img src="{{ product.metafields.custom.usage_image | image_url }}" alt="Usage Image" width="600" height="600" loading="lazy">
+      <img src="{{ product.metafields.custom.usage_image | image_url }}" alt="{{ 'sections.product_info_tab.usage_image_alt' | t }}" width="600" height="600" loading="lazy">
     {% elsif section.settings.usage_image %}
-      <img src="{{ section.settings.usage_image | image_url }}" alt="Usage Image" width="600" height="600" loading="lazy">
-    {% else %}
-      <img
-        src="https://cdn.shopify.com/s/files/1/0680/4150/7113/files/serum.jpg?v=1666767779"
-        alt="Default Usage Image"
-        width="600"
-        height="600"
-        loading="lazy">
+      <img src="{{ section.settings.usage_image | image_url }}" alt="{{ 'sections.product_info_tab.usage_image_alt' | t }}" width="600" height="600" loading="lazy">
     {% endif %}
   </div>
 
@@ -274,109 +211,44 @@
       {%- endcomment -%}
       {% if product.metafields.custom.usage_content %}
         {{ product.metafields.custom.usage_content | metafield_tag }}
-      {% else %}
-        <div class="usage-section">
-          <h4>When to Apply</h4>
-          <p>Night Wear</p>
-        </div>
-
-        <div class="usage-section">
-          <h4>How to Use</h4>
-          <p>
-            Apply a small amount to wet skin. Work into a lather & massage into skin for 60 Seconds. Rinse thoroughly &
-            pat dry.
-          </p>
-        </div>
-
-        <div class="usage-section">
-          <h4>Good to Know</h4>
-          <p>
-            Increases your skin's sensitivity to the sun. Follow up with SPF. Not recommended for sensitive skin. Patch
-            test advised.
-          </p>
-        </div>
-
-        <div class="usage-section">
-          <h4>Precautions</h4>
-          <p>External use only.</p>
-        </div>
       {% endif %}
 
-      <h4>Highlight Notes</h4>
+      <h4>{{ 'sections.product_info_tab.highlight_notes' | t }}</h4>
 
       {%- comment -%}
         Determine if there are any metafield icons
       {%- endcomment -%}
-      {%- assign has_meta_icons = false -%}
-      {% if product.metafields.custom.nicon_1_image
-        or product.metafields.custom.nicon_2_image
-        or product.metafields.custom.nicon_3_image
-        or product.metafields.custom.nicon_4_image
-      %}
-        {%- assign has_meta_icons = true -%}
-      {% endif %}
+      {%- liquid
+        assign has_meta_icons = false
+        if product.metafields.custom.nicon_1_image or product.metafields.custom.nicon_2_image or product.metafields.custom.nicon_3_image or product.metafields.custom.nicon_4_image
+          assign has_meta_icons = true
+        endif
+      -%}
 
       <div class="icon-row">
         {% if has_meta_icons %}
           {%- comment -%} Show only metafield icons {%- endcomment -%}
-          {% if product.metafields.custom.nicon_1_image %}
+          {%- for n in (1..6) -%}
+            {%- liquid
+              assign icon_image_field = 'nicon_' | append: n | append: '_image'
+              assign icon_text_field = 'nicon_' | append: n | append: '_text'
+            -%}
+            {% if product.metafields.custom[icon_image_field] %}
             <div class="icon-item">
-              <img src="{{ product.metafields.custom.nicon_1_image | image_url }}" alt="Icon 1" width="48" height="48" loading="lazy">
-              {% if product.metafields.custom.nicon_1_text %}
-                <span>{{ product.metafields.custom.nicon_1_text }}</span>
+              <img src="{{ product.metafields.custom[icon_image_field] | image_url }}" alt="{{ 'sections.product_info_tab.icon_alt' | t: number: n }}" width="48" height="48" loading="lazy">
+              {% if product.metafields.custom[icon_text_field] %}
+                <span>{{ product.metafields.custom[icon_text_field] }}</span>
               {% endif %}
             </div>
-          {% endif %}
-
-          {% if product.metafields.custom.nicon_2_image %}
-            <div class="icon-item">
-              <img src="{{ product.metafields.custom.nicon_2_image | image_url }}" alt="Icon 2" width="48" height="48" loading="lazy">
-              {% if product.metafields.custom.nicon_2_text %}
-                <span>{{ product.metafields.custom.nicon_2_text }}</span>
-              {% endif %}
-            </div>
-          {% endif %}
-
-          {% if product.metafields.custom.nicon_3_image %}
-            <div class="icon-item">
-              <img src="{{ product.metafields.custom.nicon_3_image | image_url }}" alt="Icon 3" width="48" height="48" loading="lazy">
-              {% if product.metafields.custom.nicon_3_text %}
-                <span>{{ product.metafields.custom.nicon_3_text }}</span>
-              {% endif %}
-            </div>
-          {% endif %}
-
-          {% if product.metafields.custom.nicon_4_image %}
-            <div class="icon-item">
-              <img src="{{ product.metafields.custom.nicon_4_image | image_url }}" alt="Icon 4" width="48" height="48" loading="lazy">
-              {% if product.metafields.custom.nicon_4_text %}
-                <span>{{ product.metafields.custom.nicon_4_text }}</span>
-              {% endif %}
-            </div>
-          {% endif %}
-          {% if product.metafields.custom.nicon_5_image %}
-            <div class="icon-item">
-              <img src="{{ product.metafields.custom.nicon_5_image | image_url }}" alt="Icon 5" width="48" height="48" loading="lazy">
-              {% if product.metafields.custom.nicon_5_text %}
-                <span>{{ product.metafields.custom.nicon_5_text }}</span>
-              {% endif %}
-            </div>
-          {% endif %}
-          {% if product.metafields.custom.nicon_6_image %}
-            <div class="icon-item">
-              <img src="{{ product.metafields.custom.nicon_6_image | image_url }}" alt="Icon 6" width="48" height="48" loading="lazy">
-              {% if product.metafields.custom.nicon_6_text %}
-                <span>{{ product.metafields.custom.nicon_6_text }}</span>
-              {% endif %}
-            </div>
-          {% endif %}
+            {% endif %}
+          {%- endfor %}
 
         {% else %}
           {%- comment -%} Fallback: the first four of the section's icons {%- endcomment -%}
           {% for block in icon_blocks limit: 4 %}
             {% if block.settings.image %}
               <div class="icon-item">
-                <img src="{{ block.settings.image | image_url }}" alt="Icon {{ forloop.index }}" width="48" height="48" loading="lazy">
+                <img src="{{ block.settings.image | image_url }}" alt="{{ 'sections.product_info_tab.icon_alt' | t: number: forloop.index }}" width="48" height="48" loading="lazy">
                 {% if block.settings.text %}
                   <span>{{ block.settings.text }}</span>
                 {% endif %}
@@ -395,21 +267,14 @@
       Use product metafield for FAQ image with fallback to section setting or default
     {% endcomment %}
     {% if product.metafields.custom.faq_image %}
-      <img src="{{ product.metafields.custom.faq_image | image_url }}" alt="FAQ Image" width="600" height="600" loading="lazy">
+      <img src="{{ product.metafields.custom.faq_image | image_url }}" alt="{{ 'sections.product_info_tab.faq_image_alt' | t }}" width="600" height="600" loading="lazy">
     {% elsif section.settings.faq_image %}
-      <img src="{{ section.settings.faq_image | image_url }}" alt="FAQ Image" width="600" height="600" loading="lazy">
-    {% else %}
-      <img
-        src="https://cdn.shopify.com/s/files/1/0680/4150/7113/files/perfume.jpg?v=1666767765"
-        alt="Default FAQ Image"
-        width="600"
-        height="600"
-        loading="lazy">
+      <img src="{{ section.settings.faq_image | image_url }}" alt="{{ 'sections.product_info_tab.faq_image_alt' | t }}" width="600" height="600" loading="lazy">
     {% endif %}
   </div>
   <div class="content-side">
     <div class="faq-content">
-      <h4 class="faq-header">Frequently Asked Questions</h4>
+      <h4 class="faq-header">{{ 'sections.product_info_tab.faq_heading' | t }}</h4>
       <div class="faq-list">
         {% for block in section.blocks %}
           {% if block.type == "faq" %}
@@ -419,51 +284,6 @@
             </div>
           {% endif %}
         {% endfor %}
-        {%- assign faq_blocks = section.blocks | where: 'type', 'faq' -%}
-        {% if faq_blocks.size == 0 %}
-          <div class="faq-item">
-            <div class="faq-question">How many times should I use this?</div>
-            <div class="faq-answer">
-              Use this product 2-3 times per week for best results. Start with once a week and gradually increase
-              frequency as your skin adjusts.
-            </div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-question">How many times should I use this?</div>
-            <div class="faq-answer">
-              Use this product 2-3 times per week for best results. Start with once a week and gradually increase
-              frequency as your skin adjusts.
-            </div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-question">How many times should I use this?</div>
-            <div class="faq-answer">
-              Use this product 2-3 times per week for best results. Start with once a week and gradually increase
-              frequency as your skin adjusts.
-            </div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-question">How many times should I use this?</div>
-            <div class="faq-answer">
-              Use this product 2-3 times per week for best results. Start with once a week and gradually increase
-              frequency as your skin adjusts.
-            </div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-question">How many times should I use this?</div>
-            <div class="faq-answer">
-              Use this product 2-3 times per week for best results. Start with once a week and gradually increase
-              frequency as your skin adjusts.
-            </div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-question">How many times should I use this?</div>
-            <div class="faq-answer">
-              Use this product 2-3 times per week for best results. Start with once a week and gradually increase
-              frequency as your skin adjusts.
-            </div>
-          </div>
-        {% endif %}
       </div>
     </div>
   </div>
@@ -471,23 +291,23 @@
 
 <div class="mobile-accordion">
   <div class="mobile-accordion-item">
-    <button class="mobile-accordion-header" data-mobile-tab="about">About</button>
-    <div class="mobile-accordion-content" id="mobile-about">Content will be populated by JavaScript</div>
+    <button class="mobile-accordion-header" data-mobile-tab="about">{{ 'sections.product_info_tab.about' | t }}</button>
+    <div class="mobile-accordion-content" id="mobile-about"></div>
   </div>
 
   <div class="mobile-accordion-item">
-    <button class="mobile-accordion-header" data-mobile-tab="ingredients">Ingredients</button>
-    <div class="mobile-accordion-content" id="mobile-ingredients">Content will be populated by JavaScript</div>
+    <button class="mobile-accordion-header" data-mobile-tab="ingredients">{{ 'sections.product_info_tab.ingredients' | t }}</button>
+    <div class="mobile-accordion-content" id="mobile-ingredients"></div>
   </div>
 
   <div class="mobile-accordion-item">
-    <button class="mobile-accordion-header" data-mobile-tab="usage">Notes</button>
-    <div class="mobile-accordion-content" id="mobile-usage">Content will be populated by JavaScript</div>
+    <button class="mobile-accordion-header" data-mobile-tab="usage">{{ 'sections.product_info_tab.notes' | t }}</button>
+    <div class="mobile-accordion-content" id="mobile-usage"></div>
   </div>
 
   <div class="mobile-accordion-item">
-    <button class="mobile-accordion-header" data-mobile-tab="faq">FAQs</button>
-    <div class="mobile-accordion-content" id="mobile-faq">Content will be populated by JavaScript</div>
+    <button class="mobile-accordion-header" data-mobile-tab="faq">{{ 'sections.product_info_tab.faqs_mobile' | t }}</button>
+    <div class="mobile-accordion-content" id="mobile-faq"></div>
   </div>
 </div>
 </div>

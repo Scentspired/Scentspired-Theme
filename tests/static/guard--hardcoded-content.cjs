@@ -116,8 +116,9 @@ function count(src, isJs, items) {
       if (/^[A-Z][a-z]+( [A-Za-z']+)+[.!?]?$|^[A-Z ]{3,}$|^[A-Z][a-z']+[.!?]?$/.test(v)) c['js-text'] += note('js-text', [v]);
     }
     c['js-text'] += note('js-html', [...body.matchAll(/>([^<>${}\n]*[A-Za-z]{2,}[^<>${}\n]*)</g)]
-      // "> 0 && index <" is two comparisons, not markup around words
-      .filter((m) => m[1].trim() && !/&&|\|\||[=;()]/.test(m[1]))
+      // "> 0 && index <" is two comparisons, and "' + el.innerHTML + '" joins
+      // strings: neither is markup around words
+      .filter((m) => m[1].trim() && !/&&|\|\||[=;()]|['"`]\s*\+|\+\s*['"`]/.test(m[1]))
       .map((m) => m[1]));
   }
 
