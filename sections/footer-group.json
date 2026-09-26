@@ -133,7 +133,6 @@
     "17677801892897efa9": {
       "type": "_blocks",
       "custom_css": [
-        ".ai-footer-copyright__container-aetrncunrtktlukljaaigenblockefb927cwgwqka {max-width: 100%; margin: 0 auto; padding: 0px 35px;}",
         ".footer-credit-link {color: inherit; /* no color change */ text-decoration: underline;}",
         ".footer-credit-link:hover,.footer-credit-link:visited,.footer-credit-link:active {color: inherit; /* prevent default link colors */}"
       ],

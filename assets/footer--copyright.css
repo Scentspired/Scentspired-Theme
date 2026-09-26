@@ -1,0 +1,52 @@
+/* The footer copyright block (blocks/footer--copyright.liquid). Its settings arrive as --copyright-* custom properties on the block's element. Moved from the block. */
+.ai-footer-copyright {
+  display: block;
+  width: 100%;
+  padding: var(--copyright-padding-top) 0 var(--copyright-padding-bottom);
+  background-color: var(--copyright-background-color);
+}
+
+.ai-footer-copyright__container {
+  max-width: var(--copyright-container-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.ai-footer-copyright__content {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.ai-footer-copyright__text {
+  color: var(--copyright-text-color);
+  font-size: var(--copyright-font-size);
+  margin: 0;
+}
+
+.ai-footer-copyright__link {
+  color: var(--copyright-link-color);
+  text-decoration: none;
+}
+
+.ai-footer-copyright__link:hover {
+  color: var(--copyright-link-hover-color);
+  text-decoration: underline;
+}
+
+@media screen and (min-width: 1024px) {
+  .ai-footer-copyright__text {
+    color: #fff;
+    font-size: var(--copyright-font-size);
+    margin: 0;
+    margin-top: -26px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .ai-footer-copyright__content {
+    padding-bottom: 60px;
+  }
+}
