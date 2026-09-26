@@ -40,15 +40,7 @@
 
 {%- if tp_businessunit != blank and tp_template != blank -%}
   <div id="trustpilot-widget-trustbox-0-wrapper">
-    <script>
-      if (!window.Trustpilot && !document.querySelector('script[src*="tp.widget.bootstrap"]')) {
-        var tp = document.createElement('script');
-        tp.type = 'text/javascript';
-        tp.src = '//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js';
-        tp.async = true;
-        document.head.appendChild(tp);
-      }
-    </script>
+    <script src="{{ 'widget--trustpilot-loader.js' | asset_url }}"></script>
     <div
       class="trustpilot-widget"
       data-locale="{{ tp_locale | escape }}"

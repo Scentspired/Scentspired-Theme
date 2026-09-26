@@ -1,8 +1,8 @@
 {%- comment -%}
   The sidebar of the info pages (content--faq, content--privacy-policy,
   content--contact): one link per entry of sidebar_links in the region's
-  content/info-pages.json, in the file's order. Which link is the current page
-  is marked by each section's own script.
+  content/info-pages.json, in the file's order. The link to the current page is
+  marked active here (it was marked by a script in each section, three copies).
 
   Usage: {% render 'content--info-sidebar' %}
 {%- endcomment -%}
@@ -11,6 +11,14 @@
     render 'region--content', key: 'info-pages.sidebar_links.__keys'
   endcapture
   assign positions = positions | strip | split: ','
+
+  # the current page's path, without a trailing slash (as the links are written)
+  assign current_path = request.path
+  assign last_character = current_path | slice: -1
+  if last_character == '/' and current_path != '/'
+    assign path_length = current_path.size | minus: 1
+    assign current_path = current_path | slice: 0, path_length
+  endif
 -%}
 <aside class="faq-sidebar">
         <ul>
@@ -30,7 +38,15 @@
             -%}
             {%- if link_label != blank %}
             <li>
-              <a href="{{ link_url | escape }}">{{ link_label | escape }}</a>
+              {%- liquid
+                assign link_path = link_url
+                assign last_character = link_path | slice: -1
+                if last_character == '/' and link_path != '/'
+                  assign path_length = link_path.size | minus: 1
+                  assign link_path = link_path | slice: 0, path_length
+                endif
+              -%}
+              <a href="{{ link_url | escape }}"{% if link_path == current_path %} class="active"{% endif %}>{{ link_label | escape }}</a>
             </li>
             {%- endif -%}
           {%- endfor %}

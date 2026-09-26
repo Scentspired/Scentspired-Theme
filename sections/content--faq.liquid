@@ -63,35 +63,7 @@
     </div>
   </div>
 </div>
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const sidebarLinks = document.querySelectorAll('.faq-sidebar a');
-    const currentPath = window.location.pathname;
-    sidebarLinks.forEach(link => {
-      // Normalize href to match pathname (remove domain, query params, hash)
-      const linkPath = new URL(link.href).pathname;
-      // Check if the link's path matches the current page's path
-      if (linkPath === currentPath) {
-        link.classList.add('active');
-      }
-    });
-  });
-
-  function toggleFaq(button) {
-    const answer = button.nextElementSibling;
-    const isActive = button.classList.contains('active');
-    // Close all other FAQs
-    document.querySelectorAll('.faq-question.active').forEach(q => {
-      q.classList.remove('active');
-      q.nextElementSibling.classList.remove('active');
-    });
-    // Toggle current FAQ
-    if (!isActive) {
-      button.classList.add('active');
-      answer.classList.add('active');
-    }
-  }
-</script>
+<script src="{{ 'content--faq.js' | asset_url }}"></script>
 {% schema %}
 {
   "name": "FAQ Section",

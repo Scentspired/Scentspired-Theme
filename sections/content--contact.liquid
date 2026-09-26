@@ -101,23 +101,6 @@
   </div>
 </div>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const sidebarLinks = document.querySelectorAll('.faq-sidebar a');
-    const currentPath = window.location.pathname;
-    const normalizedCurrentPath = currentPath === '/' ? '/' : currentPath.replace(/\/$/, '');
-    let foundActive = false;
-    sidebarLinks.forEach(link => {
-      if (foundActive) return;
-      const linkPath = new URL(link.href).pathname;
-      const normalizedLinkPath = linkPath === '/' ? '/' : linkPath.replace(/\/$/, '');
-      if (normalizedLinkPath === normalizedCurrentPath) {
-        link.classList.add('active');
-        foundActive = true;
-      }
-    });
-  });
-</script>
 
 {% schema %}
 {

@@ -117,6 +117,12 @@ for (const bug of clarityBugs) {
     if (fs.existsSync(carouselPath)) {
       content += "\n" + fs.readFileSync(carouselPath, "utf8");
     }
+    // A section's script may live in an asset it loads ('x.js' | asset_url): the
+    // guard is judged in the code that runs, wherever it is kept.
+    for (const m of content.matchAll(/['"]([a-z0-9-]+\.js)['"]\s*\|\s*asset_url/g)) {
+      const assetPath = path.join(TARGET_ROOT, "assets", m[1]);
+      if (fs.existsSync(assetPath)) content += "\n" + fs.readFileSync(assetPath, "utf8");
+    }
     if (
       bug.pattern === "selectbrand" &&
       (content.includes(`replace(/'/g, "\\\\'")`) ||
