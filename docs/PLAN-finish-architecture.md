@@ -117,7 +117,7 @@ results show the store's card, three per row on desktop and one on phones, like 
 collection pages. Also found: five media queries in `base.css` written `1200pxpx`, dead
 since they were written — removed (the one rule search needs is back under a valid query).
 
-**5. Content out of the code (996 → 0).** Largest files first (collection grid 231,
+**5. Content out of the code (996 → 0).** *(done)* Largest files first (collection grid 231,
 header 156, product tabs 92, hero 69, cart drawer 55, …). Where each piece goes:
 - words, images, videos, links a section shows → that section's settings, filled from
   the region's page content (`@content:`), so a look can change them (the hero video);
@@ -129,6 +129,36 @@ header 156, product tabs 92, hero 69, cart drawer 55, …). Where each piece goe
 - fallback defaults → removed: the content file supplies the value or the build fails;
 - store IDs → `region.json`.
 Each file's rendered HTML must be identical before and after.
+
+*(done: the ratchet is at 0.)* The guard counted 703 at the phase's start (996 was the
+first count, before its false positives were fixed), 0 at the end, in 15 commits
+(798ae62 to 6359109). Each was checked before and after on USA and UK, HTML word-diffed
+and exercised in the browser. How it went:
+- **Where things went.** Region content gained the header's menus and search lists,
+  the fragrance finder's quiz (questions, answers and their scoring), the cart drawer's
+  copy, the scent notes, the product promises, the about page's text, the copyright
+  line. `region.json` gained `brand_name` and `newsletter.klaviyo_list_id` (every region
+  posted to one hardcoded Klaviyo list). The locale gained every interface string, with
+  scripts reading them from JSON blocks (`headerStrings`, `cardStrings`,
+  `bundleStrings`, …); strings a script needs raw use `_html` keys.
+- **New machinery.** `region--content` answers `<path>.__json` (a whole list, for a
+  script, written only for paths the theme reads that way). Content may name a theme
+  asset by an `*_asset` key; the dead-file check follows it. Three new snippets:
+  `header--shop-menu-sections`, `card--strings`, `bundle--strings`.
+- **What it uncovered.** A skin-care demo stood in for product copy on the 180 USA and
+  182 UK size products (redirect stubs, noindexed). A sold-out alert broke on titles
+  with an apostrophe. "Your Fifer Favourites" reached shoppers. The search's fallback
+  showed "Brand Name" for a brand. A section called "scent carousel" rendered a carousel
+  every page hid (it is `editorial--section-heading` now). Other code never showed:
+  a finder nav, promo banners, a brands block, a curve image on a Vercel blob,
+  `desktop_video` code that read unset settings and printed a stray "c", two
+  unused Google fonts.
+- **What remains visible and deliberate.** Two casings of the card's button labels
+  ("Add to Cart", "ADD TO CART") are both kept, as the host sections wrote them.
+  Unifying them is part of phase 6.
+- **Dev-server lesson.** A new section setting plus its template value can reach the
+  store in the wrong order. The store then drops the unknown setting, and the fix is
+  a forced re-upload (in memory).
 
 **6. Behaviour and styling out of the markup.** Scripts without Liquid move to
 `assets/<component>.js` as they are; the Liquid values they need arrive as data
