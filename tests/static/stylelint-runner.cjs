@@ -18,9 +18,11 @@ try {
 } catch (e) {
   console.log("────────────────────────────────────────────────────────────────");
   console.log("  🎨 STYLELINT CSS AST VALIDATOR (Industry Standard Engine)");
-  console.log("  [INFO] stylelint not installed. Skipping check.");
+  // A checker that is not there has not passed: it is a devDependency, so a missing one
+  // means npm ci was not run, and the gate must say so instead of reporting green.
+  console.log("  [FAIL] stylelint is not installed. Run npm ci (it is in devDependencies).");
   console.log("────────────────────────────────────────────────────────────────\n");
-  process.exit(0);
+  process.exit(1);
 }
 
 // Parse CLI flags

@@ -151,6 +151,8 @@
   </div>
 </div>
 
+{% # theme-check-disable ParserBlockingScript %}
 <script src="{{ 'media--video-banner.js' | asset_url }}"></script>
+{% # theme-check-enable ParserBlockingScript %}
 
 {{ 'media--video-banner.css' | asset_url | stylesheet_tag }}

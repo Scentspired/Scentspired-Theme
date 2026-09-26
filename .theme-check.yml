@@ -8,6 +8,12 @@ extends: theme-check:recommended
 # Ignore vendor bundles, regional packages, tests, docs, and third-party app blocks
 ignore:
   - 'node_modules/**'
+  # A leading / anchors a pattern at the theme being checked; without it Theme Check
+  # matches the pattern anywhere in the path, and 'dist/**' would ignore every file of a
+  # compiled region checked on its own.
+  - '/dist/**' # the compiled regions: each is checked as its own theme (runner.cjs, Layer 12)
+  - '/scripts/**'
+  - '/engine/**'
   - 'regions/**'
   - 'tests/**'
   - 'docs/**'

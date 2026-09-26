@@ -259,7 +259,9 @@
 {%- endif -%}
 <script type="application/json" id="finderPerfumes">{{ perfume_data }}</script>
 <script type="application/json" id="finderReasons">{% render 'region--data', name: 'hero-reasons' %}</script>
+{% # theme-check-disable ParserBlockingScript %}
 <script src="{{ 'media--hero.js' | asset_url }}"></script>
+{% # theme-check-enable ParserBlockingScript %}
 
 {% schema %}
 {

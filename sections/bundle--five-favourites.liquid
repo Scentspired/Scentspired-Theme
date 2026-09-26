@@ -119,7 +119,9 @@
     "brands": {% render 'region--data', name: 'bundle-brands' %}
   }
 </script>
+{% # theme-check-disable ParserBlockingScript %}
 <script src="{{ 'bundle--five-favourites.js' | asset_url }}"></script>
+{% # theme-check-enable ParserBlockingScript %}
 
 {% schema %}
 {

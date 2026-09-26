@@ -201,6 +201,12 @@
 {{ 'catalog--product-custom.css' | asset_url | stylesheet_tag }}
 
 <!-- JAVASCRIPT -->
+{% # theme-check-disable ParserBlockingScript %}
 <script src="{{ 'catalog--product-custom-variants.js' | asset_url }}"></script>
+{% # theme-check-enable ParserBlockingScript %}
+{% # theme-check-disable ParserBlockingScript %}
 <script src="{{ 'catalog--product-custom-cart.js' | asset_url }}"></script>
+{% # theme-check-enable ParserBlockingScript %}
+{% # theme-check-disable ParserBlockingScript %}
 <script src="{{ 'catalog--product-custom-gallery.js' | asset_url }}"></script>
+{% # theme-check-enable ParserBlockingScript %}

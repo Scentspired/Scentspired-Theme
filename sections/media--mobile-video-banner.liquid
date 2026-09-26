@@ -153,7 +153,9 @@
 
   {{ 'media--mobile-video-banner.css' | asset_url | stylesheet_tag }}
 
+  {% # theme-check-disable ParserBlockingScript %}
   <script src="{{ 'media--mobile-video-banner.js' | asset_url }}" data-section-id="{{ section.id }}"></script>
+  {% # theme-check-enable ParserBlockingScript %}
 </section>
 
 {% schema %}

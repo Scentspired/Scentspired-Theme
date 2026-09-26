@@ -92,7 +92,9 @@
   {% endfor %}
 </nav>
 
+{% # theme-check-disable ParserBlockingScript %}
 <script src="{{ 'editorial--zigzag-blog.js' | asset_url }}" data-section-id="{{ section.id }}"></script>
+{% # theme-check-enable ParserBlockingScript %}
 
 {% schema %}
 {

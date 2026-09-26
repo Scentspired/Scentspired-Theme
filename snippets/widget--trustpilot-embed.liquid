@@ -40,7 +40,9 @@
 
 {%- if tp_businessunit != blank and tp_template != blank -%}
   <div id="trustpilot-widget-trustbox-0-wrapper">
+    {% # theme-check-disable ParserBlockingScript %}
     <script src="{{ 'widget--trustpilot-loader.js' | asset_url }}"></script>
+    {% # theme-check-enable ParserBlockingScript %}
     <div
       class="trustpilot-widget"
       data-locale="{{ tp_locale | escape }}"

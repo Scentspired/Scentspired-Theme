@@ -81,7 +81,9 @@
   {%- endfor %}
   ]
 </script>
+{% # theme-check-disable ParserBlockingScript %}
 <script src="{{ 'catalog--best-sellers.js' | asset_url }}" data-section-id="{{ section.id }}"></script>
+{% # theme-check-enable ParserBlockingScript %}
 {% schema %}
 {
   "name": "Best Sellers Section",

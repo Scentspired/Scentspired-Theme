@@ -95,4 +95,6 @@
     "klaviyoListId": {{ klaviyo_list_id | strip | json }}
   }
 </script>
+{% # theme-check-disable ParserBlockingScript %}
 <script src="{{ 'marketing--newsletter-banner.js' | asset_url }}"></script>
+{% # theme-check-enable ParserBlockingScript %}

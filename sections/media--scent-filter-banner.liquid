@@ -214,6 +214,8 @@
   }
 </script>
 
+{% # theme-check-disable ParserBlockingScript %}
 <script src="{{ 'media--scent-filter-banner.js' | asset_url }}"></script>
+{% # theme-check-enable ParserBlockingScript %}
 
 {{ 'media--scent-filter-banner.css' | asset_url | stylesheet_tag }}

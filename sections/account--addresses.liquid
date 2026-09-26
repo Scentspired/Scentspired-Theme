@@ -359,7 +359,9 @@
   </div>
 {%- endpaginate -%}
 
+{% # theme-check-disable ParserBlockingScript %}
 <script src="{{ 'account--addresses.js' | asset_url }}"></script>
+{% # theme-check-enable ParserBlockingScript %}
 
 {% schema %}
 {

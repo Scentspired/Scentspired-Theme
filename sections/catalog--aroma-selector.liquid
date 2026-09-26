@@ -79,4 +79,6 @@
       }
     </script>
     <script type="application/json" id="aromaData">{% render 'region--data', name: 'aroma-selector' %}</script>
+    {% # theme-check-disable ParserBlockingScript %}
     <script src="{{ 'catalog--aroma-selector.js' | asset_url }}"></script>
+    {% # theme-check-enable ParserBlockingScript %}

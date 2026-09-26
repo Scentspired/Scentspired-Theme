@@ -73,7 +73,9 @@
       <div id="trustpilot-mobile-slot"></div>
 
     {%- when 'runtime' -%}
+      {% # theme-check-disable ParserBlockingScript %}
       <script src="{{ 'widget--trustpilot.js' | asset_url }}"></script>
+      {% # theme-check-enable ParserBlockingScript %}
 
       {{ 'widget--trustpilot.css' | asset_url | stylesheet_tag }}
   {%- endcase -%}

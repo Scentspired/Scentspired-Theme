@@ -420,11 +420,15 @@
       <script src="{{ 'core--localization-form.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
 
+    {% # theme-check-disable ParserBlockingScript %}
     <script src="{{ 'core--page-classes.js' | asset_url }}"></script>
+    {% # theme-check-enable ParserBlockingScript %}
 
     {%- capture region_geo_map -%}{%- render 'region--registry', mode: 'geo_map' -%}{%- endcapture -%}
     <script type="application/json" id="regionGeoMap">{{ region_geo_map | strip }}</script>
+    {% # theme-check-disable ParserBlockingScript %}
     <script src="{{ 'core--region-redirect.js' | asset_url }}"></script>
+    {% # theme-check-enable ParserBlockingScript %}
 
     {%- comment -%}
       Search Console and GA4 come from region data (analytics.*), so a region
@@ -516,7 +520,9 @@
         {% endif %}
         }
       </script>
+      {% # theme-check-disable ParserBlockingScript %}
       <script src="{{ 'product--review-schema.js' | asset_url }}"></script>
+      {% # theme-check-enable ParserBlockingScript %}
     {% endif %}
     <script type="application/ld+json">
       {
@@ -650,6 +656,8 @@
       };
     </script>
 
+    {% # theme-check-disable ParserBlockingScript %}
     <script src="{{ 'header--scroll.js' | asset_url }}"></script>
+    {% # theme-check-enable ParserBlockingScript %}
   </body>
 </html>

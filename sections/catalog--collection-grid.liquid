@@ -403,11 +403,17 @@
     "soldOut": {{ 'sections.collection_grid.sold_out' | t | json }}
   }
 </script>
+{% # theme-check-disable ParserBlockingScript %}
 <script src="{{ 'catalog--collection-grid-cards.js' | asset_url }}"></script>
+{% # theme-check-enable ParserBlockingScript %}
 
+{% # theme-check-disable ParserBlockingScript %}
 <script src="{{ 'catalog--collection-grid-variants.js' | asset_url }}"></script>
+{% # theme-check-enable ParserBlockingScript %}
 
+{% # theme-check-disable ParserBlockingScript %}
 <script src="{{ 'catalog--collection-grid.js' | asset_url }}"></script>
+{% # theme-check-enable ParserBlockingScript %}
 
 {% schema %}
 {

@@ -652,7 +652,7 @@ function renderContentSnippets(content, regionId) {
       }
       const routes = chunks.map((c, i) => {
         const name = `region--content--${page}-${i + 1}`;
-        const text = `{%- comment -%} GENERATED — do not edit. Part of ${page}.json (${regionId ? `regions/${regionId}` : 'core'}); read through region--content. {%- endcomment -%}\n{%- case key -%}\n${c.lines.join('\n')}\n{%- endcase -%}\n`;
+        const text = `{%- comment -%} GENERATED — do not edit. Part of ${page}.json (${regionId ? `regions/${regionId}` : 'core'}); read through region--content. {%- endcomment -%}\n${DATA_SNIPPET_CHECKS}\n{%- case key -%}\n${c.lines.join('\n')}\n{%- endcase -%}\n`;
         if (Buffer.byteLength(text) > LIQUID_FILE_LIMIT) {
           const err = new Error(`content "${page}.${c.entries[0]}" alone is over Shopify's 256 KB file limit`);
           err.handled = true;
@@ -672,6 +672,7 @@ function renderContentSnippets(content, regionId) {
   GENERATED — do not edit. ${source}
   Usage: render 'region--content' with key set to '<page>.<section>.<field>' (add js: true inside a JS string)
 {%- endcomment -%}
+${DATA_SNIPPET_CHECKS}
 {%- assign content_page = key | split: '.' | first -%}
 {%- case content_page -%}
 ${body}
@@ -679,6 +680,13 @@ ${body}
 `;
   return files;
 }
+
+/**
+ * The lookup snippets are data, not markup: a value holds HTML (a JS variant escapes
+ * its closing tags as <\/p>), links, and one long case. Shopify Theme Check's markup
+ * checks do not apply to them; every other check does.
+ */
+const DATA_SNIPPET_CHECKS = '{%- # theme-check-disable UnclosedHTMLElement, HardcodedRoutes, LiquidComplexity -%}';
 
 /** The single lookup snippet, for callers that need only the main file (the core stub). */
 function renderContentSnippet(content, regionId) {
