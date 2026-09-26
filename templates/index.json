@@ -133,7 +133,9 @@
     "mobile_video_banner_3Bc3Wj": {
       "type": "media--mobile-video-banner",
       "name": "Scent Families Video + Collections (Chevron Dropdown)",
-      "settings": {},
+      "settings": {
+        "video_url": "@content:home.mobile_video_banner.video_url"
+      },
       "custom_css": [
         "@media screen and (min-width: 1024px) {.mvps-section {display: none; }}",
         ".fragrance-item:hover .fragrance-info {transform: none;}",

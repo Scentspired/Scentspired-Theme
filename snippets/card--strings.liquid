@@ -1,0 +1,27 @@
+{%- comment -%}
+  The product card's interface wording (locale, sections.product_card), for
+  the scripts that set a card's labels: assets/card--product.js (badges) and the
+  sections that host cards (their buttons after a size change, their alerts).
+  Rendered once, in the page head (layout/theme.liquid), so it is there before
+  any section's script runs. Tokens in [brackets] are filled in by the script.
+
+  Two casings of the button labels exist because the hosts wrote both ("Add to
+  Cart" in best-sellers and the mobile video banner, "ADD TO CART" in the card
+  itself and the scent filter banner); the card's button does not uppercase.
+{%- endcomment -%}
+<script type="application/json" id="cardStrings">
+  {
+    "badgeMen": {{ 'sections.product_card.badge_men' | t | json }},
+    "badgeWomen": {{ 'sections.product_card.badge_women' | t | json }},
+    "badgeUnisex": {{ 'sections.product_card.badge_unisex' | t | json }},
+    "soldOut": {{ 'sections.product_card.sold_out' | t | json }},
+    "soldOutUpper": {{ 'sections.product_card.sold_out_upper' | t | json }},
+    "addToCart": {{ 'sections.product_card.add_to_cart' | t | json }},
+    "addToCartUpper": {{ 'sections.product_card.add_to_cart_upper' | t | json }},
+    "selectVariant": {{ 'sections.product_card.select_variant' | t | json }},
+    "addFailed": {{ 'sections.product_card.add_failed' | t | json }},
+    "addFailedRetry": {{ 'sections.product_card.add_failed_retry' | t | json }},
+    "adding": {{ 'sections.product_card.adding' | t | json }},
+    "added": {{ 'sections.product_card.added' | t | json }}
+  }
+</script>

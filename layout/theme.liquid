@@ -111,8 +111,8 @@
         {{ homepage_seo_title }}
       {%- else -%}
         {{ page_title }}
-        {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ", " }}"{% endif -%}
-        {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+        {%- if current_tags %}{% assign joined_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: joined_tags }}{% endif -%}
+        {%- if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif -%}
         {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
       {%- endif -%}
     </title>
@@ -164,6 +164,7 @@
         },
       };
     </script>
+    {% render 'card--strings' %}
 
     {{ content_for_header }}
 
@@ -532,7 +533,7 @@
           "sku": "{{ product.selected_or_first_available_variant.sku }}",
           "brand": {
             "@type": "Brand",
-            "name": "Scentspired"
+            "name": {% capture region_brand_name %}{% render 'region--active', key: 'brand_name' %}{% endcapture %}{{ region_brand_name | strip | json }}
           },
           "offers": {
           "@type": "Offer",
@@ -652,10 +653,11 @@
         "name": "{{ shop.name }}",
         "url": "{{ shop.url }}",
         "logo": "{{ settings.logo | image_url: width: 500 }}",
+        {%- comment -%} The brand's profiles: the footer's links (regions/<id>/content/footer-group.json) {%- endcomment %}
         "sameAs": [
-          "https://www.facebook.com/profile.php?id=61568107508172&sk=about",
-          "https://www.instagram.com/thescentspired/",
-          "https://www.tiktok.com/@thescentspireduk?"
+          {% capture profile_url %}{% render 'region--content', key: 'footer-group.footer.facebook_url' %}{% endcapture %}{{ profile_url | strip | json }},
+          {% capture profile_url %}{% render 'region--content', key: 'footer-group.footer.instagram_url' %}{% endcapture %}{{ profile_url | strip | json }},
+          {% capture profile_url %}{% render 'region--content', key: 'footer-group.footer.tiktok_url' %}{% endcapture %}{{ profile_url | strip | json }}
         ]
       }
     </script>
@@ -669,7 +671,7 @@
     {% if template contains "product" %}
       {% if product.handle contains "-5ml" or product.handle contains "-50ml" or product.handle contains "-100ml" %}
         <script>
-          window.location.href = "/products/{{ product.handle | remove: '-5ml' | remove: '-50ml' | remove: '-100ml' }}";
+          window.location.href = {{ product.url | remove: '-5ml' | remove: '-50ml' | remove: '-100ml' | json }};
         </script>
       {% endif %}
     {% endif %}

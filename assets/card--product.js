@@ -39,16 +39,26 @@ window.ScentspiredCard = (function () {
    * Tag -> badge. Each section previously carried its own copy of this
    * mapping, so a new badge meant editing every one. It lives here now.
    */
+  // Labels are the locale's (sections.product_card), written into the page head by
+  // snippets/card--strings.liquid; read when first needed, after the page has parsed.
   const BADGES = [
-    { tag: 'men', label: 'Men', modifier: 'badge-men' },
-    { tag: 'women', label: 'Women', modifier: 'badge-women' },
-    { tag: 'unisex', label: 'Unisex', modifier: 'badge-unisex' },
+    { tag: 'men', label: 'badgeMen', modifier: 'badge-men' },
+    { tag: 'women', label: 'badgeWomen', modifier: 'badge-women' },
+    { tag: 'unisex', label: 'badgeUnisex', modifier: 'badge-unisex' },
   ];
+  let cardStrings = null;
+  function cardString(key) {
+    if (!cardStrings) {
+      const el = document.getElementById('cardStrings');
+      cardStrings = el ? JSON.parse(el.textContent) : {};
+    }
+    return cardStrings[key] || '';
+  }
 
   function badgesFromTags(tagsString) {
     const tags = String(tagsString || '').toLowerCase().split(',').map(t => t.trim());
     const hit = BADGES.find(b => tags.includes(b.tag));
-    return hit ? [{ label: hit.label, modifier: hit.modifier }] : [];
+    return hit ? [{ label: cardString(hit.label), modifier: hit.modifier }] : [];
   }
 
   function renderBadges(container, badges) {

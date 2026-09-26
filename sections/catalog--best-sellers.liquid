@@ -346,7 +346,7 @@
                 {% if section.settings.view_all_link != blank %}
                     <div style="text-align: center; margin-top: 0px;">
                         <a href="{{ section.settings.view_all_link }}" class="view-all-button" style="display: inline-block; padding: 16px 80px; background: #f4ff41; border-radius: 999px; text-decoration: none; color: #000; font-family: var(--font-body); font-weight: 500; text-transform: uppercase;">
-                            View All Products
+                            {{ 'sections.product_list.view_all' | t }}
                         </a>
                     </div>
                 {% endif %}
@@ -364,6 +364,7 @@
 </section>
 
 <script>
+  var cardStrings = JSON.parse(document.getElementById('cardStrings').textContent);
 let allProducts = [];
 let currentIndex = 0;
 let totalProducts = 0;
@@ -492,12 +493,12 @@ function updateVariantAvailability() {
         
         if (availableVariants.length === 0) {
           cartBtn.classList.add('sold-out');
-          cartBtn.innerText = 'Sold Out';
+          cartBtn.innerText = cardStrings.soldOut;
           cartBtn.disabled = true;
           cartBtn.style.pointerEvents = 'none';
         } else {
           cartBtn.classList.remove('sold-out');
-          cartBtn.innerText = 'Add to Cart';
+          cartBtn.innerText = cardStrings.addToCart;
           cartBtn.disabled = false;
           cartBtn.style.pointerEvents = 'auto';
         }
@@ -549,12 +550,12 @@ function updateProductsDisplay() {
     // Check if ALL variants are out of stock
     if (!hasAnyAvailable) {
       cartBtn.classList.add('sold-out');
-      cartBtn.innerText = 'Sold Out';
+      cartBtn.innerText = cardStrings.soldOut;
       cartBtn.disabled = true;
       idInput.value = '';
     } else {
       cartBtn.classList.remove('sold-out');
-      cartBtn.innerText = 'Add to Cart';
+      cartBtn.innerText = cardStrings.addToCart;
       cartBtn.disabled = false;
     }
 
@@ -613,11 +614,11 @@ function updateCartButtonState(card) {
     
     if (allOutOfStock) {
       cartBtn.classList.add('sold-out');
-      cartBtn.innerText = 'Sold Out';
+      cartBtn.innerText = cardStrings.soldOut;
       cartBtn.disabled = true;
     } else {
       cartBtn.classList.remove('sold-out');
-      cartBtn.innerText = 'Add to Cart';
+      cartBtn.innerText = cardStrings.addToCart;
       cartBtn.disabled = false;
     }
   } catch (e) {
@@ -687,7 +688,7 @@ function rebindProductEvents() {
       const originalText = submitBtn.innerText;
 
       submitBtn.disabled = true;
-      submitBtn.innerText = 'Adding...';
+      submitBtn.innerText = cardStrings.adding;
 
       fetch('/cart/add.js', {
         method: 'POST',
@@ -698,7 +699,7 @@ function rebindProductEvents() {
         body: JSON.stringify({ id: variantId, quantity: 1 })
       })
       .then(res => {
-        if (!res.ok) throw new Error('Add to cart failed');
+        if (!res.ok) throw new Error(`cart/add.js ${res.status}`);
         return res.json();
       })
       .then(() => {
@@ -721,7 +722,7 @@ function rebindProductEvents() {
           }
         }, 200);
 
-        submitBtn.innerText = 'ADDED!';
+        submitBtn.innerText = cardStrings.added;
         setTimeout(() => {
           submitBtn.disabled = false;
           submitBtn.innerText = originalText;
@@ -731,7 +732,7 @@ function rebindProductEvents() {
         console.error(err);
         submitBtn.disabled = false;
         submitBtn.innerText = originalText;
-        alert('Failed to add to cart');
+        alert(cardStrings.addFailed);
       });
     });
   });

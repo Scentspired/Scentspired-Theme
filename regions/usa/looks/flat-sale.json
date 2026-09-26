@@ -1660,6 +1660,7 @@
       ]
     },
     "mobile_video_banner": {
+      "video_url": null,
       "brands": [
         {
           "heading": null,
@@ -2742,7 +2743,25 @@
       "heading": null,
       "subheading": null,
       "description": null
-    }
+    },
+    "promises": [
+      {
+        "text": null,
+        "icon_url": null
+      },
+      {
+        "text": null,
+        "icon_asset": null
+      },
+      {
+        "text": null,
+        "icon_asset": null
+      },
+      {
+        "text": null,
+        "icon_url": null
+      }
+    ]
   },
   "search": {},
   "theme-settings": {

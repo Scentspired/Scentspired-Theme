@@ -1,24 +1,9 @@
-<section id="mvps-{{ section.id }}" class="mvps-section" aria-label="Video product selector">
-  {% assign desktop_src = "" %}
-  {% assign mobile_src = "" %}
-  {%- if section.settings.desktop_video != blank -%}
-    {% assign dv = section.settings.desktop_video %}
-    {%- if dv.sources and dv.sources.size > 0 -%}
-      {% assign desktop_src = dv.sources[0].url %}
-    {%- else -%}
-      {% assign desktop_src = dv | file_url %}
-    {%- endif -%}
-    c
-  {%- endif -%}
-
-  {%- if section.settings.mobile_video != blank -%}
-    {% assign mv = section.settings.mobile_video %}
-    {%- if mv.sources and mv.sources.size > 0 -%}
-      {% assign mobile_src = mv.sources[0].url %}
-    {%- else -%}
-      {% assign mobile_src = mv | file_url %}
-    {%- endif -%}
-  {%- endif -%}
+{%- comment -%}
+  The video is the region's (templates/index.json fills video_url from
+  home.json). The desktop_video / mobile_video settings this read were not in
+  the schema, so never set: that code, and its stray "c", are gone.
+{%- endcomment -%}
+<section id="mvps-{{ section.id }}" class="mvps-section" aria-label="{{ 'sections.scent_banner.selector_label' | t }}">
 
   <div class="mvps-video-wrap" aria-hidden="true">
     <video
@@ -29,8 +14,8 @@
       playsinline
       preload="auto"
       style="filter: brightness(70%);">
-      <source src="https://cdn.shopify.com/videos/c/o/v/2fe67c6edaa646b18805a79903b1059c.mp4" type="video/mp4">
-      Your browser does not support the video tag.
+      <source src="{{ section.settings.video_url | escape }}" type="video/mp4">
+      {{ 'sections.scent_banner.video_unsupported' | t }}
     </video>
   </div>
 
@@ -40,7 +25,7 @@
   -%}
   <div class="mvps-overlay">
     <div class="mvps-top">
-      <div class="mvps-subtitle">INSPIRED BY</div>
+      <div class="mvps-subtitle">{{ 'sections.scent_banner.inspired_by' | t }}</div>
 
       <!-- Two dropdown system with Brands and Notes -->
       <div class="mvps-dropdowns-wrapper">
@@ -66,7 +51,7 @@
           <!-- Brands Popup -->
           <div class="mvps-popup" id="mvps-brands-popup-{{ section.id }}" style="display:none;">
             <div class="mvps-popup-content">
-              <button class="mvps-popup-close" aria-label="Close">×</button>
+              <button class="mvps-popup-close" aria-label="{{ 'sections.scent_banner.close' | t }}">×</button>
               <div class="mvps-popup-items">
                 {% for block in brand_blocks %}
                   {% assign collection_key = "collection_" | append: forloop.index %}
@@ -105,7 +90,7 @@
           <!-- Notes Popup -->
           <div class="mvps-popup" id="mvps-notes-popup-{{ section.id }}" style="display:none;">
             <div class="mvps-popup-content">
-              <button class="mvps-popup-close" aria-label="Close">×</button>
+              <button class="mvps-popup-close" aria-label="{{ 'sections.scent_banner.close' | t }}">×</button>
               <div class="mvps-popup-items">
                 {% for block in note_blocks %}
                   {% assign collection_key = "collection_notes_" | append: forloop.index %}
@@ -139,7 +124,7 @@
                 {% render 'card--product-carousel', product: product %}
               {% endfor %}
             {% else %}
-              <div class="mvps-fragrance-item empty">No products in this collection</div>
+              <div class="mvps-fragrance-item empty">{{ 'sections.scent_banner.no_products' | t }}</div>
             {% endif %}
           </div>
         {% endfor %}
@@ -154,7 +139,7 @@
                 {% render 'card--product-carousel', product: product %}
               {% endfor %}
             {% else %}
-              <div class="mvps-fragrance-item empty">No products in this collection</div>
+              <div class="mvps-fragrance-item empty">{{ 'sections.scent_banner.no_products' | t }}</div>
             {% endif %}
           </div>
         {% endfor %}
@@ -169,6 +154,7 @@
   {{ 'media--mobile-video-banner.css' | asset_url | stylesheet_tag }}
 
   <script>
+    var cardStrings = JSON.parse(document.getElementById('cardStrings').textContent);
     (async function () {
       const section = document.getElementById('mvps-{{ section.id }}');
       if (!section) return;
@@ -179,7 +165,7 @@
       async function getCart() {
         try {
           const res = await fetch('/cart.js');
-          if (!res.ok) throw new Error('Failed to fetch cart');
+          if (!res.ok) throw new Error(`cart.js ${res.status}`);
           return await res.json();
         } catch (err) {
           console.error(err);
@@ -414,12 +400,12 @@
           if (submitBtn) {
             if (!firstAvailable) {
               submitBtn.disabled = true;
-              submitBtn.textContent = 'Sold Out';
+              submitBtn.textContent = cardStrings.soldOut;
               submitBtn.style.cursor = 'not-allowed';
               submitBtn.style.opacity = '0.6';
             } else {
               submitBtn.disabled = false;
-              submitBtn.textContent = 'Add to Cart';
+              submitBtn.textContent = cardStrings.addToCart;
               submitBtn.style.cursor = 'pointer';
               submitBtn.style.opacity = '1';
             }
@@ -438,7 +424,9 @@
 {% schema %}
 {
   "name": "Scent Families Video",
-  "settings": [],
+  "settings": [
+    { "type": "text", "id": "video_url", "label": "Video (MP4 URL)" }
+  ],
   "blocks": [
     {
       "type": "brand",

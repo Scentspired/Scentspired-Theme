@@ -22,15 +22,15 @@
     assign lower = tag | downcase
     case lower
       when 'men'
-        assign badge_label = 'Men'
+        assign badge_label = 'sections.product_card.badge_men' | t
         assign badge_modifier = 'badge-men'
         break
       when 'women'
-        assign badge_label = 'Women'
+        assign badge_label = 'sections.product_card.badge_women' | t
         assign badge_modifier = 'badge-women'
         break
       when 'unisex'
-        assign badge_label = 'Unisex'
+        assign badge_label = 'sections.product_card.badge_unisex' | t
         assign badge_modifier = 'badge-unisex'
         break
     endcase

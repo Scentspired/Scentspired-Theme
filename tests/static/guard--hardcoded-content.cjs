@@ -83,6 +83,7 @@ function count(src, isJs, items) {
       .replace(/\{%-?\s*comment\s*-?%\}[\s\S]*?\{%-?\s*endcomment\s*-?%\}/g, '')
       .replace(/<style[^>]*>[\s\S]*?<\/style>/g, '')
       .replace(/\{%-?\s*style\s*-?%\}[\s\S]*?\{%-?\s*endstyle\s*-?%\}/g, '')
+      .replace(/\{%-?\s*stylesheet\s*-?%\}[\s\S]*?\{%-?\s*endstylesheet\s*-?%\}/g, '')
       .replace(/<script[\s\S]*?<\/script>/g, '')
       .replace(/\{%-?\s*javascript\s*-?%\}[\s\S]*?\{%-?\s*endjavascript\s*-?%\}/g, '')
       .replace(/<!--[\s\S]*?-->/g, '');
@@ -104,6 +105,8 @@ function count(src, isJs, items) {
   for (const s of scripts) {
     const body = s
       .replace(/\/\/[^\n]*|\/\*[\s\S]*?\*\//g, '')
+      // structured data's vocabulary ("@type": "Product") is schema.org's, not words
+      .replace(/"@(?:type|context)"\s*:\s*"[^"]*"/g, '')
       // not shown to a shopper: console messages, and key names a handler compares
       // (a thrown message is still counted: bundle--five-favourites alerts err.message)
       .replace(/console\.(?:log|warn|error|info|debug)\((?:[^()]|\([^()]*\))*\)/g, '')
@@ -130,7 +133,10 @@ function count(src, isJs, items) {
       /(https?:)?\/\/[^\s"'`)]+\.(?:jpe?g|png|webp|gif|svg|mp4|webm|avif)(\?[^\s"'`)]*)?|\/cdn\/shop\/files\/[^\s"'`)]+/gi
     ),
   ].map((m) => m[0]));
-  c.links += note('link', [...noSchema.matchAll(/href=["'](\/(?:pages|collections|products|blogs|policies)\/[^"'{]+|https?:\/\/[^"'{]+)["']/g)].map((m) => m[1]));
+  c.links += note('link', [...noSchema
+    // a preconnect / dns-prefetch hint names a host to warm up, not a page to visit
+    .replace(/<link[^>]*rel=["'](?:preconnect|dns-prefetch)["'][^>]*>/g, '')
+    .matchAll(/href=["'](\/(?:pages|collections|products|blogs|policies)\/[^"'{]+|https?:\/\/[^"'{]+)["']/g)].map((m) => m[1]));
   c.links += note('link', [...noSchema.matchAll(/(?:location\.href|window\.location)\s*=\s*['"`](\/[a-z][^'"`]*)['"`]/g)].map((m) => m[1]));
   c.fallback += note('fallback', [...noSchema.matchAll(/\|\s*default:\s*['"]([^'"]*[A-Za-z]{2,}[^'"]*)['"]/g)].map((m) => m[1]));
   c.ids += note('id', [...noSchema.matchAll(/\b\d{13,14}\b/g)].map((m) => m[0]));

@@ -16,9 +16,6 @@
 }
 {% endschema %}
 
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Monument+Extended&display=swap" rel="stylesheet">
-
 <!-- HTML MARKUP -->
 <div class="ps-wrapper">
   <div class="ps-container">
@@ -125,7 +122,7 @@
 
   <!-- Quantity (NOW INSIDE FORM) -->
   <div class="ps-quantity-wrapper">
-    <span class="ps-qty-label">QTY</span>
+    <span class="ps-qty-label">{{ 'sections.product_page.quantity' | t }}</span>
 <button type="button" class="ps-qty-circle ps-qty-minus">−</button>
 <span id="psQuantityDisplay">1</span>
 <button type="button" class="ps-qty-circle ps-qty-plus">+</button>
@@ -135,7 +132,7 @@
   <input type="hidden" name="id" class="ps-variant-id-input" value="{{ product.variants.first.id }}">
   <input type="hidden" name="quantity" id="psQuantityInput" value="1">
 
-  <button type="submit" class="ps-cart ps-cart-btn">ADD TO CART</button>
+  <button type="submit" class="ps-cart ps-cart-btn">{{ 'sections.product_card.add_to_cart_upper' | t }}</button>
 
 </form>
 
@@ -143,32 +140,37 @@
       <!-- Product Description -->
       <div class="ps-description">{{ product.description }}</div> 
 
-      <!-- Product Icons -->
+      <!-- Product Icons: the region's promises (content/product.json, promises) -->
       <div class="product-icons">
+        {%- capture promise_keys -%}{%- render 'region--content', key: 'product.promises.__keys' -%}{%- endcapture -%}
+        {%- assign promise_keys = promise_keys | strip | split: ',' -%}
+        {%- for i in promise_keys %}
+          {%- liquid
+            assign promise_key = 'product.promises.' | append: i
+            assign k = promise_key | append: '.text'
+            capture promise_text
+              render 'region--content', key: k
+            endcapture
+            assign k = promise_key | append: '.icon_asset'
+            capture promise_icon_asset
+              render 'region--content', key: k
+            endcapture
+            assign promise_icon_asset = promise_icon_asset | strip
+            assign k = promise_key | append: '.icon_url'
+            capture promise_icon_url
+              render 'region--content', key: k
+            endcapture
+            if promise_icon_asset != blank
+              assign promise_icon_url = promise_icon_asset | asset_url
+            endif
+          -%}
         <div class="icon-item">
           <div class="icon-wrapper">
-            <img src="https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Screenshot_2025-06-30_161707.webp?v=1789409350" alt="">
+            <img src="{{ promise_icon_url | strip }}" alt="">
           </div>
-          <p>30 Days Return</p>
+          <p>{{ promise_text | strip }}</p>
         </div>
-        <div class="icon-item">
-          <div class="icon-wrapper">
-            <img src="{{ 'catalog--product-custom-icon-2.png' | asset_url }}" alt="">
-          </div>
-          <p>Fast Shipping</p>
-        </div>
-        <div class="icon-item">
-          <div class="icon-wrapper">
-            <img src="{{ 'catalog--product-custom-icon-3.png' | asset_url }}" alt="">
-          </div>
-          <p>Vegan & Cruelty Free</p>
-        </div>
-        <div class="icon-item">
-          <div class="icon-wrapper">
-            <img src="https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Frame_1.png?v=1767264841" alt="">
-          </div>
-          <p>Long-Lasting Extrait Formula</p>
-        </div>
+        {%- endfor %}
       </div>
     </div>
   </div>
@@ -283,6 +285,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 <script>
+  var cardStrings = JSON.parse(document.getElementById('cardStrings').textContent);
 document.addEventListener('DOMContentLoaded', async function () {
 
   const qtyDisplay = document.getElementById('psQuantityDisplay');
@@ -337,14 +340,14 @@ document.addEventListener('DOMContentLoaded', async function () {
     plusBtn.disabled = true;
     minusBtn.disabled = true;
     addBtn.disabled = true;
-    addBtn.textContent = 'SOLD OUT';
+    addBtn.textContent = cardStrings.soldOutUpper;
   }
 
   function enableQty() {
     plusBtn.disabled = false;
     minusBtn.disabled = false;
     addBtn.disabled = false;
-    addBtn.textContent = 'ADD TO CART';
+    addBtn.textContent = cardStrings.addToCartUpper;
   }
 
   // Function to check and update plus button state
@@ -400,14 +403,14 @@ document.addEventListener('DOMContentLoaded', async function () {
       const submitBtn = form.querySelector('.ps-cart-btn');
       const variantIdInput = form.querySelector('input[name="id"]');
       const variantId = variantIdInput?.value;
-      if (!variantId) { alert('Please select a variant'); return; }
+      if (!variantId) { alert(cardStrings.selectVariant); return; }
 
       const qtyInputField = form.querySelector('input[name="quantity"]');
       const qty = parseInt(qtyInputField?.value, 10) || 1;
 
       isSubmitting = true;
       submitBtn.disabled = true;
-      submitBtn.textContent = 'Adding...';
+      submitBtn.textContent = cardStrings.adding;
 
       try {
         const res = await fetch('/cart/add.js', {
@@ -416,15 +419,15 @@ document.addEventListener('DOMContentLoaded', async function () {
           body: JSON.stringify({ id: variantId, quantity: qty })
         });
 
-        if (!res.ok) throw new Error('Failed to add to cart');
+        if (!res.ok) throw new Error(`cart/add.js ${res.status}`);
         const cart = await res.json();
 
         // 🔹 Immediately update inventory after adding
         await updateInventoryState(variantId);
 
-        submitBtn.textContent = 'ADDED!';
+        submitBtn.textContent = cardStrings.added;
         setTimeout(() => {
-          submitBtn.textContent = 'ADD TO CART';
+          submitBtn.textContent = cardStrings.addToCartUpper;
           isSubmitting = false;
         }, 1500);
 
@@ -438,7 +441,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       } catch (err) {
         console.error(err);
         submitBtn.disabled = false;
-        submitBtn.textContent = 'ADD TO CART';
+        submitBtn.textContent = cardStrings.addToCartUpper;
         isSubmitting = false;
       }
     });

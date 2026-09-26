@@ -88,7 +88,7 @@
           assign brand_blocks = section.blocks | where: 'type', 'brand'
           assign note_blocks = section.blocks | where: 'type', 'note'
         -%}
-        <p class="scent-label">INSPIRED BY</p>
+        <p class="scent-label">{{ 'sections.scent_banner.inspired_by' | t }}</p>
 
         <!-- Added main category headings (Brands and Notes) -->
         <div class="main-headings-container">
@@ -127,7 +127,7 @@
 
           <div class="shop-button-container">
             <a href="#" class="shop-button" id="shopButton">
-              <span id="shopButtonText">SHOP EARTHY</span>
+              <span id="shopButtonText" data-label="{{ 'sections.scent_banner.shop_now' | t }}">{{ 'sections.scent_banner.shop_now' | t }}</span>
             </a>
           </div>
         </div>
@@ -215,6 +215,7 @@
 </script>
 
 <script>
+  var cardStrings = JSON.parse(document.getElementById('cardStrings').textContent);
   document.addEventListener('DOMContentLoaded', function () {
     console.log('=== SCENT BANNER SCRIPT LOADED ===');
 
@@ -449,12 +450,12 @@
 
             if (availableVariants.length === 0) {
               cartBtn.classList.add('sold-out');
-              cartBtn.innerText = 'Sold Out';
+              cartBtn.innerText = cardStrings.soldOut;
               cartBtn.disabled = true;
               cartBtn.style.pointerEvents = 'none';
             } else {
               cartBtn.classList.remove('sold-out');
-              cartBtn.innerText = 'ADD TO CART';
+              cartBtn.innerText = cardStrings.addToCartUpper;
               cartBtn.disabled = false;
               cartBtn.style.pointerEvents = 'auto';
 
@@ -527,7 +528,7 @@
         // Check if ALL variants are out of stock
         if (!hasAnyAvailable) {
           cartBtn.classList.add('sold-out');
-          cartBtn.innerText = 'Sold Out';
+          cartBtn.innerText = cardStrings.soldOut;
           cartBtn.disabled = true;
           cartBtn.style.pointerEvents = 'none';
 
@@ -536,7 +537,7 @@
           if (idInput) idInput.value = '';
         } else {
           cartBtn.classList.remove('sold-out');
-          cartBtn.innerText = 'ADD TO CART';
+          cartBtn.innerText = cardStrings.addToCartUpper;
           cartBtn.disabled = false;
           cartBtn.style.pointerEvents = 'auto';
 
@@ -618,13 +619,13 @@
           console.log('Variant ID:', variantId);
 
           if (!variantId) {
-            alert('Please select a variant');
+            alert(cardStrings.selectVariant);
             return;
           }
 
           formSubmissionInProgress.set(formId, true);
           submitBtn.disabled = true;
-          submitBtn.innerHTML = 'Adding...';
+          submitBtn.innerHTML = cardStrings.adding;
 
           console.log('Sending request to /cart/add.js...');
 
@@ -638,17 +639,17 @@
           })
             .then(res => {
               console.log('Add to cart response status:', res.status);
-              if (!res.ok) throw new Error('Failed to add to cart');
+              if (!res.ok) throw new Error(`cart/add.js ${res.status}`);
               return res.json();
             })
             .then(data => {
               console.log('Add to cart success:', data);
-              if (submitBtn) submitBtn.innerHTML = 'ADDED!';
+              if (submitBtn) submitBtn.innerHTML = cardStrings.added;
 
               return fetch('/cart.js');
             })
             .then(cartRes => {
-              if (!cartRes.ok) throw new Error('Failed to fetch cart');
+              if (!cartRes.ok) throw new Error(`cart.js ${cartRes.status}`);
               return cartRes.json();
             })
             .then(cartData => {
@@ -663,7 +664,7 @@
 
               setTimeout(() => {
                 if (submitBtn) {
-                  submitBtn.innerHTML = 'ADD TO CART';
+                  submitBtn.innerHTML = cardStrings.addToCartUpper;
                   submitBtn.disabled = false;
                 }
                 formSubmissionInProgress.set(formId, false);
@@ -673,10 +674,10 @@
               console.error('Error adding to cart:', err);
               if (submitBtn) {
                 submitBtn.disabled = false;
-                submitBtn.innerHTML = 'ADD TO CART';
+                submitBtn.innerHTML = cardStrings.addToCartUpper;
               }
               formSubmissionInProgress.set(formId, false);
-              alert('Failed to add to cart. Please try again.');
+              alert(cardStrings.addFailedRetry);
             });
         }
       },
@@ -697,7 +698,7 @@
       if (activeHeading) {
         activeHeading.classList.add('active-heading');
 
-        if (shopButtonText) shopButtonText.textContent = `SHOP NOW`;
+        if (shopButtonText) shopButtonText.textContent = shopButtonText.dataset.label || shopButtonText.textContent;
 
         const themeUrlsEl = document.getElementById('themeButtonUrls');
         if (themeUrlsEl) {

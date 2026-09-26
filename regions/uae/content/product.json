@@ -74,5 +74,23 @@
     "heading": "Join the",
     "subheading": "inner circle.",
     "description": "New launches, exclusive edits, and first access, straight to your inbox."
-  }
+  },
+  "promises": [
+    {
+      "text": "30 Days Return",
+      "icon_url": "https://cdn.shopify.com/s/files/1/0997/3714/1593/files/Screenshot_2025-06-30_161707.webp?v=1789409350"
+    },
+    {
+      "text": "Fast Shipping",
+      "icon_asset": "catalog--product-custom-icon-2.png"
+    },
+    {
+      "text": "Vegan & Cruelty Free",
+      "icon_asset": "catalog--product-custom-icon-3.png"
+    },
+    {
+      "text": "Long-Lasting Extrait Formula",
+      "icon_url": "https://cdn.shopify.com/s/files/1/0698/9398/0343/files/Frame_1.png?v=1767264841"
+    }
+  ]
 }

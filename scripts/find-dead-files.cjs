@@ -65,6 +65,18 @@ const reach = (file, from) => {
 };
 roots.forEach((r) => reach(r, '(root)'));
 
+// A region's content may name a theme asset for the theme to render, by a key
+// ending in _asset ("icon_asset": "catalog--product-custom-icon-2.png"; the
+// product page's promises). Only that key counts, so a file name mentioned in
+// passing does not keep an asset alive.
+for (const file of walkDir('regions').filter((f) => /\/content\/[^/]+\.json$/.test(f))) {
+  const walk = (v, key) => {
+    if (v && typeof v === 'object') for (const [k, x] of Object.entries(v)) walk(x, Array.isArray(v) ? key : k);
+    else if (typeof v === 'string' && /_asset$/.test(key || '') && assetNames.has(v)) reach(`assets/${v}`, file);
+  };
+  walk(parseJson(file), null);
+}
+
 function edgesOfJson(rel) {
   const doc = parseJson(rel);
   if (!doc) return [];

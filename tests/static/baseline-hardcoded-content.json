@@ -26,33 +26,6 @@
     "fallback": 0,
     "ids": 0
   },
-  "sections/catalog--best-sellers.liquid": {
-    "total": 10,
-    "text": 2,
-    "js-text": 8,
-    "media": 0,
-    "links": 0,
-    "fallback": 0,
-    "ids": 0
-  },
-  "sections/catalog--featured-scent.liquid": {
-    "total": 7,
-    "text": 1,
-    "js-text": 6,
-    "media": 0,
-    "links": 0,
-    "fallback": 0,
-    "ids": 0
-  },
-  "sections/catalog--product-custom.liquid": {
-    "total": 16,
-    "text": 6,
-    "js-text": 6,
-    "media": 2,
-    "links": 2,
-    "fallback": 0,
-    "ids": 0
-  },
   "sections/content--collapsible.liquid": {
     "total": 4,
     "text": 4,
@@ -188,28 +161,10 @@
     "fallback": 2,
     "ids": 0
   },
-  "sections/media--mobile-video-banner.liquid": {
-    "total": 11,
-    "text": 7,
-    "js-text": 3,
-    "media": 1,
-    "links": 0,
-    "fallback": 0,
-    "ids": 0
-  },
   "sections/media--running-text.liquid": {
     "total": 3,
     "text": 3,
     "js-text": 0,
-    "media": 0,
-    "links": 0,
-    "fallback": 0,
-    "ids": 0
-  },
-  "sections/media--scent-filter-banner.liquid": {
-    "total": 12,
-    "text": 2,
-    "js-text": 10,
     "media": 0,
     "links": 0,
     "fallback": 0,
@@ -395,15 +350,6 @@
     "fallback": 0,
     "ids": 0
   },
-  "snippets/card--product-carousel.liquid": {
-    "total": 1,
-    "text": 1,
-    "js-text": 0,
-    "media": 0,
-    "links": 0,
-    "fallback": 0,
-    "ids": 0
-  },
   "snippets/catalog--facets.liquid": {
     "total": 6,
     "text": 6,
@@ -474,33 +420,6 @@
     "media": 0,
     "links": 1,
     "fallback": 2,
-    "ids": 0
-  },
-  "layout/password.liquid": {
-    "total": 1,
-    "text": 0,
-    "js-text": 0,
-    "media": 0,
-    "links": 1,
-    "fallback": 0,
-    "ids": 0
-  },
-  "layout/theme.liquid": {
-    "total": 13,
-    "text": 2,
-    "js-text": 8,
-    "media": 0,
-    "links": 2,
-    "fallback": 0,
-    "ids": 1
-  },
-  "assets/card--product.js": {
-    "total": 3,
-    "text": 0,
-    "js-text": 3,
-    "media": 0,
-    "links": 0,
-    "fallback": 0,
     "ids": 0
   },
   "assets/core--telemetry.js": {

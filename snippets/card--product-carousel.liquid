@@ -154,7 +154,7 @@
       </div>
       <input type="hidden" name="id" class="variant-id-input" value="{{ first_variant.id | default: '' }}">
       <input type="hidden" name="quantity" value="1">
-      <button type="submit" class="cart-button" data-card-submit {% if card_title != '' %}data-product-title="{{ card_title | escape }}"{% endif %}>ADD TO CART</button>
+      <button type="submit" class="cart-button" data-card-submit {% if card_title != '' %}data-product-title="{{ card_title | escape }}"{% endif %}>{{ 'sections.product_card.add_to_cart_upper' | t }}</button>
     </form>
   </div>
 </div>

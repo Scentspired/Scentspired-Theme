@@ -9,6 +9,10 @@
  */
 {
   "general": {
+    "meta": {
+      "tags": "tagged \"{{ tags }}\"",
+      "page": "Page {{ page }}"
+    },
     "password_page": {
       "login_form_password_label": "Password",
       "login_form_password_placeholder": "Your password",
@@ -244,6 +248,34 @@
       "add_unavailable": "Unable to add this product. Please try again.",
       "add_failed": "Failed to add product to cart. Please try again.",
       "error": "ERROR"
+    },
+    "product_card": {
+      "badge_men": "Men",
+      "badge_women": "Women",
+      "badge_unisex": "Unisex",
+      "sold_out": "Sold Out",
+      "sold_out_upper": "SOLD OUT",
+      "add_to_cart": "Add to Cart",
+      "add_to_cart_upper": "ADD TO CART",
+      "select_variant": "Please select a variant",
+      "add_failed": "Failed to add to cart",
+      "add_failed_retry": "Failed to add to cart. Please try again.",
+      "adding": "Adding...",
+      "added": "ADDED!"
+    },
+    "product_list": {
+      "view_all": "View All Products"
+    },
+    "product_page": {
+      "quantity": "QTY"
+    },
+    "scent_banner": {
+      "inspired_by": "INSPIRED BY",
+      "shop_now": "SHOP NOW",
+      "selector_label": "Video product selector",
+      "video_unsupported": "Your browser does not support the video tag.",
+      "close": "Close",
+      "no_products": "No products in this collection"
     },
     "bundle": {
       "status_start": "Add [count] items to complete your [box]",

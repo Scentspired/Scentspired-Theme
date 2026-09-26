@@ -30,6 +30,10 @@
       "type": "string",
       "description": "Human readable region name"
     },
+    "brand_name": {
+      "type": "string",
+      "description": "The brand shoppers know (Scentspired), as structured data names it: a product's brand. The store's own name (shop.name) may carry the region."
+    },
     "domain": {
       "type": "string",
       "description": "Primary storefront domain, no scheme"
