@@ -101,9 +101,6 @@
           },
           "label": "Position on cards"
         },
-        "sale_badge_color_scheme": {
-          "label": "Sale badge color scheme"
-        },
         "sold_out_badge_color_scheme": {
           "label": "Sold out badge color scheme"
         }
@@ -156,9 +153,6 @@
       "settings": {
         "paragraph": {
           "content": "Displays in the footer's brand information block"
-        },
-        "brand_description": {
-          "label": "Description"
         }
       }
     },

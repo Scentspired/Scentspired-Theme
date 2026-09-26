@@ -365,9 +365,17 @@ const CORE_LAYERS = [
     failMsg: "A theme file nothing renders, or a section asks for something that does not exist",
   },
   {
+    // A setting nothing reads is an editor control that does nothing and a
+    // content value that goes nowhere.
+    name: "Layer 28: No Unread Settings",
+    cmd: "node",
+    args: [path.join(TESTS_DIR, "static", "guard--unread-settings.cjs")],
+    failMsg: "A section, block or theme setting is declared but never read: remove it with its values",
+  },
+  {
     // The guards above are only worth their exit code if they have been seen
     // to fail. Each fixture plants defects and asserts they are caught.
-    name: "Layer 28: Guard Fixtures (red/green verification)",
+    name: "Layer 29: Guard Fixtures (red/green verification)",
     cmd: "node",
     args: [path.join(TESTS_DIR, "static", "run-guard-fixtures.cjs")],
     failMsg: "A guard no longer catches what it claims to catch",
