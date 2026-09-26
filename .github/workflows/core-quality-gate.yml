@@ -32,7 +32,8 @@ jobs:
       # Fails the run if testing has been switched off: a gate that bypasses itself is
       # how CI reported green for months without running a single check.
       - name: Assert the gate is switched on
-        run: node -e "const s=require('./tests/config/test-settings.json'); if (s.testing_enabled !== true) { console.error('tests/config/test-settings.json has testing_enabled false: the gate would bypass itself'); process.exit(1); }"
+        run: |
+          node -e "const s = require('./tests/config/test-settings.json'); if (s.testing_enabled !== true) { console.error('testing_enabled is false in tests/config/test-settings.json, so the gate would bypass itself'); process.exit(1); }"
 
       - name: Run the quality gate (core layers and every region)
         run: node runner.cjs --scope=all

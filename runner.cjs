@@ -318,9 +318,17 @@ const CORE_LAYERS = [
     failMsg: "Hardcoded content was added to theme code — it belongs in region JSON",
   },
   {
+    // A workflow GitHub cannot parse dies in 0 seconds and runs no gate at all,
+    // so the CI definition is checked here, before it can be pushed.
+    name: "Layer 22: GitHub Actions Workflow Guard",
+    cmd: "node",
+    args: [path.join(TESTS_DIR, "static", "guard--workflows.cjs")],
+    failMsg: "A workflow file does not parse or lacks what Actions needs: CI would not run",
+  },
+  {
     // The guards above are only worth their exit code if they have been seen
     // to fail. Each fixture plants defects and asserts they are caught.
-    name: "Layer 22: Guard Fixtures (red/green verification)",
+    name: "Layer 23: Guard Fixtures (red/green verification)",
     cmd: "node",
     args: [path.join(TESTS_DIR, "static", "run-guard-fixtures.cjs")],
     failMsg: "A guard no longer catches what it claims to catch",
