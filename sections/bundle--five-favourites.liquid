@@ -93,8 +93,13 @@ const DISCOVERY_SET_VARIANT = { {{ fb_variants_js }} };
   const PRODUCTS_BY_SIZE = {
   {%- assign size_list = fb_sizes | split: ',' -%}
   {%- for size in size_list %}
-  {%- assign k = 'boxes.five_favourites.perfume_collection_per_size.' | append: size -%}
-  {%- capture size_collection -%}{%- render 'region--content', key: k -%}{%- endcapture %}
+  {%- liquid
+    assign k = 'boxes.five_favourites.perfume_collection_per_size.' | append: size
+    capture size_collection
+      render 'region--content', key: k
+    endcapture
+    assign size_collection = size_collection | strip
+  %}
   {{ size | json }}: [
     {% paginate collections[size_collection].products by 100 %}
       {% for product in collections[size_collection].products %}
