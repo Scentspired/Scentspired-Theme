@@ -4,6 +4,7 @@
   "code": "UK",
   "name": "United Kingdom",
   "brand_name": "Scentspired",
+  "newsletter": { "klaviyo_list_id": "RGyPME" },
   "domain": "scentspired.co.uk",
   "home_url": "https://scentspired.co.uk",
   "hreflang": "en-gb",

@@ -46,6 +46,11 @@ const BASELINE = rootArg ? null : path.join(__dirname, 'baseline-hardcoded-conte
 const THIRD_PARTY =
   /^assets\/(core--global|core--pubsub|core--constants|ui--details-disclosure|ui--details-modal|catalog--facets|search--form|ui--show-more|core--localization-form|account--customer|core--theme-editor)\.js$/;
 
+// Code whose words no shopper reads: the telemetry's error texts are browser
+// messages it matches, its 'Shopify' a Sentry context name, and its panel an
+// admin HUD opened only by Ctrl+Shift+L. Not content, and the same everywhere.
+const DEVELOPER_ONLY = /^(assets\/core--telemetry\.js|snippets\/core--telemetry\.liquid)$/;
+
 function themeFiles() {
   const out = [];
   for (const d of ['sections', 'snippets', 'blocks', 'layout', 'assets']) {
@@ -53,7 +58,7 @@ function themeFiles() {
     if (!fs.existsSync(abs)) continue;
     for (const f of fs.readdirSync(abs)) {
       const rel = `${d}/${f}`;
-      if (f.startsWith('region--') || THIRD_PARTY.test(rel)) continue; // region-- snippets are generated from region data
+      if (f.startsWith('region--') || THIRD_PARTY.test(rel) || DEVELOPER_ONLY.test(rel)) continue; // region-- snippets are generated from region data
       if (d === 'assets' ? !/\.js$/.test(f) || /\.min\.js$/.test(f) : !f.endsWith('.liquid')) continue;
       out.push(rel);
     }
@@ -87,6 +92,8 @@ function count(src, isJs, items) {
       .replace(/<script[\s\S]*?<\/script>/g, '')
       .replace(/\{%-?\s*javascript\s*-?%\}[\s\S]*?\{%-?\s*endjavascript\s*-?%\}/g, '')
       .replace(/<!--[\s\S]*?-->/g, '')
+      // a capture that builds class names ({% capture label_class %}facets__label …) is not words
+      .replace(/\{%-?\s*capture\s+\w*class(?:es)?\s*-?%\}[\s\S]*?\{%-?\s*endcapture\s*-?%\}/g, '')
       // an event handler attribute is script (its "=>" is not the end of a tag)
       .replace(/\son[a-z]+="[^"]*"/g, '');
     c.text += note('text', markup

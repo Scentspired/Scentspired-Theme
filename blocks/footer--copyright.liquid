@@ -103,26 +103,20 @@
         {% else %}
           {{ shop.name }}
         {% endif %}
-        All rights reserved. All logos, trademarks and brand names are the property of their respective trademark
-        owners. Powered By
+        {{ block.settings.rights_text }}
+        {{ block.settings.credit_label }}
         <a
-          href="{{ block.settings.credit_url | default: 'https://github.com/AhmadHassan-BTed' }}"
+          href="{{ block.settings.credit_url }}"
           target="_blank"
           rel="noopener"
           class="footer-credit-link">
-          {{ block.settings.credit_name | default: 'B-Ted' }}
+          {{ block.settings.credit_name }}
         </a>
       </p>
       {% if block.settings.show_powered_by %}
         <span class="ai-footer-copyright__text-{{ ai_gen_id }}">
-          Powered by
-          <a
-            href="https://www.shopify.com"
-            class="ai-footer-copyright__link-{{ ai_gen_id }}"
-            target="_blank"
-            rel="noopener">
-            Shopify
-          </a>
+          {%- assign shopify_link_class = 'ai-footer-copyright__link-' | append: ai_gen_id -%}
+          {{ 'sections.footer.powered_by_shopify_html' | t | replace: '[link_class]', shopify_link_class }}
         </span>
       {% endif %}
     </div>
@@ -169,9 +163,18 @@
     },
     {
       "type": "text",
+      "id": "rights_text",
+      "label": "Rights statement"
+    },
+    {
+      "type": "text",
+      "id": "credit_label",
+      "label": "Built by — label"
+    },
+    {
+      "type": "text",
       "id": "credit_name",
-      "label": "Built by — name",
-      "default": "B-Ted"
+      "label": "Built by — name"
     },
     {
       "type": "url",

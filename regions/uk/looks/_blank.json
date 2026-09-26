@@ -1200,7 +1200,11 @@
     },
     "copyright": {
       "copyright": {
-        "copyright_text": null
+        "copyright_text": null,
+        "rights_text": null,
+        "credit_label": null,
+        "credit_name": null,
+        "credit_url": null
       }
     }
   },
@@ -1512,6 +1516,7 @@
   },
   "home": {
     "video_banner": {
+      "video_url": null,
       "main_title_part1": null,
       "main_title_part2": null,
       "subtitle_part1": null,

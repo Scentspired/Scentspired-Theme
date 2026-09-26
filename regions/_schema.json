@@ -34,6 +34,15 @@
       "type": "string",
       "description": "The brand shoppers know (Scentspired), as structured data names it: a product's brand. The store's own name (shop.name) may carry the region."
     },
+    "newsletter": {
+      "type": "object",
+      "description": "The newsletter sign-up: klaviyo_list_id, the Klaviyo list the newsletter banner subscribes shoppers to.",
+      "properties": {
+        "klaviyo_list_id": {
+          "type": "string"
+        }
+      }
+    },
     "domain": {
       "type": "string",
       "description": "Primary storefront domain, no scheme"

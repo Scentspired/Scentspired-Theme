@@ -40,17 +40,17 @@
             {%- endif -%}
 
             <div class="contact-form-field">
-              <label for="ContactForm-name">First name</label>
+              <label for="ContactForm-name">{{ 'sections.contact_form.name' | t }}</label>
               <input
                 type="text"
                 id="ContactForm-name"
                 name="contact[name]"
                 value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
-                placeholder="First name">
+                placeholder="{{ 'sections.contact_form.name' | t }}">
             </div>
 
             <div class="contact-form-field">
-              <label for="ContactForm-email">Email</label>
+              <label for="ContactForm-email">{{ 'sections.contact_form.email' | t }}</label>
               <input
                 autocomplete="email"
                 type="email"
@@ -64,12 +64,12 @@
                   aria-invalid="true"
                   aria-describedby="ContactForm-email-error"
                 {% endif %}
-                placeholder="Email"
+                placeholder="{{ 'sections.contact_form.email' | t }}"
                 required>
             </div>
 
             <div class="contact-form-field">
-              <label for="ContactForm-phone">Phone number</label>
+              <label for="ContactForm-phone">{{ 'sections.contact_form.phone' | t }}</label>
               <input
                 type="tel"
                 id="ContactForm-phone"
@@ -77,22 +77,22 @@
                 name="contact[phone]"
                 pattern="[0-9\-]*"
                 value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}"
-                placeholder="Your phone number (optional)">
+                placeholder="{{ 'sections.contact_form.phone_placeholder' | t }}">
             </div>
 
             <div class="contact-form-field">
-              <label for="ContactForm-body">Message</label>
+              <label for="ContactForm-body">{{ 'sections.contact_form.message' | t }}</label>
               <textarea
                 rows="10"
                 id="ContactForm-body"
                 name="contact[body]"
-                placeholder="Enter your message">
+                placeholder="{{ 'sections.contact_form.message_placeholder' | t }}">
                 {{- form.body -}}
               </textarea>
             </div>
 
             <div class="contact-form-submit">
-              <button type="submit" class="contact-submit-btn">SEND</button>
+              <button type="submit" class="contact-submit-btn">{{ 'sections.contact_form.send' | t }}</button>
             </div>
           {%- endform -%}
         </div>

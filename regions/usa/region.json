@@ -4,6 +4,7 @@
   "code": "US",
   "name": "United States",
   "brand_name": "Scentspired",
+  "newsletter": { "klaviyo_list_id": "RGyPME" },
   "domain": "scentspired.com",
   "home_url": "https://scentspired.com",
   "hreflang": "en-us",

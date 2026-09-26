@@ -12,6 +12,7 @@
       "type": "media--video-banner",
       "name": "Video Banner",
       "settings": {
+        "video_url": "@content:home.video_banner.video_url",
         "main_title_part1": "@content:home.video_banner.main_title_part1",
         "main_title_part2": "@content:home.video_banner.main_title_part2",
         "subtitle_part1": "@content:home.video_banner.subtitle_part1",
@@ -22,11 +23,10 @@
       },
       "custom_css": [
         ".video-container {margin-top: 0px; padding-bottom: 50px;}",
-        "@media screen and (min-width: 1024px) and (max-width: 1439px) {.curved-line {position: absolute; top: 58%; left: 72%; transform: translateY(-50%); z-index: 1; } .video-button-rounded {margin-top: 20px; }}",
+        "@media screen and (min-width: 1024px) and (max-width: 1439px) {.video-button-rounded {margin-top: 20px; }}",
         ".side-text {font-family: \"PP Mori\", sans-serif !important;}",
         ".subtitle-line {margin-left: -18px;}",
-        ".video-button-rounded {margin-left: -18px;}",
-        ".curved-line {display: none;}"
+        ".video-button-rounded {margin-left: -18px;}"
       ]
     },
     "running_text_X9j7b7": {

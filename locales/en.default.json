@@ -262,6 +262,40 @@
       "add_failed": "Failed to add product to cart. Please try again.",
       "error": "ERROR"
     },
+    "footer": {
+      "social_facebook": "Facebook",
+      "social_instagram": "Instagram",
+      "social_tiktok": "Tiktok",
+      "social_threads": "Threads",
+      "social_youtube": "YouTube",
+      "social_pinterest": "Pinterest",
+      "home_link": "{{ brand }} home",
+      "powered_by_shopify_html": "Powered by <a href=\"https://www.shopify.com\" class=\"[link_class]\" target=\"_blank\" rel=\"noopener\">Shopify</a>"
+    },
+    "contact_form": {
+      "name": "First name",
+      "email": "Email",
+      "phone": "Phone number",
+      "phone_placeholder": "Your phone number (optional)",
+      "message": "Message",
+      "message_placeholder": "Enter your message",
+      "send": "SEND"
+    },
+    "newsletter_banner": {
+      "placeholder": "Enter your email address",
+      "submit": "Submit",
+      "submitting": "Submitting…",
+      "thanks": "Thanks for subscribing!",
+      "try_again": "Please try again",
+      "note": "No spam. Just the good stuff."
+    },
+    "perfume_story": {
+      "image_alt": "Perfume Story"
+    },
+    "video_banner": {
+      "poster_alt": "Banner",
+      "poster_alt_mobile": "Banner Mobile"
+    },
     "article_parts": {
       "add_image": "Add an editorial image",
       "add_background_image": "Upload a background image in theme editor",

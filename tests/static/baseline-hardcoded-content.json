@@ -35,15 +35,6 @@
     "fallback": 0,
     "ids": 0
   },
-  "sections/content--contact.liquid": {
-    "total": 9,
-    "text": 9,
-    "js-text": 0,
-    "media": 0,
-    "links": 0,
-    "fallback": 0,
-    "ids": 0
-  },
   "sections/content--faq.liquid": {
     "total": 1,
     "text": 0,
@@ -80,15 +71,6 @@
     "fallback": 0,
     "ids": 0
   },
-  "sections/editorial--perfume-story.liquid": {
-    "total": 7,
-    "text": 1,
-    "js-text": 0,
-    "media": 0,
-    "links": 0,
-    "fallback": 6,
-    "ids": 0
-  },
   "sections/editorial--text-section.liquid": {
     "total": 3,
     "text": 3,
@@ -107,29 +89,11 @@
     "fallback": 1,
     "ids": 0
   },
-  "sections/footer--main.liquid": {
-    "total": 7,
-    "text": 7,
-    "js-text": 0,
-    "media": 0,
-    "links": 0,
-    "fallback": 0,
-    "ids": 0
-  },
   "sections/header--main.liquid": {
     "total": 3,
     "text": 0,
     "js-text": 0,
     "media": 3,
-    "links": 0,
-    "fallback": 0,
-    "ids": 0
-  },
-  "sections/marketing--newsletter-banner.liquid": {
-    "total": 8,
-    "text": 3,
-    "js-text": 5,
-    "media": 0,
     "links": 0,
     "fallback": 0,
     "ids": 0
@@ -161,15 +125,6 @@
     "fallback": 0,
     "ids": 0
   },
-  "sections/media--video-banner.liquid": {
-    "total": 7,
-    "text": 4,
-    "js-text": 0,
-    "media": 3,
-    "links": 0,
-    "fallback": 0,
-    "ids": 0
-  },
   "sections/media--video-text.liquid": {
     "total": 2,
     "text": 2,
@@ -183,24 +138,6 @@
     "total": 2,
     "text": 2,
     "js-text": 0,
-    "media": 0,
-    "links": 0,
-    "fallback": 0,
-    "ids": 0
-  },
-  "snippets/catalog--facets.liquid": {
-    "total": 6,
-    "text": 6,
-    "js-text": 0,
-    "media": 0,
-    "links": 0,
-    "fallback": 0,
-    "ids": 0
-  },
-  "snippets/core--telemetry.liquid": {
-    "total": 5,
-    "text": 0,
-    "js-text": 5,
     "media": 0,
     "links": 0,
     "fallback": 0,
@@ -228,24 +165,6 @@
     "total": 1,
     "text": 1,
     "js-text": 0,
-    "media": 0,
-    "links": 0,
-    "fallback": 0,
-    "ids": 0
-  },
-  "blocks/footer--copyright.liquid": {
-    "total": 5,
-    "text": 3,
-    "js-text": 0,
-    "media": 0,
-    "links": 1,
-    "fallback": 1,
-    "ids": 0
-  },
-  "assets/core--telemetry.js": {
-    "total": 11,
-    "text": 0,
-    "js-text": 11,
     "media": 0,
     "links": 0,
     "fallback": 0,

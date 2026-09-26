@@ -2,6 +2,7 @@
 {
   "name": "Video Banner",
   "settings": [
+    { "type": "text", "id": "video_url", "label": "Video (MP4 URL)" },
     {
       "type": "image_picker",
       "id": "logo_image",
@@ -68,7 +69,7 @@
       <img
         id="poster-desktop"
         src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAIBAQIBAQICAgICAgICAwUDAwwUAxMTAwMRBBMTExMRBxcTExcTGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsBAQICAgICAwUDAwwUAxMTAwMRBBMTExMRBxcTExcTGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsBAQICAgICAwUDAwwUAxMTAwMRBBMTExMRBxcTExcTGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxs"
-        alt="Banner"
+        alt="{{ 'sections.video_banner.poster_alt' | t }}"
         class="poster-image"
         width="1920"
         height="1080"
@@ -81,7 +82,7 @@
         playsinline
         preload="none"
         class="video-element">
-        <source src="https://cdn.shopify.com/videos/c/o/v/01ece0dcb8c947ec83bd05667497d987.mp4" type="video/mp4">
+        <source src="{{ section.settings.video_url | escape }}" type="video/mp4">
       </video>
     </div>
   </div>
@@ -94,7 +95,7 @@
       <img
         id="poster-mobile"
         src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAIBAQIBAQICAgICAgICAwUDAwwUAxMTAwMRBBMTExMRBxcTExcTGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsBAQICAgICAwUDAwwUAxMTAwMRBBMTExMRBxcTExcTGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsBAQICAgICAwUDAwwUAxMTAwMRBBMTExMRBxcTExcTGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxs"
-        alt="Banner Mobile"
+        alt="{{ 'sections.video_banner.poster_alt_mobile' | t }}"
         class="poster-image"
         width="750"
         height="800"
@@ -107,14 +108,14 @@
         playsinline
         preload="none"
         class="video-element">
-        <source src="https://cdn.shopify.com/videos/c/o/v/01ece0dcb8c947ec83bd05667497d987.mp4" type="video/mp4">
+        <source src="{{ section.settings.video_url | escape }}" type="video/mp4">
       </video>
     </div>
   </div>
 
   <div class="video-content">
     {% if section.settings.logo_image != blank %}
-      <img src="{{ section.settings.logo_image | image_url }}" alt="Logo" class="custom-logo">
+      <img src="{{ section.settings.logo_image | image_url }}" alt="{{ section.settings.logo_image.alt | default: shop.name | escape }}" class="custom-logo">
     {% endif %}
 
     <div class="main-title-container">
@@ -128,12 +129,6 @@
       </p>
     </div>
 
-    <div class="curved-line">
-      <img
-        src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Vector%202-C6ze3HVovCJ3KMe0mS0Mr7hUlPTkYh.png"
-        alt="Curved Line"
-        class="curve-image">
-    </div>
 
     {% if section.settings.button_text != blank %}
       <a href="{{ section.settings.button_link }}" class="video-button-rounded">

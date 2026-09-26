@@ -148,22 +148,6 @@
     font-size: 60px !important;
   }
 
-  /* Curved line using your image */
-  .curved-line {
-    position: absolute;
-    top: 47%;
-    left: 68%;
-    transform: translateY(-50%);
-    z-index: 1;
-  }
-
-  .curve-image {
-    width: clamp(300px, 35vw, 500px);
-    height: auto;
-    opacity: 0.7;
-    filter: brightness(0) invert(1); /* Makes the image white */
-  }
-
   /* Button styling to match reference */
   .video-button-rounded {
     display: inline-flex;
@@ -300,16 +284,6 @@
       gap: 0;
     }
 
-    .curved-line {
-      top: 25% !important;
-      left: 50% !important;
-      transform: translateY(-50%) scale(0.7);
-    }
-
-    .curve-image {
-      width: clamp(200px, 40vw, 300px);
-    }
-
     .side-text-container {
       bottom: 15%;
       right: 0%;
@@ -368,12 +342,6 @@
 
     .side-text {
       font-size: clamp(1.8rem, 14vw, 3rem);
-    }
-
-    .curved-line {
-      top: 12%;
-      left: 65%;
-      transform: translateY(-50%) scale(0.6);
     }
 
     .video-button-rounded {

@@ -64,7 +64,7 @@
         id="emailNews"
         type="email"
         name="email"
-        placeholder="Enter your email address"
+        placeholder="{{ 'sections.newsletter_banner.placeholder' | t }}"
         required
         class="py-1 rounded-[20px] h-full w-full border-none !bg-transparent focus:outline-none focus:ring-0 pl-4 placeholder:text-[14px] placeholder:text-[#727272]">
 
@@ -72,17 +72,27 @@
         id="newsletterBtn"
         type="submit"
         class="w-auto px-5 rounded-[100px] bg-yellow-300 flex items-center justify-center border border-transparent h-10">
-        <span id="newsletterBtnText" class="tracking-[0.7px] text-sm text-black">Submit</span>
+        <span id="newsletterBtnText" class="tracking-[0.7px] text-sm text-black">{{ 'sections.newsletter_banner.submit' | t }}</span>
       </button>
     </form>
 
     <p id="newsletterMessage" class="mt-2 text-sm text-black hidden"></p>
 
-    <small>No spam. Just the good stuff.</small>
+    <small>{{ 'sections.newsletter_banner.note' | t }}</small>
   </div>
 </section>
+<script type="application/json" id="newsletterBannerStrings">
+  {
+    "submit": {{ 'sections.newsletter_banner.submit' | t | json }},
+    "submitting": {{ 'sections.newsletter_banner.submitting' | t | json }},
+    "thanks": {{ 'sections.newsletter_banner.thanks' | t | json }},
+    "tryAgain": {{ 'sections.newsletter_banner.try_again' | t | json }}
+  }
+</script>
+{%- capture klaviyo_list_id -%}{%- render 'region--active', key: 'newsletter.klaviyo_list_id' -%}{%- endcapture -%}
 <script>
   document.addEventListener('DOMContentLoaded', () => {
+    const strings = JSON.parse(document.getElementById('newsletterBannerStrings').textContent);
     const form = document.getElementById('newsletterForm');
     const emailInput = document.getElementById('emailNews');
     const button = document.getElementById('newsletterBtn');
@@ -96,7 +106,7 @@
 
       // Disable button and show "Submitting…"
       button.disabled = true;
-      buttonText.textContent = 'Submitting…';
+      buttonText.textContent = strings.submitting;
       buttonText.style.color = '#000'; // force black text
 
       try {
@@ -106,31 +116,32 @@
             'Content-Type': 'application/x-www-form-urlencoded',
           },
           body: new URLSearchParams({
-            g: 'RGyPME',
+            // the region's Klaviyo list (region.json, newsletter.klaviyo_list_id)
+            g: {{ klaviyo_list_id | strip | json }},
             email: email,
           }),
         });
 
         if (response.ok) {
-          buttonText.textContent = 'Thanks for subscribing!';
+          buttonText.textContent = strings.thanks;
           buttonText.style.color = '#000'; // keep black
           emailInput.value = '';
 
           // Keep the success text for 3s
           setTimeout(() => {
             button.disabled = false;
-            buttonText.textContent = 'Submit';
+            buttonText.textContent = strings.submit;
             buttonText.style.color = '#000'; // reset black
           }, 3000);
         } else {
-          throw new Error('Subscription failed');
+          throw new Error(`subscribe ${response.status}`);
         }
       } catch (err) {
-        buttonText.textContent = 'Please try again';
+        buttonText.textContent = strings.tryAgain;
         buttonText.style.color = '#000'; // black for error
         setTimeout(() => {
           button.disabled = false;
-          buttonText.textContent = 'Submit';
+          buttonText.textContent = strings.submit;
           buttonText.style.color = '#000'; // reset
         }, 3000);
       }

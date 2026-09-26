@@ -4,6 +4,7 @@
   "code": "AE",
   "name": "United Arab Emirates",
   "brand_name": "Scentspired",
+  "newsletter": { "klaviyo_list_id": "RGyPME" },
   "domain": "scentspired.ae",
   "home_url": "https://scentspired.ae",
   "hreflang": "en-ae",

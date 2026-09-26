@@ -4,35 +4,34 @@
   <div class="perfume-story-container">
     <div class="perfume-story-content">
       <h1 class="main-headline">
-        {{ section.settings.main_headline | default: "We are not just a perfume house." }}
+        {{ section.settings.main_headline }}
       </h1>
 
       <p class="story-text">
-        {{
-          section.settings.story_text
-          | default: "We are storytellers of scent. And we invite you to find the fragrance that tells your story. Whether it's bold and daring, soft and nostalgic, or vibrant and unexpected—your signature scent is out there, waiting to be discovered. Let your senses lead the way, and begin your journey through our curated collection designed to speak to your soul."
-        }}
+        {{ section.settings.story_text }}
       </p>
 
       <p class="get-scentspired">
-        {{ section.settings.tagline | default: "Get Scentspired." }}
+        {{ section.settings.tagline }}
       </p>
 
-      <a href="{{ section.settings.button_link | default: '/collections/all' }}" class="shop-button">
-        {{ section.settings.button_text | default: "SHOP PRODUCTS" }}
+      <a href="{{ section.settings.button_link }}" class="shop-button">
+        {{ section.settings.button_text }}
       </a>
     </div>
 
     <div class="perfume-story-image">
+      {%- comment -%} A stand-in pointed at /images/image.png, which does not exist; every region sets the image. {%- endcomment -%}
       {% if section.settings.hero_image %}
+        {%- liquid
+          assign image_alt = section.settings.hero_image.alt
+          if image_alt == blank
+            assign image_alt = 'sections.perfume_story.image_alt' | t
+          endif
+        -%}
         <img
           src="{{ section.settings.hero_image | img_url: '1200x' }}"
-          alt="{{ section.settings.hero_image.alt | default: 'Perfume Story' }}"
-          loading="lazy">
-      {% else %}
-        <img
-          src="/images/image.png"
-          alt="Woman holding perfume bottle"
+          alt="{{ image_alt | escape }}"
           loading="lazy">
       {% endif %}
     </div>

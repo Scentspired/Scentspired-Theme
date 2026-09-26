@@ -67,7 +67,11 @@
   },
   "copyright": {
     "copyright": {
-      "copyright_text": ""
+      "copyright_text": "",
+      "rights_text": "All rights reserved. All logos, trademarks and brand names are the property of their respective trademark owners.",
+      "credit_label": "Powered By",
+      "credit_name": "B-Ted",
+      "credit_url": "https://github.com/AhmadHassan-BTed"
     }
   }
 }
