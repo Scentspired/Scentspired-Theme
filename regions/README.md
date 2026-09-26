@@ -32,7 +32,7 @@ npm run region:show -- uk
 | Trustpilot on/off, app or widget, URL, IDs | `regions/<id>/region.json` → `"trustpilot"` |
 | Google Analytics / Search Console | `regions/<id>/region.json` → `"analytics"` (shared defaults in `_defaults.json`) |
 | currency, shipping threshold and cost, return fee, contact emails | `regions/<id>/region.json` |
-| one piece of translated text | `regions/<id>/locales/<lang>.json` (only the keys that differ) |
+| one piece of translated text | `regions/<id>/translations/<lang>.json` (only the keys that differ; the build merges them over the theme's `locales/`) |
 | **spacing, sizes, colours, section order, CSS** | not in a region: the theme's `templates/*.json`, `sections/*.json`, `config/settings_data.json` or the section's stylesheet, for every region at once |
 
 Sales and looks are separate:
@@ -77,9 +77,15 @@ writes from this repository.
 - A layout (`templates/*.json`, `sections/*.json`, `config/settings_data.json`)
   holds no content value of its own: every word, image, link or picked record
   is a `"@content:<page>.<path>"` reference into the region's content files.
-- A region holds no design: no `templates/`, `sections/` or
+- A region holds no design: no `templates/*.json`, `sections/` or
   `config/settings_data.json`, and no spacing, size, colour or CSS value in its
-  content files.
+  content files. Its `templates/` holds only standalone Liquid pages of its own
+  (USA's and UAE's `robots.txt`, `llms.txt`, waitlist).
+- A region holds only `region.json`, `content/`, `data/`, `looks/`,
+  `translations/` and `templates/`: no `config/`, no `locales/`, nothing else,
+  so every region has the same shape. No template is a market override
+  (`"parent"` / `"context"`): a page that differs by region differs by its
+  content (`"@shown"`, `"@content"`).
 - `region.json` accepts only the keys in `_schema.json`.
 - A look that names no content, or an `_active.json` that names no look, fails the build.
 - A region has every page the default region (uk) has. It may have extra pages

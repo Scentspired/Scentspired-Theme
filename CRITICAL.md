@@ -2,7 +2,7 @@
 
 > **Document Status:** LIVING ARCHITECTURAL CONTRACT  
 > **Target Audience:** All Theme Engineers, Shopify Developers, and Automated Agents  
-> **Applies To:** `Scentspired-Theme`, `Scentspired-USA`, `Scentspired-UK`
+> **Applies To:** `Scentspired-Theme` (the `Scentspired-UK` and `Scentspired-USA` repositories are the live stores' locked reference copies: read, never written)
 
 ---
 
@@ -47,17 +47,17 @@ Never use cryptic machine hashes or backward-compatibility shims. All components
 All asset renames, template imports, and caller references must be staged and committed atomically in the same Git commit.
 
 ### Rule 3: Regional Isolation & Preservation
-Each regional storefront (`Scentspired-USA` and `Scentspired-UK`) maintains active marketing campaigns and specific Shopify Admin customizations.
-- **NEVER** delete or overwrite regional article templates (`article.blog-*.json`).
-- **NEVER** remove regional section dependencies (e.g., `blogtextliquid.liquid`, `zigzag-blog.liquid`, `text-blog.liquid`) that are actively mapped to live merchant templates.
-- Any shared improvements from `Scentspired-Theme` must be additive and backward-compatible.
+A region is content (`regions/<id>/`), the theme is structure and design, Shopify is prices (ARCHITECTURE.md).
+- **NEVER** write to the live UK or USA repositories or stores. They are reference: what they render is what a refactor must preserve.
+- **NEVER** remove a file a live URL still renders or loads. `scripts/template-usage.cjs` and `scripts/asset-usage.cjs` ask the dev stores; "nothing mentions it" is not proof.
+- What the theme keeps only for the live stores' sake is listed, with its long-term fix, in `docs/COMPATIBILITY.md`.
 
-### Rule 4: Mandatory 12-Layer Quality Gate Validation
-No commit may be pushed to `origin` without passing the 12-layer Theme Guardian test suite:
+### Rule 4: Mandatory Quality Gate Validation
+No commit may be pushed to `origin` without passing every layer of the quality gate (31 layers, listed in README.md):
 ```bash
-node runner.cjs --target=.
+node runner.cjs --scope=all
 ```
-All 12 layers (AST compiler, static analysis, flow simulator, physical asset integrity, JSON schema validity) must report 100% pass before any push.
+The pre-push hook runs it and CI runs it on every push; a checker that is not installed fails its layer, and CI fails if testing is switched off.
 
 ---
 
@@ -70,7 +70,21 @@ All 12 layers (AST compiler, static analysis, flow simulator, physical asset int
 | **Cart & Checkout** | `cart--` | Drawer UI, item rows, shipping threshold progress, zero-price locks |
 | **Catalog & Merchandising** | `catalog--` | Product cards, collection facets, grid layouts, badge overlays |
 | **Search & Discovery** | `search--` | Predictive search modal, tokenizer, live query results |
-| **Core Primitives** | `core--` | Universal icons, form utilities, buttons, base accessibility helpers |
+| **Core Primitives** | `core--` | Base styles, global scripts, meta tags, localization, password page |
+| **Interface** | `ui--` | Icons, pagination, shared interface pieces |
+| **Cards** | `card--` | The one product card (markup, styles, behaviour, strings), its badge, the collection card |
+| **Product** | `product--` | Product structured data (review schema) |
+| **Articles** | `article--` | Designed article parts (`article--parts` and its part styles) |
+| **Editorial** | `editorial--` | Blog and article sections, rich text, section headings, scent stories, zigzag blog |
+| **Content Pages** | `content--` | FAQ, contact, privacy, 404, generic page, collapsible content, the info-page sidebar |
+| **Media** | `media--` | Hero, image and video banners, image split, running text, scent filter banner |
+| **Marketing** | `marketing--` | Email signup and newsletter sections |
+| **Header / Footer** | `header--`, `footer--` | The header, its drawer, menus and search; the footer |
+| **Account** | `account--` | Customer account pages (classic accounts) |
+| **Social / Widgets** | `social--`, `widget--` | Social icons and links, Instagram grid; Trustpilot |
+| **Sale** | `sale--` | The one sale rule: badge and struck-through price from compare-at prices |
+| **Region** | `region--` | Generated per region by the build: identity, content lookup, data, registry |
+| **Tokens** | `token--` | Typography tokens |
 
 ---
 
@@ -82,15 +96,15 @@ To ensure visual discrepancies, negative-margin hacks, and ghost-section spacing
 ┌────────────────────────────────────────────────────────────────────────┐
 │  LAYER 5: AUTOMATED QUALITY GATE DEFENSE (CI & Static Guards)          │
 │  - tests/static/json-schema-validator.cjs                              │
-│  - Theme Guardian 12-layer suite                                       │
+│  - Quality gate, 31 layers (node runner.cjs --scope=all)               │
 │  - Automated pre-push validation                                       │
 ├────────────────────────────────────────────────────────────────────────┤
 │  LAYER 4: REGIONAL DECLARATIVE DATA PAYLOADS                           │
-│  - templates/article*.json (USA & UK isolated)                         │
-│  - Pure data schemas, zero styling hacks, zero negative margins        │
+│  - regions/<id>/content/*.json, referenced by templates/*.json         │
+│  - Pure data, zero styling hacks, zero negative margins                │
 ├────────────────────────────────────────────────────────────────────────┤
 │  LAYER 3: SECTION ORCHESTRATORS                                        │
-│  - sections/main-article.liquid, blogtextliquid.liquid, etc.           │
+│  - sections/article--parts.liquid, editorial--article.liquid, etc.     │
 │  - Pure mapping: extracts block/section data & feeds Layer 2 snippets   │
 │  - Defensive rendering: handles disabled blocks gracefully             │
 ├────────────────────────────────────────────────────────────────────────┤
@@ -122,8 +136,8 @@ To ensure visual discrepancies, negative-margin hacks, and ghost-section spacing
 - **Defensive Orchestration:** Verifies block validity before rendering so empty blocks produce zero markup.
 
 ### Layer 4: Regional Declarative Data Payloads (`templates/`)
-- **Single Responsibility:** Pure JSON data definitions for article contents and section orders.
-- **Independence Contract:** Storefront isolation. `Scentspired-USA` and `Scentspired-UK` templates are completely independent. A change in USA never affects UK.
+- **Single Responsibility:** Pure JSON: a layout (`templates/*.json`) holds section order and design; a region's `content/<page>.json` holds its words, images, links and lists.
+- **Independence Contract:** Storefront isolation. A region's content is its own: a change in `regions/usa/` never affects UK.
 - **Data Purity Mandate:** Templates are pure data carriers. They MUST NEVER contain layout hacks, inline negative margins (`margin-bottom: -53px`), or ghost sections in `order`.
 
 ### Layer 5: Automated Quality Gate CI Guards (`tests/`)
