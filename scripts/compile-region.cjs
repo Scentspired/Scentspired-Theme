@@ -508,6 +508,28 @@ emitted.add('snippets/region--active.liquid');
               });
             }
             delete sec.block_designs;
+          } else if (sec.blocks && typeof sec.blocks === 'object' && Object.values(sec.blocks).some(isList)) {
+            // Fixed blocks with a list among them ({ "heading_x": {…}, "button": "@list:<path>" }):
+            // the list's key is its block type, and it takes its place in block_order.
+            const designs = sec.block_designs || {};
+            const blocks = {}; const order = [];
+            for (const key of sec.block_order || Object.keys(sec.blocks)) {
+              const v = sec.blocks[key];
+              if (!isList(v)) { blocks[key] = v; order.push(key); continue; }
+              const listKey = v.slice('@list:'.length);
+              const items = lookup(listKey);
+              if (!designs[key]) { errors.push(`${where}: the list "${key}" has no design in "block_designs"`); continue; }
+              if (!Array.isArray(items)) { errors.push(`${where}: "${listKey}" must be a list in regions/${target}/content/`); continue; }
+              items.forEach((item, i) => {
+                const settings = { ...(designs[key].settings || {}) };
+                for (const [k, val] of Object.entries(item)) if (k !== 'shown' && val !== null) settings[k] = val;
+                const bid = blockId(key, i + 1);
+                blocks[bid] = { type: key, settings, ...(item.shown === false ? { disabled: true } : {}) };
+                order.push(bid);
+              });
+            }
+            sec.blocks = blocks; sec.block_order = order;
+            delete sec.block_designs;
           }
           out.sections[id] = fill(sec, where);
           out.order.push(id);

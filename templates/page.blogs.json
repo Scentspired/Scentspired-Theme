@@ -39,23 +39,20 @@
             "text_style": "body"
           }
         },
-        "buttons_zcnqmk": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "@content:page-blogs.image_banner.buttons.button_label_1",
-            "button_link_1": "@content:page-blogs.image_banner.buttons.button_link_1",
-            "button_style_secondary_1": false,
-            "button_label_2": "@content:page-blogs.image_banner.buttons.button_label_2",
-            "button_link_2": "@content:page-blogs.image_banner.buttons.button_link_2",
-            "button_style_secondary_2": false
-          }
-        }
+        "button": "@list:page-blogs.image_banner.buttons"
       },
       "block_order": [
         "heading_TJagL6",
         "text_iUPQkR",
-        "buttons_zcnqmk"
-      ]
+        "button"
+      ],
+      "block_designs": {
+        "button": {
+          "settings": {
+            "style_secondary": false
+          }
+        }
+      }
     },
     "blog_section_4VLNh8": {
       "type": "editorial--zigzag-blog",

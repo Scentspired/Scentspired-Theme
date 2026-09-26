@@ -658,35 +658,18 @@
             }
           }
         },
-        "buttons": {
-          "name": "Buttons",
+        "button": {
+          "name": "Button",
           "settings": {
-            "header_1": {
-              "content": "Button 1"
-            },
-            "button_label_1": {
+            "label": {
               "label": "Label",
               "info": "Leave blank to hide",
               "default": "Button label"
             },
-            "button_link_1": {
+            "link": {
               "label": "Link"
             },
-            "button_style_secondary_1": {
-              "label": "Outline style"
-            },
-            "header_2": {
-              "content": "Button 2"
-            },
-            "button_label_2": {
-              "label": "Label",
-              "info": "Leave blank to hide",
-              "default": "Button label"
-            },
-            "button_link_2": {
-              "label": "Link"
-            },
-            "button_style_secondary_2": {
+            "style_secondary": {
               "label": "Outline style"
             }
           }
