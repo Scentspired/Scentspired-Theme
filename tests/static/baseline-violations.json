@@ -1,8 +1,6 @@
 {
-  "no-unguarded-getElementById": 24,
-  "no-unguarded-querySelector": 8,
-  "no-unsafe-inline-onclick": 2,
-  "no-unguarded-dom-variable": 15,
-  "bundle-inventory-availability-guard": 3,
-  "no-hardcoded-shopify-variant-ids": 1
+  "no-unguarded-getElementById": 9,
+  "no-unguarded-querySelector": 5,
+  "no-unguarded-dom-variable": 7,
+  "bundle-inventory-availability-guard": 1
 }

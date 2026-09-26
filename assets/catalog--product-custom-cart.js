@@ -1,5 +1,5 @@
 /* The product page's quantity and add to cart. Wording from the card strings (snippets/card--strings.liquid). Moved from sections/catalog--product-custom.liquid. */
-  var cardStrings = JSON.parse(document.getElementById('cardStrings').textContent);
+  var cardStrings = JSON.parse((document.getElementById('cardStrings') || {}).textContent || '{}');
 document.addEventListener('DOMContentLoaded', async function () {
 
   const qtyDisplay = document.getElementById('psQuantityDisplay');

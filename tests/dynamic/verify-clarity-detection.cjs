@@ -46,6 +46,7 @@ const clarityBugs = [
   {
     name: "variant id input .value — best-sellers (19+13 sessions)",
     file: "catalog--best-sellers.liquid",
+    altFile: "catalog--best-sellers.js", // the section's script, since phase 6
     // Was .selected-variant-id. best-sellers now renders the shared card,
     // whose hidden input is .variant-id-input — same crash, new hook.
     pattern: "variant-id-input",

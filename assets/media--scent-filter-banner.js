@@ -1,0 +1,585 @@
+/* The scent filter banner: brands and notes, their products, add to cart. Moved from sections/media--scent-filter-banner.liquid. */
+  var cardStrings = JSON.parse((document.getElementById('cardStrings') || {}).textContent || '{}');
+  document.addEventListener('DOMContentLoaded', function () {
+    console.log('=== SCENT BANNER SCRIPT LOADED ===');
+
+    const video = document.getElementById('main-video');
+    if (video) {
+      video.muted = true;
+      video.play().catch(e => console.warn('Autoplay issue:', e));
+    }
+
+    const scentSection = document.getElementById('scent-video-banner');
+    const rightContent = document.querySelector('.scent-right');
+    const productsDisplay = document.getElementById('productsDisplay');
+    const paginationDots = document.getElementById('paginationDots');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const shopButton = document.getElementById('shopButton');
+    const shopButtonText = document.getElementById('shopButtonText');
+
+    if (!scentSection) return;
+
+    const currSym = (window.__STORE_CONFIG && window.__STORE_CONFIG.currencySymbol) || '';
+
+    function selectVariantOnCard(productCard, btn) {
+      if (!productCard || !btn) return;
+      const form = productCard.querySelector('.item-form');
+      if (!form) return;
+
+      const idInput = form.querySelector('.variant-id-input');
+      const priceDisplay = productCard.querySelector('[data-price-display]');
+      const compareAtPriceEl = productCard.querySelector('[data-compare-at-price-display]');
+      const priceBadgeEl = productCard.querySelector('[data-price-badge]');
+
+      form.querySelectorAll('.variant-option-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const variantId = btn.getAttribute('data-variant-id');
+      if (idInput) idInput.value = variantId;
+
+      const variantPrice = btn.getAttribute('data-variant-price');
+      const compareAtPrice = btn.getAttribute('data-variant-compare-at-price');
+      const variantPriceRaw = parseInt(btn.getAttribute('data-variant-price-raw'), 10);
+
+      if (priceDisplay && variantPrice) {
+        priceDisplay.textContent = variantPrice;
+      }
+
+      // The theme's one sale rule (layout/theme.liquid).
+      const showsWasPrice = window.ScentspiredSale.showsWasPrice(variantPriceRaw, compareAtPrice);
+      const saleBadgeText = window.ScentspiredSale.badge(variantPriceRaw, compareAtPrice);
+      if (compareAtPriceEl) {
+        if (showsWasPrice) compareAtPriceEl.textContent = currSym + (parseInt(compareAtPrice, 10) / 100).toFixed(2);
+        compareAtPriceEl.style.display = showsWasPrice ? 'inline' : 'none';
+      }
+      if (priceBadgeEl) {
+        priceBadgeEl.textContent = saleBadgeText;
+        priceBadgeEl.style.display = saleBadgeText ? 'inline' : 'none';
+      }
+    }
+
+    let isInView = false;
+    let sectionTop = 0;
+    let sectionHeight = 0;
+    let currentProductIndex = 0;
+    let currentCollection = 'brand_collection_3';
+    let currentCategory = 'brands';
+    let productData = {};
+    let currentProducts = [];
+    let formSubmissionInProgress = new Map();
+
+    const pDataEl = document.getElementById('productData');
+    if (pDataEl) {
+      try {
+        productData = JSON.parse(pDataEl.textContent);
+        console.log('Product data loaded:', Object.keys(productData));
+      } catch (e) {
+        console.error('Error loading product data:', e);
+      }
+    }
+
+    const mainHeadings = document.querySelectorAll('.main-heading');
+    mainHeadings.forEach(heading => {
+      heading.addEventListener('click', function () {
+        const category = this.getAttribute('data-category');
+        switchCategory(category);
+      });
+    });
+
+    function switchCategory(category) {
+      console.log('Switching category to:', category);
+      currentCategory = category;
+      formSubmissionInProgress.clear();
+
+      mainHeadings.forEach(h => h.classList.remove('active-main'));
+      const activeMain = document.querySelector(`[data-category="${category}"].main-heading`);
+      if (activeMain) activeMain.classList.add('active-main');
+
+      document.querySelectorAll('.inner-headings-group').forEach(group => {
+        group.style.display = group.getAttribute('data-category') === category ? 'block' : 'none';
+      });
+
+      const firstHeading = document.querySelector(
+        `.inner-headings-group[data-category="${category}"] .clickable-heading`
+      );
+      if (firstHeading) {
+        const collectionKey = firstHeading.getAttribute('data-collection');
+        currentCollection = collectionKey;
+        currentProductIndex = 0;
+        updateActiveHeading(collectionKey);
+        renderProducts();
+      }
+
+      resetHeadingAnimations();
+      if (isInView) {
+        animateHeadings();
+      }
+    }
+
+    function resetHeadingAnimations() {
+      const visibleHeadings = document.querySelectorAll(
+        `.inner-headings-group[data-category="${currentCategory}"] .scent-heading`
+      );
+      visibleHeadings.forEach(heading => {
+        heading.style.opacity = '0';
+        heading.style.transform = 'translateY(50px)';
+      });
+
+      if (rightContent) {
+        rightContent.style.opacity = '0';
+        rightContent.style.transform = 'translateY(40px)';
+      }
+    }
+
+    function updateSectionDimensions() {
+      const rect = scentSection.getBoundingClientRect();
+      sectionTop = window.pageYOffset + rect.top;
+      sectionHeight = rect.height;
+    }
+
+    function animateHeadings() {
+      if (!isInView) return;
+
+      const scrollY = window.pageYOffset;
+      const windowHeight = window.innerHeight;
+      const rect = scentSection.getBoundingClientRect();
+
+      const sectionTopInView = windowHeight - rect.top;
+      const triggerPoint = windowHeight * 0.3;
+
+      if (sectionTopInView < triggerPoint) {
+        return;
+      }
+
+      const animationStart = triggerPoint;
+      const animationRange = sectionHeight + windowHeight * 0.1;
+      const scrollProgress = Math.max(0, Math.min(1, (sectionTopInView - animationStart) / animationRange));
+
+      const visibleHeadings = document.querySelectorAll(
+        `.inner-headings-group[data-category="${currentCategory}"] .scent-heading`
+      );
+      visibleHeadings.forEach((heading, index) => {
+        const startPoint = index * 0.12;
+        const endPoint = startPoint + 0.12;
+
+        let headingProgress = (scrollProgress - startPoint) / (endPoint - startPoint);
+        headingProgress = Math.max(0, Math.min(1, headingProgress));
+
+        const easedProgress = headingProgress * headingProgress * (3 - 2 * headingProgress);
+
+        const opacity = easedProgress;
+        const translateY = (1 - easedProgress) * 50;
+
+        heading.style.opacity = opacity;
+        heading.style.transform = `translateY(${translateY}px)`;
+      });
+
+      if (rightContent) {
+        const rightStartPoint = 0.2;
+        const rightEndPoint = 0.5;
+
+        let rightProgress = (scrollProgress - rightStartPoint) / (rightEndPoint - rightStartPoint);
+        rightProgress = Math.max(0, Math.min(1, rightProgress));
+
+        const rightEasedProgress = rightProgress * rightProgress * (3 - 2 * rightProgress);
+
+        const rightOpacity = rightEasedProgress;
+        const rightTranslateY = (1 - rightEasedProgress) * 40;
+
+        rightContent.style.opacity = rightOpacity;
+        rightContent.style.transform = `translateY(${rightTranslateY}px)`;
+      }
+    }
+
+    function updateVariantAvailability() {
+      fetch('/cart.js')
+        .then(res => res.json())
+        .then(cartData => {
+          const cartItems = cartData.items || [];
+          const cartQuantities = {};
+
+          // Build map of variant IDs to quantities in cart
+          cartItems.forEach(item => {
+            cartQuantities[item.variant_id] = (cartQuantities[item.variant_id] || 0) + item.quantity;
+          });
+
+          // Update all variant buttons on the page
+          document.querySelectorAll('.variant-option-btn').forEach(btn => {
+            const variantId = parseInt(btn.getAttribute('data-variant-id'));
+            const inventory = parseInt(btn.getAttribute('data-inventory')) || 0;
+            const cartQty = cartQuantities[variantId] || 0;
+
+            // Clamp to stock only where stock is tracked; inventory 0 also
+            // means "not tracked", and those variants are buyable.
+            const tracked = inventory > 0;
+            const shouldDisable = tracked && cartQty >= inventory;
+
+            if (shouldDisable) {
+              btn.classList.add('disabled');
+              btn.setAttribute('data-available', 'false');
+            } else {
+              btn.classList.remove('disabled');
+              btn.setAttribute('data-available', 'true');
+            }
+          });
+
+          // Update cart buttons based on available variants
+          document.querySelectorAll('.item-form').forEach(form => {
+            const productCard = form.closest('.product-card');
+            if (!productCard) return;
+            const cartBtn = form.querySelector('.cart-button');
+            if (!cartBtn) return;
+            const availableVariants = productCard.querySelectorAll('.variant-option-btn:not(.disabled)');
+
+            if (availableVariants.length === 0) {
+              cartBtn.classList.add('sold-out');
+              cartBtn.innerText = cardStrings.soldOut;
+              cartBtn.disabled = true;
+              cartBtn.style.pointerEvents = 'none';
+            } else {
+              cartBtn.classList.remove('sold-out');
+              cartBtn.innerText = cardStrings.addToCartUpper;
+              cartBtn.disabled = false;
+              cartBtn.style.pointerEvents = 'auto';
+
+              const activeBtn = productCard.querySelector('.variant-option-btn.active');
+              if (!activeBtn) {
+                selectVariantOnCard(productCard, availableVariants[0]);
+              } else if (activeBtn && activeBtn.classList && activeBtn.classList.contains('disabled')) {
+                selectVariantOnCard(productCard, availableVariants[0]);
+              }
+            }
+          });
+        })
+        .catch(err => console.error('[v0] Error updating variant availability:', err));
+    }
+
+    function renderProducts() {
+      console.log('Rendering products for:', currentCollection);
+      currentProducts = productData[currentCollection] || [];
+      console.log('Found products:', currentProducts.length);
+
+      if (currentProducts.length === 0) return;
+
+      const isMobile = window.innerWidth <= 768;
+      const productsToShow = isMobile ? 1 : 2;
+      const totalPages = Math.ceil(currentProducts.length / productsToShow);
+
+      if (currentProductIndex >= totalPages) currentProductIndex = 0;
+
+      const startIndex = currentProductIndex * productsToShow;
+      const endIndex = startIndex + productsToShow;
+      const visibleProducts = currentProducts.slice(startIndex, endIndex);
+
+      if (visibleProducts.length === 1) {
+        productsDisplay.classList.add('single-product');
+      } else {
+        productsDisplay.classList.remove('single-product');
+      }
+
+      // Card markup lives in snippets/card--product-carousel.liquid.
+      productsDisplay.textContent = '';
+      visibleProducts.forEach((product, pIdx) => {
+        productsDisplay.appendChild(
+          ScentspiredCard.renderCarousel(product, { index: pIdx })
+        );
+      });
+
+      productsDisplay.querySelectorAll('.product-card').forEach(card => {
+        const variantBtns = card.querySelectorAll('.variant-option-btn');
+        const idInput = card.querySelector('.variant-id-input');
+        const priceDisplay = card.querySelector('[data-price-display]');
+        const cartBtn = card.querySelector('.cart-button');
+
+        let firstAvailableBtn = null;
+        let hasAnyAvailable = false;
+
+        variantBtns.forEach(btn => {
+          const available = btn.dataset.available === 'true';
+          const inventory = parseInt(btn.dataset.inventory) || 0;
+
+      // available is Shopify's answer to "can this be bought". inventory 0
+      // also means "not tracked", so it must not disable on its own.
+          if (!available) {
+            btn.classList.add('disabled');
+            return;
+          }
+          hasAnyAvailable = true;
+          if (!firstAvailableBtn) firstAvailableBtn = btn;
+        });
+
+        // Check if ALL variants are out of stock
+        if (!hasAnyAvailable) {
+          cartBtn.classList.add('sold-out');
+          cartBtn.innerText = cardStrings.soldOut;
+          cartBtn.disabled = true;
+          cartBtn.style.pointerEvents = 'none';
+
+          // Don't select any variant if all are out of stock
+          variantBtns.forEach(b => b.classList.remove('active'));
+          if (idInput) idInput.value = '';
+        } else {
+          cartBtn.classList.remove('sold-out');
+          cartBtn.innerText = cardStrings.addToCartUpper;
+          cartBtn.disabled = false;
+          cartBtn.style.pointerEvents = 'auto';
+
+          if (firstAvailableBtn) {
+            selectVariantOnCard(card, firstAvailableBtn);
+          }
+        }
+      });
+
+      console.log('Products rendered, HTML updated');
+
+      paginationDots.innerHTML = Array.from(
+        { length: totalPages },
+        (_, i) => `<span class="dot ${i === currentProductIndex ? 'active' : ''}" data-index="${i}"></span>`
+      ).join('');
+
+      prevBtn.style.display = totalPages > 1 ? 'block' : 'none';
+      nextBtn.style.display = totalPages > 1 ? 'block' : 'none';
+
+      updateVariantAvailability();
+    }
+
+    setInterval(updateVariantAvailability, 2000);
+
+    // EVENT DELEGATION - Set up once at the document level
+    document.addEventListener(
+      'click',
+      function (e) {
+        // Handle variant button clicks
+        if (e.target.closest('.variant-option-btn')) {
+          e.preventDefault();
+          const btn = e.target.closest('.variant-option-btn');
+
+          if (btn.classList.contains('disabled')) {
+            return;
+          }
+
+          const productCard = btn.closest('.product-card');
+          selectVariantOnCard(productCard, btn);
+        }
+      },
+      true
+    );
+
+    document.addEventListener(
+      'submit',
+      function (e) {
+        // Handle form submissions
+        const form = e.target.closest('.item-form');
+        if (form) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          const productCard = form.closest('.product-card');
+          const formId = productCard ? productCard.getAttribute('data-product-id') : Date.now();
+          const productTitle = form.querySelector('.cart-button').getAttribute('data-product-title');
+
+          console.log('=== FORM SUBMITTED ===');
+          console.log('Product:', productTitle);
+          console.log('Form ID:', formId);
+
+          if (formSubmissionInProgress.get(formId)) {
+            console.log('Submission already in progress, aborting');
+            return;
+          }
+
+          const submitBtn = form.querySelector('.cart-button');
+          if (!submitBtn) return;
+
+          // Prevent submission if product is sold out
+          if (submitBtn.disabled || submitBtn.classList.contains('sold-out')) {
+            console.log('Product is sold out, preventing submission');
+            return;
+          }
+
+          const idInput = form.querySelector('.variant-id-input');
+          const variantId = idInput ? idInput.value : null;
+
+          console.log('Variant ID:', variantId);
+
+          if (!variantId) {
+            alert(cardStrings.selectVariant);
+            return;
+          }
+
+          formSubmissionInProgress.set(formId, true);
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = cardStrings.adding;
+
+          console.log('Sending request to /cart/add.js...');
+
+          fetch('/cart/add.js', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Accept: 'application/json',
+            },
+            body: JSON.stringify({ id: variantId, quantity: 1 }),
+          })
+            .then(res => {
+              console.log('Add to cart response status:', res.status);
+              if (!res.ok) throw new Error(`cart/add.js ${res.status}`);
+              return res.json();
+            })
+            .then(data => {
+              console.log('Add to cart success:', data);
+              if (submitBtn) submitBtn.innerHTML = cardStrings.added;
+
+              return fetch('/cart.js');
+            })
+            .then(cartRes => {
+              if (!cartRes.ok) throw new Error(`cart.js ${cartRes.status}`);
+              return cartRes.json();
+            })
+            .then(cartData => {
+              if (typeof window.updateDossierCartUI === 'function') {
+                window.updateDossierCartUI(cartData);
+              }
+              if (typeof window.openDossierCart === 'function') {
+                window.openDossierCart();
+              }
+
+              updateVariantAvailability();
+
+              setTimeout(() => {
+                if (submitBtn) {
+                  submitBtn.innerHTML = cardStrings.addToCartUpper;
+                  submitBtn.disabled = false;
+                }
+                formSubmissionInProgress.set(formId, false);
+              }, 2000);
+            })
+            .catch(err => {
+              console.error('Error adding to cart:', err);
+              if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = cardStrings.addToCartUpper;
+              }
+              formSubmissionInProgress.set(formId, false);
+              alert(cardStrings.addFailedRetry);
+            });
+        }
+      },
+      true
+    );
+
+    function updateActiveHeading(collectionKey) {
+      const visibleHeadings = document.querySelectorAll(
+        `.inner-headings-group[data-category="${currentCategory}"] .clickable-heading`
+      );
+      visibleHeadings.forEach(h => {
+        h.classList.remove('active-heading');
+      });
+
+      const activeHeading = document.querySelector(
+        `.inner-headings-group[data-category="${currentCategory}"] [data-collection="${collectionKey}"]`
+      );
+      if (activeHeading) {
+        activeHeading.classList.add('active-heading');
+
+        if (shopButtonText) shopButtonText.textContent = shopButtonText.dataset.label || shopButtonText.textContent;
+
+        const themeUrlsEl = document.getElementById('themeButtonUrls');
+        if (themeUrlsEl) {
+          try {
+            const themeUrls = JSON.parse(themeUrlsEl.textContent);
+            const categoryPrefix = currentCategory === 'brands' ? 'brand_' : 'notes_';
+
+            const indexMatch = collectionKey.match(/\d+$/);
+            const urlKey = categoryPrefix + (indexMatch ? indexMatch[0] : 1);
+            const buttonUrl = themeUrls[urlKey];
+
+            if (buttonUrl && shopButton) {
+              shopButton.href = buttonUrl;
+            }
+          } catch (e) {
+            console.error('Error parsing theme URLs:', e);
+          }
+        }
+      }
+    }
+
+    document.addEventListener('click', function (e) {
+      if (e.target.classList.contains('clickable-heading')) {
+        console.log('Heading clicked:', e.target.textContent);
+        const collectionKey = e.target.getAttribute('data-collection');
+        currentCollection = collectionKey;
+        currentProductIndex = 0;
+        formSubmissionInProgress.clear();
+        updateActiveHeading(collectionKey);
+        renderProducts();
+      }
+    });
+
+    prevBtn.addEventListener('click', () => {
+      const totalPages = Math.ceil(currentProducts.length / (window.innerWidth <= 768 ? 1 : 2));
+      currentProductIndex = (currentProductIndex - 1 + totalPages) % totalPages;
+      renderProducts();
+    });
+
+    nextBtn.addEventListener('click', () => {
+      const totalPages = Math.ceil(currentProducts.length / (window.innerWidth <= 768 ? 1 : 2));
+      currentProductIndex = (currentProductIndex + 1) % totalPages;
+      renderProducts();
+    });
+
+    paginationDots.addEventListener('click', e => {
+      if (e.target.classList.contains('dot')) {
+        currentProductIndex = parseInt(e.target.getAttribute('data-index'));
+        renderProducts();
+      }
+    });
+
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            isInView = true;
+            updateSectionDimensions();
+            animateHeadings();
+          } else {
+            isInView = false;
+            resetHeadingAnimations();
+          }
+        });
+      },
+      {
+        threshold: 0.001,
+        rootMargin: '0px 0px 0px 0px',
+      }
+    );
+
+    observer.observe(scentSection);
+
+    let ticking = false;
+    function handleScroll() {
+      if (!ticking && isInView) {
+        requestAnimationFrame(() => {
+          animateHeadings();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    window.addEventListener('resize', () => {
+      updateSectionDimensions();
+      if (isInView) {
+        animateHeadings();
+      }
+      renderProducts();
+    });
+
+    updateSectionDimensions();
+    updateActiveHeading(currentCollection);
+    renderProducts();
+
+    console.log('=== INITIALIZATION COMPLETE ===');
+  });

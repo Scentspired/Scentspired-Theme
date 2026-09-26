@@ -7,7 +7,7 @@
   try {
   // Interface wording from the locale, written into the page by the section (#headerStrings).
   function headerStrings() {
-    if (!headerStrings.cache) headerStrings.cache = JSON.parse(document.getElementById('headerStrings').textContent);
+    if (!headerStrings.cache) headerStrings.cache = JSON.parse((document.getElementById('headerStrings') || {}).textContent || '{}');
     return headerStrings.cache;
   }
 
@@ -292,7 +292,7 @@
       this.searchCategories = {};
 
       // Lists from the region's content (global.json, header.search)
-      const searchData = JSON.parse(document.getElementById('headerSearchData').textContent);
+      const searchData = JSON.parse((document.getElementById('headerSearchData') || {}).textContent || '{}');
       this.scentFamilies = searchData.scent_families;
       this.scentNotes = searchData.scent_notes;
       this.genderOptions = searchData.genders;
