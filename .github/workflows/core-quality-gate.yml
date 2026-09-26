@@ -24,7 +24,17 @@ jobs:
       - name: Install Dependencies
         run: npm ci --prefer-offline --no-audit --no-fund
 
-      - name: Run 13-Layer Central & Regional Quality Gates
+      # dist/ is not committed: each region is built from the core and regions/<id>/
+      # here, so the gate checks the themes that would ship (Theme Check runs on each).
+      - name: Build every region
+        run: npm run -s compile:all
+
+      # Fails the run if testing has been switched off: a gate that bypasses itself is
+      # how CI reported green for months without running a single check.
+      - name: Assert the gate is switched on
+        run: node -e "const s=require('./tests/config/test-settings.json'); if (s.testing_enabled !== true) { console.error('tests/config/test-settings.json has testing_enabled false: the gate would bypass itself'); process.exit(1); }"
+
+      - name: Run the quality gate (core layers and every region)
         run: node runner.cjs --scope=all
 
       - name: Upstream Release Log
